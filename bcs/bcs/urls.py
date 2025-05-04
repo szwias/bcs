@@ -19,7 +19,7 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('autocomplete/czlonkowie', include('czlonkowie.urls')),
-    path('autocomplete/core', include('core.urls')),
-    path('autocomplete/kronika', include('kronika.urls')),
+    path('autocomplete/czlonkowie/', include('czlonkowie.urls')),
+    path('autocomplete/core/', include('core.urls')),
+    path('autocomplete/kronika/', include('kronika.urls')),
 ]
