@@ -3,8 +3,6 @@ from django.apps import apps
 from django.urls import path
 from dal import autocomplete
 from caseconverter import kebabcase
-
-
 from functools import partial
 
 def generate_autocomplete_views(model, label_list, value_list, model_list, globals_dict=None):
@@ -62,8 +60,6 @@ def generate_autocomplete_views(model, label_list, value_list, model_list, globa
                 widgets[field.name] = partial(autocomplete.ModelSelect2, url=f"{app_label}:{url_name}")
 
     return url_patterns, {model_name: widgets}
-
-
 
 def setup_autocompletes(configs, globals_dict):
     autocomplete_urls = []

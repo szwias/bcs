@@ -30,18 +30,6 @@ class CzlonekForm(forms.ModelForm):
         model = Czlonek
         fields = '__all__'
         widgets = build_widgets(autocomplete_widgets['Czlonek'])
-        # widgets = {
-        #     'rok_chrztu': autocomplete.ListSelect2(url='czlonkowie:czlonek-rok-chrztu-by-label-autocomplete'),
-        #     'miesiac_chrztu': autocomplete.ListSelect2(url='czlonkowie:czlonek-miesiac-chrztu-by-label-autocomplete'),
-        #     'dzien_chrztu': autocomplete.ListSelect2(url='czlonkowie:czlonek-dzien-chrztu-by-label-autocomplete'),
-        #     'staz': autocomplete.ListSelect2(url='czlonkowie:czlonek-staz-by-label-autocomplete'),
-        #     'status': autocomplete.ListSelect2(url='czlonkowie:czlonek-status-by-label-autocomplete'),
-        #
-        #     'czapka_1': autocomplete.ModelSelect2(url='czlonkowie:czapka-records-autocomplete'),
-        #     'czapka_2': autocomplete.ModelSelect2(url='czlonkowie:czapka-records-autocomplete'),
-        #     'rodzic_1': autocomplete.ModelSelect2(url='czlonkowie:czlonek-records-autocomplete'),
-        #     'rodzic_2': autocomplete.ModelSelect2(url='czlonkowie:czlonek-records-autocomplete'),
-        # }
 
 
     def __init__(self, *args, **kwargs):
@@ -115,9 +103,7 @@ class ImieSzlacheckieForm(forms.ModelForm):
     class Meta:
         model = ImieSzlacheckie
         fields = ['imie', 'posiadacz_display']
-        widgets = {
-            'imie': autocomplete.ModelSelect2(url='czlonkowie:czlonek-autocomplete'),
-        }
+        widgets = build_widgets(autocomplete_widgets['ImieSzlacheckie'])
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -135,9 +121,7 @@ class ZwierzeCzapkoweForm(forms.ModelForm):
     class Meta:
         model = ZwierzeCzapkowe
         fields = ['czlonek', 'imie_display', 'zwierze', 'wyjasnienie']
-        widgets = {
-            'czlonek': autocomplete.ModelSelect2(url='czlonkowie:czlonek-autocomplete'),
-        }
+        widgets = build_widgets(autocomplete_widgets['ZwierzeCzapkowe'])
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -145,53 +129,33 @@ class ZwierzeCzapkoweForm(forms.ModelForm):
             czlonek = self.instance.czlonek
             self.fields['imie_display'].initial = f"\"{czlonek.imie_piwne_1}\""
 
-
 class DawnyZarzadForm(forms.ModelForm):
     class Meta:
         model = DawnyZarzad
-        fields = '__all__'  # Or specify the fields you want
-        widgets = {
-            'kadencja': autocomplete.ModelSelect2(url='core:kadencja-autocomplete'),
+        fields = '__all__'
 
-            'wielki_mistrz': autocomplete.ModelSelect2(url='czlonkowie:czlonek-autocomplete'),
-            'kasztelan': autocomplete.ModelSelect2(url='czlonkowie:czlonek-autocomplete'),
-            'skarbnik': autocomplete.ModelSelect2(url='czlonkowie:czlonek-autocomplete'),
-            'bibendi': autocomplete.ModelSelect2(url='czlonkowie:czlonek-autocomplete'),
-            'cantandi': autocomplete.ModelSelect2(url='czlonkowie:czlonek-autocomplete'),
-            'kontakt_z_SSUJ': autocomplete.ModelSelect2(url='czlonkowie:czlonek-autocomplete'),
-            'kontakt_z_SKNHI': autocomplete.ModelSelect2(url='czlonkowie:czlonek-autocomplete'),
-        }
+        widgets = build_widgets(autocomplete_widgets['DawnyZarzad'])
+        widgets.update({'kadencja': autocomplete.ModelSelect2(url='core:kadencja-autocomplete')})
 
 class ZarzadForm(forms.ModelForm):
     class Meta:
         model = Zarzad
-        fields = '__all__'  # Or specify the fields you want
-        widgets = {
-            'kadencja': autocomplete.ModelSelect2(url='core:kadencja-autocomplete'),
-
-            'wielki_mistrz': autocomplete.ModelSelect2(url='czlonkowie:czlonek-autocomplete'),
-            'kasztelan': autocomplete.ModelSelect2(url='czlonkowie:czlonek-autocomplete'),
-            'skarbnik': autocomplete.ModelSelect2(url='czlonkowie:czlonek-autocomplete'),
-            'cantandi': autocomplete.ModelSelect2(url='czlonkowie:czlonek-autocomplete'),
-            'sekretarz': autocomplete.ModelSelect2(url='czlonkowie:czlonek-autocomplete'),
-        }
+        fields = '__all__'
+        widgets = build_widgets(autocomplete_widgets['Zarzad'])
+        widgets.update({'kadencja': autocomplete.ModelSelect2(url='core:kadencja-autocomplete')})
 
 class WielkiMistrzForm(forms.ModelForm):
     class Meta:
         model = WielkiMistrz
         fields = '__all__'
-        widgets = {
-            'imie': autocomplete.ModelSelect2(url='czlonkowie:czlonek-autocomplete'),
-        }
+        widgets = build_widgets(autocomplete_widgets['WielkiMistrz'])
 
 
 class HallOfFameForm(forms.ModelForm):
     class Meta:
         model = HallOfFame
         exclude = ['ordering']
-        widgets = {
-            'czlonek': autocomplete.ModelSelect2(url='core:kadencja-autocomplete'),
-        }
+        widgets = build_widgets(autocomplete_widgets['HallOfFame'])
 
 
 
