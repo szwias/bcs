@@ -1,4 +1,5 @@
 from core.utils.automation.BaseAdmin import *
+from .forms import UczestnictwoForm
 from .models import Uczestnictwo, Wyjazd, Wydarzenie, Zdarzenie
 from django.contrib.contenttypes.admin import GenericTabularInline
 
@@ -8,6 +9,7 @@ class UczestnictwoInline(GenericTabularInline):
     extra = 1
     verbose_name = "Uczestnictwo"
     verbose_name_plural = "Uczestnictwo"
+    form = UczestnictwoForm
 
 @admin.register(Wyjazd)
 class WyjazdAdmin(BaseModelAdmin):

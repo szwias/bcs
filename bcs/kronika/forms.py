@@ -12,7 +12,11 @@ class UczestnictwoForm(forms.ModelForm):
     class Meta:
         model = Uczestnictwo
         fields = '__all__'
-        widgets = build_widgets(autocomplete_widgets['Uczestnictwo'])
+        widgets = {
+            'uczestnik': autocomplete.ModelSelect2(
+                url='czlonkowie:czlonek-records-autocomplete'
+            ),
+        }
 
 class WydarzenieForm(forms.ModelForm):
     class Meta:
