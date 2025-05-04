@@ -1,29 +1,13 @@
-from core.utils.autocomplete import *
-from .models import Czapka, Czlonek
-from django.db import models
+from .models import Czlonek
+from core.utils.automation.ViewsGeneration import setup_autocompletes
 
-class RokChrztuAutocomplete(FieldChoicesAutocompleteByLabel):
-    model = Czlonek
-    field_name = 'rok_chrztu'
+autocomplete_configs = [
+    (Czlonek, ['rok_chrztu', 'miesiac_chrztu', 'dzien_chrztu', 'status', 'staz'], [], ['Czapka', 'Czlonek']),
+]
 
-class MiesiacChrztuAutocomplete(FieldChoicesAutocompleteByLabel):
-    model = Czlonek
-    field_name = 'miesiac_chrztu'
+autocomplete_urls, autocomplete_widgets = setup_autocompletes(
+    autocomplete_configs,
+    globals(),
+    namespace='czlonkowie'
+)
 
-class DzienChrztuAutocomplete(FieldChoicesAutocompleteByLabel):
-    model = Czlonek
-    field_name = 'dzien_chrztu'
-
-class StatusAutocomplete(FieldChoicesAutocompleteByLabel):
-    model = Czlonek
-    field_name = 'status'
-
-class StazAutocomplete(FieldChoicesAutocompleteByLabel):
-    model = Czlonek
-    field_name = 'staz'
-
-class CzapkaAutocomplete(StrMatchingAutocomplete):
-    model = Czapka
-
-class CzlonekAutocomplete(StrMatchingAutocomplete):
-    model = Czlonek
