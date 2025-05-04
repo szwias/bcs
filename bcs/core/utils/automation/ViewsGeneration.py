@@ -6,19 +6,13 @@ from caseconverter import kebabcase
 
 
 def generate_autocomplete_views(model, label_list, value_list, model_list, globals_dict=None):
-    """
-    Generates autocomplete view classes and corresponding URL patterns and widgets.
-
-    Returns:
-        (urlpatterns: list, widgets: dict)
-    """
     if globals_dict is None:
         raise ValueError("globals_dict is required to register views (usually pass globals())")
 
     model_name = model.__name__
     url_patterns = []
+    widgets = {}
 
-    # FieldChoices by Label
     for field in label_list:
         view_name = f"{field.title().replace('_', '')}Autocomplete"
         view_class = type(
@@ -29,11 +23,11 @@ def generate_autocomplete_views(model, label_list, value_list, model_list, globa
         globals_dict[view_name] = view_class
 
         url_name = f"{kebabcase(model_name)}-{kebabcase(field)}-by-label-autocomplete"
-        url_patterns.append(path(f"{url_name}/", view_class.as_view(), name=url_name))
+        url_path = path(f"{url_name}/", view_class.as_view(), name=url_name)
+        url_patterns.append(url_path)
 
+        widgets[field] = autocomplete.ListSelect2(url=f"{model._meta.app_label}:{url_name}")
 
-
-    # FieldChoices by Value
     for field in value_list:
         view_name = f"{field.title().replace('_', '')}Autocomplete"
         view_class = type(
@@ -44,9 +38,11 @@ def generate_autocomplete_views(model, label_list, value_list, model_list, globa
         globals_dict[view_name] = view_class
 
         url_name = f"{kebabcase(model_name)}-{kebabcase(field)}-by-value-autocomplete"
-        url_patterns.append(path(f"{url_name}/", view_class.as_view(), name=url_name))
+        url_path = path(f"{url_name}/", view_class.as_view(), name=url_name)
+        url_patterns.append(url_path)
 
-    # Records (model-based autocompletes)
+        widgets[field] = autocomplete.ListSelect2(url=f"{model._meta.app_label}:{url_name}")
+
     for model_name_str in model_list:
         related_model = apps.get_model(model._meta.app_label, model_name_str)
         view_name = f"{related_model.__name__}Autocomplete"
@@ -55,22 +51,31 @@ def generate_autocomplete_views(model, label_list, value_list, model_list, globa
             (StrMatchingAutocomplete,),
             {
                 "model": related_model,
-                "__module__": __name__,  # ← ensures proper module registration
+                "__module__": __name__,
             },
         )
         globals_dict[view_name] = view_class
 
         url_name = f"{kebabcase(model_name_str)}-records-autocomplete"
-        url_patterns.append(path(f"{url_name}/", view_class.as_view(), name=url_name))
+        url_path = path(f"{url_name}/", view_class.as_view(), name=url_name)
+        url_patterns.append(url_path)
 
-    return url_patterns
+        # Try to assign widget for any FK fields pointing to related_model
+        for field in model._meta.fields:
+            if field.related_model == related_model:
+                widgets[field.name] = autocomplete.ModelSelect2(url=f"{model._meta.app_label}:{url_name}")
+
+    return url_patterns, widgets
+
 
 def setup_autocompletes(configs, globals_dict):
     autocomplete_urls = []
+    autocomplete_widgets = {}
+
     for config in configs:
         model, label_list, value_list, record_list = config
 
-        urls = generate_autocomplete_views(
+        urls, widgets = generate_autocomplete_views(
             model=model,
             label_list=label_list,
             value_list=value_list,
@@ -79,5 +84,7 @@ def setup_autocompletes(configs, globals_dict):
         )
 
         autocomplete_urls += urls
+        autocomplete_widgets.update(widgets)
 
-    return autocomplete_urls
+    return autocomplete_urls, autocomplete_widgets
+

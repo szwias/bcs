@@ -1,7 +1,7 @@
 from django import forms
 from dal import autocomplete
 from .models import *
-# from .views import autocomplete_widgets
+from .views import autocomplete_widgets
 
 class CzapkaForm(forms.ModelForm):
     class Meta:
@@ -29,18 +29,19 @@ class CzlonekForm(forms.ModelForm):
     class Meta:
         model = Czlonek
         fields = '__all__'  # Or specify the fields you want
-        widgets = {
-            'rok_chrztu': autocomplete.ListSelect2(url='czlonkowie:czlonek-rok-chrztu-by-label-autocomplete'),
-            'miesiac_chrztu': autocomplete.ListSelect2(url='czlonkowie:czlonek-miesiac-chrztu-by-label-autocomplete'),
-            'dzien_chrztu': autocomplete.ListSelect2(url='czlonkowie:czlonek-dzien-chrztu-by-label-autocomplete'),
-            'staz': autocomplete.ListSelect2(url='czlonkowie:czlonek-staz-by-label-autocomplete'),
-            'status': autocomplete.ListSelect2(url='czlonkowie:czlonek-status-by-label-autocomplete'),
-
-            'czapka_1': autocomplete.ModelSelect2(url='czlonkowie:czapka-records-autocomplete'),
-            'czapka_2': autocomplete.ModelSelect2(url='czlonkowie:czapka-records-autocomplete'),
-            'rodzic_1': autocomplete.ModelSelect2(url='czlonkowie:czlonek-records-autocomplete'),
-            'rodzic_2': autocomplete.ModelSelect2(url='czlonkowie:czlonek-records-autocomplete'),
-        }
+        # widgets = {
+        #     'rok_chrztu': autocomplete.ListSelect2(url='czlonkowie:czlonek-rok-chrztu-by-label-autocomplete'),
+        #     'miesiac_chrztu': autocomplete.ListSelect2(url='czlonkowie:czlonek-miesiac-chrztu-by-label-autocomplete'),
+        #     'dzien_chrztu': autocomplete.ListSelect2(url='czlonkowie:czlonek-dzien-chrztu-by-label-autocomplete'),
+        #     'staz': autocomplete.ListSelect2(url='czlonkowie:czlonek-staz-by-label-autocomplete'),
+        #     'status': autocomplete.ListSelect2(url='czlonkowie:czlonek-status-by-label-autocomplete'),
+        #
+        #     'czapka_1': autocomplete.ModelSelect2(url='czlonkowie:czapka-records-autocomplete'),
+        #     'czapka_2': autocomplete.ModelSelect2(url='czlonkowie:czapka-records-autocomplete'),
+        #     'rodzic_1': autocomplete.ModelSelect2(url='czlonkowie:czlonek-records-autocomplete'),
+        #     'rodzic_2': autocomplete.ModelSelect2(url='czlonkowie:czlonek-records-autocomplete'),
+        # }
+        widgets = autocomplete_widgets
 
 
     def __init__(self, *args, **kwargs):
