@@ -30,16 +30,16 @@ class CzlonekForm(forms.ModelForm):
         model = Czlonek
         fields = '__all__'  # Or specify the fields you want
         widgets = {
-            'rok_chrztu': autocomplete.ListSelect2(url='czlonkowie:czlonek_rok_chrztu_label_autocomplete'),
-            'miesiac_chrztu': autocomplete.ListSelect2(url='czlonkowie:czlonek_miesiac_chrztu_label_autocomplete'),
-            'dzien_chrztu': autocomplete.ListSelect2(url='czlonkowie:czlonek_dzien_chrztu_label_autocomplete'),
-            'staz': autocomplete.ListSelect2(url='czlonkowie:czlonek_staz_label_autocomplete'),
-            'status': autocomplete.ListSelect2(url='czlonkowie:czlonek_status_label_autocomplete'),
+            'rok_chrztu': autocomplete.ListSelect2(url='czlonkowie:czlonek-rok-chrztu-by-label-autocomplete'),
+            'miesiac_chrztu': autocomplete.ListSelect2(url='czlonkowie:czlonek-miesiac-chrztu-by-label-autocomplete'),
+            'dzien_chrztu': autocomplete.ListSelect2(url='czlonkowie:czlonek-dzien-chrztu-by-label-autocomplete'),
+            'staz': autocomplete.ListSelect2(url='czlonkowie:czlonek-staz-by-label-autocomplete'),
+            'status': autocomplete.ListSelect2(url='czlonkowie:czlonek-status-by-label-autocomplete'),
 
-            'czapka_1': autocomplete.ModelSelect2(url='czlonkowie:czapka_records_autocomplete'),
-            'czapka_2': autocomplete.ModelSelect2(url='czlonkowie:czapka_records_autocomplete'),
-            'rodzic_1': autocomplete.ModelSelect2(url='czlonkowie:czlonek_records_autocomplete'),
-            'rodzic_2': autocomplete.ModelSelect2(url='czlonkowie:czlonek_records_autocomplete'),
+            'czapka_1': autocomplete.ModelSelect2(url='czlonkowie:czapka-records-autocomplete'),
+            'czapka_2': autocomplete.ModelSelect2(url='czlonkowie:czapka-records-autocomplete'),
+            'rodzic_1': autocomplete.ModelSelect2(url='czlonkowie:czlonek-records-autocomplete'),
+            'rodzic_2': autocomplete.ModelSelect2(url='czlonkowie:czlonek-records-autocomplete'),
         }
 
 

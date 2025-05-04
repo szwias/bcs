@@ -7,15 +7,15 @@ app_name = 'czlonkowie'
 
 # fields autocomplete
 urlpatterns = [
-    path('rok-chrztu-autocomplete/', RokChrztuAutocomplete.as_view(), name='czlonek_rok_chrztu_label_autocomplete'),
-    path('miesiac-chrztu-autocomplete/', MiesiacChrztuAutocomplete.as_view(), name='czlonek_miesiac_chrztu_label_autocomplete'),
-    path('dzien-chrztu-autocomplete/', DzienChrztuAutocomplete.as_view(), name='czlonek_dzien_chrztu_label_autocomplete'),
-    path('staz-autocomplete/', StazAutocomplete.as_view(), name='czlonek_staz_label_autocomplete'),
-    path('status-autocomplete/', StatusAutocomplete.as_view(), name='czlonek_status_label_autocomplete'),
+    path('czlonek-rok-chrztu-by-label-autocomplete/', RokChrztuAutocomplete.as_view(), name='czlonek-rok-chrztu-by-label-autocomplete'),
+    path('czlonek-miesiac-chrztu-by-label-autocomplete/', MiesiacChrztuAutocomplete.as_view(), name='czlonek-miesiac-chrztu-by-label-autocomplete'),
+    path('czlonek-dzien-chrztu-by-label-autocomplete/', DzienChrztuAutocomplete.as_view(), name='czlonek-dzien-chrztu-by-label-autocomplete'),
+    path('czlonek-staz-by-label-autocomplete/', StazAutocomplete.as_view(), name='czlonek-staz-by-label-autocomplete'),
+    path('czlonek-status-by-label-autocomplete/', StatusAutocomplete.as_view(), name='czlonek-status-by-label-autocomplete'),
 ]
 
 # models autocomplete
 urlpatterns += [
-    path('czlonek-autocomplete/', CzlonekAutocomplete.as_view(), name='czlonek_records_autocomplete'),
-    path('czapka-autocomplete/', CzapkaAutocomplete.as_view(), name='czapka_records_autocomplete'),
+    path('czlonek-records-autocomplete/', CzlonekAutocomplete.as_view(), name='czlonek-records-autocomplete'),
+    path('czapka-records-autocomplete/', CzapkaAutocomplete.as_view(), name='czapka-records-autocomplete'),
 ]
