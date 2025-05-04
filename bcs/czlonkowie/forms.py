@@ -29,18 +29,17 @@ class CzlonekForm(forms.ModelForm):
     class Meta:
         model = Czlonek
         fields = '__all__'  # Or specify the fields you want
-        # widgets = autocomplete_widgets['czlonek']
         widgets = {
-            'rok_chrztu': autocomplete.ListSelect2(url='czlonkowie:rok-chrztu-autocomplete'),
-            'miesiac_chrztu': autocomplete.ListSelect2(url='czlonkowie:miesiac-chrztu-autocomplete'),
-            'dzien_chrztu': autocomplete.ListSelect2(url='czlonkowie:dzien-chrztu-autocomplete'),
-            'staz': autocomplete.ListSelect2(url='czlonkowie:staz-autocomplete'),
-            'status': autocomplete.ListSelect2(url='czlonkowie:status-autocomplete'),
+            'rok_chrztu': autocomplete.ListSelect2(url='czlonkowie:czlonek_rok_chrztu_label_autocomplete'),
+            'miesiac_chrztu': autocomplete.ListSelect2(url='czlonkowie:czlonek_miesiac_chrztu_label_autocomplete'),
+            'dzien_chrztu': autocomplete.ListSelect2(url='czlonkowie:czlonek_dzien_chrztu_label_autocomplete'),
+            'staz': autocomplete.ListSelect2(url='czlonkowie:czlonek_staz_label_autocomplete'),
+            'status': autocomplete.ListSelect2(url='czlonkowie:czlonek_status_label_autocomplete'),
 
-            'czapka_1': autocomplete.ModelSelect2(url='czlonkowie:czapka-autocomplete'),
-            'czapka_2': autocomplete.ModelSelect2(url='czlonkowie:czapka-autocomplete'),
-            'rodzic_1': autocomplete.ModelSelect2(url='czlonkowie:czlonek-autocomplete'),
-            'rodzic_2': autocomplete.ModelSelect2(url='czlonkowie:czlonek-autocomplete'),
+            'czapka_1': autocomplete.ModelSelect2(url='czlonkowie:czapka_records_autocomplete'),
+            'czapka_2': autocomplete.ModelSelect2(url='czlonkowie:czapka_records_autocomplete'),
+            'rodzic_1': autocomplete.ModelSelect2(url='czlonkowie:czlonek_records_autocomplete'),
+            'rodzic_2': autocomplete.ModelSelect2(url='czlonkowie:czlonek_records_autocomplete'),
         }
 
 

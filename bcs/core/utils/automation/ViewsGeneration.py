@@ -4,7 +4,7 @@ from django.urls import path
 from dal import autocomplete
 
 
-def generate_autocomplete_views(model, label_list, value_list, model_list, globals_dict=None, url_prefix="", namespace=None):
+def generate_autocomplete_views(model, label_list, value_list, model_list, globals_dict=None):
     """
     Generates autocomplete view classes and corresponding URL patterns and widgets.
 
@@ -14,8 +14,6 @@ def generate_autocomplete_views(model, label_list, value_list, model_list, globa
     if globals_dict is None:
         raise ValueError("globals_dict is required to register views (usually pass globals())")
 
-    urlpatterns = []
-    widgets = {}
     model_name = model.__name__.lower()
 
     # FieldChoices by Label
@@ -27,17 +25,6 @@ def generate_autocomplete_views(model, label_list, value_list, model_list, globa
             {"model": model, "field_name": field},
         )
         globals_dict[view_name] = view_class
-        urlpatterns.append(
-            path(
-                f"{url_prefix}{model_name}/{field}/autocomplete/",
-                view_class.as_view(),
-                name=f"{model_name}_{field}_label_autocomplete"
-            )
-        )
-        url_name = f"{model_name}_{field}_label_autocomplete"
-        if namespace:
-            url_name = f"{namespace}:{url_name}"
-        widgets[field] = autocomplete.ListSelect2(url=url_name)
 
     # FieldChoices by Value
     for field in value_list:
@@ -48,17 +35,6 @@ def generate_autocomplete_views(model, label_list, value_list, model_list, globa
             {"model": model, "field_name": field},
         )
         globals_dict[view_name] = view_class
-        urlpatterns.append(
-            path(
-                f"{url_prefix}{model_name}/{field}/autocomplete/",
-                view_class.as_view(),
-                name=f"{model_name}_{field}_value_autocomplete"
-            )
-        )
-        url_name = f"{model_name}_{field}_value_autocomplete"
-        if namespace:
-            url_name = f"{namespace}:{url_name}"
-        widgets[field] = autocomplete.ListSelect2(url=url_name)
 
     # Records (model-based autocompletes)
     for model_name_str in model_list:
@@ -74,39 +50,16 @@ def generate_autocomplete_views(model, label_list, value_list, model_list, globa
             },
         )
         globals_dict[view_name] = view_class
-        urlpatterns.append(
-            path(
-                f"{url_prefix}{related_model_lower}/autocomplete/",
-                view_class.as_view(),
-                name=f"{related_model_lower}_records_autocomplete"
-            )
-        )
 
-    return urlpatterns, widgets
-
-
-from django.utils.text import slugify
-
-
-def setup_autocompletes(configs, globals_dict, namespace, url_prefix=""):
-    urlpatterns = []
-    widgets_per_model = {}
-
+def setup_autocompletes(configs, globals_dict):
     for config in configs:
         model, label_list, value_list, record_list = config
         model_name = model.__name__
 
-        model_urlpatterns, model_widgets = generate_autocomplete_views(
+        generate_autocomplete_views(
             model=model,
             label_list=label_list,
             value_list=value_list,
             model_list=record_list,
-            globals_dict=globals_dict,
-            namespace=namespace,
-            url_prefix=url_prefix,
+            globals_dict=globals_dict
         )
-
-        urlpatterns.extend(model_urlpatterns)
-        widgets_per_model[model_name.lower()] = model_widgets
-
-    return urlpatterns, widgets_per_model
