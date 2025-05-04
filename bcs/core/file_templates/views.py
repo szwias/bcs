@@ -1,5 +1,5 @@
-from .models import Czlonek, ImieSzlacheckie, ZwierzeCzapkowe, WielkiMistrz, HallOfFame, DawnyZarzad, Zarzad, Kadencja, \
-    InnaOsoba
+"""
+from .models import Czlonek, ImieSzlacheckie, ZwierzeCzapkowe, WielkiMistrz, HallOfFame, DawnyZarzad, Zarzad, Kadencja
 from core.utils.automation.ViewsGeneration import *
 
 autocomplete_configs = [
@@ -9,7 +9,8 @@ autocomplete_configs = [
     (WielkiMistrz, [], [], ['Czlonek']),
     (HallOfFame, [], [], ['Czlonek']),
     (DawnyZarzad, [], [], ['Czlonek', 'core.Kadencja']),
-    (Zarzad, [], [], ['Czlonek', 'core.Kadencja']),
+    (Zarzad, [], [], ['Czlonek', 'core.Kadencja'])
 ]
 
 autocomplete_urls, autocomplete_widgets = setup_autocompletes(autocomplete_configs, globals())
+"""

@@ -1,20 +1,12 @@
-from core.utils.autocomplete import *
+"""
 from .models import *
+from core.utils.automation.ViewsGeneration import *
 
-class TypWydarzeniaAutocomplete(FieldChoicesAutocompleteByLabel):
-    model = Wydarzenie
-    field_name = 'typ'
+autocomplete_configs = [
+    (Uczestnictwo, [], [], ['czlonkowie.Czlonek']),
+    (Miejsce, ['typ'], [], []),
+    (Zdarzenie,
+]
 
-class TypMiejscaAutocomplete(FieldChoicesAutocompleteByLabel):
-    model = Miejsce
-    field_name = 'typ'
-
-class TypWyjazduAutocomplete(FieldChoicesAutocompleteByLabel):
-    model = Wyjazd
-    field_name = 'typ'
-
-class MiejsceAutocomplete(StrMatchingAutocomplete):
-    model = Miejsce
-
-class ZdarzenieAutocomplete(StrMatchingAutocomplete):
-    model = Zdarzenie
+autocomplete_urls, autocomplete_widgets = setup_autocompletes(autocomplete_configs, globals())
+"""

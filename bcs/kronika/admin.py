@@ -1,26 +1,33 @@
-# from django.contrib import admin
-# from .forms import *
-# from core.utils.BaseAdmin import BaseModelAdmin
-#
-# @admin.register(Wydarzenie, BaseModelAdmin)
-# class WydarzenieAdmin(admin.ModelAdmin):
-#     form = WydarzenieForm
-#     save_as = True
-#
-# @admin.register(Proces, BaseModelAdmin)
-# class ProcesAdmin(admin.ModelAdmin):
-#     form = ProcesForm
-#
-# @admin.register(Miejsce, BaseModelAdmin)
-# class MiejsceAdmin(admin.ModelAdmin):
-#     form = MiejsceForm
-#
-# @admin.register(Zdarzenie, BaseModelAdmin)
-# class ZdarzenieAdmin(admin.ModelAdmin):
-#     form = ZdarzenieForm
-#     save_as = True
-#
-# @admin.register(Wyjazd, BaseModelAdmin)
-# class WyjazdAdmin(admin.ModelAdmin):
-#     form = WyjazdForm
-#     save_as = True
+from core.utils.automation.BaseAdmin import *
+from .models import Uczestnictwo, Wyjazd, Wydarzenie, Zdarzenie
+from django.contrib.contenttypes.admin import GenericTabularInline
+
+
+class UczestnictwoInline(GenericTabularInline):
+    model = Uczestnictwo
+    extra = 1
+    verbose_name = "Uczestnictwo"
+    verbose_name_plural = "Uczestnictwo"
+
+@admin.register(Wyjazd)
+class WyjazdAdmin(BaseModelAdmin):
+    inlines = [UczestnictwoInline]
+
+
+@admin.register(Wydarzenie)
+class WydarzenieAdmin(BaseModelAdmin):
+    inlines = [UczestnictwoInline]
+
+
+@admin.register(Zdarzenie)
+class ZdarzenieAdmin(BaseModelAdmin):
+    inlines = [UczestnictwoInline]
+
+
+register_all_models(
+    custom_admins={
+        Wydarzenie: WydarzenieAdmin,
+        Wyjazd: WyjazdAdmin,
+        Zdarzenie: ZdarzenieAdmin,
+    }
+)

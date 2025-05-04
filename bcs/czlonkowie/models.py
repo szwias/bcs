@@ -592,3 +592,22 @@ class HallOfFame(models.Model):
             self.order_field = self.nazwa_alternatywna if self.nazwa_alternatywna else str(self.czlonek)
         super().save(*args, **kwargs)
 
+class InnaOsoba(models.Model):
+    imie = models.CharField(
+        max_length=MEDIUM_LENGTH,
+        verbose_name="Imie i nazwisko",
+    )
+
+    opis = models.TextField(
+        blank=True,
+        verbose_name="Opis",
+    )
+
+    class Meta:
+        verbose_name = "Inna osoba"
+        verbose_name_plural = "Inne osoby (nie-członkowie)"
+        ordering = ['imie']
+
+    def __str__(self):
+        return f"{self.imie}"
+

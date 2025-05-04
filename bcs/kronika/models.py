@@ -6,6 +6,29 @@ from django.contrib.contenttypes.models import ContentType
 
 from czlonkowie.models import Czlonek
 
+class Uczestnictwo(models.Model):
+    content_type = models.ForeignKey(
+        ContentType,
+        on_delete=models.CASCADE,
+    )
+
+    object_id = models.PositiveIntegerField()
+    content_object = GenericForeignKey('content_type', 'object_id')
+
+    uczestnik = models.ForeignKey(
+        Czlonek,
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+        verbose_name="Członek",
+    )
+
+    class Meta:
+        verbose_name = "Uczestnictwo"
+        verbose_name_plural = "Uczestnictwo"
+
+    def __str__(self):
+        return f"{self.uczestnik} - {self.content_type} - {self.content_object}"
 
 class Miejsce(models.Model):
     class TypyMiejsc(models.TextChoices):
@@ -56,11 +79,11 @@ class Zdarzenie(models.Model):
         verbose_name="Opis",
     )
 
-    # powiazane_osoby = models.ManyToManyField(
-    #     Czlonek,
-    #     through='Uczestnictwo',
-    #     verbose_name="Powiązane osoby"
-    # )
+    powiazane_osoby = GenericRelation(
+        Uczestnictwo,
+        blank=True,
+        verbose_name="Powiązane osoby",
+        related_query_name="uczestnictwo_w_zdarzeniu")
 
     class Meta:
         verbose_name = "Zdarzenie"
@@ -77,6 +100,7 @@ class Wydarzenie(models.Model):
         KINO = "Kino", "Kino"
         KONFERENCJA_NAUKOWA = "KonfNauk", "Konferencja naukowa"
         GROBY = "Groby", "Groby"
+        HISTORYCZNE = "H", "Historyczne"
         OGNISKO = "Ognisko", "Ognisko"
         OSTRY_DYZUR = "OD", "Ostry Dyżur"
         PLANSZOWKI = "Plansz", "Planszówki"
@@ -123,6 +147,12 @@ class Wydarzenie(models.Model):
         verbose_name="Zdarzenia",
     )
 
+    uczestnicy = GenericRelation(
+        Uczestnictwo,
+        blank=True,
+        verbose_name="Uczestnicy",
+        related_query_name="uczestnictwo_w_wydarzeniu")
+
     class Meta:
         verbose_name = "Wydarzenie"
         verbose_name_plural = "Wydarzenia"
@@ -130,8 +160,6 @@ class Wydarzenie(models.Model):
 
     def __str__(self):
         return self.nazwa
-
-
 
 class Proces(models.Model):
     nazwa = models.CharField(
@@ -218,6 +246,12 @@ class Wyjazd(models.Model):
         verbose_name="Zdarzenia",
     )
 
+    uczestnicy = GenericRelation(
+        Uczestnictwo,
+        blank=True,
+        verbose_name="Uczestnicy",
+        related_query_name="uczestnictwo_w_wyjezdzie")
+
     class Meta:
         verbose_name = "Wyjazd"
         verbose_name_plural = "Wyjazdy"
@@ -225,32 +259,5 @@ class Wyjazd(models.Model):
 
     def __str__(self):
         return f"{self.typ} \"{self.nazwa}\" - {self.miejsce}, {self.data_rozpoczecia.strftime('%d.%m.%Y')} - {self.data_zakonczenia.strftime('%d.%m.%Y')}"
-
-
-# class Uczestnictwo(models.Model):
-#     content_type = models.ForeignKey(
-#         ContentType,
-#         on_delete=models.CASCADE,
-#     )
-#
-#     object_id = models.PositiveIntegerField()
-#
-#     czlonek = models.ForeignKey(
-#         Czlonek,
-#         blank=True,
-#         null=True,
-#         on_delete=models.SET_NULL,
-#         verbose_name="Członek",
-#     )
-#
-#     inna_osoba = models.CharField(
-#         max_length=MAX_LENGTH,
-#         blank=True,
-#         verbose_name="Inna osoba",
-#     )
-#
-#     class Meta:
-#         verbose_name = "Uczestnictwo"
-#         verbose_name_plural = "Uczestnictwo"
 
 

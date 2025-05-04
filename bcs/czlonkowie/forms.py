@@ -157,5 +157,10 @@ class HallOfFameForm(forms.ModelForm):
         exclude = ['ordering']
         widgets = build_widgets(autocomplete_widgets['HallOfFame'])
 
+class InnaOsobaForm(forms.ModelForm):
+    class Meta:
+        model = InnaOsoba
+        fields = '__all__'
+
 
 
