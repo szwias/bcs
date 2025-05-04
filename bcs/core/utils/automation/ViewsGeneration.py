@@ -43,7 +43,11 @@ def generate_autocomplete_views(model, label_list, value_list, model_list, globa
         widgets[field] = partial(autocomplete.ListSelect2, url=f"{app_label}:{url_name}")
 
     for model_name_str in model_list:
-        related_model = apps.get_model(app_label, model_name_str)
+        if '.' in model_name_str:
+            related_model = apps.get_model(model_name_str)
+        else:
+            related_model = apps.get_model(app_label, model_name_str)
+
         view_name = f"{related_model.__name__}Autocomplete"
         view_class = type(
             view_name,

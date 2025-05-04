@@ -1,4 +1,4 @@
-from .models import Czlonek, ImieSzlacheckie, ZwierzeCzapkowe, WielkiMistrz, HallOfFame, DawnyZarzad, Zarzad
+from .models import Czlonek, ImieSzlacheckie, ZwierzeCzapkowe, WielkiMistrz, HallOfFame, DawnyZarzad, Zarzad, Kadencja
 from core.utils.automation.ViewsGeneration import *
 
 autocomplete_configs = [
@@ -7,8 +7,8 @@ autocomplete_configs = [
     (ZwierzeCzapkowe, [], [], ['Czlonek']),
     (WielkiMistrz, [], [], ['Czlonek']),
     (HallOfFame, [], [], ['Czlonek']),
-    (DawnyZarzad, [], [], ['Czlonek']),
-    (Zarzad, [], [], ['Czlonek'])
+    (DawnyZarzad, [], [], ['Czlonek', 'core.Kadencja']),
+    (Zarzad, [], [], ['Czlonek', 'core.Kadencja'])
 ]
 
 autocomplete_urls, autocomplete_widgets = setup_autocompletes(autocomplete_configs, globals())

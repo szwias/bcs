@@ -135,14 +135,14 @@ class DawnyZarzadForm(forms.ModelForm):
         fields = '__all__'
 
         widgets = build_widgets(autocomplete_widgets['DawnyZarzad'])
-        widgets.update({'kadencja': autocomplete.ModelSelect2(url='core:kadencja-autocomplete')})
+        widgets.update({'kadencja': autocomplete.ModelSelect2(url='core:custom-kadencja-autocomplete')})
 
 class ZarzadForm(forms.ModelForm):
     class Meta:
         model = Zarzad
         fields = '__all__'
         widgets = build_widgets(autocomplete_widgets['Zarzad'])
-        widgets.update({'kadencja': autocomplete.ModelSelect2(url='core:kadencja-autocomplete')})
+        widgets.update({'kadencja': autocomplete.ModelSelect2(url='core:custom-kadencja-autocomplete')})
 
 class WielkiMistrzForm(forms.ModelForm):
     class Meta:
