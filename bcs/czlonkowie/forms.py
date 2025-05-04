@@ -1,7 +1,7 @@
 from django import forms
 from dal import autocomplete
 from .models import *
-from .views import autocomplete_widgets
+from .views import autocomplete_widgets, build_widgets
 
 class CzapkaForm(forms.ModelForm):
     class Meta:
@@ -28,7 +28,8 @@ class CzapkaForm(forms.ModelForm):
 class CzlonekForm(forms.ModelForm):
     class Meta:
         model = Czlonek
-        fields = '__all__'  # Or specify the fields you want
+        fields = '__all__'
+        widgets = build_widgets(autocomplete_widgets['Czlonek'])
         # widgets = {
         #     'rok_chrztu': autocomplete.ListSelect2(url='czlonkowie:czlonek-rok-chrztu-by-label-autocomplete'),
         #     'miesiac_chrztu': autocomplete.ListSelect2(url='czlonkowie:czlonek-miesiac-chrztu-by-label-autocomplete'),
@@ -41,7 +42,6 @@ class CzlonekForm(forms.ModelForm):
         #     'rodzic_1': autocomplete.ModelSelect2(url='czlonkowie:czlonek-records-autocomplete'),
         #     'rodzic_2': autocomplete.ModelSelect2(url='czlonkowie:czlonek-records-autocomplete'),
         # }
-        widgets = autocomplete_widgets
 
 
     def __init__(self, *args, **kwargs):
