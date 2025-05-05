@@ -1,6 +1,6 @@
 from core.utils.automation.BaseAdmin import *
 from .forms import UczestnictwoForm
-from .models import Uczestnictwo, Wyjazd, Wydarzenie, Zdarzenie
+from .models import *
 from django.contrib.contenttypes.admin import GenericTabularInline
 
 
@@ -11,6 +11,12 @@ class UczestnictwoInline(GenericTabularInline):
     verbose_name_plural = "Uczestnictwo"
     form = UczestnictwoForm
 
+class ObrazWydarzenieInline(admin.TabularInline):  # or StackedInline
+    model = ObrazWydarzenie
+    extra = 1
+    verbose_name = "Zdjęcie z wydarzenia"
+    verbose_name_plural = "Zdjęcia z wydarzeń"
+
 @admin.register(Wyjazd)
 class WyjazdAdmin(BaseModelAdmin):
     inlines = [UczestnictwoInline]
@@ -19,7 +25,7 @@ class WyjazdAdmin(BaseModelAdmin):
 
 @admin.register(Wydarzenie)
 class WydarzenieAdmin(BaseModelAdmin):
-    inlines = [UczestnictwoInline]
+    inlines = [UczestnictwoInline, ObrazWydarzenieInline]
     save_as = True
     filter_horizontal = ("zdarzenia",)
 

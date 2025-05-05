@@ -24,6 +24,12 @@ class WydarzenieForm(forms.ModelForm):
         fields = '__all__'
         widgets = build_widgets(autocomplete_widgets['Wydarzenie'])
 
+class ObrazWydarzenieForm(forms.ModelForm):
+    class Meta:
+        model = ObrazWydarzenie
+        fields = '__all__'
+        widgets = build_widgets(autocomplete_widgets['ObrazWydarzenie'])
+
 class ProcesForm(forms.ModelForm):
     class Meta:
         model = Proces

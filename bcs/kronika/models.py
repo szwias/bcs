@@ -1,3 +1,5 @@
+import os
+
 from django.db import models
 from core.utils.Consts import *
 from django.utils import timezone
@@ -103,6 +105,7 @@ class Zdarzenie(models.Model):
     def __str__(self):
         return f"{self.data.strftime('%Y.%d.%m')} - {self.nazwa}"
 
+
 class Wydarzenie(models.Model):
     class TypyWydarzen(models.TextChoices):
         INNE = "I", "Inne"
@@ -146,6 +149,13 @@ class Wydarzenie(models.Model):
         verbose_name="Typ wydarzenia",
     )
 
+    obrazy = models.ManyToManyField(
+        "ObrazWydarzenie",
+        blank=True,
+        verbose_name="Zdjęcia",
+        related_name="wydarzenie_obraz",
+    )
+
     opis = models.TextField(
         blank=True,
         verbose_name="Opis",
@@ -170,6 +180,61 @@ class Wydarzenie(models.Model):
 
     def __str__(self):
         return f"{self.data.strftime('%Y.%d.%m')} - {self.nazwa}"
+
+class ObrazWydarzenie(models.Model):
+    wydarzenie = models.ForeignKey(
+        Wydarzenie,
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+        verbose_name="Wydarzenie",
+    )
+
+    tytul = models.CharField(
+        max_length=MEDIUM_LENGTH,
+        blank=True,
+        verbose_name="Tytuł",
+    )
+
+    obraz = models.ImageField(
+        upload_to="kronika/wydarzenia/",
+        verbose_name="Dodaj obraz",
+    )
+
+    widoczni_czlonkowie = models.ForeignKey(
+        Czlonek,
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+        verbose_name="Widoczni członkowie",
+    )
+
+    inne_widoczne_osoby = models.ForeignKey(
+        InnaOsoba,
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+        verbose_name="Inne widoczne osoby",
+    )
+
+    opis = models.TextField(
+        blank=True,
+        verbose_name="Opis",
+    )
+
+    class Meta:
+        verbose_name = "Zdjęcie z wydarzenia"
+        verbose_name_plural = "Zdjęcia z wydarzeń"
+        ordering = ["-wydarzenie"]
+
+    def __str__(self):
+        image_name = os.path.basename(self.obraz.name)
+        name = f"{self.wydarzenie.nazwa} - "
+        if self.tytul:
+            name += self.tytul
+        name += image_name
+        return name
+
 
 class Proces(models.Model):
     nazwa = models.CharField(
