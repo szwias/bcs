@@ -107,9 +107,9 @@ class ImieSzlacheckieForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        if self.instance and self.instance.imie:
-            imie = self.instance.imie
-            self.fields['posiadacz_display'].initial = f"{imie.imie} {imie.nazwisko}"
+        if self.instance and self.instance.nazwa:
+            imie = self.instance.nazwa
+            self.fields['posiadacz_display'].initial = f"{imie.nazwa} {imie.nazwisko}"
 
 class ZwierzeCzapkoweForm(forms.ModelForm):
     imie_display = forms.CharField(
@@ -161,6 +161,7 @@ class InnaOsobaForm(forms.ModelForm):
     class Meta:
         model = InnaOsoba
         fields = '__all__'
+        widgets = build_widgets(autocomplete_widgets['InnaOsoba'])
 
 
 

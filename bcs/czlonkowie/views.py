@@ -10,6 +10,7 @@ autocomplete_configs = [
     (HallOfFame, [], [], ['Czlonek']),
     (DawnyZarzad, [], [], ['Czlonek', 'core.Kadencja']),
     (Zarzad, [], [], ['Czlonek', 'core.Kadencja']),
+    (InnaOsoba, ['kategoria'], [], [])
 ]
 
 autocomplete_urls, autocomplete_widgets = setup_autocompletes(autocomplete_configs, globals())

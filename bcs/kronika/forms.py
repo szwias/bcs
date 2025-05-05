@@ -13,7 +13,7 @@ class UczestnictwoForm(forms.ModelForm):
         model = Uczestnictwo
         fields = '__all__'
         widgets = {
-            'uczestnik': autocomplete.ModelSelect2(
+            'czlonek': autocomplete.ModelSelect2(
                 url='czlonkowie:czlonek-records-autocomplete'
             ),
         }

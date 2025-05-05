@@ -1,7 +1,7 @@
 from django.db import models
 from roman import fromRoman
 from core.utils import Consts
-from core.utils.Consts import MAX_LENGTH, MEDIUM_LENGTH
+from core.utils.Consts import MAX_LENGTH, MEDIUM_LENGTH, SHORT_LENGTH
 from core.utils.czas import Czas
 from core.utils.czas.models import Kadencja
 
@@ -593,9 +593,15 @@ class HallOfFame(models.Model):
         super().save(*args, **kwargs)
 
 class InnaOsoba(models.Model):
-    imie = models.CharField(
+    class Kategorie(models.TextChoices):
+        INNA = "I", "Inna"
+        INNE_BRACTWO_CZAPKOWE = "Inne BCS", "Inne bractwo czapkowe"
+        ORGANIZACJA = "Org", "Organizacja"
+        PRZYJACIEL_CZAPKI = "PC", "Przyjaciel Bractwa"
+
+    nazwa = models.CharField(
         max_length=MEDIUM_LENGTH,
-        verbose_name="Imie i nazwisko",
+        verbose_name="Nazwa",
     )
 
     opis = models.TextField(
@@ -603,11 +609,18 @@ class InnaOsoba(models.Model):
         verbose_name="Opis",
     )
 
+    kategoria = models.CharField(
+        max_length=SHORT_LENGTH,
+        default=Kategorie.INNA,
+        choices=Kategorie.choices,
+        verbose_name="Kategoria",
+    )
+
     class Meta:
         verbose_name = "Inna osoba"
         verbose_name_plural = "Inne osoby (nie-członkowie)"
-        ordering = ['imie']
+        ordering = ['nazwa']
 
     def __str__(self):
-        return f"{self.imie}"
+        return f"{self.nazwa}"
 

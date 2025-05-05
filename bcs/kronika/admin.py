@@ -14,16 +14,20 @@ class UczestnictwoInline(GenericTabularInline):
 @admin.register(Wyjazd)
 class WyjazdAdmin(BaseModelAdmin):
     inlines = [UczestnictwoInline]
+    save_as = True
 
 
 @admin.register(Wydarzenie)
 class WydarzenieAdmin(BaseModelAdmin):
     inlines = [UczestnictwoInline]
+    save_as = True
+    filter_horizontal = ("zdarzenia",)
 
 
 @admin.register(Zdarzenie)
 class ZdarzenieAdmin(BaseModelAdmin):
     inlines = [UczestnictwoInline]
+    save_as = True
 
 
 register_all_models(

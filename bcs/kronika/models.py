@@ -4,7 +4,8 @@ from django.utils import timezone
 from django.contrib.contenttypes.fields import GenericRelation, GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
 
-from czlonkowie.models import Czlonek
+from czlonkowie.models import Czlonek, InnaOsoba
+
 
 class Uczestnictwo(models.Model):
     content_type = models.ForeignKey(
@@ -15,7 +16,7 @@ class Uczestnictwo(models.Model):
     object_id = models.PositiveIntegerField()
     content_object = GenericForeignKey('content_type', 'object_id')
 
-    uczestnik = models.ForeignKey(
+    czlonek = models.ForeignKey(
         Czlonek,
         blank=True,
         null=True,
@@ -23,12 +24,20 @@ class Uczestnictwo(models.Model):
         verbose_name="Członek",
     )
 
+    inna_osoba = models.ForeignKey(
+        InnaOsoba,
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+        verbose_name="Inna osoba",
+    )
+
     class Meta:
         verbose_name = "Uczestnictwo"
         verbose_name_plural = "Uczestnictwo"
 
     def __str__(self):
-        return f"{self.uczestnik} - {self.content_type} - {self.content_object}"
+        return f"{self.czlonek} - {self.content_type} - {self.content_object}"
 
 class Miejsce(models.Model):
     class TypyMiejsc(models.TextChoices):
@@ -46,6 +55,7 @@ class Miejsce(models.Model):
     adres = models.CharField(
         max_length=MAX_LENGTH,
         blank=True,
+        default="Ulica 1, Kraków, Polska",
         verbose_name="Adres",
     )
 
@@ -91,7 +101,7 @@ class Zdarzenie(models.Model):
         ordering = ["-data", "nazwa"]
 
     def __str__(self):
-        return f"{self.nazwa}"
+        return f"{self.data.strftime('%Y.%d.%m')} - {self.nazwa}"
 
 class Wydarzenie(models.Model):
     class TypyWydarzen(models.TextChoices):
@@ -104,11 +114,13 @@ class Wydarzenie(models.Model):
         OGNISKO = "Ognisko", "Ognisko"
         OSTRY_DYZUR = "OD", "Ostry Dyżur"
         PLANSZOWKI = "Plansz", "Planszówki"
+        REAKTYWACJA = "Reakty", "Reaktywacja"
         TEATR = "Teatr", "Teatr"
         WALNE = "Walne", "Walne"
         WYCIECZKA = "Wyc", "Wycieczka"
         WYBORY = "Wybory", "Wybory"
         ULANSKIE_ZDROWIE = "UZ", "Ułańskie Zdrowie"
+        UROCZYSTOSCI = "Urocz", "Uroczystości"
 
     nazwa = models.CharField(
         max_length=MAX_LENGTH,
@@ -139,11 +151,9 @@ class Wydarzenie(models.Model):
         verbose_name="Opis",
     )
 
-    zdarzenia = models.ForeignKey(
+    zdarzenia = models.ManyToManyField(
         Zdarzenie,
         blank=True,
-        null=True,
-        on_delete=models.SET_NULL,
         verbose_name="Zdarzenia",
     )
 
@@ -159,7 +169,7 @@ class Wydarzenie(models.Model):
         ordering = ["-data"]
 
     def __str__(self):
-        return self.nazwa
+        return f"{self.data.strftime('%Y.%d.%m')} - {self.nazwa}"
 
 class Proces(models.Model):
     nazwa = models.CharField(
