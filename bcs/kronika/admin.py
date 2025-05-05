@@ -11,7 +11,7 @@ class UczestnictwoInline(GenericTabularInline):
     verbose_name_plural = "Uczestnictwo"
     form = UczestnictwoForm
 
-class ObrazWydarzenieInline(admin.TabularInline):  # or StackedInline
+class ObrazWydarzenieInline(admin.StackedInline):  # or StackedInline
     model = ObrazWydarzenie
     extra = 1
     verbose_name = "Zdjęcie z wydarzenia"
@@ -27,7 +27,7 @@ class WyjazdAdmin(BaseModelAdmin):
 class WydarzenieAdmin(BaseModelAdmin):
     inlines = [UczestnictwoInline, ObrazWydarzenieInline]
     save_as = True
-    filter_horizontal = ("zdarzenia",)
+    filter_horizontal = ("zdarzenia", "obrazy",)
 
 
 @admin.register(Zdarzenie)

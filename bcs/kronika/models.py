@@ -45,7 +45,7 @@ class Miejsce(models.Model):
     class TypyMiejsc(models.TextChoices):
         INNY = "Inny", "Inny"
         OBIEKT_KULTURY = "ObKult", "Obiekt kultury"
-        PUB = "Pub", "Pub"
+        PUB = "Pub", "Pub/Klub"
         SZCZYT = "Szczyt", "Szczyt"
         UCZELNIA = "Uczel", "Uczelnia"
 
@@ -123,7 +123,8 @@ class Wydarzenie(models.Model):
         WYCIECZKA = "Wyc", "Wycieczka"
         WYBORY = "Wybory", "Wybory"
         ULANSKIE_ZDROWIE = "UZ", "Ułańskie Zdrowie"
-        UROCZYSTOSCI = "Urocz", "Uroczystości"
+        UROCZYSTOSC = "Urocz", "Uroczystość"
+        ZAWODY_SPORTOWE = "ZS", "Zawody sportowe"
 
     nazwa = models.CharField(
         max_length=MAX_LENGTH,
@@ -257,11 +258,9 @@ class Proces(models.Model):
         verbose_name="Opis",
     )
 
-    zdarzenia = models.ForeignKey(
+    zdarzenia = models.ManyToManyField(
         Zdarzenie,
         blank=True,
-        null=True,
-        on_delete=models.SET_NULL,
         verbose_name="Zdarzenia",
     )
 
@@ -313,11 +312,9 @@ class Wyjazd(models.Model):
         verbose_name="Opis",
     )
 
-    zdarzenia = models.ForeignKey(
+    zdarzenia = models.ManyToManyField(
         Zdarzenie,
         blank=True,
-        null=True,
-        on_delete=models.SET_NULL,
         verbose_name="Zdarzenia",
     )
 
