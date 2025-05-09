@@ -44,6 +44,7 @@ class Uczestnictwo(models.Model):
 class Miejsce(models.Model):
     class TypyMiejsc(models.TextChoices):
         INNY = "Inny", "Inny"
+        MIASTO = "Miasto", "Miasto"
         OBIEKT_KULTURY = "ObKult", "Obiekt kultury"
         PUB = "Pub", "Pub/Klub"
         SZCZYT = "Szczyt", "Szczyt"
@@ -108,23 +109,24 @@ class Zdarzenie(models.Model):
 
 class Wydarzenie(models.Model):
     class TypyWydarzen(models.TextChoices):
-        INNE = "I", "Inne"
+        AKCJA = "Akcja", "Akcja"
+        INNE = "Inne", "Inne"
         KARCZMA = "Karczma", "Karczma"
         KINO = "Kino", "Kino"
-        KONFERENCJA_NAUKOWA = "KonfNauk", "Konferencja naukowa"
+        KONFERENCJA_NAUKOWA = "KonfNauk", "Konferencja naukowa/wykład/prelekcja"
         GROBY = "Groby", "Groby"
-        HISTORYCZNE = "H", "Historyczne"
-        OGNISKO = "Ognisko", "Ognisko"
-        OSTRY_DYZUR = "OD", "Ostry Dyżur"
+        HISTORYCZNE = "Hist", "Historyczne"
+        OGNISKO = "Ognisko", "Grill/Ognisko"
+        OSTRY_DYZUR = "Ostry", "Ostry Dyżur"
         PLANSZOWKI = "Plansz", "Planszówki"
         REAKTYWACJA = "Reakty", "Reaktywacja"
         TEATR = "Teatr", "Teatr"
         WALNE = "Walne", "Walne"
-        WYCIECZKA = "Wyc", "Wycieczka"
+        WYCIECZKA = "Wyciecz", "Wycieczka"
         WYBORY = "Wybory", "Wybory"
-        ULANSKIE_ZDROWIE = "UZ", "Ułańskie Zdrowie"
+        ULANSKIE_ZDROWIE = "Ulanskie", "Ułańskie Zdrowie"
         UROCZYSTOSC = "Urocz", "Uroczystość"
-        ZAWODY_SPORTOWE = "ZS", "Zawody sportowe"
+        ZAWODY_SPORTOWE = "ZawodySp", "Zawody sportowe"
 
     nazwa = models.CharField(
         max_length=MAX_LENGTH,
@@ -180,7 +182,7 @@ class Wydarzenie(models.Model):
         ordering = ["-data"]
 
     def __str__(self):
-        return f"{self.data.strftime('%Y.%d.%m')} - {self.nazwa}"
+        return f"{self.data.strftime('%Y.%d.%m')} - {self.get_typ_display()}: {self.nazwa}"
 
 class ObrazWydarzenie(models.Model):
     wydarzenie = models.ForeignKey(

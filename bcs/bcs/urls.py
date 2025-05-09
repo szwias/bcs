@@ -24,6 +24,7 @@ urlpatterns = [
     path('autocomplete/czlonkowie/', include('czlonkowie.urls')),
     path('autocomplete/core/', include('core.urls')),
     path('autocomplete/kronika/', include('kronika.urls')),
+    path('autocomplete/encyklopedia/', include('encyklopedia.urls')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
