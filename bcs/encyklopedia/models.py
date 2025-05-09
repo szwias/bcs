@@ -5,14 +5,34 @@ from kronika.models import Wydarzenie, Wyjazd
 
 # Create your models here.
 class Tradycja(models.Model):
+    class Authors(models.TextChoices):
+        BELGOWIE = "Belg", "Belgijska"
+        BCS = "BCS", "BCSu"
+        FALUSZARDZI = "Faluch", "Faluszardzka"
+        GOLIARDZI = "Goliard", "Goliardzka"
+        INNE = "Inne", "Inna"
+        KORPORACJE = "Korpo", "Korporacyjna"
+
+    class Okolicznosci(models.TextChoices):
+        INNE = "I", "Inne"
+        WYDARZENIE = "Wyd", "Wydarzenie"
+        WYJAZD = "Wyj", "Wyjazd"
+
     nazwa = models.CharField(
         max_length=MEDIUM_LENGTH,
         verbose_name="Nazwa",
     )
 
+    autor_rodzaj = models.CharField(
+        max_length=10,
+        choices=Authors.choices,
+        default=Authors.BCS,
+        verbose_name="Tradycja",
+    )
+
     okolicznosci_powstania = models.CharField(
         max_length=3,
-        choices=[("Wyd", "Wydarzenie"), ("Wyj", "Wyjazd"), ("I", "Inne")],
+        choices=Okolicznosci.choices,
         verbose_name="Okoliczności powstania",
     )
 
