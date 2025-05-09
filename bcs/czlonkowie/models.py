@@ -317,6 +317,26 @@ class Czlonek(models.Model):
         name += str(self.nazwisko)
         return name
 
+class Przezwisko(models.Model):
+    kto = models.ForeignKey(
+        Czlonek,
+        on_delete=models.CASCADE,
+        verbose_name="Kto"
+    )
+
+    przezwisko = models.CharField(
+        max_length=MAX_LENGTH,
+        verbose_name="Przezwisko"
+    )
+
+    class Meta:
+        verbose_name = "Przezwisko"
+        verbose_name_plural = "Przezwiska"
+        ordering = ['kto', 'przezwisko']
+
+    def __str__(self):
+        return f"{self.kto} - {self.przezwisko}"
+
 class ImieSzlacheckie(models.Model):
     imie = models.ForeignKey(
         Czlonek,

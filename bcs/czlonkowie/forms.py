@@ -163,5 +163,11 @@ class InnaOsobaForm(forms.ModelForm):
         fields = '__all__'
         widgets = build_widgets(autocomplete_widgets['InnaOsoba'])
 
+class PrzezwiskoForm(forms.ModelForm):
+    class Meta:
+        model = Przezwisko
+        fields = '__all__'
+        widgets = build_widgets(autocomplete_widgets['Przezwisko'])
+
 
 
