@@ -1,8 +1,16 @@
 from django.db import models
+
+from core.utils.Choices import IntAlt
 from core.utils.Consts import *
-from czlonkowie.models import Czlonek
+from core.utils.czas import Czas
+from czlonkowie.models import Czlonek, Czapka
 from kronika.models import Wydarzenie, Wyjazd
 
+
+class Lengths(models.Model):
+    OKOLICZNOSCI_LENGTH = 3
+    PANSTWA_LENGTH = 3
+    CZAPKI_LENGTH = 3
 
 # Create your models here.
 class TradycjaBCS(models.Model):
@@ -25,7 +33,7 @@ class TradycjaBCS(models.Model):
     )
 
     autor_rodzaj = models.CharField(
-        max_length=10,
+        max_length=SHORT_LENGTH,
         choices=Authors.choices,
         default=Authors.BCS,
         verbose_name="Tradycja",
@@ -40,7 +48,7 @@ class TradycjaBCS(models.Model):
     )
 
     okolicznosci_powstania = models.CharField(
-        max_length=3,
+        max_length=Lengths.OKOLICZNOSCI_LENGTH,
         choices=Okolicznosci.choices,
         verbose_name="Okoliczności powstania",
     )
@@ -95,7 +103,7 @@ class TradycjaInnegoBractwa(models.Model):
     )
 
     autor_rodzaj = models.CharField(
-        max_length=10,
+        max_length=SHORT_LENGTH,
         choices=Authors.choices,
         verbose_name="Tradycja",
     )
@@ -112,6 +120,55 @@ class TradycjaInnegoBractwa(models.Model):
 
     def __str__(self):
         return self.nazwa
+
+# class Bractwo(models.Model):
+#     class Panstwa(models.TextChoices):
+#         BELGIA = "BEL", "Belgia"
+#         DANIA = "DNK", "Dania"
+#         FINLANDIA = "FIN", "Finlandia"
+#         FRANCJA = "FRA", "Francja"
+#         NIEMCY = "DEU", "Niemcy"
+#         NORWEGIA = "NOR", "Norwegia"
+#         POLSKA = "POL", "Polska"
+#         SZWECJA = "SWE", "Szwecja"
+#         WLOCHY = "ITA", "Włochy"
+#
+#     class Czapki(models.TextChoices):
+#         CALOTTE = "CAL", "Calotte"
+#         CZAPKA = "CZA", "Czapka"
+#         FALUCH = "FAL", "Faluch"
+#         FELUCA = "FEL", "Feluca"
+#         INNA = "I", "Inna"
+#
+#
+#     nazwa = models.CharField(
+#         max_length=MAX_LENGTH,
+#         verbose_name="Nazwa",
+#     )
+#
+#     panstwo = models.CharField(
+#         max_length=Lengths.PANSTWA_LENGTH,
+#         choices=Panstwa.choices,
+#         verbose_name="Kraj pochodzenia",
+#     )
+#
+#     czapka = models.CharField(
+#         max_length=Lengths.CZAPKI_LENGTH,
+#         choices=Czapki.choices,
+#         verbose_name="Czapka",
+#     )
+#
+#     rok_zalozenia = models.IntegerField(
+#         default=IntAlt.DONT_KNOW,
+#         verbose_name="Rok założenia",
+#     )
+#
+#     wiek_tradycje = models.IntegerField(
+#         choices=Czas.WIEKI + [IntAlt.DONT_KNOW],
+#         default=IntAlt.DONT_KNOW,
+#         verbose_name="Tradycje sięgają którego wieku",
+#     )
+
 
 # class Pojecie(models.Model):
 #     class Origins(models.TextChoices):
