@@ -82,7 +82,7 @@ class TradycjaBCS(models.Model):
 
 class TradycjaInnegoBractwa(models.Model):
     class Authors(models.TextChoices):
-        ANIMUS = "Animus", "Animus"
+        ANIMUS = "Animus", "BCS Animus"
         BELGOWIE = "Belg", "Belgijska"
         FALUSZARDZI = "Faluch", "Faluszardzka"
         GOLIARDZI = "Goliard", "Goliardzka"
