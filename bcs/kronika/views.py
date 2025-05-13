@@ -6,7 +6,7 @@ autocomplete_configs = [
     (Miejsce,           ['typ'],    [],     []),
     (Zdarzenie,         [],         [],     ['Uczestnictwo']),
     (Wydarzenie,        ['typ'],    [],     ['Miejsce', 'Uczestnictwo']),
-    (ObrazWydarzenie,   [],         [],     ['Wydarzenie','czlonkowie.Czlonek', 'czlonkowie.InnaOsoba']),
+    (ObrazWydarzenie,   [],         [],     ['Wydarzenie', 'czlonkowie.Czlonek', 'czlonkowie.InnaOsoba']),
     (Proces,            [],         [],     ['Zdarzenie']),
     (Wyjazd,            ['typ'],    [],     ['Miejsce','Zdarzenie','Uczestnictwo']),
 ]

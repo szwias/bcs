@@ -16,6 +16,9 @@ class UczestnictwoForm(forms.ModelForm):
             'czlonek': autocomplete.ModelSelect2(
                 url='czlonkowie:czlonek-records-autocomplete'
             ),
+            'bean': autocomplete.ModelSelect2(
+                url='czlonkowie:bean-records-autocomplete'
+            )
         }
 
 class WydarzenieForm(forms.ModelForm):

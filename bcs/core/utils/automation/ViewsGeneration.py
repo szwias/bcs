@@ -14,6 +14,8 @@ def generate_autocomplete_views(model, label_list, value_list, model_list, globa
     url_patterns = []
     widgets = {}
 
+    model_list.append(model_name)
+
     for field in label_list:
         view_name = f"{field.title().replace('_', '')}Autocomplete"
         view_class = type(

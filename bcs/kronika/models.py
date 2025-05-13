@@ -6,7 +6,7 @@ from django.utils import timezone
 from django.contrib.contenttypes.fields import GenericRelation, GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
 
-from czlonkowie.models import Czlonek, InnaOsoba
+from czlonkowie.models import Czlonek, InnaOsoba, Bean
 
 
 class Uczestnictwo(models.Model):
@@ -24,6 +24,14 @@ class Uczestnictwo(models.Model):
         null=True,
         on_delete=models.SET_NULL,
         verbose_name="Członek",
+    )
+
+    bean = models.ForeignKey(
+        Bean,
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+        verbose_name="Bean",
     )
 
     inna_osoba = models.ForeignKey(
@@ -332,6 +340,6 @@ class Wyjazd(models.Model):
         ordering = ["-data_rozpoczecia"]
 
     def __str__(self):
-        return f"{self.typ} \"{self.nazwa}\" - {self.miejsce}, {self.data_rozpoczecia.strftime('%d.%m.%Y')} - {self.data_zakonczenia.strftime('%d.%m.%Y')}"
+        return f"{self.get_typ_display()} \"{self.nazwa}\" - {self.miejsce}, {self.data_rozpoczecia.strftime('%d.%m.%Y')} - {self.data_zakonczenia.strftime('%d.%m.%Y')}"
 
 
