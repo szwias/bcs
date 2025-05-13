@@ -164,8 +164,6 @@ class Czlonek(models.Model):
         WYKLETY = "X", "Wydalony (np. \"Jezus\")"
         WETERAN = "W", "Weteran"
         HONOROWY = "H", "Członek Honoris Causa"
-        # BEAN_PRIM = "BP", "Bean lub Członek"
-        # CZLONEK_PRIM = "CP", "Członek lub Weteran"
 
     imie = models.CharField(
         max_length=40,
@@ -191,7 +189,7 @@ class Czlonek(models.Model):
         null=True,
         default=Czapka.get_dont_know_czapka,
         verbose_name="Czapka",
-        related_name="czapka_1"
+        related_name="czlonek_czapka_1"
     )
 
     czapka_2 = models.ForeignKey(
@@ -200,7 +198,7 @@ class Czlonek(models.Model):
         null=True,
         default=Czapka.get_not_applicable_czapka,
         verbose_name="Inna czapka",
-        related_name="czapka_2"
+        related_name="czlonek_czapka_2"
     )
 
     ochrzczony = models.CharField(
@@ -314,6 +312,78 @@ class Czlonek(models.Model):
             if self.imie_piwne_2_wybor == "other":
                 name += "/" + str(self.imie_piwne_2)
             name += "\" "
+        name += str(self.nazwisko)
+        return name
+
+class Bean(models.Model):
+
+    imie = models.CharField(
+        max_length=40,
+        verbose_name='Imię'
+    )
+
+    nazwisko = models.CharField(
+        max_length=40,
+        blank=True,
+        verbose_name='Nazwisko'
+    )
+
+    czapka_1 = models.ForeignKey(
+        Czapka,
+        on_delete=models.SET_NULL,
+        null=True,
+        default=Czapka.get_dont_know_czapka,
+        verbose_name="Czapka",
+        related_name="bean_czapka_1"
+    )
+
+    czapka_2 = models.ForeignKey(
+        Czapka,
+        on_delete=models.SET_NULL,
+        null=True,
+        default=Czapka.get_not_applicable_czapka,
+        verbose_name="Inna czapka",
+        related_name="bean_czapka_2"
+    )
+
+    staz = models.IntegerField(
+        choices=Czas.LATA + [IntAlt.DONT_KNOW],
+        default=2024,
+        verbose_name='Rok pojawienia się'
+    )
+
+    pewnosc_stazu = models.BooleanField(
+        choices=[
+            (True, "Na pewno wcześniej się nie pojawiał"),
+            (False, "Ale mógł pojawić się wcześniej")
+        ],
+        default=(True, "Na pewno wcześniej się nie pojawiał"),
+        verbose_name="Pewność daty stażu"
+    )
+
+    rodzic_1 = models.ForeignKey(
+        Czlonek,
+        on_delete=models.SET_NULL,
+        null=True, blank=True,
+        verbose_name="Rodzic czapkowy",
+        related_name='bean_rodzic_1_set',
+    )
+
+    rodzic_2 = models.ForeignKey(
+        Czlonek,
+        on_delete=models.SET_NULL,
+        null=True, blank=True,
+        verbose_name="Drugi rodzic czapkowy",
+        related_name='bean_rodzic_2_set',
+    )
+
+    class Meta:
+        verbose_name = "Bean"
+        verbose_name_plural = "Beani"
+        ordering = ['imie', 'nazwisko']
+
+    def __str__(self):
+        name = str(self.imie) + " "
         name += str(self.nazwisko)
         return name
 

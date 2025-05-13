@@ -1,8 +1,8 @@
 from datetime import datetime
 
 ROK_ZALOZENIA = 2009
-CURRENT_YEAR = datetime.now().year
-LATA = [(i, str(i)) for i in range(ROK_ZALOZENIA, CURRENT_YEAR + 1)]
+BIEZACY_ROK = datetime.now().year
+LATA = [(i, str(i)) for i in range(ROK_ZALOZENIA, BIEZACY_ROK + 1)]
 nazwy_miesiecy = [
     "styczeń",
     "luty",

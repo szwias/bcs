@@ -93,6 +93,21 @@ class CzlonekForm(forms.ModelForm):
 
         return cd
 
+class BeanForm(forms.ModelForm):
+    class Meta:
+        model = Bean
+        fields = '__all__'
+        widgets = build_widgets(autocomplete_widgets['Bean'])
+
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        if not self.instance.pk:
+            self.fields['czapka_1'].initial = Czapka.get_dont_know_czapka()[0]
+            self.fields['czapka_2'].initial = Czapka.get_not_applicable_czapka()[0]
+
+
 class ImieSzlacheckieForm(forms.ModelForm):
     posiadacz_display = forms.CharField(
         label="Posiadacz",
