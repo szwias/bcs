@@ -182,7 +182,8 @@ class Wydarzenie(models.Model):
         Uczestnictwo,
         blank=True,
         verbose_name="Uczestnicy",
-        related_query_name="uczestnictwo_w_wydarzeniu")
+        related_query_name="uczestnictwo_w_wydarzeniu"
+    )
 
     class Meta:
         verbose_name = "Wydarzenie"
@@ -212,20 +213,11 @@ class ObrazWydarzenie(models.Model):
         verbose_name="Dodaj obraz",
     )
 
-    widoczni_czlonkowie = models.ForeignKey(
-        Czlonek,
+    widoczne_osoby = GenericRelation(
+        Uczestnictwo,
         blank=True,
-        null=True,
-        on_delete=models.SET_NULL,
-        verbose_name="Widoczni członkowie",
-    )
-
-    inne_widoczne_osoby = models.ForeignKey(
-        InnaOsoba,
-        blank=True,
-        null=True,
-        on_delete=models.SET_NULL,
-        verbose_name="Inne widoczne osoby",
+        verbose_name="Widoczne osoby",
+        related_query_name="widoczne_osoby"
     )
 
     opis = models.TextField(
@@ -243,7 +235,8 @@ class ObrazWydarzenie(models.Model):
         name = f"{self.wydarzenie.nazwa} - "
         if self.tytul:
             name += self.tytul
-        name += image_name
+        else:
+            name += image_name
         return name
 
 

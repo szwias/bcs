@@ -22,6 +22,10 @@ class WyjazdAdmin(BaseModelAdmin):
     inlines = [UczestnictwoInline]
     save_as = True
 
+@admin.register(ObrazWydarzenie)
+class ObrazWydarzenieAdmin(BaseModelAdmin):
+    inlines = [UczestnictwoInline]
+    save_as = True
 
 @admin.register(Wydarzenie)
 class WydarzenieAdmin(BaseModelAdmin):
@@ -38,6 +42,7 @@ class ZdarzenieAdmin(BaseModelAdmin):
 
 register_all_models(
     custom_admins={
+        ObrazWydarzenie: ObrazWydarzenieAdmin,
         Wydarzenie: WydarzenieAdmin,
         Wyjazd: WyjazdAdmin,
         Zdarzenie: ZdarzenieAdmin,
