@@ -1,10 +1,11 @@
 from django.db import models
 from core.utils.Consts import *
+from czlonkowie.models import Czlonek
 from kronika.models import Wydarzenie, Wyjazd
 
 
 # Create your models here.
-class Tradycja(models.Model):
+class TradycjaBCS(models.Model):
     class Authors(models.TextChoices):
         BELGOWIE = "Belg", "Belgijska"
         BCS = "BCS", "BCSu"
@@ -28,6 +29,14 @@ class Tradycja(models.Model):
         choices=Authors.choices,
         default=Authors.BCS,
         verbose_name="Tradycja",
+    )
+
+    autor_czlonek = models.ForeignKey(
+        Czlonek,
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+        verbose_name="Autor",
     )
 
     okolicznosci_powstania = models.CharField(
@@ -66,6 +75,39 @@ class Tradycja(models.Model):
     class Meta:
         verbose_name = "Tradycja"
         verbose_name_plural = "Tradycje"
+        ordering = ("nazwa",)
+
+    def __str__(self):
+        return self.nazwa
+
+class TradycjaInnegoBractwa(models.Model):
+    class Authors(models.TextChoices):
+        ANIMUS = "Animus", "Animus"
+        BELGOWIE = "Belg", "Belgijska"
+        FALUSZARDZI = "Faluch", "Faluszardzka"
+        GOLIARDZI = "Goliard", "Goliardzka"
+        INNE = "Inne", "Inna"
+        KORPORACJE = "Korpo", "Korporacyjna"
+
+    nazwa = models.CharField(
+        max_length=MEDIUM_LENGTH,
+        verbose_name="Nazwa",
+    )
+
+    autor_rodzaj = models.CharField(
+        max_length=10,
+        choices=Authors.choices,
+        verbose_name="Tradycja",
+    )
+
+    opis = models.TextField(
+        blank=True,
+        verbose_name="Opis",
+    )
+
+    class Meta:
+        verbose_name = "Tradycja innego bractwa"
+        verbose_name_plural = "Tradycje innych bractw"
         ordering = ("nazwa",)
 
     def __str__(self):
