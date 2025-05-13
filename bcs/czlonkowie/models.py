@@ -5,6 +5,8 @@ from core.utils.Consts import MAX_LENGTH, MEDIUM_LENGTH, SHORT_LENGTH, NAME_LENG
 from core.utils.czas import Czas
 from core.utils.czas.models import Kadencja
 from core.utils.Choices import TextAlt, TextChoose, IntAlt
+from encyklopedia.models import Bractwo
+
 
 class Lengths:
     UCZELNIE = 10
@@ -673,6 +675,14 @@ class InnaOsoba(models.Model):
         default=Kategorie.INNA,
         choices=Kategorie.choices,
         verbose_name="Kategoria",
+    )
+
+    bractwo = models.ForeignKey(
+        Bractwo,
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+        verbose_name="Bractwo",
     )
 
     class Meta:

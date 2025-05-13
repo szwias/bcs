@@ -3,7 +3,6 @@ from django.db import models
 from core.utils.Choices import IntAlt
 from core.utils.Consts import *
 from core.utils.czas import Czas
-from czlonkowie.models import Czlonek, Czapka
 from kronika.models import Wydarzenie, Wyjazd
 
 
@@ -40,7 +39,7 @@ class TradycjaBCS(models.Model):
     )
 
     autor_czlonek = models.ForeignKey(
-        Czlonek,
+        "czlonkowie.Czlonek",
         blank=True,
         null=True,
         on_delete=models.SET_NULL,

@@ -6,7 +6,6 @@ from django.utils import timezone
 from django.contrib.contenttypes.fields import GenericRelation, GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
 
-from czlonkowie.models import Czlonek, InnaOsoba, Bean
 
 
 class Osoby(models.Model):
@@ -19,7 +18,7 @@ class Osoby(models.Model):
     content_object = GenericForeignKey('content_type', 'object_id')
 
     czlonek = models.ForeignKey(
-        Czlonek,
+        "czlonkowie.Czlonek",
         blank=True,
         null=True,
         on_delete=models.SET_NULL,
@@ -27,7 +26,7 @@ class Osoby(models.Model):
     )
 
     bean = models.ForeignKey(
-        Bean,
+        "czlonkowie.Bean",
         blank=True,
         null=True,
         on_delete=models.SET_NULL,
@@ -35,7 +34,7 @@ class Osoby(models.Model):
     )
 
     inna_osoba = models.ForeignKey(
-        InnaOsoba,
+        "czlonkowie.InnaOsoba",
         blank=True,
         null=True,
         on_delete=models.SET_NULL,
