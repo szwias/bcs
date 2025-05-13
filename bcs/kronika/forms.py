@@ -18,6 +18,9 @@ class OsobyForm(forms.ModelForm):
             ),
             'bean': autocomplete.ModelSelect2(
                 url='czlonkowie:bean-records-autocomplete'
+            ),
+            'inna_osoba': autocomplete.ModelSelect2(
+                url='czlonkowie:inna-osoba-records-autocomplete'
             )
         }
 
