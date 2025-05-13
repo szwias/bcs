@@ -9,7 +9,7 @@ from django.contrib.contenttypes.models import ContentType
 from czlonkowie.models import Czlonek, InnaOsoba, Bean
 
 
-class Uczestnictwo(models.Model):
+class Osoby(models.Model):
     content_type = models.ForeignKey(
         ContentType,
         on_delete=models.CASCADE,
@@ -43,8 +43,8 @@ class Uczestnictwo(models.Model):
     )
 
     class Meta:
-        verbose_name = "Uczestnictwo"
-        verbose_name_plural = "Uczestnictwo"
+        verbose_name = "Osoba"
+        verbose_name_plural = "Osoby"
 
     def __str__(self):
         return f"{self.czlonek} - {self.content_type} - {self.content_object}"
@@ -101,7 +101,7 @@ class Zdarzenie(models.Model):
     )
 
     powiazane_osoby = GenericRelation(
-        Uczestnictwo,
+        Osoby,
         blank=True,
         verbose_name="Powiązane osoby",
         related_query_name="uczestnictwo_w_zdarzeniu")
@@ -179,7 +179,7 @@ class Wydarzenie(models.Model):
     )
 
     uczestnicy = GenericRelation(
-        Uczestnictwo,
+        Osoby,
         blank=True,
         verbose_name="Uczestnicy",
         related_query_name="uczestnictwo_w_wydarzeniu"
@@ -214,7 +214,7 @@ class ObrazWydarzenie(models.Model):
     )
 
     widoczne_osoby = GenericRelation(
-        Uczestnictwo,
+        Osoby,
         blank=True,
         verbose_name="Widoczne osoby",
         related_query_name="widoczne_osoby"
@@ -322,7 +322,7 @@ class Wyjazd(models.Model):
     )
 
     uczestnicy = GenericRelation(
-        Uczestnictwo,
+        Osoby,
         blank=True,
         verbose_name="Uczestnicy",
         related_query_name="uczestnictwo_w_wyjezdzie")

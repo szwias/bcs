@@ -8,9 +8,9 @@ class MiejsceForm(forms.ModelForm):
         model = Miejsce
         fields = '__all__'
 
-class UczestnictwoForm(forms.ModelForm):
+class OsobyForm(forms.ModelForm):
     class Meta:
-        model = Uczestnictwo
+        model = Osoby
         fields = '__all__'
         widgets = {
             'czlonek': autocomplete.ModelSelect2(
