@@ -96,7 +96,7 @@ class Czapka(models.Model):
     )
 
     kolor = models.CharField(
-        max_length=Consts.MAX_LENGTH,
+        max_length=MAX_LENGTH,
         default='',
         verbose_name='Kolor',
     )
@@ -181,7 +181,7 @@ class Czlonek(models.Model):
     )
 
     rok_chrztu = models.IntegerField(
-        choices=Czas.LATA + [IntAlt.DONT_KNOW] + [IntAlt.NOT_APPLICABLE],
+        choices=Czas.LATA_BCS + [IntAlt.DONT_KNOW] + [IntAlt.NOT_APPLICABLE],
         default=IntAlt.DONT_KNOW,
         verbose_name='Rok chrztu'
     )
@@ -199,7 +199,7 @@ class Czlonek(models.Model):
     )
 
     staz = models.IntegerField(
-        choices=Czas.LATA + [IntAlt.DONT_KNOW],
+        choices=Czas.LATA_BCS + [IntAlt.DONT_KNOW],
         default=IntAlt.DONT_KNOW,
         verbose_name='Rok pojawienia się'
     )
@@ -316,7 +316,7 @@ class Bean(models.Model):
     )
 
     staz = models.IntegerField(
-        choices=Czas.LATA + [IntAlt.DONT_KNOW],
+        choices=Czas.LATA_BCS + [IntAlt.DONT_KNOW],
         default=2024, # TODO: bieżący rok
         verbose_name='Rok pojawienia się'
     )

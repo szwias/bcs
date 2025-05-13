@@ -4,7 +4,7 @@ from core.utils.czas import Czas
 
 class Kadencja(models.Model):
     rozpoczecie = models.IntegerField(
-        choices=Czas.LATA,
+        choices=Czas.LATA_BCS,
         verbose_name="Rozpoczęcie",
     )
 
