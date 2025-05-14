@@ -18,10 +18,10 @@ class ObrazWydarzenieInline(admin.StackedInline):  # or StackedInline
     verbose_name = "Zdjęcie z wydarzenia"
     verbose_name_plural = "Zdjęcia z wydarzeń"
 
-@admin.register(Wyjazd)
-class WyjazdAdmin(BaseModelAdmin):
-    inlines = [OsobyInline]
-    save_as = True
+# @admin.register(Wyjazd)
+# class WyjazdAdmin(BaseModelAdmin):
+#     inlines = [OsobyInline]
+#     save_as = True
 
 @admin.register(ObrazWydarzenie)
 class ObrazWydarzenieAdmin(BaseModelAdmin):
@@ -45,7 +45,7 @@ register_all_models(
     custom_admins={
         ObrazWydarzenie: ObrazWydarzenieAdmin,
         Wydarzenie: WydarzenieAdmin,
-        Wyjazd: WyjazdAdmin,
+        # Wyjazd: WyjazdAdmin,
         Zdarzenie: ZdarzenieAdmin,
     }
 )

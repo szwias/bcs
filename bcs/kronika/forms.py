@@ -26,11 +26,11 @@ class ProcesForm(forms.ModelForm):
         fields = '__all__'
         widgets = build_widgets(autocomplete_widgets['Proces'])
 
-class WyjazdForm(forms.ModelForm):
-    class Meta:
-        model = Wyjazd
-        fields = '__all__'
-        widgets = build_widgets(autocomplete_widgets['Wyjazd'])
+# class WyjazdForm(forms.ModelForm):
+#     class Meta:
+#         model = Wyjazd
+#         fields = '__all__'
+#         widgets = build_widgets(autocomplete_widgets['Wyjazd'])
 
 
 

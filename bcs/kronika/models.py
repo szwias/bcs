@@ -274,64 +274,64 @@ class Proces(models.Model):
     def __str__(self):
         return f"{self.nazwa}: {self.data_rozpoczecia.strftime('%d.%m.%Y')} - {self.data_zakonczenia.strftime('%d.%m.%Y')}"
 
-class Wyjazd(models.Model):
-    class TypyWyjazdow(models.TextChoices):
-        ADAPCIAK = "AD", "Adapciak"
-        KUDLACZE = "KU", "Kudłacze"
-        ZAGRANICZNE = "ZAGR", "Zagraniczny"
-
-    nazwa = models.CharField(
-        max_length=MAX_LENGTH,
-        verbose_name="Nazwa",
-    )
-
-    data_rozpoczecia = models.DateField(
-        default=timezone.now,
-        verbose_name="Data rozpoczęcia",
-    )
-
-    data_zakonczenia = models.DateField(
-        default=timezone.now,
-        verbose_name="Data zakończenia",
-    )
-
-    typ = models.CharField(
-        max_length=SHORT_LENGTH,
-        choices=TypyWyjazdow.choices,
-        verbose_name="Typ wyjazdu",
-    )
-
-    miejsce = models.ForeignKey(
-        Miejsce,
-        blank=True,
-        null=True,
-        on_delete=models.SET_NULL,
-        verbose_name="Miejsce",
-    )
-
-    opis = models.TextField(
-        blank=True,
-        verbose_name="Opis",
-    )
-
-    zdarzenia = models.ManyToManyField(
-        Zdarzenie,
-        blank=True,
-        verbose_name="Zdarzenia",
-    )
-
-    uczestnicy = GenericRelation(
-        "czlonkowie.Osoby",
-        blank=True,
-        verbose_name="Uczestnicy",
-        related_query_name="uczestnictwo_w_wyjezdzie")
-
-    class Meta:
-        verbose_name = "Wyjazd"
-        verbose_name_plural = "Wyjazdy"
-        ordering = ["-data_rozpoczecia"]
-
-    def __str__(self):
-        return f"{self.get_typ_display()} \"{self.nazwa}\" - {self.miejsce}, {self.data_rozpoczecia.strftime('%d.%m.%Y')} - {self.data_zakonczenia.strftime('%d.%m.%Y')}"
-
+# class Wyjazd(models.Model):
+#     class TypyWyjazdow(models.TextChoices):
+#         ADAPCIAK = "AD", "Adapciak"
+#         KUDLACZE = "KU", "Kudłacze"
+#         ZAGRANICZNE = "ZAGR", "Zagraniczny"
+#
+#     nazwa = models.CharField(
+#         max_length=MAX_LENGTH,
+#         verbose_name="Nazwa",
+#     )
+#
+#     data_rozpoczecia = models.DateField(
+#         default=timezone.now,
+#         verbose_name="Data rozpoczęcia",
+#     )
+#
+#     data_zakonczenia = models.DateField(
+#         default=timezone.now,
+#         verbose_name="Data zakończenia",
+#     )
+#
+#     typ = models.CharField(
+#         max_length=SHORT_LENGTH,
+#         choices=TypyWyjazdow.choices,
+#         verbose_name="Typ wyjazdu",
+#     )
+#
+#     miejsce = models.ForeignKey(
+#         Miejsce,
+#         blank=True,
+#         null=True,
+#         on_delete=models.SET_NULL,
+#         verbose_name="Miejsce",
+#     )
+#
+#     opis = models.TextField(
+#         blank=True,
+#         verbose_name="Opis",
+#     )
+#
+#     zdarzenia = models.ManyToManyField(
+#         Zdarzenie,
+#         blank=True,
+#         verbose_name="Zdarzenia",
+#     )
+#
+#     uczestnicy = GenericRelation(
+#         "czlonkowie.Osoby",
+#         blank=True,
+#         verbose_name="Uczestnicy",
+#         related_query_name="uczestnictwo_w_wyjezdzie")
+#
+#     class Meta:
+#         verbose_name = "Wyjazd"
+#         verbose_name_plural = "Wyjazdy"
+#         ordering = ["-data_rozpoczecia"]
+#
+#     def __str__(self):
+#         return f"{self.get_typ_display()} \"{self.nazwa}\" - {self.miejsce}, {self.data_rozpoczecia.strftime('%d.%m.%Y')} - {self.data_zakonczenia.strftime('%d.%m.%Y')}"
+#
 
