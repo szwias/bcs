@@ -8,6 +8,18 @@ class MiejsceForm(forms.ModelForm):
         model = Miejsce
         fields = '__all__'
 
+class ZdarzenieForm(forms.ModelForm):
+    class Meta:
+        model = Zdarzenie
+        fields = '__all__'
+        widgets = build_widgets(autocomplete_widgets['Zdarzenie'])
+
+class ObrazZdarzenieForm(forms.ModelForm):
+    class Meta:
+        model = ObrazZdarzenie
+        fields = '__all__'
+        widgets = build_widgets(autocomplete_widgets['ObrazZdarzenie'])
+
 class WydarzenieForm(forms.ModelForm):
     class Meta:
         model = Wydarzenie

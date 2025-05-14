@@ -73,6 +73,68 @@ class Zdarzenie(models.Model):
     def __str__(self):
         return f"{self.data} - {self.nazwa}"
 
+class ObrazZdarzenie(models.Model):
+    zdarzenie = models.ForeignKey(
+        Zdarzenie,
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+        verbose_name="Zdarzenie",
+    )
+
+    tytul = models.CharField(
+        max_length=MEDIUM_LENGTH,
+        blank=True,
+        verbose_name="Tytuł",
+    )
+
+    data = models.DateField(
+        default=timezone.now,
+        blank=True,
+        verbose_name="Data wykonania",
+    )
+
+    miejsce = models.ForeignKey(
+        Miejsce,
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+        verbose_name="Miejsce",
+    )
+
+    obraz = models.ImageField(
+        upload_to="kronika/zdarzenia/",
+        verbose_name="Dodaj obraz",
+    )
+
+    widoczne_osoby = GenericRelation(
+        "czlonkowie.Osoby",
+        blank=True,
+        verbose_name="Widoczne osoby",
+        related_query_name="widoczne_osoby"
+    )
+
+    opis = models.TextField(
+        blank=True,
+        verbose_name="Opis",
+    )
+
+    class Meta:
+        verbose_name = "Zdjęcie ze zdarzenia"
+        verbose_name_plural = "Zdjęcia ze zdarzeń"
+        ordering = ["-data"]
+
+    def __str__(self):
+        image_name = os.path.basename(self.obraz.name)
+        name = f"{self.zdarzenie.nazwa} - "
+        if self.tytul:
+            name += self.tytul
+        else:
+            name += image_name
+        if self.data:
+            name += f" {self.data}"
+        return name
+
 class Wydarzenie(models.Model):
     class TypyWydarzen(models.TextChoices):
         AKCJA = "Akcja", "Akcja"
