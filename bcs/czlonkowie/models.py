@@ -93,15 +93,11 @@ class Czapka(models.Model):
     )
 
     wydzial = models.CharField(
-        max_length=Lengths.WYDZIAL,
-        default="XXX",
-        verbose_name='Wydział',
+        max_length=Lengths.WYDZIAL, default="XXX", verbose_name='Wydział',
     )
 
     kolor = models.CharField(
-        max_length=MAX_LENGTH,
-        default='',
-        verbose_name='Kolor',
+        max_length=MAX_LENGTH, default='', verbose_name='Kolor',
     )
 
     class Meta:
@@ -124,8 +120,52 @@ class Czapka(models.Model):
     def get_not_applicable_czapka():
         return Czapka.objects.get_or_create(uczelnia=Czapka.Uczelnie.NOT_APPLICABLE)
 
+class OsobaCzapkowa(models.Model):
+    imie = models.CharField(
+        max_length=NAME_LENGTH, verbose_name='Imię'
+    )
 
-class Czlonek(models.Model):
+    nazwisko = models.CharField(
+        max_length=NAME_LENGTH, blank=True, verbose_name='Nazwisko'
+    )
+
+    czapka_1 = models.ForeignKey(
+        Czapka,
+        on_delete=models.SET_NULL,
+        null=True,
+        default=Czapka.get_dont_know_czapka,
+        verbose_name="Czapka",
+        related_name="%(class)s_czapka_1"
+    )
+
+    czapka_2 = models.ForeignKey(
+        Czapka,
+        on_delete=models.SET_NULL,
+        null=True,
+        default=Czapka.get_not_applicable_czapka,
+        verbose_name="Inna czapka",
+        related_name="%(class)s_czapka_2"
+    )
+
+    staz = models.IntegerField(
+        choices=Czas.LATA_BCS + [IntAlt.DONT_KNOW],
+        default=2024,  # TODO: bieżący rok
+        verbose_name='Rok pojawienia się'
+    )
+
+    pewnosc_stazu = models.BooleanField(
+        choices=[
+            (True, "Na pewno wcześniej się nie pojawiał"),
+            (False, "Ale mógł pojawić się wcześniej")
+        ],
+        default=(True, "Na pewno wcześniej się nie pojawiał"),
+        verbose_name="Pewność daty stażu"
+    )
+
+    class Meta:
+        abstract = True
+
+class Czlonek(OsobaCzapkowa):
     class Aktywnosc(models.TextChoices):
         AKTYWNY = 'A', "Aktywny",
         AKTYWNY_MEDIALNIE = 'M', "Aktywny tylko w mediach",
@@ -138,40 +178,11 @@ class Czlonek(models.Model):
         WETERAN = "W", "Weteran"
         HONOROWY = "H", "Członek Honoris Causa"
 
-    imie = models.CharField(
-        max_length=NAME_LENGTH,
-        verbose_name='Imię'
-    )
-
-    nazwisko = models.CharField(
-        max_length=NAME_LENGTH,
-        blank=True,
-        verbose_name='Nazwisko'
-    )
-
     aktywnosc = models.CharField(
         max_length=Lengths.AKTYWNOSC,
         choices=Aktywnosc.choices,
         default=Aktywnosc.NIEAKTYWNY,
         verbose_name='Aktywność'
-    )
-
-    czapka_1 = models.ForeignKey(
-        Czapka,
-        on_delete=models.SET_NULL,
-        null=True,
-        default=Czapka.get_dont_know_czapka,
-        verbose_name="Czapka",
-        related_name="czlonek_czapka_1"
-    )
-
-    czapka_2 = models.ForeignKey(
-        Czapka,
-        on_delete=models.SET_NULL,
-        null=True,
-        default=Czapka.get_not_applicable_czapka,
-        verbose_name="Inna czapka",
-        related_name="czlonek_czapka_2"
     )
 
     ochrzczony = models.CharField(
@@ -202,21 +213,6 @@ class Czlonek(models.Model):
         verbose_name='Dzień chrztu'
     )
 
-    staz = models.IntegerField(
-        choices=Czas.LATA_BCS + [IntAlt.DONT_KNOW],
-        default=IntAlt.DONT_KNOW,
-        verbose_name='Rok pojawienia się'
-    )
-
-    pewnosc_stazu = models.CharField(
-        choices=[
-            ("T", "Na pewno wcześniej się nie pojawiał"),
-            ("N", "Ale mógł pojawić się wcześniej")
-        ],
-        default="N",
-        verbose_name="Pewność daty stażu"
-    )
-
     status = models.CharField(
         max_length=max(Lengths.STATUS, TextAlt.LENGTH),
         choices=Status.choices + [TextAlt.DONT_KNOW],
@@ -236,9 +232,7 @@ class Czlonek(models.Model):
     )
 
     imie_piwne_1 = models.CharField(
-        max_length=MEDIUM_LENGTH,
-        default="Nie wiem",
-        verbose_name="Wpisz imię czapkowe:"
+        max_length=MEDIUM_LENGTH, default="Nie wiem", verbose_name="Wpisz imię czapkowe:"
     )
 
     imie_piwne_2_wybor = models.CharField(
@@ -279,60 +273,16 @@ class Czlonek(models.Model):
         ordering = ['imie', 'imie_piwne_1', 'imie_piwne_2', 'nazwisko']
 
     def __str__(self):
-        name = str(self.imie) + " "
+        name = f"{self.imie} "
         if self.imie_piwne_1_wybor == "other":
-            name += "\"" + str(self.imie_piwne_1)
+            name += f"\"{self.imie_piwne_1}"
             if self.imie_piwne_2_wybor == "other":
-                name += "/" + str(self.imie_piwne_2)
+                name += f"/{self.imie_piwne_2}"
             name += "\" "
-        name += str(self.nazwisko)
+        name += f"{self.nazwisko}"
         return name
 
-class Bean(models.Model):
-
-    imie = models.CharField(
-        max_length=NAME_LENGTH,
-        verbose_name='Imię'
-    )
-
-    nazwisko = models.CharField(
-        max_length=NAME_LENGTH,
-        blank=True,
-        verbose_name='Nazwisko'
-    )
-
-    czapka_1 = models.ForeignKey(
-        Czapka,
-        on_delete=models.SET_NULL,
-        null=True,
-        default=Czapka.get_dont_know_czapka,
-        verbose_name="Czapka",
-        related_name="bean_czapka_1"
-    )
-
-    czapka_2 = models.ForeignKey(
-        Czapka,
-        on_delete=models.SET_NULL,
-        null=True,
-        default=Czapka.get_not_applicable_czapka,
-        verbose_name="Inna czapka",
-        related_name="bean_czapka_2"
-    )
-
-    staz = models.IntegerField(
-        choices=Czas.LATA_BCS + [IntAlt.DONT_KNOW],
-        default=2024, # TODO: bieżący rok
-        verbose_name='Rok pojawienia się'
-    )
-
-    pewnosc_stazu = models.BooleanField(
-        choices=[
-            (True, "Na pewno wcześniej się nie pojawiał"),
-            (False, "Ale mógł pojawić się wcześniej")
-        ],
-        default=(True, "Na pewno wcześniej się nie pojawiał"),
-        verbose_name="Pewność daty stażu"
-    )
+class Bean(OsobaCzapkowa):
 
     rodzic_1 = models.ForeignKey(
         Czlonek,
@@ -356,20 +306,15 @@ class Bean(models.Model):
         ordering = ['imie', 'nazwisko']
 
     def __str__(self):
-        name = str(self.imie) + " "
-        name += str(self.nazwisko)
-        return name
+        return f"{self.imie} {self.nazwisko}"
 
 class Przezwisko(models.Model):
     kto = models.ForeignKey(
-        Czlonek,
-        on_delete=models.CASCADE,
-        verbose_name="Kto"
+        Czlonek, on_delete=models.CASCADE, verbose_name="Kto"
     )
 
     przezwisko = models.CharField(
-        max_length=MAX_LENGTH,
-        verbose_name="Przezwisko"
+        max_length=MAX_LENGTH, verbose_name="Przezwisko"
     )
 
     class Meta:
@@ -412,14 +357,11 @@ class ZwierzeCzapkowe(models.Model):
     )
 
     zwierze = models.CharField(
-        max_length=MEDIUM_LENGTH,
-        verbose_name="Zwierzę"
+        max_length=MEDIUM_LENGTH, verbose_name="Zwierzę"
     )
 
     wyjasnienie = models.CharField(
-        max_length=MEDIUM_LENGTH,
-        blank=True,
-        verbose_name="Wyjaśnienie (opcjonalne)"
+        max_length=MEDIUM_LENGTH, blank=True, verbose_name="Wyjaśnienie (opcjonalne)"
     )
 
     class Meta:
@@ -582,19 +524,15 @@ class WielkiMistrz(models.Model):
     )
 
     tadeusz = models.CharField(
-        max_length=SHORT_LENGTH,
-        verbose_name="Tadeusz",
+        max_length=SHORT_LENGTH, verbose_name="Tadeusz",
     )
 
     tadeusz_numeric = models.IntegerField(
-        editable=False,
-        db_index=True,
-        default=0,
+        editable=False, db_index=True, default=0,
     )
 
     tytuly = models.TextField(
-        blank=True,
-        verbose_name="Tytuły",
+        blank=True, verbose_name="Tytuły",
     )
 
     class Meta:
@@ -625,20 +563,15 @@ class HallOfFame(models.Model):
     )
 
     nazwa_alternatywna = models.CharField(
-        max_length=MEDIUM_LENGTH,
-        blank=True,
-        verbose_name="Nazwa alternatywna",
+        max_length=MEDIUM_LENGTH, blank=True, verbose_name="Nazwa alternatywna",
     )
 
     zaslugi = models.CharField(
-        max_length=MAX_LENGTH,
-        verbose_name="Zasługi",
+        max_length=MAX_LENGTH, verbose_name="Zasługi",
     )
 
     order_field = models.CharField(
-        max_length=MAX_LENGTH,
-        blank=True,
-        editable=False,
+        max_length=MAX_LENGTH, blank=True, editable=False,
     )
 
     class Meta:
@@ -663,13 +596,11 @@ class InnaOsoba(models.Model):
         PRZYJACIEL_CZAPKI = "PC", "Przyjaciel Bractwa"
 
     nazwa = models.CharField(
-        max_length=MEDIUM_LENGTH,
-        verbose_name="Nazwa",
+        max_length=MEDIUM_LENGTH, verbose_name="Nazwa",
     )
 
     opis = models.TextField(
-        blank=True,
-        verbose_name="Opis",
+        blank=True, verbose_name="Opis",
     )
 
     kategoria = models.CharField(
@@ -697,8 +628,7 @@ class InnaOsoba(models.Model):
 
 class Osoby(models.Model):
     content_type = models.ForeignKey(
-        ContentType,
-        on_delete=models.CASCADE,
+        ContentType, on_delete=models.CASCADE,
     )
 
     object_id = models.PositiveIntegerField()
