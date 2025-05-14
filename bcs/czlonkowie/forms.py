@@ -107,6 +107,21 @@ class BeanForm(forms.ModelForm):
             self.fields['czapka_1'].initial = Czapka.get_dont_know_czapka()[0]
             self.fields['czapka_2'].initial = Czapka.get_not_applicable_czapka()[0]
 
+class OsobyForm(forms.ModelForm):
+    class Meta:
+        model = Osoby
+        exclude = ['content_type', 'object_id']
+        widgets = {
+            'czlonek': autocomplete.ModelSelect2(
+                url='czlonkowie:czlonek-records-autocomplete'
+            ),
+            'bean': autocomplete.ModelSelect2(
+                url='czlonkowie:bean-records-autocomplete'
+            ),
+            'inna_osoba': autocomplete.ModelSelect2(
+                url='czlonkowie:inna-osoba-records-autocomplete'
+            )
+        }
 
 class ImieSzlacheckieForm(forms.ModelForm):
     posiadacz_display = forms.CharField(

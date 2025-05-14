@@ -8,22 +8,6 @@ class MiejsceForm(forms.ModelForm):
         model = Miejsce
         fields = '__all__'
 
-class OsobyForm(forms.ModelForm):
-    class Meta:
-        model = Osoby
-        fields = '__all__'
-        widgets = {
-            'czlonek': autocomplete.ModelSelect2(
-                url='czlonkowie:czlonek-records-autocomplete'
-            ),
-            'bean': autocomplete.ModelSelect2(
-                url='czlonkowie:bean-records-autocomplete'
-            ),
-            'inna_osoba': autocomplete.ModelSelect2(
-                url='czlonkowie:inna-osoba-records-autocomplete'
-            )
-        }
-
 class WydarzenieForm(forms.ModelForm):
     class Meta:
         model = Wydarzenie

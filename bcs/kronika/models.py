@@ -8,45 +8,45 @@ from django.contrib.contenttypes.models import ContentType
 
 
 
-class Osoby(models.Model):
-    content_type = models.ForeignKey(
-        ContentType,
-        on_delete=models.CASCADE,
-    )
-
-    object_id = models.PositiveIntegerField()
-    content_object = GenericForeignKey('content_type', 'object_id')
-
-    czlonek = models.ForeignKey(
-        "czlonkowie.Czlonek",
-        blank=True,
-        null=True,
-        on_delete=models.SET_NULL,
-        verbose_name="Członek",
-    )
-
-    bean = models.ForeignKey(
-        "czlonkowie.Bean",
-        blank=True,
-        null=True,
-        on_delete=models.SET_NULL,
-        verbose_name="Bean",
-    )
-
-    inna_osoba = models.ForeignKey(
-        "czlonkowie.InnaOsoba",
-        blank=True,
-        null=True,
-        on_delete=models.SET_NULL,
-        verbose_name="Inna osoba",
-    )
-
-    class Meta:
-        verbose_name = "Osoba"
-        verbose_name_plural = "Osoby"
-
-    def __str__(self):
-        return f"{self.czlonek} - {self.content_type} - {self.content_object}"
+# class Osoby(models.Model):
+#     content_type = models.ForeignKey(
+#         ContentType,
+#         on_delete=models.CASCADE,
+#     )
+#
+#     object_id = models.PositiveIntegerField()
+#     content_object = GenericForeignKey('content_type', 'object_id')
+#
+#     czlonek = models.ForeignKey(
+#         "czlonkowie.Czlonek",
+#         blank=True,
+#         null=True,
+#         on_delete=models.SET_NULL,
+#         verbose_name="Członek",
+#     )
+#
+#     bean = models.ForeignKey(
+#         "czlonkowie.Bean",
+#         blank=True,
+#         null=True,
+#         on_delete=models.SET_NULL,
+#         verbose_name="Bean",
+#     )
+#
+#     inna_osoba = models.ForeignKey(
+#         "czlonkowie.InnaOsoba",
+#         blank=True,
+#         null=True,
+#         on_delete=models.SET_NULL,
+#         verbose_name="Inna osoba",
+#     )
+#
+#     class Meta:
+#         verbose_name = "Osoba"
+#         verbose_name_plural = "Osoby"
+#
+#     def __str__(self):
+#         return f"{self.czlonek} - {self.content_type} - {self.content_object}"
 
 class Miejsce(models.Model):
     class TypyMiejsc(models.TextChoices):
@@ -100,7 +100,7 @@ class Zdarzenie(models.Model):
     )
 
     powiazane_osoby = GenericRelation(
-        Osoby,
+        "czlonkowie.Osoby",
         blank=True,
         verbose_name="Powiązane osoby",
         related_query_name="uczestnictwo_w_zdarzeniu")
@@ -178,7 +178,7 @@ class Wydarzenie(models.Model):
     )
 
     uczestnicy = GenericRelation(
-        Osoby,
+        "czlonkowie.Osoby",
         blank=True,
         verbose_name="Uczestnicy",
         related_query_name="uczestnictwo_w_wydarzeniu"
@@ -213,7 +213,7 @@ class ObrazWydarzenie(models.Model):
     )
 
     widoczne_osoby = GenericRelation(
-        Osoby,
+        "czlonkowie.Osoby",
         blank=True,
         verbose_name="Widoczne osoby",
         related_query_name="widoczne_osoby"
@@ -321,7 +321,7 @@ class Wyjazd(models.Model):
     )
 
     uczestnicy = GenericRelation(
-        Osoby,
+        "czlonkowie.Osoby",
         blank=True,
         verbose_name="Uczestnicy",
         related_query_name="uczestnictwo_w_wyjezdzie")

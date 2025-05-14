@@ -40,7 +40,7 @@ class TradycjaBCS(models.Model):
     )
 
     autor = GenericRelation(
-        "kronika.Osoby",
+        "czlonkowie.Osoby",
         blank=True,
         verbose_name="Autor",
     )

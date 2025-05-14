@@ -1,4 +1,5 @@
-from .models import Bean, Czlonek, DawnyZarzad, HallOfFame, ImieSzlacheckie, InnaOsoba, Przezwisko, WielkiMistrz, Zarzad, ZwierzeCzapkowe
+from .models import Bean, Czlonek, DawnyZarzad, HallOfFame, ImieSzlacheckie, InnaOsoba, Przezwisko, WielkiMistrz, \
+    Zarzad, ZwierzeCzapkowe, Osoby
 from core.utils.automation.ViewsGeneration import *
 
 autocomplete_configs = [
@@ -8,6 +9,7 @@ autocomplete_configs = [
     (HallOfFame,        [],                                                                 [], ['Czlonek']),
     (ImieSzlacheckie,   [],                                                                 [], ['Czlonek']),
     (InnaOsoba,         ['kategoria'],                                                      [], ['encyklopedia.Bractwo']),
+    (Osoby,             [],                                                                 [], ['Bean', 'Czlonek', 'InnaOsoba']),
     (Przezwisko,        [],                                                                 [], ['Czlonek']),
     (WielkiMistrz,      [],                                                                 [], ['Czlonek']),
     (Zarzad,            [],                                                                 [], ['Czlonek', 'core.Kadencja']),

@@ -1,3 +1,5 @@
+from django.contrib.contenttypes.fields import GenericForeignKey
+from django.contrib.contenttypes.models import ContentType
 from django.db import models
 from roman import fromRoman
 from core.utils import Consts
@@ -692,3 +694,43 @@ class InnaOsoba(models.Model):
     def __str__(self):
         return f"{self.nazwa}"
 
+class Osoby(models.Model):
+    content_type = models.ForeignKey(
+        ContentType,
+        on_delete=models.CASCADE,
+    )
+
+    object_id = models.PositiveIntegerField()
+    content_object = GenericForeignKey('content_type', 'object_id')
+
+    czlonek = models.ForeignKey(
+        "czlonkowie.Czlonek",
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+        verbose_name="Członek",
+    )
+
+    bean = models.ForeignKey(
+        "czlonkowie.Bean",
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+        verbose_name="Bean",
+    )
+
+    inna_osoba = models.ForeignKey(
+        "czlonkowie.InnaOsoba",
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+        verbose_name="Inna osoba",
+    )
+
+    class Meta:
+        app_label = "czlonkowie"
+        verbose_name = "Osoba"
+        verbose_name_plural = "Osoby"
+
+    def __str__(self):
+        return f"{self.czlonek} - {self.content_type} - {self.content_object}"

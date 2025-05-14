@@ -1,5 +1,6 @@
 from core.utils.automation.BaseAdmin import *
-from .forms import OsobyForm
+from czlonkowie.forms import OsobyForm
+from czlonkowie.models import Osoby
 from .models import *
 from django.contrib.contenttypes.admin import GenericTabularInline
 

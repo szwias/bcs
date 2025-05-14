@@ -4,11 +4,11 @@ from core.utils.automation.ViewsGeneration import *
 
 autocomplete_configs = [
     (Miejsce,           ['typ'],    [],     []),
-    (Zdarzenie,         [],         [],     ['Osoby']),
-    (Wydarzenie,        ['typ'],    [],     ['Miejsce', 'Osoby']),
-    (ObrazWydarzenie,   [],         [],     ['Wydarzenie', 'Osoby']),
+    (Zdarzenie,         [],         [],     ['czlonkowie.Osoby']),
+    (Wydarzenie,        ['typ'],    [],     ['Miejsce', 'czlonkowie.Osoby']),
+    (ObrazWydarzenie,   [],         [],     ['Wydarzenie', 'czlonkowie.Osoby']),
     (Proces,            [],         [],     ['Zdarzenie']),
-    (Wyjazd,            ['typ'],    [],     ['Miejsce', 'Zdarzenie', 'Osoby']),
+    (Wyjazd,            ['typ'],    [],     ['Miejsce', 'Zdarzenie', 'czlonkowie.Osoby']),
 ]
 
 autocomplete_urls, autocomplete_widgets = setup_autocompletes(autocomplete_configs, globals())
