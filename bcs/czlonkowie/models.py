@@ -94,7 +94,7 @@ class Czapka(models.Model):
 
     wydzial = models.CharField(
         max_length=Lengths.WYDZIAL,
-        default=("XXX", "Nie wiem"),
+        default="XXX",
         verbose_name='Wydział',
     )
 
@@ -123,6 +123,7 @@ class Czapka(models.Model):
     @staticmethod
     def get_not_applicable_czapka():
         return Czapka.objects.get_or_create(uczelnia=Czapka.Uczelnie.NOT_APPLICABLE)
+
 
 class Czlonek(models.Model):
     class Aktywnosc(models.TextChoices):
@@ -207,12 +208,12 @@ class Czlonek(models.Model):
         verbose_name='Rok pojawienia się'
     )
 
-    pewnosc_stazu = models.BooleanField(
+    pewnosc_stazu = models.CharField(
         choices=[
-            (True, "Na pewno wcześniej się nie pojawiał"),
-            (False, "Ale mógł pojawić się wcześniej")
+            ("T", "Na pewno wcześniej się nie pojawiał"),
+            ("N", "Ale mógł pojawić się wcześniej")
         ],
-        default=(False, "Ale mógł pojawić się wcześniej"),
+        default="N",
         verbose_name="Pewność daty stażu"
     )
 
