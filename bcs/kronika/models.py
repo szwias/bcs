@@ -75,13 +75,6 @@ class Zdarzenie(models.Model):
         related_query_name="uczestnictwo_w_zdarzeniu"
     )
 
-    obrazy = models.ManyToManyField(
-        "ObrazZdarzenie",
-        blank=True,
-        verbose_name="Zdjęcia",
-        related_query_name="zdarzenie_obrazy"
-    )
-
     class Meta:
         verbose_name = "Zdarzenie"
         verbose_name_plural = "Zdarzenia"
@@ -161,6 +154,21 @@ class ObrazZdarzenie(models.Model):
         if self.data:
             name += f" {self.data}"
         return name
+
+    def save(self, *args, **kwargs):
+        is_new = self.pk is None
+        super().save(*args, **kwargs)
+
+        if self.zdarzenie:
+            self.data = self.zdarzenie.data
+            self.miejsce = self.zdarzenie.miejsce
+            if is_new:
+                for osoba in self.zdarzenie.powiazane_osoby.all():
+                    osoba.pk = None
+                    osoba.content_object = self
+                    osoba.save()
+
+        super().save(*args, **kwargs)
 
 class Wydarzenie(models.Model):
     class TypyWydarzen(models.TextChoices):

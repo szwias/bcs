@@ -8,20 +8,22 @@ from django.contrib.contenttypes.admin import GenericTabularInline
 class OsobyInline(GenericTabularInline):
     model = Osoby
     extra = 0
-    verbose_name = "Osoba"
-    verbose_name_plural = "Osoby"
     form = OsobyForm
 
 class ObrazWydarzenieInline(admin.StackedInline):  # or StackedInline
     model = ObrazWydarzenie
     extra = 0
-    verbose_name = "Zdjęcie z wydarzenia"
-    verbose_name_plural = "Zdjęcia z wydarzeń"
 
 class ZdarzenieInline(admin.StackedInline):
     model = Zdarzenie
     extra = 0
     fields = ["nazwa", "data", "miejsce"]
+    show_change_link = True
+
+class ObrazZdarzenieInline(admin.StackedInline):
+    model = ObrazZdarzenie
+    extra = 0
+    fields = ["tytul", "obraz"]
     show_change_link = True
 
 @admin.register(ObrazWydarzenie)
@@ -38,9 +40,9 @@ class WydarzenieAdmin(BaseModelAdmin):
 
 @admin.register(Zdarzenie)
 class ZdarzenieAdmin(BaseModelAdmin):
-    inlines = [OsobyInline]
+    inlines = [OsobyInline, ObrazZdarzenieInline]
     save_as = True
-    filter_horizontal = ("obrazy",)
+
 
 
 register_all_models(
