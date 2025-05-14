@@ -49,9 +49,25 @@ class Zdarzenie(models.Model):
         verbose_name="Nazwa",
     )
 
+    wydarzenie = models.ForeignKey(
+        "Wydarzenie",
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+        verbose_name="Wydarzenie",
+    )
+
     data = models.DateField(
         default=timezone.now,
         verbose_name="Data",
+    )
+
+    miejsce = models.ForeignKey(
+        Miejsce,
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+        verbose_name="Miejsce",
     )
 
     opis = models.TextField(
@@ -64,6 +80,13 @@ class Zdarzenie(models.Model):
         blank=True,
         verbose_name="Powiązane osoby",
         related_query_name="uczestnictwo_w_zdarzeniu")
+
+    obrazy = models.ManyToManyField(
+        "ObrazZdarzenie",
+        blank=True,
+        verbose_name="Zdjęcia",
+        related_query_name="zdarzenie_obrazy"
+    )
 
     class Meta:
         verbose_name = "Zdarzenie"
@@ -220,6 +243,7 @@ class Wydarzenie(models.Model):
         Zdarzenie,
         blank=True,
         verbose_name="Zdarzenia",
+        related_name="wydarzenie_zdarzenia"
     )
 
     uczestnicy = GenericRelation(

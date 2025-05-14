@@ -34,6 +34,7 @@ class WydarzenieAdmin(BaseModelAdmin):
 class ZdarzenieAdmin(BaseModelAdmin):
     inlines = [OsobyInline]
     save_as = True
+    filter_horizontal = ("obrazy",)
 
 
 register_all_models(

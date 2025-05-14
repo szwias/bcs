@@ -4,7 +4,7 @@ from core.utils.automation.ViewsGeneration import *
 
 autocomplete_configs = [
     (Miejsce,           ['typ'],                                [],     []),
-    (Zdarzenie,         [],                                     [],     ['czlonkowie.Osoby']),
+    (Zdarzenie,         [],                                     [],     ['czlonkowie.Osoby', 'ObrazZdarzenie', 'Miejsce', 'Wydarzenie']),
     (ObrazZdarzenie,    [],                                     [],     ['Zdarzenie', 'Miejsce', 'czlonkowie.Osoby']),
     (Wydarzenie,        ['typ_wydarzenia', 'typ_wyjazdu'],      [],     ['Miejsce', 'Zdarzenie', 'czlonkowie.Osoby']),
     (ObrazWydarzenie,   [],                                     [],     ['Wydarzenie', 'czlonkowie.Osoby']),
