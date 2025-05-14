@@ -1,3 +1,4 @@
+from django.contrib.contenttypes.fields import GenericRelation
 from django.db import models
 
 from core.utils.Choices import IntAlt
@@ -24,7 +25,7 @@ class TradycjaBCS(models.Model):
     class Okolicznosci(models.TextChoices):
         INNE = "I", "Inne"
         WYDARZENIE = "Wyd", "Wydarzenie"
-        WYJAZD = "Wyj", "Wyjazd"
+        # WYJAZD = "Wyj", "Wyjazd"
 
     nazwa = models.CharField(
         max_length=MEDIUM_LENGTH,
@@ -38,11 +39,9 @@ class TradycjaBCS(models.Model):
         verbose_name="Tradycja",
     )
 
-    autor_czlonek = models.ForeignKey(
-        "czlonkowie.Czlonek",
+    autor = GenericRelation(
+        "kronika.Osoby",
         blank=True,
-        null=True,
-        on_delete=models.SET_NULL,
         verbose_name="Autor",
     )
 
@@ -60,13 +59,13 @@ class TradycjaBCS(models.Model):
         verbose_name="Wydarzenie",
     )
 
-    wyjazd = models.ForeignKey(
-        Wyjazd,
-        blank=True,
-        null=True,
-        on_delete=models.SET_NULL,
-        verbose_name="Wyjazd",
-    )
+    # wyjazd = models.ForeignKey(
+    #     Wyjazd,
+    #     blank=True,
+    #     null=True,
+    #     on_delete=models.SET_NULL,
+    #     verbose_name="Wyjazd",
+    # )
 
     inne = models.CharField(
         max_length=MAX_LENGTH,
@@ -104,7 +103,7 @@ class TradycjaInnegoBractwa(models.Model):
     autor_rodzaj = models.CharField(
         max_length=SHORT_LENGTH,
         choices=Authors.choices,
-        verbose_name="Tradycja",
+        verbose_name="Pochodzenie tradycji",
     )
 
     opis = models.TextField(

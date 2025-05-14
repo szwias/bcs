@@ -5,7 +5,6 @@ from core.utils.Consts import MAX_LENGTH, MEDIUM_LENGTH, SHORT_LENGTH, NAME_LENG
 from core.utils.czas import Czas
 from core.utils.czas.models import Kadencja
 from core.utils.Choices import TextAlt, TextChoose, IntAlt
-from encyklopedia.models import Bractwo
 
 
 class Lengths:
@@ -678,7 +677,7 @@ class InnaOsoba(models.Model):
     )
 
     bractwo = models.ForeignKey(
-        Bractwo,
+        "encyklopedia.Bractwo",
         blank=True,
         null=True,
         on_delete=models.SET_NULL,
