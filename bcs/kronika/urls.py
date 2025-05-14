@@ -5,4 +5,10 @@ from .views import autocomplete_urls
 app_name = 'kronika'
 
 # fields autocomplete
-urlpatterns = [] + autocomplete_urls
+urlpatterns = [
+    path(
+        'custom-miejsce-from-wydarzenie-to-zdarzenie-autocomplete/',
+         views.CustomMiejsceFromWydarzenieToZdarzenieAutocomplete.as_view(),
+         name='custom-miejsce-from-wydarzenie-to-zdarzenie-autocomplete'
+    ),
+              ] + autocomplete_urls

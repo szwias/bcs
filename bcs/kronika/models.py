@@ -96,6 +96,22 @@ class Zdarzenie(models.Model):
     def __str__(self):
         return f"{self.data} - {self.nazwa}"
 
+    def save(self, *args, **kwargs):
+        is_new = self.pk is None
+        super().save(*args, **kwargs)
+
+        if self.wydarzenie:
+            if self.wydarzenie.data_rozpoczecia == self.wydarzenie.data_zakonczenia:
+                self.data = self.wydarzenie.data_rozpoczecia
+            if is_new:
+                for osoba in self.wydarzenie.uczestnicy.all():
+                    osoba.pk = None
+                    osoba.content_object = self
+                    osoba.save()
+
+        super().save(*args, **kwargs)
+
+
 class ObrazZdarzenie(models.Model):
     zdarzenie = models.ForeignKey(
         Zdarzenie,

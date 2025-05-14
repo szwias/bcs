@@ -7,12 +7,14 @@ class MiejsceForm(forms.ModelForm):
     class Meta:
         model = Miejsce
         fields = '__all__'
+        widgets = build_widgets(autocomplete_widgets['Miejsce'])
 
 class ZdarzenieForm(forms.ModelForm):
     class Meta:
         model = Zdarzenie
         fields = '__all__'
         widgets = build_widgets(autocomplete_widgets['Zdarzenie'])
+        widgets.update({'miejsce': autocomplete.ModelSelect2(url='kronika:custom-miejsce-from-wydarzenie-to-zdarzenie-autocomplete', forward=['wydarzenie'])})
 
 class ObrazZdarzenieForm(forms.ModelForm):
     class Meta:
