@@ -1,52 +1,12 @@
 import os
 
 from django.db import models
+
+from core.utils.Choices import TextChoose, TextAlt
 from core.utils.Consts import *
 from django.utils import timezone
 from django.contrib.contenttypes.fields import GenericRelation, GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
-
-
-
-# class Osoby(models.Model):
-#     content_type = models.ForeignKey(
-#         ContentType,
-#         on_delete=models.CASCADE,
-#     )
-#
-#     object_id = models.PositiveIntegerField()
-#     content_object = GenericForeignKey('content_type', 'object_id')
-#
-#     czlonek = models.ForeignKey(
-#         "czlonkowie.Czlonek",
-#         blank=True,
-#         null=True,
-#         on_delete=models.SET_NULL,
-#         verbose_name="Członek",
-#     )
-#
-#     bean = models.ForeignKey(
-#         "czlonkowie.Bean",
-#         blank=True,
-#         null=True,
-#         on_delete=models.SET_NULL,
-#         verbose_name="Bean",
-#     )
-#
-#     inna_osoba = models.ForeignKey(
-#         "czlonkowie.InnaOsoba",
-#         blank=True,
-#         null=True,
-#         on_delete=models.SET_NULL,
-#         verbose_name="Inna osoba",
-#     )
-#
-#     class Meta:
-#         verbose_name = "Osoba"
-#         verbose_name_plural = "Osoby"
-#
-#     def __str__(self):
-#         return f"{self.czlonek} - {self.content_type} - {self.content_object}"
 
 class Miejsce(models.Model):
     class TypyMiejsc(models.TextChoices):
@@ -111,8 +71,7 @@ class Zdarzenie(models.Model):
         ordering = ["-data", "nazwa"]
 
     def __str__(self):
-        return f"{self.data.strftime('%Y.%d.%m')} - {self.nazwa}"
-
+        return f"{self.data} - {self.nazwa}"
 
 class Wydarzenie(models.Model):
     class TypyWydarzen(models.TextChoices):
@@ -135,28 +94,52 @@ class Wydarzenie(models.Model):
         UROCZYSTOSC = "Urocz", "Uroczystość"
         ZAWODY_SPORTOWE = "ZawodySp", "Zawody sportowe"
 
+    class TypyWyjazdow(models.TextChoices):
+        ADAPCIAK = "Adapciak", "Adapciak"
+        INNY = "Inny", "Inny"
+        KUDLACZE = "Kudlacze", "Kudłacze"
+        ZAGRANICZNY = "ZAGR", "Zagraniczny"
+
     nazwa = models.CharField(
         max_length=MAX_LENGTH,
         verbose_name="Nazwa"
     )
 
-    data = models.DateField(
+    data_rozpoczecia = models.DateField(
         default=timezone.now,
-        verbose_name="Data",
+        verbose_name="Data rozpoczęcia",
     )
 
-    miejsce = models.ForeignKey(
+    data_zakonczenia = models.DateField(
+        default=timezone.now,
+        verbose_name="Data zakończenia",
+    )
+
+    miejsca = models.ManyToManyField(
         Miejsce,
         blank=True,
-        null=True,
-        on_delete=models.SET_NULL,
         verbose_name="Miejsce",
     )
 
-    typ = models.CharField(
+    czy_to_wyjazd = models.CharField(
+        max_length=TextChoose.LENGTH,
+        choices=TextChoose.choices(),
+        default=TextChoose.NO[0],
+        verbose_name="Czy to wyjazd?",
+    )
+
+    typ_wydarzenia = models.CharField(
         max_length=SHORT_LENGTH,
-        choices=TypyWydarzen.choices,
+        choices=TypyWydarzen.choices + [TextAlt.NOT_APPLICABLE],
+        default=TextAlt.NOT_APPLICABLE[0],
         verbose_name="Typ wydarzenia",
+    )
+
+    typ_wyjazdu = models.CharField(
+        max_length=SHORT_LENGTH,
+        choices=TypyWyjazdow.choices + [TextAlt.NOT_APPLICABLE],
+        default=TextAlt.NOT_APPLICABLE[0],
+        verbose_name="Typ wyjazdu",
     )
 
     obrazy = models.ManyToManyField(
@@ -187,10 +170,18 @@ class Wydarzenie(models.Model):
     class Meta:
         verbose_name = "Wydarzenie"
         verbose_name_plural = "Wydarzenia"
-        ordering = ["-data"]
+        ordering = ["-data_rozpoczecia"]
 
     def __str__(self):
-        return f"{self.data.strftime('%Y.%d.%m')} - {self.get_typ_display()}: {self.nazwa}"
+        name = f"{self.data_rozpoczecia}"
+        if self.data_zakonczenia != self.data_rozpoczecia:
+            name += f" - {self.data_zakonczenia}"
+        if self.get_typ_wydarzenia_display() != TextAlt.NOT_APPLICABLE[1]:
+            typ = self.get_typ_wydarzenia_display()
+        else:
+            typ = self.get_typ_wyjazdu_display()
+        name += f": {typ} \"{self.nazwa}\""
+        return name
 
 class ObrazWydarzenie(models.Model):
     wydarzenie = models.ForeignKey(
@@ -272,66 +263,5 @@ class Proces(models.Model):
         ordering = ["-data_rozpoczecia"]
 
     def __str__(self):
-        return f"{self.nazwa}: {self.data_rozpoczecia.strftime('%d.%m.%Y')} - {self.data_zakonczenia.strftime('%d.%m.%Y')}"
-
-# class Wyjazd(models.Model):
-#     class TypyWyjazdow(models.TextChoices):
-#         ADAPCIAK = "AD", "Adapciak"
-#         KUDLACZE = "KU", "Kudłacze"
-#         ZAGRANICZNE = "ZAGR", "Zagraniczny"
-#
-#     nazwa = models.CharField(
-#         max_length=MAX_LENGTH,
-#         verbose_name="Nazwa",
-#     )
-#
-#     data_rozpoczecia = models.DateField(
-#         default=timezone.now,
-#         verbose_name="Data rozpoczęcia",
-#     )
-#
-#     data_zakonczenia = models.DateField(
-#         default=timezone.now,
-#         verbose_name="Data zakończenia",
-#     )
-#
-#     typ = models.CharField(
-#         max_length=SHORT_LENGTH,
-#         choices=TypyWyjazdow.choices,
-#         verbose_name="Typ wyjazdu",
-#     )
-#
-#     miejsce = models.ForeignKey(
-#         Miejsce,
-#         blank=True,
-#         null=True,
-#         on_delete=models.SET_NULL,
-#         verbose_name="Miejsce",
-#     )
-#
-#     opis = models.TextField(
-#         blank=True,
-#         verbose_name="Opis",
-#     )
-#
-#     zdarzenia = models.ManyToManyField(
-#         Zdarzenie,
-#         blank=True,
-#         verbose_name="Zdarzenia",
-#     )
-#
-#     uczestnicy = GenericRelation(
-#         "czlonkowie.Osoby",
-#         blank=True,
-#         verbose_name="Uczestnicy",
-#         related_query_name="uczestnictwo_w_wyjezdzie")
-#
-#     class Meta:
-#         verbose_name = "Wyjazd"
-#         verbose_name_plural = "Wyjazdy"
-#         ordering = ["-data_rozpoczecia"]
-#
-#     def __str__(self):
-#         return f"{self.get_typ_display()} \"{self.nazwa}\" - {self.miejsce}, {self.data_rozpoczecia.strftime('%d.%m.%Y')} - {self.data_zakonczenia.strftime('%d.%m.%Y')}"
-#
+        return f"{self.nazwa}: {self.data_rozpoczecia} - {self.data_zakonczenia}"
 

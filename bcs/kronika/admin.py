@@ -18,11 +18,6 @@ class ObrazWydarzenieInline(admin.StackedInline):  # or StackedInline
     verbose_name = "Zdjęcie z wydarzenia"
     verbose_name_plural = "Zdjęcia z wydarzeń"
 
-# @admin.register(Wyjazd)
-# class WyjazdAdmin(BaseModelAdmin):
-#     inlines = [OsobyInline]
-#     save_as = True
-
 @admin.register(ObrazWydarzenie)
 class ObrazWydarzenieAdmin(BaseModelAdmin):
     inlines = [OsobyInline]
@@ -32,7 +27,7 @@ class ObrazWydarzenieAdmin(BaseModelAdmin):
 class WydarzenieAdmin(BaseModelAdmin):
     inlines = [OsobyInline, ObrazWydarzenieInline]
     save_as = True
-    filter_horizontal = ("zdarzenia", "obrazy",)
+    filter_horizontal = ("zdarzenia", "obrazy", "miejsca")
 
 
 @admin.register(Zdarzenie)
