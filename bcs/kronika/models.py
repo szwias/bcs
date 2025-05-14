@@ -18,8 +18,7 @@ class Miejsce(models.Model):
         UCZELNIA = "Uczel", "Uczelnia"
 
     nazwa = models.CharField(
-        max_length=MAX_LENGTH,
-        verbose_name="Nazwa",
+        max_length=MAX_LENGTH, verbose_name="Nazwa",
     )
 
     adres = models.CharField(
@@ -30,9 +29,7 @@ class Miejsce(models.Model):
     )
 
     typ = models.CharField(
-        max_length=SHORT_LENGTH,
-        choices=TypyMiejsc.choices,
-        verbose_name="Typ miejsca",
+        max_length=SHORT_LENGTH, choices=TypyMiejsc.choices, verbose_name="Typ miejsca",
     )
 
     class Meta:
@@ -44,10 +41,7 @@ class Miejsce(models.Model):
         return f"{self.nazwa} - {self.get_typ_display()}, {self.adres}"
 
 class Zdarzenie(models.Model):
-    nazwa = models.CharField(
-        max_length=MAX_LENGTH,
-        verbose_name="Nazwa",
-    )
+    nazwa = models.CharField(max_length=MAX_LENGTH, verbose_name="Nazwa")
 
     wydarzenie = models.ForeignKey(
         "Wydarzenie",
@@ -55,11 +49,11 @@ class Zdarzenie(models.Model):
         null=True,
         on_delete=models.SET_NULL,
         verbose_name="Wydarzenie",
+        related_name="zdarzenia",  # key change here
     )
 
     data = models.DateField(
-        default=timezone.now,
-        verbose_name="Data",
+        default=timezone.now, verbose_name="Data"
     )
 
     miejsce = models.ForeignKey(
@@ -71,15 +65,15 @@ class Zdarzenie(models.Model):
     )
 
     opis = models.TextField(
-        blank=True,
-        verbose_name="Opis",
+        blank=True, verbose_name="Opis"
     )
 
     powiazane_osoby = GenericRelation(
         "czlonkowie.Osoby",
         blank=True,
         verbose_name="Powiązane osoby",
-        related_query_name="uczestnictwo_w_zdarzeniu")
+        related_query_name="uczestnictwo_w_zdarzeniu"
+    )
 
     obrazy = models.ManyToManyField(
         "ObrazZdarzenie",
@@ -122,15 +116,11 @@ class ObrazZdarzenie(models.Model):
     )
 
     tytul = models.CharField(
-        max_length=MEDIUM_LENGTH,
-        blank=True,
-        verbose_name="Tytuł",
+        max_length=MEDIUM_LENGTH, blank=True, verbose_name="Tytuł",
     )
 
     data = models.DateField(
-        default=timezone.now,
-        blank=True,
-        verbose_name="Data wykonania",
+        default=timezone.now, blank=True, verbose_name="Data wykonania",
     )
 
     miejsce = models.ForeignKey(
@@ -142,8 +132,7 @@ class ObrazZdarzenie(models.Model):
     )
 
     obraz = models.ImageField(
-        upload_to="kronika/zdarzenia/",
-        verbose_name="Dodaj obraz",
+        upload_to="kronika/zdarzenia/", verbose_name="Dodaj obraz",
     )
 
     widoczne_osoby = GenericRelation(
@@ -154,8 +143,7 @@ class ObrazZdarzenie(models.Model):
     )
 
     opis = models.TextField(
-        blank=True,
-        verbose_name="Opis",
+        blank=True, verbose_name="Opis",
     )
 
     class Meta:
@@ -202,24 +190,19 @@ class Wydarzenie(models.Model):
         ZAGRANICZNY = "ZAGR", "Zagraniczny"
 
     nazwa = models.CharField(
-        max_length=MAX_LENGTH,
-        verbose_name="Nazwa"
+        max_length=MAX_LENGTH, verbose_name="Nazwa"
     )
 
     data_rozpoczecia = models.DateField(
-        default=timezone.now,
-        verbose_name="Data rozpoczęcia",
+        default=timezone.now, verbose_name="Data rozpoczęcia"
     )
 
     data_zakonczenia = models.DateField(
-        default=timezone.now,
-        verbose_name="Data zakończenia",
+        default=timezone.now, verbose_name="Data zakończenia"
     )
 
     miejsca = models.ManyToManyField(
-        Miejsce,
-        blank=True,
-        verbose_name="Miejsce",
+        Miejsce, blank=True, verbose_name="Miejsce"
     )
 
     czy_to_wyjazd = models.CharField(
@@ -251,15 +234,7 @@ class Wydarzenie(models.Model):
     )
 
     opis = models.TextField(
-        blank=True,
-        verbose_name="Opis",
-    )
-
-    zdarzenia = models.ManyToManyField(
-        Zdarzenie,
-        blank=True,
-        verbose_name="Zdarzenia",
-        related_name="wydarzenie_zdarzenia"
+        blank=True, verbose_name="Opis"
     )
 
     uczestnicy = GenericRelation(
@@ -295,14 +270,11 @@ class ObrazWydarzenie(models.Model):
     )
 
     tytul = models.CharField(
-        max_length=MEDIUM_LENGTH,
-        blank=True,
-        verbose_name="Tytuł",
+        max_length=MEDIUM_LENGTH, blank=True, verbose_name="Tytuł",
     )
 
     obraz = models.ImageField(
-        upload_to="kronika/wydarzenia/",
-        verbose_name="Dodaj obraz",
+        upload_to="kronika/wydarzenia/", verbose_name="Dodaj obraz",
     )
 
     widoczne_osoby = GenericRelation(
@@ -313,8 +285,7 @@ class ObrazWydarzenie(models.Model):
     )
 
     opis = models.TextField(
-        blank=True,
-        verbose_name="Opis",
+        blank=True, verbose_name="Opis",
     )
 
     class Meta:
@@ -334,29 +305,23 @@ class ObrazWydarzenie(models.Model):
 
 class Proces(models.Model):
     nazwa = models.CharField(
-        max_length=MAX_LENGTH,
-        verbose_name="Nazwa",
+        max_length=MAX_LENGTH, verbose_name="Nazwa",
     )
 
     data_rozpoczecia = models.DateField(
-        default=timezone.now,
-        verbose_name="Data rozpoczęcia",
+        default=timezone.now, verbose_name="Data rozpoczęcia",
     )
 
     data_zakonczenia = models.DateField(
-        default=timezone.now,
-        verbose_name="Data zakończenia",
+        default=timezone.now, verbose_name="Data zakończenia",
     )
 
     opis = models.TextField(
-        blank=True,
-        verbose_name="Opis",
+        blank=True, verbose_name="Opis",
     )
 
     zdarzenia = models.ManyToManyField(
-        Zdarzenie,
-        blank=True,
-        verbose_name="Zdarzenia",
+        Zdarzenie, blank=True, verbose_name="Zdarzenia",
     )
 
     class Meta:

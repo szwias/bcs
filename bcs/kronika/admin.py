@@ -7,16 +7,22 @@ from django.contrib.contenttypes.admin import GenericTabularInline
 
 class OsobyInline(GenericTabularInline):
     model = Osoby
-    extra = 1
+    extra = 0
     verbose_name = "Osoba"
     verbose_name_plural = "Osoby"
     form = OsobyForm
 
 class ObrazWydarzenieInline(admin.StackedInline):  # or StackedInline
     model = ObrazWydarzenie
-    extra = 1
+    extra = 0
     verbose_name = "Zdjęcie z wydarzenia"
     verbose_name_plural = "Zdjęcia z wydarzeń"
+
+class ZdarzenieInline(admin.StackedInline):
+    model = Zdarzenie
+    extra = 0
+    fields = ["nazwa", "data", "miejsce"]
+    show_change_link = True
 
 @admin.register(ObrazWydarzenie)
 class ObrazWydarzenieAdmin(BaseModelAdmin):
@@ -25,9 +31,9 @@ class ObrazWydarzenieAdmin(BaseModelAdmin):
 
 @admin.register(Wydarzenie)
 class WydarzenieAdmin(BaseModelAdmin):
-    inlines = [OsobyInline, ObrazWydarzenieInline]
+    inlines = [ZdarzenieInline, OsobyInline, ObrazWydarzenieInline]
     save_as = True
-    filter_horizontal = ("zdarzenia", "obrazy", "miejsca")
+    filter_horizontal = ("obrazy", "miejsca")
 
 
 @admin.register(Zdarzenie)
@@ -41,7 +47,6 @@ register_all_models(
     custom_admins={
         ObrazWydarzenie: ObrazWydarzenieAdmin,
         Wydarzenie: WydarzenieAdmin,
-        # Wyjazd: WyjazdAdmin,
         Zdarzenie: ZdarzenieAdmin,
     }
 )
