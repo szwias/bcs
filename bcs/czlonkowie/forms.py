@@ -207,6 +207,13 @@ class InnaOsobaForm(forms.ModelForm):
         fields = '__all__'
         widgets = build_widgets(autocomplete_widgets['InnaOsoba'])
 
+        przezwiska = SimpleArrayField(
+            base_field=forms.CharField(),
+            required=False,
+            widget=forms.Textarea(attrs={'rows': 3, 'cols': 50}),
+            delimiter=','
+        )
+
 class PrzezwiskoForm(forms.ModelForm):
     class Meta:
         model = Przezwisko

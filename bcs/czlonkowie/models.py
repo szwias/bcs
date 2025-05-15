@@ -618,8 +618,16 @@ class InnaOsoba(models.Model):
         ORGANIZACJA = "Org", "Organizacja"
         PRZYJACIEL_CZAPKI = "PC", "Przyjaciel Bractwa"
 
-    nazwa = models.CharField(
-        max_length=MEDIUM_LENGTH, verbose_name="Nazwa",
+    imie = models.CharField(
+        max_length=None, verbose_name="Imię",
+    )
+
+    nazwisko = models.CharField(
+        max_length=MEDIUM_LENGTH, blank=True, verbose_name="Nazwisko",
+    )
+
+    przezwiska = ArrayField(
+        models.CharField(max_length=MAX_LENGTH), blank=True, default=list, verbose_name="Przezwiska"
     )
 
     opis = models.TextField(
@@ -644,10 +652,17 @@ class InnaOsoba(models.Model):
     class Meta:
         verbose_name = "Inna osoba"
         verbose_name_plural = "Inne osoby (nie-członkowie)"
-        ordering = ['nazwa']
+        ordering = ['imie', 'nazwisko']
 
     def __str__(self):
-        return f"{self.nazwa}"
+        name = f"{self.imie} "
+        if len(self.przezwiska) > 0:
+            name += f"\"{self.przezwiska[0]}"
+            if len(self.przezwiska) > 1:
+                name += f"/{self.przezwiska[1]}"
+            name += "\" "
+        name += f"{self.nazwisko}"
+        return name
 
 class Osoby(models.Model):
     content_type = models.ForeignKey(
