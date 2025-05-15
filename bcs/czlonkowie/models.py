@@ -1,5 +1,6 @@
 from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
+from django.contrib.postgres.fields import ArrayField
 from django.db import models
 from roman import fromRoman
 from core.utils import Consts
@@ -162,6 +163,10 @@ class OsobaCzapkowa(models.Model):
         verbose_name="Pewność daty stażu"
     )
 
+    przezwiska = ArrayField(
+        models.CharField(max_length=MAX_LENGTH), blank=True, default=list, verbose_name="Przezwiska"
+    )
+
     class Meta:
         abstract = True
 
@@ -274,12 +279,23 @@ class Czlonek(OsobaCzapkowa):
 
     def __str__(self):
         name = f"{self.imie} "
+        nicknames = []
+
         if self.imie_piwne_1_wybor == "other":
-            name += f"\"{self.imie_piwne_1}"
+            nicknames.append(self.imie_piwne_1)
             if self.imie_piwne_2_wybor == "other":
-                name += f"/{self.imie_piwne_2}"
-            name += "\" "
-        name += f"{self.nazwisko}"
+                nicknames.append(self.imie_piwne_2)
+            elif self.przezwiska and self.przezwiska[0]:
+                nicknames.append(self.przezwiska[0])
+        elif self.przezwiska and self.przezwiska[0]:
+            nicknames.append(self.przezwiska[0])
+            if len(self.przezwiska) > 1 and self.przezwiska[1]:
+                nicknames.append(self.przezwiska[1])
+
+        if nicknames:
+            name += f"\"{'/'.join(nicknames)}\" "
+
+        name += self.nazwisko
         return name
 
 class Bean(OsobaCzapkowa):
@@ -306,7 +322,14 @@ class Bean(OsobaCzapkowa):
         ordering = ['imie', 'nazwisko']
 
     def __str__(self):
-        return f"{self.imie} {self.nazwisko}"
+        name = f"{self.imie} "
+        if len(self.przezwiska) > 0:
+            name += f"\"{self.przezwiska[0]}"
+            if len(self.przezwiska) > 1:
+                name += f"/{self.przezwiska[1]}"
+            name += "\" "
+        name += f"{self.nazwisko}"
+        return name
 
 class Przezwisko(models.Model):
     kto = models.ForeignKey(

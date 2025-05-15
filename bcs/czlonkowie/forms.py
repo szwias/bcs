@@ -2,6 +2,7 @@ from django import forms
 from dal import autocomplete
 from .models import *
 from .views import autocomplete_widgets, build_widgets
+from django.contrib.postgres.forms import SimpleArrayField
 
 class CzapkaForm(forms.ModelForm):
     class Meta:
@@ -31,6 +32,12 @@ class CzlonekForm(forms.ModelForm):
         fields = '__all__'
         widgets = build_widgets(autocomplete_widgets['Czlonek'])
 
+    przezwiska = SimpleArrayField(
+        base_field=forms.CharField(),
+        required=False,
+        widget=forms.Textarea(attrs={'rows': 3, 'cols': 50}),
+        delimiter=','
+    )
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -98,6 +105,13 @@ class BeanForm(forms.ModelForm):
         model = Bean
         fields = '__all__'
         widgets = build_widgets(autocomplete_widgets['Bean'])
+
+    przezwiska = SimpleArrayField(
+        base_field=forms.CharField(),
+        required=False,
+        widget=forms.Textarea(attrs={'rows': 3, 'cols': 50}),
+        delimiter=','
+    )
 
 
     def __init__(self, *args, **kwargs):
