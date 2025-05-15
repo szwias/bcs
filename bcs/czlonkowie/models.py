@@ -121,7 +121,7 @@ class Czapka(models.Model):
     def get_not_applicable_czapka():
         return Czapka.objects.get_or_create(uczelnia=Czapka.Uczelnie.NOT_APPLICABLE)
 
-class OsobaCzapkowa(models.Model):
+class Osoba(models.Model):
     imie = models.CharField(
         max_length=NAME_LENGTH, verbose_name='Imię'
     )
@@ -129,6 +129,25 @@ class OsobaCzapkowa(models.Model):
     nazwisko = models.CharField(
         max_length=NAME_LENGTH, blank=True, verbose_name='Nazwisko'
     )
+
+    przezwiska = ArrayField(
+        models.CharField(max_length=MAX_LENGTH), blank=True, default=list, verbose_name="Przezwiska"
+    )
+
+    class Meta:
+        abstract = True
+
+    def __str__(self):
+        name = f"{self.imie} "
+        if len(self.przezwiska) > 0:
+            name += f"\"{self.przezwiska[0]}"
+            if len(self.przezwiska) > 1:
+                name += f"/{self.przezwiska[1]}"
+            name += "\" "
+        name += f"{self.nazwisko}"
+        return name
+
+class OsobaBCS(Osoba):
 
     czapka_1 = models.ForeignKey(
         Czapka,
@@ -163,14 +182,10 @@ class OsobaCzapkowa(models.Model):
         verbose_name="Pewność daty stażu"
     )
 
-    przezwiska = ArrayField(
-        models.CharField(max_length=MAX_LENGTH), blank=True, default=list, verbose_name="Przezwiska"
-    )
-
     class Meta:
         abstract = True
 
-class Czlonek(OsobaCzapkowa):
+class Czlonek(OsobaBCS):
     class Aktywnosc(models.TextChoices):
         AKTYWNY = 'A', "Aktywny",
         AKTYWNY_MEDIALNIE = 'M', "Aktywny tylko w mediach",
@@ -298,7 +313,7 @@ class Czlonek(OsobaCzapkowa):
         name += self.nazwisko
         return name
 
-class Bean(OsobaCzapkowa):
+class Bean(OsobaBCS):
 
     rodzic_1 = models.ForeignKey(
         Czlonek,
@@ -320,16 +335,6 @@ class Bean(OsobaCzapkowa):
         verbose_name = "Bean"
         verbose_name_plural = "Beani"
         ordering = ['imie', 'nazwisko']
-
-    def __str__(self):
-        name = f"{self.imie} "
-        if len(self.przezwiska) > 0:
-            name += f"\"{self.przezwiska[0]}"
-            if len(self.przezwiska) > 1:
-                name += f"/{self.przezwiska[1]}"
-            name += "\" "
-        name += f"{self.nazwisko}"
-        return name
 
 class Przezwisko(models.Model):
     kto = models.ForeignKey(
@@ -611,24 +616,12 @@ class HallOfFame(models.Model):
             self.order_field = self.nazwa_alternatywna if self.nazwa_alternatywna else str(self.czlonek)
         super().save(*args, **kwargs)
 
-class InnaOsoba(models.Model):
+class InnaOsoba(Osoba):
     class Kategorie(models.TextChoices):
         INNA = "I", "Inna"
         INNE_BRACTWO_CZAPKOWE = "Inne BCS", "Inne bractwo czapkowe"
         ORGANIZACJA = "Org", "Organizacja"
         PRZYJACIEL_CZAPKI = "PC", "Przyjaciel Bractwa"
-
-    imie = models.CharField(
-        max_length=None, verbose_name="Imię",
-    )
-
-    nazwisko = models.CharField(
-        max_length=MEDIUM_LENGTH, blank=True, verbose_name="Nazwisko",
-    )
-
-    przezwiska = ArrayField(
-        models.CharField(max_length=MAX_LENGTH), blank=True, default=list, verbose_name="Przezwiska"
-    )
 
     opis = models.TextField(
         blank=True, verbose_name="Opis",
@@ -653,16 +646,6 @@ class InnaOsoba(models.Model):
         verbose_name = "Inna osoba"
         verbose_name_plural = "Inne osoby (nie-członkowie)"
         ordering = ['imie', 'nazwisko']
-
-    def __str__(self):
-        name = f"{self.imie} "
-        if len(self.przezwiska) > 0:
-            name += f"\"{self.przezwiska[0]}"
-            if len(self.przezwiska) > 1:
-                name += f"/{self.przezwiska[1]}"
-            name += "\" "
-        name += f"{self.nazwisko}"
-        return name
 
 class Osoby(models.Model):
     content_type = models.ForeignKey(
