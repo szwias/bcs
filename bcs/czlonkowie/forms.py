@@ -214,11 +214,3 @@ class InnaOsobaForm(forms.ModelForm):
             delimiter=','
         )
 
-class PrzezwiskoForm(forms.ModelForm):
-    class Meta:
-        model = Przezwisko
-        fields = '__all__'
-        widgets = build_widgets(autocomplete_widgets['Przezwisko'])
-
-
-
