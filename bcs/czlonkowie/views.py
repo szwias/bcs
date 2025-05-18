@@ -6,7 +6,7 @@ autocomplete_configs = [
     (Bean,              ['staz'],                                                           [], ['Czapka', 'Czlonek']),
     (Czlonek,           ['rok_chrztu', 'miesiac_chrztu', 'dzien_chrztu', 'status', 'staz'], [], ['Czapka', 'Czlonek']),
     (DawnyZarzad,       [],                                                                 [], ['Czlonek', 'core.Kadencja']),
-    (HallOfFame,        [],                                                                 [], ['Czlonek']),
+    (HallOfFame,        [],                                                                 [], ['Czlonek', 'Bean']),
     (ImieSzlacheckie,   [],                                                                 [], ['Czlonek']),
     (InnaOsoba,         ['kategoria'],                                                      [], ['encyklopedia.Bractwo']),
     (Osoby,             [],                                                                 [], ['Bean', 'Czlonek', 'InnaOsoba']),

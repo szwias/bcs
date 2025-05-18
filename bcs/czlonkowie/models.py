@@ -592,13 +592,21 @@ class WielkiMistrz(models.Model):
             self.tadeusz_numeric = 0
         super().save(*args, **kwargs)
 
-class HallOfFame(models.Model): # TODO: add Bean fk
+class HallOfFame(models.Model):
     czlonek = models.ForeignKey(
         Czlonek,
         blank=True,
         null=True,
         on_delete=models.SET_NULL,
         verbose_name="Członek",
+    )
+
+    bean = models.ForeignKey(
+        Bean,
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+        verbose_name="Bean",
     )
 
     nazwa_alternatywna = models.CharField(
