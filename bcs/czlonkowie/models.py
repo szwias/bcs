@@ -48,6 +48,7 @@ class Czapka(models.Model):
             ("WBBiB", "Wydział Biochemii, Biofizyki i Biotechnologii"),
             ("WGiG", "Wydział Geografii i Geologii"),
             ("SMP", "Studia Matematyczno-Przyrodnicze"),
+            ("MISH", "Międzywydziałowe Indywidualne Studia Humanistyczne"),
             ("Honorowa", "Honoris Causa")
         ],
         Uczelnie.AGH: [
@@ -194,7 +195,6 @@ class Czlonek(OsobaBCS):
         NIEAKTYWNY = 'N', "Nieaktywny",
         ODSZEDL = 'O', "Odszedł z grupy",
     class Status(models.TextChoices):
-        BEAN = "B", "Bean"
         CZLONEK = "C", "Członek"
         WYKLETY = "X", "Wydalony (np. \"Jezus\")"
         WETERAN = "W", "Weteran"

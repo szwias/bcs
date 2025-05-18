@@ -2,22 +2,39 @@ from django.contrib import admin
 from django.utils.module_loading import import_string
 import inspect
 from django.apps import apps
+from django.db.models import (
+    BooleanField, DateField, DateTimeField,
+    ForeignKey, IntegerField, ManyToManyField,
+)
 
 class BaseModelAdmin(admin.ModelAdmin):
 
     actions = ['save_selected']
+    list_filter_exclude = set()
     save_as = True
 
     def save_selected(self, request, queryset):
         for obj in queryset:
             obj.save()
-
         self.message_user(request, "Saved selected objects successfully")
-
     save_selected.short_description = "Saved selected objects"
 
     def __init__(self, model, admin_site):
         super().__init__(model, admin_site)
+
+        exclude_fields = self.list_filter_exclude | {'id'}
+
+        self.list_filter = [
+                               field.name for field in model._meta.fields
+                               if (
+                    (isinstance(field,
+                                (BooleanField, ForeignKey, DateField, DateTimeField, IntegerField)) or field.choices)
+                    and field.name not in exclude_fields
+            )
+                           ] + [
+                               field.name for field in model._meta.many_to_many
+                               if field.name not in exclude_fields
+                           ]
 
         app_label = model._meta.app_label
         model_name = model.__name__
