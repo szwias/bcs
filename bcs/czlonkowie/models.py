@@ -115,11 +115,13 @@ class Czapka(models.Model):
 
     @staticmethod
     def get_dont_know_czapka():
-        return Czapka.objects.get_or_create(uczelnia=Czapka.Uczelnie.DONT_KNOW)
+        czapka, _ = Czapka.objects.get_or_create(uczelnia=Czapka.Uczelnie.DONT_KNOW)
+        return czapka
 
     @staticmethod
     def get_not_applicable_czapka():
-        return Czapka.objects.get_or_create(uczelnia=Czapka.Uczelnie.NOT_APPLICABLE)
+        czapka, _ = Czapka.objects.get_or_create(uczelnia=Czapka.Uczelnie.NOT_APPLICABLE)
+        return czapka
 
 class Osoba(models.Model):
     imie = models.CharField(
@@ -148,6 +150,9 @@ class Osoba(models.Model):
         return name
 
 class OsobaBCS(Osoba):
+    class PewnoscStazu(models.TextChoices):
+        TAK = "T", "Na pewno wcześniej się nie pojawiał"
+        NIE = "N", "Ale mógł pojawić się wcześniej"
 
     czapka_1 = models.ForeignKey(
         Czapka,
@@ -173,12 +178,9 @@ class OsobaBCS(Osoba):
         verbose_name='Rok pojawienia się'
     )
 
-    pewnosc_stazu = models.BooleanField(
-        choices=[
-            (True, "Na pewno wcześniej się nie pojawiał"),
-            (False, "Ale mógł pojawić się wcześniej")
-        ],
-        default=(True, "Na pewno wcześniej się nie pojawiał"),
+    pewnosc_stazu = models.CharField(
+        choices=PewnoscStazu.choices,
+        default=PewnoscStazu.TAK,
         verbose_name="Pewność daty stażu"
     )
 
@@ -242,11 +244,7 @@ class Czlonek(OsobaBCS):
 
     imie_piwne_1_wybor = models.CharField(
         max_length=TextAlt.LENGTH,
-        choices=[
-            TextAlt.DONT_KNOW,
-            TextAlt.NOT_APPLICABLE,
-            ("other", "Posiada"),
-        ],
+        choices=TextAlt.choices(),
         default=TextAlt.DONT_KNOW,
         verbose_name="Imię czapkowe"
     )
@@ -257,18 +255,13 @@ class Czlonek(OsobaBCS):
 
     imie_piwne_2_wybor = models.CharField(
         max_length=TextAlt.LENGTH,
-        choices=[
-            TextAlt.NOT_APPLICABLE,
-            ("other", "Posiada"),
-        ],
+        choices=TextAlt.choices(),
         default=TextAlt.NOT_APPLICABLE,
         verbose_name="Inne imię czapkowe"
     )
 
     imie_piwne_2 = models.CharField(
-        max_length=MEDIUM_LENGTH,
-        default="Nie dotyczy",
-        verbose_name="Wpisz inne imię czapkowe:"
+        max_length=MEDIUM_LENGTH, default="Nie dotyczy", verbose_name="Wpisz inne imię czapkowe:"
     )
 
     rodzic_1 = models.ForeignKey(
@@ -312,6 +305,41 @@ class Czlonek(OsobaBCS):
 
         name += self.nazwisko
         return name
+
+    @staticmethod
+    def get_dont_know_czlonek():
+        czlonek, created = Czlonek.objects.get_or_create(
+            imie="Nie", nazwisko="wiem",
+            czapka_1=Czapka.get_dont_know_czapka(), czapka_2=Czapka.get_not_applicable_czapka(),
+            staz=IntAlt.DONT_KNOW[0], pewnosc_stazu=OsobaBCS.PewnoscStazu.NIE,
+            aktywnosc=Czlonek.Aktywnosc.NIEAKTYWNY, ochrzczony=TextAlt.DONT_KNOW[0], status=TextAlt.DONT_KNOW[0],
+            rok_chrztu=IntAlt.DONT_KNOW[0], miesiac_chrztu=IntAlt.DONT_KNOW[0], dzien_chrztu=IntAlt.DONT_KNOW[0],
+            imie_piwne_1_wybor=TextAlt.DONT_KNOW[0], imie_piwne_1="Nie wiem",
+            imie_piwne_2_wybor=TextAlt.NOT_APPLICABLE[0], imie_piwne_2="Nie dotyczy",
+        )
+        if created:
+            czlonek.rodzic_1 = czlonek
+            czlonek.rodzic_2 = Czlonek.get_not_applicable_czlonek()
+            czlonek.save()
+        return czlonek
+
+    @staticmethod
+    def get_not_applicable_czlonek():
+        czlonek, created = Czlonek.objects.get_or_create(
+            imie="Nie", nazwisko="dotyczy",
+            czapka_1=Czapka.get_dont_know_czapka(), czapka_2=Czapka.get_not_applicable_czapka(),
+            staz=IntAlt.DONT_KNOW[0], pewnosc_stazu=OsobaBCS.PewnoscStazu.TAK,
+            aktywnosc=Czlonek.Aktywnosc.NIEAKTYWNY, ochrzczony=TextChoose.NO[0], status=TextAlt.DONT_KNOW[0],
+            rok_chrztu=IntAlt.NOT_APPLICABLE[0], miesiac_chrztu=IntAlt.NOT_APPLICABLE[0], dzien_chrztu=IntAlt.NOT_APPLICABLE[0],
+            imie_piwne_1_wybor=TextAlt.NOT_APPLICABLE[0], imie_piwne_1="Nie dotyczy",
+            imie_piwne_2_wybor=TextAlt.NOT_APPLICABLE[0], imie_piwne_2="Nie dotyczy",
+        )
+        if created:
+            czlonek.rodzic_1 = czlonek
+            czlonek.rodzic_2 = czlonek
+            czlonek.save()
+        return czlonek
+
 
 class Bean(OsobaBCS):
 
@@ -668,4 +696,4 @@ class Osoby(models.Model):
         verbose_name_plural = "Osoby"
 
     def __str__(self):
-        return f"{self.czlonek} - {self.content_type} - {self.content_object}"
+        return f"{self.czlonek or self.bean or self.inna_osoba} - {self.content_type} - {self.content_object}"

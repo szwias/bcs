@@ -17,7 +17,7 @@ class ObrazWydarzenieInline(admin.StackedInline):  # or StackedInline
 class ZdarzenieInline(admin.StackedInline):
     model = Zdarzenie
     extra = 0
-    fields = ["nazwa", "data", "miejsce"]
+    fields = ["nazwa", "data", "godzina", "miejsce"]
     show_change_link = True
 
 class ObrazZdarzenieInline(admin.StackedInline):

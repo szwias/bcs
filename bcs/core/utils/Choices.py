@@ -12,7 +12,7 @@ class TextAlt:
     NOT_APPLICABLE = "n/a", "Nie dotyczy"
     DONT_KNOW = "d/n", "Nie wiem"
     NEGATIVE_CHOICES = [NOT_APPLICABLE, DONT_KNOW]
-    OTHER = "other", "Other"
+    OTHER = "other", "Posiada"
 
     LENGTH = 5
 

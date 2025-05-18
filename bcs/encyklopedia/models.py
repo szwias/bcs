@@ -25,11 +25,9 @@ class TradycjaBCS(models.Model):
     class Okolicznosci(models.TextChoices):
         INNE = "I", "Inne"
         WYDARZENIE = "Wyd", "Wydarzenie"
-        # WYJAZD = "Wyj", "Wyjazd"
 
     nazwa = models.CharField(
-        max_length=MEDIUM_LENGTH,
-        verbose_name="Nazwa",
+        max_length=MEDIUM_LENGTH, verbose_name="Nazwa",
     )
 
     autor_rodzaj = models.CharField(
@@ -40,15 +38,11 @@ class TradycjaBCS(models.Model):
     )
 
     autor = GenericRelation(
-        "czlonkowie.Osoby",
-        blank=True,
-        verbose_name="Autor",
+        "czlonkowie.Osoby", blank=True,  verbose_name="Autor",
     )
 
     okolicznosci_powstania = models.CharField(
-        max_length=Lengths.OKOLICZNOSCI_LENGTH,
-        choices=Okolicznosci.choices,
-        verbose_name="Okoliczności powstania",
+        max_length=Lengths.OKOLICZNOSCI_LENGTH, choices=Okolicznosci.choices, verbose_name="Okoliczności powstania",
     )
 
     wydarzenie = models.ForeignKey(
@@ -59,23 +53,12 @@ class TradycjaBCS(models.Model):
         verbose_name="Wydarzenie",
     )
 
-    # wyjazd = models.ForeignKey(
-    #     Wyjazd,
-    #     blank=True,
-    #     null=True,
-    #     on_delete=models.SET_NULL,
-    #     verbose_name="Wyjazd",
-    # )
-
     inne = models.CharField(
-        max_length=MAX_LENGTH,
-        blank=True,
-        verbose_name="Inna okoliczność (wpisz)",
+        max_length=MAX_LENGTH, blank=True, verbose_name="Inna okoliczność (wpisz)",
     )
 
     opis = models.TextField(
-        blank=True,
-        verbose_name="Opis",
+        blank=True, verbose_name="Opis",
     )
 
     class Meta:
@@ -140,32 +123,23 @@ class Bractwo(models.Model):
 
 
     nazwa = models.CharField(
-        max_length=MAX_LENGTH,
-        verbose_name="Nazwa",
+        max_length=MAX_LENGTH, verbose_name="Nazwa",
     )
 
     panstwo = models.CharField(
-        max_length=Lengths.PANSTWA_LENGTH,
-        choices=Panstwa.choices,
-        verbose_name="Kraj pochodzenia",
+        max_length=Lengths.PANSTWA_LENGTH, choices=Panstwa.choices, verbose_name="Kraj pochodzenia",
     )
 
     czapka = models.CharField(
-        max_length=Lengths.CZAPKI_LENGTH,
-        choices=Czapki.choices,
-        verbose_name="Czapka",
+        max_length=Lengths.CZAPKI_LENGTH, choices=Czapki.choices, verbose_name="Czapka",
     )
 
     rok_zalozenia = models.IntegerField(
-        choices=Czas.LATA_BRACTW + [IntAlt.DONT_KNOW],
-        default=IntAlt.DONT_KNOW,
-        verbose_name="Rok założenia",
+        choices=Czas.LATA_BRACTW + [IntAlt.DONT_KNOW], default=IntAlt.DONT_KNOW, verbose_name="Rok założenia",
     )
 
     wiek_tradycje = models.IntegerField(
-        choices=Czas.WIEKI + [IntAlt.DONT_KNOW],
-        default=IntAlt.DONT_KNOW,
-        verbose_name="Tradycje sięgają którego wieku",
+        choices=Czas.WIEKI + [IntAlt.DONT_KNOW], default=IntAlt.DONT_KNOW, verbose_name="Tradycje sięgają którego wieku",
     )
 
     class Meta:

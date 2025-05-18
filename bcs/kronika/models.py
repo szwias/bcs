@@ -10,11 +10,20 @@ from django.contrib.contenttypes.models import ContentType
 
 class Miejsce(models.Model):
     class TypyMiejsc(models.TextChoices):
+        BAR = "Bar", "Bar"
+        BAR_MLECZNY = "Mleczny", "Bar mleczny"
         INNY = "Inny", "Inny"
+        KARAOKE = "Karaoke", "Karaoke"
+        KINO = "Kino", "Kino"
+        LOKUM = "Lokum", "Lokum"
         MIASTO = "Miasto", "Miasto"
         OBIEKT_KULTURY = "ObKult", "Obiekt kultury"
+        PLAC = "OgrodPlac", "Ogród/Plac"
         PUB = "Pub", "Pub/Klub"
+        RESTAURACJA = "Restaur", "Restauracja"
+        SCHRONISKO = "Schronisko", "Schronisko"
         SZCZYT = "Szczyt", "Szczyt"
+        TEATR = "Teatr", "Teatr"
         UCZELNIA = "Uczel", "Uczelnia"
 
     nazwa = models.CharField(
@@ -56,6 +65,10 @@ class Zdarzenie(models.Model):
         default=timezone.now, verbose_name="Data"
     )
 
+    godzina = models.TimeField(
+        null=True, blank=True, verbose_name="Godzina"
+    )
+
     miejsce = models.ForeignKey(
         Miejsce,
         blank=True,
@@ -84,17 +97,17 @@ class Zdarzenie(models.Model):
         return f"{self.data} - {self.nazwa}"
 
     def save(self, *args, **kwargs):
-        is_new = self.pk is None
+        created = self._state.adding
         super().save(*args, **kwargs)
 
         if self.wydarzenie:
             if self.wydarzenie.data_rozpoczecia == self.wydarzenie.data_zakonczenia:
                 self.data = self.wydarzenie.data_rozpoczecia
-            if is_new:
-                for osoba in self.wydarzenie.uczestnicy.all():
-                    osoba.pk = None
-                    osoba.content_object = self
-                    osoba.save()
+            # if created:
+            for osoba in self.wydarzenie.uczestnicy.all():
+                osoba.pk = None
+                osoba.content_object = self
+                osoba.save()
 
         super().save(*args, **kwargs)
 
@@ -210,7 +223,7 @@ class Wydarzenie(models.Model):
     )
 
     miejsca = models.ManyToManyField(
-        Miejsce, blank=True, verbose_name="Miejsce"
+        Miejsce, blank=True, verbose_name="Miejsca"
     )
 
     czy_to_wyjazd = models.CharField(
@@ -234,15 +247,19 @@ class Wydarzenie(models.Model):
         verbose_name="Typ wyjazdu",
     )
 
+    link = models.URLField(
+        blank=True, verbose_name="Link do wydarzenia na FB"
+    )
+
+    opis = models.TextField(
+        blank=True, verbose_name="Opis"
+    )
+
     obrazy = models.ManyToManyField(
         "ObrazWydarzenie",
         blank=True,
         verbose_name="Zdjęcia",
         related_name="wydarzenie_obraz",
-    )
-
-    opis = models.TextField(
-        blank=True, verbose_name="Opis"
     )
 
     uczestnicy = GenericRelation(

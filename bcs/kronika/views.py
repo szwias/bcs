@@ -26,7 +26,7 @@ autocomplete_configs = [
     (Miejsce,           ['typ'],                                [],     []),
     (Zdarzenie,         [],                                     [],     ['czlonkowie.Osoby', 'ObrazZdarzenie', 'Wydarzenie']),
     (ObrazZdarzenie,    [],                                     [],     ['Zdarzenie', 'Miejsce', 'czlonkowie.Osoby']),
-    (Wydarzenie,        ['typ_wydarzenia', 'typ_wyjazdu'],      [],     ['Miejsce', 'Zdarzenie', 'czlonkowie.Osoby']),
+    (Wydarzenie,        ['typ_wydarzenia', 'typ_wyjazdu', 'czy_to_wyjazd'],      [],     ['Miejsce', 'Zdarzenie', 'czlonkowie.Osoby']),
     (ObrazWydarzenie,   [],                                     [],     ['Wydarzenie', 'czlonkowie.Osoby']),
     (Proces,            [],                                     [],     ['Zdarzenie']),
 ]

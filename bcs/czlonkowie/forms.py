@@ -43,8 +43,9 @@ class CzlonekForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
 
         if not self.instance.pk:
-            self.fields['czapka_1'].initial = Czapka.get_dont_know_czapka()[0]
-            self.fields['czapka_2'].initial = Czapka.get_not_applicable_czapka()[0]
+            self.fields['czapka_1'].initial = Czapka.get_dont_know_czapka()
+            self.fields['czapka_2'].initial = Czapka.get_not_applicable_czapka()
+            self.fields['rodzic_1'].initial = Czlonek.get_dont_know_czlonek()
 
     def clean(self):
         cd = super().clean()
@@ -118,8 +119,10 @@ class BeanForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
 
         if not self.instance.pk:
-            self.fields['czapka_1'].initial = Czapka.get_dont_know_czapka()[0]
-            self.fields['czapka_2'].initial = Czapka.get_not_applicable_czapka()[0]
+            self.fields['czapka_1'].initial = Czapka.get_dont_know_czapka()
+            self.fields['czapka_2'].initial = Czapka.get_not_applicable_czapka()
+            self.fields['rodzic_1'].initial = Czlonek.get_not_applicable_czlonek()
+            self.fields['rodzic_2'].initial = Czlonek.get_not_applicable_czlonek()
 
 class OsobyForm(forms.ModelForm):
     class Meta:
