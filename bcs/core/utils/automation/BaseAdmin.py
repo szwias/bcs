@@ -2,10 +2,7 @@ from django.contrib import admin
 from django.utils.module_loading import import_string
 import inspect
 from django.apps import apps
-from django.db.models import (
-    BooleanField, DateField, DateTimeField,
-    ForeignKey, IntegerField, ManyToManyField,
-)
+from django.db import models
 
 class BaseModelAdmin(admin.ModelAdmin):
 
@@ -19,23 +16,29 @@ class BaseModelAdmin(admin.ModelAdmin):
         self.message_user(request, "Saved selected objects successfully")
     save_selected.short_description = "Saved selected objects"
 
+    def _get_list_filter(self):
+        exclude = getattr(self, 'list_filter_exclude', set())
+
+        if exclude == "__all__":
+            return []
+
+        list_filter = []
+        for field in self.model._meta.get_fields():
+            if (
+                    field.name not in exclude
+                    and (
+                    getattr(field, 'choices', None) or
+                    isinstance(field, (models.BooleanField, models.ForeignKey))
+            )
+            ):
+                list_filter.append(field.name)
+
+        return list_filter
+
     def __init__(self, model, admin_site):
         super().__init__(model, admin_site)
 
-        exclude_fields = self.list_filter_exclude | {'id'}
-
-        self.list_filter = [
-                               field.name for field in model._meta.fields
-                               if (
-                    (isinstance(field,
-                                (BooleanField, ForeignKey, DateField, DateTimeField, IntegerField)) or field.choices)
-                    and field.name not in exclude_fields
-            )
-                           ] + [
-                               field.name for field in model._meta.many_to_many
-                               if field.name not in exclude_fields
-                           ]
-
+        self.list_filter = self._get_list_filter()
         app_label = model._meta.app_label
         model_name = model.__name__
         form_path = f"{app_label}.forms.{model_name}Form"

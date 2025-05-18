@@ -159,13 +159,20 @@ class ObrazZdarzenie(models.Model):
 
     def __str__(self):
         image_name = os.path.basename(self.obraz.name)
-        name = f"{self.zdarzenie.nazwa} - "
+
+        if self.zdarzenie:
+            name = f"{self.zdarzenie.nazwa} - "
+        else:
+            name = ""
+
         if self.tytul:
             name += self.tytul
         else:
             name += image_name
+
         if self.data:
             name += f" {self.data}"
+
         return name
 
     def save(self, *args, **kwargs):

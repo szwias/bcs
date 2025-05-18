@@ -592,7 +592,7 @@ class WielkiMistrz(models.Model):
             self.tadeusz_numeric = 0
         super().save(*args, **kwargs)
 
-class HallOfFame(models.Model):
+class HallOfFame(models.Model): # TODO: add Bean fk
     czlonek = models.ForeignKey(
         Czlonek,
         blank=True,

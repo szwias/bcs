@@ -62,8 +62,8 @@ class TradycjaBCS(models.Model):
     )
 
     class Meta:
-        verbose_name = "Tradycja"
-        verbose_name_plural = "Tradycje"
+        verbose_name = "Tradycja BCS"
+        verbose_name_plural = "Tradycje BCS"
         ordering = ("nazwa",)
 
     def __str__(self):
