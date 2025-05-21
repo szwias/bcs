@@ -94,7 +94,7 @@ class Zdarzenie(models.Model):
         ordering = ["-data", "nazwa"]
 
     def __str__(self):
-        return f"{self.data} - {self.nazwa}"
+        return f"{self.data} {self.godzina} - {self.nazwa}"
 
     def save(self, *args, **kwargs):
         created = self._state.adding
@@ -103,11 +103,11 @@ class Zdarzenie(models.Model):
         if self.wydarzenie:
             if self.wydarzenie.data_rozpoczecia == self.wydarzenie.data_zakonczenia:
                 self.data = self.wydarzenie.data_rozpoczecia
-            # if created:
-            for osoba in self.wydarzenie.uczestnicy.all():
-                osoba.pk = None
-                osoba.content_object = self
-                osoba.save()
+            if created:
+                for osoba in self.wydarzenie.uczestnicy.all():
+                    osoba.pk = None
+                    osoba.content_object = self
+                    osoba.save()
 
         super().save(*args, **kwargs)
 

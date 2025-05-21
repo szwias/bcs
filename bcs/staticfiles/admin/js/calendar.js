@@ -1,7 +1,7 @@
 /*global gettext, pgettext, get_format, quickElement, removeChildren*/
 /*
 calendar.js - Calendar functions by Adrian Holovaty
-depends on core1.js for utility functions like removeChildren or quickElement
+depends on core.js for utility functions like removeChildren or quickElement
 */
 'use strict';
 {

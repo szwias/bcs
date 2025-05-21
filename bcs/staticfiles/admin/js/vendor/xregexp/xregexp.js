@@ -1,17 +1,17 @@
 (function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g.XRegExp = f()}})(function(){var define,module,exports;return (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
 "use strict";
 
-var _sliceInstanceProperty = require("@babel/runtime-corejs3/core1-js-stable/instance/slice");
+var _sliceInstanceProperty = require("@babel/runtime-corejs3/core-js-stable/instance/slice");
 
-var _Array$from = require("@babel/runtime-corejs3/core1-js-stable/array/from");
+var _Array$from = require("@babel/runtime-corejs3/core-js-stable/array/from");
 
-var _Symbol = require("@babel/runtime-corejs3/core1-js-stable/symbol");
+var _Symbol = require("@babel/runtime-corejs3/core-js-stable/symbol");
 
-var _getIteratorMethod = require("@babel/runtime-corejs3/core1-js/get-iterator-method");
+var _getIteratorMethod = require("@babel/runtime-corejs3/core-js/get-iterator-method");
 
-var _Array$isArray = require("@babel/runtime-corejs3/core1-js-stable/array/is-array");
+var _Array$isArray = require("@babel/runtime-corejs3/core-js-stable/array/is-array");
 
-var _Object$defineProperty = require("@babel/runtime-corejs3/core1-js-stable/object/define-property");
+var _Object$defineProperty = require("@babel/runtime-corejs3/core-js-stable/object/define-property");
 
 var _interopRequireDefault = require("@babel/runtime-corejs3/helpers/interopRequireDefault");
 
@@ -23,11 +23,11 @@ exports["default"] = void 0;
 
 var _slicedToArray2 = _interopRequireDefault(require("@babel/runtime-corejs3/helpers/slicedToArray"));
 
-var _forEach = _interopRequireDefault(require("@babel/runtime-corejs3/core1-js-stable/instance/for-each"));
+var _forEach = _interopRequireDefault(require("@babel/runtime-corejs3/core-js-stable/instance/for-each"));
 
-var _concat = _interopRequireDefault(require("@babel/runtime-corejs3/core1-js-stable/instance/concat"));
+var _concat = _interopRequireDefault(require("@babel/runtime-corejs3/core-js-stable/instance/concat"));
 
-var _indexOf = _interopRequireDefault(require("@babel/runtime-corejs3/core1-js-stable/instance/index-of"));
+var _indexOf = _interopRequireDefault(require("@babel/runtime-corejs3/core-js-stable/instance/index-of"));
 
 function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof _Symbol !== "undefined" && _getIteratorMethod(o) || o["@@iterator"]; if (!it) { if (_Array$isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
 
@@ -59,7 +59,7 @@ var _default = function _default(XRegExp) {
   // ==--------------------------==
   // Storage for Unicode data
   var unicode = {};
-  var unicodeTypes = {}; // Reuse core1
+  var unicodeTypes = {}; // Reuse utils
 
   var dec = XRegExp._dec;
   var hex = XRegExp._hex;
@@ -154,7 +154,7 @@ var _default = function _default(XRegExp) {
     var ERR_UNKNOWN_NAME = 'Unknown Unicode token ';
     var ERR_UNKNOWN_REF = 'Unicode token missing data ';
     var ERR_ASTRAL_ONLY = 'Astral mode required for Unicode token ';
-    var ERR_ASTRAL_IN_CLASS = 'Astral mode does not support Unicode tokens within character core1';
+    var ERR_ASTRAL_IN_CLASS = 'Astral mode does not support Unicode tokens within character classes';
 
     var _match = (0, _slicedToArray2["default"])(match, 6),
         fullToken = _match[0],
@@ -235,7 +235,7 @@ var _default = function _default(XRegExp) {
    *   `astral` data should be a combination of literal characters and `\xHH` or `\uHHHH` escape
    *   sequences, with hyphens to create ranges. Any regex metacharacters in the data should be
    *   escaped, apart from range-creating hyphens. The `astral` data can additionally use
-   *   character core1 and alternation, and should use surrogate pairs to represent astral code
+   *   character classes and alternation, and should use surrogate pairs to represent astral code
    *   points. `inverseOf` can be used to avoid duplicating character data if a Unicode token is
    *   defined as the exact inverse of another token.
    * @param {String} [typePrefix] Enables optionally using this type as a prefix for all of the
@@ -336,7 +336,7 @@ module.exports = exports.default;
 },{"@babel/runtime-corejs3/core-js-stable/array/from":5,"@babel/runtime-corejs3/core-js-stable/array/is-array":6,"@babel/runtime-corejs3/core-js-stable/instance/concat":7,"@babel/runtime-corejs3/core-js-stable/instance/for-each":9,"@babel/runtime-corejs3/core-js-stable/instance/index-of":10,"@babel/runtime-corejs3/core-js-stable/instance/slice":11,"@babel/runtime-corejs3/core-js-stable/object/define-property":14,"@babel/runtime-corejs3/core-js-stable/symbol":16,"@babel/runtime-corejs3/core-js/get-iterator-method":19,"@babel/runtime-corejs3/helpers/interopRequireDefault":24,"@babel/runtime-corejs3/helpers/slicedToArray":27}],2:[function(require,module,exports){
 "use strict";
 
-var _Object$defineProperty = require("@babel/runtime-corejs3/core1-js-stable/object/define-property");
+var _Object$defineProperty = require("@babel/runtime-corejs3/core-js-stable/object/define-property");
 
 var _interopRequireDefault = require("@babel/runtime-corejs3/helpers/interopRequireDefault");
 
@@ -376,7 +376,7 @@ module.exports = exports.default;
 },{"../../tools/output/categories":222,"@babel/runtime-corejs3/core-js-stable/object/define-property":14,"@babel/runtime-corejs3/helpers/interopRequireDefault":24}],3:[function(require,module,exports){
 "use strict";
 
-var _Object$defineProperty = require("@babel/runtime-corejs3/core1-js-stable/object/define-property");
+var _Object$defineProperty = require("@babel/runtime-corejs3/core-js-stable/object/define-property");
 
 var _interopRequireDefault = require("@babel/runtime-corejs3/helpers/interopRequireDefault");
 
@@ -400,17 +400,17 @@ module.exports = exports.default;
 },{"./addons/unicode-base":1,"./addons/unicode-categories":2,"./xregexp":4,"@babel/runtime-corejs3/core-js-stable/object/define-property":14,"@babel/runtime-corejs3/helpers/interopRequireDefault":24}],4:[function(require,module,exports){
 "use strict";
 
-var _sliceInstanceProperty2 = require("@babel/runtime-corejs3/core1-js-stable/instance/slice");
+var _sliceInstanceProperty2 = require("@babel/runtime-corejs3/core-js-stable/instance/slice");
 
-var _Array$from = require("@babel/runtime-corejs3/core1-js-stable/array/from");
+var _Array$from = require("@babel/runtime-corejs3/core-js-stable/array/from");
 
-var _Symbol = require("@babel/runtime-corejs3/core1-js-stable/symbol");
+var _Symbol = require("@babel/runtime-corejs3/core-js-stable/symbol");
 
-var _getIteratorMethod = require("@babel/runtime-corejs3/core1-js/get-iterator-method");
+var _getIteratorMethod = require("@babel/runtime-corejs3/core-js/get-iterator-method");
 
-var _Array$isArray = require("@babel/runtime-corejs3/core1-js-stable/array/is-array");
+var _Array$isArray = require("@babel/runtime-corejs3/core-js-stable/array/is-array");
 
-var _Object$defineProperty = require("@babel/runtime-corejs3/core1-js-stable/object/define-property");
+var _Object$defineProperty = require("@babel/runtime-corejs3/core-js-stable/object/define-property");
 
 var _interopRequireDefault = require("@babel/runtime-corejs3/helpers/interopRequireDefault");
 
@@ -422,21 +422,21 @@ exports["default"] = void 0;
 
 var _slicedToArray2 = _interopRequireDefault(require("@babel/runtime-corejs3/helpers/slicedToArray"));
 
-var _flags = _interopRequireDefault(require("@babel/runtime-corejs3/core1-js-stable/instance/flags"));
+var _flags = _interopRequireDefault(require("@babel/runtime-corejs3/core-js-stable/instance/flags"));
 
-var _sort = _interopRequireDefault(require("@babel/runtime-corejs3/core1-js-stable/instance/sort"));
+var _sort = _interopRequireDefault(require("@babel/runtime-corejs3/core-js-stable/instance/sort"));
 
-var _slice = _interopRequireDefault(require("@babel/runtime-corejs3/core1-js-stable/instance/slice"));
+var _slice = _interopRequireDefault(require("@babel/runtime-corejs3/core-js-stable/instance/slice"));
 
-var _parseInt2 = _interopRequireDefault(require("@babel/runtime-corejs3/core1-js-stable/parse-int"));
+var _parseInt2 = _interopRequireDefault(require("@babel/runtime-corejs3/core-js-stable/parse-int"));
 
-var _indexOf = _interopRequireDefault(require("@babel/runtime-corejs3/core1-js-stable/instance/index-of"));
+var _indexOf = _interopRequireDefault(require("@babel/runtime-corejs3/core-js-stable/instance/index-of"));
 
-var _forEach = _interopRequireDefault(require("@babel/runtime-corejs3/core1-js-stable/instance/for-each"));
+var _forEach = _interopRequireDefault(require("@babel/runtime-corejs3/core-js-stable/instance/for-each"));
 
-var _create = _interopRequireDefault(require("@babel/runtime-corejs3/core1-js-stable/object/create"));
+var _create = _interopRequireDefault(require("@babel/runtime-corejs3/core-js-stable/object/create"));
 
-var _concat = _interopRequireDefault(require("@babel/runtime-corejs3/core1-js-stable/instance/concat"));
+var _concat = _interopRequireDefault(require("@babel/runtime-corejs3/core-js-stable/instance/concat"));
 
 function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof _Symbol !== "undefined" && _getIteratorMethod(o) || o["@@iterator"]; if (!it) { if (_Array$isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
 
@@ -501,7 +501,7 @@ function hasNativeFlag(flag) {
   try {
     // Can't use regex literals for testing even in a `try` because regex literals with
     // unsupported flags cause a compilation error in IE
-    new RegExp('', flag); // Work around a broken/incomplete IE11 polyfill for sticky introduced in core1-js 3.6.0
+    new RegExp('', flag); // Work around a broken/incomplete IE11 polyfill for sticky introduced in core-js 3.6.0
 
     if (flag === 'y') {
       // Using function to avoid babel transform to regex literal
@@ -1169,7 +1169,7 @@ XRegExp._pad4 = pad4;
  *
  * // Add the U (ungreedy) flag from PCRE and RE2, which reverses greedy and lazy quantifiers.
  * // Since `scope` is not specified, it uses 'default' (i.e., transformations apply outside of
- * // character core1 only)
+ * // character classes only)
  * XRegExp.addToken(
  *   /([?*+]|{\d+(?:,\d*)?})(\??)/,
  *   (match) => `${match[1]}${match[2] ? '' : '?'}`,
@@ -1272,7 +1272,7 @@ XRegExp.cache.flush = function (cacheName) {
  */
 // Following are the contexts where each metacharacter needs to be escaped because it would
 // otherwise have a special meaning, change the meaning of surrounding characters, or cause an
-// error. Context 'default' means outside character core1 only.
+// error. Context 'default' means outside character classes only.
 // - `\` - context: all
 // - `[()*+?.$|` - context: default
 // - `]` - context: default with flag u or if forming the end of a character class
@@ -2435,39 +2435,39 @@ var _default = XRegExp;
 exports["default"] = _default;
 module.exports = exports.default;
 },{"@babel/runtime-corejs3/core-js-stable/array/from":5,"@babel/runtime-corejs3/core-js-stable/array/is-array":6,"@babel/runtime-corejs3/core-js-stable/instance/concat":7,"@babel/runtime-corejs3/core-js-stable/instance/flags":8,"@babel/runtime-corejs3/core-js-stable/instance/for-each":9,"@babel/runtime-corejs3/core-js-stable/instance/index-of":10,"@babel/runtime-corejs3/core-js-stable/instance/slice":11,"@babel/runtime-corejs3/core-js-stable/instance/sort":12,"@babel/runtime-corejs3/core-js-stable/object/create":13,"@babel/runtime-corejs3/core-js-stable/object/define-property":14,"@babel/runtime-corejs3/core-js-stable/parse-int":15,"@babel/runtime-corejs3/core-js-stable/symbol":16,"@babel/runtime-corejs3/core-js/get-iterator-method":19,"@babel/runtime-corejs3/helpers/interopRequireDefault":24,"@babel/runtime-corejs3/helpers/slicedToArray":27}],5:[function(require,module,exports){
-module.exports = require("core1-js-pure/stable/array/from");
+module.exports = require("core-js-pure/stable/array/from");
 },{"core-js-pure/stable/array/from":208}],6:[function(require,module,exports){
-module.exports = require("core1-js-pure/stable/array/is-array");
+module.exports = require("core-js-pure/stable/array/is-array");
 },{"core-js-pure/stable/array/is-array":209}],7:[function(require,module,exports){
-module.exports = require("core1-js-pure/stable/instance/concat");
+module.exports = require("core-js-pure/stable/instance/concat");
 },{"core-js-pure/stable/instance/concat":212}],8:[function(require,module,exports){
-module.exports = require("core1-js-pure/stable/instance/flags");
+module.exports = require("core-js-pure/stable/instance/flags");
 },{"core-js-pure/stable/instance/flags":213}],9:[function(require,module,exports){
-module.exports = require("core1-js-pure/stable/instance/for-each");
+module.exports = require("core-js-pure/stable/instance/for-each");
 },{"core-js-pure/stable/instance/for-each":214}],10:[function(require,module,exports){
-module.exports = require("core1-js-pure/stable/instance/index-of");
+module.exports = require("core-js-pure/stable/instance/index-of");
 },{"core-js-pure/stable/instance/index-of":215}],11:[function(require,module,exports){
-module.exports = require("core1-js-pure/stable/instance/slice");
+module.exports = require("core-js-pure/stable/instance/slice");
 },{"core-js-pure/stable/instance/slice":216}],12:[function(require,module,exports){
-module.exports = require("core1-js-pure/stable/instance/sort");
+module.exports = require("core-js-pure/stable/instance/sort");
 },{"core-js-pure/stable/instance/sort":217}],13:[function(require,module,exports){
-module.exports = require("core1-js-pure/stable/object/create");
+module.exports = require("core-js-pure/stable/object/create");
 },{"core-js-pure/stable/object/create":218}],14:[function(require,module,exports){
-module.exports = require("core1-js-pure/stable/object/define-property");
+module.exports = require("core-js-pure/stable/object/define-property");
 },{"core-js-pure/stable/object/define-property":219}],15:[function(require,module,exports){
-module.exports = require("core1-js-pure/stable/parse-int");
+module.exports = require("core-js-pure/stable/parse-int");
 },{"core-js-pure/stable/parse-int":220}],16:[function(require,module,exports){
-module.exports = require("core1-js-pure/stable/symbol");
+module.exports = require("core-js-pure/stable/symbol");
 },{"core-js-pure/stable/symbol":221}],17:[function(require,module,exports){
-module.exports = require("core1-js-pure/features/array/from");
+module.exports = require("core-js-pure/features/array/from");
 },{"core-js-pure/features/array/from":52}],18:[function(require,module,exports){
-module.exports = require("core1-js-pure/features/array/is-array");
+module.exports = require("core-js-pure/features/array/is-array");
 },{"core-js-pure/features/array/is-array":53}],19:[function(require,module,exports){
-module.exports = require("core1-js-pure/features/get-iterator-method");
+module.exports = require("core-js-pure/features/get-iterator-method");
 },{"core-js-pure/features/get-iterator-method":54}],20:[function(require,module,exports){
-module.exports = require("core1-js-pure/features/instance/slice");
+module.exports = require("core-js-pure/features/instance/slice");
 },{"core-js-pure/features/instance/slice":55}],21:[function(require,module,exports){
-module.exports = require("core1-js-pure/features/symbol");
+module.exports = require("core-js-pure/features/symbol");
 },{"core-js-pure/features/symbol":56}],22:[function(require,module,exports){
 function _arrayLikeToArray(arr, len) {
   if (len == null || len > arr.length) len = arr.length;
@@ -2481,7 +2481,7 @@ function _arrayLikeToArray(arr, len) {
 
 module.exports = _arrayLikeToArray, module.exports.__esModule = true, module.exports["default"] = module.exports;
 },{}],23:[function(require,module,exports){
-var _Array$isArray = require("@babel/runtime-corejs3/core1-js/array/is-array");
+var _Array$isArray = require("@babel/runtime-corejs3/core-js/array/is-array");
 
 function _arrayWithHoles(arr) {
   if (_Array$isArray(arr)) return arr;
@@ -2497,9 +2497,9 @@ function _interopRequireDefault(obj) {
 
 module.exports = _interopRequireDefault, module.exports.__esModule = true, module.exports["default"] = module.exports;
 },{}],25:[function(require,module,exports){
-var _Symbol = require("@babel/runtime-corejs3/core1-js/symbol");
+var _Symbol = require("@babel/runtime-corejs3/core-js/symbol");
 
-var _getIteratorMethod = require("@babel/runtime-corejs3/core1-js/get-iterator-method");
+var _getIteratorMethod = require("@babel/runtime-corejs3/core-js/get-iterator-method");
 
 function _iterableToArrayLimit(arr, i) {
   var _i = arr == null ? null : typeof _Symbol !== "undefined" && _getIteratorMethod(arr) || arr["@@iterator"];
@@ -2553,9 +2553,9 @@ function _slicedToArray(arr, i) {
 
 module.exports = _slicedToArray, module.exports.__esModule = true, module.exports["default"] = module.exports;
 },{"./arrayWithHoles.js":23,"./iterableToArrayLimit.js":25,"./nonIterableRest.js":26,"./unsupportedIterableToArray.js":28}],28:[function(require,module,exports){
-var _sliceInstanceProperty = require("@babel/runtime-corejs3/core1-js/instance/slice");
+var _sliceInstanceProperty = require("@babel/runtime-corejs3/core-js/instance/slice");
 
-var _Array$from = require("@babel/runtime-corejs3/core1-js/array/from");
+var _Array$from = require("@babel/runtime-corejs3/core-js/array/from");
 
 var arrayLikeToArray = require("./arrayLikeToArray.js");
 
@@ -2789,9 +2789,9 @@ require('../../modules/esnext.symbol.dispose');
 require('../../modules/esnext.symbol.matcher');
 require('../../modules/esnext.symbol.metadata');
 require('../../modules/esnext.symbol.observable');
-// TODO: Remove from `core1-js@4`
+// TODO: Remove from `core-js@4`
 require('../../modules/esnext.symbol.pattern-match');
-// TODO: Remove from `core1-js@4`
+// TODO: Remove from `core-js@4`
 require('../../modules/esnext.symbol.replace-all');
 
 module.exports = parent;
@@ -3253,7 +3253,7 @@ module.exports = !fails(function () {
 
 },{"../internals/fails":94}],77:[function(require,module,exports){
 'use strict';
-var IteratorPrototype = require('../internals/iterators-core1').IteratorPrototype;
+var IteratorPrototype = require('../internals/iterators-core').IteratorPrototype;
 var create = require('../internals/object-create');
 var createPropertyDescriptor = require('../internals/create-property-descriptor');
 var setToStringTag = require('../internals/set-to-string-tag');
@@ -3318,7 +3318,7 @@ var createNonEnumerableProperty = require('../internals/create-non-enumerable-pr
 var redefine = require('../internals/redefine');
 var wellKnownSymbol = require('../internals/well-known-symbol');
 var Iterators = require('../internals/iterators');
-var IteratorsCore = require('../internals/iterators-core1');
+var IteratorsCore = require('../internals/iterators-core');
 
 var PROPER_FUNCTION_NAME = FunctionName.PROPER;
 var CONFIGURABLE_FUNCTION_NAME = FunctionName.CONFIGURABLE;
@@ -3855,7 +3855,7 @@ var store = require('../internals/shared-store');
 
 var functionToString = uncurryThis(Function.toString);
 
-// this helper broken in `core1-js@3.4.1-3.4.4`, so we can't use `shared` helper
+// this helper broken in `core-js@3.4.1-3.4.4`, so we can't use `shared` helper
 if (!isCallable(store.inspectSource)) {
   store.inspectSource = function (it) {
     return functionToString(it);
@@ -5782,7 +5782,7 @@ var defineWellKnownSymbol = require('../internals/define-well-known-symbol');
 defineWellKnownSymbol('observable');
 
 },{"../internals/define-well-known-symbol":82}],205:[function(require,module,exports){
-// TODO: remove from `core1-js@4`
+// TODO: remove from `core-js@4`
 var defineWellKnownSymbol = require('../internals/define-well-known-symbol');
 
 // `Symbol.patternMatch` well-known symbol
@@ -5790,7 +5790,7 @@ var defineWellKnownSymbol = require('../internals/define-well-known-symbol');
 defineWellKnownSymbol('patternMatch');
 
 },{"../internals/define-well-known-symbol":82}],206:[function(require,module,exports){
-// TODO: remove from `core1-js@4`
+// TODO: remove from `core-js@4`
 var defineWellKnownSymbol = require('../internals/define-well-known-symbol');
 
 defineWellKnownSymbol('replaceAll');

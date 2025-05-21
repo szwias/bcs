@@ -628,7 +628,7 @@ class HallOfFame(models.Model):
 
 
     def __str__(self):
-        return str(self.nazwa_alternatywna or self.czlonek)
+        return f"{self.nazwa_alternatywna or self.czlonek or self.bean}: {self.zaslugi}"
 
     def  save(self, *args, **kwargs):
         if not self.order_field:

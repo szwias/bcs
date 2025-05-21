@@ -1,6 +1,7 @@
 from core.utils.automation.BaseAdmin import *
 from czlonkowie.forms import OsobyForm
 from czlonkowie.models import Osoby
+from .forms import ZdarzenieInlineForm
 from .models import *
 from django.contrib.contenttypes.admin import GenericTabularInline
 
@@ -16,9 +17,10 @@ class ObrazWydarzenieInline(admin.StackedInline):  # or StackedInline
 
 class ZdarzenieInline(admin.StackedInline):
     model = Zdarzenie
+    form = ZdarzenieInlineForm
     extra = 0
-    fields = ["nazwa", "data", "godzina", "miejsce"]
     show_change_link = True
+    ordering = ["data", "godzina"]
 
 class ObrazZdarzenieInline(admin.StackedInline):
     model = ObrazZdarzenie

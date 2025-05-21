@@ -1341,7 +1341,7 @@ function setDocument( node ) {
 
 		// Support: Chrome 105 - 110+, Safari 15.4 - 16.3+
 		// Our regular `try-catch` mechanism fails to detect natively-unsupported
-		// pseudo-core1 inside `:has()` (such as `:has(:contains("Foo"))`)
+		// pseudo-classes inside `:has()` (such as `:has(:contains("Foo"))`)
 		// in browsers that parse the `:has()` argument as a forgiving selector list.
 		// https://drafts.csswg.org/selectors/#relational now requires the argument
 		// to be parsed unforgivingly, but browsers have not yet fully adjusted.

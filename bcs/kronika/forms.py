@@ -16,6 +16,12 @@ class ZdarzenieForm(forms.ModelForm):
         widgets = build_widgets(autocomplete_widgets['Zdarzenie'])
         widgets.update({'miejsce': autocomplete.ModelSelect2(url='kronika:custom-miejsce-from-wydarzenie-to-zdarzenie-autocomplete', forward=['wydarzenie'])})
 
+class ZdarzenieInlineForm(forms.ModelForm):
+    class Meta:
+        model = Zdarzenie
+        fields = ["nazwa", "data", "godzina", "miejsce"]
+        widgets = {'miejsce': autocomplete.ModelSelect2(url='kronika:custom-miejsce-from-wydarzenie-to-zdarzenie-autocomplete', forward=['wydarzenie'])}
+
 class ObrazZdarzenieForm(forms.ModelForm):
     class Meta:
         model = ObrazZdarzenie

@@ -841,7 +841,7 @@ S2.define('select2/utils',[
 
 S2.define('select2/results',[
   'jquery',
-  './core1'
+  './utils'
 ], function ($, Utils) {
   function Results ($element, options, dataAdapter) {
     this.$element = $element;
@@ -1403,7 +1403,7 @@ S2.define('select2/keys',[
 
 S2.define('select2/selection/base',[
   'jquery',
-  '../core1',
+  '../utils',
   '../keys'
 ], function ($, Utils, KEYS) {
   function BaseSelection ($element, options) {
@@ -1553,7 +1553,7 @@ S2.define('select2/selection/base',[
   };
 
   BaseSelection.prototype.update = function (data) {
-    throw new Error('The `update` method must be defined in child core1.');
+    throw new Error('The `update` method must be defined in child classes.');
   };
 
   /**
@@ -1583,7 +1583,7 @@ S2.define('select2/selection/base',[
 S2.define('select2/selection/single',[
   'jquery',
   './base',
-  '../core1',
+  '../utils',
   '../keys'
 ], function ($, BaseSelection, Utils, KEYS) {
   function SingleSelection () {
@@ -1691,7 +1691,7 @@ S2.define('select2/selection/single',[
 S2.define('select2/selection/multiple',[
   'jquery',
   './base',
-  '../core1'
+  '../utils'
 ], function ($, BaseSelection, Utils) {
   function MultipleSelection ($element, options) {
     MultipleSelection.__super__.constructor.apply(this, arguments);
@@ -1806,7 +1806,7 @@ S2.define('select2/selection/multiple',[
 });
 
 S2.define('select2/selection/placeholder',[
-  '../core1'
+  '../utils'
 ], function (Utils) {
   function Placeholder (decorated, $element, options) {
     this.placeholder = this.normalizePlaceholder(options.get('placeholder'));
@@ -1858,7 +1858,7 @@ S2.define('select2/selection/placeholder',[
 S2.define('select2/selection/allowClear',[
   'jquery',
   '../keys',
-  '../core1'
+  '../utils'
 ], function ($, KEYS, Utils) {
   function AllowClear () { }
 
@@ -1971,7 +1971,7 @@ S2.define('select2/selection/allowClear',[
 
 S2.define('select2/selection/search',[
   'jquery',
-  '../core1',
+  '../utils',
   '../keys'
 ], function ($, Utils, KEYS) {
   function Search (decorated, $element, options) {
@@ -3144,7 +3144,7 @@ S2.define('select2/diacritics',[
 });
 
 S2.define('select2/data/base',[
-  '../core1'
+  '../utils'
 ], function (Utils) {
   function BaseAdapter ($element, options) {
     BaseAdapter.__super__.constructor.call(this);
@@ -3153,11 +3153,11 @@ S2.define('select2/data/base',[
   Utils.Extend(BaseAdapter, Utils.Observable);
 
   BaseAdapter.prototype.current = function (callback) {
-    throw new Error('The `current` method must be defined in child core1.');
+    throw new Error('The `current` method must be defined in child classes.');
   };
 
   BaseAdapter.prototype.query = function (params, callback) {
-    throw new Error('The `query` method must be defined in child core1.');
+    throw new Error('The `query` method must be defined in child classes.');
   };
 
   BaseAdapter.prototype.bind = function (container, $container) {
@@ -3186,7 +3186,7 @@ S2.define('select2/data/base',[
 
 S2.define('select2/data/select',[
   './base',
-  '../core1',
+  '../utils',
   'jquery'
 ], function (BaseAdapter, Utils, $) {
   function SelectAdapter ($element, options) {
@@ -3472,7 +3472,7 @@ S2.define('select2/data/select',[
 
 S2.define('select2/data/array',[
   './select',
-  '../core1',
+  '../utils',
   'jquery'
 ], function (SelectAdapter, Utils, $) {
   function ArrayAdapter ($element, options) {
@@ -3556,7 +3556,7 @@ S2.define('select2/data/array',[
 
 S2.define('select2/data/ajax',[
   './array',
-  '../core1',
+  '../utils',
   'jquery'
 ], function (ArrayAdapter, Utils, $) {
   function AjaxAdapter ($element, options) {
@@ -4029,7 +4029,7 @@ S2.define('select2/data/maximumSelectionLength',[
 
 S2.define('select2/dropdown',[
   'jquery',
-  './core1'
+  './utils'
 ], function ($, Utils) {
   function Dropdown ($element, options) {
     this.$element = $element;
@@ -4072,7 +4072,7 @@ S2.define('select2/dropdown',[
 
 S2.define('select2/dropdown/search',[
   'jquery',
-  '../core1'
+  '../utils'
 ], function ($, Utils) {
   function Search () { }
 
@@ -4324,7 +4324,7 @@ S2.define('select2/dropdown/infiniteScroll',[
 
 S2.define('select2/dropdown/attachBody',[
   'jquery',
-  '../core1'
+  '../utils'
 ], function ($, Utils) {
   function AttachBody (decorated, $element, options) {
     this.$dropdownParent = $(options.get('dropdownParent') || document.body);
@@ -4362,7 +4362,7 @@ S2.define('select2/dropdown/attachBody',[
   };
 
   AttachBody.prototype.position = function (decorated, $dropdown, $container) {
-    // Clone all of the container core1
+    // Clone all of the container classes
     $dropdown.attr('class', $container.attr('class'));
 
     $dropdown.removeClass('select2');
@@ -4621,7 +4621,7 @@ S2.define('select2/dropdown/minimumResultsForSearch',[
 });
 
 S2.define('select2/dropdown/selectOnClose',[
-  '../core1'
+  '../utils'
 ], function (Utils) {
   function SelectOnClose () { }
 
@@ -4768,7 +4768,7 @@ S2.define('select2/defaults',[
   './selection/search',
   './selection/eventRelay',
 
-  './core1',
+  './utils',
   './translation',
   './diacritics',
 
@@ -5217,7 +5217,7 @@ S2.define('select2/options',[
   'require',
   'jquery',
   './defaults',
-  './core1'
+  './utils'
 ], function (require, $, Defaults, Utils) {
   function Options (options, $element) {
     this.options = options;
@@ -5359,7 +5359,7 @@ S2.define('select2/options',[
 S2.define('select2/core',[
   'jquery',
   './options',
-  './core1',
+  './utils',
   './keys'
 ], function ($, Options, Utils, KEYS) {
   var Select2 = function ($element, options) {
@@ -6033,7 +6033,7 @@ S2.define('select2/compat/utils',[
       classes = '' + classes; // for IE which returns object
 
       $(classes.split(/\s+/)).each(function () {
-        // Save all Select2 core1
+        // Save all Select2 classes
         if (this.indexOf('select2-') === 0) {
           replacements.push(this);
         }
@@ -6046,7 +6046,7 @@ S2.define('select2/compat/utils',[
       classes = '' + classes; // for IE which returns object
 
       $(classes.split(/\s+/)).each(function () {
-        // Only adapt non-Select2 core1
+        // Only adapt non-Select2 classes
         if (this.indexOf('select2-') !== 0) {
           adapted = adapter(this);
 
@@ -6067,9 +6067,9 @@ S2.define('select2/compat/utils',[
 
 S2.define('select2/compat/containerCss',[
   'jquery',
-  './core1'
+  './utils'
 ], function ($, CompatUtils) {
-  // No-op CSS adapter that discards all core1 by default
+  // No-op CSS adapter that discards all classes by default
   function _containerAdapter (clazz) {
     return null;
   }
@@ -6124,9 +6124,9 @@ S2.define('select2/compat/containerCss',[
 
 S2.define('select2/compat/dropdownCss',[
   'jquery',
-  './core1'
+  './utils'
 ], function ($, CompatUtils) {
-  // No-op CSS adapter that discards all core1 by default
+  // No-op CSS adapter that discards all classes by default
   function _dropdownAdapter (clazz) {
     return null;
   }
@@ -6224,7 +6224,7 @@ S2.define('select2/compat/initSelection',[
 
 S2.define('select2/compat/inputData',[
   'jquery',
-  '../core1'
+  '../utils'
 ], function ($, Utils) {
   function InputData (decorated, $element, options) {
     this._currentData = [];
@@ -6744,9 +6744,9 @@ S2.define('jquery.select2',[
   'jquery',
   'jquery-mousewheel',
 
-  './select2/core1',
+  './select2/core',
   './select2/defaults',
-  './select2/core1'
+  './select2/utils'
 ], function ($, _, Select2, Defaults, Utils) {
   if ($.fn.select2 == null) {
     // All methods that should return the element
