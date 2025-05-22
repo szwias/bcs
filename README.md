@@ -1,7 +1,8 @@
 Obecne MVP (deadline do Reaktywacji): 
-1. zbudować bazę danych łączącą w sobie wszystkie informacje na temat BCS UJ
-2. pozwolić użytkownikom wyszukiwać informacje przez kategorie lub search bar
-3. dodać aplikacje użytkowe: śpiewnik, drzewo genealogiczne, mapa, kompas nawojkowy
+1. Zbudować bazę danych łączącą w sobie wszystkie informacje na temat BCS UJ
+2. Pozwolić użytkownikom wyszukiwać informacje przez kategorie lub search bar
+3. Dodać aplikacje użytkowe: śpiewnik, drzewo genealogiczne, mapa, kompas nawojkowy
+4. Zapewnić prosty sposób na administrację i dodawanie danych o nowych wydarzeniach, tradycjach, członkach, etc.
 
 Dalsze plany (brak deadline-u):
 1. Podzielić bazę danych na część A - dane personalne, bądź nienadające się do pokazania na zewnątrz bractwa oraz część B - reszta danych
