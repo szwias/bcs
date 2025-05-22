@@ -6,6 +6,6 @@ Obecne MVP (deadline do Reaktywacji):
 
 Dalsze plany (brak deadline-u):
 1. Podzielić bazę danych na część A - dane personalne, bądź nienadające się do pokazania na zewnątrz bractwa oraz część B - reszta danych
-2. Zabezpieczyć dane A na fizycznym serwerze, a dane B zmigrować na serwer w chmurze lub na Ardę (jeśli UJ pozwoli)
+2. Zabezpieczyć dane A na fizycznym serwerze, a dane B zmigrować na serwer w chmurze
 3. Na podstawie danych B utworzyć stronę czapkuj.pl reklamującą ideę folkloru studenckiego (wykraczającego poza BCS UJ)
 4. Dane A hostować członkom bractwa za pośrednictwem prywatnych kont na czapkuj.pl
