@@ -1,9 +1,9 @@
 name: Set Due Date on New Milestone
 
 on:
-  workflow_dispatch:
+  workflow_dispatch: {}  # Allows manual trigger from the Actions tab
   milestone:
-    types: [created]
+    types: [created]      # Auto-runs when a new milestone is created
 
 jobs:
   set-due-date:
@@ -17,6 +17,8 @@ jobs:
             const dueDate = new Date();
             dueDate.setDate(dueDate.getDate() + daysUntilDue);
             const isoDueDate = dueDate.toISOString().split("T")[0];
+
+            console.log(`Setting milestone due date to: ${isoDueDate}`);
 
             await github.rest.issues.updateMilestone({
               owner: context.repo.owner,
