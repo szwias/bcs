@@ -1,6 +1,7 @@
 name: Set Due Date on New Milestone
 
 on:
+  workflow_dispatch:
   milestone:
     types: [created]
 
