@@ -1,0 +1,25 @@
+name: Set Due Date on New Milestone
+
+on:
+  milestone:
+    types: [created]
+
+jobs:
+  set-due-date:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set milestone due date
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const daysUntilDue = 14;
+            const dueDate = new Date();
+            dueDate.setDate(dueDate.getDate() + daysUntilDue);
+            const isoDueDate = dueDate.toISOString().split("T")[0];
+
+            await github.rest.issues.updateMilestone({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              milestone_number: context.payload.milestone.number,
+              due_on: isoDueDate
+            });
