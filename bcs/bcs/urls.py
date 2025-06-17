@@ -21,10 +21,11 @@ from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('autocomplete/czlonkowie/', include('czlonkowie.urls')),
     path('autocomplete/core/', include('core.urls')),
-    path('autocomplete/kronika/', include('kronika.urls')),
+    path('autocomplete/czlonkowie/', include('czlonkowie.urls')),
+    path('autocomplete/drzewo/', include('autocomplete.urls')),
     path('autocomplete/encyklopedia/', include('encyklopedia.urls')),
+    path('autocomplete/kronika/', include('kronika.urls')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

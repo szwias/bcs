@@ -12,10 +12,12 @@ class Miejsce(models.Model):
     class TypyMiejsc(models.TextChoices):
         BAR = "Bar", "Bar"
         BAR_MLECZNY = "Mleczny", "Bar mleczny"
+        DWORZEC = "Dworzec", "Dworzec"
         INNY = "Inny", "Inny"
         KARAOKE = "Karaoke", "Karaoke"
         KINO = "Kino", "Kino"
         LOKUM = "Lokum", "Lokum"
+        LOTNISKO = "Lotnisko", "Lotnisko"
         MIASTO = "Miasto", "Miasto"
         OBIEKT_KULTURY = "ObKult", "Obiekt kultury"
         PLAC = "OgrodPlac", "Ogród/Plac"

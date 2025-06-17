@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'czlonkowie',
     'kronika',
     'encyklopedia',
+    'drzewo',
     'dal',  # This is the django-autocomplete-light app
     'dal_select2',  # This is for the Select2 widget (optional but recommended)
 ]
