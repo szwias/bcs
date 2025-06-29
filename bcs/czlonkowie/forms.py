@@ -97,7 +97,7 @@ class CzlonekForm(forms.ModelForm):
 
         staz = cd.get('staz')
         if staz == Czas.ROK_ZALOZENIA:
-            cd['pewnosc_stazu'] = True
+            cd['pewnosc_stazu'] = "T"
 
         return cd
 

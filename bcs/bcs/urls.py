@@ -23,7 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('autocomplete/core/', include('core.urls')),
     path('autocomplete/czlonkowie/', include('czlonkowie.urls')),
-    path('autocomplete/drzewo/', include('autocomplete.urls')),
+    path('autocomplete/drzewo/', include('drzewo.urls')),
     path('autocomplete/encyklopedia/', include('encyklopedia.urls')),
     path('autocomplete/kronika/', include('kronika.urls')),
 ]

@@ -31,5 +31,5 @@ def build_layers_and_edges_from_db():
     return layers, edges
 
 def rodzic_id_is_real(rodzic):
-    # Skip the sentinel “Nie wiem” / “Nie dotyczy” objects
+    # Skip the sentinel “Nie wiem” / “Nie dotyczy” objects
     return rodzic.imie not in {"Nie"} and rodzic.nazwisko not in {"wiem", "dotyczy"}
