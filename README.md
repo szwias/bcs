@@ -1,4 +1,4 @@
-Obecne MVP (deadline do końca czerwca): 
+Obecne MVP (deadline do końca lipca): 
 1. Zbudować bazę danych łączącą w sobie wszystkie informacje na temat BCS UJ
 2. Pozwolić użytkownikom wyszukiwać informacje przez kategorie lub search bar
 3. Dodać aplikacje użytkowe: śpiewnik, drzewo genealogiczne, mapa, kompas nawojkowy
