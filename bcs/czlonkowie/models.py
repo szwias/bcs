@@ -161,7 +161,7 @@ class OsobaBCS(Osoba):
         null=True,
         default=Czapka.get_dont_know_czapka,
         verbose_name="Czapka",
-        related_name="%(class)s_czapka_1"
+        related_name="%(class)s_posiadacze_pierwszy_wybor"
     )
 
     czapka_2 = models.ForeignKey(
@@ -170,7 +170,7 @@ class OsobaBCS(Osoba):
         null=True,
         default=Czapka.get_not_applicable_czapka,
         verbose_name="Inna czapka",
-        related_name="%(class)s_czapka_2"
+        related_name="%(class)s_posiadacze_drugi_wybor"
     )
 
     staz = models.IntegerField(
@@ -269,7 +269,7 @@ class Czlonek(OsobaBCS):
         on_delete=models.SET_NULL,
         null=True, blank=True,
         verbose_name="Rodzic czapkowy",
-        related_name='rodzic_1_set',
+        related_name='dzieci_pierwszy_wybor',
     )
 
     rodzic_2 = models.ForeignKey(
@@ -277,7 +277,7 @@ class Czlonek(OsobaBCS):
         on_delete=models.SET_NULL,
         null=True, blank=True,
         verbose_name="Drugi rodzic czapkowy",
-        related_name='rodzic_2_set',
+        related_name='dzieci_drugi_wybor',
     )
 
     class Meta:
@@ -394,7 +394,7 @@ class Bean(OsobaBCS):
         on_delete=models.SET_NULL,
         null=True, blank=True,
         verbose_name="Rodzic czapkowy",
-        related_name='bean_rodzic_1_set',
+        related_name='beani_pierwszy_wybor',
     )
 
     rodzic_2 = models.ForeignKey(
@@ -402,7 +402,7 @@ class Bean(OsobaBCS):
         on_delete=models.SET_NULL,
         null=True, blank=True,
         verbose_name="Drugi rodzic czapkowy",
-        related_name='bean_rodzic_2_set',
+        related_name='beani_drugi_wybor',
     )
 
     class Meta:
@@ -477,7 +477,7 @@ class DawnyZarzad(models.Model):
         on_delete=models.SET_NULL,
         null=True,
         verbose_name="Wielki Mistrz",
-        related_name="dz_wielki_mistrz",
+        related_name="kadencje_jako_wielki_mistrz_dawnego_zarzadu",
     )
 
     kasztelan = models.ForeignKey(
@@ -485,7 +485,7 @@ class DawnyZarzad(models.Model):
         on_delete=models.SET_NULL,
         null=True,
         verbose_name="Kasztelan",
-        related_name="dz_kasztelan",
+        related_name="kadencje_jako_kasztelan_dawnego_zarzadu",
     )
 
     skarbnik = models.ForeignKey(
@@ -493,7 +493,7 @@ class DawnyZarzad(models.Model):
         on_delete=models.SET_NULL,
         null=True,
         verbose_name="Skarbnik",
-        related_name="dz_skarbnik",
+        related_name="kadencje_jako_skarbnik_dawnego_zarzadu",
     )
 
     bibendi = models.ForeignKey(
@@ -501,7 +501,7 @@ class DawnyZarzad(models.Model):
         on_delete=models.SET_NULL,
         null=True,
         verbose_name="Bibendi",
-        related_name="dz_bibendi",
+        related_name="kadencje_jako_bibendi_dawnego_zarzadu",
     )
 
     magister_disciplinae = models.ForeignKey(
@@ -509,7 +509,7 @@ class DawnyZarzad(models.Model):
         on_delete=models.SET_NULL,
         null=True,
         verbose_name="Magister Disciplinae",
-        related_name="dz_magister_disciplinae",
+        related_name="kadencje_jako_magister_disciplinae_dawnego_zarzadu",
     )
 
     cantandi = models.ForeignKey(
@@ -517,7 +517,7 @@ class DawnyZarzad(models.Model):
         on_delete=models.SET_NULL,
         null=True,
         verbose_name="Cantandi",
-        related_name="dz_cantandi",
+        related_name="kadencje_jako_cantandi_dawnego_zarzadu",
     )
 
     kontakt_z_SSUJ = models.ForeignKey(
@@ -525,7 +525,7 @@ class DawnyZarzad(models.Model):
         on_delete=models.SET_NULL,
         null=True,
         verbose_name="Kontakt Z SSUJ",
-        related_name="dz_kontakt_z_SSUJ",
+        related_name="kadencje_jako_kontakt_z_SSUJ_dawnego_zarzadu",
     )
 
     kontakt_z_SKNHI = models.ForeignKey(
@@ -533,7 +533,7 @@ class DawnyZarzad(models.Model):
         on_delete=models.SET_NULL,
         null=True,
         verbose_name="Kontakt Z SKNHI",
-        related_name="dz_kontakt_z_SKNHI",
+        related_name="kadencje_jako_kontakt_z_SKNHI_dawnego_zarzadu",
     )
 
     class Meta:
@@ -557,7 +557,7 @@ class Zarzad(models.Model):
         on_delete=models.SET_NULL,
         null=True,
         verbose_name="Wielki Mistrz",
-        related_name="wielki_mistrz",
+        related_name="kadencje_jako_wielki_mistrz",
     )
 
     kasztelan = models.ForeignKey(
@@ -565,7 +565,7 @@ class Zarzad(models.Model):
         on_delete=models.SET_NULL,
         null=True,
         verbose_name="Kasztelan",
-        related_name="kasztelan",
+        related_name="kadencje_jako_kasztelan",
     )
 
     skarbnik = models.ForeignKey(
@@ -573,7 +573,7 @@ class Zarzad(models.Model):
         on_delete=models.SET_NULL,
         null=True,
         verbose_name="Skarbnik",
-        related_name="skarbnik",
+        related_name="kadencje_jako_skarbnik",
     )
 
     cantandi = models.ForeignKey(
@@ -581,7 +581,7 @@ class Zarzad(models.Model):
         on_delete=models.SET_NULL,
         null=True,
         verbose_name="Cantandi",
-        related_name="cantandi",
+        related_name="kadencje_jako_cantandi",
     )
 
     sekretarz = models.ForeignKey(
@@ -589,7 +589,7 @@ class Zarzad(models.Model):
         on_delete=models.SET_NULL,
         null=True,
         verbose_name="Sekretarz",
-        related_name="sekretarz",
+        related_name="kadencje_jako_sekretarz",
     )
 
     class Meta:
@@ -705,6 +705,7 @@ class InnaOsoba(Osoba):
         null=True,
         on_delete=models.SET_NULL,
         verbose_name="Bractwo",
+        related_name="czlonkowie_bractwa"
     )
 
     class Meta:

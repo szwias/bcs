@@ -38,7 +38,7 @@ class TradycjaBCS(models.Model):
     )
 
     autor = GenericRelation(
-        "czlonkowie.Osoby", blank=True,  verbose_name="Autor",
+        "czlonkowie.Osoby", blank=True,  verbose_name="Autor", related_name="zaczete_tradycje"
     )
 
     okolicznosci_powstania = models.CharField(
@@ -51,6 +51,7 @@ class TradycjaBCS(models.Model):
         null=True,
         on_delete=models.SET_NULL,
         verbose_name="Wydarzenie",
+        related_name="tradycje_zapoczatkowane_wydarzeniem"
     )
 
     inne = models.CharField(

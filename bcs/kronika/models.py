@@ -60,7 +60,7 @@ class Zdarzenie(models.Model):
         null=True,
         on_delete=models.SET_NULL,
         verbose_name="Wydarzenie",
-        related_name="zdarzenia",  # key change here
+        related_name="zdarzenia_z_wydarzenia",
     )
 
     data = models.DateField(
@@ -77,6 +77,7 @@ class Zdarzenie(models.Model):
         null=True,
         on_delete=models.SET_NULL,
         verbose_name="Miejsce",
+        related_name="zdarzenia_z_miejsca",
     )
 
     opis = models.TextField(
@@ -87,7 +88,7 @@ class Zdarzenie(models.Model):
         "czlonkowie.Osoby",
         blank=True,
         verbose_name="Powiązane osoby",
-        related_query_name="uczestnictwo_w_zdarzeniu"
+        related_name="uczestnictwo_w_zdarzeniach"
     )
 
     class Meta:
@@ -121,6 +122,7 @@ class ObrazZdarzenie(models.Model):
         null=True,
         on_delete=models.SET_NULL,
         verbose_name="Zdarzenie",
+        related_name="zdjecia_ze_zdarzenia",
     )
 
     tytul = models.CharField(
@@ -137,6 +139,7 @@ class ObrazZdarzenie(models.Model):
         null=True,
         on_delete=models.SET_NULL,
         verbose_name="Miejsce",
+        related_name="zdjecia_miejsca",
     )
 
     obraz = models.ImageField(
@@ -144,10 +147,7 @@ class ObrazZdarzenie(models.Model):
     )
 
     widoczne_osoby = GenericRelation(
-        "czlonkowie.Osoby",
-        blank=True,
-        verbose_name="Widoczne osoby",
-        related_query_name="widoczne_osoby"
+        "czlonkowie.Osoby", blank=True, verbose_name="Widoczne osoby",
     )
 
     opis = models.TextField(
@@ -265,17 +265,11 @@ class Wydarzenie(models.Model):
     )
 
     obrazy = models.ManyToManyField(
-        "ObrazWydarzenie",
-        blank=True,
-        verbose_name="Zdjęcia",
-        related_name="wydarzenie_obraz",
+        "ObrazWydarzenie", blank=True, verbose_name="Zdjęcia", related_name="po_cholere_to_polaczenie"
     )
 
     uczestnicy = GenericRelation(
-        "czlonkowie.Osoby",
-        blank=True,
-        verbose_name="Uczestnicy",
-        related_query_name="uczestnictwo_w_wydarzeniu"
+        "czlonkowie.Osoby", blank=True, verbose_name="Uczestnicy",
     )
 
     class Meta:
@@ -301,6 +295,7 @@ class ObrazWydarzenie(models.Model):
         null=True,
         on_delete=models.SET_NULL,
         verbose_name="Wydarzenie",
+        related_name="zdjecia_z_wydarzenia"
     )
 
     tytul = models.CharField(
@@ -312,10 +307,7 @@ class ObrazWydarzenie(models.Model):
     )
 
     widoczne_osoby = GenericRelation(
-        "czlonkowie.Osoby",
-        blank=True,
-        verbose_name="Widoczne osoby",
-        related_query_name="widoczne_osoby"
+        "czlonkowie.Osoby", blank=True, verbose_name="Widoczne osoby",
     )
 
     opis = models.TextField(

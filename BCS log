@@ -18,26 +18,28 @@ Python lines of code:
     18 maja:    2253 lines (+20)
     19 maja:    2352 lines (+99)
     21 maja:    2355 lines (+3)
+    22 maja:    2355 lines (+0)
+    29 maja:    2355 lines (+0)
+    17 czerwca: 2556 lines (+201)
+    21 czerwca: 2591 lines (+35)
+    29 czerwca: 2590 lines (-1)
+    1 lipca:    2590 lines (+0)
+    3 lipca:
 
-    24 kwietnia - 4 maja:
+    24 kwietnia - 4 maja (9 / 11 days):
         Average speed of development: 155 lines per day (~160)
         Average lines of code on an active day: 189 lines per day (~190)
         Average positive lines of code per day: x lines per day
 
-    5 maja - today:
-        Average speed of development: 39 lines per day (~40)
-        Average lines of code on an active day: 83 lines per day (~80)
-        Average positive lines on an active day: 101 lines per day (~100)
+    5 maja - 29 maja (10 / 25 days):
+        Average speed of development: 26 lines per day (~30)
+        Average lines of code on an active day: 66 lines per day (~70)
+        Average positive lines on an active day: 87 lines per day (~90)
+
+    17 czerwca - 29 czerwca (3 / 13 days):
+        Average speed of development: 18 lines per day (~20)
+        Average lines of code on an active day: 78 lines per day (~80)
+        Average positive lines on an active day: 79 lines per day (~80)
 
 
-Frontend lines of code:
-    From django:
-        HTML:   0 lines
-        CSS:    5077 lines
-        JS:     2445 lines
 
-rutyna po przyjeździe z Bolonii:
-    dodanie wydarzenia: 12:53 - 13:00
-
-Django-first code:
-    Python:
