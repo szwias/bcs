@@ -87,17 +87,20 @@ class CzlonekForm(forms.ModelForm):
             cd['imie_piwne_2_wybor'] = TextAlt.NOT_APPLICABLE[0]
             cd['imie_piwne_2'] = TextAlt.NOT_APPLICABLE[1]
 
-        imie_piwne_1 = cd.get('imie_piwne_1')
-        if imie_piwne_1 not in ["Nie wiem", "Nie dotyczy"]:
-            cd['imie_piwne_1_wybor'] = "other"
-
-        imie_piwne_2 = cd.get('imie_piwne_2')
-        if imie_piwne_2 not in ["Nie wiem", "Nie dotyczy"]:
-            cd['imie_piwne_2_wybor'] = "other"
-
         staz = cd.get('staz')
         if staz == Czas.ROK_ZALOZENIA:
             cd['pewnosc_stazu'] = "T"
+
+        rodzic_1 = cd.get('rodzic_1')
+        rodzic_2 = cd.get('rodzic_2')
+
+        if not rodzic_1:
+            cd["rodzic_1"] = Czlonek.get_dont_know_czlonek()
+        if rodzic_1 == Czlonek.get_not_applicable_czlonek():
+            cd["rodzic_2"] = Czlonek.get_not_applicable_czlonek()
+
+        if not rodzic_2:
+            cd["rodzic_2"] = Czlonek.get_not_applicable_czlonek()
 
         return cd
 

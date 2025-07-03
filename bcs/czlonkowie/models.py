@@ -250,7 +250,7 @@ class Czlonek(OsobaBCS):
     )
 
     imie_piwne_1 = models.CharField(
-        max_length=MEDIUM_LENGTH, default="Nie wiem", verbose_name="Wpisz imię czapkowe:"
+        blank=True, max_length=MEDIUM_LENGTH, default="Nie wiem", verbose_name="Wpisz imię czapkowe:"
     )
 
     imie_piwne_2_wybor = models.CharField(
@@ -261,7 +261,7 @@ class Czlonek(OsobaBCS):
     )
 
     imie_piwne_2 = models.CharField(
-        max_length=MEDIUM_LENGTH, default="Nie dotyczy", verbose_name="Wpisz inne imię czapkowe:"
+        blank=True, max_length=MEDIUM_LENGTH, default="Nie dotyczy", verbose_name="Wpisz inne imię czapkowe:"
     )
 
     rodzic_1 = models.ForeignKey(
@@ -308,7 +308,7 @@ class Czlonek(OsobaBCS):
 
     @staticmethod
     def get_dont_know_czlonek():
-        czlonek, created = Czlonek.objects.get_or_create(
+        czlonek = Czlonek.objects.get(
             imie="Nie", nazwisko="wiem",
             czapka_1=Czapka.get_dont_know_czapka(), czapka_2=Czapka.get_not_applicable_czapka(),
             staz=IntAlt.DONT_KNOW[0], pewnosc_stazu=OsobaBCS.PewnoscStazu.NIE,
@@ -317,15 +317,11 @@ class Czlonek(OsobaBCS):
             imie_piwne_1_wybor=TextAlt.DONT_KNOW[0], imie_piwne_1="Nie wiem",
             imie_piwne_2_wybor=TextAlt.NOT_APPLICABLE[0], imie_piwne_2="Nie dotyczy",
         )
-        if created:
-            czlonek.rodzic_1 = czlonek
-            czlonek.rodzic_2 = Czlonek.get_not_applicable_czlonek()
-            czlonek.save()
         return czlonek
 
     @staticmethod
     def get_not_applicable_czlonek():
-        czlonek, created = Czlonek.objects.get_or_create(
+        czlonek = Czlonek.objects.get(
             imie="Nie", nazwisko="dotyczy",
             czapka_1=Czapka.get_dont_know_czapka(), czapka_2=Czapka.get_not_applicable_czapka(),
             staz=IntAlt.DONT_KNOW[0], pewnosc_stazu=OsobaBCS.PewnoscStazu.TAK,
@@ -334,11 +330,61 @@ class Czlonek(OsobaBCS):
             imie_piwne_1_wybor=TextAlt.NOT_APPLICABLE[0], imie_piwne_1="Nie dotyczy",
             imie_piwne_2_wybor=TextAlt.NOT_APPLICABLE[0], imie_piwne_2="Nie dotyczy",
         )
-        if created:
-            czlonek.rodzic_1 = czlonek
-            czlonek.rodzic_2 = czlonek
-            czlonek.save()
         return czlonek
+
+    # def clean(self):
+    #     super().clean()
+    #
+    #     if self.status in [Czlonek.Status.CZLONEK, Czlonek.Status.WETERAN]:
+    #         self.ochrzczony = TextChoose.YES[0]
+    #
+    #     # ochrzczony controls rok_chrztu
+    #     if self.ochrzczony == TextChoose.NO[0]:
+    #         self.rok_chrztu = IntAlt.NOT_APPLICABLE[0]
+    #     elif self.ochrzczony == TextAlt.DONT_KNOW[0]:
+    #         self.rok_chrztu = IntAlt.DONT_KNOW[0]
+    #
+    #     # rok_chrztu controls miesiac_chrztu
+    #     if self.rok_chrztu in [IntAlt.NOT_APPLICABLE[0], IntAlt.DONT_KNOW[0]]:
+    #         self.miesiac_chrztu = self.rok_chrztu
+    #
+    #     # miesiac_chrztu controls dzien_chrztu
+    #     if self.miesiac_chrztu in [IntAlt.NOT_APPLICABLE[0], IntAlt.DONT_KNOW[0]]:
+    #         self.dzien_chrztu = self.miesiac_chrztu
+    #
+    #     if self.imie_piwne_1 not in ["Nie wiem", "Nie dotyczy"]:
+    #         self.imie_piwne_1_wybor = "other"
+    #     if self.imie_piwne_2 not in ["Nie wiem", "Nie dotyczy"]:
+    #         self.imie_piwne_2_wybor = "other"
+    #
+    #     if self.imie_piwne_1_wybor != "other":
+    #         if self.imie_piwne_1_wybor == TextAlt.DONT_KNOW[0]:
+    #             self.imie_piwne_1 = TextAlt.DONT_KNOW[1]
+    #         elif self.imie_piwne_1_wybor == TextAlt.NOT_APPLICABLE[0]:
+    #             self.imie_piwne_1 = TextAlt.NOT_APPLICABLE[1]
+    #
+    #         self.imie_piwne_2_wybor = TextAlt.NOT_APPLICABLE[0]
+    #         self.imie_piwne_2 = TextAlt.NOT_APPLICABLE[1]
+    #
+    #     if self.imie_piwne_1 not in ["Nie wiem", "Nie dotyczy"]:
+    #         self.imie_piwne_1_wybor = "other"
+    #     if self.imie_piwne_2 not in ["Nie wiem", "Nie dotyczy"]:
+    #         self.imie_piwne_2_wybor = "other"
+    #
+    #     if self.pewnosc_stazu == 'true':
+    #         self.pewnosc_stazu = "T"
+    #
+    #     if self.staz == Czas.ROK_ZALOZENIA:
+    #         self.pewnosc_stazu = "T"
+    #
+    #     if not self.rodzic_1:
+    #         self.rodzic_1 = Czlonek.get_dont_know_czlonek()
+    #
+    #     if self.rodzic_1 == Czlonek.get_not_applicable_czlonek():
+    #         self.rodzic_2 = Czlonek.get_not_applicable_czlonek()
+    #
+    #     if not self.rodzic_2:
+    #         self.rodzic_2 = Czlonek.get_not_applicable_czlonek()
 
 
 class Bean(OsobaBCS):

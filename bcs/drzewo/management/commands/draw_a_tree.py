@@ -1,7 +1,10 @@
 # czlonkowie/management/commands/render_tree.py
+from collections import defaultdict
+
 from django.core.management.base import BaseCommand
 
-from core.utils.Choices import TextChoose
+from core.utils.Choices import TextChoose, IntAlt, TextAlt
+from core.utils.czas.Czas import ROK_ZALOZENIA, BIEZACY_ROK
 from czlonkowie.models import Czlonek
 from drzewo.tree_rendering import render_layered_graph  # your helper
 
@@ -10,26 +13,23 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         layers, edges = build_layers_and_edges_from_db()
-        render_layered_graph(layers, edges, filename="tree.png")
-        self.stdout.write(self.style.SUCCESS("Tree rendered ➜ tree.png"))
+        # render_layered_graph(layers, edges, filename="tree.png")
+        # self.stdout.write(self.style.SUCCESS("Tree rendered ➜ tree.png"))
 
 def build_layers_and_edges_from_db():
-    """Translate Czlonek objects into the `layers` & `edges` structures"""
-    layers = {}
+    layers = {rok: [set()] for rok in range(ROK_ZALOZENIA, BIEZACY_ROK + 1)}
     edges = {}
     czlonkowie = Czlonek.objects.filter(ochrzczony=TextChoose.YES[0]).select_related("rodzic_1", "rodzic_2")
+    dzieci_czapki = []
 
-    for cz in czlonkowie:
-        rok = cz.staz
-        layers.setdefault(rok, []).append(cz.imie_piwne_1 or str(cz))
-
-        for rodzic in (cz.rodzic_1, cz.rodzic_2):
-            if rodzic and rodzic_id_is_real(rodzic):
-                edges.setdefault(rodzic.imie_piwne_1 or str(rodzic), []).append(
-                    cz.imie_piwne_1 or str(cz)
-                )
     return layers, edges
 
-def rodzic_id_is_real(rodzic):
-    # Skip the sentinel “Nie wiem” / “Nie dotyczy” objects
-    return rodzic.imie not in {"Nie"} and rodzic.nazwisko not in {"wiem", "dotyczy"}
+def rodzic_is_unknown(rodzic):
+    # Skip the sentinel “Nie wiem” object
+    return rodzic.imie == "Nie" and rodzic.nazwisko == "wiem"
+
+def rodzic_is_sentinel_value(rodzic):
+    return rodzic.imie in {"Nie"} and rodzic.nazwisko in {"wiem", "dotyczy"}
+
+def is_a_parent_of(parent, child):
+    return parent.id in {child.rodzic_1, child.rodzic_2}

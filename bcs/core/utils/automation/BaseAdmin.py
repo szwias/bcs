@@ -10,11 +10,11 @@ class BaseModelAdmin(admin.ModelAdmin):
     list_filter_exclude = set()
     save_as = True
 
+
     def save_selected(self, request, queryset):
-        for obj in queryset:
-            obj.save()
-        self.message_user(request, "Saved selected objects successfully")
-    save_selected.short_description = "Saved selected objects"
+        pass
+
+    save_selected.short_description = "Save selected objects"
 
     def _get_list_filter(self):
         exclude = getattr(self, 'list_filter_exclude', set())
