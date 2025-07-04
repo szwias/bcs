@@ -1531,7 +1531,6 @@ COPY public.czlonkowie_czlonek (id, imie, aktywnosc, ochrzczony, rok_chrztu, mie
 19	Anna Maria	N	T	1111111111	1111111111	1111111111	2011	N	W	other	Litle dragon	other	Gestapo	12	1	32	171	Kuźma	{}
 38	Camilla	M	T	1111111111	1111111111	1111111111	2014	N	W	other	Cami	n/a	Nie dotyczy	31	30	158	171	Schindler	{}
 143	Sandra	A	T	2024	5	17	2023	T	C	other	Sander	n/a	Nie dotyczy	9	30	29	171	Chandzlik	{}
-170	Nie	N	d/n	1111111111	1111111111	1111111111	1111111111	N	d/n	d/n	Nie wiem	n/a	Nie dotyczy	29	30	170	171	wiem	{}
 147	Szymon	N	d/n	1111111111	1111111111	1111111111	2015	T	d/n	other	Lewe Jądro w Ciemności	n/a	Nie dotyczy	5	30	96	171	Stankiewicz	{}
 149	Tomasz Andrzej	N	T	1111111111	1111111111	1111111111	2013	T	W	other	Potomek	n/a	Nie dotyczy	29	30	19	171	Cieciora	{}
 120	Natalia	A	T	2019	5	24	2018	T	W	other	Szynka	n/a	Nie dotyczy	32	30	148	171	Ciesielska (Olajossy)	{}
@@ -1545,7 +1544,7 @@ COPY public.czlonkowie_czlonek (id, imie, aktywnosc, ochrzczony, rok_chrztu, mie
 33	Bartosz	M	d/n	1111111111	1111111111	1111111111	2020	N	d/n	d/n	Nie wiem	n/a	Nie dotyczy	29	30	170	171	Sieniawski	{}
 34	Bartosz	N	d/n	1111111111	1111111111	1111111111	2011	N	d/n	d/n	Nie wiem	n/a	Nie dotyczy	29	30	170	171	Spytkowski	{}
 35	Beanus	N	T	1111111111	1111111111	1111111111	2014	N	W	other	Poronny Panicz	n/a	Nie dotyczy	29	30	97	171	Perennus	{}
-176	Czapka	A	T	2009	8	20	2009	T	H	n/a	Nie dotyczy	n/a	Nie dotyczy	1	11	148	76		{}
+170	Nie	N	T	2009	1111111111	1111111111	1111111111	N	d/n	d/n	Nie wiem	n/a	Nie dotyczy	29	30	76	148	wiem	{}
 50	Ewa	N	d/n	1111111111	1111111111	1111111111	2014	N	d/n	d/n	Nie wiem	n/a	Nie dotyczy	18	30	170	171	Smuga-Codutti	{}
 14	Alicja	O	d/n	1111111111	1111111111	1111111111	2016	N	d/n	d/n	Nie wiem	n/a	Nie dotyczy	2	30	170	171	Majczak	{}
 52	Gniewko	N	d/n	1111111111	1111111111	1111111111	2018	N	d/n	d/n	Nie wiem	n/a	Nie dotyczy	29	30	170	171	Wawrzyńczak	{}
@@ -2893,6 +2892,9 @@ COPY public.django_admin_log (id, action_time, object_id, object_repr, action_fl
 980	2025-07-01 18:07:50.380177+02	176	Czapka "" 	2	[{"changed": {"fields": ["Imi\\u0119 czapkowe"]}}]	7	1
 981	2025-07-01 18:10:37.54106+02	176	Czapka "Nie dotyczy" 	2	[{"changed": {"fields": ["Wpisz imi\\u0119 czapkowe:"]}}]	7	1
 982	2025-07-01 18:10:44.754595+02	176	Czapka 	2	[{"changed": {"fields": ["Imi\\u0119 czapkowe"]}}]	7	1
+983	2025-07-04 14:27:22.41977+02	170	Nie "Czapka" wiem	2	[{"changed": {"fields": ["przezwiska", "Ochrzczony?", "Rok chrztu", "Rodzic czapkowy", "Drugi rodzic czapkowy"]}}]	7	1
+984	2025-07-04 14:27:36.811211+02	170	Nie wiem	2	[{"changed": {"fields": ["przezwiska"]}}]	7	1
+985	2025-07-04 23:44:16.799956+02	176	Czapka 	3		7	1
 \.
 
 
@@ -3445,7 +3447,7 @@ SELECT pg_catalog.setval('public.czlonkowie_zwierzeczapkowe_id_seq', 13, true);
 -- Name: django_admin_log_id_seq; Type: SEQUENCE SET; Schema: public; Owner: projectuser
 --
 
-SELECT pg_catalog.setval('public.django_admin_log_id_seq', 982, true);
+SELECT pg_catalog.setval('public.django_admin_log_id_seq', 985, true);
 
 
 --

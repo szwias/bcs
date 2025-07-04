@@ -5,7 +5,7 @@ def render_layered_graph(layers, edges, filename="layered_graph.png", rankdir='T
     G.graph_attr.update(rankdir=rankdir)
 
     dummy_prefix = "__layer_anchor__"
-    node_attrs = node_attrs or {}
+    # node_attrs = node_attrs or {}
     sorted_layers = sorted(layers.items())
 
     for layer_num, nodes in sorted_layers:
@@ -13,8 +13,11 @@ def render_layered_graph(layers, edges, filename="layered_graph.png", rankdir='T
         G.add_node(dummy, style="invis", width=0, height=0)
 
         for node in nodes:
-            attrs = node_attrs.get(node, {})
-            G.add_node(node, **attrs)
+            # attrs = node_attrs.get(node, {})
+            G.add_node(
+                node,
+                # **attrs
+            )
 
         G.add_subgraph(nodes + [dummy], rank='same')
 
