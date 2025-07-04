@@ -2,7 +2,7 @@ from django.urls import path
 from . import views
 from .views import autocomplete_urls
 
-app_name = 'kronika'
+app_name = 'kronika_autocomplete'
 
 # fields autocomplete
 urlpatterns = [

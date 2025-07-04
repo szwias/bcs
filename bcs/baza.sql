@@ -1321,7 +1321,7 @@ COPY public.auth_permission (id, name, content_type_id, codename) FROM stdin;
 --
 
 COPY public.auth_user (id, password, last_login, is_superuser, username, first_name, last_name, email, is_staff, is_active, date_joined) FROM stdin;
-1	pbkdf2_sha256$1000000$bdAQ18OKZo45dFlh7hAEwE$005aAXs804ZC9vS8SKlivntIyi/ohNzgoCxhiPb1cdI=	2025-06-09 00:29:26.962855+02	t	szymon				t	t	2025-04-24 10:18:46.707558+02
+1	pbkdf2_sha256$1000000$bdAQ18OKZo45dFlh7hAEwE$005aAXs804ZC9vS8SKlivntIyi/ohNzgoCxhiPb1cdI=	2025-07-01 12:09:16.942005+02	t	szymon				t	t	2025-04-24 10:18:46.707558+02
 \.
 
 
@@ -1371,12 +1371,12 @@ COPY public.core_kadencja (id, rozpoczecie, zakonczenie) FROM stdin;
 
 COPY public.czlonkowie_bean (id, imie, nazwisko, staz, pewnosc_stazu, czapka_1_id, czapka_2_id, rodzic_1_id, rodzic_2_id, przezwiska) FROM stdin;
 6	Patrycja	Skowronek	2024	true	2	30	56	\N	{}
-1	Kacper	Wilk	2024	true	15	30	31	163	{Szogun}
-2	Krysia	Cholewa	2024	true	15	30	31	163	{}
-5	Mateusz	Sokół	2024	true	22	30	29	163	{Skorpion,Szczur,Scoppiato}
-3	Szymon	Zwias	2024	true	8	30	102	163	{Tur}
-4	Wiktoria	Doleżych	2024	true	3	30	29	163	{Wedel}
 7	Piotr	Kociński	2024	T	20	30	56	171	{}
+1	Kacper	Wilk	2024	true	15	30	31	\N	{Szogun}
+2	Krysia	Cholewa	2024	true	15	30	31	\N	{}
+5	Mateusz	Sokół	2024	true	22	30	29	\N	{Skorpion,Szczur,Scoppiato}
+3	Szymon	Zwias	2024	true	8	30	102	\N	{Tur}
+4	Wiktoria	Doleżych	2024	true	3	30	29	\N	{Wedel}
 \.
 
 
@@ -1425,167 +1425,166 @@ COPY public.czlonkowie_czapka (id, uczelnia, kolor, wydzial) FROM stdin;
 --
 
 COPY public.czlonkowie_czlonek (id, imie, aktywnosc, ochrzczony, rok_chrztu, miesiac_chrztu, dzien_chrztu, staz, pewnosc_stazu, status, imie_piwne_1_wybor, imie_piwne_1, imie_piwne_2_wybor, imie_piwne_2, czapka_1_id, czapka_2_id, rodzic_1_id, rodzic_2_id, nazwisko, przezwiska) FROM stdin;
-163	Nie	N	N	1010101010	1010101010	1010101010	1111111111	false	d/n	n/a	Nie dotyczy	n/a	Nie dotyczy	29	30	\N	\N	dotyczy	{}
-3	Agnieszka	M	T	1111111111	1111111111	1111111111	2011	false	W	other	Avis	n/a	Nie dotyczy	15	30	128	\N	Albrychiewicz	{}
-10	Aleksander	N	d/n	1111111111	1111111111	1111111111	2011	false	d/n	d/n	Nie wiem	n/a	Nie dotyczy	2	30	\N	\N	Wędrychowski	{}
-11	Aleksandra	N	T	1111111111	1111111111	1111111111	2017	true	W	other	Księżniczka	n/a	Nie dotyczy	13	30	147	\N	Klekocińska	{}
-13	Aleksandra	N	d/n	1111111111	1111111111	1111111111	2016	false	d/n	d/n	Nie wiem	n/a	Nie dotyczy	3	30	\N	\N	Wagner	{}
-14	Alicja	O	d/n	1111111111	1111111111	1111111111	2016	false	d/n	d/n	Nie wiem	n/a	Nie dotyczy	2	30	\N	\N	Majczak	{}
-15	Alicja Waleria	M	T	1111111111	1111111111	1111111111	2014	false	W	other	Abeille	n/a	Nie dotyczy	2	30	32	\N	Barć	{}
-17	Aneta	N	T	1111111111	1111111111	1111111111	2012	false	W	d/n	Nie wiem	n/a	Nie dotyczy	29	30	109	\N	Galara	{}
-21	Anna	N	T	1111111111	1111111111	1111111111	2014	true	W	other	Hipster	n/a	Nie dotyczy	29	30	97	\N	Stachowiak	{}
-18	Anna	N	T	2016	5	1111111111	2015	true	W	other	Księżniczka	n/a	Nie dotyczy	2	30	\N	\N	Łopatniuk	{}
-22	Anna	N	T	1111111111	1111111111	1111111111	1111111111	false	W	d/n	Nie wiem	n/a	Nie dotyczy	1	30	\N	\N	Wyroba	{}
-23	Antoni	N	T	1111111111	1111111111	1111111111	2010	false	W	other	Astel	n/a	Nie dotyczy	12	30	148	\N	Krzyżanowski	{}
-24	Artur	N	T	1111111111	1111111111	1111111111	2011	false	W	other	Biba	n/a	Nie dotyczy	2	30	97	\N	Biba	{}
-25	Artur	A	T	2018	4	15	2017	true	W	other	Dar Szczecina	n/a	Nie dotyczy	17	30	41	\N	Czajkowski	{}
-26	Artur	N	T	1111111111	1111111111	1111111111	2011	false	W	d/n	Nie wiem	n/a	Nie dotyczy	7	30	19	\N	Halcarz	{}
-27	Artur	N	T	1111111111	1111111111	1111111111	2011	false	W	d/n	Nie wiem	n/a	Nie dotyczy	3	30	32	\N	Miadzielec	{}
-28	Artur	N	d/n	1111111111	1111111111	1111111111	2017	false	d/n	d/n	Nie wiem	n/a	Nie dotyczy	3	30	\N	\N	Szymański	{}
-30	Bartłomiej	A	T	2018	10	14	2017	false	W	other	Kucharz	n/a	Nie dotyczy	4	30	90	122	Olajossy	{}
-29	Bartłomiej	A	T	2023	9	29	2023	false	C	other	Nobod	n/a	Nie dotyczy	16	30	110	\N	Grzeszykowski	{}
-32	Bartosz	N	T	1111111111	1111111111	1111111111	2010	false	W	other	Geolog	n/a	Nie dotyczy	13	30	148	\N	Maciejewski	{}
-31	Bartosz	A	T	2024	5	17	2023	true	C	other	Heniek	n/a	Nie dotyczy	2	30	30	\N	Hepek	{}
-33	Bartosz	M	d/n	1111111111	1111111111	1111111111	2020	false	d/n	d/n	Nie wiem	n/a	Nie dotyczy	29	30	\N	\N	Sieniawski	{}
-34	Bartosz	N	d/n	1111111111	1111111111	1111111111	2011	false	d/n	d/n	Nie wiem	n/a	Nie dotyczy	29	30	\N	\N	Spytkowski	{}
-35	Beanus	N	T	1111111111	1111111111	1111111111	2014	false	W	other	Poronny Panicz	n/a	Nie dotyczy	29	30	97	\N	Perennus	{}
-36	Benedykt Mateusz	N	T	1111111111	1111111111	1111111111	2015	true	W	other	Benio	n/a	Nie dotyczy	3	30	148	\N	Dzięcielski	{}
-37	Błażej	N	T	2023	10	12	2023	false	W	other	Szanciarz	n/a	Nie dotyczy	3	30	110	\N	Hałat	{}
-39	Cezary	O	T	1111111111	1111111111	1111111111	2016	true	W	d/n	Nie wiem	n/a	Nie dotyczy	18	30	96	\N	Sołtysik	{}
-40	Christine	N	d/n	1111111111	1111111111	1111111111	2011	false	d/n	d/n	Nie wiem	n/a	Nie dotyczy	15	30	\N	\N	Przybyła-Kowalska	{}
-42	Daniel	A	T	1111111111	1111111111	1111111111	2016	false	W	other	Deanus	n/a	Nie dotyczy	15	30	90	\N	Zgliński	{}
-43	Dawid	N	T	1111111111	1111111111	1111111111	1111111111	false	W	other	Bisquit	n/a	Nie dotyczy	29	30	53	\N	Wiklik	{}
-44	Dominik	N	T	1111111111	1111111111	1111111111	1111111111	false	W	other	Gimli	n/a	Nie dotyczy	29	30	148	\N	Ciebiera	{}
-45	Dominika	N	d/n	1111111111	1111111111	1111111111	2011	false	d/n	d/n	Nie wiem	n/a	Nie dotyczy	12	30	\N	\N	Liszka	{}
-46	Dominika	N	T	1111111111	1111111111	1111111111	2011	false	W	other	Szparag	n/a	Nie dotyczy	29	30	19	\N	Szponar	{}
-48	Elżbieta	N	d/n	1111111111	1111111111	1111111111	1111111111	false	W	d/n	Nie wiem	n/a	Nie dotyczy	29	30	\N	\N	Mierzejewska	{}
-49	Eryk	A	T	1111111111	1111111111	1111111111	2015	true	W	d/n	Nie wiem	n/a	Nie dotyczy	15	30	\N	\N	Królczyk	{}
-50	Ewa	N	d/n	1111111111	1111111111	1111111111	2014	false	d/n	d/n	Nie wiem	n/a	Nie dotyczy	18	30	\N	\N	Smuga-Codutti	{}
-51	Gabriela	N	T	1111111111	1111111111	1111111111	2015	false	W	d/n	Nie wiem	n/a	Nie dotyczy	9	30	158	109	Michalik (Mucha)	{}
-52	Gniewko	N	d/n	1111111111	1111111111	1111111111	2018	false	d/n	d/n	Nie wiem	n/a	Nie dotyczy	29	30	\N	\N	Wawrzyńczak	{}
-53	Grażyna	N	T	1111111111	1111111111	1111111111	2016	false	W	other	Malina	n/a	Nie dotyczy	29	30	19	\N	Malinowska	{}
-55	Grzegorz	N	T	1111111111	1111111111	1111111111	1111111111	false	W	other	Cytrynek	n/a	Nie dotyczy	2	30	133	\N	Lebedowicz	{}
-54	Grzegorz	N	T	2014	5	1111111111	2013	true	W	other	Dziadek	n/a	Nie dotyczy	1	30	129	\N	Dziadek	{}
-56	Herman	A	T	2024	11	15	2023	true	C	other	Stabilizator	other	Rakieta	1	30	29	\N	Chekurda	{}
-57	Jacek	N	d/n	1111111111	1111111111	1111111111	2011	false	d/n	d/n	Nie wiem	n/a	Nie dotyczy	29	30	\N	\N	Onisk	{}
-59	Jakub	N	T	2019	9	27	2018	true	W	other	Ada z penisem	n/a	Nie dotyczy	2	30	113	\N	Kornacki	{}
-60	Jakub	N	T	1111111111	1111111111	1111111111	2015	false	W	other	Cybuch	n/a	Nie dotyczy	2	30	148	\N	Łukasik	{}
-58	Jakub	N	d/n	1111111111	1111111111	1111111111	2018	false	d/n	d/n	Nie wiem	n/a	Nie dotyczy	2	30	\N	\N	Bukalski	{}
-61	Jakub	N	T	1111111111	1111111111	1111111111	2009	true	W	d/n	Nie wiem	n/a	Nie dotyczy	29	30	157	\N	Nawrot	{}
-109	Mateusz	O	T	1111111111	1111111111	1111111111	2012	true	X	other	Jezus	n/a	Nie dotyczy	12	30	97	\N	Tomczyk	{}
-113	Michał	N	T	2018	4	4	2016	false	W	other	I Sekretarz PZPR towarzysz Władysław Gomułka, ps. Wiesław	other	Gomuł	3	30	41	67	Gumułka	{}
-117	Monika	A	T	2018	5	17	2017	true	W	other	Monia	n/a	Nie dotyczy	18	30	154	\N	Góralik	{}
-116	Michał	A	T	2023	5	19	2022	true	C	other	Cukier	other	Małolata	15	30	64	\N	Malata	{}
-12	Aleksandra	N	d/n	1111111111	1111111111	1111111111	2018	false	d/n	d/n	Nie wiem	n/a	Nie dotyczy	15	30	\N	\N	Król	{}
-108	Mateusz	N	T	2018	10	14	2017	false	W	other	Sułtan	n/a	Nie dotyczy	29	30	90	\N	Sułek	{}
-110	Mateusz	A	T	2020	2	28	2018	true	W	other	Kotlet	n/a	Nie dotyczy	3	30	118	\N	Żurek	{}
-112	Michał	N	T	1111111111	1111111111	1111111111	1111111111	false	W	d/n	Nie wiem	n/a	Nie dotyczy	1	30	118	\N	Boryka	{}
-115	Michał	N	T	1111111111	1111111111	1111111111	2009	true	W	d/n	Nie wiem	n/a	Nie dotyczy	29	30	157	\N	Lenik	{}
-118	Monika	N	T	1111111111	1111111111	1111111111	2015	false	W	other	Koala	n/a	Nie dotyczy	3	30	146	\N	Kwater-Boryka	{}
-107	Martyna	A	T	2024	9	30	2023	true	C	other	Bober	n/a	Nie dotyczy	3	30	116	\N	Kubiak	{}
-119	Monika	N	d/n	1111111111	1111111111	1111111111	2015	false	d/n	d/n	Nie wiem	n/a	Nie dotyczy	29	30	\N	\N	Stępień	{}
-122	Natalia	O	T	1111111111	1111111111	1111111111	2016	false	W	d/n	Nie wiem	n/a	Nie dotyczy	3	30	\N	\N	Stachura	{}
-63	Joanna	A	T	2010	1111111111	1111111111	2009	true	W	other	Aśka	n/a	Nie dotyczy	9	30	128	\N	Lorenc	{}
-64	John	N	T	2019	3	15	2018	true	W	other	Jasiek	n/a	Nie dotyczy	9	30	113	\N	Graff-Warburton	{}
-65	Julia	N	d/n	1111111111	1111111111	1111111111	2013	true	W	d/n	Nie wiem	n/a	Nie dotyczy	29	30	\N	\N	Jurczuk	{}
-66	Julia	N	d/n	1111111111	1111111111	1111111111	1111111111	false	d/n	other	Spanko	n/a	Nie dotyczy	29	30	130	\N	Musiał	{}
-68	Kamila	N	T	1111111111	1111111111	1111111111	2009	true	W	d/n	Nie wiem	n/a	Nie dotyczy	29	30	157	\N	Rozesłaniec	{}
-70	Karol	N	d/n	1111111111	1111111111	1111111111	2015	false	d/n	d/n	Nie wiem	n/a	Nie dotyczy	7	30	\N	\N	Starowicz	{}
-72	Karolina	A	T	2022	6	11	2019	true	C	other	Bezimienna	n/a	Nie dotyczy	1	30	113	\N	Kania	{}
-71	Karolina	N	d/n	1111111111	1111111111	1111111111	2016	false	d/n	d/n	Nie wiem	n/a	Nie dotyczy	7	30	\N	\N	Dzierżawska	{}
-73	Karolina	N	d/n	1111111111	1111111111	1111111111	2016	false	d/n	d/n	Nie wiem	n/a	Nie dotyczy	29	30	\N	\N	Mater	{}
-74	Karolina	N	T	1111111111	1111111111	1111111111	2014	false	W	d/n	Nie wiem	n/a	Nie dotyczy	3	30	146	\N	Szklanny	{}
-75	Karolina	N	d/n	1111111111	1111111111	1111111111	2011	false	d/n	d/n	Nie wiem	n/a	Nie dotyczy	2	30	\N	\N	Wielgus	{}
-69	Karol Konrad	O	d/n	1111111111	1111111111	1111111111	2016	false	d/n	d/n	Nie wiem	n/a	Nie dotyczy	2	30	\N	\N	Czekałowski	{}
-76	Kasper	M	T	1111111111	1111111111	1111111111	2009	true	H	other	Pumba	n/a	Nie dotyczy	1	11	157	\N	Krawet	{}
-77	Katarzyna	N	T	2019	3	15	2018	true	W	d/n	Nie wiem	n/a	Nie dotyczy	3	30	47	\N	Marek	{}
-78	Katarzyna	N	d/n	1111111111	1111111111	1111111111	2015	false	d/n	d/n	Nie wiem	n/a	Nie dotyczy	9	30	\N	\N	Ostrowska	{}
-79	Katarzyna	N	T	1111111111	1111111111	1111111111	1111111111	false	W	d/n	Nie wiem	n/a	Nie dotyczy	29	30	\N	\N	Smuga	{}
-80	Katarzyna	N	T	1111111111	1111111111	1111111111	1111111111	false	W	d/n	Nie wiem	n/a	Nie dotyczy	29	30	\N	\N	Żanowska	{}
-81	Kinga	N	d/n	1111111111	1111111111	1111111111	2015	false	d/n	d/n	Nie wiem	n/a	Nie dotyczy	29	30	\N	\N	Radwan	{}
-82	Klaudia	N	d/n	1111111111	1111111111	1111111111	2017	true	d/n	d/n	Nie wiem	n/a	Nie dotyczy	3	30	\N	\N	Buchalska	{}
-84	Konrad	N	T	1111111111	1111111111	1111111111	2011	false	W	other	Benikaza	other	Peruano	29	30	19	\N		{}
-85	Konrad	N	d/n	1111111111	1111111111	1111111111	2015	false	d/n	d/n	Nie wiem	n/a	Nie dotyczy	2	30	\N	\N	Piwowarczyk	{}
-87	Krzysztof	N	T	1111111111	1111111111	1111111111	1111111111	false	W	d/n	Nie wiem	n/a	Nie dotyczy	29	30	\N	\N	Tomczyk	{}
-86	Krzysztof	O	T	1111111111	1111111111	1111111111	2014	false	W	other	Poniatowski	n/a	Nie dotyczy	29	30	109	\N	Sadowski	{}
-88	Ludwik	N	d/n	1111111111	1111111111	1111111111	2018	false	d/n	other	El Michał	n/a	Nie dotyczy	2	30	\N	\N	Janiszewski	{}
-89	Łukasz	A	T	2016	9	1111111111	2015	true	W	other	Ciepły	n/a	Nie dotyczy	5	30	95	\N	Ciepły (Lindert)	{}
-90	Łukasz	N	T	2016	9	1111111111	2015	false	W	other	Yoda	n/a	Nie dotyczy	15	30	109	\N	Pryk	{}
-91	Ma	N	d/n	1111111111	1111111111	1111111111	2015	false	d/n	d/n	Nie wiem	n/a	Nie dotyczy	1	30	\N	\N	Rysia	{}
-94	Maciej	A	T	2019	5	24	2018	true	W	other	Mmm...	n/a	Nie dotyczy	15	30	41	\N	Lisowski	{}
-92	Maciej	N	T	1111111111	1111111111	1111111111	2011	false	W	d/n	Nie wiem	n/a	Nie dotyczy	1	30	\N	\N	Hyla	{}
-93	Maciej	N	d/n	1111111111	1111111111	1111111111	2017	false	d/n	d/n	Nie wiem	n/a	Nie dotyczy	15	30	\N	\N	Krzyżanek	{}
-96	Maciej	N	T	1111111111	1111111111	1111111111	2014	false	W	other	Solon jak ten grek	n/a	Nie dotyczy	8	30	3	\N	Solon	{}
-97	Magdalena	N	T	1111111111	1111111111	1111111111	2010	false	W	other	Kasztanka	n/a	Nie dotyczy	6	30	148	\N	Brilha	{}
-98	Maksymilian	N	T	1111111111	1111111111	1111111111	2017	false	W	other	Max	n/a	Nie dotyczy	15	30	147	\N	Depa	{}
-99	Małgorzata	N	d/n	1111111111	1111111111	1111111111	2014	false	W	d/n	Nie wiem	n/a	Nie dotyczy	2	30	51	\N	Głuszek	{}
-100	Małgorzata	N	T	1111111111	1111111111	1111111111	2009	true	W	d/n	Nie wiem	n/a	Nie dotyczy	29	30	\N	\N	Lurzyńska	{}
-101	Małgorzata	N	T	1111111111	1111111111	1111111111	2009	true	W	d/n	Nie wiem	n/a	Nie dotyczy	29	30	157	\N	Żurek	{}
-102	Marceli	A	T	2023	5	19	2023	false	C	other	Księciunio	n/a	Nie dotyczy	9	30	159	\N	Mart-Łakomy	{}
-103	Marcin	M	T	1111111111	1111111111	1111111111	2011	false	W	other	Martinus	n/a	Nie dotyczy	6	30	\N	\N	Loch	{}
-105	Maria	A	T	2024	11	15	2023	true	C	other	Felis	n/a	Nie dotyczy	1	30	159	\N	Turakiewicz	{}
-104	Maria	N	T	1111111111	1111111111	1111111111	2015	false	W	other	Rysia	n/a	Nie dotyczy	1	30	109	\N	Babiuch	{}
-106	Marta	N	d/n	1111111111	1111111111	1111111111	2011	false	d/n	d/n	Nie wiem	n/a	Nie dotyczy	13	30	\N	\N	Toumia	{}
-125	Patrycja	M	T	2018	5	17	2017	false	W	other	Chat	n/a	Nie dotyczy	15	30	154	43	Karauda	{}
-124	Pamela Anna	N	d/n	1111111111	1111111111	1111111111	2015	false	d/n	d/n	Nie wiem	n/a	Nie dotyczy	2	30	51	\N	Drozd	{}
-142	Roksana	N	T	1111111111	1111111111	1111111111	2011	false	W	d/n	Nie wiem	n/a	Nie dotyczy	15	30	148	\N	Kidawa	{}
-127	Patrycja	N	T	2019	11	22	2019	false	W	other	Hrabina	n/a	Nie dotyczy	29	30	113	\N	Szaniawska	{}
-129	Paula	N	T	1111111111	1111111111	1111111111	1111111111	false	W	d/n	Nie wiem	n/a	Nie dotyczy	2	30	97	\N	Dybowska	{}
-130	Paulina	N	T	2019	3	15	2018	true	W	other	Koziołek	n/a	Nie dotyczy	9	30	41	\N	Kozioł	{}
-131	Paulina	N	T	2015	11	1111111111	2015	true	W	d/n	Nie wiem	n/a	Nie dotyczy	6	30	15	\N	Tomżyńska	{}
-132	Paweł	N	T	1111111111	1111111111	1111111111	1111111111	false	W	d/n	Nie wiem	n/a	Nie dotyczy	29	30	\N	\N	Grzegorczyk	{}
-133	Paweł	M	T	1111111111	1111111111	1111111111	2011	false	W	other	Synek	n/a	Nie dotyczy	3	2	46	\N	Mucha	{}
-144	Sebastian	N	T	1111111111	1111111111	1111111111	2016	false	W	other	Dżdżysław	n/a	Nie dotyczy	15	30	128	\N	Stala	{}
-135	Piotr	N	T	1111111111	1111111111	1111111111	2011	false	W	d/n	Nie wiem	n/a	Nie dotyczy	1	30	\N	\N	Bulica	{}
-136	Piotr	N	d/n	1111111111	1111111111	1111111111	2018	false	d/n	other	Cieplejszy	n/a	Nie dotyczy	3	30	\N	\N	Litwin	{}
-137	Piotr	N	d/n	1111111111	1111111111	1111111111	2017	false	d/n	d/n	Nie wiem	n/a	Nie dotyczy	5	30	\N	\N	Szewczyk	{}
-138	Piotr	N	d/n	1111111111	1111111111	1111111111	2015	true	d/n	d/n	Nie wiem	n/a	Nie dotyczy	29	30	\N	\N	Szota	{}
-139	Przemysław	N	T	1111111111	1111111111	1111111111	2014	false	W	d/n	Nie wiem	n/a	Nie dotyczy	2	30	19	\N	Jankowski	{}
-140	Richard	N	d/n	1111111111	1111111111	1111111111	2015	false	d/n	d/n	Nie wiem	n/a	Nie dotyczy	1	30	\N	\N	Staryszak	{}
-141	Robert	N	d/n	1111111111	1111111111	1111111111	2023	false	d/n	d/n	Nie wiem	n/a	Nie dotyczy	5	30	\N	\N	Ścieszka	{}
-143	Sandra	A	T	2024	5	17	2023	true	C	other	Sander	n/a	Nie dotyczy	9	30	29	\N	Chandzlik	{}
-151	Urszula	N	T	1111111111	1111111111	1111111111	2009	true	W	d/n	Nie wiem	n/a	Nie dotyczy	29	30	157	\N	Kasprzyk	{}
-145	Stanisław	N	d/n	1111111111	1111111111	1111111111	1111111111	false	d/n	d/n	Nie wiem	n/a	Nie dotyczy	5	30	96	\N	Stokłosa	{}
-146	Stefan	N	T	1111111111	1111111111	1111111111	2013	false	W	other	Stefan Pierwszy Płaszcz Gondoru	n/a	Nie dotyczy	6	30	19	\N	Bocheński	{}
-147	Szymon	N	d/n	1111111111	1111111111	1111111111	2015	true	d/n	other	Lewe Jądro w Ciemności	n/a	Nie dotyczy	5	30	96	\N	Stankiewicz	{}
-149	Tomasz Andrzej	N	T	1111111111	1111111111	1111111111	2013	true	W	other	Potomek	n/a	Nie dotyczy	29	30	19	\N	Cieciora	{}
-150	Tomasz	A	T	1111111111	1111111111	1111111111	2014	false	W	other	Sigurd	n/a	Nie dotyczy	6	30	128	\N	Krok	{}
-152	Wacław	N	T	1111111111	1111111111	1111111111	2014	false	W	d/n	Nie wiem	n/a	Nie dotyczy	29	30	97	\N	Chmiel	{}
-153	Wawrzyniec	N	T	1111111111	1111111111	1111111111	2011	false	W	other	Wawrzyn	n/a	Nie dotyczy	12	30	19	\N	Ordziniak	{}
-155	Wiktor	N	T	2019	11	22	2019	false	W	other	Prawnik	n/a	Nie dotyczy	2	30	113	\N	Sobol	{}
-156	Wiktoria	N	d/n	1111111111	1111111111	1111111111	1111111111	false	d/n	d/n	Nie wiem	n/a	Nie dotyczy	6	30	\N	\N	Kałka	{}
-157	Zdzisław	N	d/n	1111111111	1111111111	1111111111	2009	true	H	other	Profesor	n/a	Nie dotyczy	11	30	\N	\N	Gajda	{}
-154	Weronika	N	T	1111111111	1111111111	1111111111	1111111111	false	W	other	Manista	n/a	Nie dotyczy	29	30	148	\N	Manista	{}
-158	Zofia	N	T	1111111111	1111111111	1111111111	2011	false	W	other	Estel	n/a	Nie dotyczy	18	30	158	\N	Krasińska-Krawet	{}
-159	Zuzanna	N	T	1111111111	1111111111	1111111111	2017	false	W	other	Rana	n/a	Nie dotyczy	3	30	42	\N	Żmuda	{}
-111	Michalina	A	T	2024	11	15	2023	false	C	other	Allec	n/a	Nie dotyczy	9	30	159	\N	Kokosińska	{}
-114	Michał	N	T	2019	11	22	2019	false	W	other	Śnięty Cwel Kasper	n/a	Nie dotyczy	9	30	125	\N	Kasperek	{}
-120	Natalia	A	T	2019	5	24	2018	true	W	other	Szynka	n/a	Nie dotyczy	32	30	148	\N	Ciesielska (Olajossy)	{}
-121	Natalia	O	T	2022	9	30	2022	false	W	other	Lis	n/a	Nie dotyczy	3	30	130	\N	Lisowska	{}
-123	Olga	A	T	2024	11	15	2024	false	C	other	Equus	other	Dajcie mi telefon, mam tam notatki	29	30	159	\N	Wajda	{}
-126	Patrycja	N	T	1111111111	1111111111	1111111111	2014	false	W	d/n	Nie wiem	n/a	Nie dotyczy	6	30	158	\N	Malinowska-Majdak	{}
-128	Patryk	N	T	1111111111	1111111111	1111111111	2013	false	W	d/n	Nie wiem	n/a	Nie dotyczy	15	30	148	\N	Gujda	{}
-134	Paweł	N	T	1111111111	1111111111	1111111111	2009	true	W	d/n	Nie wiem	n/a	Nie dotyczy	29	30	157	\N	Nawrot	{}
-148	Tadeusz	N	T	1111111111	1111111111	1111111111	2009	true	H	other	Kumdo	other	Tadek	1	11	157	\N	Hessel	{}
-1	Adrianna	A	T	2019	9	27	2018	true	W	other	Adrenalina	other	Chupa Chups	2	30	113	\N	Kapelak	{}
-2	Agata	N	T	0	0	0	0	false	W	d/n	Nie wiem	n/a	Nie dotyczy	29	30	\N	\N	Grochowina	{}
-20	Anna	N	T	2016	5	1111111111	2015	true	W	other	Mała Ania	n/a	Nie dotyczy	15	30	118	\N	Pawlicka	{}
-19	Anna Maria	N	T	1111111111	1111111111	1111111111	2011	false	W	other	Litle dragon	other	Gestapo	12	1	32	\N	Kuźma	{}
-38	Camilla	M	T	1111111111	1111111111	1111111111	2014	false	W	other	Cami	n/a	Nie dotyczy	31	30	158	\N	Schindler	{}
-47	Dorota	N	T	2018	4	4	2017	true	W	other	Waćpanna	other	Doris	9	30	41	\N	Drożyńska	{}
-62	Joanna	N	d/n	1111111111	1111111111	1111111111	1111111111	false	W	other	Szysza	n/a	Nie dotyczy	29	30	32	\N	Krawczyk	{}
-67	Kamila	N	T	1111111111	1111111111	1111111111	2017	false	W	other	Krwawa Baronessa	n/a	Nie dotyczy	2	30	133	\N	Dziewońska (Paisley)	{}
-95	Maciej	N	T	1111111111	1111111111	1111111111	2015	true	W	other	Dzidzia	n/a	Nie dotyczy	1	30	133	\N	Małecki	{}
-167	Dawid	A	T	2025	5	16	2022	false	C	other	Rudy	n/a	Nie dotyczy	2	30	125	117	Otłowski	{}
-165	Krzysztof	A	T	2025	5	16	2024	true	C	other	Artifex	n/a	Nie dotyczy	15	30	130	\N	Trela	{}
-41	Damian	A	T	1111111111	1111111111	1111111111	2015	false	W	other	Bandera	n/a	Nie dotyczy	15	30	43	\N	Zych	{Buch}
-162	Nie	N	d/n	1111111111	1111111111	1111111111	1111111111	T	d/n	d/n	Nie wiem	n/a	Nie dotyczy	29	30	162	163	wiem	{}
+109	Mateusz	O	T	1111111111	1111111111	1111111111	2012	T	X	other	Jezus	n/a	Nie dotyczy	12	30	97	171	Tomczyk	{}
+17	Aneta	N	T	1111111111	1111111111	1111111111	2012	T	W	d/n	Nie wiem	n/a	Nie dotyczy	29	30	109	171	Galara	{}
+21	Anna	N	T	1111111111	1111111111	1111111111	2014	T	W	other	Hipster	n/a	Nie dotyczy	29	30	97	171	Stachowiak	{}
+112	Michał	N	T	1111111111	1111111111	1111111111	1111111111	N	W	d/n	Nie wiem	n/a	Nie dotyczy	1	30	118	171	Boryka	{}
+22	Anna	N	T	1111111111	1111111111	1111111111	1111111111	T	W	d/n	Nie wiem	n/a	Nie dotyczy	1	30	170	171	Wyroba	{}
+3	Agnieszka	M	T	1111111111	1111111111	1111111111	2011	T	W	other	Avis	n/a	Nie dotyczy	15	30	128	171	Albrychiewicz	{}
+10	Aleksander	N	d/n	1111111111	1111111111	1111111111	2011	T	d/n	d/n	Nie wiem	n/a	Nie dotyczy	2	30	170	171	Wędrychowski	{}
+25	Artur	A	T	2018	4	15	2017	T	W	other	Dar Szczecina	n/a	Nie dotyczy	17	30	41	171	Czajkowski	{}
+118	Monika	N	T	1111111111	1111111111	1111111111	2015	N	W	other	Koala	n/a	Nie dotyczy	3	30	146	171	Kwater-Boryka	{}
+119	Monika	N	d/n	1111111111	1111111111	1111111111	2015	N	d/n	d/n	Nie wiem	n/a	Nie dotyczy	29	30	\N	171	Stępień	{}
+104	Maria	N	T	1111111111	1111111111	1111111111	2015	N	W	other	Rysia	n/a	Nie dotyczy	1	30	109	171	Babiuch	{}
+106	Marta	N	d/n	1111111111	1111111111	1111111111	2011	N	d/n	d/n	Nie wiem	n/a	Nie dotyczy	13	30	\N	171	Toumia	{}
+124	Pamela Anna	N	d/n	1111111111	1111111111	1111111111	2015	N	d/n	d/n	Nie wiem	n/a	Nie dotyczy	2	30	51	171	Drozd	{}
+127	Patrycja	N	T	2019	11	22	2019	N	W	other	Hrabina	n/a	Nie dotyczy	29	30	113	171	Szaniawska	{}
+31	Bartosz	A	T	2024	5	17	2023	T	C	other	Heniek	n/a	Nie dotyczy	2	30	30	171	Hepek	{}
+129	Paula	N	T	1111111111	1111111111	1111111111	1111111111	N	W	d/n	Nie wiem	n/a	Nie dotyczy	2	30	97	171	Dybowska	{}
+144	Sebastian	N	T	1111111111	1111111111	1111111111	2016	N	W	other	Dżdżysław	n/a	Nie dotyczy	15	30	128	171	Stala	{}
+136	Piotr	N	d/n	1111111111	1111111111	1111111111	2018	N	d/n	other	Cieplejszy	n/a	Nie dotyczy	3	30	\N	171	Litwin	{}
+137	Piotr	N	d/n	1111111111	1111111111	1111111111	2017	N	d/n	d/n	Nie wiem	n/a	Nie dotyczy	5	30	\N	171	Szewczyk	{}
+36	Benedykt Mateusz	N	T	1111111111	1111111111	1111111111	2015	T	W	other	Benio	n/a	Nie dotyczy	3	30	148	171	Dzięcielski	{}
+139	Przemysław	N	T	1111111111	1111111111	1111111111	2014	N	W	d/n	Nie wiem	n/a	Nie dotyczy	2	30	19	171	Jankowski	{}
+39	Cezary	O	T	1111111111	1111111111	1111111111	2016	T	W	d/n	Nie wiem	n/a	Nie dotyczy	18	30	96	171	Sołtysik	{}
+140	Richard	N	d/n	1111111111	1111111111	1111111111	2015	N	d/n	d/n	Nie wiem	n/a	Nie dotyczy	1	30	\N	171	Staryszak	{}
+141	Robert	N	d/n	1111111111	1111111111	1111111111	2023	N	d/n	d/n	Nie wiem	n/a	Nie dotyczy	5	30	\N	171	Ścieszka	{}
+145	Stanisław	N	d/n	1111111111	1111111111	1111111111	1111111111	N	d/n	d/n	Nie wiem	n/a	Nie dotyczy	5	30	96	171	Stokłosa	{}
+146	Stefan	N	T	1111111111	1111111111	1111111111	2013	N	W	other	Stefan Pierwszy Płaszcz Gondoru	n/a	Nie dotyczy	6	30	19	171	Bocheński	{}
+150	Tomasz	A	T	1111111111	1111111111	1111111111	2014	N	W	other	Sigurd	n/a	Nie dotyczy	6	30	128	171	Krok	{}
+152	Wacław	N	T	1111111111	1111111111	1111111111	2014	N	W	d/n	Nie wiem	n/a	Nie dotyczy	29	30	97	171	Chmiel	{}
+155	Wiktor	N	T	2019	11	22	2019	N	W	other	Prawnik	n/a	Nie dotyczy	2	30	113	171	Sobol	{}
+49	Eryk	A	T	1111111111	1111111111	1111111111	2015	T	W	d/n	Nie wiem	n/a	Nie dotyczy	15	30	170	171	Królczyk	{}
+156	Wiktoria	N	d/n	1111111111	1111111111	1111111111	1111111111	N	d/n	d/n	Nie wiem	n/a	Nie dotyczy	6	30	\N	171	Kałka	{}
+54	Grzegorz	N	T	2014	5	1111111111	2013	T	W	other	Dziadek	n/a	Nie dotyczy	1	30	129	171	Dziadek	{}
+56	Herman	A	T	2024	11	15	2023	T	C	other	Stabilizator	other	Rakieta	1	30	29	171	Chekurda	{}
+59	Jakub	N	T	2019	9	27	2018	T	W	other	Ada z penisem	n/a	Nie dotyczy	2	30	113	171	Kornacki	{}
+61	Jakub	N	T	1111111111	1111111111	1111111111	2009	T	W	d/n	Nie wiem	n/a	Nie dotyczy	29	30	157	171	Nawrot	{}
+18	Anna	N	T	2016	5	1111111111	2015	T	W	other	Księżniczka	n/a	Nie dotyczy	2	30	170	171	Łopatniuk	{}
+15	Alicja Waleria	M	T	1111111111	1111111111	1111111111	2014	N	W	other	Abeille	n/a	Nie dotyczy	2	30	32	171	Barć	{}
+51	Gabriela	N	T	1111111111	1111111111	1111111111	2015	N	W	d/n	Nie wiem	n/a	Nie dotyczy	9	30	158	109	Michalik (Mucha)	{}
+117	Monika	A	T	2018	5	17	2017	T	W	other	Monia	n/a	Nie dotyczy	18	30	154	171	Góralik	{}
+108	Mateusz	N	T	2018	10	14	2017	N	W	other	Sułtan	n/a	Nie dotyczy	29	30	90	171	Sułek	{}
+82	Klaudia	N	d/n	1111111111	1111111111	1111111111	2017	T	d/n	d/n	Nie wiem	n/a	Nie dotyczy	3	30	170	171	Buchalska	{}
+76	Kasper	M	T	1111111111	1111111111	1111111111	2009	T	H	other	Pumba	n/a	Nie dotyczy	1	11	157	171	Krawet	{}
+77	Katarzyna	N	T	2019	3	15	2018	T	W	d/n	Nie wiem	n/a	Nie dotyczy	3	30	47	171	Marek	{}
+79	Katarzyna	N	T	1111111111	1111111111	1111111111	1111111111	T	W	d/n	Nie wiem	n/a	Nie dotyczy	29	30	170	171	Smuga	{}
+80	Katarzyna	N	T	1111111111	1111111111	1111111111	1111111111	T	W	d/n	Nie wiem	n/a	Nie dotyczy	29	30	170	171	Żanowska	{}
+87	Krzysztof	N	T	1111111111	1111111111	1111111111	1111111111	T	W	d/n	Nie wiem	n/a	Nie dotyczy	29	30	170	171	Tomczyk	{}
+89	Łukasz	A	T	2016	9	1111111111	2015	T	W	other	Ciepły	n/a	Nie dotyczy	5	30	95	171	Ciepły (Lindert)	{}
+94	Maciej	A	T	2019	5	24	2018	T	W	other	Mmm...	n/a	Nie dotyczy	15	30	41	171	Lisowski	{}
+92	Maciej	N	T	1111111111	1111111111	1111111111	2011	T	W	d/n	Nie wiem	n/a	Nie dotyczy	1	30	170	171	Hyla	{}
+63	Joanna	A	T	2010	1111111111	1111111111	2009	T	W	other	Aśka	n/a	Nie dotyczy	9	30	128	171	Lorenc	{}
+100	Małgorzata	N	T	1111111111	1111111111	1111111111	2009	T	W	d/n	Nie wiem	n/a	Nie dotyczy	29	30	170	171	Lurzyńska	{}
+101	Małgorzata	N	T	1111111111	1111111111	1111111111	2009	T	W	d/n	Nie wiem	n/a	Nie dotyczy	29	30	157	171	Żurek	{}
+65	Julia	N	T	1111111111	1111111111	1111111111	2013	T	W	d/n	Nie wiem	n/a	Nie dotyczy	29	30	170	171	Jurczuk	{}
+72	Karolina	A	T	2022	6	11	2019	T	C	other	Bezimienna	n/a	Nie dotyczy	1	30	113	171	Kania	{}
+11	Aleksandra	N	T	1111111111	1111111111	1111111111	2017	T	W	other	Księżniczka	n/a	Nie dotyczy	13	30	147	171	Klekocińska	{}
+115	Michał	N	T	1111111111	1111111111	1111111111	2009	T	W	d/n	Nie wiem	n/a	Nie dotyczy	29	30	157	171	Lenik	{}
+64	John	N	T	2019	3	15	2018	T	W	other	Jasiek	n/a	Nie dotyczy	9	30	113	171	Graff-Warburton	{}
+68	Kamila	N	T	1111111111	1111111111	1111111111	2009	T	W	d/n	Nie wiem	n/a	Nie dotyczy	29	30	157	171	Rozesłaniec	{}
+113	Michał	N	T	2018	4	4	2016	N	W	other	I Sekretarz PZPR towarzysz Władysław Gomułka, ps. Wiesław	other	Gomuł	3	30	41	67	Gumułka	{}
+70	Karol	N	d/n	1111111111	1111111111	1111111111	2015	N	d/n	d/n	Nie wiem	n/a	Nie dotyczy	7	30	170	171	Starowicz	{}
+103	Marcin	M	T	1111111111	1111111111	1111111111	2011	T	W	other	Martinus	n/a	Nie dotyczy	6	30	170	171	Loch	{}
+122	Natalia	O	T	1111111111	1111111111	1111111111	2016	T	W	d/n	Nie wiem	n/a	Nie dotyczy	3	30	170	171	Stachura	{}
+105	Maria	A	T	2024	11	15	2023	T	C	other	Felis	n/a	Nie dotyczy	1	30	159	171	Turakiewicz	{}
+134	Paweł	N	T	1111111111	1111111111	1111111111	2009	T	W	d/n	Nie wiem	n/a	Nie dotyczy	29	30	157	171	Nawrot	{}
+20	Anna	N	T	2016	5	1111111111	2015	T	W	other	Mała Ania	n/a	Nie dotyczy	15	30	118	171	Pawlicka	{}
+1	Adrianna	A	T	2019	9	27	2018	T	W	other	Adrenalina	other	Chupa Chups	2	30	113	171	Kapelak	{}
+148	Tadeusz	N	T	1111111111	1111111111	1111111111	2009	T	H	other	Kumdo	other	Tadek	1	11	157	171	Hessel	{}
+12	Aleksandra	N	d/n	1111111111	1111111111	1111111111	2018	T	d/n	d/n	Nie wiem	n/a	Nie dotyczy	15	30	170	171	Król	{}
+2	Agata	N	T	1111111111	1111111111	1111111111	1111111111	T	W	d/n	Nie wiem	n/a	Nie dotyczy	29	30	170	171	Grochowina	{}
+151	Urszula	N	T	1111111111	1111111111	1111111111	2009	T	W	d/n	Nie wiem	n/a	Nie dotyczy	29	30	157	171	Kasprzyk	{}
+157	Zdzisław	N	T	2009	1111111111	1111111111	2009	T	H	other	Profesor	n/a	Nie dotyczy	11	30	171	171	Gajda	{}
+132	Paweł	N	T	1111111111	1111111111	1111111111	1111111111	T	W	d/n	Nie wiem	n/a	Nie dotyczy	29	30	170	171	Grzegorczyk	{}
+135	Piotr	N	T	1111111111	1111111111	1111111111	2011	T	W	d/n	Nie wiem	n/a	Nie dotyczy	1	30	170	171	Bulica	{}
+133	Paweł	M	T	1111111111	1111111111	1111111111	2011	T	W	other	Synek	n/a	Nie dotyczy	3	2	46	171	Mucha	{}
+142	Roksana	N	T	1111111111	1111111111	1111111111	2011	T	W	d/n	Nie wiem	n/a	Nie dotyczy	15	30	148	171	Kidawa	{}
+153	Wawrzyniec	N	T	1111111111	1111111111	1111111111	2011	T	W	other	Wawrzyn	n/a	Nie dotyczy	12	30	19	171	Ordziniak	{}
+37	Błażej	N	T	2023	10	12	2023	N	W	other	Szanciarz	n/a	Nie dotyczy	3	30	110	171	Hałat	{}
+40	Christine	N	d/n	1111111111	1111111111	1111111111	2011	N	d/n	d/n	Nie wiem	n/a	Nie dotyczy	15	30	170	171	Przybyła-Kowalska	{}
+42	Daniel	A	T	1111111111	1111111111	1111111111	2016	N	W	other	Deanus	n/a	Nie dotyczy	15	30	90	171	Zgliński	{}
+43	Dawid	N	T	1111111111	1111111111	1111111111	1111111111	N	W	other	Bisquit	n/a	Nie dotyczy	29	30	53	171	Wiklik	{}
+44	Dominik	N	T	1111111111	1111111111	1111111111	1111111111	N	W	other	Gimli	n/a	Nie dotyczy	29	30	148	171	Ciebiera	{}
+45	Dominika	N	d/n	1111111111	1111111111	1111111111	2011	N	d/n	d/n	Nie wiem	n/a	Nie dotyczy	12	30	170	171	Liszka	{}
+46	Dominika	N	T	1111111111	1111111111	1111111111	2011	N	W	other	Szparag	n/a	Nie dotyczy	29	30	19	171	Szponar	{}
+48	Elżbieta	N	T	1111111111	1111111111	1111111111	1111111111	N	W	d/n	Nie wiem	n/a	Nie dotyczy	29	30	170	171	Mierzejewska	{}
+110	Mateusz	A	T	2020	2	28	2018	T	W	other	Kotlet	n/a	Nie dotyczy	3	30	118	171	Żurek	{}
+172	Weronika	A	T	2025	2	13	2023	T	C	other	Marchewa	n/a	Nie dotyczy	6	30	120	171	Marchewka	{}
+47	Dorota	N	T	2018	4	4	2017	T	W	other	Waćpanna	other	Doris	9	30	41	171	Drożyńska	{}
+173	Elżunia	A	T	2025	3	14	2024	T	C	other	Jeżyk	n/a	Nie dotyczy	34	30	56	171	Krasiejko	{}
+174	Feliks	A	T	2025	3	14	2024	T	C	other	Chłopiec z Warszawy	n/a	Nie dotyczy	4	30	31	171	Kwiatkowski	{}
+107	Martyna	A	T	2024	9	30	2023	T	C	other	Bober	n/a	Nie dotyczy	3	30	116	171	Kubiak	{}
+130	Paulina	N	T	2019	3	15	2018	T	W	other	Koziołek	n/a	Nie dotyczy	9	30	41	171	Kozioł	{}
+131	Paulina	N	T	2015	11	1111111111	2015	T	W	d/n	Nie wiem	n/a	Nie dotyczy	6	30	15	171	Tomżyńska	{}
+138	Piotr	N	d/n	1111111111	1111111111	1111111111	2015	T	d/n	d/n	Nie wiem	n/a	Nie dotyczy	29	30	\N	171	Szota	{}
+165	Krzysztof	A	T	2025	5	16	2024	T	C	other	Artifex	n/a	Nie dotyczy	15	30	130	171	Trela	{}
+95	Maciej	N	T	1111111111	1111111111	1111111111	2015	T	W	other	Dzidzia	n/a	Nie dotyczy	1	30	133	171	Małecki	{}
 171	Nie	N	N	1010101010	1010101010	1010101010	1111111111	T	d/n	n/a	Nie dotyczy	n/a	Nie dotyczy	29	30	171	171	dotyczy	{}
+41	Damian	A	T	1111111111	1111111111	1111111111	2015	N	W	other	Bandera	n/a	Nie dotyczy	15	30	43	171	Zych	{Buch}
+167	Dawid	A	T	2025	5	16	2022	N	C	other	Rudy	n/a	Nie dotyczy	2	30	125	117	Otłowski	{}
+62	Joanna	N	T	1111111111	1111111111	1111111111	1111111111	N	W	other	Szysza	n/a	Nie dotyczy	29	30	32	171	Krawczyk	{}
+66	Julia	N	d/n	1111111111	1111111111	1111111111	1111111111	N	d/n	other	Spanko	n/a	Nie dotyczy	29	30	130	171	Musiał	{}
+67	Kamila	N	T	1111111111	1111111111	1111111111	2017	N	W	other	Krwawa Baronessa	n/a	Nie dotyczy	2	30	133	171	Dziewońska (Paisley)	{}
+71	Karolina	N	d/n	1111111111	1111111111	1111111111	2016	N	d/n	d/n	Nie wiem	n/a	Nie dotyczy	7	30	170	171	Dzierżawska	{}
+116	Michał	A	T	2023	5	19	2022	T	C	other	Cukier	other	Małolata	15	30	64	121	Malata	{Mamut}
+19	Anna Maria	N	T	1111111111	1111111111	1111111111	2011	N	W	other	Litle dragon	other	Gestapo	12	1	32	171	Kuźma	{}
+38	Camilla	M	T	1111111111	1111111111	1111111111	2014	N	W	other	Cami	n/a	Nie dotyczy	31	30	158	171	Schindler	{}
+143	Sandra	A	T	2024	5	17	2023	T	C	other	Sander	n/a	Nie dotyczy	9	30	29	171	Chandzlik	{}
 170	Nie	N	d/n	1111111111	1111111111	1111111111	1111111111	N	d/n	d/n	Nie wiem	n/a	Nie dotyczy	29	30	170	171	wiem	{}
-16	Amelia	A	T	2018	10	14	2017	T	C	other	Emalia	n/a	Nie dotyczy	9	30	90	\N	Boufenghour	{}
-172	Weronika	A	T	2025	2	13	2023	T	C	other	Marchewa	n/a	Nie dotyczy	6	30	120	\N	Marchewka	{}
-173	Elżunia	A	T	2025	3	14	2024	T	C	other	Jeżyk	n/a	Nie dotyczy	34	30	56	\N	Krasiejko	{}
-174	Feliks	A	T	2025	3	14	2024	T	C	other	Chłopiec z Warszawy	n/a	Nie dotyczy	4	30	31	\N	Kwiatkowski	{}
+147	Szymon	N	d/n	1111111111	1111111111	1111111111	2015	T	d/n	other	Lewe Jądro w Ciemności	n/a	Nie dotyczy	5	30	96	171	Stankiewicz	{}
+149	Tomasz Andrzej	N	T	1111111111	1111111111	1111111111	2013	T	W	other	Potomek	n/a	Nie dotyczy	29	30	19	171	Cieciora	{}
+120	Natalia	A	T	2019	5	24	2018	T	W	other	Szynka	n/a	Nie dotyczy	32	30	148	171	Ciesielska (Olajossy)	{}
+16	Amelia	A	T	2018	10	14	2017	T	C	other	Emalia	n/a	Nie dotyczy	9	30	90	171	Boufenghour	{}
+26	Artur	N	T	1111111111	1111111111	1111111111	2011	N	W	d/n	Nie wiem	n/a	Nie dotyczy	7	30	19	171	Halcarz	{}
+27	Artur	N	T	1111111111	1111111111	1111111111	2011	N	W	d/n	Nie wiem	n/a	Nie dotyczy	3	30	32	171	Miadzielec	{}
+28	Artur	N	d/n	1111111111	1111111111	1111111111	2017	N	d/n	d/n	Nie wiem	n/a	Nie dotyczy	3	30	170	171	Szymański	{}
+30	Bartłomiej	A	T	2018	10	14	2017	N	W	other	Kucharz	n/a	Nie dotyczy	4	30	90	122	Olajossy	{}
+29	Bartłomiej	A	T	2023	9	29	2023	N	C	other	Nobod	n/a	Nie dotyczy	16	30	110	171	Grzeszykowski	{}
+32	Bartosz	N	T	1111111111	1111111111	1111111111	2010	N	W	other	Geolog	n/a	Nie dotyczy	13	30	148	171	Maciejewski	{}
+33	Bartosz	M	d/n	1111111111	1111111111	1111111111	2020	N	d/n	d/n	Nie wiem	n/a	Nie dotyczy	29	30	170	171	Sieniawski	{}
+34	Bartosz	N	d/n	1111111111	1111111111	1111111111	2011	N	d/n	d/n	Nie wiem	n/a	Nie dotyczy	29	30	170	171	Spytkowski	{}
+35	Beanus	N	T	1111111111	1111111111	1111111111	2014	N	W	other	Poronny Panicz	n/a	Nie dotyczy	29	30	97	171	Perennus	{}
+176	Czapka	A	T	2009	8	20	2009	T	H	n/a	Nie dotyczy	n/a	Nie dotyczy	1	11	148	76		{}
+50	Ewa	N	d/n	1111111111	1111111111	1111111111	2014	N	d/n	d/n	Nie wiem	n/a	Nie dotyczy	18	30	170	171	Smuga-Codutti	{}
+14	Alicja	O	d/n	1111111111	1111111111	1111111111	2016	N	d/n	d/n	Nie wiem	n/a	Nie dotyczy	2	30	170	171	Majczak	{}
+52	Gniewko	N	d/n	1111111111	1111111111	1111111111	2018	N	d/n	d/n	Nie wiem	n/a	Nie dotyczy	29	30	170	171	Wawrzyńczak	{}
+53	Grażyna	N	T	1111111111	1111111111	1111111111	2016	N	W	other	Malina	n/a	Nie dotyczy	29	30	19	171	Malinowska	{}
+55	Grzegorz	N	T	1111111111	1111111111	1111111111	1111111111	N	W	other	Cytrynek	n/a	Nie dotyczy	2	30	133	171	Lebedowicz	{}
+57	Jacek	N	d/n	1111111111	1111111111	1111111111	2011	N	d/n	d/n	Nie wiem	n/a	Nie dotyczy	29	30	170	171	Onisk	{}
+60	Jakub	N	T	1111111111	1111111111	1111111111	2015	N	W	other	Cybuch	n/a	Nie dotyczy	2	30	148	171	Łukasik	{}
+58	Jakub	N	d/n	1111111111	1111111111	1111111111	2018	N	d/n	d/n	Nie wiem	n/a	Nie dotyczy	2	30	170	171	Bukalski	{}
+23	Antoni	N	T	1111111111	1111111111	1111111111	2010	N	W	other	Astel	n/a	Nie dotyczy	12	30	148	171	Krzyżanowski	{}
+13	Aleksandra	N	d/n	1111111111	1111111111	1111111111	2016	N	d/n	d/n	Nie wiem	n/a	Nie dotyczy	3	30	170	171	Wagner	{}
+24	Artur	N	T	1111111111	1111111111	1111111111	2011	N	W	other	Biba	n/a	Nie dotyczy	2	30	97	171	Biba	{}
+73	Karolina	N	d/n	1111111111	1111111111	1111111111	2016	N	d/n	d/n	Nie wiem	n/a	Nie dotyczy	29	30	170	171	Mater	{}
+74	Karolina	N	T	1111111111	1111111111	1111111111	2014	N	W	d/n	Nie wiem	n/a	Nie dotyczy	3	30	146	171	Szklanny	{}
+75	Karolina	N	d/n	1111111111	1111111111	1111111111	2011	N	d/n	d/n	Nie wiem	n/a	Nie dotyczy	2	30	170	171	Wielgus	{}
+69	Karol Konrad	O	d/n	1111111111	1111111111	1111111111	2016	N	d/n	d/n	Nie wiem	n/a	Nie dotyczy	2	30	170	171	Czekałowski	{}
+88	Ludwik	N	d/n	1111111111	1111111111	1111111111	2018	N	d/n	other	El Michał	n/a	Nie dotyczy	2	30	170	171	Janiszewski	{}
+96	Maciej	N	T	1111111111	1111111111	1111111111	2014	N	W	other	Solon jak ten grek	n/a	Nie dotyczy	8	30	3	171	Solon	{}
+102	Marceli	A	T	2023	5	19	2023	N	C	other	Księciunio	n/a	Nie dotyczy	9	30	159	171	Mart-Łakomy	{}
+84	Konrad	N	T	1111111111	1111111111	1111111111	2011	N	W	other	Benikaza	other	Peruano	29	30	19	171		{}
+85	Konrad	N	d/n	1111111111	1111111111	1111111111	2015	N	d/n	d/n	Nie wiem	n/a	Nie dotyczy	2	30	170	171	Piwowarczyk	{}
+86	Krzysztof	O	T	1111111111	1111111111	1111111111	2014	N	W	other	Poniatowski	n/a	Nie dotyczy	29	30	109	171	Sadowski	{}
+90	Łukasz	N	T	2016	9	1111111111	2015	N	W	other	Yoda	n/a	Nie dotyczy	15	30	109	171	Pryk	{}
+91	Ma	N	d/n	1111111111	1111111111	1111111111	2015	N	d/n	d/n	Nie wiem	n/a	Nie dotyczy	1	30	170	171	Rysia	{}
+93	Maciej	N	d/n	1111111111	1111111111	1111111111	2017	N	d/n	d/n	Nie wiem	n/a	Nie dotyczy	15	30	170	171	Krzyżanek	{}
+97	Magdalena	N	T	1111111111	1111111111	1111111111	2010	N	W	other	Kasztanka	n/a	Nie dotyczy	6	30	148	171	Brilha	{}
+98	Maksymilian	N	T	1111111111	1111111111	1111111111	2017	N	W	other	Max	n/a	Nie dotyczy	15	30	147	171	Depa	{}
+99	Małgorzata	N	T	1111111111	1111111111	1111111111	2014	N	W	d/n	Nie wiem	n/a	Nie dotyczy	2	30	51	171	Głuszek	{}
+81	Kinga	N	d/n	1111111111	1111111111	1111111111	2015	N	d/n	d/n	Nie wiem	n/a	Nie dotyczy	29	30	170	171	Radwan	{}
+78	Katarzyna	N	d/n	1111111111	1111111111	1111111111	2015	N	d/n	d/n	Nie wiem	n/a	Nie dotyczy	9	30	170	171	Ostrowska	{}
+125	Patrycja	M	T	2018	5	17	2017	N	W	other	Chat	n/a	Nie dotyczy	15	30	154	43	Karauda	{}
+154	Weronika	N	T	1111111111	1111111111	1111111111	1111111111	N	W	other	Manista	n/a	Nie dotyczy	29	30	148	171	Manista	{}
+158	Zofia	N	T	1111111111	1111111111	1111111111	2011	N	W	other	Estel	n/a	Nie dotyczy	18	30	158	171	Krasińska-Krawet	{}
+159	Zuzanna	N	T	1111111111	1111111111	1111111111	2017	N	W	other	Rana	n/a	Nie dotyczy	3	30	42	171	Żmuda	{}
+111	Michalina	A	T	2024	11	15	2023	N	C	other	Allec	n/a	Nie dotyczy	9	30	159	171	Kokosińska	{}
+114	Michał	N	T	2019	11	22	2019	N	W	other	Śnięty Cwel Kasper	n/a	Nie dotyczy	9	30	125	171	Kasperek	{}
+121	Natalia	O	T	2022	9	30	2022	N	W	other	Lis	n/a	Nie dotyczy	3	30	130	171	Lisowska	{}
+123	Olga	A	T	2024	11	15	2024	N	C	other	Equus	other	Dajcie mi telefon, mam tam notatki	29	30	159	171	Wajda	{}
+126	Patrycja	N	T	1111111111	1111111111	1111111111	2014	N	W	d/n	Nie wiem	n/a	Nie dotyczy	6	30	158	171	Malinowska-Majdak	{}
+128	Patryk	N	T	1111111111	1111111111	1111111111	2013	N	W	d/n	Nie wiem	n/a	Nie dotyczy	15	30	148	171	Gujda	{}
 \.
 
 
@@ -1911,13 +1910,13 @@ COPY public.czlonkowie_zarzad (id, cantandi_id, kadencja_id, kasztelan_id, sekre
 8	67	11	154	159	122	41
 9	25	12	113	159	30	41
 10	2	14	\N	130	\N	\N
-11	163	14	163	163	163	163
 12	110	15	155	64	25	30
 13	110	16	109	121	25	64
 14	31	17	29	102	107	116
 1	24	5	19	142	\N	97
 2	24	5	19	142	\N	97
 3	133	6	19	142	\N	97
+11	\N	14	\N	\N	\N	\N
 \.
 
 
@@ -2812,6 +2811,7 @@ COPY public.django_admin_log (id, action_time, object_id, object_repr, action_fl
 866	2025-05-21 23:19:29.403366+02	29	Piazza Vittorio Puntoni - Ogród/Plac, Bolonia, Włochy	1	[{"added": {}}]	16	1
 867	2025-05-21 23:23:29.714157+02	26	2025-05-08 - 2025-05-11: Zagraniczny "Faerie Matricularum"	2	[{"added": {"name": "Zdarzenie", "object": "2025-05-10 12:00:00 - Parada przebierana"}}, {"added": {"name": "Zdarzenie", "object": "2025-05-10 14:00:00 - Darmowy lunch dla uczestnik\\u00f3w parady"}}, {"changed": {"name": "Zdarzenie", "object": "2025-05-09 20:00:00 - Impreza ze stoiskami balli i muzyk\\u0105", "fields": ["Godzina"]}}]	19	1
 868	2025-05-21 23:26:35.870341+02	24	2025-05-10 14:00:00 - Darmowy lunch dla uczestników parady	2	[{"changed": {"fields": ["Miejsce", "Opis"]}}]	20	1
+945	2025-07-01 13:22:32.882215+02	18	Anna "Księżniczka" Łopatniuk	2	[{"changed": {"fields": ["Pewno\\u015b\\u0107 daty sta\\u017cu", "Rodzic czapkowy", "Drugi rodzic czapkowy"]}}]	7	1
 869	2025-05-21 23:37:14.015033+02	23	2025-05-10 12:00:00 - Parada przebierana	2	[{"changed": {"fields": ["Opis"]}}, {"deleted": {"name": "Osoba", "object": "Bart\\u0142omiej \\"Kucharz\\" Olajossy - Kronika | Zdarzenie - 2025-05-10 12:00:00 - Parada przebierana"}}, {"deleted": {"name": "Osoba", "object": "Natalia \\"Szynka\\" Ciesielska (Olajossy) - Kronika | Zdarzenie - 2025-05-10 12:00:00 - Parada przebierana"}}]	20	1
 870	2025-05-21 23:37:35.719713+02	26	2025-05-08 - 2025-05-11: Zagraniczny "Faerie Matricularum"	2	[{"changed": {"name": "Zdarzenie", "object": "2025-05-10 14:00:00 - Darmowy lunch dla uczestnik\\u00f3w parady", "fields": ["Miejsce"]}}]	19	1
 871	2025-05-21 23:39:10.429534+02	24	2025-05-10 14:00:00 - Darmowy lunch dla uczestników parady	2	[{"changed": {"fields": ["Miejsce"]}}, {"deleted": {"name": "Osoba", "object": "Micha\\u0142 \\"Cukier/Ma\\u0142olata\\" Malata - Kronika | Zdarzenie - 2025-05-10 14:00:00 - Darmowy lunch dla uczestnik\\u00f3w parady"}}, {"deleted": {"name": "Osoba", "object": "Bart\\u0142omiej \\"Nobod\\" Grzeszykowski - Kronika | Zdarzenie - 2025-05-10 14:00:00 - Darmowy lunch dla uczestnik\\u00f3w parady"}}, {"deleted": {"name": "Osoba", "object": "Bartosz \\"Heniek\\" Hepek - Kronika | Zdarzenie - 2025-05-10 14:00:00 - Darmowy lunch dla uczestnik\\u00f3w parady"}}, {"deleted": {"name": "Osoba", "object": "Martyna \\"Bober\\" Kubiak - Kronika | Zdarzenie - 2025-05-10 14:00:00 - Darmowy lunch dla uczestnik\\u00f3w parady"}}, {"deleted": {"name": "Osoba", "object": "Sandra \\"Sander\\" Chandzlik - Kronika | Zdarzenie - 2025-05-10 14:00:00 - Darmowy lunch dla uczestnik\\u00f3w parady"}}, {"deleted": {"name": "Osoba", "object": "Maria \\"Felis\\" Turakiewicz - Kronika | Zdarzenie - 2025-05-10 14:00:00 - Darmowy lunch dla uczestnik\\u00f3w parady"}}, {"deleted": {"name": "Osoba", "object": "Herman \\"Stabilizator/Rakieta\\" Chekurda - Kronika | Zdarzenie - 2025-05-10 14:00:00 - Darmowy lunch dla uczestnik\\u00f3w parady"}}, {"deleted": {"name": "Osoba", "object": "Michalina \\"Allec\\" Kokosi\\u0144ska - Kronika | Zdarzenie - 2025-05-10 14:00:00 - Darmowy lunch dla uczestnik\\u00f3w parady"}}, {"deleted": {"name": "Osoba", "object": "Damian \\"Bandera/Buch\\" Zych - Kronika | Zdarzenie - 2025-05-10 14:00:00 - Darmowy lunch dla uczestnik\\u00f3w parady"}}, {"deleted": {"name": "Osoba", "object": "Dorota \\"Wa\\u0107panna/Doris\\" Dro\\u017cy\\u0144ska - Kronika | Zdarzenie - 2025-05-10 14:00:00 - Darmowy lunch dla uczestnik\\u00f3w parady"}}, {"deleted": {"name": "Osoba", "object": "Bart\\u0142omiej \\"Kucharz\\" Olajossy - Kronika | Zdarzenie - 2025-05-10 14:00:00 - Darmowy lunch dla uczestnik\\u00f3w parady"}}, {"deleted": {"name": "Osoba", "object": "Natalia \\"Szynka\\" Ciesielska (Olajossy) - Kronika | Zdarzenie - 2025-05-10 14:00:00 - Darmowy lunch dla uczestnik\\u00f3w parady"}}, {"deleted": {"name": "Osoba", "object": "Kacper \\"Szogun\\" Wilk - Kronika | Zdarzenie - 2025-05-10 14:00:00 - Darmowy lunch dla uczestnik\\u00f3w parady"}}, {"deleted": {"name": "Osoba", "object": "Krysia Cholewa - Kronika | Zdarzenie - 2025-05-10 14:00:00 - Darmowy lunch dla uczestnik\\u00f3w parady"}}, {"deleted": {"name": "Osoba", "object": "Szymon \\"Tur\\" Zwias - Kronika | Zdarzenie - 2025-05-10 14:00:00 - Darmowy lunch dla uczestnik\\u00f3w parady"}}, {"deleted": {"name": "Osoba", "object": "Wiktoria \\"Wedel\\" Dole\\u017cych - Kronika | Zdarzenie - 2025-05-10 14:00:00 - Darmowy lunch dla uczestnik\\u00f3w parady"}}, {"deleted": {"name": "Osoba", "object": "Micha\\u0142 \\"Cukier/Ma\\u0142olata\\" Malata - Kronika | Zdarzenie - 2025-05-10 14:00:00 - Darmowy lunch dla uczestnik\\u00f3w parady"}}, {"deleted": {"name": "Osoba", "object": "Bart\\u0142omiej \\"Nobod\\" Grzeszykowski - Kronika | Zdarzenie - 2025-05-10 14:00:00 - Darmowy lunch dla uczestnik\\u00f3w parady"}}, {"deleted": {"name": "Osoba", "object": "Bartosz \\"Heniek\\" Hepek - Kronika | Zdarzenie - 2025-05-10 14:00:00 - Darmowy lunch dla uczestnik\\u00f3w parady"}}, {"deleted": {"name": "Osoba", "object": "Martyna \\"Bober\\" Kubiak - Kronika | Zdarzenie - 2025-05-10 14:00:00 - Darmowy lunch dla uczestnik\\u00f3w parady"}}, {"deleted": {"name": "Osoba", "object": "Sandra \\"Sander\\" Chandzlik - Kronika | Zdarzenie - 2025-05-10 14:00:00 - Darmowy lunch dla uczestnik\\u00f3w parady"}}, {"deleted": {"name": "Osoba", "object": "Maria \\"Felis\\" Turakiewicz - Kronika | Zdarzenie - 2025-05-10 14:00:00 - Darmowy lunch dla uczestnik\\u00f3w parady"}}, {"deleted": {"name": "Osoba", "object": "Herman \\"Stabilizator/Rakieta\\" Chekurda - Kronika | Zdarzenie - 2025-05-10 14:00:00 - Darmowy lunch dla uczestnik\\u00f3w parady"}}, {"deleted": {"name": "Osoba", "object": "Michalina \\"Allec\\" Kokosi\\u0144ska - Kronika | Zdarzenie - 2025-05-10 14:00:00 - Darmowy lunch dla uczestnik\\u00f3w parady"}}, {"deleted": {"name": "Osoba", "object": "Damian \\"Bandera/Buch\\" Zych - Kronika | Zdarzenie - 2025-05-10 14:00:00 - Darmowy lunch dla uczestnik\\u00f3w parady"}}, {"deleted": {"name": "Osoba", "object": "Dorota \\"Wa\\u0107panna/Doris\\" Dro\\u017cy\\u0144ska - Kronika | Zdarzenie - 2025-05-10 14:00:00 - Darmowy lunch dla uczestnik\\u00f3w parady"}}, {"deleted": {"name": "Osoba", "object": "Bart\\u0142omiej \\"Kucharz\\" Olajossy - Kronika | Zdarzenie - 2025-05-10 14:00:00 - Darmowy lunch dla uczestnik\\u00f3w parady"}}, {"deleted": {"name": "Osoba", "object": "Natalia \\"Szynka\\" Ciesielska (Olajossy) - Kronika | Zdarzenie - 2025-05-10 14:00:00 - Darmowy lunch dla uczestnik\\u00f3w parady"}}, {"deleted": {"name": "Osoba", "object": "Kacper \\"Szogun\\" Wilk - Kronika | Zdarzenie - 2025-05-10 14:00:00 - Darmowy lunch dla uczestnik\\u00f3w parady"}}, {"deleted": {"name": "Osoba", "object": "Krysia Cholewa - Kronika | Zdarzenie - 2025-05-10 14:00:00 - Darmowy lunch dla uczestnik\\u00f3w parady"}}, {"deleted": {"name": "Osoba", "object": "Szymon \\"Tur\\" Zwias - Kronika | Zdarzenie - 2025-05-10 14:00:00 - Darmowy lunch dla uczestnik\\u00f3w parady"}}, {"deleted": {"name": "Osoba", "object": "Wiktoria \\"Wedel\\" Dole\\u017cych - Kronika | Zdarzenie - 2025-05-10 14:00:00 - Darmowy lunch dla uczestnik\\u00f3w parady"}}]	20	1
@@ -2842,6 +2842,57 @@ COPY public.django_admin_log (id, action_time, object_id, object_repr, action_fl
 928	2025-05-23 00:39:07.360334+02	26	2025-05-08 - 2025-05-11: Zagraniczny "Faerie Matricularum"	2	[{"changed": {"fields": ["Miejsca"]}}, {"added": {"name": "Zdarzenie", "object": "2025-05-08 06:30:00 - Podr\\u00f3\\u017c z buta do centrum"}}]	19	1
 929	2025-05-23 00:48:00.738142+02	30	2025-05-08 06:30:00 - Podróż z buta do centrum	2	[{"changed": {"fields": ["Opis"]}}, {"deleted": {"name": "Osoba", "object": "Micha\\u0142 \\"Cukier/Ma\\u0142olata\\" Malata - Kronika | Zdarzenie - 2025-05-08 06:30:00 - Podr\\u00f3\\u017c z buta do centrum"}}, {"deleted": {"name": "Osoba", "object": "Bart\\u0142omiej \\"Nobod\\" Grzeszykowski - Kronika | Zdarzenie - 2025-05-08 06:30:00 - Podr\\u00f3\\u017c z buta do centrum"}}, {"deleted": {"name": "Osoba", "object": "Martyna \\"Bober\\" Kubiak - Kronika | Zdarzenie - 2025-05-08 06:30:00 - Podr\\u00f3\\u017c z buta do centrum"}}, {"deleted": {"name": "Osoba", "object": "Damian \\"Bandera/Buch\\" Zych - Kronika | Zdarzenie - 2025-05-08 06:30:00 - Podr\\u00f3\\u017c z buta do centrum"}}, {"deleted": {"name": "Osoba", "object": "Dorota \\"Wa\\u0107panna/Doris\\" Dro\\u017cy\\u0144ska - Kronika | Zdarzenie - 2025-05-08 06:30:00 - Podr\\u00f3\\u017c z buta do centrum"}}, {"deleted": {"name": "Osoba", "object": "Bart\\u0142omiej \\"Kucharz\\" Olajossy - Kronika | Zdarzenie - 2025-05-08 06:30:00 - Podr\\u00f3\\u017c z buta do centrum"}}, {"deleted": {"name": "Osoba", "object": "Natalia \\"Szynka\\" Ciesielska (Olajossy) - Kronika | Zdarzenie - 2025-05-08 06:30:00 - Podr\\u00f3\\u017c z buta do centrum"}}, {"added": {"name": "Zdj\\u0119cie ze zdarzenia", "object": "Podr\\u00f3\\u017c z buta do centrum - Mural kotki 2025-05-08"}}, {"added": {"name": "Zdj\\u0119cie ze zdarzenia", "object": "Podr\\u00f3\\u017c z buta do centrum - Posterunek karabinieri 2025-05-08"}}, {"added": {"name": "Zdj\\u0119cie ze zdarzenia", "object": "Podr\\u00f3\\u017c z buta do centrum - Punkt zbi\\u00f3rkowy - fontanna Neptuna 2025-05-08"}}, {"added": {"name": "Zdj\\u0119cie ze zdarzenia", "object": "Podr\\u00f3\\u017c z buta do centrum - Jaka\\u015b kaplica 2025-05-08"}}]	20	1
 930	2025-06-09 18:12:16.016556+02	160	Zofia Krasińska	3		7	1
+931	2025-06-22 13:33:24.92777+02	175	Czapka "BCS UJ" 	1	[{"added": {}}]	7	1
+932	2025-06-22 21:46:52.383472+02	2	Agata Grochowina	2	[{"changed": {"fields": ["Rok pojawienia si\\u0119", "Pewno\\u015b\\u0107 daty sta\\u017cu", "Rok chrztu", "Miesi\\u0105c chrztu", "Dzie\\u0144 chrztu"]}}]	7	1
+933	2025-06-22 21:53:34.730919+02	157	Zdzisław "Profesor" Gajda	2	[{"changed": {"fields": ["Pewno\\u015b\\u0107 daty sta\\u017cu", "Ochrzczony?", "Rok chrztu"]}}]	7	1
+934	2025-06-22 22:14:36.465982+02	116	Michał "Cukier/Małolata" Malata	2	[{"changed": {"fields": ["przezwiska", "Pewno\\u015b\\u0107 daty sta\\u017cu"]}}]	7	1
+935	2025-06-22 22:15:18.704259+02	116	Michał "Cukier/Małolata" Malata	2	[{"changed": {"fields": ["Drugi rodzic czapkowy"]}}]	7	1
+936	2025-06-22 22:16:42.502725+02	163	Nie dotyczy	3		7	1
+937	2025-06-22 22:17:14.298061+02	162	Nie wiem	3		7	1
+938	2025-07-01 12:10:58.436575+02	170	Nie "Czapka" wiem	2	[{"changed": {"fields": ["Wpisz imi\\u0119 czapkowe:"]}}]	7	1
+939	2025-07-01 12:14:15.196295+02	170	Nie "Nie wiem" wiem	2	[{"changed": {"fields": ["Wpisz imi\\u0119 czapkowe:"]}}]	7	1
+940	2025-07-01 12:15:33.270339+02	170	Nie wiem	2	[{"changed": {"fields": ["Imi\\u0119 czapkowe"]}}]	7	1
+941	2025-07-01 12:15:44.47964+02	170	Nie wiem	2	[]	7	1
+942	2025-07-01 13:20:06.297691+02	2	Agata Grochowina	2	[]	7	1
+943	2025-07-01 13:20:53.168714+02	2	Agata Grochowina	2	[{"changed": {"fields": ["Rodzic czapkowy"]}}]	7	1
+944	2025-07-01 13:21:05.899455+02	2	Agata Grochowina	2	[{"changed": {"fields": ["Drugi rodzic czapkowy"]}}]	7	1
+946	2025-07-01 13:23:38.124027+02	22	Anna Wyroba	2	[{"changed": {"fields": ["Pewno\\u015b\\u0107 daty sta\\u017cu", "Rodzic czapkowy", "Drugi rodzic czapkowy"]}}]	7	1
+947	2025-07-01 13:24:07.219695+02	49	Eryk Królczyk	2	[{"changed": {"fields": ["Pewno\\u015b\\u0107 daty sta\\u017cu", "Rodzic czapkowy", "Drugi rodzic czapkowy"]}}]	7	1
+948	2025-07-01 13:24:46.998394+02	79	Katarzyna Smuga	2	[{"changed": {"fields": ["Pewno\\u015b\\u0107 daty sta\\u017cu", "Rodzic czapkowy", "Drugi rodzic czapkowy"]}}]	7	1
+949	2025-07-01 13:25:16.065866+02	80	Katarzyna Żanowska	2	[{"changed": {"fields": ["Pewno\\u015b\\u0107 daty sta\\u017cu", "Rodzic czapkowy", "Drugi rodzic czapkowy"]}}]	7	1
+950	2025-07-01 13:25:48.758609+02	87	Krzysztof Tomczyk	2	[{"changed": {"fields": ["Pewno\\u015b\\u0107 daty sta\\u017cu", "Rodzic czapkowy", "Drugi rodzic czapkowy"]}}]	7	1
+951	2025-07-01 13:26:12.063034+02	92	Maciej Hyla	2	[{"changed": {"fields": ["Pewno\\u015b\\u0107 daty sta\\u017cu", "Rodzic czapkowy", "Drugi rodzic czapkowy"]}}]	7	1
+952	2025-07-01 13:26:38.234358+02	100	Małgorzata Lurzyńska	2	[{"changed": {"fields": ["Pewno\\u015b\\u0107 daty sta\\u017cu", "Rodzic czapkowy", "Drugi rodzic czapkowy"]}}]	7	1
+953	2025-07-01 13:27:12.964092+02	103	Marcin "Martinus" Loch	2	[{"changed": {"fields": ["Pewno\\u015b\\u0107 daty sta\\u017cu", "Rodzic czapkowy", "Drugi rodzic czapkowy"]}}]	7	1
+954	2025-07-01 13:27:31.999993+02	122	Natalia Stachura	2	[{"changed": {"fields": ["Pewno\\u015b\\u0107 daty sta\\u017cu", "Rodzic czapkowy", "Drugi rodzic czapkowy"]}}]	7	1
+955	2025-07-01 13:28:04.89329+02	132	Paweł Grzegorczyk	2	[{"changed": {"fields": ["Pewno\\u015b\\u0107 daty sta\\u017cu", "Rodzic czapkowy", "Drugi rodzic czapkowy"]}}]	7	1
+956	2025-07-01 13:28:43.721139+02	135	Piotr Bulica	2	[{"changed": {"fields": ["Pewno\\u015b\\u0107 daty sta\\u017cu", "Rodzic czapkowy", "Drugi rodzic czapkowy"]}}]	7	1
+957	2025-07-01 13:31:19.87139+02	157	Zdzisław "Profesor" Gajda	2	[{"changed": {"fields": ["Rodzic czapkowy", "Drugi rodzic czapkowy"]}}]	7	1
+958	2025-07-01 13:33:34.031502+02	157	Zdzisław "Profesor" Gajda	2	[]	7	1
+959	2025-07-01 13:33:49.922194+02	175	Czapka "BCS UJ" 	3		7	1
+960	2025-07-01 13:43:17.845048+02	176	Czapka "BCS UJ" 	1	[{"added": {}}]	7	1
+961	2025-07-01 15:31:51.371628+02	68	Kamila Rozesłaniec	2	[{"changed": {"fields": ["Pewno\\u015b\\u0107 daty sta\\u017cu", "Drugi rodzic czapkowy"]}}]	7	1
+962	2025-07-01 15:41:10.4531+02	10	Aleksander Wędrychowski	2	[{"changed": {"fields": ["Pewno\\u015b\\u0107 daty sta\\u017cu", "Drugi rodzic czapkowy"]}}]	7	1
+963	2025-07-01 15:41:18.124254+02	10	Aleksander Wędrychowski	2	[{"changed": {"fields": ["Drugi rodzic czapkowy"]}}]	7	1
+964	2025-07-01 15:52:32.381001+02	10	Aleksander Wędrychowski	2	[]	7	1
+965	2025-07-01 15:53:09.204438+02	12	Aleksandra Król	2	[{"changed": {"fields": ["Pewno\\u015b\\u0107 daty sta\\u017cu"]}}]	7	1
+966	2025-07-01 15:54:25.297195+02	17	Aneta Galara	2	[{"changed": {"fields": ["Pewno\\u015b\\u0107 daty sta\\u017cu"]}}]	7	1
+967	2025-07-01 16:18:50.23584+02	134	Paweł Nawrot	2	[{"changed": {"fields": ["Pewno\\u015b\\u0107 daty sta\\u017cu"]}}]	7	1
+968	2025-07-01 16:20:28.842212+02	134	Paweł Nawrot	2	[{"changed": {"fields": ["Drugi rodzic czapkowy"]}}]	7	1
+969	2025-07-01 16:43:04.598887+02	115	Michał Lenik	2	[{"changed": {"fields": ["Pewno\\u015b\\u0107 daty sta\\u017cu"]}}]	7	1
+970	2025-07-01 17:02:55.756871+02	1	Adrianna "Adrenalina/Chupa Chups" Kapelak	2	[{"changed": {"fields": ["Pewno\\u015b\\u0107 daty sta\\u017cu"]}}]	7	1
+971	2025-07-01 17:03:51.285847+02	3	Agnieszka "Avis" Albrychiewicz	2	[{"changed": {"fields": ["Pewno\\u015b\\u0107 daty sta\\u017cu"]}}]	7	1
+972	2025-07-01 17:15:37.148586+02	148	Tadeusz "Kumdo/Tadek" Hessel	2	[{"changed": {"fields": ["Pewno\\u015b\\u0107 daty sta\\u017cu"]}}]	7	1
+973	2025-07-01 17:15:57.455719+02	151	Urszula Kasprzyk	2	[{"changed": {"fields": ["Pewno\\u015b\\u0107 daty sta\\u017cu"]}}]	7	1
+974	2025-07-01 17:16:23.824276+02	133	Paweł "Synek" Mucha	2	[{"changed": {"fields": ["Pewno\\u015b\\u0107 daty sta\\u017cu"]}}]	7	1
+975	2025-07-01 17:16:41.323518+02	142	Roksana Kidawa	2	[{"changed": {"fields": ["Pewno\\u015b\\u0107 daty sta\\u017cu"]}}]	7	1
+976	2025-07-01 17:17:00.603391+02	153	Wawrzyniec "Wawrzyn" Ordziniak	2	[{"changed": {"fields": ["Pewno\\u015b\\u0107 daty sta\\u017cu"]}}]	7	1
+977	2025-07-01 18:06:46.525599+02	176	Czapka "" 	2	[{"changed": {"fields": ["Imi\\u0119 czapkowe", "Wpisz imi\\u0119 czapkowe:"]}}]	7	1
+978	2025-07-01 18:07:14.421947+02	176	Czapka "" 	2	[{"changed": {"fields": ["Imi\\u0119 czapkowe"]}}]	7	1
+979	2025-07-01 18:07:38.336993+02	176	Czapka "" 	2	[{"changed": {"fields": ["Imi\\u0119 czapkowe"]}}]	7	1
+980	2025-07-01 18:07:50.380177+02	176	Czapka "" 	2	[{"changed": {"fields": ["Imi\\u0119 czapkowe"]}}]	7	1
+981	2025-07-01 18:10:37.54106+02	176	Czapka "Nie dotyczy" 	2	[{"changed": {"fields": ["Wpisz imi\\u0119 czapkowe:"]}}]	7	1
+982	2025-07-01 18:10:44.754595+02	176	Czapka 	2	[{"changed": {"fields": ["Imi\\u0119 czapkowe"]}}]	7	1
 \.
 
 
@@ -3037,6 +3088,10 @@ COPY public.django_migrations (id, app, name, applied) FROM stdin;
 178	admin_interface	0028_theme_show_fieldsets_as_tabs_and_more	2025-05-19 23:42:04.53036+02
 179	admin_interface	0029_theme_css_generic_link_active_color	2025-05-19 23:42:04.537773+02
 180	admin_interface	0030_theme_collapsible_stacked_inlines_and_more	2025-05-19 23:42:04.555002+02
+181	kronika	0027_alter_miejsce_typ	2025-07-01 16:13:51.382665+02
+182	kronika	0028_alter_obrazwydarzenie_wydarzenie_and_more	2025-07-03 20:28:03.428731+02
+183	encyklopedia	0014_alter_tradycjabcs_wydarzenie	2025-07-03 20:28:03.437295+02
+184	czlonkowie	0035_alter_bean_czapka_1_alter_bean_czapka_2_and_more	2025-07-03 20:28:03.695606+02
 \.
 
 
@@ -3048,6 +3103,7 @@ COPY public.django_session (session_key, session_data, expire_date) FROM stdin;
 uqejwy4sjit3ps460mk23rwwcob1eiut	.eJxVjDsOAiEUAO9CbcgDHj9Le89A-Dxl1UCy7FbGuxuSLbSdmcybhbhvNeyD1rAUdmaCnX5ZivlJbYryiO3eee5tW5fEZ8IPO_i1F3pdjvZvUOOoc2scOC2Nkzc0GkDLlKIigzoBek3gnIrKg7VURAZhVcEitERDFtEr9vkCmjk18A:1u7roq:GItcFo0EY88Xya-uF0tPE8N4uko-gbzywcx3UjlmSF8	2025-05-08 10:20:28.689032+02
 qltd0zqr7bumeuqwl9rz582r60t20a1u	.eJxVjDsOAiEUAO9CbcgDHj9Le89A-Dxl1UCy7FbGuxuSLbSdmcybhbhvNeyD1rAUdmaCnX5ZivlJbYryiO3eee5tW5fEZ8IPO_i1F3pdjvZvUOOoc2scOC2Nkzc0GkDLlKIigzoBek3gnIrKg7VURAZhVcEitERDFtEr9vkCmjk18A:1uH8Gb:33OQjUkZ7BMKZCVOL8v7dxgVddcHR_CqtoQKy5ZgjGw	2025-06-02 23:43:25.633742+02
 yhbs7ag3ngoo93uvhgr2xcq7c6ikn0iz	.eJxVjDsOAiEUAO9CbcgDHj9Le89A-Dxl1UCy7FbGuxuSLbSdmcybhbhvNeyD1rAUdmaCnX5ZivlJbYryiO3eee5tW5fEZ8IPO_i1F3pdjvZvUOOoc2scOC2Nkzc0GkDLlKIigzoBek3gnIrKg7VURAZhVcEitERDFtEr9vkCmjk18A:1uOOW6:FUUzeufnnTDD59mHRTzlEQKHS5r7THK2qchfUg5WPT4	2025-06-23 00:29:26.965873+02
+e2w126gsubz1f9nieaoyi47njc6foy36	.eJxVjDsOAiEUAO9CbcgDHj9Le89A-Dxl1UCy7FbGuxuSLbSdmcybhbhvNeyD1rAUdmaCnX5ZivlJbYryiO3eee5tW5fEZ8IPO_i1F3pdjvZvUOOoc2scOC2Nkzc0GkDLlKIigzoBek3gnIrKg7VURAZhVcEitERDFtEr9vkCmjk18A:1uWXvQ:dLWAHzmhbNQISAaTGjliMc_wNpgYG4fxiTSsmSEngTU	2025-07-15 12:09:16.945006+02
 \.
 
 
@@ -3326,7 +3382,7 @@ SELECT pg_catalog.setval('public.czlonkowie_czapki_id_seq', 35, true);
 -- Name: czlonkowie_czlonek_id_seq; Type: SEQUENCE SET; Schema: public; Owner: projectuser
 --
 
-SELECT pg_catalog.setval('public.czlonkowie_czlonek_id_seq', 174, true);
+SELECT pg_catalog.setval('public.czlonkowie_czlonek_id_seq', 176, true);
 
 
 --
@@ -3389,7 +3445,7 @@ SELECT pg_catalog.setval('public.czlonkowie_zwierzeczapkowe_id_seq', 13, true);
 -- Name: django_admin_log_id_seq; Type: SEQUENCE SET; Schema: public; Owner: projectuser
 --
 
-SELECT pg_catalog.setval('public.django_admin_log_id_seq', 930, true);
+SELECT pg_catalog.setval('public.django_admin_log_id_seq', 982, true);
 
 
 --
@@ -3403,7 +3459,7 @@ SELECT pg_catalog.setval('public.django_content_type_id_seq', 37, true);
 -- Name: django_migrations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: projectuser
 --
 
-SELECT pg_catalog.setval('public.django_migrations_id_seq', 180, true);
+SELECT pg_catalog.setval('public.django_migrations_id_seq', 184, true);
 
 
 --

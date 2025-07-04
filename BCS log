@@ -1,30 +1,31 @@
 
-Python lines of code:
-    23 kwietnia: 0 lines
-    24 kwietnia: x lines
-    25 kwietnia: x lines
-    28 kwietnia: x lines
-    29 kwietnia: x lines
-    30 kwietnia: x lines
-    1 maja:     x lines
-    2 maja:     x lines
-    3 maja:     x lines
-    4 maja:     1700 lines
-    5 maja:     1850 lines (+150)
-    9 maja:     1966 lines (+154)
-    13 maja:    2200 lines (+234)
-    14 maja:    2274 lines (+74)
-    15 maja:    2233 lines (-41)
-    18 maja:    2253 lines (+20)
-    19 maja:    2352 lines (+99)
-    21 maja:    2355 lines (+3)
-    22 maja:    2355 lines (+0)
-    29 maja:    2355 lines (+0)
-    17 czerwca: 2556 lines (+201)
-    21 czerwca: 2591 lines (+35)
-    29 czerwca: 2590 lines (-1)
-    1 lipca:    2590 lines (+0)
-    3 lipca:
+Python / SQL lines of code:
+    23 kwietnia: 0 / 0 lines
+    24 kwietnia: x / y lines
+    25 kwietnia: x / y lines
+    28 kwietnia: x / y lines
+    29 kwietnia: x / y lines
+    30 kwietnia: x / y lines
+    1 maja:     x / y lines
+    2 maja:     x / y lines
+    3 maja:     x / y lines
+    4 maja:     1700 / y lines
+    5 maja:     1850 / y lines (+150)
+    9 maja:     1966 / y lines (+154)
+    13 maja:    2200 / y lines (+234)
+    14 maja:    2274 / y lines (+74)
+    15 maja:    2233 / y lines (-41)
+    18 maja:    2253 / y lines (+20)
+    19 maja:    2352 / y lines (+99)
+    21 maja:    2355 / y lines (+3)
+    22 maja:    2355 / y lines (+0)
+    29 maja:    2355 / y lines (+0)
+    17 czerwca: 2556 / y lines (+201)
+    21 czerwca: 2591 / 4781 lines (+35)
+    29 czerwca: 2590 / y lines (-1)
+    1 lipca:    2590 / y lines (+0)
+    3 lipca:    2633 / y lines (+43)
+    4 lipca:    2633 / 4837 lines (+0 / +56)
 
     24 kwietnia - 4 maja (9 / 11 days):
         Average speed of development: 155 lines per day (~160)
@@ -40,6 +41,11 @@ Python lines of code:
         Average speed of development: 18 lines per day (~20)
         Average lines of code on an active day: 78 lines per day (~80)
         Average positive lines on an active day: 79 lines per day (~80)
+
+    1 lipca - teraz (3 / 4 days):
+        Average speed of development: 25 lines per day (~30)
+        Average lines of code on an active day: 50 lines per day (~50)
+        Average positive lines on an active day: 50 lines per day (~50)
 
 
 

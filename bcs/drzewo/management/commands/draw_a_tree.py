@@ -17,7 +17,7 @@ class Command(BaseCommand):
         # self.stdout.write(self.style.SUCCESS("Tree rendered ➜ tree.png"))
 
 def build_layers_and_edges_from_db():
-    layers = {rok: [set()] for rok in range(ROK_ZALOZENIA, BIEZACY_ROK + 1)}
+    layers = {rocznik: [set()] for rocznik in range(ROK_ZALOZENIA, BIEZACY_ROK + 1)}
     edges = {}
     czlonkowie = Czlonek.objects.filter(ochrzczony=TextChoose.YES[0]).select_related("rodzic_1", "rodzic_2")
     dzieci_czapki = []

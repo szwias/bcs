@@ -28,7 +28,7 @@ def generate_autocomplete_views(model, label_list, value_list, model_list, globa
         url_name = f"{kebabcase(model_name)}-{kebabcase(field)}-by-label-autocomplete"
         url_patterns.append(path(f"{url_name}/", view_class.as_view(), name=url_name))
 
-        widgets[field] = partial(autocomplete.ListSelect2, url=f"{app_label}:{url_name}")
+        widgets[field] = partial(autocomplete.ListSelect2, url=f"{app_label}_autocomplete:{url_name}")
 
     for field in value_list:
         view_name = f"{field.title().replace('_', '')}Autocomplete"
@@ -42,7 +42,7 @@ def generate_autocomplete_views(model, label_list, value_list, model_list, globa
         url_name = f"{kebabcase(model_name)}-{kebabcase(field)}-by-value-autocomplete"
         url_patterns.append(path(f"{url_name}/", view_class.as_view(), name=url_name))
 
-        widgets[field] = partial(autocomplete.ListSelect2, url=f"{app_label}:{url_name}")
+        widgets[field] = partial(autocomplete.ListSelect2, url=f"{app_label}_autocomplete:{url_name}")
 
     for model_name_str in model_list:
         if '.' in model_name_str:
@@ -63,7 +63,7 @@ def generate_autocomplete_views(model, label_list, value_list, model_list, globa
 
         for field in model._meta.fields:
             if getattr(field, 'related_model', None) == related_model:
-                widgets[field.name] = partial(autocomplete.ModelSelect2, url=f"{app_label}:{url_name}")
+                widgets[field.name] = partial(autocomplete.ModelSelect2, url=f"{app_label}_autocomplete:{url_name}")
 
     return url_patterns, {model_name: widgets}
 
