@@ -133,13 +133,13 @@ class OsobyForm(forms.ModelForm):
         exclude = ['content_type', 'object_id']
         widgets = {
             'czlonek': autocomplete.ModelSelect2(
-                url='czlonkowie:czlonek-records-autocomplete'
+                url='czlonkowie_autocomplete:czlonek-records-autocomplete'
             ),
             'bean': autocomplete.ModelSelect2(
-                url='czlonkowie:bean-records-autocomplete'
+                url='czlonkowie_autocomplete:bean-records-autocomplete'
             ),
             'inna_osoba': autocomplete.ModelSelect2(
-                url='czlonkowie:inna-osoba-records-autocomplete'
+                url='czlonkowie_autocomplete:inna-osoba-records-autocomplete'
             )
         }
 
@@ -157,9 +157,9 @@ class ImieSzlacheckieForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        if self.instance and self.instance.nazwa:
-            imie = self.instance.nazwa
-            self.fields['posiadacz_display'].initial = f"{imie.nazwa} {imie.nazwisko}"
+        if self.instance and self.instance.imie:
+            imie = self.instance.imie
+            self.fields['posiadacz_display'].initial = f"{imie.imie} {imie.nazwisko}"
 
 class ZwierzeCzapkoweForm(forms.ModelForm):
     imie_display = forms.CharField(
@@ -185,14 +185,14 @@ class DawnyZarzadForm(forms.ModelForm):
         fields = '__all__'
 
         widgets = build_widgets(autocomplete_widgets['DawnyZarzad'])
-        widgets.update({'kadencja': autocomplete.ModelSelect2(url='core:custom-kadencja-autocomplete')})
+        widgets.update({'kadencja': autocomplete.ModelSelect2(url='core_autocomplete:custom-kadencja-autocomplete')})
 
 class ZarzadForm(forms.ModelForm):
     class Meta:
         model = Zarzad
         fields = '__all__'
         widgets = build_widgets(autocomplete_widgets['Zarzad'])
-        widgets.update({'kadencja': autocomplete.ModelSelect2(url='core:custom-kadencja-autocomplete')})
+        widgets.update({'kadencja': autocomplete.ModelSelect2(url='core_autocomplete:custom-kadencja-autocomplete')})
 
 class WielkiMistrzForm(forms.ModelForm):
     class Meta:
