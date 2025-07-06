@@ -1,5 +1,6 @@
 # czlonkowie/management/commands/render_tree.py
 from collections import defaultdict
+import json
 
 from django.core.management.base import BaseCommand
 
@@ -7,6 +8,7 @@ from core.utils.Choices import TextChoose, IntAlt
 from core.utils.czas.Czas import ROK_ZALOZENIA, BIEZACY_ROK
 from czlonkowie.models import Czlonek
 from drzewo.tree_rendering import render_layered_graph  # my helper
+from drzewo.management.essentials import modify_layers_structure, is_sentinel, exists, str_repr
 
 class Command(BaseCommand):
     help = "Render the pseudo‑genealogical tree from live DB data"
@@ -70,14 +72,6 @@ def build_layers_and_edges_from_db():
 
     return modify_layers_structure(layers), edges
 
-def modify_layers_structure(layers):
-    new_layers = defaultdict(list)
-    for year in layers:
-        for layer, contents in enumerate(layers[year]):
-            new_layers[f"{year}_{layer}"].extend(contents)
-
-    return new_layers
-
 
 class Node:
     def __init__(self, member, depth, parent_layer=0):
@@ -118,9 +112,3 @@ class Node:
 
     def get_step_children(self):
         return self.member.dzieci_drugi_wybor.all()
-
-def is_sentinel(member):
-    return member.imie == "Nie" and member.nazwisko == "wiem"
-
-def str_repr(member):
-    return "Czapka" if is_sentinel(member) else str(member)
