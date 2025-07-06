@@ -39,7 +39,7 @@ def render_layered_graph(layers, edges, filename="layered_graph.png", rankdir='T
 
     G.layout(prog='dot')
     G.draw(filename)
-    print(f"Graph rendered and saved as: {filename}")
+    # print(f"Graph rendered and saved as: {filename}")
 
 def build_node_attrs_from_colors(color_groups):
     node_attrs = {}
