@@ -1456,15 +1456,16 @@ COPY public.czlonkowie_czlonek (id, imie, aktywnosc, ochrzczony, rok_chrztu, mie
 155	Wiktor	N	T	2019	11	22	2019	N	W	other	Prawnik	n/a	Nie dotyczy	2	30	113	171	Sobol	{}
 49	Eryk	A	T	1111111111	1111111111	1111111111	2015	T	W	d/n	Nie wiem	n/a	Nie dotyczy	15	30	170	171	Królczyk	{}
 156	Wiktoria	N	d/n	1111111111	1111111111	1111111111	1111111111	N	d/n	d/n	Nie wiem	n/a	Nie dotyczy	6	30	\N	171	Kałka	{}
+51	Gabriela	N	T	1111111111	1111111111	1111111111	2014	N	W	d/n	Nie wiem	n/a	Nie dotyczy	9	30	158	109	Michalik (Mucha)	{}
 54	Grzegorz	N	T	2014	5	1111111111	2013	T	W	other	Dziadek	n/a	Nie dotyczy	1	30	129	171	Dziadek	{}
 56	Herman	A	T	2024	11	15	2023	T	C	other	Stabilizator	other	Rakieta	1	30	29	171	Chekurda	{}
 59	Jakub	N	T	2019	9	27	2018	T	W	other	Ada z penisem	n/a	Nie dotyczy	2	30	113	171	Kornacki	{}
 61	Jakub	N	T	1111111111	1111111111	1111111111	2009	T	W	d/n	Nie wiem	n/a	Nie dotyczy	29	30	157	171	Nawrot	{}
 18	Anna	N	T	2016	5	1111111111	2015	T	W	other	Księżniczka	n/a	Nie dotyczy	2	30	170	171	Łopatniuk	{}
 15	Alicja Waleria	M	T	1111111111	1111111111	1111111111	2014	N	W	other	Abeille	n/a	Nie dotyczy	2	30	32	171	Barć	{}
-51	Gabriela	N	T	1111111111	1111111111	1111111111	2015	N	W	d/n	Nie wiem	n/a	Nie dotyczy	9	30	158	109	Michalik (Mucha)	{}
 117	Monika	A	T	2018	5	17	2017	T	W	other	Monia	n/a	Nie dotyczy	18	30	154	171	Góralik	{}
 108	Mateusz	N	T	2018	10	14	2017	N	W	other	Sułtan	n/a	Nie dotyczy	29	30	90	171	Sułek	{}
+63	Joanna	A	T	2010	11	27	2009	T	W	other	Aśka	n/a	Nie dotyczy	9	30	128	171	Lorenc	{}
 82	Klaudia	N	d/n	1111111111	1111111111	1111111111	2017	T	d/n	d/n	Nie wiem	n/a	Nie dotyczy	3	30	170	171	Buchalska	{}
 76	Kasper	M	T	1111111111	1111111111	1111111111	2009	T	H	other	Pumba	n/a	Nie dotyczy	1	11	157	171	Krawet	{}
 77	Katarzyna	N	T	2019	3	15	2018	T	W	d/n	Nie wiem	n/a	Nie dotyczy	3	30	47	171	Marek	{}
@@ -1474,7 +1475,6 @@ COPY public.czlonkowie_czlonek (id, imie, aktywnosc, ochrzczony, rok_chrztu, mie
 89	Łukasz	A	T	2016	9	1111111111	2015	T	W	other	Ciepły	n/a	Nie dotyczy	5	30	95	171	Ciepły (Lindert)	{}
 94	Maciej	A	T	2019	5	24	2018	T	W	other	Mmm...	n/a	Nie dotyczy	15	30	41	171	Lisowski	{}
 92	Maciej	N	T	1111111111	1111111111	1111111111	2011	T	W	d/n	Nie wiem	n/a	Nie dotyczy	1	30	170	171	Hyla	{}
-63	Joanna	A	T	2010	1111111111	1111111111	2009	T	W	other	Aśka	n/a	Nie dotyczy	9	30	128	171	Lorenc	{}
 100	Małgorzata	N	T	1111111111	1111111111	1111111111	2009	T	W	d/n	Nie wiem	n/a	Nie dotyczy	29	30	170	171	Lurzyńska	{}
 101	Małgorzata	N	T	1111111111	1111111111	1111111111	2009	T	W	d/n	Nie wiem	n/a	Nie dotyczy	29	30	157	171	Żurek	{}
 65	Julia	N	T	1111111111	1111111111	1111111111	2013	T	W	d/n	Nie wiem	n/a	Nie dotyczy	29	30	170	171	Jurczuk	{}
@@ -1509,6 +1509,7 @@ COPY public.czlonkowie_czlonek (id, imie, aktywnosc, ochrzczony, rok_chrztu, mie
 45	Dominika	N	d/n	1111111111	1111111111	1111111111	2011	N	d/n	d/n	Nie wiem	n/a	Nie dotyczy	12	30	170	171	Liszka	{}
 46	Dominika	N	T	1111111111	1111111111	1111111111	2011	N	W	other	Szparag	n/a	Nie dotyczy	29	30	19	171	Szponar	{}
 48	Elżbieta	N	T	1111111111	1111111111	1111111111	1111111111	N	W	d/n	Nie wiem	n/a	Nie dotyczy	29	30	170	171	Mierzejewska	{}
+147	Szymon	N	T	1111111111	1111111111	1111111111	2015	T	d/n	other	Lewe Jądro w Ciemności	n/a	Nie dotyczy	5	30	96	171	Stankiewicz	{}
 110	Mateusz	A	T	2020	2	28	2018	T	W	other	Kotlet	n/a	Nie dotyczy	3	30	118	171	Żurek	{}
 172	Weronika	A	T	2025	2	13	2023	T	C	other	Marchewa	n/a	Nie dotyczy	6	30	120	171	Marchewka	{}
 47	Dorota	N	T	2018	4	4	2017	T	W	other	Waćpanna	other	Doris	9	30	41	171	Drożyńska	{}
@@ -1531,7 +1532,6 @@ COPY public.czlonkowie_czlonek (id, imie, aktywnosc, ochrzczony, rok_chrztu, mie
 19	Anna Maria	N	T	1111111111	1111111111	1111111111	2011	N	W	other	Litle dragon	other	Gestapo	12	1	32	171	Kuźma	{}
 38	Camilla	M	T	1111111111	1111111111	1111111111	2014	N	W	other	Cami	n/a	Nie dotyczy	31	30	158	171	Schindler	{}
 143	Sandra	A	T	2024	5	17	2023	T	C	other	Sander	n/a	Nie dotyczy	9	30	29	171	Chandzlik	{}
-147	Szymon	N	d/n	1111111111	1111111111	1111111111	2015	T	d/n	other	Lewe Jądro w Ciemności	n/a	Nie dotyczy	5	30	96	171	Stankiewicz	{}
 149	Tomasz Andrzej	N	T	1111111111	1111111111	1111111111	2013	T	W	other	Potomek	n/a	Nie dotyczy	29	30	19	171	Cieciora	{}
 120	Natalia	A	T	2019	5	24	2018	T	W	other	Szynka	n/a	Nie dotyczy	32	30	148	171	Ciesielska (Olajossy)	{}
 16	Amelia	A	T	2018	10	14	2017	T	C	other	Emalia	n/a	Nie dotyczy	9	30	90	171	Boufenghour	{}
@@ -1548,7 +1548,6 @@ COPY public.czlonkowie_czlonek (id, imie, aktywnosc, ochrzczony, rok_chrztu, mie
 50	Ewa	N	d/n	1111111111	1111111111	1111111111	2014	N	d/n	d/n	Nie wiem	n/a	Nie dotyczy	18	30	170	171	Smuga-Codutti	{}
 14	Alicja	O	d/n	1111111111	1111111111	1111111111	2016	N	d/n	d/n	Nie wiem	n/a	Nie dotyczy	2	30	170	171	Majczak	{}
 52	Gniewko	N	d/n	1111111111	1111111111	1111111111	2018	N	d/n	d/n	Nie wiem	n/a	Nie dotyczy	29	30	170	171	Wawrzyńczak	{}
-53	Grażyna	N	T	1111111111	1111111111	1111111111	2016	N	W	other	Malina	n/a	Nie dotyczy	29	30	19	171	Malinowska	{}
 55	Grzegorz	N	T	1111111111	1111111111	1111111111	1111111111	N	W	other	Cytrynek	n/a	Nie dotyczy	2	30	133	171	Lebedowicz	{}
 57	Jacek	N	d/n	1111111111	1111111111	1111111111	2011	N	d/n	d/n	Nie wiem	n/a	Nie dotyczy	29	30	170	171	Onisk	{}
 60	Jakub	N	T	1111111111	1111111111	1111111111	2015	N	W	other	Cybuch	n/a	Nie dotyczy	2	30	148	171	Łukasik	{}
@@ -1575,6 +1574,7 @@ COPY public.czlonkowie_czlonek (id, imie, aktywnosc, ochrzczony, rok_chrztu, mie
 81	Kinga	N	d/n	1111111111	1111111111	1111111111	2015	N	d/n	d/n	Nie wiem	n/a	Nie dotyczy	29	30	170	171	Radwan	{}
 78	Katarzyna	N	d/n	1111111111	1111111111	1111111111	2015	N	d/n	d/n	Nie wiem	n/a	Nie dotyczy	9	30	170	171	Ostrowska	{}
 125	Patrycja	M	T	2018	5	17	2017	N	W	other	Chat	n/a	Nie dotyczy	15	30	154	43	Karauda	{}
+53	Grażyna	N	T	1111111111	1111111111	1111111111	2014	N	W	other	Malina	n/a	Nie dotyczy	29	30	19	171	Malinowska	{}
 154	Weronika	N	T	1111111111	1111111111	1111111111	1111111111	N	W	other	Manista	n/a	Nie dotyczy	29	30	148	171	Manista	{}
 158	Zofia	N	T	1111111111	1111111111	1111111111	2011	N	W	other	Estel	n/a	Nie dotyczy	18	30	158	171	Krasińska-Krawet	{}
 159	Zuzanna	N	T	1111111111	1111111111	1111111111	2017	N	W	other	Rana	n/a	Nie dotyczy	3	30	42	171	Żmuda	{}
@@ -1583,7 +1583,7 @@ COPY public.czlonkowie_czlonek (id, imie, aktywnosc, ochrzczony, rok_chrztu, mie
 121	Natalia	O	T	2022	9	30	2022	N	W	other	Lis	n/a	Nie dotyczy	3	30	130	171	Lisowska	{}
 123	Olga	A	T	2024	11	15	2024	N	C	other	Equus	other	Dajcie mi telefon, mam tam notatki	29	30	159	171	Wajda	{}
 126	Patrycja	N	T	1111111111	1111111111	1111111111	2014	N	W	d/n	Nie wiem	n/a	Nie dotyczy	6	30	158	171	Malinowska-Majdak	{}
-128	Patryk	N	T	1111111111	1111111111	1111111111	2013	N	W	d/n	Nie wiem	n/a	Nie dotyczy	15	30	148	171	Gujda	{}
+128	Patryk	N	T	1111111111	1111111111	1111111111	2009	T	W	d/n	Nie wiem	n/a	Nie dotyczy	15	30	148	171	Gujda	{}
 \.
 
 
@@ -2895,6 +2895,12 @@ COPY public.django_admin_log (id, action_time, object_id, object_repr, action_fl
 983	2025-07-04 14:27:22.41977+02	170	Nie "Czapka" wiem	2	[{"changed": {"fields": ["przezwiska", "Ochrzczony?", "Rok chrztu", "Rodzic czapkowy", "Drugi rodzic czapkowy"]}}]	7	1
 984	2025-07-04 14:27:36.811211+02	170	Nie wiem	2	[{"changed": {"fields": ["przezwiska"]}}]	7	1
 985	2025-07-04 23:44:16.799956+02	176	Czapka 	3		7	1
+986	2025-07-06 11:27:05.074579+02	63	Joanna "Aśka" Lorenc	2	[{"changed": {"fields": ["Miesi\\u0105c chrztu", "Dzie\\u0144 chrztu"]}}]	7	1
+987	2025-07-06 11:27:26.767476+02	128	Patryk Gujda	2	[{"changed": {"fields": ["Rok pojawienia si\\u0119", "Pewno\\u015b\\u0107 daty sta\\u017cu"]}}]	7	1
+988	2025-07-06 11:34:05.383739+02	53	Grażyna "Malina" Malinowska	2	[{"changed": {"fields": ["Rok pojawienia si\\u0119"]}}]	7	1
+989	2025-07-06 15:35:16.259737+02	147	Szymon "Lewe Jądro w Ciemności" Stankiewicz	2	[{"changed": {"fields": ["Ochrzczony?"]}}]	7	1
+990	2025-07-06 15:35:27.135328+02	147	Szymon "Lewe Jądro w Ciemności" Stankiewicz	2	[]	7	1
+991	2025-07-06 15:39:26.405519+02	51	Gabriela Michalik (Mucha)	2	[{"changed": {"fields": ["Rok pojawienia si\\u0119"]}}]	7	1
 \.
 
 
@@ -3447,7 +3453,7 @@ SELECT pg_catalog.setval('public.czlonkowie_zwierzeczapkowe_id_seq', 13, true);
 -- Name: django_admin_log_id_seq; Type: SEQUENCE SET; Schema: public; Owner: projectuser
 --
 
-SELECT pg_catalog.setval('public.django_admin_log_id_seq', 985, true);
+SELECT pg_catalog.setval('public.django_admin_log_id_seq', 991, true);
 
 
 --

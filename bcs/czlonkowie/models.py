@@ -6,6 +6,7 @@ from roman import fromRoman
 from core.utils import Consts
 from core.utils.Consts import MAX_LENGTH, MEDIUM_LENGTH, SHORT_LENGTH, NAME_LENGTH
 from core.utils.czas import Czas
+from core.utils.czas.Czas import BIEZACY_ROK, ROK_ZALOZENIA
 from core.utils.czas.models import Kadencja
 from core.utils.Choices import TextAlt, TextChoose, IntAlt
 
@@ -312,8 +313,8 @@ class Czlonek(OsobaBCS):
             imie="Nie", nazwisko="wiem",
             czapka_1=Czapka.get_dont_know_czapka(), czapka_2=Czapka.get_not_applicable_czapka(),
             staz=IntAlt.DONT_KNOW[0], pewnosc_stazu=OsobaBCS.PewnoscStazu.NIE,
-            aktywnosc=Czlonek.Aktywnosc.NIEAKTYWNY, ochrzczony=TextAlt.DONT_KNOW[0], status=TextAlt.DONT_KNOW[0],
-            rok_chrztu=IntAlt.DONT_KNOW[0], miesiac_chrztu=IntAlt.DONT_KNOW[0], dzien_chrztu=IntAlt.DONT_KNOW[0],
+            aktywnosc=Czlonek.Aktywnosc.NIEAKTYWNY, ochrzczony=TextChoose.YES[0], status=TextAlt.DONT_KNOW[0],
+            rok_chrztu=ROK_ZALOZENIA, miesiac_chrztu=IntAlt.DONT_KNOW[0], dzien_chrztu=IntAlt.DONT_KNOW[0],
             imie_piwne_1_wybor=TextAlt.DONT_KNOW[0], imie_piwne_1="Nie wiem",
             imie_piwne_2_wybor=TextAlt.NOT_APPLICABLE[0], imie_piwne_2="Nie dotyczy",
         )
