@@ -1457,6 +1457,7 @@ COPY public.czlonkowie_czlonek (id, imie, aktywnosc, ochrzczony, rok_chrztu, mie
 49	Eryk	A	T	1111111111	1111111111	1111111111	2015	T	W	d/n	Nie wiem	n/a	Nie dotyczy	15	30	170	171	Królczyk	{}
 156	Wiktoria	N	d/n	1111111111	1111111111	1111111111	1111111111	N	d/n	d/n	Nie wiem	n/a	Nie dotyczy	6	30	\N	171	Kałka	{}
 51	Gabriela	N	T	1111111111	1111111111	1111111111	2014	N	W	d/n	Nie wiem	n/a	Nie dotyczy	9	30	158	109	Michalik (Mucha)	{}
+177	Czapka	A	T	2009	8	20	2009	T	H	other	BCS UJ	n/a	Nie dotyczy	1	11	76	148		{}
 54	Grzegorz	N	T	2014	5	1111111111	2013	T	W	other	Dziadek	n/a	Nie dotyczy	1	30	129	171	Dziadek	{}
 56	Herman	A	T	2024	11	15	2023	T	C	other	Stabilizator	other	Rakieta	1	30	29	171	Chekurda	{}
 59	Jakub	N	T	2019	9	27	2018	T	W	other	Ada z penisem	n/a	Nie dotyczy	2	30	113	171	Kornacki	{}
@@ -1523,6 +1524,7 @@ COPY public.czlonkowie_czlonek (id, imie, aktywnosc, ochrzczony, rok_chrztu, mie
 95	Maciej	N	T	1111111111	1111111111	1111111111	2015	T	W	other	Dzidzia	n/a	Nie dotyczy	1	30	133	171	Małecki	{}
 171	Nie	N	N	1010101010	1010101010	1010101010	1111111111	T	d/n	n/a	Nie dotyczy	n/a	Nie dotyczy	29	30	171	171	dotyczy	{}
 41	Damian	A	T	1111111111	1111111111	1111111111	2015	N	W	other	Bandera	n/a	Nie dotyczy	15	30	43	171	Zych	{Buch}
+170	Nie	N	T	2009	1111111111	1111111111	1111111111	N	d/n	d/n	Nie wiem	n/a	Nie dotyczy	29	30	170	171	wiem	{}
 167	Dawid	A	T	2025	5	16	2022	N	C	other	Rudy	n/a	Nie dotyczy	2	30	125	117	Otłowski	{}
 62	Joanna	N	T	1111111111	1111111111	1111111111	1111111111	N	W	other	Szysza	n/a	Nie dotyczy	29	30	32	171	Krawczyk	{}
 66	Julia	N	d/n	1111111111	1111111111	1111111111	1111111111	N	d/n	other	Spanko	n/a	Nie dotyczy	29	30	130	171	Musiał	{}
@@ -1544,7 +1546,6 @@ COPY public.czlonkowie_czlonek (id, imie, aktywnosc, ochrzczony, rok_chrztu, mie
 33	Bartosz	M	d/n	1111111111	1111111111	1111111111	2020	N	d/n	d/n	Nie wiem	n/a	Nie dotyczy	29	30	170	171	Sieniawski	{}
 34	Bartosz	N	d/n	1111111111	1111111111	1111111111	2011	N	d/n	d/n	Nie wiem	n/a	Nie dotyczy	29	30	170	171	Spytkowski	{}
 35	Beanus	N	T	1111111111	1111111111	1111111111	2014	N	W	other	Poronny Panicz	n/a	Nie dotyczy	29	30	97	171	Perennus	{}
-170	Nie	N	T	2009	1111111111	1111111111	1111111111	N	d/n	d/n	Nie wiem	n/a	Nie dotyczy	29	30	76	148	wiem	{}
 50	Ewa	N	d/n	1111111111	1111111111	1111111111	2014	N	d/n	d/n	Nie wiem	n/a	Nie dotyczy	18	30	170	171	Smuga-Codutti	{}
 14	Alicja	O	d/n	1111111111	1111111111	1111111111	2016	N	d/n	d/n	Nie wiem	n/a	Nie dotyczy	2	30	170	171	Majczak	{}
 52	Gniewko	N	d/n	1111111111	1111111111	1111111111	2018	N	d/n	d/n	Nie wiem	n/a	Nie dotyczy	29	30	170	171	Wawrzyńczak	{}
@@ -1565,7 +1566,6 @@ COPY public.czlonkowie_czlonek (id, imie, aktywnosc, ochrzczony, rok_chrztu, mie
 84	Konrad	N	T	1111111111	1111111111	1111111111	2011	N	W	other	Benikaza	other	Peruano	29	30	19	171		{}
 85	Konrad	N	d/n	1111111111	1111111111	1111111111	2015	N	d/n	d/n	Nie wiem	n/a	Nie dotyczy	2	30	170	171	Piwowarczyk	{}
 86	Krzysztof	O	T	1111111111	1111111111	1111111111	2014	N	W	other	Poniatowski	n/a	Nie dotyczy	29	30	109	171	Sadowski	{}
-90	Łukasz	N	T	2016	9	1111111111	2015	N	W	other	Yoda	n/a	Nie dotyczy	15	30	109	171	Pryk	{}
 91	Ma	N	d/n	1111111111	1111111111	1111111111	2015	N	d/n	d/n	Nie wiem	n/a	Nie dotyczy	1	30	170	171	Rysia	{}
 93	Maciej	N	d/n	1111111111	1111111111	1111111111	2017	N	d/n	d/n	Nie wiem	n/a	Nie dotyczy	15	30	170	171	Krzyżanek	{}
 97	Magdalena	N	T	1111111111	1111111111	1111111111	2010	N	W	other	Kasztanka	n/a	Nie dotyczy	6	30	148	171	Brilha	{}
@@ -1575,6 +1575,7 @@ COPY public.czlonkowie_czlonek (id, imie, aktywnosc, ochrzczony, rok_chrztu, mie
 78	Katarzyna	N	d/n	1111111111	1111111111	1111111111	2015	N	d/n	d/n	Nie wiem	n/a	Nie dotyczy	9	30	170	171	Ostrowska	{}
 125	Patrycja	M	T	2018	5	17	2017	N	W	other	Chat	n/a	Nie dotyczy	15	30	154	43	Karauda	{}
 53	Grażyna	N	T	1111111111	1111111111	1111111111	2014	N	W	other	Malina	n/a	Nie dotyczy	29	30	19	171	Malinowska	{}
+90	Łukasz	N	T	2016	9	1111111111	2015	N	W	other	Yoda	n/a	Nie dotyczy	15	30	109	177	Pryk	{}
 154	Weronika	N	T	1111111111	1111111111	1111111111	1111111111	N	W	other	Manista	n/a	Nie dotyczy	29	30	148	171	Manista	{}
 158	Zofia	N	T	1111111111	1111111111	1111111111	2011	N	W	other	Estel	n/a	Nie dotyczy	18	30	158	171	Krasińska-Krawet	{}
 159	Zuzanna	N	T	1111111111	1111111111	1111111111	2017	N	W	other	Rana	n/a	Nie dotyczy	3	30	42	171	Żmuda	{}
@@ -2901,6 +2902,9 @@ COPY public.django_admin_log (id, action_time, object_id, object_repr, action_fl
 989	2025-07-06 15:35:16.259737+02	147	Szymon "Lewe Jądro w Ciemności" Stankiewicz	2	[{"changed": {"fields": ["Ochrzczony?"]}}]	7	1
 990	2025-07-06 15:35:27.135328+02	147	Szymon "Lewe Jądro w Ciemności" Stankiewicz	2	[]	7	1
 991	2025-07-06 15:39:26.405519+02	51	Gabriela Michalik (Mucha)	2	[{"changed": {"fields": ["Rok pojawienia si\\u0119"]}}]	7	1
+992	2025-07-06 23:02:26.040793+02	177	Czapka "BCS UJ" 	1	[{"added": {}}]	7	1
+993	2025-07-06 23:03:19.177742+02	90	Łukasz "Yoda" Pryk	2	[{"changed": {"fields": ["Drugi rodzic czapkowy"]}}]	7	1
+994	2025-07-06 23:04:43.066128+02	170	Nie wiem	2	[{"changed": {"fields": ["Rodzic czapkowy", "Drugi rodzic czapkowy"]}}]	7	1
 \.
 
 
@@ -3390,7 +3394,7 @@ SELECT pg_catalog.setval('public.czlonkowie_czapki_id_seq', 35, true);
 -- Name: czlonkowie_czlonek_id_seq; Type: SEQUENCE SET; Schema: public; Owner: projectuser
 --
 
-SELECT pg_catalog.setval('public.czlonkowie_czlonek_id_seq', 176, true);
+SELECT pg_catalog.setval('public.czlonkowie_czlonek_id_seq', 177, true);
 
 
 --
@@ -3453,7 +3457,7 @@ SELECT pg_catalog.setval('public.czlonkowie_zwierzeczapkowe_id_seq', 13, true);
 -- Name: django_admin_log_id_seq; Type: SEQUENCE SET; Schema: public; Owner: projectuser
 --
 
-SELECT pg_catalog.setval('public.django_admin_log_id_seq', 991, true);
+SELECT pg_catalog.setval('public.django_admin_log_id_seq', 994, true);
 
 
 --

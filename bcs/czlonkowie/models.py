@@ -333,6 +333,17 @@ class Czlonek(OsobaBCS):
         )
         return czlonek
 
+    @property
+    def get_parents(self):
+        return [p for p in [self.rodzic_1, self.rodzic_2] if p.exists()]
+
+    @property
+    def is_sentinel(self):
+        return self.imie == "Nie" and self.nazwisko == "wiem"
+
+    def exists(self):
+        return not (self.imie == "Nie" and self.nazwisko == "dotyczy")
+
     # def clean(self):
     #     super().clean()
     #
