@@ -15,13 +15,14 @@ class Command(BaseCommand):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.layers = {}
-        self.scoped_layers = {}
         self.edges = {}
+        self.scoped_layers = {}
         self.scoped_edges = {}
         self.helper_dict = {}
         self.member_id = 0
         self.member = None
         self.depth = 0
+        self.gen = 0
 
     def add_arguments(self, parser):
         parser.add_argument(
@@ -39,11 +40,18 @@ class Command(BaseCommand):
             type=int,
             help='Branches depth (required if scope is "limited")'
         )
+        parser.add_argument(
+            '--gen',
+            type=int,
+            default=3 * (BIEZACY_ROK - ROK_ZALOZENIA + 1),
+            help='Number of generations'
+        )
 
     def handle(self, *args, **options):
         scope = options['tree_scope']
         self.member_id = options.get('member_id')
         self.depth = options.get('depth')
+        self.gen = options.get('gen')
 
         if scope == 'limited':
             if not self.member_id or self.depth is None:
@@ -58,9 +66,8 @@ class Command(BaseCommand):
 
         self.layers, self.edges, self.helper_dict = self.build_layers_and_edges_from_db()
 
-
         if scope == "limited":
-            pass
+            self.generate_scoped_tree()
         else:
             self.generate_full_tree()
 
@@ -68,20 +75,35 @@ class Command(BaseCommand):
         render_layered_graph(self.layers, self.edges,
             path="/home/szymon/Desktop/bcs/bcs/drzewo/management/trees/full_tree.png")
         self.stdout.write(self.style.SUCCESS("Tree rendered ➜ full_tree.png"))
-        for i in range(1, 5, 1):
-            render_layered_graph(self.layers, self.edges,
-                path=f"/home/szymon/Desktop/bcs/bcs/drzewo/management/trees/full_tree_{i}.png")
-            self.stdout.write(self.style.SUCCESS(f"Tree rendered ➜ full_tree_{i}.png"))
 
     def generate_scoped_tree(self):
-        layers, edges = self.build_scoped_tree()
-        render_layered_graph(layers, edges,
-            path=f"/home/szymon/Desktop/bcs/bcs/drzewo/management/trees/tree_{self.member_id}_depth_{self.depth}.png")
-        self.stdout.write(self.style.SUCCESS(f"Tree rendered ➜ tree_{self.member_id}_depth_{self.depth}.png"))
-        for i in range(1, 5, 1):
-            render_layered_graph(self.layers, self.edges,
-                path=f"/home/szymon/Desktop/bcs/bcs/drzewo/management/trees/tree_{self.member_id}_depth_{self.depth}_nr_{i}.png")
-            self.stdout.write(self.style.SUCCESS(f"Tree rendered ➜ tree_{self.member_id}_depth_{self.depth}_nr_{i}.png"))
+        self.build_scoped_layers_and_edges()
+        title = f"tree_{self.member_id}_depth_{self.depth}_gen_{self.gen}"
+        render_layered_graph(self.scoped_layers, self.scoped_edges,
+            path=f"/home/szymon/Desktop/bcs/bcs/drzewo/management/trees/{title}.png")
+        self.stdout.write(self.style.SUCCESS(f"Tree rendered ➜ {title}.png"))
+
+    def build_scoped_layers_and_edges(self):
+        stack = [(self.member, 0, 1)]
+
+        while stack:
+            member, depth, gen = stack.pop()
+            str_member = str(member)
+
+            layer = self.helper_dict[str_member][0]
+            self.scoped_layers.setdefault(layer, []).append(str_member)
+
+            if gen < self.gen and not depth:
+                parents = member.get_parents()
+                for parent in parents:
+                    self.scoped_edges.setdefault(parent, []).append(str_member)
+                    stack.append((parent, depth, gen + 1))
+
+            children = self.helper_dict[str_member][1]
+            for ch in children:
+                if depth < self.depth:
+                    self.scoped_edges.setdefault(str_member, []).append(str(ch))
+                    stack.append((ch, depth + 1, gen - 1))
 
     @staticmethod
     def build_layers_and_edges_from_db():
@@ -145,7 +167,5 @@ class Command(BaseCommand):
         sorted_keys = sorted(helper_dict.keys())
         for key in sorted_keys:
             new_dict[key] = helper_dict[key]
-
-        print(new_dict)
 
         return modify_layers_structure(layers), edges, new_dict
