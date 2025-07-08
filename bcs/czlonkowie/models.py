@@ -333,70 +333,20 @@ class Czlonek(OsobaBCS):
         )
         return czlonek
 
-    @property
     def get_parents(self):
         return [p for p in [self.rodzic_1, self.rodzic_2] if p.exists()]
 
-    @property
-    def is_sentinel(self):
+    def get_children(self):
+        return self.dzieci_pierwszy_wybor.all()
+
+    def get_step_children(self):
+        return self.dzieci_drugi_wybor.all()
+
+    def is_known(self):
         return self.imie == "Nie" and self.nazwisko == "wiem"
 
     def exists(self):
         return not (self.imie == "Nie" and self.nazwisko == "dotyczy")
-
-    # def clean(self):
-    #     super().clean()
-    #
-    #     if self.status in [Czlonek.Status.CZLONEK, Czlonek.Status.WETERAN]:
-    #         self.ochrzczony = TextChoose.YES[0]
-    #
-    #     # ochrzczony controls rok_chrztu
-    #     if self.ochrzczony == TextChoose.NO[0]:
-    #         self.rok_chrztu = IntAlt.NOT_APPLICABLE[0]
-    #     elif self.ochrzczony == TextAlt.DONT_KNOW[0]:
-    #         self.rok_chrztu = IntAlt.DONT_KNOW[0]
-    #
-    #     # rok_chrztu controls miesiac_chrztu
-    #     if self.rok_chrztu in [IntAlt.NOT_APPLICABLE[0], IntAlt.DONT_KNOW[0]]:
-    #         self.miesiac_chrztu = self.rok_chrztu
-    #
-    #     # miesiac_chrztu controls dzien_chrztu
-    #     if self.miesiac_chrztu in [IntAlt.NOT_APPLICABLE[0], IntAlt.DONT_KNOW[0]]:
-    #         self.dzien_chrztu = self.miesiac_chrztu
-    #
-    #     if self.imie_piwne_1 not in ["Nie wiem", "Nie dotyczy"]:
-    #         self.imie_piwne_1_wybor = "other"
-    #     if self.imie_piwne_2 not in ["Nie wiem", "Nie dotyczy"]:
-    #         self.imie_piwne_2_wybor = "other"
-    #
-    #     if self.imie_piwne_1_wybor != "other":
-    #         if self.imie_piwne_1_wybor == TextAlt.DONT_KNOW[0]:
-    #             self.imie_piwne_1 = TextAlt.DONT_KNOW[1]
-    #         elif self.imie_piwne_1_wybor == TextAlt.NOT_APPLICABLE[0]:
-    #             self.imie_piwne_1 = TextAlt.NOT_APPLICABLE[1]
-    #
-    #         self.imie_piwne_2_wybor = TextAlt.NOT_APPLICABLE[0]
-    #         self.imie_piwne_2 = TextAlt.NOT_APPLICABLE[1]
-    #
-    #     if self.imie_piwne_1 not in ["Nie wiem", "Nie dotyczy"]:
-    #         self.imie_piwne_1_wybor = "other"
-    #     if self.imie_piwne_2 not in ["Nie wiem", "Nie dotyczy"]:
-    #         self.imie_piwne_2_wybor = "other"
-    #
-    #     if self.pewnosc_stazu == 'true':
-    #         self.pewnosc_stazu = "T"
-    #
-    #     if self.staz == Czas.ROK_ZALOZENIA:
-    #         self.pewnosc_stazu = "T"
-    #
-    #     if not self.rodzic_1:
-    #         self.rodzic_1 = Czlonek.get_dont_know_czlonek()
-    #
-    #     if self.rodzic_1 == Czlonek.get_not_applicable_czlonek():
-    #         self.rodzic_2 = Czlonek.get_not_applicable_czlonek()
-    #
-    #     if not self.rodzic_2:
-    #         self.rodzic_2 = Czlonek.get_not_applicable_czlonek()
 
 
 class Bean(OsobaBCS):

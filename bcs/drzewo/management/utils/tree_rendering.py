@@ -1,6 +1,6 @@
 import pygraphviz as pgv
 
-def render_layered_graph(layers, edges, filename="layered_graph.png", rankdir='TB', node_attrs=None):
+def render_layered_graph(layers, edges, path, rankdir='TB', node_attrs=None):
     G = pgv.AGraph(strict=True, directed=True)
     G.graph_attr.update(rankdir=rankdir)
 
@@ -38,7 +38,7 @@ def render_layered_graph(layers, edges, filename="layered_graph.png", rankdir='T
             G.add_edge(current_nodes[0], next_dummy, style="invis")
 
     G.layout(prog='dot')
-    G.draw(filename)
+    G.draw(path=path)
     # print(f"Graph rendered and saved as: {filename}")
 
 def build_node_attrs_from_colors(color_groups):
