@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <form method="get" action="{% url 'drzewo:full-tree-generation' %}">
+    {{ form.as_p }}
+    <button type="submit">Generate</button>
+  </form>
+
+</body>
+</html>

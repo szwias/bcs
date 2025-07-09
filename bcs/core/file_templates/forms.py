@@ -1,10 +1,10 @@
 """
-from django import forms
+from django import drzewo
 from dal import autocomplete
 from .models import *
 from .views import autocomplete_widgets, build_widgets
 
-class ZarzadForm(forms.ModelForm):
+class ZarzadForm(drzewo.ModelForm):
     class Meta:
         model = Zarzad
         fields = '__all__'

@@ -42,12 +42,12 @@
         let addButton;
 
         /**
-         * The "Add another MyModel" button below the inline forms.
+         * The "Add another MyModel" button below the inline drzewo.
          */
         const addInlineAddButton = function() {
             if (addButton === null) {
                 if ($this.prop("tagName") === "TR") {
-                    // If forms are laid out as table rows, insert the
+                    // If drzewo are laid out as table rows, insert the
                     // "add" button in a new table row:
                     const numCols = $this.eq(-1).children().length;
                     $parent.append('<tr class="' + options.addCssClass + '"><td colspan="' + numCols + '"><a role="button" class="addlink" href="#">' + options.addText + "</a></tr>");
@@ -74,7 +74,7 @@
             });
             // Insert the new form when it has been fully edited.
             row.insertBefore($(template));
-            // Update number of total forms.
+            // Update number of total drzewo.
             $(totalForms).val(parseInt(totalForms.val(), 10) + 1);
             nextIndex += 1;
             // Hide the add button if there's a limit and it's been reached.
@@ -102,7 +102,7 @@
          */
         const addInlineDeleteButton = function(row) {
             if (row.is("tr")) {
-                // If the forms are laid out in table rows, insert
+                // If the drzewo are laid out in table rows, insert
                 // the remove button into the last table cell:
                 row.children(":last").append('<div><a role="button" class="' + options.deleteCssClass + '" href="#">' + options.deleteText + "</a></div>");
             } else if (row.is("ul") || row.is("ol")) {

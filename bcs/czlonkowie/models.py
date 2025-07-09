@@ -342,7 +342,7 @@ class Czlonek(OsobaBCS):
     def get_step_children(self):
         return self.dzieci_drugi_wybor.all()
 
-    def is_known(self):
+    def is_unknown(self):
         return self.imie == "Nie" and self.nazwisko == "wiem"
 
     def exists(self):

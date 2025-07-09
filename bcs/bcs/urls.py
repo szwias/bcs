@@ -23,9 +23,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('autocomplete/core/', include('core.autocomplete_urls', 'core_autocomplete')),
     path('autocomplete/czlonkowie/', include('czlonkowie.autocomplete_urls', 'czlonkowie_autocomplete')),
-    path('autocomplete/drzewo/', include('drzewo.autocomplete_urls', 'drzewo_autocomplete')),
     path('autocomplete/encyklopedia/', include('encyklopedia.autocomplete_urls', 'encyklopedia_autocomplete')),
     path('autocomplete/kronika/', include('kronika.autocomplete_urls', 'kronika_autocomplete')),
+    path("drzewo/", include("drzewo.urls")),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
