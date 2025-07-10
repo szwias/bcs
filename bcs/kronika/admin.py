@@ -1,7 +1,7 @@
 from core.utils.automation.BaseAdmin import *
 from czlonkowie.forms import OsobyForm
 from czlonkowie.models import Osoby
-from .forms import ZdarzenieInlineForm
+from .forms import ZdarzenieInlineForm, CharakterystykaDzialanZarzaduForm
 from .models import *
 from django.contrib.contenttypes.admin import GenericTabularInline
 
@@ -28,6 +28,13 @@ class ObrazZdarzenieInline(admin.StackedInline):
     fields = ["tytul", "obraz"]
     show_change_link = True
 
+class CharakterystykaDzialanZarzaduInline(admin.StackedInline):
+    model = CharakterystykaDzialanZarzadu
+    form = CharakterystykaDzialanZarzaduForm
+    extra = 0
+    show_change_link = True
+    ordering = ["autor"]
+
 @admin.register(ObrazWydarzenie)
 class ObrazWydarzenieAdmin(BaseModelAdmin):
     inlines = [OsobyInline]
@@ -39,12 +46,10 @@ class WydarzenieAdmin(BaseModelAdmin):
     save_as = True
     filter_horizontal = ("obrazy", "miejsca")
 
-
 @admin.register(Zdarzenie)
 class ZdarzenieAdmin(BaseModelAdmin):
     inlines = [OsobyInline, ObrazZdarzenieInline]
     save_as = True
-
 
 
 register_all_models(

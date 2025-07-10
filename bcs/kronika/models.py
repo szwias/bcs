@@ -5,8 +5,7 @@ from django.db import models
 from core.utils.Choices import TextChoose, TextAlt
 from core.utils.Consts import *
 from django.utils import timezone
-from django.contrib.contenttypes.fields import GenericRelation, GenericForeignKey
-from django.contrib.contenttypes.models import ContentType
+from django.contrib.contenttypes.fields import GenericRelation
 
 class Miejsce(models.Model):
     class TypyMiejsc(models.TextChoices):
@@ -25,6 +24,7 @@ class Miejsce(models.Model):
         RESTAURACJA = "Restaur", "Restauracja"
         SCHRONISKO = "Schronisko", "Schronisko"
         SZCZYT = "Szczyt", "Szczyt"
+        SZLAK = "Szlak", "Szlak"
         TEATR = "Teatr", "Teatr"
         UCZELNIA = "Uczel", "Uczelnia"
 
@@ -97,7 +97,17 @@ class Zdarzenie(models.Model):
         ordering = ["-data", "nazwa"]
 
     def __str__(self):
-        return f"{self.data} {self.godzina} - {self.nazwa}"
+        name = f"{self.data} {self.godzina} - {self.nazwa}"
+        if self.wydarzenie:
+            wydarzenie_name = ""
+            if self.wydarzenie.get_typ_wydarzenia_display() != TextAlt.NOT_APPLICABLE[1]:
+                typ = self.wydarzenie.get_typ_wydarzenia_display()
+            else:
+                typ = self.wydarzenie.get_typ_wyjazdu_display()
+            wydarzenie_name += f"{typ} \"{self.wydarzenie.nazwa}\""
+            name += f" ({wydarzenie_name})"
+
+        return name
 
     def save(self, *args, **kwargs):
         created = self._state.adding
@@ -217,7 +227,7 @@ class Wydarzenie(models.Model):
         ADAPCIAK = "Adapciak", "Adapciak"
         INNY = "Inny", "Inny"
         KUDLACZE = "Kudlacze", "Kudłacze"
-        ZAGRANICZNY = "ZAGR", "Zagraniczny"
+        ZAGRANICZNY = "ZAGR", "Wyjazd Zagraniczny"
 
     nazwa = models.CharField(
         max_length=MAX_LENGTH, verbose_name="Nazwa"
@@ -358,3 +368,38 @@ class Proces(models.Model):
     def __str__(self):
         return f"{self.nazwa}: {self.data_rozpoczecia} - {self.data_zakonczenia}"
 
+class CharakterystykaDzialanZarzadu(models.Model):
+    zarzad = models.ForeignKey(
+        "czlonkowie.Zarzad",
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+        verbose_name="Zarząd",
+    )
+
+    dawny_zarzad = models.ForeignKey(
+        "czlonkowie.DawnyZarzad",
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+        verbose_name="Dawny Zarząd",
+    )
+
+    autor = models.ForeignKey(
+        "czlonkowie.Czlonek",
+        null=True,
+        on_delete=models.SET_NULL,
+        verbose_name="Autor",
+    )
+
+    charakterystyka = models.TextField(
+        blank=True, verbose_name="Charakterystyka działań Zarządu",
+    )
+
+    class Meta:
+        verbose_name = "Charakterystyka działań Zarządu"
+        verbose_name_plural = "Charakterystyki działań Zarządów"
+        ordering = ["-zarzad"]
+
+    def __str__(self):
+        return f"{self.autor}: {str(self.zarzad or self.dawny_zarzad)}"

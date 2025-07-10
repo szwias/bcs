@@ -29,6 +29,7 @@ autocomplete_configs = [
     (Wydarzenie,        ['typ_wydarzenia', 'typ_wyjazdu', 'czy_to_wyjazd'],      [],     ['Miejsce', 'Zdarzenie', 'czlonkowie.Osoby']),
     (ObrazWydarzenie,   [],                                     [],     ['Wydarzenie', 'czlonkowie.Osoby']),
     (Proces,            [],                                     [],     ['Zdarzenie']),
+    (CharakterystykaDzialanZarzadu, [], [], ['czlonkowie.Zarzad', 'czlonkowie.DawnyZarzad', 'czlonkowie.Czlonek']),
 ]
 
 autocomplete_urls, autocomplete_widgets = setup_autocompletes(autocomplete_configs, globals())

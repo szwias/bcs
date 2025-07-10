@@ -200,7 +200,6 @@ class WielkiMistrzForm(forms.ModelForm):
         fields = '__all__'
         widgets = build_widgets(autocomplete_widgets['WielkiMistrz'])
 
-
 class HallOfFameForm(forms.ModelForm):
     class Meta:
         model = HallOfFame

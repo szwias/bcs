@@ -9,6 +9,7 @@ from core.utils.czas import Czas
 from core.utils.czas.Czas import BIEZACY_ROK, ROK_ZALOZENIA
 from core.utils.czas.models import Kadencja
 from core.utils.Choices import TextAlt, TextChoose, IntAlt
+from kronika.models import CharakterystykaDzialanZarzadu
 
 
 class Lengths:
@@ -504,7 +505,7 @@ class DawnyZarzad(models.Model):
         ordering = ['-kadencja']
 
     def __str__(self):
-        return f"Zarząd {str(self.kadencja)}"
+        return f"Dawny Zarząd {str(self.kadencja)}"
 
 class Zarzad(models.Model):
     kadencja = models.ForeignKey(
