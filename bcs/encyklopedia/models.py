@@ -12,7 +12,6 @@ class Lengths:
     PANSTWA_LENGTH = 3
     CZAPKI_LENGTH = 3
 
-# Create your models here.
 class TradycjaBCS(models.Model):
     class Authors(models.TextChoices):
         BELGOWIE = "Belg", "Belgijska"
@@ -195,3 +194,29 @@ class Bractwo(models.Model):
 #     autorem = models.CharField(
 #
 #     )
+
+class Zwyczaj(models.Model):
+    nazwa = models.CharField(
+        max_length=MEDIUM_LENGTH, verbose_name="Nazwa",
+    )
+
+    data_powstania = models.DateField(
+        blank=True, verbose_name="Data powstania",
+    )
+
+    autor = GenericRelation(
+        "czlonkowie.Osoby", blank=True, verbose_name="Autor", related_name="zaczete_zwyczaje"
+    )
+
+    opis = models.TextField(
+        blank=True,
+        verbose_name="Opis",
+    )
+
+    class Meta:
+        verbose_name = "Zwyczaj"
+        verbose_name_plural = "Zwyczaje"
+        ordering = ("nazwa",)
+
+    def __str__(self):
+        return self.nazwa

@@ -1,6 +1,6 @@
 from core.utils.automation.BaseAdmin import *
 from .models import DawnyZarzad, Zarzad, HallOfFame, ImieSzlacheckie, Osoby, WielkiMistrz, ZwierzeCzapkowe
-from kronika.admin import CharakterystykaDzialanZarzaduInline
+from kronika.inlines import CharakterystykaDzialanZarzaduInline
 
 @admin.register(DawnyZarzad)
 class DawnyZarzadAdmin(BaseModelAdmin):

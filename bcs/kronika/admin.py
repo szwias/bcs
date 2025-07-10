@@ -1,39 +1,8 @@
 from core.utils.automation.BaseAdmin import *
-from czlonkowie.forms import OsobyForm
-from czlonkowie.models import Osoby
-from .forms import ZdarzenieInlineForm, CharakterystykaDzialanZarzaduForm
-from .models import *
-from django.contrib.contenttypes.admin import GenericTabularInline
+from .models import ObrazWydarzenie, Wydarzenie, Zdarzenie
+from .inlines import ZdarzenieInline, ObrazWydarzenieInline, ObrazZdarzenieInline
+from czlonkowie.inlines import OsobyInline
 
-
-class OsobyInline(GenericTabularInline):
-    model = Osoby
-    extra = 0
-    form = OsobyForm
-
-class ObrazWydarzenieInline(admin.StackedInline):  # or StackedInline
-    model = ObrazWydarzenie
-    extra = 0
-
-class ZdarzenieInline(admin.StackedInline):
-    model = Zdarzenie
-    form = ZdarzenieInlineForm
-    extra = 0
-    show_change_link = True
-    ordering = ["data", "godzina"]
-
-class ObrazZdarzenieInline(admin.StackedInline):
-    model = ObrazZdarzenie
-    extra = 0
-    fields = ["tytul", "obraz"]
-    show_change_link = True
-
-class CharakterystykaDzialanZarzaduInline(admin.StackedInline):
-    model = CharakterystykaDzialanZarzadu
-    form = CharakterystykaDzialanZarzaduForm
-    extra = 0
-    show_change_link = True
-    ordering = ["autor"]
 
 @admin.register(ObrazWydarzenie)
 class ObrazWydarzenieAdmin(BaseModelAdmin):
