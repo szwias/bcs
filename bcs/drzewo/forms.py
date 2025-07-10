@@ -15,13 +15,15 @@ class ScopedTreeRenderForm(forms.Form):
             ochrzczony=TextChoose.YES[0]).exclude(
                 id=Czlonek.get_dont_know_czlonek().id),
         required=True,
-        help_text="Członek, dla którego chcesz wygenerować drzewo")
+        label="Członek, dla którego chcesz wygenerować drzewo")
     depth = forms.IntegerField(
         min_value=0, max_value=MAKSYMALNA_ILOSC_POKOLEN, required=True,
-        help_text="Ilość pokoleń potomków")
+        label="Ilość pokoleń potomków")
     gen = forms.IntegerField(
         min_value=0, max_value=MAKSYMALNA_ILOSC_POKOLEN, required=False,
-        help_text="Ilość pokoleń wstecz - zostaw puste, by dotrzeć do korzenia drzewa")
+        label="Ilość pokoleń wstecz - zostaw puste, by dotrzeć do korzenia drzewa")
+    only_known_parents = forms.BooleanField(
+        required=False, label="Pokaż tylko członków o znanych rodzicach")
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

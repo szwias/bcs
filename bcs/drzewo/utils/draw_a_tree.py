@@ -6,16 +6,16 @@ from czlonkowie.models import Czlonek
 from drzewo.utils.tree_rendering import render_layered_graph  # my helper
 from drzewo.utils.essentials import modify_layers_structure, TreeNode
 
-def generate_full_tree(path, onp=False):
+def generate_full_tree(path, onp):
     layers, edges, helper_dict = build_layers_and_edges_from_db(onp)
     render_layered_graph(layers, edges, path)
 
-def generate_scoped_tree(path, member, depth, gen):
-    _, _, helper_dict = build_layers_and_edges_from_db()
-    layers, edges = build_scoped_layers_and_edges(member, depth, gen, helper_dict)
+def generate_scoped_tree(path, member, depth, gen, onp):
+    _, _, helper_dict = build_layers_and_edges_from_db(onp)
+    layers, edges = build_scoped_layers_and_edges(member, depth, gen, onp, helper_dict)
     render_layered_graph(layers, edges,path)
 
-def build_scoped_layers_and_edges(member, depth, gen, helper_dict):
+def build_scoped_layers_and_edges(member, depth, gen, onp, helper_dict):
     layers = {}
     edges = {}
 
@@ -25,16 +25,25 @@ def build_scoped_layers_and_edges(member, depth, gen, helper_dict):
         c_member, c_depth, c_gen = stack.pop()
         str_member = str(c_member)
 
-        layer = helper_dict[str_member][0]
+        if onp and str_member not in helper_dict.keys():
+            layer = f"{ROK_ZALOZENIA}_1"
+        else:
+            layer = helper_dict[str_member][0]
         layers.setdefault(layer, []).append(str_member)
 
         if c_gen < gen and not c_depth:
             parents = c_member.get_parents()
             for parent in parents:
-                edges.setdefault(parent, []).append(str_member)
-                stack.append((parent, c_depth, c_gen + 1))
+                if onp and parent.is_unknown():
+                    pass
+                else:
+                    edges.setdefault(parent, []).append(str_member)
+                    stack.append((parent, c_depth, c_gen + 1))
 
-        children = helper_dict[str_member][1]
+        if onp and str_member not in helper_dict.keys():
+            children = c_member.get_children() + c_member.get_step_children()
+        else:
+            children = helper_dict[str_member][1]
         for ch in children:
             if c_depth < depth:
                 edges.setdefault(str_member, []).append(str(ch))
@@ -44,7 +53,6 @@ def build_scoped_layers_and_edges(member, depth, gen, helper_dict):
 
 def build_layers_and_edges_from_db(onp):
     layers = {rocznik: [set()] for rocznik in range(ROK_ZALOZENIA, BIEZACY_ROK + 1)}
-    print(f"DuPA: {onp}")
     edges = {}
     helper_dict = defaultdict(lambda: [None, []])
     go = 1
@@ -55,7 +63,6 @@ def build_layers_and_edges_from_db(onp):
     stack = []
 
     while members:
-        print(members)
         if go == 1:
             stack.append(TreeNode(Czlonek.objects.get(imie="Zdzisław", nazwisko="Gajda"), 0))
         elif go == 2 and not onp:
@@ -78,7 +85,6 @@ def build_layers_and_edges_from_db(onp):
             layer = node.layer
             year = node.year
             member = node.member
-            print(str(member))
             paczek = node.paczek # support dla ludzi, którzy "wypączkowali"
 
             while len(layers[year]) <= layer:

@@ -337,10 +337,10 @@ class Czlonek(OsobaBCS):
         return [p for p in [self.rodzic_1, self.rodzic_2] if p.exists()]
 
     def get_children(self):
-        return self.dzieci_pierwszy_wybor.all()
+        return list(self.dzieci_pierwszy_wybor.all())
 
     def get_step_children(self):
-        return self.dzieci_drugi_wybor.all()
+        return list(self.dzieci_drugi_wybor.all())
 
     def is_unknown(self):
         return self.imie == "Nie" and self.nazwisko == "wiem"
