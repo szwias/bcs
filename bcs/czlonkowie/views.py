@@ -5,7 +5,7 @@ from core.utils.automation.ViewsGeneration import *
 autocomplete_configs = [
     (Bean,              ['staz'],                                                           [], ['Czapka', 'Czlonek']),
     (Czlonek,           ['rok_chrztu', 'miesiac_chrztu', 'dzien_chrztu', 'status', 'staz'], [], ['Czapka', 'Czlonek']),
-    (DawnyZarzad,       [],                                                                 [], ['Czlonek', 'core.Kadencja', 'kronika.CharakterystykaDzialanZarzadu']),
+    (DawnyZarzad,       [],                                                                 [], ['WielkiMistrz', 'Czlonek', 'core.Kadencja', 'kronika.CharakterystykaDzialanZarzadu']),
     (HallOfFame,        [],                                                                 [], ['Czlonek', 'Bean']),
     (ImieSzlacheckie,   [],                                                                 [], ['Czlonek']),
     (InnaOsoba,         ['kategoria'],                                                      [], ['encyklopedia.Bractwo']),

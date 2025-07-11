@@ -440,10 +440,10 @@ class DawnyZarzad(models.Model):
     )
 
     wielki_mistrz = models.ForeignKey(
-    "Czlonek",
+        "WielkiMistrz",
         blank=True,
-        on_delete=models.SET_NULL,
         null=True,
+        on_delete=models.SET_NULL,
         verbose_name="Wielki Mistrz",
         related_name="kadencje_jako_wielki_mistrz_dawnego_zarzadu",
     )

@@ -1,4 +1,5 @@
 Python / SQL / HTML lines of code:
+    --------------------------: no tracking whatsoever
     23 kwietnia: 0 / 0 lines
     24 kwietnia: x / y lines
     25 kwietnia: x / y lines
@@ -9,6 +10,7 @@ Python / SQL / HTML lines of code:
     2 maja:     x / y lines
     3 maja:     x / y lines
     4 maja:     1700 / y lines
+    ----------------------------------: may; Python lines tracking
     5 maja:     1850 / y lines (+150)
     9 maja:     1966 / y lines (+154)
     13 maja:    2200 / y lines (+234)
@@ -19,18 +21,21 @@ Python / SQL / HTML lines of code:
     21 maja:    2355 / y lines (+3)
     22 maja:    2355 / y lines (+0)
     29 maja:    2355 / y lines (+0)
+    ---------------------------------: june; Python lines tracking
     17 czerwca: 2556 / y lines (+201)
     21 czerwca: 2591 / 4781 lines (+35)
     29 czerwca: 2590 / y lines (-1)
+    --------------------------------------: july; Python lines tracking
     1 lipca:    2590 / y lines (+0)
     3 lipca:    2633 / y lines (+43)
+    ----------------------------------------: SQL & HTML lines tracking added
     4 lipca:    2633 / 4837 lines (+0 / +56)
     5 lipca:    2701 / 4839 lines (+71 / +2)
     6 lipca:    2737 / 4845 lines (+36 / +6)
     8 lipca:    2657 / 4849 lines (-80 / +4)
     9 lipca:    2684 / 4849 / 26 lines (+27 / +0 / +26)
     10 lipca:   2711 / 4849 / 25 lines (+13 / +0 / -1)
-    11 lipca:   (+111 / +207 / +0)
+    11 lipca:   (+178 / +348 / +0)
 
     24 kwietnia - 4 maja (9 / 11 days - 1700 / x lines):
         Average speed of development: 155 lines per day (~160)

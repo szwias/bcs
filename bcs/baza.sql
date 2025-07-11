@@ -1690,8 +1690,8 @@ COPY public.czlonkowie_czlonek (id, imie, aktywnosc, ochrzczony, rok_chrztu, mie
 --
 
 COPY public.czlonkowie_dawnyzarzad (id, bibendi_id, cantandi_id, kadencja_id, kasztelan_id, "kontakt_z_SKNHI_id", "kontakt_z_SSUJ_id", magister_disciplinae_id, skarbnik_id, wielki_mistrz_id) FROM stdin;
-2	134	32	4	76	68	101	61	151	\N
-1	134	115	3	76	68	101	61	151	\N
+1	134	115	3	76	68	101	61	151	3
+2	134	32	4	76	68	101	61	151	3
 \.
 
 
@@ -1986,18 +1986,18 @@ COPY public.czlonkowie_osoby (id, object_id, bean_id, content_type_id, czlonek_i
 --
 
 COPY public.czlonkowie_wielkimistrz (id, tadeusz, tytuly, imie_id, tadeusz_numeric) FROM stdin;
-16	X	Patronka Słowa Mówionego i Pisanego	130	10
 15	XI	Czerwona Opcja Śląska	116	11
-14	IX	Zawsze Trzeźwy Landlord Czerwonomakowskich Luster	64	9
-13	VIII	Gałązka z Boskiego Drzewa Wpierdolu	30	8
 8	IV		133	4
 7	III		53	3
 4	II		97	2
 3	I		148	1
 1	V		95	5
+13	IX	Gałązka z Boskiego Drzewa Wpierdolu	30	9
+14	X	Zawsze Trzeźwy Landlord Czerwonomakowskich Luster	64	10
+17	VIII		125	8
 9	V	Wielki Antymistrz Bandera Łże-Tadeusz VI, czerwono-czarny ognień tańczący na wioskach wrogów	41	5
 12	VI	Ostatni Książę Pszczyny, władca studentów i zwierząt nie wyłączając smoków i panter	113	6
-17	VII		125	7
+16	X	Patronka Słowa Mówionego i Pisanego, Jedyny Prawowity Tadeusz X	130	10
 \.
 
 
@@ -2006,8 +2006,6 @@ COPY public.czlonkowie_wielkimistrz (id, tadeusz, tytuly, imie_id, tadeusz_numer
 --
 
 COPY public.czlonkowie_zarzad (id, cantandi_id, kadencja_id, kasztelan_id, sekretarz_id, skarbnik_id, wielki_mistrz_id) FROM stdin;
-14	31	17	29	102	107	\N
-13	110	16	109	121	25	\N
 1	24	5	19	142	158	4
 3	133	6	19	142	158	4
 4	76	7	19	146	65	4
@@ -2019,6 +2017,9 @@ COPY public.czlonkowie_zarzad (id, cantandi_id, kadencja_id, kasztelan_id, sekre
 10	42	13	125	130	120	12
 11	64	14	155	130	25	17
 12	110	15	155	64	25	13
+13	110	16	109	121	25	14
+14	31	17	29	102	107	15
+15	37	2	116	102	29	16
 \.
 
 
@@ -3085,6 +3086,23 @@ COPY public.django_admin_log (id, action_time, object_id, object_repr, action_fl
 1070	2025-07-11 02:37:22.79073+02	120	Natalia "Szynka" Ciesielska (Olajossy)	2	[{"changed": {"fields": ["Czapka", "Rodzic czapkowy"]}}]	7	1
 1071	2025-07-11 02:37:31.03398+02	120	Natalia "Szynka" Ciesielska (Olajossy)	2	[]	7	1
 1072	2025-07-11 13:01:21.581927+02	1	Rucham ci starego	1	[{"added": {}}, {"added": {"name": "Osoba", "object": "Bartosz \\"Heniek\\" Hepek - Encyklopedia | Powiedzenie - Rucham ci starego"}}]	40	1
+1073	2025-07-11 13:55:02.272172+02	9	Damian "Bandera/Buch" Zych - Tadeusz VI, Wielki Antymistrz Bandera Łże-Tadeusz VI, czerwono-czarny ognień tańczący na wioskach wrogów	2	[{"changed": {"fields": ["Tadeusz"]}}]	13	1
+1074	2025-07-11 13:55:42.664339+02	9	Damian "Bandera/Buch" Zych - Tadeusz VI, Wielki Antymistrz Bandera Łże-Tadeusz VI, czerwono-czarny ognień tańczący na wioskach wrogów	2	[]	13	1
+1075	2025-07-11 13:55:50.108251+02	12	Michał "I Sekretarz PZPR towarzysz Władysław Gomułka, ps. Wiesław/Gomuł" Gumułka - Tadeusz VII, Ostatni Książę Pszczyny, władca studentów i zwierząt nie wyłączając smoków i panter	2	[{"changed": {"fields": ["Tadeusz"]}}]	13	1
+1076	2025-07-11 13:55:59.322959+02	17	Patrycja "Chat" Karauda - Tadeusz VIII	2	[{"changed": {"fields": ["Tadeusz"]}}]	13	1
+1077	2025-07-11 13:57:26.768501+02	13	Bartłomiej "Kucharz" Olajossy - Tadeusz IX, Gałązka z Boskiego Drzewa Wpierdolu	2	[{"changed": {"fields": ["Tadeusz"]}}]	13	1
+1078	2025-07-11 13:57:36.46348+02	14	John "Jasiek" Graff-Warburton - Tadeusz X, Zawsze Trzeźwy Landlord Czerwonomakowskich Luster	2	[{"changed": {"fields": ["Tadeusz"]}}]	13	1
+1079	2025-07-11 14:00:54.210119+02	17	Patrycja "Chat" Karauda - Tadeusz VIII	2	[]	13	1
+1080	2025-07-11 14:01:20.373577+02	9	Damian "Bandera/Buch" Zych - Tadeusz V, Wielki Antymistrz Bandera Łże-Tadeusz VI, czerwono-czarny ognień tańczący na wioskach wrogów	2	[{"changed": {"fields": ["Tadeusz"]}}]	13	1
+1081	2025-07-11 14:01:33.164399+02	12	Michał "I Sekretarz PZPR towarzysz Władysław Gomułka, ps. Wiesław/Gomuł" Gumułka - Tadeusz VI, Ostatni Książę Pszczyny, władca studentów i zwierząt nie wyłączając smoków i panter	2	[{"changed": {"fields": ["Tadeusz"]}}]	13	1
+1082	2025-07-11 14:05:29.139624+02	13	Zarząd 2022/2023 - WM John "Jasiek" Graff-Warburton - Tadeusz X, Zawsze Trzeźwy Landlord Czerwonomakowskich Luster	2	[{"changed": {"fields": ["Wielki Mistrz"]}}]	12	1
+1083	2025-07-11 14:07:07.297573+02	15	Zarząd 2023/2024 - WM Paulina "Koziołek" Kozioł - Tadeusz X, Patronka Słowa Mówionego i Pisanego	1	[{"added": {}}]	12	1
+1084	2025-07-11 14:07:21.384778+02	14	Zarząd 2024/2025 - WM Michał "Cukier/Małolata" Malata - Tadeusz XI, Czerwona Opcja Śląska	2	[{"changed": {"fields": ["Wielki Mistrz"]}}]	12	1
+1085	2025-07-11 14:08:33.116192+02	16	Paulina "Koziołek" Kozioł - Tadeusz X, Patronka Słowa Mówionego i Pisanego, Jedyny Prawowity Tadeusz X	2	[{"changed": {"fields": ["Tytu\\u0142y"]}}]	13	1
+1086	2025-07-11 14:08:40.107571+02	15	Zarząd 2023/2024 - WM Paulina "Koziołek" Kozioł - Tadeusz X, Patronka Słowa Mówionego i Pisanego, Jedyny Prawowity Tadeusz X	2	[]	12	1
+1087	2025-07-11 14:14:37.706296+02	2	Dawny Zarząd 2010/2011 - WM Tadeusz "Kumdo/Tadek" Hessel - Tadeusz I	2	[{"changed": {"fields": ["Wielki Mistrz"]}}]	11	1
+1088	2025-07-11 14:16:33.979483+02	1	Dawny Zarząd 2009/2010 - WM Tadeusz "Kumdo/Tadek" Hessel - Tadeusz I	2	[{"changed": {"fields": ["Wielki Mistrz"]}}]	11	1
+1089	2025-07-11 14:16:51.494378+02	2	Dawny Zarząd 2010/2011 - WM Tadeusz "Kumdo/Tadek" Hessel - Tadeusz I	2	[]	11	1
 \.
 
 
@@ -3301,6 +3319,7 @@ COPY public.django_migrations (id, app, name, applied) FROM stdin;
 196	czlonkowie	0042_alter_zarzad_wielki_mistrz	2025-07-11 01:58:06.96624+02
 197	czlonkowie	0043_alter_czapka_uczelnia	2025-07-11 12:55:37.461654+02
 198	encyklopedia	0017_powiedzenie	2025-07-11 12:55:37.503695+02
+199	czlonkowie	0044_alter_dawnyzarzad_wielki_mistrz	2025-07-11 14:12:24.130456+02
 \.
 
 
@@ -3686,7 +3705,7 @@ SELECT pg_catalog.setval('public.czlonkowie_wielkimistrz_id_seq', 17, true);
 -- Name: czlonkowie_zarzad_id_seq; Type: SEQUENCE SET; Schema: public; Owner: projectuser
 --
 
-SELECT pg_catalog.setval('public.czlonkowie_zarzad_id_seq', 14, true);
+SELECT pg_catalog.setval('public.czlonkowie_zarzad_id_seq', 15, true);
 
 
 --
@@ -3700,7 +3719,7 @@ SELECT pg_catalog.setval('public.czlonkowie_zwierzeczapkowe_id_seq', 13, true);
 -- Name: django_admin_log_id_seq; Type: SEQUENCE SET; Schema: public; Owner: projectuser
 --
 
-SELECT pg_catalog.setval('public.django_admin_log_id_seq', 1072, true);
+SELECT pg_catalog.setval('public.django_admin_log_id_seq', 1089, true);
 
 
 --
@@ -3714,7 +3733,7 @@ SELECT pg_catalog.setval('public.django_content_type_id_seq', 40, true);
 -- Name: django_migrations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: projectuser
 --
 
-SELECT pg_catalog.setval('public.django_migrations_id_seq', 198, true);
+SELECT pg_catalog.setval('public.django_migrations_id_seq', 199, true);
 
 
 --
@@ -3756,7 +3775,7 @@ SELECT pg_catalog.setval('public.encyklopedia_zwyczaj_id_seq', 1, true);
 -- Name: kronika_charakterystykadzialanzarzadu_id_seq; Type: SEQUENCE SET; Schema: public; Owner: projectuser
 --
 
-SELECT pg_catalog.setval('public.kronika_charakterystykadzialanzarzadu_id_seq', 11, true);
+SELECT pg_catalog.setval('public.kronika_charakterystykadzialanzarzadu_id_seq', 12, true);
 
 
 --
@@ -4887,7 +4906,7 @@ ALTER TABLE ONLY public.czlonkowie_dawnyzarzad
 --
 
 ALTER TABLE ONLY public.czlonkowie_dawnyzarzad
-    ADD CONSTRAINT czlonkowie_dawnyzarz_wielki_mistrz_id_b12f32a7_fk_czlonkowi FOREIGN KEY (wielki_mistrz_id) REFERENCES public.czlonkowie_czlonek(id) DEFERRABLE INITIALLY DEFERRED;
+    ADD CONSTRAINT czlonkowie_dawnyzarz_wielki_mistrz_id_b12f32a7_fk_czlonkowi FOREIGN KEY (wielki_mistrz_id) REFERENCES public.czlonkowie_wielkimistrz(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
