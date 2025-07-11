@@ -24,6 +24,7 @@ class Czapka(models.Model):
         AGH = "AGH", "AGH"
         PK = "PK", "PK"
         UEK = "UEK", "UEK"
+        WSE = "WSE", "WSE (teraz USWPS)"
         UW = "UW", "UW"
         SLASKI = "UŚ", "UŚ"
         LODZKI = "UŁ", "UŁ"
@@ -65,6 +66,9 @@ class Czapka(models.Model):
         ],
         Uczelnie.UEK: [
             ("UEK", "Dowolny wydział"),
+        ],
+        Uczelnie.WSE: [
+            ("WSE", "Dowolny wydział"),
         ],
         Uczelnie.UW: [
             ("UW", "Dowolny wydział"),
@@ -436,7 +440,8 @@ class DawnyZarzad(models.Model):
     )
 
     wielki_mistrz = models.ForeignKey(
-    Czlonek,
+    "Czlonek",
+        blank=True,
         on_delete=models.SET_NULL,
         null=True,
         verbose_name="Wielki Mistrz",
@@ -505,7 +510,7 @@ class DawnyZarzad(models.Model):
         ordering = ['-kadencja']
 
     def __str__(self):
-        return f"Dawny Zarząd {str(self.kadencja)}"
+        return f"Dawny Zarząd {str(self.kadencja)} - WM {str(self.wielki_mistrz)}"
 
 class Zarzad(models.Model):
     kadencja = models.ForeignKey(
@@ -516,9 +521,10 @@ class Zarzad(models.Model):
     )
 
     wielki_mistrz = models.ForeignKey(
-        Czlonek,
-        on_delete=models.SET_NULL,
+        "WielkiMistrz",
+        blank=True,
         null=True,
+        on_delete=models.SET_NULL,
         verbose_name="Wielki Mistrz",
         related_name="kadencje_jako_wielki_mistrz",
     )
@@ -561,7 +567,7 @@ class Zarzad(models.Model):
         ordering = ['-kadencja']
 
     def __str__(self):
-        return f"Zarząd {str(self.kadencja)}"
+        return f"Zarząd {str(self.kadencja)} - WM {str(self.wielki_mistrz)}"
 
 class WielkiMistrz(models.Model):
     imie = models.ForeignKey(
@@ -714,4 +720,10 @@ class Osoby(models.Model):
         verbose_name_plural = "Osoby"
 
     def __str__(self):
-        return f"{self.czlonek or self.bean or self.inna_osoba} - {self.content_type} - {self.content_object}"
+        if self.czlonek:
+            return str(self.czlonek)
+        if self.bean:
+            return str(self.bean)
+        if self.inna_osoba:
+            return str(self.inna_osoba)
+                # f" - {self.content_type} - {self.content_object}")

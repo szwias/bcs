@@ -11,7 +11,7 @@ autocomplete_configs = [
     (InnaOsoba,         ['kategoria'],                                                      [], ['encyklopedia.Bractwo']),
     (Osoby,             [],                                                                 [], ['Bean', 'Czlonek', 'InnaOsoba']),
     (WielkiMistrz,      [],                                                                 [], ['Czlonek']),
-    (Zarzad,            [],                                                                 [], ['Czlonek', 'core.Kadencja', 'kronika.CharakterystykaDzialanZarzadu']),
+    (Zarzad,            [],                                                                 [], ['WielkiMistrz', 'Czlonek', 'core.Kadencja', 'kronika.CharakterystykaDzialanZarzadu']),
     (ZwierzeCzapkowe,   [],                                                                 [], ['Czlonek']),
 ]
 

@@ -10,6 +10,13 @@ class BractwoForm(forms.ModelForm):
 
         widgets = build_widgets(autocomplete_widgets['Bractwo'])
 
+class PowiedzenieForm(forms.ModelForm):
+    class Meta:
+        model = Zwyczaj
+        fields = '__all__'
+
+        widgets = build_widgets(autocomplete_widgets['Powiedzenie'])
+
 class TradycjaBCSForm(forms.ModelForm):
     class Meta:
         model = TradycjaBCS

@@ -402,4 +402,4 @@ class CharakterystykaDzialanZarzadu(models.Model):
         ordering = ["-zarzad"]
 
     def __str__(self):
-        return f"{self.autor}: {str(self.zarzad or self.dawny_zarzad)}"
+        return f"{self.autor}: {self.zarzad.kadencja or self.dawny_zarzad.kadencja}"

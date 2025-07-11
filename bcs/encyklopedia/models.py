@@ -4,6 +4,7 @@ from django.db import models
 from core.utils.Choices import IntAlt
 from core.utils.Consts import *
 from core.utils.czas import Czas
+from czlonkowie.models import Czlonek
 from kronika.models import Wydarzenie
 
 
@@ -220,3 +221,39 @@ class Zwyczaj(models.Model):
 
     def __str__(self):
         return self.nazwa
+
+class Powiedzenie(models.Model):
+    tekst = models.TextField(
+        verbose_name="Tekst",
+    )
+
+    autor = models.ForeignKey(
+        Czlonek,
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+        verbose_name="Autor",
+    )
+
+    adresat = GenericRelation(
+        "czlonkowie.Osoby", blank=True, verbose_name="Adresat"
+    )
+
+    kontekst = models.TextField(
+        blank=True, verbose_name="Kontekst",
+    )
+
+    class Meta:
+        verbose_name = "Powiedzenie"
+        verbose_name_plural = "Powiedzenia"
+        ordering = ("tekst",)
+
+    def __str__(self):
+        tekst = str(self.tekst)
+        kontekst = str(self.kontekst)
+        short_tekst = f"\"{tekst if len(tekst) <= 100 else tekst[:100] + '...'}\""
+        autor_str = str(self.autor) if self.autor else "Autor nieznany"
+        adresaci = ", ".join(str(a) for a in self.adresat.all())
+        adresat_str = f" do {adresaci}" if adresaci else ""
+        kontekst = f"{' (' + kontekst + ')' if len(kontekst) <= 100 else ''}"
+        return f"{autor_str}{adresat_str}: {short_tekst}{kontekst}"

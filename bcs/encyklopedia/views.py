@@ -3,6 +3,7 @@ from core.utils.automation.ViewsGeneration import *
 
 autocomplete_configs = [
     (Bractwo, ['panstwo', 'czapka', 'wiek_tradycje', 'rok_zalozenia'], [], []),
+    (Powiedzenie, [], [], ['czlonkowie.Czlonek', 'czlonkowie.Osoby']),
     (TradycjaBCS, ['autor_rodzaj', 'okolicznosci_powstania'], [], ['kronika.Wydarzenie', 'czlonkowie.Czlonek']),
     (TradycjaInnegoBractwa, ['autor_rodzaj'], [], []),
     (Zwyczaj, [], [], ['czlonkowie.Osoby']),
