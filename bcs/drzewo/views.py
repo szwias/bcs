@@ -22,7 +22,7 @@ def serve_full_tree_form_view(request):
             if not os.path.exists(path):
                 generate_full_tree(path, onp)
 
-            if os.path.exists(path):
+            if os.path.exists(path): # TODO: generate anyway if related models' records changed
                 return FileResponse(open(path, "rb"), content_type="image/png")
 
             raise Http404("Image not found after generation")
@@ -48,7 +48,7 @@ def serve_scoped_tree_form_view(request):
         if not os.path.exists(path):
             generate_scoped_tree(path, member, depth, gen, onp)
 
-        if os.path.exists(path):
+        if os.path.exists(path): # TODO: generate anyway if related models' records changed
             return FileResponse(open(path, "rb"), content_type="image/png")
 
         raise Http404("Image not found after generation")
