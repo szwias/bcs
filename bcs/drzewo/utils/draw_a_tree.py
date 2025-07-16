@@ -13,7 +13,11 @@ def generate_full_tree(path, onp):
 def generate_scoped_tree(path, member, depth, gen, onp):
     _, _, helper_dict = build_layers_and_edges_from_db(onp)
     layers, edges = build_scoped_layers_and_edges(member, depth, gen, onp, helper_dict)
-    render_layered_graph(layers, edges,path)
+    render_layered_graph(layers, edges,path, node_attrs={str(member): {
+                "fillcolor": 'green',
+                "style": "filled",
+                "shape": "ellipse"
+            }})
 
 def build_scoped_layers_and_edges(member, depth, gen, onp, helper_dict):
     layers = {}
