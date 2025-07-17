@@ -1,6 +1,6 @@
 from .utils.automation.BaseAdmin import *
 
-from .utils.czas.models import Kadencja
+from core.models import Kadencja
 
 @admin.register(Kadencja)
 class KadencjaAdmin(BaseModelAdmin):

@@ -1,4 +1,4 @@
-from .utils.czas.models import Kadencja
+from core.models import Kadencja
 from django.db.models import CharField
 from django.db.models.functions import Cast
 from core.utils.automation.ViewsGeneration import *
@@ -16,6 +16,9 @@ class CustomKadencjaAutocomplete(autocomplete.Select2QuerySetView):
         return qs
 
 autocomplete_configs = [
-    (Kadencja, [], ['rozpoczecie'], [])
+    (
+        Kadencja,
+        [], ['rozpoczecie'],
+        [])
 ]
 autocomplete_urls, autocomplete_widgets = setup_autocompletes(autocomplete_configs, globals())

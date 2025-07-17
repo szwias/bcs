@@ -3,13 +3,11 @@ from django.contrib.contenttypes.models import ContentType
 from django.contrib.postgres.fields import ArrayField
 from django.db import models
 from roman import fromRoman
-from core.utils import Consts
 from core.utils.Consts import MAX_LENGTH, MEDIUM_LENGTH, SHORT_LENGTH, NAME_LENGTH
 from core.utils.czas import Czas
-from core.utils.czas.Czas import BIEZACY_ROK, ROK_ZALOZENIA
-from core.utils.czas.models import Kadencja
+from core.utils.czas.Czas import ROK_ZALOZENIA
+from core.models import Kadencja
 from core.utils.Choices import TextAlt, TextChoose, IntAlt
-from kronika.models import CharakterystykaDzialanZarzadu
 
 
 class Lengths:

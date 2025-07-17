@@ -1,5 +1,5 @@
 from django import forms
-from core.utils.czas.models import *
+from core.models import *
 from .views import autocomplete_widgets
 from core.utils.automation.ViewsGeneration import *
 

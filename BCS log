@@ -35,31 +35,38 @@ Python / SQL / HTML lines of code:
     8 lipca:    2657 / 4849 lines (-80 / +4)
     9 lipca:    2684 / 4849 / 26 lines (+27 / +0 / +26)
     10 lipca:   2711 / 4849 / 25 lines (+13 / +0 / -1)
-    11 lipca:   (+178 / +348 / +0)
+    11 lipca:   2890 / 5218 / 25 lines (+179 / +369 / +0)
+    16 lipca:   2894 / 5132 / 25 lines (+4 / -86 / +0)
+    17 lipca:   (+174 / +0 / +0)
 
+    START OF PRODUCTION:
     24 kwietnia - 4 maja (9 / 11 days - 1700 / x lines):
         Average speed of development: 155 lines per day (~160)
         Average lines of code on a coding day: 189 lines per day (~190)
         Average positive lines on a coding day: x lines per day
 
+    DEPRESSION AFTER FAILURE TO DELIVER:
     5 maja - 29 maja (10 / 25 days - 655 / x lines):
         Average speed of development: 26 lines per day (~30)
         Average lines of code on a coding day: 66 lines per day (~70)
         Average positive lines on a coding day: 87 lines per day (~90)
 
+    LEARNING COLEMAK-DH:
     17 czerwca - 29 czerwca (3 / 13 days - 235 / x lines):
         Average speed of development: 18 lines per day (~20)
         Average lines of code on a coding day: 78 lines per day (~80)
         Average positive lines on a coding day: 79 lines per day (~80)
 
+    DATABASE TWEAKS:
     1 lipca - 3 lipca (2 / 3 days - 43 / x lines):
         Average speed of development: 14 lines per day (~10)
         Average lines of code on a coding day: 43 lines per day (~40)
         Average positive lines on a coding day: 43 lines per day (~40)
 
-    4 lipca - teraz (8 / 9 days - 149 / 94 / 25 lines):
-        Average speed of development: 30 lines per day (~30)
-        Average lines of code on a coding day: 30 lines per day (~30)
-        Average positive lines on a coding day: 46 lines per day (~50)
+    GREAT COMEBACK:
+    4 lipca - teraz (8 / 13 days - 250 / 351 / 25 lines):
+        Average speed of development: 48 lines per day (~50)
+        Average lines of code on a coding day: 78 lines per day (~80)
+        Average positive lines on a coding day: 99 lines per day (~100)
 
 

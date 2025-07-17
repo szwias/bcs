@@ -20,16 +20,37 @@ class CustomMiejsceFromWydarzenieToZdarzenieAutocomplete(autocomplete.Select2Que
         return qs
 
 
-
+from czlonkowie.models_dict import names as czlonkowie
 
 autocomplete_configs = [
-    (Miejsce,           ['typ'],                                [],     []),
-    (Zdarzenie,         [],                                     [],     ['czlonkowie.Osoby', 'ObrazZdarzenie', 'Wydarzenie']),
-    (ObrazZdarzenie,    [],                                     [],     ['Zdarzenie', 'Miejsce', 'czlonkowie.Osoby']),
-    (Wydarzenie,        ['typ_wydarzenia', 'typ_wyjazdu', 'czy_to_wyjazd'],      [],     ['Miejsce', 'Zdarzenie', 'czlonkowie.Osoby']),
-    (ObrazWydarzenie,   [],                                     [],     ['Wydarzenie', 'czlonkowie.Osoby']),
-    (Proces,            [],                                     [],     ['Zdarzenie']),
-    (CharakterystykaDzialanZarzadu, [], [], ['czlonkowie.Zarzad', 'czlonkowie.DawnyZarzad', 'czlonkowie.Czlonek']),
+    (
+        Miejsce,
+        ['typ'], [],
+        []),
+    (
+        Zdarzenie,
+        [], [],
+        [ObrazZdarzenie.__name__, Wydarzenie.__name__]),
+    (
+        ObrazZdarzenie,
+        [], [],
+        [Zdarzenie.__name__, Miejsce.__name__]),
+    (
+        Wydarzenie,
+        ['typ_wydarzenia', 'typ_wyjazdu', 'czy_to_wyjazd'], [],
+        [Miejsce.__name__, Zdarzenie.__name__]),
+    (
+        ObrazWydarzenie,
+        [], [],
+        [Wydarzenie.__name__]),
+    (
+        Proces,
+        [], [],
+        [Zdarzenie.__name__]),
+    (
+        CharakterystykaDzialanZarzadu,
+        [], [],
+        [czlonkowie['Zarzad'], czlonkowie['DawnyZarzad'], czlonkowie['Czlonek']]),
 ]
 
 autocomplete_urls, autocomplete_widgets = setup_autocompletes(autocomplete_configs, globals())

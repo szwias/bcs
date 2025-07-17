@@ -90,3 +90,6 @@ def setup_autocompletes(configs, globals_dict):
 def build_widgets(widget_factories):
     return {field: factory() for field, factory in widget_factories.items()}
 
+def add_model_name(model, dictionary, key):
+    if hasattr(model, '_meta'):
+        dictionary[key] = f"{model._meta.app_label}.{model.__name__}"
