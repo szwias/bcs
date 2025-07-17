@@ -1,8 +1,9 @@
 """
-from django import drzewo
+from django import forms
 from dal import autocomplete
 from .models import *
-from .views import autocomplete_widgets, build_widgets
+from .views import autocomplete_widgets
+from core.utils.automation.AutocompletesGeneration import build_widgets
 
 class ZarzadForm(drzewo.ModelForm):
     class Meta:

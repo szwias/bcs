@@ -1,6 +1,6 @@
 """
 from collections import defaultdict
-from core.utils.automation.ViewsGeneration import add_model_name
+from core.utils.automation.AutocompletesGeneration import add_model_name
 from .models import (
     Bean, Czlonek, InnaOsoba, \
     ImieSzlacheckie, ZwierzeCzapkowe, \

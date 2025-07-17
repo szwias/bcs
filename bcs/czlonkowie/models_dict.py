@@ -1,7 +1,6 @@
 from collections import defaultdict
 from core.utils.automation.AutocompletesGeneration import add_model_name
 from .models import (
-    Czapka, \
     Bean, Czlonek, InnaOsoba, \
     ImieSzlacheckie, ZwierzeCzapkowe, \
     DawnyZarzad, WielkiMistrz, Zarzad, \
@@ -9,8 +8,6 @@ from .models import (
     )
 
 names = defaultdict(str)
-
-add_model_name(Czapka, names, "Czapka")
 
 add_model_name(Bean, names, "Bean")
 add_model_name(Czlonek, names, "Czlonek")

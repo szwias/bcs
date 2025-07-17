@@ -6,28 +6,6 @@ from core.utils.automation.AutocompletesGeneration import build_widgets
 from django.contrib.postgres.forms import SimpleArrayField
 
 
-class CzapkaForm(forms.ModelForm):
-    class Meta:
-        model = Czapka
-        fields = '__all__'
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-
-        # Start: Wydzial initially empty
-        self.fields['wydzial'].choices = []
-
-        uczelnia = None
-        if 'uczelnia' in self.data:
-            uczelnia = self.data.get('uczelnia')
-        elif self.instance and self.instance.uczelnia:
-            uczelnia = self.instance.uczelnia
-
-        if uczelnia in Czapka.WydzialChoices:
-            wydzial_choices = Czapka.WydzialChoices[uczelnia]
-            self.fields['wydzial'].choices = wydzial_choices
-            self.fields['wydzial'].widget = forms.Select(choices=wydzial_choices)
-
 class CzlonekForm(forms.ModelForm):
     class Meta:
         model = Czlonek

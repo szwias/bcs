@@ -7,126 +7,14 @@ from core.utils.Consts import MAX_LENGTH, MEDIUM_LENGTH, SHORT_LENGTH, NAME_LENG
 from core.utils.czas import Czas
 from core.utils.czas.Czas import ROK_ZALOZENIA
 from core.models import Kadencja
+from czapki.models import Czapka
 from core.utils.Choices import TextAlt, TextChoose, IntAlt
 
 
 class Lengths:
-    UCZELNIE = 10
     AKTYWNOSC = 1
     STATUS = 2
-    WYDZIAL = 10
 
-class Czapka(models.Model):
-    class Uczelnie(models.TextChoices):
-        UJ = "UJ", "UJ"
-        AGH = "AGH", "AGH"
-        PK = "PK", "PK"
-        UEK = "UEK", "UEK"
-        WSE = "WSE", "WSE (teraz USWPS)"
-        UW = "UW", "UW"
-        SLASKI = "UŚ", "UŚ"
-        LODZKI = "UŁ", "UŁ"
-        UP_L = "UP_L", "Uniwersytet Przyrodniczy w Lublinie"
-        NIEMCY = "NIEMCY", "Niemcy"
-        DONT_KNOW = "XXX", "Nie wiem"
-        NOT_APPLICABLE = "n/a", "Nie dotyczy"
-    WydzialChoices = {
-        Uczelnie.UJ: [
-            ("WPiA", "Wydział Prawa i Administracji"),
-            ("CMUJ", "Collegium Medicum"),
-            ("WFarm", "Wydział Farmaceutyczny"),
-            ("WNoZ", "Wydział Nauk o Zdrowiu"),
-            ("WFiloz", "Wydział Filozoficzny"),
-            ("WHist", "Wydział Historyczny"),
-            ("WFilol", "Wydział Filologiczny"),
-            ("WPol", "Wydział Polonistyki"),
-            ("WFAiIS", "Wydział Fizyki, Astronomii i Informatyki Stosowanej"),
-            ("WMiI", "Wydział Matematyki i Informatyki"),
-            ("WChUJ", "Wydział Chemii"),
-            ("WB", "Wydział Biologii"),
-            ("WZiKS", "Wydział Zarządzania i Komunikacji Społecznej"),
-            ("WSMiP", "Wydział Studiów Międzynarodowych i Politycznych"),
-            ("WBBiB", "Wydział Biochemii, Biofizyki i Biotechnologii"),
-            ("WGiG", "Wydział Geografii i Geologii"),
-            ("SMP", "Studia Matematyczno-Przyrodnicze"),
-            ("MISH", "Międzywydziałowe Indywidualne Studia Humanistyczne"),
-            ("Honorowa", "Honoris Causa")
-        ],
-        Uczelnie.AGH: [
-            ("PG", "Pion górniczy"),
-            ("PH", "Pion hutniczy"),
-            ("Inne", "Inne"),
-        ],
-        Uczelnie.PK: [
-            ("WA", "Wydział Architektury"),
-            ("WM", "Wydział Mechaniczny"),
-            ("WIL", "Wydział Inżynierii Lądowej")
-        ],
-        Uczelnie.UEK: [
-            ("UEK", "Dowolny wydział"),
-        ],
-        Uczelnie.WSE: [
-            ("WSE", "Dowolny wydział"),
-        ],
-        Uczelnie.UW: [
-            ("UW", "Dowolny wydział"),
-        ],
-        Uczelnie.SLASKI: [
-            ("US", "Dowolny wydział"),
-        ],
-        Uczelnie.LODZKI: [
-            ("UL", "Dowolny wydział"),
-        ],
-        Uczelnie.UP_L: [
-            ("UP_L", "Dowolny wydział"),
-        ],
-        Uczelnie.DONT_KNOW: [
-            ("XXX", "Nie wiem"),
-        ],
-        Uczelnie.NOT_APPLICABLE: [
-            ("n/a", "Nie dotyczy"),
-        ],
-        Uczelnie.NIEMCY: [
-            ("XXX", "Nie wiem"),
-        ]
-    }
-
-    uczelnia = models.CharField(
-        max_length=Lengths.UCZELNIE,
-        choices = Uczelnie.choices,
-        default=Uczelnie.UJ,
-        verbose_name='Uczelnia',
-    )
-
-    wydzial = models.CharField(
-        max_length=Lengths.WYDZIAL, default="XXX", verbose_name='Wydział',
-    )
-
-    kolor = models.CharField(
-        max_length=MAX_LENGTH, default='', verbose_name='Kolor',
-    )
-
-    class Meta:
-        verbose_name = "Czapka"
-        verbose_name_plural = "Czapki"
-        ordering = ['uczelnia', 'kolor', 'wydzial']
-
-    def __str__(self):
-        if self.uczelnia == self.Uczelnie.NOT_APPLICABLE:
-            return "Nie dotyczy"
-        if self.uczelnia == self.Uczelnie.DONT_KNOW:
-            return "Nie wiem"
-        return str(self.uczelnia) + "_" + str(self.kolor) + "_" + str(self.wydzial)
-
-    @staticmethod
-    def get_dont_know_czapka():
-        czapka, _ = Czapka.objects.get_or_create(uczelnia=Czapka.Uczelnie.DONT_KNOW)
-        return czapka
-
-    @staticmethod
-    def get_not_applicable_czapka():
-        czapka, _ = Czapka.objects.get_or_create(uczelnia=Czapka.Uczelnie.NOT_APPLICABLE)
-        return czapka
 
 class Osoba(models.Model):
     imie = models.CharField(
@@ -160,7 +48,7 @@ class OsobaBCS(Osoba):
         NIE = "N", "Ale mógł pojawić się wcześniej"
 
     czapka_1 = models.ForeignKey(
-        'Czapka',
+        'czapki.Czapka',
         on_delete=models.SET_NULL,
         null=True,
         default=Czapka.get_dont_know_czapka,
@@ -169,7 +57,7 @@ class OsobaBCS(Osoba):
     )
 
     czapka_2 = models.ForeignKey(
-        'Czapka',
+        'czapki.Czapka',
         on_delete=models.SET_NULL,
         null=True,
         default=Czapka.get_not_applicable_czapka,
