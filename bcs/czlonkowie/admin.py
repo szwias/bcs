@@ -1,13 +1,16 @@
 from core.utils.automation.BaseAdmin import *
-from .models import DawnyZarzad, Zarzad, HallOfFame, ImieSzlacheckie, Osoby, WielkiMistrz, ZwierzeCzapkowe
+from .models import DawnyZarzad, Zarzad, HallOfFame, ImieSzlacheckie, WielkiMistrz, ZwierzeCzapkowe
+from kronika.inlines import CharakterystykaDzialanZarzaduInline
 
 @admin.register(DawnyZarzad)
 class DawnyZarzadAdmin(BaseModelAdmin):
     list_filter_exclude = "__all__"
+    inlines = [CharakterystykaDzialanZarzaduInline]
 
 @admin.register(Zarzad)
 class ZarzadAdmin(BaseModelAdmin):
     list_filter_exclude = "__all__"
+    inlines = [CharakterystykaDzialanZarzaduInline]
 
 @admin.register(HallOfFame)
 class HallOfFameAdmin(BaseModelAdmin):
@@ -16,10 +19,6 @@ class HallOfFameAdmin(BaseModelAdmin):
 @admin.register(ImieSzlacheckie)
 class ImieSzlacheckieAdmin(BaseModelAdmin):
     list_filter_exclude = "__all__"
-
-@admin.register(Osoby)
-class OsobyAdmin(BaseModelAdmin):
-    list_filter_exclude = ["content_type"]
 
 @admin.register(WielkiMistrz)
 class WielkiMistrzAdmin(BaseModelAdmin):
@@ -35,7 +34,6 @@ register_all_models(
         Zarzad: ZarzadAdmin,
         HallOfFame: HallOfFameAdmin,
         ImieSzlacheckie: ImieSzlacheckieAdmin,
-        Osoby: OsobyAdmin,
         WielkiMistrz: WielkiMistrzAdmin,
         ZwierzeCzapkowe: ZwierzeCzapkoweAdmin,
     }
