@@ -13,7 +13,7 @@ class Lengths:
     PANSTWA_LENGTH = 3
     CZAPKI_LENGTH = 3
 
-class TradycjaBCS(models.Model):
+class TradycjaBCS(models.Model): # TODO: add autor (Osoba)
     class Authors(models.TextChoices):
         BELGOWIE = "Belg", "Belgijska"
         BCS = "BCS", "BCSu"
@@ -51,7 +51,7 @@ class TradycjaBCS(models.Model):
     )
 
     inne = models.CharField(
-        max_length=MAX_LENGTH, blank=True, verbose_name="Inna okoliczność (wpisz)",
+        max_length=MAX_LENGTH, blank=True, verbose_name="Inna okoliczność (wpisz):",
     )
 
     opis = models.TextField(
@@ -99,7 +99,7 @@ class TradycjaInnegoBractwa(models.Model):
     def __str__(self):
         return self.nazwa
 
-class Bractwo(models.Model):
+class Bractwo(models.Model): # TODO: add zalozyciel (Osoba)
     class Panstwa(models.TextChoices):
         BELGIA = "BEL", "Belgia"
         DANIA = "DNK", "Dania"
@@ -148,11 +148,10 @@ class Bractwo(models.Model):
         return f"{self.panstwo} {self.nazwa}"
 
 
-class Pojecie(models.Model):
+class Pojecie(models.Model): # TODO: add autor (Osoba)
     class Origins(models.TextChoices):
-        INNE = "Inne", "Inna okoliczność"
         WYDARZENIE = "Wydarzenie", "Na wydarzeniu czapkowym"
-        WYJAZD = "Wyjazd", "Na wyjeździe"
+        INNE = "Inne", "Inna okoliczność"
 
     nazwa = models.CharField(
         max_length=MEDIUM_LENGTH,
@@ -178,8 +177,77 @@ class Pojecie(models.Model):
         verbose_name="Wydarzenie",
     )
 
-class Zrodlo(models.Model):
-    nazwa = models.CharField(max_length=255)
-    opis = models.TextField()
-    link = models.CharField(max_length=200)
-    gdzie_znalezc = models.TextField()
+    class Meta:
+        verbose_name = "Pojęcie"
+        verbose_name_plural = "Pojęcia"
+        ordering = ("nazwa",)
+
+    def __str__(self):
+        return self.nazwa
+
+class Zrodlo(models.Model): # TODO: add autorzy (Osoba)
+    nazwa = models.CharField(
+        max_length=255, blank=True, verbose_name="Nazwa"
+    )
+
+    zawartosc = models.TextField(
+        blank=True, verbose_name="Zawartość"
+    )
+
+    link = models.URLField(
+        blank=True, verbose_name="Link"
+    )
+
+    gdzie_znalezc = models.TextField(
+        blank=True, verbose_name="Gdzie znaleźć"
+    )
+
+    class Meta:
+        verbose_name = "Źródło"
+        verbose_name_plural = "Źródła"
+        ordering = ("nazwa",)
+
+class Zwyczaj(models.Model): # TODO: add autor (Osoba)
+    nazwa = models.CharField(
+        max_length=MEDIUM_LENGTH, verbose_name="Nazwa",
+    )
+
+    data_powstania = models.DateField(
+        blank=True, verbose_name="Data powstania",
+    )
+
+    opis = models.TextField(
+        blank=True,
+        verbose_name="Opis",
+    )
+
+    class Meta:
+        verbose_name = "Zwyczaj"
+        verbose_name_plural = "Zwyczaje"
+        ordering = ("nazwa",)
+
+    def __str__(self):
+        return self.nazwa
+
+class Powiedzenie(models.Model): # TODO: add autor, adresat (Osoba)
+    tekst = models.TextField(
+        verbose_name="Tekst",
+    )
+
+    kontekst = models.TextField(
+        blank=True, verbose_name="Kontekst",
+    )
+
+    class Meta:
+        verbose_name = "Powiedzenie"
+        verbose_name_plural = "Powiedzenia"
+        ordering = ("tekst",)
+
+    def __str__(self):
+        tekst = str(self.tekst)
+        kontekst = str(self.kontekst)
+        short_tekst = f"\"{tekst if len(tekst) <= 100 else tekst[:100] + '...'}\""
+        # adresaci = ", ".join(str(a) for a in self.adresat.all())
+        # adresat_str = f" do {adresaci}" if adresaci else ""
+        kontekst = f"{' (' + kontekst + ')' if len(kontekst) <= 100 else ''}"
+        return f"{short_tekst}{kontekst}"
