@@ -20,6 +20,8 @@ class CustomMiejsceFromWydarzenieToZdarzenieAutocomplete(autocomplete.Select2Que
         return qs
 
 
+from czlonkowie.models_dict import names as czlonkowie
+
 autocomplete_configs = [
     (
         Miejsce,
@@ -45,6 +47,10 @@ autocomplete_configs = [
         Proces,
         [], [],
         [Zdarzenie.__name__]),
+    (
+        CharakterystykaDzialanZarzadu,
+        [], [],
+        [czlonkowie['Zarzad'], czlonkowie['DawnyZarzad'], czlonkowie['Czlonek']]),
 ]
 
 autocomplete_urls, autocomplete_widgets = setup_autocompletes(autocomplete_configs, globals())

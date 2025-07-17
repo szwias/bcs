@@ -51,7 +51,7 @@ class Miejsce(models.Model):
     def __str__(self):
         return f"{self.nazwa} - {self.get_typ_display()}, {self.adres}"
 
-class Zdarzenie(models.Model):
+class Zdarzenie(models.Model): # TODO: add powiazane_osoby (Osoba)
     nazwa = models.CharField(max_length=MAX_LENGTH, verbose_name="Nazwa")
 
     wydarzenie = models.ForeignKey(
@@ -118,7 +118,7 @@ class Zdarzenie(models.Model):
         super().save(*args, **kwargs)
 
 
-class ObrazZdarzenie(models.Model):
+class ObrazZdarzenie(models.Model): # TODO: add widoczne_osoby (Osoba)
     zdarzenie = models.ForeignKey(
         Zdarzenie,
         blank=True,
@@ -191,7 +191,7 @@ class ObrazZdarzenie(models.Model):
 
         super().save(*args, **kwargs)
 
-class Wydarzenie(models.Model):
+class Wydarzenie(models.Model): # TODO: add uczestnicy (Osoba)
     class TypyWydarzen(models.TextChoices):
         AKCJA = "Akcja", "Akcja"
         INNE = "Inne", "Inne"
@@ -283,7 +283,7 @@ class Wydarzenie(models.Model):
         name += f": {typ} \"{self.nazwa}\""
         return name
 
-class ObrazWydarzenie(models.Model):
+class ObrazWydarzenie(models.Model): # TODO: add widoczne_osoby (Osoba
     wydarzenie = models.ForeignKey(
         Wydarzenie,
         blank=True,
@@ -348,3 +348,39 @@ class Proces(models.Model):
 
     def __str__(self):
         return f"{self.nazwa}: {self.data_rozpoczecia} - {self.data_zakonczenia}"
+
+class CharakterystykaDzialanZarzadu(models.Model):
+    zarzad = models.ForeignKey(
+        "czlonkowie.Zarzad",
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+        verbose_name="Zarząd",
+    )
+
+    dawny_zarzad = models.ForeignKey(
+        "czlonkowie.DawnyZarzad",
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+        verbose_name="Dawny Zarząd",
+    )
+
+    autor = models.ForeignKey(
+        "czlonkowie.Czlonek",
+        null=True,
+        on_delete=models.SET_NULL,
+        verbose_name="Autor",
+    )
+
+    charakterystyka = models.TextField(
+        blank=True, verbose_name="Charakterystyka działań Zarządu",
+    )
+
+    class Meta:
+        verbose_name = "Charakterystyka działań Zarządu"
+        verbose_name_plural = "Charakterystyki działań Zarządów"
+        ordering = ["-zarzad"]
+
+    def __str__(self):
+        return f"{self.autor}: {self.zarzad.kadencja if self.zarzad else self.dawny_zarzad.kadencja}"

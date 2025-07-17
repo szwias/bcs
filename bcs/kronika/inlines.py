@@ -1,7 +1,7 @@
 from django.contrib import admin
 
-from .models import ObrazZdarzenie, ObrazWydarzenie, Zdarzenie
-from .forms import ZdarzenieInlineForm
+from .models import ObrazZdarzenie, ObrazWydarzenie, Zdarzenie, CharakterystykaDzialanZarzadu
+from .forms import ZdarzenieInlineForm, CharakterystykaDzialanZarzaduForm
 
 class ObrazWydarzenieInline(admin.StackedInline):  # or StackedInline
     model = ObrazWydarzenie
@@ -19,3 +19,11 @@ class ObrazZdarzenieInline(admin.StackedInline):
     extra = 0
     fields = ["tytul", "obraz"]
     show_change_link = True
+
+class CharakterystykaDzialanZarzaduInline(admin.StackedInline):
+    model = CharakterystykaDzialanZarzadu
+    form = CharakterystykaDzialanZarzaduForm
+    extra = 0
+    fields = ["autor", "charakterystyka"]
+    show_change_link = True
+    ordering = ["autor"]
