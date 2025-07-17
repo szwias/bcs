@@ -4,7 +4,6 @@ from .models import (
     Miejsce, \
     Proces, Wydarzenie, Zdarzenie, \
     ObrazWydarzenie, ObrazZdarzenie, \
-    CharakterystykaDzialanZarzadu, \
     )
 
 names = defaultdict(str)
@@ -17,5 +16,3 @@ add_model_name(Zdarzenie, names, "Zdarzenie")
 
 add_model_name(ObrazWydarzenie, names, "ObrazWydarzenie")
 add_model_name(ObrazZdarzenie, names, "ObrazZdarzenie")
-
-add_model_name(CharakterystykaDzialanZarzadu, names, "CharakterystykaDzialanZarzadu")

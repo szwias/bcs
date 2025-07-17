@@ -117,7 +117,6 @@ class BeanForm(forms.ModelForm):
         delimiter=','
     )
 
-
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
@@ -126,22 +125,6 @@ class BeanForm(forms.ModelForm):
             self.fields['czapka_2'].initial = Czapka.get_not_applicable_czapka()
             self.fields['rodzic_1'].initial = Czlonek.get_not_applicable_czlonek()
             self.fields['rodzic_2'].initial = Czlonek.get_not_applicable_czlonek()
-
-class OsobyForm(forms.ModelForm):
-    class Meta:
-        model = Osoby
-        exclude = ['content_type', 'object_id']
-        widgets = {
-            'czlonek': autocomplete.ModelSelect2(
-                url='czlonkowie_autocomplete:czlonek-records-autocomplete'
-            ),
-            'bean': autocomplete.ModelSelect2(
-                url='czlonkowie_autocomplete:bean-records-autocomplete'
-            ),
-            'inna_osoba': autocomplete.ModelSelect2(
-                url='czlonkowie_autocomplete:inna-osoba-records-autocomplete'
-            )
-        }
 
 class ImieSzlacheckieForm(forms.ModelForm):
     posiadacz_display = forms.CharField(

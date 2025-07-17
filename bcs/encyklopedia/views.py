@@ -1,7 +1,6 @@
 from .models import *
 from core.utils.automation.ViewsGeneration import *
 
-from czlonkowie.models_dict import names as czlonkowie
 from kronika.models_dict import names as kronika
 
 autocomplete_configs = [
@@ -10,20 +9,12 @@ autocomplete_configs = [
         ['panstwo', 'czapka', 'wiek_tradycje', 'rok_zalozenia'], [],
         []),
     (
-        Powiedzenie,
-        [], [],
-        [czlonkowie['Czlonek']]),
-    (
         TradycjaBCS,
         ['autor_rodzaj', 'okolicznosci_powstania'], [],
-        [kronika['Wydarzenie'], czlonkowie['Czlonek']]),
+        [kronika['Wydarzenie']]),
     (
         TradycjaInnegoBractwa,
         ['autor_rodzaj'], [],
-        []),
-    (
-        Zwyczaj,
-        [], [],
         []),
 ]
 

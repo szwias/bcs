@@ -84,13 +84,6 @@ class Zdarzenie(models.Model):
         blank=True, verbose_name="Opis"
     )
 
-    powiazane_osoby = GenericRelation(
-        "czlonkowie.Osoby",
-        blank=True,
-        verbose_name="Powiązane osoby",
-        related_name="uczestnictwo_w_zdarzeniach"
-    )
-
     class Meta:
         verbose_name = "Zdarzenie"
         verbose_name_plural = "Zdarzenia"
@@ -154,10 +147,6 @@ class ObrazZdarzenie(models.Model):
 
     obraz = models.ImageField(
         upload_to="kronika/zdarzenia/", verbose_name="Dodaj obraz",
-    )
-
-    widoczne_osoby = GenericRelation(
-        "czlonkowie.Osoby", blank=True, verbose_name="Widoczne osoby",
     )
 
     opis = models.TextField(
@@ -278,10 +267,6 @@ class Wydarzenie(models.Model):
         "ObrazWydarzenie", blank=True, verbose_name="Zdjęcia", related_name="po_cholere_to_polaczenie"
     )
 
-    uczestnicy = GenericRelation(
-        "czlonkowie.Osoby", blank=True, verbose_name="Uczestnicy",
-    )
-
     class Meta:
         verbose_name = "Wydarzenie"
         verbose_name_plural = "Wydarzenia"
@@ -314,10 +299,6 @@ class ObrazWydarzenie(models.Model):
 
     obraz = models.ImageField(
         upload_to="kronika/wydarzenia/", verbose_name="Dodaj obraz",
-    )
-
-    widoczne_osoby = GenericRelation(
-        "czlonkowie.Osoby", blank=True, verbose_name="Widoczne osoby",
     )
 
     opis = models.TextField(
@@ -367,39 +348,3 @@ class Proces(models.Model):
 
     def __str__(self):
         return f"{self.nazwa}: {self.data_rozpoczecia} - {self.data_zakonczenia}"
-
-class CharakterystykaDzialanZarzadu(models.Model):
-    zarzad = models.ForeignKey(
-        "czlonkowie.Zarzad",
-        blank=True,
-        null=True,
-        on_delete=models.SET_NULL,
-        verbose_name="Zarząd",
-    )
-
-    dawny_zarzad = models.ForeignKey(
-        "czlonkowie.DawnyZarzad",
-        blank=True,
-        null=True,
-        on_delete=models.SET_NULL,
-        verbose_name="Dawny Zarząd",
-    )
-
-    autor = models.ForeignKey(
-        "czlonkowie.Czlonek",
-        null=True,
-        on_delete=models.SET_NULL,
-        verbose_name="Autor",
-    )
-
-    charakterystyka = models.TextField(
-        blank=True, verbose_name="Charakterystyka działań Zarządu",
-    )
-
-    class Meta:
-        verbose_name = "Charakterystyka działań Zarządu"
-        verbose_name_plural = "Charakterystyki działań Zarządów"
-        ordering = ["-zarzad"]
-
-    def __str__(self):
-        return f"{self.autor}: {self.zarzad.kadencja if self.zarzad else self.dawny_zarzad.kadencja}"

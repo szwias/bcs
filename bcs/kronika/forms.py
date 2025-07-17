@@ -46,11 +46,5 @@ class ProcesForm(forms.ModelForm):
         fields = '__all__'
         widgets = build_widgets(autocomplete_widgets['Proces'])
 
-class CharakterystykaDzialanZarzaduForm(forms.ModelForm):
-    class Meta:
-        model = CharakterystykaDzialanZarzadu
-        fields = '__all__'
-        widgets = build_widgets(autocomplete_widgets['CharakterystykaDzialanZarzadu'])
-
 
 

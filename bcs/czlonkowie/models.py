@@ -160,7 +160,7 @@ class OsobaBCS(Osoba):
         NIE = "N", "Ale mógł pojawić się wcześniej"
 
     czapka_1 = models.ForeignKey(
-        Czapka,
+        'Czapka',
         on_delete=models.SET_NULL,
         null=True,
         default=Czapka.get_dont_know_czapka,
@@ -169,7 +169,7 @@ class OsobaBCS(Osoba):
     )
 
     czapka_2 = models.ForeignKey(
-        Czapka,
+        'Czapka',
         on_delete=models.SET_NULL,
         null=True,
         default=Czapka.get_not_applicable_czapka,
@@ -356,7 +356,7 @@ class Bean(OsobaBCS):
 
     rodzic_1 = models.ForeignKey(
         Czlonek,
-        on_delete=models.SET_NULL,
+        on_delete=models.DO_NOTHING,
         null=True, blank=True,
         verbose_name="Rodzic czapkowy",
         related_name='beani_pierwszy_wybor',
@@ -364,7 +364,7 @@ class Bean(OsobaBCS):
 
     rodzic_2 = models.ForeignKey(
         Czlonek,
-        on_delete=models.SET_NULL,
+        on_delete=models.DO_NOTHING,
         null=True, blank=True,
         verbose_name="Drugi rodzic czapkowy",
         related_name='beani_drugi_wybor',
@@ -437,15 +437,6 @@ class DawnyZarzad(models.Model):
         verbose_name="Kadencja",
     )
 
-    wielki_mistrz = models.ForeignKey(
-        "WielkiMistrz",
-        blank=True,
-        null=True,
-        on_delete=models.SET_NULL,
-        verbose_name="Wielki Mistrz",
-        related_name="kadencje_jako_wielki_mistrz_dawnego_zarzadu",
-    )
-
     kasztelan = models.ForeignKey(
         Czlonek,
         on_delete=models.SET_NULL,
@@ -507,73 +498,14 @@ class DawnyZarzad(models.Model):
         verbose_name_plural = "Dawne Zarządy"
         ordering = ['-kadencja']
 
-    def __str__(self):
-        return f"Dawny Zarząd {str(self.kadencja)} - WM {str(self.wielki_mistrz)}"
 
 class Zarzad(models.Model):
-    kadencja = models.ForeignKey(
-        Kadencja,
-        on_delete=models.SET_NULL,
-        null=True,
-        verbose_name="Kadencja",
-    )
-
-    wielki_mistrz = models.ForeignKey(
-        "WielkiMistrz",
-        blank=True,
-        null=True,
-        on_delete=models.SET_NULL,
-        verbose_name="Wielki Mistrz",
-        related_name="kadencje_jako_wielki_mistrz",
-    )
-
-    kasztelan = models.ForeignKey(
-        Czlonek,
-        on_delete=models.SET_NULL,
-        null=True,
-        verbose_name="Kasztelan",
-        related_name="kadencje_jako_kasztelan",
-    )
-
-    skarbnik = models.ForeignKey(
-        Czlonek,
-        on_delete=models.SET_NULL,
-        null=True,
-        verbose_name="Skarbnik",
-        related_name="kadencje_jako_skarbnik",
-    )
-
-    cantandi = models.ForeignKey(
-        Czlonek,
-        on_delete=models.SET_NULL,
-        null=True,
-        verbose_name="Cantandi",
-        related_name="kadencje_jako_cantandi",
-    )
-
-    sekretarz = models.ForeignKey(
-        Czlonek,
-        on_delete=models.SET_NULL,
-        null=True,
-        verbose_name="Sekretarz",
-        related_name="kadencje_jako_sekretarz",
-    )
 
     class Meta:
         verbose_name = "Zarząd"
         verbose_name_plural = "Zarządy"
-        ordering = ['-kadencja']
-
-    def __str__(self):
-        return f"Zarząd {str(self.kadencja)} - WM {str(self.wielki_mistrz)}"
 
 class WielkiMistrz(models.Model):
-    imie = models.ForeignKey(
-        Czlonek,
-        on_delete=models.SET_NULL,
-        null=True,
-        verbose_name="Imię",
-    )
 
     tadeusz = models.CharField(
         max_length=SHORT_LENGTH, verbose_name="Tadeusz",
@@ -591,12 +523,6 @@ class WielkiMistrz(models.Model):
         verbose_name = "Wielki Mistrz"
         verbose_name_plural = "Wielcy Mistrzowie"
         ordering = ['-tadeusz_numeric']
-
-    def __str__(self):
-        name = f"{str(self.imie)} - Tadeusz {self.tadeusz}"
-        if self.tytuly:
-            name += f", {self.tytuly}"
-        return name
 
     def save(self, *args, **kwargs):
         try:
@@ -666,62 +592,16 @@ class InnaOsoba(Osoba):
         verbose_name="Kategoria",
     )
 
-    bractwo = models.ForeignKey(
-        "encyklopedia.Bractwo",
-        blank=True,
-        null=True,
-        on_delete=models.SET_NULL,
-        verbose_name="Bractwo",
-        related_name="czlonkowie_bractwa"
-    )
-
     class Meta:
         verbose_name = "Inna osoba"
         verbose_name_plural = "Inne osoby (nie-członkowie)"
         ordering = ['imie', 'nazwisko']
 
 class Osoby(models.Model):
-    content_type = models.ForeignKey(
-        ContentType, on_delete=models.CASCADE,
-    )
 
     object_id = models.PositiveIntegerField()
-    content_object = GenericForeignKey('content_type', 'object_id')
-
-    czlonek = models.ForeignKey(
-        "czlonkowie.Czlonek",
-        blank=True,
-        null=True,
-        on_delete=models.SET_NULL,
-        verbose_name="Członek",
-    )
-
-    bean = models.ForeignKey(
-        "czlonkowie.Bean",
-        blank=True,
-        null=True,
-        on_delete=models.SET_NULL,
-        verbose_name="Bean",
-    )
-
-    inna_osoba = models.ForeignKey(
-        "czlonkowie.InnaOsoba",
-        blank=True,
-        null=True,
-        on_delete=models.SET_NULL,
-        verbose_name="Inna osoba",
-    )
 
     class Meta:
         app_label = "czlonkowie"
         verbose_name = "Osoba"
         verbose_name_plural = "Osoby"
-
-    def __str__(self):
-        if self.czlonek:
-            return str(self.czlonek)
-        if self.bean:
-            return str(self.bean)
-        if self.inna_osoba:
-            return str(self.inna_osoba)
-                # f" - {self.content_type} - {self.content_object}")

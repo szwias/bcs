@@ -3,8 +3,6 @@ from .models import Bean, Czapka, Czlonek, DawnyZarzad, HallOfFame, ImieSzlachec
 from core.utils.automation.ViewsGeneration import *
 
 from core.models_dict import names as core
-from encyklopedia.models_dict import names as encyklopedia
-from kronika.models_dict import names as kronika
 
 autocomplete_configs = [
     (
@@ -18,7 +16,7 @@ autocomplete_configs = [
     (
         DawnyZarzad,
         [], [],
-        [WielkiMistrz.__name__, Czlonek.__name__, core['Kadencja'], kronika['CharakterystykaDzialanZarzadu']]),
+        [Czlonek.__name__, core['Kadencja']]),
     (
         HallOfFame,
         [], [],
@@ -30,19 +28,19 @@ autocomplete_configs = [
     (
         InnaOsoba,
         ['kategoria'], [],
-        [encyklopedia['Bractwo']]),
+        []),
     (
         Osoby,
         [], [],
-        [Bean.__name__, Czlonek.__name__, InnaOsoba.__name__]),
+        []),
     (
         WielkiMistrz,
         [], [],
-        [Czlonek.__name__]),
+        []),
     (
         Zarzad,
         [], [],
-        [WielkiMistrz.__name__, Czlonek.__name__, core['Kadencja'], kronika['CharakterystykaDzialanZarzadu']]),
+        [Czlonek.__name__, core['Kadencja']]),
     (
         ZwierzeCzapkowe,
         [], [],

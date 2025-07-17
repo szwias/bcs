@@ -37,10 +37,6 @@ class TradycjaBCS(models.Model):
         verbose_name="Tradycja",
     )
 
-    autor = GenericRelation(
-        "czlonkowie.Osoby", blank=True,  verbose_name="Autor", related_name="zaczete_tradycje"
-    )
-
     okolicznosci_powstania = models.CharField(
         max_length=Lengths.OKOLICZNOSCI_LENGTH, choices=Okolicznosci.choices, verbose_name="Okoliczności powstania",
     )
@@ -152,61 +148,15 @@ class Bractwo(models.Model):
         return f"{self.panstwo} {self.nazwa}"
 
 
-# class Pojecie(models.Model):
-#     class Origins(models.TextChoices):
-#         INNE = "Inne", "Inna okoliczność"
-#         WYDARZENIE = "Wydarzenie", "Na wydarzeniu czapkowym"
-#         WYJAZD = "Wyjazd", "Na wyjeździe"
-#
-#     class Autorzy
-#
-#     nazwa = models.CharField(
-#         max_length=MEDIUM_LENGTH,
-#         verbose_name="Nazwa",
-#     )
-#
-#     opis = models.TextField(
-#         blank=True,
-#         verbose_name="Opis",
-#     )
-#
-#     origins = models.CharField(
-#         blank=True,
-#         choices=Origins.choices,
-#         verbose_name="Pierwszy raz pojawiło się:",
-#     )
-#
-#     wydarzenie = models.ForeignKey(
-#         Wydarzenie,
-#         blank=True,
-#         null=True,
-#         on_delete=models.SET_NULL,
-#         verbose_name="Wydarzenie",
-#     )
-#
-#     wyjazd = models.ForeignKey(
-#         Wyjazd,
-#         blank=True,
-#         null=True,
-#         on_delete=models.SET_NULL,
-#         verbose_name="Wyjazd",
-#     )
-#
-#     autorem = models.CharField(
-#
-#     )
+class Pojecie(models.Model):
+    class Origins(models.TextChoices):
+        INNE = "Inne", "Inna okoliczność"
+        WYDARZENIE = "Wydarzenie", "Na wydarzeniu czapkowym"
+        WYJAZD = "Wyjazd", "Na wyjeździe"
 
-class Zwyczaj(models.Model):
     nazwa = models.CharField(
-        max_length=MEDIUM_LENGTH, verbose_name="Nazwa",
-    )
-
-    data_powstania = models.DateField(
-        blank=True, verbose_name="Data powstania",
-    )
-
-    autor = GenericRelation(
-        "czlonkowie.Osoby", blank=True, verbose_name="Autor", related_name="zaczete_zwyczaje"
+        max_length=MEDIUM_LENGTH,
+        verbose_name="Nazwa",
     )
 
     opis = models.TextField(
@@ -214,46 +164,22 @@ class Zwyczaj(models.Model):
         verbose_name="Opis",
     )
 
-    class Meta:
-        verbose_name = "Zwyczaj"
-        verbose_name_plural = "Zwyczaje"
-        ordering = ("nazwa",)
-
-    def __str__(self):
-        return self.nazwa
-
-class Powiedzenie(models.Model):
-    tekst = models.TextField(
-        verbose_name="Tekst",
+    origins = models.CharField(
+        blank=True,
+        choices=Origins.choices,
+        verbose_name="Pierwszy raz pojawiło się:",
     )
 
-    autor = models.ForeignKey(
-        Czlonek,
+    wydarzenie = models.ForeignKey(
+        Wydarzenie,
         blank=True,
         null=True,
         on_delete=models.SET_NULL,
-        verbose_name="Autor",
+        verbose_name="Wydarzenie",
     )
 
-    adresat = GenericRelation(
-        "czlonkowie.Osoby", blank=True, verbose_name="Adresat"
-    )
-
-    kontekst = models.TextField(
-        blank=True, verbose_name="Kontekst",
-    )
-
-    class Meta:
-        verbose_name = "Powiedzenie"
-        verbose_name_plural = "Powiedzenia"
-        ordering = ("tekst",)
-
-    def __str__(self):
-        tekst = str(self.tekst)
-        kontekst = str(self.kontekst)
-        short_tekst = f"\"{tekst if len(tekst) <= 100 else tekst[:100] + '...'}\""
-        autor_str = str(self.autor) if self.autor else "Autor nieznany"
-        adresaci = ", ".join(str(a) for a in self.adresat.all())
-        adresat_str = f" do {adresaci}" if adresaci else ""
-        kontekst = f"{' (' + kontekst + ')' if len(kontekst) <= 100 else ''}"
-        return f"{autor_str}{adresat_str}: {short_tekst}{kontekst}"
+class Zrodlo(models.Model):
+    nazwa = models.CharField(max_length=255)
+    opis = models.TextField()
+    link = models.CharField(max_length=200)
+    gdzie_znalezc = models.TextField()

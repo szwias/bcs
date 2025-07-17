@@ -1,6 +1,6 @@
 from django import forms
 from dal import autocomplete
-from .models import TradycjaBCS, TradycjaInnegoBractwa, Bractwo, Zwyczaj
+from .models import TradycjaBCS, TradycjaInnegoBractwa, Bractwo
 from .views import autocomplete_widgets, build_widgets
 
 class BractwoForm(forms.ModelForm):
@@ -9,13 +9,6 @@ class BractwoForm(forms.ModelForm):
         fields = '__all__'
 
         widgets = build_widgets(autocomplete_widgets['Bractwo'])
-
-class PowiedzenieForm(forms.ModelForm):
-    class Meta:
-        model = Zwyczaj
-        fields = '__all__'
-
-        widgets = build_widgets(autocomplete_widgets['Powiedzenie'])
 
 class TradycjaBCSForm(forms.ModelForm):
     class Meta:
@@ -39,8 +32,3 @@ class TradycjaInnegoBractwaForm(forms.ModelForm):
         fields = '__all__'
         widgets = build_widgets(autocomplete_widgets['TradycjaInnegoBractwa'])
 
-class ZwyczajForm(forms.ModelForm):
-    class Meta:
-        model = Zwyczaj
-        fields = '__all__'
-        widgets = build_widgets(autocomplete_widgets['Zwyczaj'])
