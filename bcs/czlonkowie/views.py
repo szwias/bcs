@@ -1,6 +1,6 @@
 from .models import Bean, Czapka, Czlonek, DawnyZarzad, HallOfFame, ImieSzlacheckie, InnaOsoba, WielkiMistrz, \
     Zarzad, ZwierzeCzapkowe, Osoby
-from core.utils.automation.ViewsGeneration import *
+from core.utils.automation.AutocompletesGeneration import *
 
 from core.models_dict import names as core
 

@@ -25,7 +25,7 @@ class ScopedTreeRenderForm(forms.Form):
     only_known_parents = forms.BooleanField(
         required=False, label="Pokaż tylko członków o znanych rodzicach")
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs): # TODO: add autocompletion
         super().__init__(*args, **kwargs)
         # self.fields['member'].widget = autocomplete.ModelSelect2(
         #     url='czlonkowie_autocomplete:czlonek-records-autocomplete'

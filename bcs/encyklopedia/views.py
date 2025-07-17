@@ -1,5 +1,5 @@
 from .models import *
-from core.utils.automation.ViewsGeneration import *
+from core.utils.automation.AutocompletesGeneration import *
 
 from kronika.models_dict import names as kronika
 

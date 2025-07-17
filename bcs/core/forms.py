@@ -1,13 +1,13 @@
 from django import forms
 from core.models import *
 from .views import autocomplete_widgets
-from core.utils.automation.ViewsGeneration import *
+from core.utils.automation.AutocompletesGeneration import *
 
 class KadencjaForm(forms.ModelForm):
     class Meta:
         model = Kadencja
         fields = ['rozpoczecie']
-        widgets = build_widgets(autocomplete_widgets['Kadencja'])
+        widgets = build_widgets(autocomplete_widgets[Kadencja.__name__])
 
     def clean(self):
         cd = super(KadencjaForm, self).clean()

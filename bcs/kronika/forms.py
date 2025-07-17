@@ -1,19 +1,20 @@
 from django import forms
 from dal import autocomplete
 from .models import *
-from .views import autocomplete_widgets, build_widgets
+from .views import autocomplete_widgets
+from core.utils.automation.AutocompletesGeneration import build_widgets
 
 class MiejsceForm(forms.ModelForm):
     class Meta:
         model = Miejsce
         fields = '__all__'
-        widgets = build_widgets(autocomplete_widgets['Miejsce'])
+        widgets = build_widgets(autocomplete_widgets[Miejsce.__name__])
 
 class ZdarzenieForm(forms.ModelForm):
     class Meta:
         model = Zdarzenie
         fields = '__all__'
-        widgets = build_widgets(autocomplete_widgets['Zdarzenie'])
+        widgets = build_widgets(autocomplete_widgets[Zdarzenie.__name__])
         widgets.update({'miejsce': autocomplete.ModelSelect2(url='kronika_autocomplete:custom-miejsce-from-wydarzenie-to-zdarzenie-autocomplete', forward=['wydarzenie'])})
 
 class ZdarzenieInlineForm(forms.ModelForm):
@@ -26,25 +27,25 @@ class ObrazZdarzenieForm(forms.ModelForm):
     class Meta:
         model = ObrazZdarzenie
         fields = '__all__'
-        widgets = build_widgets(autocomplete_widgets['ObrazZdarzenie'])
+        widgets = build_widgets(autocomplete_widgets[ObrazZdarzenie.__name__])
 
 class WydarzenieForm(forms.ModelForm):
     class Meta:
         model = Wydarzenie
         fields = '__all__'
-        widgets = build_widgets(autocomplete_widgets['Wydarzenie'])
+        widgets = build_widgets(autocomplete_widgets[Wydarzenie.__name__])
 
 class ObrazWydarzenieForm(forms.ModelForm):
     class Meta:
         model = ObrazWydarzenie
         fields = '__all__'
-        widgets = build_widgets(autocomplete_widgets['ObrazWydarzenie'])
+        widgets = build_widgets(autocomplete_widgets[ObrazWydarzenie.__name__])
 
 class ProcesForm(forms.ModelForm):
     class Meta:
         model = Proces
         fields = '__all__'
-        widgets = build_widgets(autocomplete_widgets['Proces'])
+        widgets = build_widgets(autocomplete_widgets[Proces.__name__])
 
 
 

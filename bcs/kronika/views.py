@@ -1,5 +1,5 @@
 from .models import *
-from core.utils.automation.ViewsGeneration import *
+from core.utils.automation.AutocompletesGeneration import *
 
 class CustomMiejsceFromWydarzenieToZdarzenieAutocomplete(autocomplete.Select2QuerySetView):
     def get_queryset(self):

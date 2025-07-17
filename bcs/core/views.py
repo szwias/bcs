@@ -1,7 +1,7 @@
 from core.models import Kadencja
 from django.db.models import CharField
 from django.db.models.functions import Cast
-from core.utils.automation.ViewsGeneration import *
+from core.utils.automation.AutocompletesGeneration import *
 
 class CustomKadencjaAutocomplete(autocomplete.Select2QuerySetView):
     def get_queryset(self):

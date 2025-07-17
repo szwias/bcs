@@ -1,8 +1,10 @@
 from django import forms
 from dal import autocomplete
 from .models import *
-from .views import autocomplete_widgets, build_widgets
+from .views import autocomplete_widgets
+from core.utils.automation.AutocompletesGeneration import build_widgets
 from django.contrib.postgres.forms import SimpleArrayField
+
 
 class CzapkaForm(forms.ModelForm):
     class Meta:
@@ -30,7 +32,6 @@ class CzlonekForm(forms.ModelForm):
     class Meta:
         model = Czlonek
         fields = '__all__'
-        widgets = build_widgets(autocomplete_widgets['Czlonek'])
 
     przezwiska = SimpleArrayField(
         base_field=forms.CharField(),
@@ -108,7 +109,6 @@ class BeanForm(forms.ModelForm):
     class Meta:
         model = Bean
         fields = '__all__'
-        widgets = build_widgets(autocomplete_widgets['Bean'])
 
     przezwiska = SimpleArrayField(
         base_field=forms.CharField(),
@@ -136,7 +136,6 @@ class ImieSzlacheckieForm(forms.ModelForm):
     class Meta:
         model = ImieSzlacheckie
         fields = ['imie', 'posiadacz_display']
-        widgets = build_widgets(autocomplete_widgets['ImieSzlacheckie'])
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -154,7 +153,6 @@ class ZwierzeCzapkoweForm(forms.ModelForm):
     class Meta:
         model = ZwierzeCzapkowe
         fields = ['czlonek', 'imie_display', 'zwierze', 'wyjasnienie']
-        widgets = build_widgets(autocomplete_widgets['ZwierzeCzapkowe'])
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -181,19 +179,16 @@ class WielkiMistrzForm(forms.ModelForm):
     class Meta:
         model = WielkiMistrz
         fields = '__all__'
-        widgets = build_widgets(autocomplete_widgets['WielkiMistrz'])
 
 class HallOfFameForm(forms.ModelForm):
     class Meta:
         model = HallOfFame
         exclude = ['ordering']
-        widgets = build_widgets(autocomplete_widgets['HallOfFame'])
 
 class InnaOsobaForm(forms.ModelForm):
     class Meta:
         model = InnaOsoba
         fields = '__all__'
-        widgets = build_widgets(autocomplete_widgets['InnaOsoba'])
 
         przezwiska = SimpleArrayField(
             base_field=forms.CharField(),
