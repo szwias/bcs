@@ -8,8 +8,10 @@ from kronika.models import Wydarzenie
 
 class Lengths:
     OKOLICZNOSCI_LENGTH = 3
-    PANSTWA_LENGTH = 3
-    CZAPKI_LENGTH = 3
+
+class Okolicznosci(models.TextChoices):
+    INNE = "I", "Inne okoliczności"
+    WYDARZENIE = "Wyd", "Na wydarzeniu czapkowym"
 
 
 class Bractwo(models.Model): # TODO: add zalozyciel (Osoba)
@@ -83,10 +85,6 @@ class GrupaBractw(models.Model):
         return f"{self.nazwa}: {kraje}"
 
 class TradycjaBCS(models.Model): # TODO: add autor (Osoba)
-
-    class Okolicznosci(models.TextChoices):
-        INNE = "I", "Inne"
-        WYDARZENIE = "Wyd", "Wydarzenie"
 
     nazwa = models.CharField(
         max_length=MEDIUM_LENGTH, verbose_name="Tradycja",
@@ -175,9 +173,6 @@ class TradycjaInnegoBractwa(models.Model):
 
 
 class Pojecie(models.Model): # TODO: add autor (Osoba)
-    class Origins(models.TextChoices):
-        WYDARZENIE = "Wydarzenie", "Na wydarzeniu czapkowym"
-        INNE = "Inne", "Inna okoliczność"
 
     nazwa = models.CharField(
         max_length=MEDIUM_LENGTH, verbose_name="Nazwa",
@@ -188,7 +183,7 @@ class Pojecie(models.Model): # TODO: add autor (Osoba)
     )
 
     origins = models.CharField(
-        blank=True, choices=Origins.choices, verbose_name="Pierwszy raz pojawiło się:",
+        blank=True, choices=Okolicznosci.choices, verbose_name="Pierwszy raz pojawiło się:",
     )
 
     wydarzenie = models.ForeignKey(
