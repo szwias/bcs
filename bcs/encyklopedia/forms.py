@@ -1,5 +1,5 @@
 from django import forms
-from .models import TradycjaBCS, TradycjaInnegoBractwa, Bractwo, Pojecie, Powiedzenie, Zwyczaj, Zrodlo
+from .models import Bractwo, GrupaBractw, Pojecie, Powiedzenie, TradycjaBCS, TradycjaInnegoBractwa, Zwyczaj, Zrodlo
 from .views import autocomplete_widgets
 from core.utils.automation.AutocompletesGeneration import build_widgets
 
@@ -10,6 +10,13 @@ class BractwoForm(forms.ModelForm):
         fields = '__all__'
 
         widgets = build_widgets(autocomplete_widgets[Bractwo.__name__])
+
+class GrupaBractwForm(forms.ModelForm):
+    class Meta:
+        model = GrupaBractw
+        fields = '__all__'
+
+        widgets = build_widgets(autocomplete_widgets[GrupaBractw.__name__])
 
 class PojecieForm(forms.ModelForm):
     class Meta:

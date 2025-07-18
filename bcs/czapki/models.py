@@ -58,10 +58,7 @@ class RodzajCzapki(models.Model):
     )
 
     kraje = models.ManyToManyField(
-        'miejsca.Kraj',
-        blank=True,
-        null=True,
-        verbose_name='Kraje występowania',
+        'miejsca.Kraj', blank=True, verbose_name='Kraje występowania',
     )
 
     powod_koloru = models.CharField(

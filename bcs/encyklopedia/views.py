@@ -9,6 +9,10 @@ autocomplete_configs = [
     (
         Bractwo,
         ['wiek_tradycje', 'rok_zalozenia'], [],
+        [miejsca['Kraj'], GrupaBractw.__name__]),
+    (
+        GrupaBractw,
+        [], [],
         [miejsca['Kraj'], czapki['RodzajCzapki']]),
     (
         Pojecie,

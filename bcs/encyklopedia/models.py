@@ -11,6 +11,77 @@ class Lengths:
     PANSTWA_LENGTH = 3
     CZAPKI_LENGTH = 3
 
+
+class Bractwo(models.Model): # TODO: add zalozyciel (Osoba)
+
+    nazwa = models.CharField(
+        max_length=MAX_LENGTH, verbose_name="Nazwa",
+    )
+
+    panstwo = models.ForeignKey(
+        'miejsca.Kraj',
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+        verbose_name="Kraj pochodzenia",
+    )
+
+    grupa_bractw = models.ForeignKey(
+        'encyklopedia.GrupaBractw',
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+        verbose_name="Grupa bractw",
+    )
+
+    rok_zalozenia = models.IntegerField(
+        choices=Czas.LATA_BRACTW + [IntAlt.DONT_KNOW], default=IntAlt.DONT_KNOW, verbose_name="Rok założenia",
+    )
+
+    wiek_tradycje = models.IntegerField(
+        choices=Czas.WIEKI + [IntAlt.DONT_KNOW], default=IntAlt.DONT_KNOW, verbose_name="Tradycje sięgają którego wieku",
+    )
+
+    class Meta:
+        verbose_name = "Bractwo"
+        verbose_name_plural = "Bractwa"
+        ordering = ["panstwo", "nazwa"]
+
+    def __str__(self):
+        return f"{str(self.panstwo)}: {self.nazwa}"
+
+
+class GrupaBractw(models.Model):
+    nazwa = models.CharField(
+        max_length=NAME_LENGTH, verbose_name="Nazwa",
+    )
+
+    kraje = models.ManyToManyField(
+        'miejsca.Kraj', blank=True, verbose_name="Kraje",
+    )
+
+    opis = models.TextField(
+        blank=True,
+        verbose_name="Opis",
+    )
+
+    rodzaj_czapki = models.ForeignKey(
+        'czapki.RodzajCzapki',
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+        verbose_name="Rodzaj czapki",
+    )
+
+    class Meta:
+        verbose_name = "Grupa bractw"
+        verbose_name_plural = "Grupy bractw"
+        ordering = ["nazwa"]
+
+    def __str__(self):
+        kraje = ", ".join(str(k) for k in self.kraje.all())
+        return f"{self.nazwa}: {kraje}"
+
 class TradycjaBCS(models.Model): # TODO: add autor (Osoba)
     class Authors(models.TextChoices):
         BELGOWIE = "Belg", "Belgijska"
@@ -64,6 +135,7 @@ class TradycjaBCS(models.Model): # TODO: add autor (Osoba)
     def __str__(self):
         return self.nazwa
 
+
 class TradycjaInnegoBractwa(models.Model):
     class Authors(models.TextChoices):
         ANIMUS = "Animus", "BCS Animus"
@@ -84,6 +156,14 @@ class TradycjaInnegoBractwa(models.Model):
         verbose_name="Pochodzenie tradycji",
     )
 
+    bractwo = models.ForeignKey(
+        Bractwo,
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+        verbose_name="Bractwo"
+    )
+
     opis = models.TextField(
         blank=True,
         verbose_name="Opis",
@@ -96,44 +176,6 @@ class TradycjaInnegoBractwa(models.Model):
 
     def __str__(self):
         return self.nazwa
-
-class Bractwo(models.Model): # TODO: add zalozyciel (Osoba)
-
-    nazwa = models.CharField(
-        max_length=MAX_LENGTH, verbose_name="Nazwa",
-    )
-
-    panstwo = models.ForeignKey(
-        'miejsca.Kraj',
-        blank=True,
-        null=True,
-        on_delete=models.SET_NULL,
-        verbose_name="Kraj pochodzenia",
-    )
-
-    czapka = models.ForeignKey(
-        'czapki.RodzajCzapki',
-        blank=True,
-        null=True,
-        on_delete=models.SET_NULL,
-        verbose_name="Rodzaj czapki",
-    )
-
-    rok_zalozenia = models.IntegerField(
-        choices=Czas.LATA_BRACTW + [IntAlt.DONT_KNOW], default=IntAlt.DONT_KNOW, verbose_name="Rok założenia",
-    )
-
-    wiek_tradycje = models.IntegerField(
-        choices=Czas.WIEKI + [IntAlt.DONT_KNOW], default=IntAlt.DONT_KNOW, verbose_name="Tradycje sięgają którego wieku",
-    )
-
-    class Meta:
-        verbose_name = "Bractwo"
-        verbose_name_plural = "Bractwa"
-        ordering = ["panstwo", "nazwa"]
-
-    def __str__(self):
-        return f"{str(self.panstwo)} {self.nazwa}"
 
 
 class Pojecie(models.Model): # TODO: add autor (Osoba)

@@ -1,7 +1,7 @@
 from collections import defaultdict
 from core.utils.automation.AutocompletesGeneration import add_model_name
 from .models import (
-    Bractwo, \
+    Bractwo, GrupaBractw, \
     TradycjaBCS, TradycjaInnegoBractwa, Zwyczaj, \
     Pojecie, Powiedzenie, \
     Zrodlo, \
@@ -10,6 +10,7 @@ from .models import (
 names = defaultdict(str)
 
 add_model_name(Bractwo, names, "Bractwo")
+add_model_name(GrupaBractw, names, "GrupaBractw")
 
 add_model_name(TradycjaBCS, names, "TradycjaBCS")
 add_model_name(TradycjaInnegoBractwa, names, "TradycjaInnegoBractwa")
