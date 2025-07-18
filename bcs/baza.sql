@@ -778,7 +778,7 @@ CREATE TABLE public.encyklopedia_bractwo (
     id bigint NOT NULL,
     nazwa character varying(255) NOT NULL,
     panstwo_id bigint,
-    czapka character varying(3) NOT NULL,
+    czapka_id bigint,
     rok_zalozenia integer NOT NULL,
     wiek_tradycje integer NOT NULL
 );
@@ -3534,6 +3534,7 @@ COPY public.django_admin_log (id, action_time, object_id, object_repr, action_fl
 1500	2025-07-18 12:53:43.153457+02	3	Faluch	1	[{"added": {}}]	50	1
 1501	2025-07-18 12:54:18.942198+02	4	Feluca	1	[{"added": {}}]	50	1
 1502	2025-07-18 12:54:31.464244+02	4	Feluca	2	[{"changed": {"fields": ["Od czego zale\\u017cy kolor"]}}]	50	1
+1503	2025-07-18 13:04:02.671595+02	4	Włochy Balla Monte Christo	3		31	1
 \.
 
 
@@ -3776,6 +3777,8 @@ COPY public.django_migrations (id, app, name, applied) FROM stdin;
 218	miejsca	0004_miejsce_zamkniete_na_stale_alter_miejsce_adres	2025-07-18 10:13:12.701849+02
 219	encyklopedia	0005_alter_bractwo_panstwo	2025-07-18 12:04:03.941256+02
 220	czapki	0003_rodzajczapki	2025-07-18 12:38:54.814127+02
+221	encyklopedia	0006_alter_bractwo_czapka	2025-07-18 13:03:28.870526+02
+222	encyklopedia	0007_alter_bractwo_czapka	2025-07-18 13:05:01.479829+02
 \.
 
 
@@ -3796,8 +3799,7 @@ e2w126gsubz1f9nieaoyi47njc6foy36	.eJxVjDsOAiEUAO9CbcgDHj9Le89A-Dxl1UCy7FbGuxuSLb
 -- Data for Name: encyklopedia_bractwo; Type: TABLE DATA; Schema: public; Owner: projectuser
 --
 
-COPY public.encyklopedia_bractwo (id, nazwa, panstwo_id, czapka, rok_zalozenia, wiek_tradycje) FROM stdin;
-4	Balla Monte Christo	11	FEL	1111111111	1111111111
+COPY public.encyklopedia_bractwo (id, nazwa, panstwo_id, czapka_id, rok_zalozenia, wiek_tradycje) FROM stdin;
 \.
 
 
@@ -4295,7 +4297,7 @@ SELECT pg_catalog.setval('public.czlonkowie_zwierzeczapkowe_id_seq', 13, true);
 -- Name: django_admin_log_id_seq; Type: SEQUENCE SET; Schema: public; Owner: projectuser
 --
 
-SELECT pg_catalog.setval('public.django_admin_log_id_seq', 1502, true);
+SELECT pg_catalog.setval('public.django_admin_log_id_seq', 1503, true);
 
 
 --
@@ -4309,7 +4311,7 @@ SELECT pg_catalog.setval('public.django_content_type_id_seq', 50, true);
 -- Name: django_migrations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: projectuser
 --
 
-SELECT pg_catalog.setval('public.django_migrations_id_seq', 220, true);
+SELECT pg_catalog.setval('public.django_migrations_id_seq', 222, true);
 
 
 --
@@ -5261,6 +5263,13 @@ CREATE INDEX django_session_session_key_c0390e0f_like ON public.django_session U
 
 
 --
+-- Name: encyklopedia_bractwo_czapka_id_e7b29d01; Type: INDEX; Schema: public; Owner: projectuser
+--
+
+CREATE INDEX encyklopedia_bractwo_czapka_id_e7b29d01 ON public.encyklopedia_bractwo USING btree (czapka_id);
+
+
+--
 -- Name: encyklopedia_bractwo_panstwo_id_e11894fb; Type: INDEX; Schema: public; Owner: projectuser
 --
 
@@ -5739,6 +5748,14 @@ ALTER TABLE ONLY public.django_admin_log
 
 ALTER TABLE ONLY public.django_admin_log
     ADD CONSTRAINT django_admin_log_user_id_c564eba6_fk_auth_user_id FOREIGN KEY (user_id) REFERENCES public.auth_user(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: encyklopedia_bractwo encyklopedia_bractwo_czapka_id_e7b29d01_fk_czapki_ro; Type: FK CONSTRAINT; Schema: public; Owner: projectuser
+--
+
+ALTER TABLE ONLY public.encyklopedia_bractwo
+    ADD CONSTRAINT encyklopedia_bractwo_czapka_id_e7b29d01_fk_czapki_ro FOREIGN KEY (czapka_id) REFERENCES public.czapki_rodzajczapki(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --

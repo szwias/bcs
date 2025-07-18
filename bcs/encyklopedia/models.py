@@ -99,14 +99,6 @@ class TradycjaInnegoBractwa(models.Model):
 
 class Bractwo(models.Model): # TODO: add zalozyciel (Osoba)
 
-    class Czapki(models.TextChoices):
-        CALOTTE = "CAL", "Calotte"
-        CZAPKA = "CZA", "Czapka"
-        FALUCH = "FAL", "Faluch"
-        FELUCA = "FEL", "Feluca"
-        INNA = "I", "Inna"
-
-
     nazwa = models.CharField(
         max_length=MAX_LENGTH, verbose_name="Nazwa",
     )
@@ -119,8 +111,12 @@ class Bractwo(models.Model): # TODO: add zalozyciel (Osoba)
         verbose_name="Kraj pochodzenia",
     )
 
-    czapka = models.CharField(
-        max_length=Lengths.CZAPKI_LENGTH, choices=Czapki.choices, verbose_name="Czapka",
+    czapka = models.ForeignKey(
+        'czapki.RodzajCzapki',
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+        verbose_name="Rodzaj czapki",
     )
 
     rok_zalozenia = models.IntegerField(
