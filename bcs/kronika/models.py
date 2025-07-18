@@ -322,7 +322,7 @@ class CharakterystykaDzialanZarzadu(models.Model):
     )
 
     autor = models.ForeignKey(
-        "czlonkowie.Czlonek",
+        "czlonkowie.OldCzlonek",
         null=True,
         on_delete=models.SET_NULL,
         verbose_name="Autor",

@@ -2,7 +2,7 @@
 from collections import defaultdict
 from core.utils.Choices import TextChoose
 from core.utils.czas.Czas import ROK_ZALOZENIA, BIEZACY_ROK
-from czlonkowie.models import Czlonek
+from czlonkowie.models import OldCzlonek
 from drzewo.utils.tree_rendering import render_layered_graph  # my helper
 from drzewo.utils.essentials import modify_layers_structure, TreeNode
 
@@ -61,16 +61,16 @@ def build_layers_and_edges_from_db(onp):
     helper_dict = defaultdict(lambda: [None, []])
     go = 1
 
-    members = list(Czlonek.objects.filter(ochrzczony=TextChoose.YES[0]))
+    members = list(OldCzlonek.objects.filter(ochrzczony=TextChoose.YES[0]))
     if onp:
-        members.remove(Czlonek.get_dont_know_czlonek())
+        members.remove(OldCzlonek.get_dont_know_czlonek())
     stack = []
 
     while members:
         if go == 1:
-            stack.append(TreeNode(Czlonek.objects.get(imie="Zdzisław", nazwisko="Gajda"), 0))
+            stack.append(TreeNode(OldCzlonek.objects.get(imie="Zdzisław", nazwisko="Gajda"), 0))
         elif go == 2 and not onp:
-            stack.append(TreeNode(Czlonek.get_dont_know_czlonek(), 0))
+            stack.append(TreeNode(OldCzlonek.get_dont_know_czlonek(), 0))
         else:
             member = members.pop(0)
             if onp and member.rodzic_1.is_unknown():

@@ -1,4 +1,4 @@
-from .models import Bean, Czlonek, DawnyZarzad, HallOfFame, ImieSzlacheckie, InnaOsoba, WielkiMistrz, \
+from .models import OldBean, OldCzlonek, DawnyZarzad, HallOfFame, ImieSzlacheckie, InnaOldOsoba, WielkiMistrz, \
     Zarzad, ZwierzeCzapkowe
 from core.utils.automation.AutocompletesGeneration import *
 
@@ -9,41 +9,41 @@ from kronika.models_dict import names as kronika
 
 autocomplete_configs = [
     (
-        Bean,
+        OldBean,
         ['staz'], [],
-        [czapki['Czapka'], Czlonek.__name__]),
+        [czapki['Czapka'], OldCzlonek.__name__]),
     (
-        Czlonek,
+        OldCzlonek,
         ['rok_chrztu', 'miesiac_chrztu', 'dzien_chrztu', 'status', 'staz'], [],
-        [czapki['Czapka'], Czlonek.__name__]),
+        [czapki['Czapka'], OldCzlonek.__name__]),
     (
         DawnyZarzad,
         [], [],
-        [WielkiMistrz.__name__, Czlonek.__name__, core['Kadencja'], kronika['CharakterystykaDzialanZarzadu']]),
+        [WielkiMistrz.__name__, OldCzlonek.__name__, core['Kadencja'], kronika['CharakterystykaDzialanZarzadu']]),
     (
         HallOfFame,
         [], [],
-        [Czlonek.__name__, Bean.__name__]),
+        [OldCzlonek.__name__, OldBean.__name__]),
     (
         ImieSzlacheckie,
         [], [],
-        [Czlonek.__name__]),
+        [OldCzlonek.__name__]),
     (
-        InnaOsoba,
+        InnaOldOsoba,
         ['kategoria'], [],
         [encyklopedia['Bractwo']]),
     (
         WielkiMistrz,
         [], [],
-        [Czlonek.__name__]),
+        [OldCzlonek.__name__]),
     (
         Zarzad,
         [], [],
-        [WielkiMistrz.__name__, Czlonek.__name__, core['Kadencja'], kronika['CharakterystykaDzialanZarzadu']]),
+        [WielkiMistrz.__name__, OldCzlonek.__name__, core['Kadencja'], kronika['CharakterystykaDzialanZarzadu']]),
     (
         ZwierzeCzapkowe,
         [], [],
-        [Czlonek.__name__]),
+        [OldCzlonek.__name__]),
 ]
 
 autocomplete_urls, autocomplete_widgets = setup_autocompletes(autocomplete_configs, globals())

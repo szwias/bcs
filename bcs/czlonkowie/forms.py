@@ -6,11 +6,11 @@ from core.utils.automation.AutocompletesGeneration import build_widgets
 from django.contrib.postgres.forms import SimpleArrayField
 
 
-class CzlonekForm(forms.ModelForm):
+class OldCzlonekForm(forms.ModelForm):
     class Meta:
-        model = Czlonek
+        model = OldCzlonek
         fields = '__all__'
-        widgets = build_widgets(autocomplete_widgets['Czlonek'])
+        widgets = build_widgets(autocomplete_widgets['OldCzlonek'])
 
     przezwiska = SimpleArrayField(
         base_field=forms.CharField(),
@@ -25,14 +25,14 @@ class CzlonekForm(forms.ModelForm):
         if not self.instance.pk:
             self.fields['czapka_1'].initial = Czapka.get_dont_know_czapka()
             self.fields['czapka_2'].initial = Czapka.get_not_applicable_czapka()
-            self.fields['rodzic_1'].initial = Czlonek.get_dont_know_czlonek()
+            self.fields['rodzic_1'].initial = OldCzlonek.get_dont_know_czlonek()
 
     def clean(self):
         cd = super().clean()
 
         status = cd.get('status')
 
-        if status in [Czlonek.Status.CZLONEK, Czlonek.Status.WETERAN]:
+        if status in [OldCzlonek.Status.CZLONEK, OldCzlonek.Status.WETERAN]:
             cd['ochrzczony'] = TextChoose.YES[0]
 
         ochrzczony = cd.get('ochrzczony')
@@ -75,20 +75,20 @@ class CzlonekForm(forms.ModelForm):
         rodzic_2 = cd.get('rodzic_2')
 
         if not rodzic_1:
-            cd["rodzic_1"] = Czlonek.get_dont_know_czlonek()
-        if rodzic_1 == Czlonek.get_not_applicable_czlonek():
-            cd["rodzic_2"] = Czlonek.get_not_applicable_czlonek()
+            cd["rodzic_1"] = OldCzlonek.get_dont_know_czlonek()
+        if rodzic_1 == OldCzlonek.get_not_applicable_czlonek():
+            cd["rodzic_2"] = OldCzlonek.get_not_applicable_czlonek()
 
         if not rodzic_2:
-            cd["rodzic_2"] = Czlonek.get_not_applicable_czlonek()
+            cd["rodzic_2"] = OldCzlonek.get_not_applicable_czlonek()
 
         return cd
 
-class BeanForm(forms.ModelForm):
+class OldBeanForm(forms.ModelForm):
     class Meta:
-        model = Bean
+        model = OldBean
         fields = '__all__'
-        widgets = build_widgets(autocomplete_widgets['Bean'])
+        widgets = build_widgets(autocomplete_widgets['OldBean'])
 
     przezwiska = SimpleArrayField(
         base_field=forms.CharField(),
@@ -104,8 +104,8 @@ class BeanForm(forms.ModelForm):
         if not self.instance.pk:
             self.fields['czapka_1'].initial = Czapka.get_dont_know_czapka()
             self.fields['czapka_2'].initial = Czapka.get_not_applicable_czapka()
-            self.fields['rodzic_1'].initial = Czlonek.get_not_applicable_czlonek()
-            self.fields['rodzic_2'].initial = Czlonek.get_not_applicable_czlonek()
+            self.fields['rodzic_1'].initial = OldCzlonek.get_not_applicable_czlonek()
+            self.fields['rodzic_2'].initial = OldCzlonek.get_not_applicable_czlonek()
 
 class ImieSzlacheckieForm(forms.ModelForm):
     posiadacz_display = forms.CharField(
@@ -170,11 +170,11 @@ class HallOfFameForm(forms.ModelForm):
         exclude = ['ordering']
         widgets = build_widgets(autocomplete_widgets['HallOfFame'])
 
-class InnaOsobaForm(forms.ModelForm):
+class InnaOldOsobaForm(forms.ModelForm):
     class Meta:
-        model = InnaOsoba
+        model = InnaOldOsoba
         fields = '__all__'
-        widgets = build_widgets(autocomplete_widgets['InnaOsoba'])
+        widgets = build_widgets(autocomplete_widgets['InnaOldOsoba'])
 
         przezwiska = SimpleArrayField(
             base_field=forms.CharField(),
