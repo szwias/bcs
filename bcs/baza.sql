@@ -3427,6 +3427,14 @@ COPY public.django_admin_log (id, action_time, object_id, object_repr, action_fl
 1475	2025-07-18 09:35:37.844608+02	13	Szlak	1	[{"added": {}}]	49	1
 1476	2025-07-18 09:35:44.336098+02	32	Krakowski Szlak Generała Bema - Szlak, powiat krakowski, Polska	1	[{"added": {}}]	48	1
 1477	2025-07-18 09:36:38.381962+02	30	Piazza Vittorio Puntoni - Plac, 40126 Bologna BO, Włochy	2	[{"changed": {"fields": ["Adres"]}}]	48	1
+1478	2025-07-18 11:39:52.74732+02	9	Shot Pub - Pub/Klub, Szpitalna, 30-962 Kraków	2	[{"changed": {"fields": ["Zamkni\\u0119te na sta\\u0142e"]}}]	48	1
+1479	2025-07-18 11:41:08.445788+02	14	Bar mleczny	1	[{"added": {}}]	49	1
+1480	2025-07-18 11:41:18.486436+02	15	Dworzec	1	[{"added": {}}]	49	1
+1481	2025-07-18 11:41:28.78454+02	16	Bar karaoke	1	[{"added": {}}]	49	1
+1482	2025-07-18 11:41:33.206861+02	17	Kino	1	[{"added": {}}]	49	1
+1483	2025-07-18 11:41:43.986445+02	18	Schronisko	1	[{"added": {}}]	49	1
+1484	2025-07-18 11:41:47.918219+02	19	Teatr	1	[{"added": {}}]	49	1
+1485	2025-07-18 11:41:53.980056+02	20	Szczyt	1	[{"added": {}}]	49	1
 \.
 
 
@@ -3936,11 +3944,11 @@ COPY public.miejsca_miejsce (id, nazwa, adres, typ_id, zamkniete_na_stale) FROM 
 22	Pizza Casa	Via S. Vitale, 45/A, 40125 Bologna BO, Włochy	8	f
 23	Pizza Gingio	Via Rizzoli, 40a, 40126 Bologna BO, Włochy	8	f
 30	Port Lotniczy Bolonia	Via del Triumvirato, 84, 40132 Bologna BO, Włochy	12	f
-9	Shot Pub	Szpitalna, 30-962 Kraków	4	f
 20	Spawner Włochów	Via delle Moline, 7, 40126 Bologna BO, Włochy	7	f
 28	W dupie	Chyba wiesz, gdzie masz dupę	1	f
 12	Wrocław	Wrocław, Polska	5	f
 2	Wydział Historyczny UJ	ul. Gołębia 24, 31-007 Kraków	2	f
+9	Shot Pub	Szpitalna, 30-962 Kraków	4	t
 \.
 
 
@@ -3962,6 +3970,13 @@ COPY public.miejsca_typmiejsca (id, nazwa) FROM stdin;
 11	Bar
 12	Lotnisko
 13	Szlak
+14	Bar mleczny
+15	Dworzec
+16	Bar karaoke
+17	Kino
+18	Schronisko
+19	Teatr
+20	Szczyt
 \.
 
 
@@ -4157,7 +4172,7 @@ SELECT pg_catalog.setval('public.czlonkowie_zwierzeczapkowe_id_seq', 13, true);
 -- Name: django_admin_log_id_seq; Type: SEQUENCE SET; Schema: public; Owner: projectuser
 --
 
-SELECT pg_catalog.setval('public.django_admin_log_id_seq', 1477, true);
+SELECT pg_catalog.setval('public.django_admin_log_id_seq', 1485, true);
 
 
 --
@@ -4311,7 +4326,7 @@ SELECT pg_catalog.setval('public.miejsca_miejsce_id_seq', 32, true);
 -- Name: miejsca_typmiejsca_id_seq; Type: SEQUENCE SET; Schema: public; Owner: projectuser
 --
 
-SELECT pg_catalog.setval('public.miejsca_typmiejsca_id_seq', 13, true);
+SELECT pg_catalog.setval('public.miejsca_typmiejsca_id_seq', 20, true);
 
 
 --

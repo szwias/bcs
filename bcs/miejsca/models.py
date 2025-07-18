@@ -22,25 +22,6 @@ class Kraj(models.Model):
 
 
 class Miejsce(models.Model):
-    class TypyMiejsc(models.TextChoices):
-        BAR = "Bar", "Bar"
-        BAR_MLECZNY = "Mleczny", "Bar mleczny"
-        DWORZEC = "Dworzec", "Dworzec"
-        INNY = "Inny", "Inny"
-        KARAOKE = "Karaoke", "Karaoke"
-        KINO = "Kino", "Kino"
-        LOKUM = "Lokum", "Lokum"
-        LOTNISKO = "Lotnisko", "Lotnisko"
-        MIASTO = "Miasto", "Miasto"
-        OBIEKT_KULTURY = "ObKult", "Obiekt kultury"
-        PLAC = "OgrodPlac", "Ogród/Plac"
-        PUB = "Pub", "Pub/Klub"
-        RESTAURACJA = "Restaur", "Restauracja"
-        SCHRONISKO = "Schronisko", "Schronisko"
-        SZCZYT = "Szczyt", "Szczyt"
-        SZLAK = "Szlak", "Szlak"
-        TEATR = "Teatr", "Teatr"
-        UCZELNIA = "Uczel", "Uczelnia"
 
     nazwa = models.CharField(
         max_length=MAX_LENGTH, verbose_name="Nazwa",
@@ -50,12 +31,6 @@ class Miejsce(models.Model):
         max_length=MAX_LENGTH, blank=True, verbose_name="Adres",
     )
 
-    # kraj = models.ForeignKey(
-    #     Kraj,
-    #     default=Kraj.get_polska(),
-    #     verbose_name="Kraj",
-    # )
-
     typ = models.ForeignKey(
         "miejsca.TypMiejsca",
         blank=True,
@@ -64,10 +39,10 @@ class Miejsce(models.Model):
         verbose_name="Typ miejsca",
     )
 
-    # zamkniete_na_stale = models.BooleanField(
-    #     default=False,
-    #     verbose_name="Zamknięte na stałe",
-    # )
+    zamkniete_na_stale = models.BooleanField(
+        default=False,
+        verbose_name="Zamknięte na stałe",
+    )
 
     class Meta:
         verbose_name = "Miejsce"
