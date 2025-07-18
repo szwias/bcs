@@ -723,7 +723,7 @@ ALTER TABLE public.django_session OWNER TO projectuser;
 CREATE TABLE public.encyklopedia_bractwo (
     id bigint NOT NULL,
     nazwa character varying(255) NOT NULL,
-    panstwo character varying(3) NOT NULL,
+    panstwo_id bigint,
     czapka character varying(3) NOT NULL,
     rok_zalozenia integer NOT NULL,
     wiek_tradycje integer NOT NULL
@@ -3435,6 +3435,16 @@ COPY public.django_admin_log (id, action_time, object_id, object_repr, action_fl
 1483	2025-07-18 11:41:43.986445+02	18	Schronisko	1	[{"added": {}}]	49	1
 1484	2025-07-18 11:41:47.918219+02	19	Teatr	1	[{"added": {}}]	49	1
 1485	2025-07-18 11:41:53.980056+02	20	Szczyt	1	[{"added": {}}]	49	1
+1486	2025-07-18 11:53:11.629213+02	5	Belgia	1	[{"added": {}}]	46	1
+1487	2025-07-18 11:53:16.76629+02	6	Dania	1	[{"added": {}}]	46	1
+1488	2025-07-18 11:53:20.804579+02	7	Finlandia	1	[{"added": {}}]	46	1
+1489	2025-07-18 11:53:24.337836+02	8	Francja	1	[{"added": {}}]	46	1
+1490	2025-07-18 11:53:30.648855+02	9	Norwegia	1	[{"added": {}}]	46	1
+1491	2025-07-18 11:53:42.371859+02	10	Szwecja	1	[{"added": {}}]	46	1
+1492	2025-07-18 11:53:51.471848+02	11	Włochy	1	[{"added": {}}]	46	1
+1493	2025-07-18 12:03:14.464488+02	3	ITA Monte Christo Balla	3		31	1
+1494	2025-07-18 12:05:22.431289+02	4	None Balla Monte Christo	1	[{"added": {}}]	31	1
+1495	2025-07-18 12:24:08.064916+02	4	Włochy Balla Monte Christo	2	[{"changed": {"fields": ["Kraj pochodzenia"]}}]	31	1
 \.
 
 
@@ -3674,6 +3684,7 @@ COPY public.django_migrations (id, app, name, applied) FROM stdin;
 216	miejsca	0003_typmiejsca_miejsce	2025-07-18 00:23:18.537097+02
 217	kronika	0003_alter_obrazzdarzenie_miejsce_alter_zdarzenie_miejsce_and_more	2025-07-18 10:13:12.687732+02
 218	miejsca	0004_miejsce_zamkniete_na_stale_alter_miejsce_adres	2025-07-18 10:13:12.701849+02
+219	encyklopedia	0005_alter_bractwo_panstwo	2025-07-18 12:04:03.941256+02
 \.
 
 
@@ -3694,8 +3705,8 @@ e2w126gsubz1f9nieaoyi47njc6foy36	.eJxVjDsOAiEUAO9CbcgDHj9Le89A-Dxl1UCy7FbGuxuSLb
 -- Data for Name: encyklopedia_bractwo; Type: TABLE DATA; Schema: public; Owner: projectuser
 --
 
-COPY public.encyklopedia_bractwo (id, nazwa, panstwo, czapka, rok_zalozenia, wiek_tradycje) FROM stdin;
-3	Monte Christo Balla	ITA	FEL	1111111111	1111111111
+COPY public.encyklopedia_bractwo (id, nazwa, panstwo_id, czapka, rok_zalozenia, wiek_tradycje) FROM stdin;
+4	Balla Monte Christo	11	FEL	1111111111	1111111111
 \.
 
 
@@ -3910,6 +3921,13 @@ COPY public.miejsca_kraj (id, kraj) FROM stdin;
 2	Nie wiem
 3	Nie dotyczy
 4	Niemcy
+5	Belgia
+6	Dania
+7	Finlandia
+8	Francja
+9	Norwegia
+10	Szwecja
+11	Włochy
 \.
 
 
@@ -4172,7 +4190,7 @@ SELECT pg_catalog.setval('public.czlonkowie_zwierzeczapkowe_id_seq', 13, true);
 -- Name: django_admin_log_id_seq; Type: SEQUENCE SET; Schema: public; Owner: projectuser
 --
 
-SELECT pg_catalog.setval('public.django_admin_log_id_seq', 1485, true);
+SELECT pg_catalog.setval('public.django_admin_log_id_seq', 1495, true);
 
 
 --
@@ -4186,14 +4204,14 @@ SELECT pg_catalog.setval('public.django_content_type_id_seq', 49, true);
 -- Name: django_migrations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: projectuser
 --
 
-SELECT pg_catalog.setval('public.django_migrations_id_seq', 218, true);
+SELECT pg_catalog.setval('public.django_migrations_id_seq', 219, true);
 
 
 --
 -- Name: encyklopedia_bractwo_id_seq; Type: SEQUENCE SET; Schema: public; Owner: projectuser
 --
 
-SELECT pg_catalog.setval('public.encyklopedia_bractwo_id_seq', 3, true);
+SELECT pg_catalog.setval('public.encyklopedia_bractwo_id_seq', 4, true);
 
 
 --
@@ -4312,7 +4330,7 @@ SELECT pg_catalog.setval('public.kronika_zdarzenie_id_seq', 30, true);
 -- Name: miejsca_kraj_id_seq; Type: SEQUENCE SET; Schema: public; Owner: projectuser
 --
 
-SELECT pg_catalog.setval('public.miejsca_kraj_id_seq', 4, true);
+SELECT pg_catalog.setval('public.miejsca_kraj_id_seq', 11, true);
 
 
 --
@@ -5100,6 +5118,13 @@ CREATE INDEX django_session_session_key_c0390e0f_like ON public.django_session U
 
 
 --
+-- Name: encyklopedia_bractwo_panstwo_id_e11894fb; Type: INDEX; Schema: public; Owner: projectuser
+--
+
+CREATE INDEX encyklopedia_bractwo_panstwo_id_e11894fb ON public.encyklopedia_bractwo USING btree (panstwo_id);
+
+
+--
 -- Name: encyklopedia_pojecie_wydarzenie_id_373336c0; Type: INDEX; Schema: public; Owner: projectuser
 --
 
@@ -5555,6 +5580,14 @@ ALTER TABLE ONLY public.django_admin_log
 
 ALTER TABLE ONLY public.django_admin_log
     ADD CONSTRAINT django_admin_log_user_id_c564eba6_fk_auth_user_id FOREIGN KEY (user_id) REFERENCES public.auth_user(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: encyklopedia_bractwo encyklopedia_bractwo_panstwo_id_e11894fb_fk_miejsca_kraj_id; Type: FK CONSTRAINT; Schema: public; Owner: projectuser
+--
+
+ALTER TABLE ONLY public.encyklopedia_bractwo
+    ADD CONSTRAINT encyklopedia_bractwo_panstwo_id_e11894fb_fk_miejsca_kraj_id FOREIGN KEY (panstwo_id) REFERENCES public.miejsca_kraj(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --

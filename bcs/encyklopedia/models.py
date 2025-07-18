@@ -1,10 +1,8 @@
-from django.contrib.contenttypes.fields import GenericRelation
 from django.db import models
 
 from core.utils.Choices import IntAlt
 from core.utils.Consts import *
 from core.utils.czas import Czas
-from czlonkowie.models import Czlonek
 from kronika.models import Wydarzenie
 
 
@@ -100,16 +98,6 @@ class TradycjaInnegoBractwa(models.Model):
         return self.nazwa
 
 class Bractwo(models.Model): # TODO: add zalozyciel (Osoba)
-    class Panstwa(models.TextChoices):
-        BELGIA = "BEL", "Belgia"
-        DANIA = "DNK", "Dania"
-        FINLANDIA = "FIN", "Finlandia"
-        FRANCJA = "FRA", "Francja"
-        NIEMCY = "DEU", "Niemcy"
-        NORWEGIA = "NOR", "Norwegia"
-        POLSKA = "POL", "Polska"
-        SZWECJA = "SWE", "Szwecja"
-        WLOCHY = "ITA", "Włochy"
 
     class Czapki(models.TextChoices):
         CALOTTE = "CAL", "Calotte"
@@ -123,8 +111,12 @@ class Bractwo(models.Model): # TODO: add zalozyciel (Osoba)
         max_length=MAX_LENGTH, verbose_name="Nazwa",
     )
 
-    panstwo = models.CharField(
-        max_length=Lengths.PANSTWA_LENGTH, choices=Panstwa.choices, verbose_name="Kraj pochodzenia",
+    panstwo = models.ForeignKey(
+        'miejsca.Kraj',
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+        verbose_name="Kraj pochodzenia",
     )
 
     czapka = models.CharField(
@@ -145,7 +137,7 @@ class Bractwo(models.Model): # TODO: add zalozyciel (Osoba)
         ordering = ["panstwo", "nazwa"]
 
     def __str__(self):
-        return f"{self.panstwo} {self.nazwa}"
+        return f"{str(self.panstwo)} {self.nazwa}"
 
 
 class Pojecie(models.Model): # TODO: add autor (Osoba)

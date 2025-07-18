@@ -2,12 +2,13 @@ from .models import *
 from core.utils.automation.AutocompletesGeneration import *
 
 from kronika.models_dict import names as kronika
+from miejsca.models_dict import names as miejsca
 
 autocomplete_configs = [
     (
         Bractwo,
         ['panstwo', 'czapka', 'wiek_tradycje', 'rok_zalozenia'], [],
-        []),
+        [miejsca['Kraj']]),
     (
         Pojecie,
         ['origins'], [],
@@ -31,7 +32,7 @@ autocomplete_configs = [
     (
         Zrodlo,
         [], [],
-        []),
+        [])
 ]
 
 autocomplete_urls, autocomplete_widgets = setup_autocompletes(autocomplete_configs, globals())

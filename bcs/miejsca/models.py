@@ -1,5 +1,5 @@
 from django.db import models
-from core.utils.Consts import MAX_LENGTH, SHORT_LENGTH, NAME_LENGTH, MEDIUM_LENGTH
+from core.utils.Consts import MAX_LENGTH, SHORT_LENGTH, MEDIUM_LENGTH
 
 
 class Kraj(models.Model):
@@ -68,7 +68,7 @@ class TypMiejsca(models.Model):
         return self.nazwa
 
 
-class Uczelnia(models.Model): # TODO: add kraj (KrajCzapkowy)
+class Uczelnia(models.Model):
 
     nazwa = models.CharField(
         max_length=MAX_LENGTH, verbose_name="Uczelnia"
