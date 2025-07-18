@@ -1,5 +1,5 @@
 from django.urls import path
-from . import views
+from . import custom_autocomplete_views
 from .views import autocomplete_urls
 
 app_name = 'kronika_autocomplete'
@@ -8,7 +8,7 @@ app_name = 'kronika_autocomplete'
 urlpatterns = [
     path(
         'custom-miejsce-from-wydarzenie-to-zdarzenie-autocomplete/',
-         views.CustomMiejsceFromWydarzenieToZdarzenieAutocomplete.as_view(),
+         custom_autocomplete_views.CustomMiejsceFromWydarzenieToZdarzenieAutocomplete.as_view(),
          name='custom-miejsce-from-wydarzenie-to-zdarzenie-autocomplete'
     ),
               ] + autocomplete_urls

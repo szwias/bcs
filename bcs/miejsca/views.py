@@ -1,7 +1,12 @@
 from core.utils.automation.AutocompletesGeneration import *
-from .models import Kraj, Uczelnia, Wydzial
+from .models import Kraj, Miejsce, TypMiejsca, Uczelnia, Wydzial
 
 autocomplete_configs = [
+    (
+        Miejsce,
+        [], [],
+        [TypMiejsca.__name__]
+    ),
     (
         Uczelnia,
         [], [],

@@ -4,11 +4,6 @@ from .models import *
 from .views import autocomplete_widgets
 from core.utils.automation.AutocompletesGeneration import build_widgets
 
-class MiejsceForm(forms.ModelForm):
-    class Meta:
-        model = Miejsce
-        fields = '__all__'
-        widgets = build_widgets(autocomplete_widgets[Miejsce.__name__])
 
 class ZdarzenieForm(forms.ModelForm):
     class Meta:

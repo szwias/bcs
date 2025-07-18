@@ -16,6 +16,82 @@ class Kraj(models.Model):
     def __str__(self):
         return self.kraj
 
+    @staticmethod
+    def get_polska():
+        return Kraj.objects.get(kraj='Polska')
+
+
+class Miejsce(models.Model):
+    class TypyMiejsc(models.TextChoices):
+        BAR = "Bar", "Bar"
+        BAR_MLECZNY = "Mleczny", "Bar mleczny"
+        DWORZEC = "Dworzec", "Dworzec"
+        INNY = "Inny", "Inny"
+        KARAOKE = "Karaoke", "Karaoke"
+        KINO = "Kino", "Kino"
+        LOKUM = "Lokum", "Lokum"
+        LOTNISKO = "Lotnisko", "Lotnisko"
+        MIASTO = "Miasto", "Miasto"
+        OBIEKT_KULTURY = "ObKult", "Obiekt kultury"
+        PLAC = "OgrodPlac", "Ogród/Plac"
+        PUB = "Pub", "Pub/Klub"
+        RESTAURACJA = "Restaur", "Restauracja"
+        SCHRONISKO = "Schronisko", "Schronisko"
+        SZCZYT = "Szczyt", "Szczyt"
+        SZLAK = "Szlak", "Szlak"
+        TEATR = "Teatr", "Teatr"
+        UCZELNIA = "Uczel", "Uczelnia"
+
+    nazwa = models.CharField(
+        max_length=MAX_LENGTH, verbose_name="Nazwa",
+    )
+
+    adres = models.CharField(
+        max_length=MAX_LENGTH, blank=True, verbose_name="Adres",
+    )
+
+    # kraj = models.ForeignKey(
+    #     Kraj,
+    #     default=Kraj.get_polska(),
+    #     verbose_name="Kraj",
+    # )
+
+    typ = models.ForeignKey(
+        "miejsca.TypMiejsca",
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+        verbose_name="Typ miejsca",
+    )
+
+    # zamkniete_na_stale = models.BooleanField(
+    #     default=False,
+    #     verbose_name="Zamknięte na stałe",
+    # )
+
+    class Meta:
+        verbose_name = "Miejsce"
+        verbose_name_plural = "Miejsca"
+        ordering = ["nazwa"]
+
+    def __str__(self):
+        return f"{self.nazwa} - {str(self.typ)}, {self.adres}"
+
+
+class TypMiejsca(models.Model):
+    nazwa = models.CharField(
+        max_length=MEDIUM_LENGTH,
+        verbose_name='Typ miejsca',
+    )
+
+    class Meta:
+        verbose_name = 'Typ miejsca'
+        verbose_name_plural = 'Typy miejsc'
+        ordering = ['nazwa']
+
+    def __str__(self):
+        return self.nazwa
+
 
 class Uczelnia(models.Model): # TODO: add kraj (KrajCzapkowy)
 

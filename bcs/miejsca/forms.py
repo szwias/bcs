@@ -1,5 +1,4 @@
 from django import forms
-from dal import autocomplete
 from .models import *
 from .views import autocomplete_widgets
 from core.utils.automation.AutocompletesGeneration import build_widgets
@@ -10,6 +9,19 @@ class KrajForm(forms.ModelForm):
         fields = '__all__'
 
         # widgets = build_widgets(autocomplete_widgets['Kraj'])
+
+class MiejsceForm(forms.ModelForm):
+    class Meta:
+        model = Miejsce
+        fields = '__all__'
+        widgets = build_widgets(autocomplete_widgets[Miejsce.__name__])
+        widgets.update({
+            'adres': forms.Textarea(attrs={
+                'placeholder': '<Ulica>, <Kod pocztowy> <Miasto>, <Kraj>',
+                'rows': 1,
+                'cols': 50
+            })
+        })
 
 class UczelniaForm(forms.ModelForm):
     class Meta:

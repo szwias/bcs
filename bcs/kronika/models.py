@@ -1,55 +1,10 @@
 import os
-
 from django.db import models
 
 from core.utils.Choices import TextChoose, TextAlt
 from core.utils.Consts import *
 from django.utils import timezone
-from django.contrib.contenttypes.fields import GenericRelation
 
-class Miejsce(models.Model):
-    class TypyMiejsc(models.TextChoices):
-        BAR = "Bar", "Bar"
-        BAR_MLECZNY = "Mleczny", "Bar mleczny"
-        DWORZEC = "Dworzec", "Dworzec"
-        INNY = "Inny", "Inny"
-        KARAOKE = "Karaoke", "Karaoke"
-        KINO = "Kino", "Kino"
-        LOKUM = "Lokum", "Lokum"
-        LOTNISKO = "Lotnisko", "Lotnisko"
-        MIASTO = "Miasto", "Miasto"
-        OBIEKT_KULTURY = "ObKult", "Obiekt kultury"
-        PLAC = "OgrodPlac", "Ogród/Plac"
-        PUB = "Pub", "Pub/Klub"
-        RESTAURACJA = "Restaur", "Restauracja"
-        SCHRONISKO = "Schronisko", "Schronisko"
-        SZCZYT = "Szczyt", "Szczyt"
-        SZLAK = "Szlak", "Szlak"
-        TEATR = "Teatr", "Teatr"
-        UCZELNIA = "Uczel", "Uczelnia"
-
-    nazwa = models.CharField(
-        max_length=MAX_LENGTH, verbose_name="Nazwa",
-    )
-
-    adres = models.CharField(
-        max_length=MAX_LENGTH,
-        blank=True,
-        default="Ulica 1, Kraków, Polska",
-        verbose_name="Adres",
-    )
-
-    typ = models.CharField(
-        max_length=SHORT_LENGTH, choices=TypyMiejsc.choices, verbose_name="Typ miejsca",
-    )
-
-    class Meta:
-        verbose_name = "Miejsce"
-        verbose_name_plural = "Miejsca"
-        ordering = ["nazwa"]
-
-    def __str__(self):
-        return f"{self.nazwa} - {self.get_typ_display()}, {self.adres}"
 
 class Zdarzenie(models.Model): # TODO: add powiazane_osoby (Osoba)
     nazwa = models.CharField(max_length=MAX_LENGTH, verbose_name="Nazwa")
@@ -72,7 +27,7 @@ class Zdarzenie(models.Model): # TODO: add powiazane_osoby (Osoba)
     )
 
     miejsce = models.ForeignKey(
-        Miejsce,
+        'miejsca.Miejsce',
         blank=True,
         null=True,
         on_delete=models.SET_NULL,
@@ -137,7 +92,7 @@ class ObrazZdarzenie(models.Model): # TODO: add widoczne_osoby (Osoba)
     )
 
     miejsce = models.ForeignKey(
-        Miejsce,
+        'miejsca.Miejsce',
         blank=True,
         null=True,
         on_delete=models.SET_NULL,
@@ -231,7 +186,7 @@ class Wydarzenie(models.Model): # TODO: add uczestnicy (Osoba)
     )
 
     miejsca = models.ManyToManyField(
-        Miejsce, blank=True, verbose_name="Miejsca"
+        'miejsca.Miejsce', blank=True, verbose_name="Miejsca"
     )
 
     czy_to_wyjazd = models.CharField(
