@@ -9,3 +9,10 @@ class CzapkaForm(forms.ModelForm):
         fields = '__all__'
 
         widgets = build_widgets(autocomplete_widgets['Czapka'])
+
+class RodzajCzapkiForm(forms.ModelForm):
+    class Meta:
+        model = RodzajCzapki
+        fields = '__all__'
+
+        widgets = build_widgets(autocomplete_widgets['RodzajCzapki'])

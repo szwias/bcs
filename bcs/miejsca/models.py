@@ -4,8 +4,7 @@ from core.utils.Consts import MAX_LENGTH, SHORT_LENGTH, MEDIUM_LENGTH
 
 class Kraj(models.Model):
     kraj = models.CharField(
-        max_length=MEDIUM_LENGTH,
-        verbose_name='Kraj',
+        max_length=MEDIUM_LENGTH, verbose_name='Kraj',
     )
 
     class Meta:
@@ -40,8 +39,7 @@ class Miejsce(models.Model):
     )
 
     zamkniete_na_stale = models.BooleanField(
-        default=False,
-        verbose_name="Zamknięte na stałe",
+        default=False, verbose_name="Zamknięte na stałe",
     )
 
     class Meta:
@@ -54,9 +52,9 @@ class Miejsce(models.Model):
 
 
 class TypMiejsca(models.Model):
+
     nazwa = models.CharField(
-        max_length=MEDIUM_LENGTH,
-        verbose_name='Typ miejsca',
+        max_length=MEDIUM_LENGTH, verbose_name='Typ miejsca',
     )
 
     class Meta:

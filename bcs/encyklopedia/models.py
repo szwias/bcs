@@ -146,19 +146,15 @@ class Pojecie(models.Model): # TODO: add autor (Osoba)
         INNE = "Inne", "Inna okoliczność"
 
     nazwa = models.CharField(
-        max_length=MEDIUM_LENGTH,
-        verbose_name="Nazwa",
+        max_length=MEDIUM_LENGTH, verbose_name="Nazwa",
     )
 
     opis = models.TextField(
-        blank=True,
-        verbose_name="Opis",
+        blank=True, verbose_name="Opis",
     )
 
     origins = models.CharField(
-        blank=True,
-        choices=Origins.choices,
-        verbose_name="Pierwszy raz pojawiło się:",
+        blank=True, choices=Origins.choices, verbose_name="Pierwszy raz pojawiło się:",
     )
 
     wydarzenie = models.ForeignKey(
@@ -209,8 +205,7 @@ class Zwyczaj(models.Model): # TODO: add autor (Osoba)
     )
 
     opis = models.TextField(
-        blank=True,
-        verbose_name="Opis",
+        blank=True, verbose_name="Opis",
     )
 
     class Meta:

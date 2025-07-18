@@ -72,9 +72,7 @@ class OsobaBCS(Osoba):
     )
 
     pewnosc_stazu = models.CharField(
-        choices=PewnoscStazu.choices,
-        default=PewnoscStazu.TAK,
-        verbose_name="Pewność daty stażu"
+        choices=PewnoscStazu.choices, default=PewnoscStazu.TAK, verbose_name="Pewność daty stażu"
     )
 
     class Meta:

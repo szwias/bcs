@@ -1,5 +1,5 @@
 from django.db import models
-from core.utils.Consts import MAX_LENGTH, MEDIUM_LENGTH
+from core.utils.Consts import MAX_LENGTH, MEDIUM_LENGTH, NAME_LENGTH
 from miejsca.models import Wydzial
 
 
@@ -49,3 +49,29 @@ class Czapka(models.Model):
             kolor="Nie dotyczy"
         )
         return czapka
+
+
+class RodzajCzapki(models.Model):
+
+    nazwa = models.CharField(
+        max_length=NAME_LENGTH, blank=True, verbose_name='Nazwa',
+    )
+
+    kraje = models.ManyToManyField(
+        'miejsca.Kraj',
+        blank=True,
+        null=True,
+        verbose_name='Kraje występowania',
+    )
+
+    powod_koloru = models.CharField(
+        max_length=MEDIUM_LENGTH, blank=True, verbose_name='Od czego zależy kolor',
+    )
+
+    class Meta:
+        verbose_name = "Rodzaj czapki studenckiej"
+        verbose_name_plural = "Rodzaje czapek studenckich"
+        ordering = ['nazwa']
+
+    def __str__(self):
+        return self.nazwa
