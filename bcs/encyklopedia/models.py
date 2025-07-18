@@ -83,27 +83,25 @@ class GrupaBractw(models.Model):
         return f"{self.nazwa}: {kraje}"
 
 class TradycjaBCS(models.Model): # TODO: add autor (Osoba)
-    class Authors(models.TextChoices):
-        BELGOWIE = "Belg", "Belgijska"
-        BCS = "BCS", "BCSu"
-        FALUSZARDZI = "Faluch", "Faluszardzka"
-        GOLIARDZI = "Goliard", "Goliardzka"
-        INNE = "Inne", "Inna"
-        KORPORACJE = "Korpo", "Korporacyjna"
 
     class Okolicznosci(models.TextChoices):
         INNE = "I", "Inne"
         WYDARZENIE = "Wyd", "Wydarzenie"
 
     nazwa = models.CharField(
-        max_length=MEDIUM_LENGTH, verbose_name="Nazwa",
+        max_length=MEDIUM_LENGTH, verbose_name="Tradycja",
     )
 
-    autor_rodzaj = models.CharField(
-        max_length=SHORT_LENGTH,
-        choices=Authors.choices,
-        default=Authors.BCS,
-        verbose_name="Tradycja",
+    zapozyczona = models.BooleanField(
+        default=False, verbose_name="Zapożyczona",
+    )
+
+    od_kogo = models.ForeignKey(
+        'encyklopedia.GrupaBractw',
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+        verbose_name="Od kogo zapożyczona",
     )
 
     okolicznosci_powstania = models.CharField(
@@ -137,23 +135,9 @@ class TradycjaBCS(models.Model): # TODO: add autor (Osoba)
 
 
 class TradycjaInnegoBractwa(models.Model):
-    class Authors(models.TextChoices):
-        ANIMUS = "Animus", "BCS Animus"
-        BELGOWIE = "Belg", "Belgijska"
-        FALUSZARDZI = "Faluch", "Faluszardzka"
-        GOLIARDZI = "Goliard", "Goliardzka"
-        INNE = "Inne", "Inna"
-        KORPORACJE = "Korpo", "Korporacyjna"
 
     nazwa = models.CharField(
-        max_length=MEDIUM_LENGTH,
-        verbose_name="Nazwa",
-    )
-
-    autor_rodzaj = models.CharField(
-        max_length=SHORT_LENGTH,
-        choices=Authors.choices,
-        verbose_name="Pochodzenie tradycji",
+        max_length=MEDIUM_LENGTH, verbose_name="Tradycja",
     )
 
     bractwo = models.ForeignKey(
@@ -162,6 +146,18 @@ class TradycjaInnegoBractwa(models.Model):
         null=True,
         on_delete=models.SET_NULL,
         verbose_name="Bractwo"
+    )
+
+    zapozyczona = models.BooleanField(
+        default=False, verbose_name="Zapożyczona"
+    )
+
+    od_kogo = models.ForeignKey(
+        'encyklopedia.GrupaBractw',
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+        verbose_name="Od kogo zapożyczona",
     )
 
     opis = models.TextField(

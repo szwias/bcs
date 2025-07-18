@@ -24,12 +24,12 @@ autocomplete_configs = [
         []),
     (
         TradycjaBCS,
-        ['autor_rodzaj', 'okolicznosci_powstania'], [],
-        [kronika['Wydarzenie']]),
+        ['okolicznosci_powstania'], [],
+        [kronika['Wydarzenie'], GrupaBractw.__name__]),
     (
         TradycjaInnegoBractwa,
-        ['autor_rodzaj'], [],
-        []),
+        [], [],
+        [GrupaBractw.__name__]),
     (
         Zwyczaj,
         [], [],
