@@ -2,7 +2,7 @@ from collections import defaultdict
 from core.utils.automation.AutocompletesGeneration import add_model_name
 from .models import (
     OldBean, OldCzlonek, InnaOldOsoba, \
-    # Bean, Czlonek, InnaOsoba, \
+    Bean, Czlonek, InnaOsoba, \
     ImieSzlacheckie, ZwierzeCzapkowe, \
     DawnyZarzad, WielkiMistrz, Zarzad, \
     HallOfFame, \
@@ -14,9 +14,9 @@ add_model_name(OldBean, names, "OldBean")
 add_model_name(OldCzlonek, names, "OldCzlonek")
 add_model_name(InnaOldOsoba, names, "InnaOldOsoba")
 
-# add_model_name(Bean, names, "Bean")
-# add_model_name(Czlonek, names, "Czlonek")
-# add_model_name(InnaOsoba, names, "InnaOsoba")
+add_model_name(Bean, names, "Bean")
+add_model_name(Czlonek, names, "Czlonek")
+add_model_name(InnaOsoba, names, "InnaOsoba")
 
 add_model_name(ImieSzlacheckie, names, "ImieSzlacheckie")
 add_model_name(ZwierzeCzapkowe, names, "ZwierzeCzapkowe")

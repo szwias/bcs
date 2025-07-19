@@ -1,4 +1,4 @@
-from .models import OldBean, OldCzlonek, DawnyZarzad, HallOfFame, ImieSzlacheckie, InnaOldOsoba, WielkiMistrz, \
+from .models import OldBean, OldCzlonek, Bean, Czlonek, InnaOsoba, DawnyZarzad, HallOfFame, ImieSzlacheckie, InnaOldOsoba, WielkiMistrz, \
     Zarzad, ZwierzeCzapkowe
 from core.utils.automation.AutocompletesGeneration import *
 
@@ -17,6 +17,14 @@ autocomplete_configs = [
         ['rok_chrztu', 'miesiac_chrztu', 'dzien_chrztu', 'status', 'staz'], [],
         [czapki['Czapka'], OldCzlonek.__name__]),
     (
+        Bean,
+        ['staz'], [],
+        [czapki['Czapka'], Czlonek.__name__]),
+    (
+        Czlonek,
+        ['rok_chrztu', 'miesiac_chrztu', 'dzien_chrztu', 'status', 'staz'], [],
+        [czapki['Czapka'], Czlonek.__name__]),
+    (
         DawnyZarzad,
         [], [],
         [WielkiMistrz.__name__, OldCzlonek.__name__, core['Kadencja'], kronika['CharakterystykaDzialanZarzadu']]),
@@ -30,6 +38,10 @@ autocomplete_configs = [
         [OldCzlonek.__name__]),
     (
         InnaOldOsoba,
+        ['kategoria'], [],
+        [encyklopedia['Bractwo']]),
+    (
+        InnaOsoba,
         ['kategoria'], [],
         [encyklopedia['Bractwo']]),
     (
