@@ -226,7 +226,7 @@ class Pojecie(models.Model):
     def __str__(self):
         return self.nazwa
 
-class Zrodlo(models.Model): # TODO: add autorzy (Osoba)
+class Zrodlo(models.Model):
     nazwa = models.CharField(
         max_length=255, blank=True, verbose_name="Nazwa"
     )

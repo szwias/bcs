@@ -6,7 +6,7 @@ from core.utils.Consts import *
 from django.utils import timezone
 
 
-class Zdarzenie(models.Model): # TODO: add powiazane_osoby (Osoba)
+class Zdarzenie(models.Model):
     nazwa = models.CharField(max_length=MAX_LENGTH, verbose_name="Nazwa")
 
     wydarzenie = models.ForeignKey(
@@ -37,6 +37,10 @@ class Zdarzenie(models.Model): # TODO: add powiazane_osoby (Osoba)
 
     opis = models.TextField(
         blank=True, verbose_name="Opis"
+    )
+
+    powiazane_osoby = models.ManyToManyField(
+        'czlonkowie.Osoba', blank=True, verbose_name="Powiązane osoby"
     )
 
     class Meta:
@@ -73,7 +77,7 @@ class Zdarzenie(models.Model): # TODO: add powiazane_osoby (Osoba)
         super().save(*args, **kwargs)
 
 
-class ObrazZdarzenie(models.Model): # TODO: add widoczne_osoby (Osoba)
+class ObrazZdarzenie(models.Model):
     zdarzenie = models.ForeignKey(
         Zdarzenie,
         blank=True,
@@ -106,6 +110,10 @@ class ObrazZdarzenie(models.Model): # TODO: add widoczne_osoby (Osoba)
 
     opis = models.TextField(
         blank=True, verbose_name="Opis",
+    )
+
+    widoczne_osoby = models.ManyToManyField(
+        'czlonkowie.Osoba', blank=True, verbose_name="Widoczne osoby"
     )
 
     class Meta:
@@ -146,7 +154,7 @@ class ObrazZdarzenie(models.Model): # TODO: add widoczne_osoby (Osoba)
 
         super().save(*args, **kwargs)
 
-class Wydarzenie(models.Model): # TODO: add uczestnicy (Osoba)
+class Wydarzenie(models.Model):
     class TypyWydarzen(models.TextChoices):
         AKCJA = "Akcja", "Akcja"
         INNE = "Inne", "Inne"
@@ -218,9 +226,14 @@ class Wydarzenie(models.Model): # TODO: add uczestnicy (Osoba)
         blank=True, verbose_name="Opis"
     )
 
-    obrazy = models.ManyToManyField(
-        "ObrazWydarzenie", blank=True, verbose_name="Zdjęcia", related_name="po_cholere_to_polaczenie"
+    uczestnicy = models.ManyToManyField(
+        'czlonkowie.Osoba', blank=True, verbose_name="Uczestnicy wydarzenia"
     )
+
+    # obrazy = models.ManyToManyField(
+    #     "ObrazWydarzenie", blank=True, verbose_name="Zdjęcia", related_name="po_cholere_to_polaczenie"
+    # )
+
 
     class Meta:
         verbose_name = "Wydarzenie"
@@ -238,7 +251,7 @@ class Wydarzenie(models.Model): # TODO: add uczestnicy (Osoba)
         name += f": {typ} \"{self.nazwa}\""
         return name
 
-class ObrazWydarzenie(models.Model): # TODO: add widoczne_osoby (Osoba
+class ObrazWydarzenie(models.Model):
     wydarzenie = models.ForeignKey(
         Wydarzenie,
         blank=True,
@@ -258,6 +271,10 @@ class ObrazWydarzenie(models.Model): # TODO: add widoczne_osoby (Osoba
 
     opis = models.TextField(
         blank=True, verbose_name="Opis",
+    )
+
+    widoczne_osoby = models.ManyToManyField(
+        'czlonkowie.Osoba', blank=True, verbose_name="Widoczne osoby"
     )
 
     class Meta:

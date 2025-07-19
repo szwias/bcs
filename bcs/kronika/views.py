@@ -12,11 +12,11 @@ autocomplete_configs = [
     (
         ObrazWydarzenie,
         [], [],
-        [Wydarzenie.__name__]),
+        [Wydarzenie.__name__, czlonkowie['Osoba']]),
     (
         ObrazZdarzenie,
         [], [],
-        [Zdarzenie.__name__, miejsca['Miejsce']]),
+        [Zdarzenie.__name__, miejsca['Miejsce'], czlonkowie['Osoba']]),
     (
         Proces,
         [], [],
@@ -24,11 +24,11 @@ autocomplete_configs = [
     (
         Wydarzenie,
         ['typ_wydarzenia', 'typ_wyjazdu', 'czy_to_wyjazd'], [],
-        [miejsca['Miejsce' ], Zdarzenie.__name__]),
+        [miejsca['Miejsce' ], Zdarzenie.__name__, czlonkowie['Osoba']]),
     (
         Zdarzenie,
         [], [],
-        [ObrazZdarzenie.__name__, Wydarzenie.__name__]),
+        [ObrazZdarzenie.__name__, Wydarzenie.__name__, czlonkowie['Osoba']]),
 ]
 
 autocomplete_urls, autocomplete_widgets = setup_autocompletes(autocomplete_configs, globals())
