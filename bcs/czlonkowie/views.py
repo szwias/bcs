@@ -1,5 +1,5 @@
 from .models import (
-Bean, Czlonek, InnaOsoba, DawnyZarzad, HallOfFame, ImieSzlacheckie, WielkiMistrz, Zarzad, ZwierzeCzapkowe)
+Bean, Czlonek, InnaOsoba, Osoba, DawnyZarzad, HallOfFame, ImieSzlacheckie, WielkiMistrz, Zarzad, ZwierzeCzapkowe)
 from core.utils.automation.AutocompletesGeneration import *
 
 from core.models_dict import names as core
@@ -32,6 +32,10 @@ autocomplete_configs = [
         InnaOsoba,
         ['kategoria'], [],
         [encyklopedia['Bractwo']]),
+    (
+        Osoba,
+        [], [],
+        []),
     (
         WielkiMistrz,
         [], [],

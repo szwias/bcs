@@ -6,11 +6,11 @@ from core.utils.automation.AutocompletesGeneration import build_widgets
 from django.contrib.postgres.forms import SimpleArrayField
 
 
-class CzlonekForm(forms.ModelForm):
+class OsobaForm(forms.ModelForm):
     class Meta:
-        model = Czlonek
+        model = Osoba
         fields = '__all__'
-        widgets = build_widgets(autocomplete_widgets['Czlonek'])
+        widgets = build_widgets(autocomplete_widgets['Osoba'])
 
     przezwiska = SimpleArrayField(
         base_field=forms.CharField(),
@@ -19,6 +19,13 @@ class CzlonekForm(forms.ModelForm):
         delimiter=','
     )
 
+
+class CzlonekForm(OsobaForm):
+    class Meta:
+        model = Czlonek
+        fields = '__all__'
+        widgets = build_widgets(autocomplete_widgets['Czlonek'])
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
@@ -26,6 +33,7 @@ class CzlonekForm(forms.ModelForm):
             self.fields['czapka_1'].initial = Czapka.get_dont_know_czapka()
             self.fields['czapka_2'].initial = Czapka.get_not_applicable_czapka()
             self.fields['rodzic_1'].initial = Czlonek.get_dont_know_czlonek()
+            self.fields['rodzic_2'].initial = Czlonek.get_not_applicable_czlonek()
 
     def clean(self):
         cd = super().clean()
@@ -85,18 +93,11 @@ class CzlonekForm(forms.ModelForm):
         return cd
 
 
-class BeanForm(forms.ModelForm):
+class BeanForm(OsobaForm):
     class Meta:
         model = Bean
         fields = '__all__'
         widgets = build_widgets(autocomplete_widgets['Bean'])
-
-    przezwiska = SimpleArrayField(
-        base_field=forms.CharField(),
-        required=False,
-        widget=forms.Textarea(attrs={'rows': 3, 'cols': 50}),
-        delimiter=','
-    )
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -106,6 +107,13 @@ class BeanForm(forms.ModelForm):
             self.fields['czapka_2'].initial = Czapka.get_not_applicable_czapka()
             self.fields['rodzic_1'].initial = Czlonek.get_not_applicable_czlonek()
             self.fields['rodzic_2'].initial = Czlonek.get_not_applicable_czlonek()
+
+
+class InnaOsobaForm(OsobaForm):
+    class Meta:
+        model = InnaOsoba
+        fields = '__all__'
+        widgets = build_widgets(autocomplete_widgets['InnaOsoba'])
 
 
 class ImieSzlacheckieForm(forms.ModelForm):
@@ -175,17 +183,3 @@ class HallOfFameForm(forms.ModelForm):
         model = HallOfFame
         exclude = ['ordering']
         widgets = build_widgets(autocomplete_widgets['HallOfFame'])
-
-
-class InnaOsobaForm(forms.ModelForm):
-    class Meta:
-        model = InnaOsoba
-        fields = '__all__'
-        widgets = build_widgets(autocomplete_widgets['InnaOsoba'])
-
-        przezwiska = SimpleArrayField(
-            base_field=forms.CharField(),
-            required=False,
-            widget=forms.Textarea(attrs={'rows': 3, 'cols': 50}),
-            delimiter=','
-        )
