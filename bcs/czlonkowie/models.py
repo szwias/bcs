@@ -15,31 +15,31 @@ class Lengths:
     STATUS = 2
 
 
-class OldOsoba(models.Model):
-    imie = models.CharField(
-        max_length=NAME_LENGTH, verbose_name='Imię'
-    )
-
-    nazwisko = models.CharField(
-        max_length=NAME_LENGTH, blank=True, verbose_name='Nazwisko'
-    )
-
-    przezwiska = ArrayField(
-        models.CharField(max_length=MAX_LENGTH), blank=True, default=list, verbose_name="Przezwiska"
-    )
-
-    class Meta:
-        abstract = True
-
-    def __str__(self):
-        name = f"{self.imie} "
-        if len(self.przezwiska) > 0:
-            name += f"\"{self.przezwiska[0]}"
-            if len(self.przezwiska) > 1:
-                name += f"/{self.przezwiska[1]}"
-            name += "\" "
-        name += f"{self.nazwisko}"
-        return name
+# class OldOsoba(models.Model):
+#     imie = models.CharField(
+#         max_length=NAME_LENGTH, verbose_name='Imię'
+#     )
+#
+#     nazwisko = models.CharField(
+#         max_length=NAME_LENGTH, blank=True, verbose_name='Nazwisko'
+#     )
+#
+#     przezwiska = ArrayField(
+#         models.CharField(max_length=MAX_LENGTH), blank=True, default=list, verbose_name="Przezwiska"
+#     )
+#
+#     class Meta:
+#         abstract = True
+#
+#     def __str__(self):
+#         name = f"{self.imie} "
+#         if len(self.przezwiska) > 0:
+#             name += f"\"{self.przezwiska[0]}"
+#             if len(self.przezwiska) > 1:
+#                 name += f"/{self.przezwiska[1]}"
+#             name += "\" "
+#         name += f"{self.nazwisko}"
+#         return name
 
 
 class Osoba(PolymorphicModel):
@@ -71,41 +71,41 @@ class Osoba(PolymorphicModel):
         return name
 
 
-class OldOsobaBCS(OldOsoba):
-    class PewnoscStazu(models.TextChoices):
-        TAK = "T", "Na pewno wcześniej się nie pojawiał"
-        NIE = "N", "Ale mógł pojawić się wcześniej"
-
-    czapka_1 = models.ForeignKey(
-        'czapki.Czapka',
-        on_delete=models.SET_NULL,
-        null=True,
-        default=Czapka.get_dont_know_czapka,
-        verbose_name="Czapka",
-        related_name="old_%(class)s_posiadacze_pierwszy_wybor"
-    )
-
-    czapka_2 = models.ForeignKey(
-        'czapki.Czapka',
-        on_delete=models.SET_NULL,
-        null=True,
-        default=Czapka.get_not_applicable_czapka,
-        verbose_name="Inna czapka",
-        related_name="old_%(class)s_posiadacze_drugi_wybor"
-    )
-
-    staz = models.IntegerField(
-        choices=Czas.LATA_BCS + [IntAlt.DONT_KNOW],
-        default=2024,  # TODO: bieżący rok
-        verbose_name='Rok pojawienia się'
-    )
-
-    pewnosc_stazu = models.CharField(
-        choices=PewnoscStazu.choices, default=PewnoscStazu.TAK, verbose_name="Pewność daty stażu"
-    )
-
-    class Meta:
-        abstract = True
+# class OldOsobaBCS(OldOsoba):
+#     class PewnoscStazu(models.TextChoices):
+#         TAK = "T", "Na pewno wcześniej się nie pojawiał"
+#         NIE = "N", "Ale mógł pojawić się wcześniej"
+#
+#     czapka_1 = models.ForeignKey(
+#         'czapki.Czapka',
+#         on_delete=models.SET_NULL,
+#         null=True,
+#         default=Czapka.get_dont_know_czapka,
+#         verbose_name="Czapka",
+#         related_name="old_%(class)s_posiadacze_pierwszy_wybor"
+#     )
+#
+#     czapka_2 = models.ForeignKey(
+#         'czapki.Czapka',
+#         on_delete=models.SET_NULL,
+#         null=True,
+#         default=Czapka.get_not_applicable_czapka,
+#         verbose_name="Inna czapka",
+#         related_name="old_%(class)s_posiadacze_drugi_wybor"
+#     )
+#
+#     staz = models.IntegerField(
+#         choices=Czas.LATA_BCS + [IntAlt.DONT_KNOW],
+#         default=2024,  # TODO: bieżący rok
+#         verbose_name='Rok pojawienia się'
+#     )
+#
+#     pewnosc_stazu = models.CharField(
+#         choices=PewnoscStazu.choices, default=PewnoscStazu.TAK, verbose_name="Pewność daty stażu"
+#     )
+#
+#     class Meta:
+#         abstract = True
 
 
 class OsobaBCS(models.Model):
@@ -145,164 +145,164 @@ class OsobaBCS(models.Model):
         abstract = True
 
 
-class OldCzlonek(OldOsobaBCS):
-    class Aktywnosc(models.TextChoices):
-        AKTYWNY = 'A', "Aktywny",
-        AKTYWNY_MEDIALNIE = 'M', "Aktywny tylko w mediach",
-        NIEAKTYWNY = 'N', "Nieaktywny",
-        ODSZEDL = 'O', "Odszedł z grupy",
-    class Status(models.TextChoices):
-        CZLONEK = "C", "Członek"
-        WYKLETY = "X", "Wydalony (np. \"Jezus\")"
-        WETERAN = "W", "Weteran"
-        HONOROWY = "H", "Członek Honoris Causa"
-
-    aktywnosc = models.CharField(
-        max_length=Lengths.AKTYWNOSC,
-        choices=Aktywnosc.choices,
-        default=Aktywnosc.NIEAKTYWNY,
-        verbose_name='Aktywność'
-    )
-
-    ochrzczony = models.CharField(
-        max_length=max(TextAlt.LENGTH, TextChoose.LENGTH),
-        choices=[
-            *TextChoose.choices(),
-            TextAlt.DONT_KNOW
-        ],
-        default=TextAlt.DONT_KNOW,
-        verbose_name="Ochrzczony?",
-    )
-
-    rok_chrztu = models.IntegerField(
-        choices=Czas.LATA_BCS + [IntAlt.DONT_KNOW] + [IntAlt.NOT_APPLICABLE],
-        default=IntAlt.DONT_KNOW,
-        verbose_name='Rok chrztu'
-    )
-
-    miesiac_chrztu = models.IntegerField(
-        choices=Czas.MIESIACE + [IntAlt.DONT_KNOW] + [IntAlt.NOT_APPLICABLE],
-        default=IntAlt.DONT_KNOW,
-        verbose_name='Miesiąc chrztu'
-    )
-
-    dzien_chrztu = models.IntegerField(
-        choices=Czas.DNI + [IntAlt.DONT_KNOW] + [IntAlt.NOT_APPLICABLE],
-        default=IntAlt.DONT_KNOW,
-        verbose_name='Dzień chrztu'
-    )
-
-    status = models.CharField(
-        max_length=max(Lengths.STATUS, TextAlt.LENGTH),
-        choices=Status.choices + [TextAlt.DONT_KNOW],
-        default=TextAlt.DONT_KNOW,
-        verbose_name='Status'
-    )
-
-    imie_piwne_1_wybor = models.CharField(
-        max_length=TextAlt.LENGTH,
-        choices=TextAlt.choices(),
-        default=TextAlt.DONT_KNOW,
-        verbose_name="Imię czapkowe"
-    )
-
-    imie_piwne_1 = models.CharField(
-        blank=True, max_length=MEDIUM_LENGTH, default="Nie wiem", verbose_name="Wpisz imię czapkowe:"
-    )
-
-    imie_piwne_2_wybor = models.CharField(
-        max_length=TextAlt.LENGTH,
-        choices=TextAlt.choices(),
-        default=TextAlt.NOT_APPLICABLE,
-        verbose_name="Inne imię czapkowe"
-    )
-
-    imie_piwne_2 = models.CharField(
-        blank=True, max_length=MEDIUM_LENGTH, default="Nie dotyczy", verbose_name="Wpisz inne imię czapkowe:"
-    )
-
-    rodzic_1 = models.ForeignKey(
-        'self',
-        on_delete=models.SET_NULL,
-        null=True, blank=True,
-        verbose_name="Rodzic czapkowy",
-        related_name='old_dzieci_pierwszy_wybor',
-    )
-
-    rodzic_2 = models.ForeignKey(
-        'self',
-        on_delete=models.SET_NULL,
-        null=True, blank=True,
-        verbose_name="Drugi rodzic czapkowy",
-        related_name='old_dzieci_drugi_wybor',
-    )
-
-    class Meta:
-        verbose_name = "Członek (stara wersja)"
-        verbose_name_plural = "Członkowie (stara wersja)"
-        ordering = ['imie', 'imie_piwne_1', 'imie_piwne_2', 'nazwisko']
-
-    def __str__(self):
-        name = f"{self.imie} "
-        nicknames = []
-
-        if self.imie_piwne_1_wybor == "other":
-            nicknames.append(self.imie_piwne_1)
-            if self.imie_piwne_2_wybor == "other":
-                nicknames.append(self.imie_piwne_2)
-            elif self.przezwiska and self.przezwiska[0]:
-                nicknames.append(self.przezwiska[0])
-        elif self.przezwiska and self.przezwiska[0]:
-            nicknames.append(self.przezwiska[0])
-            if len(self.przezwiska) > 1 and self.przezwiska[1]:
-                nicknames.append(self.przezwiska[1])
-
-        if nicknames:
-            name += f"\"{'/'.join(nicknames)}\" "
-
-        name += self.nazwisko
-        return name
-
-    @staticmethod
-    def get_dont_know_czlonek():
-        czlonek = OldCzlonek.objects.get(
-            imie="Nie", nazwisko="wiem",
-            czapka_1=Czapka.get_dont_know_czapka(), czapka_2=Czapka.get_not_applicable_czapka(),
-            staz=IntAlt.DONT_KNOW[0], pewnosc_stazu=OldOsobaBCS.PewnoscStazu.NIE,
-            aktywnosc=OldCzlonek.Aktywnosc.NIEAKTYWNY, ochrzczony=TextChoose.YES[0], status=TextAlt.DONT_KNOW[0],
-            rok_chrztu=ROK_ZALOZENIA, miesiac_chrztu=IntAlt.DONT_KNOW[0], dzien_chrztu=IntAlt.DONT_KNOW[0],
-            imie_piwne_1_wybor=TextAlt.DONT_KNOW[0], imie_piwne_1="Nie wiem",
-            imie_piwne_2_wybor=TextAlt.NOT_APPLICABLE[0], imie_piwne_2="Nie dotyczy",
-        )
-        return czlonek
-
-    @staticmethod
-    def get_not_applicable_czlonek():
-        czlonek = OldCzlonek.objects.get(
-            imie="Nie", nazwisko="dotyczy",
-            czapka_1=Czapka.get_dont_know_czapka(), czapka_2=Czapka.get_not_applicable_czapka(),
-            staz=IntAlt.DONT_KNOW[0], pewnosc_stazu=OldOsobaBCS.PewnoscStazu.TAK,
-            aktywnosc=OldCzlonek.Aktywnosc.NIEAKTYWNY, ochrzczony=TextChoose.NO[0], status=TextAlt.DONT_KNOW[0],
-            rok_chrztu=IntAlt.NOT_APPLICABLE[0], miesiac_chrztu=IntAlt.NOT_APPLICABLE[0], dzien_chrztu=IntAlt.NOT_APPLICABLE[0],
-            imie_piwne_1_wybor=TextAlt.NOT_APPLICABLE[0], imie_piwne_1="Nie dotyczy",
-            imie_piwne_2_wybor=TextAlt.NOT_APPLICABLE[0], imie_piwne_2="Nie dotyczy",
-        )
-        return czlonek
-
-    def get_parents(self):
-        return [p for p in [self.rodzic_1, self.rodzic_2] if p.exists()]
-
-    def get_children(self):
-        return list(self.dzieci_pierwszy_wybor.all())
-
-    def get_step_children(self):
-        return list(self.dzieci_drugi_wybor.all())
-
-    def is_unknown(self):
-        return self.imie == "Nie" and self.nazwisko == "wiem"
-
-    def exists(self):
-        return not (self.imie == "Nie" and self.nazwisko == "dotyczy")
+# class Czlonek(OldOsobaBCS):
+#     class Aktywnosc(models.TextChoices):
+#         AKTYWNY = 'A', "Aktywny",
+#         AKTYWNY_MEDIALNIE = 'M', "Aktywny tylko w mediach",
+#         NIEAKTYWNY = 'N', "Nieaktywny",
+#         ODSZEDL = 'O', "Odszedł z grupy",
+#     class Status(models.TextChoices):
+#         CZLONEK = "C", "Członek"
+#         WYKLETY = "X", "Wydalony (np. \"Jezus\")"
+#         WETERAN = "W", "Weteran"
+#         HONOROWY = "H", "Członek Honoris Causa"
+#
+#     aktywnosc = models.CharField(
+#         max_length=Lengths.AKTYWNOSC,
+#         choices=Aktywnosc.choices,
+#         default=Aktywnosc.NIEAKTYWNY,
+#         verbose_name='Aktywność'
+#     )
+#
+#     ochrzczony = models.CharField(
+#         max_length=max(TextAlt.LENGTH, TextChoose.LENGTH),
+#         choices=[
+#             *TextChoose.choices(),
+#             TextAlt.DONT_KNOW
+#         ],
+#         default=TextAlt.DONT_KNOW,
+#         verbose_name="Ochrzczony?",
+#     )
+#
+#     rok_chrztu = models.IntegerField(
+#         choices=Czas.LATA_BCS + [IntAlt.DONT_KNOW] + [IntAlt.NOT_APPLICABLE],
+#         default=IntAlt.DONT_KNOW,
+#         verbose_name='Rok chrztu'
+#     )
+#
+#     miesiac_chrztu = models.IntegerField(
+#         choices=Czas.MIESIACE + [IntAlt.DONT_KNOW] + [IntAlt.NOT_APPLICABLE],
+#         default=IntAlt.DONT_KNOW,
+#         verbose_name='Miesiąc chrztu'
+#     )
+#
+#     dzien_chrztu = models.IntegerField(
+#         choices=Czas.DNI + [IntAlt.DONT_KNOW] + [IntAlt.NOT_APPLICABLE],
+#         default=IntAlt.DONT_KNOW,
+#         verbose_name='Dzień chrztu'
+#     )
+#
+#     status = models.CharField(
+#         max_length=max(Lengths.STATUS, TextAlt.LENGTH),
+#         choices=Status.choices + [TextAlt.DONT_KNOW],
+#         default=TextAlt.DONT_KNOW,
+#         verbose_name='Status'
+#     )
+#
+#     imie_piwne_1_wybor = models.CharField(
+#         max_length=TextAlt.LENGTH,
+#         choices=TextAlt.choices(),
+#         default=TextAlt.DONT_KNOW,
+#         verbose_name="Imię czapkowe"
+#     )
+#
+#     imie_piwne_1 = models.CharField(
+#         blank=True, max_length=MEDIUM_LENGTH, default="Nie wiem", verbose_name="Wpisz imię czapkowe:"
+#     )
+#
+#     imie_piwne_2_wybor = models.CharField(
+#         max_length=TextAlt.LENGTH,
+#         choices=TextAlt.choices(),
+#         default=TextAlt.NOT_APPLICABLE,
+#         verbose_name="Inne imię czapkowe"
+#     )
+#
+#     imie_piwne_2 = models.CharField(
+#         blank=True, max_length=MEDIUM_LENGTH, default="Nie dotyczy", verbose_name="Wpisz inne imię czapkowe:"
+#     )
+#
+#     rodzic_1 = models.ForeignKey(
+#         'self',
+#         on_delete=models.SET_NULL,
+#         null=True, blank=True,
+#         verbose_name="Rodzic czapkowy",
+#         related_name='old_dzieci_pierwszy_wybor',
+#     )
+#
+#     rodzic_2 = models.ForeignKey(
+#         'self',
+#         on_delete=models.SET_NULL,
+#         null=True, blank=True,
+#         verbose_name="Drugi rodzic czapkowy",
+#         related_name='old_dzieci_drugi_wybor',
+#     )
+#
+#     class Meta:
+#         verbose_name = "Członek (stara wersja)"
+#         verbose_name_plural = "Członkowie (stara wersja)"
+#         ordering = ['imie', 'imie_piwne_1', 'imie_piwne_2', 'nazwisko']
+#
+#     def __str__(self):
+#         name = f"{self.imie} "
+#         nicknames = []
+#
+#         if self.imie_piwne_1_wybor == "other":
+#             nicknames.append(self.imie_piwne_1)
+#             if self.imie_piwne_2_wybor == "other":
+#                 nicknames.append(self.imie_piwne_2)
+#             elif self.przezwiska and self.przezwiska[0]:
+#                 nicknames.append(self.przezwiska[0])
+#         elif self.przezwiska and self.przezwiska[0]:
+#             nicknames.append(self.przezwiska[0])
+#             if len(self.przezwiska) > 1 and self.przezwiska[1]:
+#                 nicknames.append(self.przezwiska[1])
+#
+#         if nicknames:
+#             name += f"\"{'/'.join(nicknames)}\" "
+#
+#         name += self.nazwisko
+#         return name
+#
+#     @staticmethod
+#     def get_dont_know_czlonek():
+#         czlonek = Czlonek.objects.get(
+#             imie="Nie", nazwisko="wiem",
+#             czapka_1=Czapka.get_dont_know_czapka(), czapka_2=Czapka.get_not_applicable_czapka(),
+#             staz=IntAlt.DONT_KNOW[0], pewnosc_stazu=OldOsobaBCS.PewnoscStazu.NIE,
+#             aktywnosc=Czlonek.Aktywnosc.NIEAKTYWNY, ochrzczony=TextChoose.YES[0], status=TextAlt.DONT_KNOW[0],
+#             rok_chrztu=ROK_ZALOZENIA, miesiac_chrztu=IntAlt.DONT_KNOW[0], dzien_chrztu=IntAlt.DONT_KNOW[0],
+#             imie_piwne_1_wybor=TextAlt.DONT_KNOW[0], imie_piwne_1="Nie wiem",
+#             imie_piwne_2_wybor=TextAlt.NOT_APPLICABLE[0], imie_piwne_2="Nie dotyczy",
+#         )
+#         return czlonek
+#
+#     @staticmethod
+#     def get_not_applicable_czlonek():
+#         czlonek = Czlonek.objects.get(
+#             imie="Nie", nazwisko="dotyczy",
+#             czapka_1=Czapka.get_dont_know_czapka(), czapka_2=Czapka.get_not_applicable_czapka(),
+#             staz=IntAlt.DONT_KNOW[0], pewnosc_stazu=OldOsobaBCS.PewnoscStazu.TAK,
+#             aktywnosc=Czlonek.Aktywnosc.NIEAKTYWNY, ochrzczony=TextChoose.NO[0], status=TextAlt.DONT_KNOW[0],
+#             rok_chrztu=IntAlt.NOT_APPLICABLE[0], miesiac_chrztu=IntAlt.NOT_APPLICABLE[0], dzien_chrztu=IntAlt.NOT_APPLICABLE[0],
+#             imie_piwne_1_wybor=TextAlt.NOT_APPLICABLE[0], imie_piwne_1="Nie dotyczy",
+#             imie_piwne_2_wybor=TextAlt.NOT_APPLICABLE[0], imie_piwne_2="Nie dotyczy",
+#         )
+#         return czlonek
+#
+#     def get_parents(self):
+#         return [p for p in [self.rodzic_1, self.rodzic_2] if p.exists()]
+#
+#     def get_children(self):
+#         return list(self.dzieci_pierwszy_wybor.all())
+#
+#     def get_step_children(self):
+#         return list(self.dzieci_drugi_wybor.all())
+#
+#     def is_unknown(self):
+#         return self.imie == "Nie" and self.nazwisko == "wiem"
+#
+#     def exists(self):
+#         return not (self.imie == "Nie" and self.nazwisko == "dotyczy")
 
 class Czlonek(Osoba, OsobaBCS):
     class Aktywnosc(models.TextChoices):
@@ -464,28 +464,28 @@ class Czlonek(Osoba, OsobaBCS):
         return not (self.imie == "Nie" and self.nazwisko == "dotyczy")
 
 
-class OldBean(OldOsobaBCS):
-
-    rodzic_1 = models.ForeignKey(
-        OldCzlonek,
-        on_delete=models.SET_NULL,
-        null=True, blank=True,
-        verbose_name="Rodzic czapkowy",
-        related_name='old_beani_pierwszy_wybor',
-    )
-
-    rodzic_2 = models.ForeignKey(
-        OldCzlonek,
-        on_delete=models.SET_NULL,
-        null=True, blank=True,
-        verbose_name="Drugi rodzic czapkowy",
-        related_name='old_beani_drugi_wybor',
-    )
-
-    class Meta:
-        verbose_name = "Bean (stara wersja)"
-        verbose_name_plural = "Beani (stara wersja)"
-        ordering = ['imie', 'nazwisko']
+# class OldBean(OldOsobaBCS):
+#
+#     rodzic_1 = models.ForeignKey(
+#         Czlonek,
+#         on_delete=models.SET_NULL,
+#         null=True, blank=True,
+#         verbose_name="Rodzic czapkowy",
+#         related_name='old_beani_pierwszy_wybor',
+#     )
+#
+#     rodzic_2 = models.ForeignKey(
+#         Czlonek,
+#         on_delete=models.SET_NULL,
+#         null=True, blank=True,
+#         verbose_name="Drugi rodzic czapkowy",
+#         related_name='old_beani_drugi_wybor',
+#     )
+#
+#     class Meta:
+#         verbose_name = "Bean (stara wersja)"
+#         verbose_name_plural = "Beani (stara wersja)"
+#         ordering = ['imie', 'nazwisko']
 
 class Bean(Osoba, OsobaBCS):
 
@@ -513,7 +513,7 @@ class Bean(Osoba, OsobaBCS):
 
 class ImieSzlacheckie(models.Model):
     imie = models.ForeignKey(
-        OldCzlonek,
+        Czlonek,
         on_delete=models.CASCADE,
         null=True,
         verbose_name="Imię szlacheckie",
@@ -536,7 +536,7 @@ class ImieSzlacheckie(models.Model):
 
 class ZwierzeCzapkowe(models.Model):
     czlonek = models.ForeignKey(
-        OldCzlonek,
+        Czlonek,
         on_delete=models.SET_NULL,
         null=True,
         verbose_name="Członek"
@@ -583,7 +583,7 @@ class DawnyZarzad(models.Model):
     )
 
     kasztelan = models.ForeignKey(
-        OldCzlonek,
+        Czlonek,
         on_delete=models.SET_NULL,
         null=True,
         verbose_name="Kasztelan",
@@ -591,7 +591,7 @@ class DawnyZarzad(models.Model):
     )
 
     skarbnik = models.ForeignKey(
-       OldCzlonek,
+       Czlonek,
         on_delete=models.SET_NULL,
         null=True,
         verbose_name="Skarbnik",
@@ -599,7 +599,7 @@ class DawnyZarzad(models.Model):
     )
 
     bibendi = models.ForeignKey(
-        OldCzlonek,
+        Czlonek,
         on_delete=models.SET_NULL,
         null=True,
         verbose_name="Bibendi",
@@ -607,7 +607,7 @@ class DawnyZarzad(models.Model):
     )
 
     magister_disciplinae = models.ForeignKey(
-        OldCzlonek,
+        Czlonek,
         on_delete=models.SET_NULL,
         null=True,
         verbose_name="Magister Disciplinae",
@@ -615,7 +615,7 @@ class DawnyZarzad(models.Model):
     )
 
     cantandi = models.ForeignKey(
-        OldCzlonek,
+        Czlonek,
         on_delete=models.SET_NULL,
         null=True,
         verbose_name="Cantandi",
@@ -623,7 +623,7 @@ class DawnyZarzad(models.Model):
     )
 
     kontakt_z_SSUJ = models.ForeignKey(
-        OldCzlonek,
+        Czlonek,
         on_delete=models.SET_NULL,
         null=True,
         verbose_name="Kontakt Z SSUJ",
@@ -631,7 +631,7 @@ class DawnyZarzad(models.Model):
     )
 
     kontakt_z_SKNHI = models.ForeignKey(
-        OldCzlonek,
+        Czlonek,
         on_delete=models.SET_NULL,
         null=True,
         verbose_name="Kontakt Z SKNHI",
@@ -664,7 +664,7 @@ class Zarzad(models.Model):
     )
 
     kasztelan = models.ForeignKey(
-        OldCzlonek,
+        Czlonek,
         on_delete=models.SET_NULL,
         null=True,
         verbose_name="Kasztelan",
@@ -672,7 +672,7 @@ class Zarzad(models.Model):
     )
 
     skarbnik = models.ForeignKey(
-        OldCzlonek,
+        Czlonek,
         on_delete=models.SET_NULL,
         null=True,
         verbose_name="Skarbnik",
@@ -680,7 +680,7 @@ class Zarzad(models.Model):
     )
 
     cantandi = models.ForeignKey(
-        OldCzlonek,
+        Czlonek,
         on_delete=models.SET_NULL,
         null=True,
         verbose_name="Cantandi",
@@ -688,7 +688,7 @@ class Zarzad(models.Model):
     )
 
     sekretarz = models.ForeignKey(
-        OldCzlonek,
+        Czlonek,
         on_delete=models.SET_NULL,
         null=True,
         verbose_name="Sekretarz",
@@ -705,7 +705,7 @@ class Zarzad(models.Model):
 
 class WielkiMistrz(models.Model):
     imie = models.ForeignKey(
-        OldCzlonek,
+        Czlonek,
         on_delete=models.SET_NULL,
         null=True,
         verbose_name="Imię",
@@ -743,7 +743,7 @@ class WielkiMistrz(models.Model):
 
 class HallOfFame(models.Model):
     czlonek = models.ForeignKey(
-        OldCzlonek,
+        Czlonek,
         blank=True,
         null=True,
         on_delete=models.SET_NULL,
@@ -751,7 +751,7 @@ class HallOfFame(models.Model):
     )
 
     bean = models.ForeignKey(
-        OldBean,
+        Bean,
         blank=True,
         null=True,
         on_delete=models.SET_NULL,
@@ -784,37 +784,37 @@ class HallOfFame(models.Model):
             self.order_field = self.nazwa_alternatywna if self.nazwa_alternatywna else str(self.czlonek)
         super().save(*args, **kwargs)
 
-class InnaOldOsoba(OldOsoba):
-    class Kategorie(models.TextChoices):
-        INNA = "I", "Inna"
-        INNE_BRACTWO_CZAPKOWE = "Inne BCS", "Inne bractwo czapkowe"
-        ORGANIZACJA = "Org", "Organizacja"
-        PRZYJACIEL_CZAPKI = "PC", "Przyjaciel Bractwa"
-
-    opis = models.TextField(
-        blank=True, verbose_name="Opis",
-    )
-
-    kategoria = models.CharField(
-        max_length=SHORT_LENGTH,
-        default=Kategorie.INNA,
-        choices=Kategorie.choices,
-        verbose_name="Kategoria",
-    )
-
-    bractwo = models.ForeignKey(
-        "encyklopedia.Bractwo",
-        blank=True,
-        null=True,
-        on_delete=models.SET_NULL,
-        verbose_name="Bractwo",
-        related_name="old_czlonkowie_bractwa"
-    )
-
-    class Meta:
-        verbose_name = "Inna osoba (stara wersja)"
-        verbose_name_plural = "Inne osoby (nie-członkowie) (stara wersja)"
-        ordering = ['imie', 'nazwisko']
+# class InnaOldOsoba(OldOsoba):
+#     class Kategorie(models.TextChoices):
+#         INNA = "I", "Inna"
+#         INNE_BRACTWO_CZAPKOWE = "Inne BCS", "Inne bractwo czapkowe"
+#         ORGANIZACJA = "Org", "Organizacja"
+#         PRZYJACIEL_CZAPKI = "PC", "Przyjaciel Bractwa"
+#
+#     opis = models.TextField(
+#         blank=True, verbose_name="Opis",
+#     )
+#
+#     kategoria = models.CharField(
+#         max_length=SHORT_LENGTH,
+#         default=Kategorie.INNA,
+#         choices=Kategorie.choices,
+#         verbose_name="Kategoria",
+#     )
+#
+#     bractwo = models.ForeignKey(
+#         "encyklopedia.Bractwo",
+#         blank=True,
+#         null=True,
+#         on_delete=models.SET_NULL,
+#         verbose_name="Bractwo",
+#         related_name="old_czlonkowie_bractwa"
+#     )
+#
+#     class Meta:
+#         verbose_name = "Inna osoba (stara wersja)"
+#         verbose_name_plural = "Inne osoby (nie-członkowie) (stara wersja)"
+#         ordering = ['imie', 'nazwisko']
 
 class InnaOsoba(Osoba):
     class Kategorie(models.TextChoices):

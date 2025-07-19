@@ -8,7 +8,7 @@ autocomplete_configs = [
     (
         CharakterystykaDzialanZarzadu,
         [], [],
-        [czlonkowie['Zarzad'], czlonkowie['DawnyZarzad'], czlonkowie['OldCzlonek']]),
+        [czlonkowie['Zarzad'], czlonkowie['DawnyZarzad'], czlonkowie['Czlonek']]),
     (
         ObrazWydarzenie,
         [], [],
