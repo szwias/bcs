@@ -44,6 +44,39 @@ class Osoba(PolymorphicModel):
         return name
 
 
+class InnaOsoba(Osoba):
+    class Kategorie(models.TextChoices):
+        INNA = "I", "Inna"
+        INNE_BRACTWO_CZAPKOWE = "Inne BCS", "Inne bractwo czapkowe"
+        ORGANIZACJA = "Org", "Organizacja"
+        PRZYJACIEL_CZAPKI = "PC", "Przyjaciel Bractwa"
+
+    opis = models.TextField(
+        blank=True, verbose_name="Opis",
+    )
+
+    kategoria = models.CharField(
+        max_length=SHORT_LENGTH,
+        default=Kategorie.INNA,
+        choices=Kategorie.choices,
+        verbose_name="Kategoria",
+    )
+
+    bractwo_do_ktorego_nalezy = models.ForeignKey(
+        "encyklopedia.Bractwo",
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+        verbose_name="Bractwo",
+        related_name="czlonkowie_bractwa"
+    )
+
+    class Meta:
+        verbose_name = "Inna osoba"
+        verbose_name_plural = "Inne osoby (nie-członkowie)"
+        ordering = ['imie', 'nazwisko']
+
+
 class OsobaBCS(models.Model):
     class PewnoscStazu(models.TextChoices):
         TAK = "T", "Na pewno wcześniej się nie pojawiał"
@@ -537,36 +570,3 @@ class HallOfFame(models.Model):
         if not self.order_field:
             self.order_field = self.nazwa_alternatywna if self.nazwa_alternatywna else str(self.czlonek)
         super().save(*args, **kwargs)
-
-
-class InnaOsoba(Osoba):
-    class Kategorie(models.TextChoices):
-        INNA = "I", "Inna"
-        INNE_BRACTWO_CZAPKOWE = "Inne BCS", "Inne bractwo czapkowe"
-        ORGANIZACJA = "Org", "Organizacja"
-        PRZYJACIEL_CZAPKI = "PC", "Przyjaciel Bractwa"
-
-    opis = models.TextField(
-        blank=True, verbose_name="Opis",
-    )
-
-    kategoria = models.CharField(
-        max_length=SHORT_LENGTH,
-        default=Kategorie.INNA,
-        choices=Kategorie.choices,
-        verbose_name="Kategoria",
-    )
-
-    bractwo = models.ForeignKey(
-        "encyklopedia.Bractwo",
-        blank=True,
-        null=True,
-        on_delete=models.SET_NULL,
-        verbose_name="Bractwo",
-        related_name="czlonkowie_bractwa"
-    )
-
-    class Meta:
-        verbose_name = "Inna osoba"
-        verbose_name_plural = "Inne osoby (nie-członkowie)"
-        ordering = ['imie', 'nazwisko']

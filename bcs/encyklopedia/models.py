@@ -14,7 +14,7 @@ class Okolicznosci(models.TextChoices):
     WYDARZENIE = "Wyd", "Na wydarzeniu czapkowym"
 
 
-class Bractwo(models.Model): # TODO: add zalozyciel (Osoba)
+class Bractwo(models.Model):
 
     nazwa = models.CharField(
         max_length=MAX_LENGTH, verbose_name="Nazwa",
@@ -34,6 +34,10 @@ class Bractwo(models.Model): # TODO: add zalozyciel (Osoba)
         null=True,
         on_delete=models.SET_NULL,
         verbose_name="Grupa bractw",
+    )
+
+    zalozyciele = models.ManyToManyField(
+        'czlonkowie.Osoba', blank=True, verbose_name="Założyciele"
     )
 
     rok_zalozenia = models.IntegerField(
@@ -63,8 +67,7 @@ class GrupaBractw(models.Model):
     )
 
     opis = models.TextField(
-        blank=True,
-        verbose_name="Opis",
+        blank=True, verbose_name="Opis",
     )
 
     rodzaj_czapki = models.ForeignKey(
@@ -84,14 +87,28 @@ class GrupaBractw(models.Model):
         kraje = ", ".join(str(k) for k in self.kraje.all())
         return f"{self.nazwa}: {kraje}"
 
-class TradycjaBCS(models.Model): # TODO: add autor (Osoba)
+class TradycjaBCS(models.Model):
+
+
+    class Origins(models.TextChoices):
+        ZAPOZYCZONA = "Z", "Zapożyczona"
+        AUTORSKA = "A", "Autorka"
+
 
     nazwa = models.CharField(
         max_length=MEDIUM_LENGTH, verbose_name="Tradycja",
     )
 
-    zapozyczona = models.BooleanField(
-        default=False, verbose_name="Zapożyczona",
+    zapozyczona_czy_autorska = models.CharField(
+        choices=Origins.choices, verbose_name="Zapożyczona czy autorska"
+    )
+
+    autor = models.ForeignKey(
+        'czlonkowie.Osoba',
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+        verbose_name="Autor tradycji"
     )
 
     od_kogo = models.ForeignKey(
@@ -159,8 +176,7 @@ class TradycjaInnegoBractwa(models.Model):
     )
 
     opis = models.TextField(
-        blank=True,
-        verbose_name="Opis",
+        blank=True, verbose_name="Opis",
     )
 
     class Meta:
@@ -172,10 +188,18 @@ class TradycjaInnegoBractwa(models.Model):
         return self.nazwa
 
 
-class Pojecie(models.Model): # TODO: add autor (Osoba)
+class Pojecie(models.Model):
 
     nazwa = models.CharField(
         max_length=MEDIUM_LENGTH, verbose_name="Nazwa",
+    )
+
+    autor = models.ForeignKey(
+        'czlonkowie.Osoba',
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+        verbose_name="Autor pojęcia"
     )
 
     opis = models.TextField(
@@ -207,6 +231,10 @@ class Zrodlo(models.Model): # TODO: add autorzy (Osoba)
         max_length=255, blank=True, verbose_name="Nazwa"
     )
 
+    autorzy = models.ManyToManyField(
+        'czlonkowie.Osoba', blank=True, verbose_name="Autorzy"
+    )
+
     zawartosc = models.TextField(
         blank=True, verbose_name="Zawartość"
     )
@@ -224,9 +252,21 @@ class Zrodlo(models.Model): # TODO: add autorzy (Osoba)
         verbose_name_plural = "Źródła"
         ordering = ("nazwa",)
 
-class Zwyczaj(models.Model): # TODO: add autor (Osoba)
+    def __str__(self):
+        autorzy = ", ".join(a for a in self.autorzy.all())
+        return f"{self.nazwa} | {autorzy}"
+
+class Zwyczaj(models.Model):
     nazwa = models.CharField(
         max_length=MEDIUM_LENGTH, verbose_name="Nazwa",
+    )
+
+    autor = models.ForeignKey(
+        'czlonkowie.Osoba',
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+        verbose_name="Osoba, która zapoczątkowała zwyczaj"
     )
 
     data_powstania = models.DateField(
@@ -245,13 +285,29 @@ class Zwyczaj(models.Model): # TODO: add autor (Osoba)
     def __str__(self):
         return self.nazwa
 
-class Powiedzenie(models.Model): # TODO: add autor, adresat (Osoba)
+class Powiedzenie(models.Model):
+
     tekst = models.TextField(
         verbose_name="Tekst",
     )
 
     kontekst = models.TextField(
         blank=True, verbose_name="Kontekst",
+    )
+
+    autor = models.ForeignKey(
+        'czlonkowie.Osoba',
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+        verbose_name="Autor"
+    )
+
+    adresaci = models.ManyToManyField(
+        'czlonkowie.Osoba',
+        blank=True,
+        verbose_name="Adresat/adresaci powiedzenia",
+        related_name="zwiazane_zen_powiedzenia"
     )
 
     class Meta:
@@ -263,7 +319,7 @@ class Powiedzenie(models.Model): # TODO: add autor, adresat (Osoba)
         tekst = str(self.tekst)
         kontekst = str(self.kontekst)
         short_tekst = f"\"{tekst if len(tekst) <= 100 else tekst[:100] + '...'}\""
-        # adresaci = ", ".join(str(a) for a in self.adresat.all())
-        # adresat_str = f" do {adresaci}" if adresaci else ""
+        adresaci = ", ".join(str(a) for a in self.adresat.all())
+        adresat_str = f" do {adresaci}" if adresaci else ""
         kontekst = f"{' (' + kontekst + ')' if len(kontekst) <= 100 else ''}"
-        return f"{short_tekst}{kontekst}"
+        return f"{short_tekst} - {self.autor}{adresat_str}{kontekst}"
