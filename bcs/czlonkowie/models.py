@@ -107,7 +107,7 @@ class OsobaBCS(models.Model):
     )
 
     pewnosc_stazu = models.CharField(
-        choices=PewnoscStazu.choices, default=PewnoscStazu.TAK, verbose_name="Pewność daty stażu"
+        choices=PewnoscStazu.choices, default=PewnoscStazu.TAK, verbose_name="Pewność roku pojawienia się"
     )
 
     class Meta:
@@ -140,7 +140,7 @@ class Czlonek(Osoba, OsobaBCS):
             TextAlt.DONT_KNOW
         ],
         default=TextAlt.DONT_KNOW,
-        verbose_name="Ochrzczony?",
+        verbose_name="Czy ochrzczony",
     )
 
     rok_chrztu = models.IntegerField(
@@ -172,22 +172,22 @@ class Czlonek(Osoba, OsobaBCS):
         max_length=TextAlt.LENGTH,
         choices=TextAlt.choices(),
         default=TextAlt.DONT_KNOW,
-        verbose_name="Imię czapkowe"
+        verbose_name="Czy posiada imię czapkowe"
     )
 
     imie_piwne_1 = models.CharField(
-        blank=True, max_length=MEDIUM_LENGTH, default="Nie wiem", verbose_name="Wpisz imię czapkowe:"
+        blank=True, max_length=MEDIUM_LENGTH, default="Nie wiem", verbose_name="Imię czapkowe"
     )
 
     imie_piwne_2_wybor = models.CharField(
         max_length=TextAlt.LENGTH,
         choices=TextAlt.choices(),
         default=TextAlt.NOT_APPLICABLE,
-        verbose_name="Inne imię czapkowe"
+        verbose_name="Czy posiada inne imię czapkowe"
     )
 
     imie_piwne_2 = models.CharField(
-        blank=True, max_length=MEDIUM_LENGTH, default="Nie dotyczy", verbose_name="Wpisz inne imię czapkowe:"
+        blank=True, max_length=MEDIUM_LENGTH, default="Nie dotyczy", verbose_name="Inne imię czapkowe"
     )
 
     rodzic_1 = models.ForeignKey(
