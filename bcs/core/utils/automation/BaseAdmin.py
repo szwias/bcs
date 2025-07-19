@@ -22,16 +22,17 @@ class BaseModelAdmin(admin.ModelAdmin):
         if exclude == "__all__":
             return []
 
-        list_filter = []
-        for field in self.model._meta.get_fields():
-            if (
-                    field.name not in exclude
-                    and (
-                    getattr(field, 'choices', None) or
-                    isinstance(field, (models.BooleanField, models.ForeignKey))
-            )
-            ):
-                list_filter.append(field.name)
+        list_filter = list(self.list_filter)
+        if not list_filter:
+            for field in self.model._meta.get_fields():
+                if (
+                        field.name not in exclude
+                        and (
+                        getattr(field, 'choices', None) or
+                        isinstance(field, (models.BooleanField, models.ForeignKey))
+                )
+                ):
+                    list_filter.append(field.name)
 
         return list_filter
 
