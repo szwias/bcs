@@ -466,20 +466,20 @@ class Zarzad(models.Model):
         related_name="kadencje_jako_skarbnik",
     )
 
-    cantandi = models.ForeignKey(
-        Czlonek,
-        on_delete=models.SET_NULL,
-        null=True,
-        verbose_name="Cantandi",
-        related_name="kadencje_jako_cantandi",
-    )
-
     sekretarz = models.ForeignKey(
         Czlonek,
         on_delete=models.SET_NULL,
         null=True,
         verbose_name="Sekretarz",
         related_name="kadencje_jako_sekretarz",
+    )
+
+    cantandi = models.ForeignKey(
+        Czlonek,
+        on_delete=models.SET_NULL,
+        null=True,
+        verbose_name="Cantandi",
+        related_name="kadencje_jako_cantandi",
     )
 
     class Meta:

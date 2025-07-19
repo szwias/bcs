@@ -2177,8 +2177,8 @@ COPY public.czlonkowie_czlonek (osoba_ptr_id, staz, pewnosc_stazu, aktywnosc, oc
 --
 
 COPY public.czlonkowie_dawnyzarzad (id, bibendi_id, cantandi_id, kadencja_id, kasztelan_id, "kontakt_z_SKNHI_id", "kontakt_z_SSUJ_id", magister_disciplinae_id, skarbnik_id, wielki_mistrz_id) FROM stdin;
-1	134	115	3	76	68	101	61	151	\N
 2	134	32	4	76	68	101	61	151	3
+1	134	115	3	76	68	101	61	151	3
 \.
 
 
@@ -2421,18 +2421,18 @@ COPY public.czlonkowie_osoba (id, imie, nazwisko, przezwiska, polymorphic_ctype_
 --
 
 COPY public.czlonkowie_wielkimistrz (id, tadeusz, tytuly, tadeusz_numeric, imie_id) FROM stdin;
-15	XI	Czerwona Opcja Śląska	11	\N
-8	IV		4	\N
-7	III		3	\N
-4	II		2	\N
-3	I		1	\N
-1	V		5	\N
-13	IX	Gałązka z Boskiego Drzewa Wpierdolu	9	\N
-14	X	Zawsze Trzeźwy Landlord Czerwonomakowskich Luster	10	\N
-17	VIII		8	\N
-9	V	Wielki Antymistrz Bandera Łże-Tadeusz VI, czerwono-czarny ognień tańczący na wioskach wrogów	5	\N
-12	VI	Ostatni Książę Pszczyny, władca studentów i zwierząt nie wyłączając smoków i panter	6	\N
-16	X	Patronka Słowa Mówionego i Pisanego, Jedyny Prawowity Tadeusz X	10	\N
+3	I		1	148
+4	II		2	97
+7	III		3	53
+8	IV		4	133
+1	V		5	95
+9	V	Wielki Antymistrz Bandera Łże-Tadeusz VI, czerwono-czarny ognień tańczący na wioskach wrogów	5	41
+12	VI	Ostatni Książę Pszczyny, władca studentów i zwierząt nie wyłączając smoków i panter	6	113
+17	VIII		8	125
+13	IX	Gałązka z Boskiego Drzewa Wpierdolu	9	30
+14	X	Zawsze Trzeźwy Landlord Czerwonomakowskich Luster	10	64
+16	X	Patronka Słowa Mówionego i Pisanego, Jedyny Prawowity Tadeusz X	10	130
+15	XI	Czerwona Opcja Śląska	11	116
 \.
 
 
@@ -2441,20 +2441,20 @@ COPY public.czlonkowie_wielkimistrz (id, tadeusz, tytuly, tadeusz_numeric, imie_
 --
 
 COPY public.czlonkowie_zarzad (id, cantandi_id, kadencja_id, kasztelan_id, sekretarz_id, skarbnik_id, wielki_mistrz_id) FROM stdin;
-1	\N	\N	\N	\N	\N	\N
-3	\N	\N	\N	\N	\N	\N
-4	\N	\N	\N	\N	\N	\N
-5	\N	\N	\N	\N	\N	\N
-6	\N	\N	\N	\N	\N	\N
-7	\N	\N	\N	\N	\N	\N
-8	\N	\N	\N	\N	\N	\N
-9	\N	\N	\N	\N	\N	\N
-10	\N	\N	\N	\N	\N	\N
-11	\N	\N	\N	\N	\N	\N
-12	\N	\N	\N	\N	\N	\N
-13	\N	\N	\N	\N	\N	\N
-14	\N	\N	\N	\N	\N	\N
-15	\N	\N	\N	\N	\N	\N
+17	133	6	19	142	158	4
+16	24	5	19	142	158	4
+18	133	6	19	142	158	4
+19	133	7	142	146	65	4
+20	150	8	109	129	15	7
+21	96	9	95	128	118	8
+22	90	10	118	89	131	1
+23	67	11	154	159	122	9
+24	25	12	113	159	30	9
+25	42	13	125	130	120	12
+26	64	14	155	130	25	17
+27	110	15	155	64	25	13
+28	110	16	109	120	64	14
+29	31	17	29	102	107	15
 \.
 
 
@@ -3988,6 +3988,54 @@ COPY public.django_admin_log (id, action_time, object_id, object_repr, action_fl
 1537	2025-07-19 19:03:13.882031+02	6	Polska: Bractwo Czapki Studenckiej Animus	2	[]	31	1
 1538	2025-07-19 19:04:03.628107+02	5	Polska: Bractwo Czapki Studenckiej UJ	2	[{"changed": {"fields": ["Za\\u0142o\\u017cyciele"]}}]	31	1
 1539	2025-07-19 19:05:01.316633+02	187	Zdzisław "Profesor" Gajda	2	[]	54	1
+1540	2025-07-19 20:25:35.515097+02	3	Tadeusz "Kumdo/Tadek" Hessel - Tadeusz I	2	[{"changed": {"fields": ["Imi\\u0119"]}}]	13	1
+1541	2025-07-19 20:25:45.863164+02	4	Tadeusz "Kumdo/Tadek" Hessel - Tadeusz II	2	[{"changed": {"fields": ["Imi\\u0119"]}}]	13	1
+1542	2025-07-19 20:25:59.902977+02	4	Magdalena "Kasztanka" Brilha - Tadeusz II	2	[{"changed": {"fields": ["Imi\\u0119"]}}]	13	1
+1543	2025-07-19 21:52:43.482065+02	7	Paweł "Synek" Mucha - Tadeusz III	2	[{"changed": {"fields": ["Imi\\u0119"]}}]	13	1
+1544	2025-07-19 21:53:04.315263+02	8	Maciej "Dzidzia" Małecki - Tadeusz IV	2	[{"changed": {"fields": ["Imi\\u0119"]}}]	13	1
+1545	2025-07-19 21:54:28.539437+02	7	Grażyna "Malina" Malinowska - Tadeusz III	2	[{"changed": {"fields": ["Imi\\u0119"]}}]	13	1
+1546	2025-07-19 21:54:41.77278+02	8	Paweł "Synek" Mucha - Tadeusz IV	2	[{"changed": {"fields": ["Imi\\u0119"]}}]	13	1
+1547	2025-07-19 21:54:58.386849+02	1	Maciej "Dzidzia" Małecki - Tadeusz V	2	[{"changed": {"fields": ["Imi\\u0119"]}}]	13	1
+1548	2025-07-19 21:55:34.612256+02	9	Damian "Bandera/Buch" Zych - Tadeusz V, Wielki Antymistrz Bandera Łże-Tadeusz VI, czerwono-czarny ognień tańczący na wioskach wrogów	2	[{"changed": {"fields": ["Imi\\u0119"]}}]	13	1
+1549	2025-07-19 21:55:50.611264+02	12	Michał "I Sekretarz PZPR towarzysz Władysław Gomułka, ps. Wiesław/Gomuł" Gumułka - Tadeusz VI, Ostatni Książę Pszczyny, władca studentów i zwierząt nie wyłączając smoków i panter	2	[{"changed": {"fields": ["Imi\\u0119"]}}]	13	1
+1550	2025-07-19 21:56:09.723073+02	17	Patrycja "Chat" Karauda - Tadeusz VIII	2	[{"changed": {"fields": ["Imi\\u0119"]}}]	13	1
+1551	2025-07-19 21:56:22.981209+02	13	Bartłomiej "Kucharz" Olajossy - Tadeusz IX, Gałązka z Boskiego Drzewa Wpierdolu	2	[{"changed": {"fields": ["Imi\\u0119"]}}]	13	1
+1552	2025-07-19 21:56:33.861116+02	14	John "Jasiek" Graff-Warburton - Tadeusz X, Zawsze Trzeźwy Landlord Czerwonomakowskich Luster	2	[{"changed": {"fields": ["Imi\\u0119"]}}]	13	1
+1553	2025-07-19 21:56:40.862301+02	16	Paulina "Koziołek" Kozioł - Tadeusz X, Patronka Słowa Mówionego i Pisanego, Jedyny Prawowity Tadeusz X	2	[{"changed": {"fields": ["Imi\\u0119"]}}]	13	1
+1554	2025-07-19 21:56:49.027777+02	15	Michał "Cukier/Małolata" Malata - Tadeusz XI, Czerwona Opcja Śląska	2	[{"changed": {"fields": ["Imi\\u0119"]}}]	13	1
+1555	2025-07-19 21:58:37.766748+02	1	Dawny Zarząd 2009/2010 - WM Tadeusz "Kumdo/Tadek" Hessel - Tadeusz I	2	[{"changed": {"fields": ["Wielki Mistrz"]}}, {"added": {"name": "Charakterystyka dzia\\u0142a\\u0144 Zarz\\u0105du", "object": "Joanna \\"A\\u015bka\\" Lorenc: 2009/2010"}}]	11	1
+1556	2025-07-19 22:33:10.479411+02	15	Zarząd None - WM None	3		12	1
+1557	2025-07-19 22:33:10.479451+02	14	Zarząd None - WM None	3		12	1
+1558	2025-07-19 22:33:10.479467+02	13	Zarząd None - WM None	3		12	1
+1559	2025-07-19 22:33:10.479482+02	12	Zarząd None - WM None	3		12	1
+1560	2025-07-19 22:33:10.479496+02	11	Zarząd None - WM None	3		12	1
+1561	2025-07-19 22:33:10.479506+02	10	Zarząd None - WM None	3		12	1
+1562	2025-07-19 22:33:10.479517+02	9	Zarząd None - WM None	3		12	1
+1563	2025-07-19 22:33:10.479526+02	8	Zarząd None - WM None	3		12	1
+1564	2025-07-19 22:33:10.479535+02	7	Zarząd None - WM None	3		12	1
+1565	2025-07-19 22:33:10.479544+02	6	Zarząd None - WM None	3		12	1
+1566	2025-07-19 22:33:10.479554+02	5	Zarząd None - WM None	3		12	1
+1567	2025-07-19 22:33:10.479563+02	4	Zarząd None - WM None	3		12	1
+1568	2025-07-19 22:33:10.479572+02	3	Zarząd None - WM None	3		12	1
+1569	2025-07-19 22:33:10.479581+02	1	Zarząd None - WM None	3		12	1
+1570	2025-07-19 22:34:22.337769+02	16	Zarząd 2011/2012 - WM Magdalena "Kasztanka" Brilha - Tadeusz II	1	[{"added": {}}, {"added": {"name": "Charakterystyka dzia\\u0142a\\u0144 Zarz\\u0105du", "object": "Joanna \\"A\\u015bka\\" Lorenc: 2011/2012"}}]	12	1
+1571	2025-07-19 22:38:00.925574+02	17	Zarząd 2011/2012 - WM Magdalena "Kasztanka" Brilha - Tadeusz II	1	[{"added": {}}, {"added": {"name": "Charakterystyka dzia\\u0142a\\u0144 Zarz\\u0105du", "object": "Joanna \\"A\\u015bka\\" Lorenc: 2011/2012"}}]	12	1
+1572	2025-07-19 22:41:16.48969+02	17	Zarząd 2012/2013 - WM Magdalena "Kasztanka" Brilha - Tadeusz II	2	[{"changed": {"fields": ["Kadencja", "Skarbnik", "Cantandi", "Sekretarz"]}}, {"changed": {"name": "Charakterystyka dzia\\u0142a\\u0144 Zarz\\u0105du", "object": "Joanna \\"A\\u015bka\\" Lorenc: 2012/2013", "fields": ["Charakterystyka dzia\\u0142a\\u0144 Zarz\\u0105du"]}}]	12	1
+1573	2025-07-19 22:43:52.476222+02	17	Zarząd 2012/2013 - WM Magdalena "Kasztanka" Brilha - Tadeusz II	2	[{"changed": {"fields": ["Skarbnik", "Sekretarz", "Cantandi"]}}]	12	1
+1574	2025-07-19 22:44:15.356261+02	16	Zarząd 2011/2012 - WM Magdalena "Kasztanka" Brilha - Tadeusz II	2	[{"changed": {"fields": ["Cantandi"]}}]	12	1
+1575	2025-07-19 22:44:22.645111+02	18	Zarząd 2012/2013 - WM Magdalena "Kasztanka" Brilha - Tadeusz II	1	[{"added": {}}, {"added": {"name": "Charakterystyka dzia\\u0142a\\u0144 Zarz\\u0105du", "object": "Joanna \\"A\\u015bka\\" Lorenc: 2012/2013"}}]	12	1
+1576	2025-07-19 22:44:59.775748+02	19	Zarząd 2013/2014 - WM Magdalena "Kasztanka" Brilha - Tadeusz II	1	[{"added": {}}]	12	1
+1577	2025-07-19 22:46:04.207719+02	20	Zarząd 2014/2015 - WM Grażyna "Malina" Malinowska - Tadeusz III	1	[{"added": {}}, {"added": {"name": "Charakterystyka dzia\\u0142a\\u0144 Zarz\\u0105du", "object": "Joanna \\"A\\u015bka\\" Lorenc: 2014/2015"}}]	12	1
+1578	2025-07-19 22:46:55.46047+02	21	Zarząd 2015/2016 - WM Paweł "Synek" Mucha - Tadeusz IV	1	[{"added": {}}, {"added": {"name": "Charakterystyka dzia\\u0142a\\u0144 Zarz\\u0105du", "object": "Joanna \\"A\\u015bka\\" Lorenc: 2015/2016"}}]	12	1
+1579	2025-07-19 22:47:55.877602+02	22	Zarząd 2016/2017 - WM Maciej "Dzidzia" Małecki - Tadeusz V	1	[{"added": {}}, {"added": {"name": "Charakterystyka dzia\\u0142a\\u0144 Zarz\\u0105du", "object": "Joanna \\"A\\u015bka\\" Lorenc: 2016/2017"}}]	12	1
+1580	2025-07-19 22:48:45.528879+02	23	Zarząd 2017/2018 - WM Damian "Bandera/Buch" Zych - Tadeusz V, Wielki Antymistrz Bandera Łże-Tadeusz VI, czerwono-czarny ognień tańczący na wioskach wrogów	1	[{"added": {}}, {"added": {"name": "Charakterystyka dzia\\u0142a\\u0144 Zarz\\u0105du", "object": "Joanna \\"A\\u015bka\\" Lorenc: 2017/2018"}}]	12	1
+1581	2025-07-19 22:49:46.159424+02	24	Zarząd 2018/2019 - WM Damian "Bandera/Buch" Zych - Tadeusz V, Wielki Antymistrz Bandera Łże-Tadeusz VI, czerwono-czarny ognień tańczący na wioskach wrogów	1	[{"added": {}}, {"added": {"name": "Charakterystyka dzia\\u0142a\\u0144 Zarz\\u0105du", "object": "Joanna \\"A\\u015bka\\" Lorenc: 2018/2019"}}]	12	1
+1582	2025-07-19 22:50:42.942732+02	25	Zarząd 2019/2020 - WM Michał "I Sekretarz PZPR towarzysz Władysław Gomułka, ps. Wiesław/Gomuł" Gumułka - Tadeusz VI, Ostatni Książę Pszczyny, władca studentów i zwierząt nie wyłączając smoków i panter	1	[{"added": {}}, {"added": {"name": "Charakterystyka dzia\\u0142a\\u0144 Zarz\\u0105du", "object": "Joanna \\"A\\u015bka\\" Lorenc: 2019/2020"}}]	12	1
+1583	2025-07-19 22:51:27.357264+02	26	Zarząd 2020/2021 - WM Patrycja "Chat" Karauda - Tadeusz VIII	1	[{"added": {}}, {"added": {"name": "Charakterystyka dzia\\u0142a\\u0144 Zarz\\u0105du", "object": "Joanna \\"A\\u015bka\\" Lorenc: 2020/2021"}}]	12	1
+1584	2025-07-19 22:51:59.158665+02	27	Zarząd 2021/2022 - WM Bartłomiej "Kucharz" Olajossy - Tadeusz IX, Gałązka z Boskiego Drzewa Wpierdolu	1	[{"added": {}}]	12	1
+1585	2025-07-19 22:52:41.161811+02	28	Zarząd 2022/2023 - WM John "Jasiek" Graff-Warburton - Tadeusz X, Zawsze Trzeźwy Landlord Czerwonomakowskich Luster	1	[{"added": {}}]	12	1
+1586	2025-07-19 22:53:15.066561+02	29	Zarząd 2023/2024 - WM Paulina "Koziołek" Kozioł - Tadeusz X, Patronka Słowa Mówionego i Pisanego, Jedyny Prawowity Tadeusz X	1	[{"added": {}}]	12	1
+1587	2025-07-19 22:53:51.867826+02	29	Zarząd 2024/2025 - WM Michał "Cukier/Małolata" Malata - Tadeusz XI, Czerwona Opcja Śląska	2	[{"changed": {"fields": ["Kadencja", "Wielki Mistrz", "Kasztelan", "Skarbnik", "Cantandi"]}}]	12	1
 \.
 
 
@@ -4400,6 +4448,17 @@ COPY public.encyklopedia_zwyczaj (id, nazwa, data_powstania, opis, autor_id) FRO
 --
 
 COPY public.kronika_charakterystykadzialanzarzadu (id, charakterystyka, autor_id, dawny_zarzad_id, zarzad_id) FROM stdin;
+1	Krótka charakterystyka działań Zarządu: \r\n- Zarząd istnieje tylko formalnie, Tadek i Kasper sterują organizacją\r\n- Działalność bardzo spontaniczna i nieregularna, głównie imprezy\r\n- W pewnym ustalonym momencie Tadek przekazuje władzę Magdalenie (Kasztance)\r\n- Kontakty z Belgami: Coluche, Cristo, Frederic Widart (i inni): częste przyjazdy i nieformalna opieka nad nowo powstającym bractwem; Bretelle: częste przyjazdy turystyczne do Krakowa dużą grupą	63	1	\N
+2	Krótka charakterystyka działań Zarządu: \r\n- Bogata działalność mimo braku spisanego planu\r\n- Ukończenie statutu i uformowanie się formalnego Zarządu\r\n- Liczne nieformalne spotkania na Topolowej\r\n- Dobra organizacja mimo braku spisanego planu działania	63	\N	16
+3	Krótka charakterystyka działań Zarządu: \r\n- Liczne wyjazdy zagraniczne\r\n- Kontynuacja poprzednich doświadczeń Magdaleny	63	\N	17
+4	Krótka charakterystyka działań Zarządu: \r\n- Liczne wyjazdy zagraniczne\r\n- Kontynuacja poprzednich doświadczeń Magdaleny	63	\N	18
+5	Krótka charakterystyka działań Zarządu: \r\n- Liczne nieformalne wyjazdy zagraniczne\r\n- Częstsze odwiedziny u Profesora w Zabierzowie\r\n- Ukończenie śpiewnika	63	\N	20
+6	Krótka charakterystyka działań Zarządu: \r\n- Wprowadzenie Ukazów;\r\n- Kalendarz imprez\r\n- Regularne ostre dyżury w sali klubowej w Starym Porcie\r\n- Rozliczenie finansowe na koniec działalności	63	\N	21
+7	Krótka charakterystyka działań Zarządu: \r\n- Monika Kwater praktycznie kieruje bractwem\r\n- Próby wprowadzenia nowego herbu (nieudane)\r\n- Pierwsze kontakty z Bractwem Żółtego Szalika\r\n- Wprowadzenie zespołów: ds historii, śpiewnika i kultury	63	\N	22
+8	Krótka charakterystyka działań Zarządu: \r\n- Nowy Statut (zgodny z wytycznymi UJ)\r\n- #DobryPR (Zuza)\r\n- Depositio Beanorum	63	\N	23
+9	Krótka charakterystyka działań Zarządu: \r\n- Kucharz wprowadza stan konta on line\r\n- 10-lecie czapki\r\n- Kasper wybija medal z Boyem i rozkręca promocję nietypowego medalu z Karolem Wojtyłą\r\n- Zarząd: czapki honoris causa dla Tadka i Kaspra\r\n- Powołanie muzeum folkloru studenckiego pod opieką Kaspra\r\n- Angielska nazwa organizacji: Fellowship of the Students’ Cap of Jagiellonian University\r\n- Ustalenie nowych zasad członkostwa\r\n- Czapka studencka została wpisana do statutu UJ	63	\N	24
+10	Krótka charakterystyka działań Zarządu: \r\n- Próby rozkręcenia działalności na początku\r\n- COVID-19 i lockdown	63	\N	25
+11	Krótka charakterystyka działań Zarządu: \r\n- COVID-19: większość spotkań odwołana albo on-line\r\n- Pakt Bractw z Animusem: czy został podpisany?	63	\N	26
 \.
 
 
@@ -4836,7 +4895,7 @@ SELECT pg_catalog.setval('public.czlonkowie_wielkimistrz_id_seq', 17, true);
 -- Name: czlonkowie_zarzad_id_seq; Type: SEQUENCE SET; Schema: public; Owner: projectuser
 --
 
-SELECT pg_catalog.setval('public.czlonkowie_zarzad_id_seq', 15, true);
+SELECT pg_catalog.setval('public.czlonkowie_zarzad_id_seq', 29, true);
 
 
 --
@@ -4850,7 +4909,7 @@ SELECT pg_catalog.setval('public.czlonkowie_zwierzeczapkowe_id_seq', 13, true);
 -- Name: django_admin_log_id_seq; Type: SEQUENCE SET; Schema: public; Owner: projectuser
 --
 
-SELECT pg_catalog.setval('public.django_admin_log_id_seq', 1539, true);
+SELECT pg_catalog.setval('public.django_admin_log_id_seq', 1587, true);
 
 
 --
@@ -4955,7 +5014,7 @@ SELECT pg_catalog.setval('public.encyklopedia_zwyczaj_id_seq', 1, false);
 -- Name: kronika_charakterystykadzialanzarzadu_id_seq; Type: SEQUENCE SET; Schema: public; Owner: projectuser
 --
 
-SELECT pg_catalog.setval('public.kronika_charakterystykadzialanzarzadu_id_seq', 1, false);
+SELECT pg_catalog.setval('public.kronika_charakterystykadzialanzarzadu_id_seq', 11, true);
 
 
 --
