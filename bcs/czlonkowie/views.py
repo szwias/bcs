@@ -1,10 +1,5 @@
 from .models import (
-    # OldBean, Czlonek, \
-    Bean, Czlonek, InnaOsoba, DawnyZarzad, HallOfFame, ImieSzlacheckie, \
-    # InnaOldOsoba, \
-    WielkiMistrz, \
-    Zarzad, ZwierzeCzapkowe, \
-)
+Bean, Czlonek, InnaOsoba, DawnyZarzad, HallOfFame, ImieSzlacheckie, WielkiMistrz, Zarzad, ZwierzeCzapkowe)
 from core.utils.automation.AutocompletesGeneration import *
 
 from core.models_dict import names as core
@@ -13,14 +8,6 @@ from encyklopedia.models_dict import names as encyklopedia
 from kronika.models_dict import names as kronika
 
 autocomplete_configs = [
-    # (
-    #     OldBean,
-    #     ['staz'], [],
-    #     [czapki['Czapka'], Czlonek.__name__]),
-    # (
-    #     Czlonek,
-    #     ['rok_chrztu', 'miesiac_chrztu', 'dzien_chrztu', 'status', 'staz'], [],
-    #     [czapki['Czapka'], Czlonek.__name__]),
     (
         Bean,
         ['staz'], [],
@@ -41,10 +28,6 @@ autocomplete_configs = [
         ImieSzlacheckie,
         [], [],
         [Czlonek.__name__]),
-    # (
-    #     InnaOldOsoba,
-    #     ['kategoria'], [],
-    #     [encyklopedia['Bractwo']]),
     (
         InnaOsoba,
         ['kategoria'], [],
