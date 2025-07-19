@@ -1,6 +1,6 @@
 from core.utils.automation.BaseAdmin import *
-from .models import Bean, Czlonek, DawnyZarzad, Zarzad, HallOfFame, ImieSzlacheckie, WielkiMistrz, ZwierzeCzapkowe, \
-    Osoba
+from .models import (Bean, Czlonek, InnaOsoba, DawnyZarzad, Zarzad, HallOfFame, ImieSzlacheckie, WielkiMistrz,
+    ZwierzeCzapkowe, Osoba)
 from kronika.inlines import CharakterystykaDzialanZarzaduInline
 
 from django.contrib.contenttypes.models import ContentType
@@ -26,6 +26,18 @@ class UsedContentTypeFilter(admin.SimpleListFilter):
 @admin.register(Osoba)
 class OsobaAdmin(BaseModelAdmin):
     list_filter = [UsedContentTypeFilter]
+
+@admin.register(Bean)
+class BeanAdmin(BaseModelAdmin):
+    list_filter = ['staz', 'pewnosc_stazu']
+
+@admin.register(Czlonek)
+class CzlonekAdmin(BaseModelAdmin):
+    list_filter_exclude = ['polymorphic_ctype', 'osoba_ptr']
+
+@admin.register(InnaOsoba)
+class InnaOsobaAdmin(BaseModelAdmin):
+    list_filter_exclude = ['polymorphic_ctype', 'osoba_ptr']
 
 @admin.register(DawnyZarzad)
 class DawnyZarzadAdmin(BaseModelAdmin):
@@ -55,10 +67,13 @@ class ZwierzeCzapkoweAdmin(BaseModelAdmin):
 
 register_all_models(
     custom_admins={
+        Bean: BeanAdmin,
+        Czlonek: CzlonekAdmin,
         DawnyZarzad: DawnyZarzadAdmin,
         Zarzad: ZarzadAdmin,
         HallOfFame: HallOfFameAdmin,
         ImieSzlacheckie: ImieSzlacheckieAdmin,
+        InnaOsoba: InnaOsobaAdmin,
         Osoba: OsobaAdmin,
         WielkiMistrz: WielkiMistrzAdmin,
         ZwierzeCzapkowe: ZwierzeCzapkoweAdmin,
