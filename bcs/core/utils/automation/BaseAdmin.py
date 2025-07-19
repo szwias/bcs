@@ -1,8 +1,26 @@
 from django.contrib import admin
+from django.contrib.admin.filters import RelatedFieldListFilter
+from django.db.models import ForeignKey
 from django.utils.module_loading import import_string
 import inspect
 from django.apps import apps
 from django.db import models
+
+
+class UsedOnlyFKFilter(RelatedFieldListFilter):
+    def __init__(self, field, request, params, model, model_admin, field_path):
+        # Determine which FK values are actually used
+        used_ids = model.objects.values_list(field.name, flat=True).distinct()
+
+        # Limit the field's queryset before calling the parent init
+        self._original_limit_choices_to = field.remote_field.limit_choices_to
+        field.remote_field.limit_choices_to = {'pk__in': used_ids}
+
+        super().__init__(field, request, params, model, model_admin, field_path)
+
+        # Restore original limit_choices_to in case it's reused elsewhere
+        field.remote_field.limit_choices_to = self._original_limit_choices_to
+
 
 class BaseModelAdmin(admin.ModelAdmin):
 
@@ -36,10 +54,27 @@ class BaseModelAdmin(admin.ModelAdmin):
 
         return list_filter
 
+    def smart_wrap_filters(self, list_filter):
+        filters = list_filter
+        # print(filters)
+        smart_filters = []
+        for f in filters:
+            if isinstance(f, tuple):
+                # Already a custom filter, leave as-is
+                smart_filters.append(f)
+            elif (isinstance(f, str)
+            and isinstance(self.model._meta.get_field(f), ForeignKey)):
+                # Wrap FK fields with our limited filter
+                print(self.model._meta.get_field(f))
+                smart_filters.append((f, UsedOnlyFKFilter))
+            else:
+                smart_filters.append(f)
+        return smart_filters
+
     def __init__(self, model, admin_site):
         super().__init__(model, admin_site)
 
-        self.list_filter = self._get_list_filter()
+        self.list_filter = self.smart_wrap_filters(self._get_list_filter())
         app_label = model._meta.app_label
         model_name = model.__name__
         form_path = f"{app_label}.forms.{model_name}Form"
