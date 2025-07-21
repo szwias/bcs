@@ -22,6 +22,14 @@ autocomplete_configs = [
         [], [],
         [Zdarzenie.__name__]),
     (
+        TypWydarzenia,
+        [], [],
+        []),
+    (
+        TypWyjazdu,
+        [], [],
+        []),
+    (
         Wydarzenie,
         ['typ_wydarzenia', 'typ_wyjazdu', 'czy_to_wyjazd'], [],
         [miejsca['Miejsce' ], Zdarzenie.__name__, osoby['Osoba']]),

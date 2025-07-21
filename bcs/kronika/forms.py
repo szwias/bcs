@@ -53,3 +53,17 @@ class CharakterystykaDzialanZarzaduForm(forms.ModelForm):
         model = CharakterystykaDzialanZarzadu
         fields = '__all__'
         widgets = build_widgets(autocomplete_widgets[CharakterystykaDzialanZarzadu.__name__])
+
+
+class TypWydarzeniaForm(forms.ModelForm):
+    class Meta:
+        model = TypWydarzenia
+        fields = '__all__'
+        widgets = build_widgets(autocomplete_widgets[TypWydarzenia.__name__])
+
+
+class TypWyjazduForm(forms.ModelForm):
+    class Meta:
+        model = TypWyjazdu
+        fields = '__all__'
+        widgets = build_widgets(autocomplete_widgets[TypWyjazdu.__name__])

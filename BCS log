@@ -1,15 +1,15 @@
 Python / SQL / HTML lines of code:
     --------------------------: no tracking whatsoever
-    23 kwietnia: 0 / 0 lines
-    24 kwietnia: x / y lines
-    25 kwietnia: x / y lines
-    28 kwietnia: x / y lines
-    29 kwietnia: x / y lines
-    30 kwietnia: x / y lines
-    1 maja:     x / y lines
-    2 maja:     x / y lines
-    3 maja:     x / y lines
-    4 maja:     1700 / y lines
+    23 kwietnia:    0       / 0 lines
+    24 kwietnia:    x       / y lines
+    25 kwietnia:    x       / y lines
+    28 kwietnia:    x       / y lines
+    29 kwietnia:    x       / y lines
+    30 kwietnia:    x       / y lines
+    1 maja:         x       / y lines
+    2 maja:         x       / y lines
+    3 maja:         x       / y lines
+    4 maja:         1700    / y lines
     ----------------------------------: may; Python lines tracking
     5 maja:     1850 / y lines (+150)
     9 maja:     1966 / y lines (+154)
@@ -22,54 +22,56 @@ Python / SQL / HTML lines of code:
     22 maja:    2355 / y lines (+0)
     29 maja:    2355 / y lines (+0)
     ---------------------------------: june; Python lines tracking
-    17 czerwca: 2556 / y lines (+201)
+    17 czerwca: 2556 / y    lines (+201)
     21 czerwca: 2591 / 4781 lines (+35)
-    29 czerwca: 2590 / y lines (-1)
+    29 czerwca: 2590 / y    lines (-1)
     --------------------------------------: july; Python lines tracking
     1 lipca:    2590 / y lines (+0)
     3 lipca:    2633 / y lines (+43)
     ----------------------------------------: SQL & HTML lines tracking added
-    4 lipca:    2633 / 4837 lines (+0 / +56)
-    5 lipca:    2701 / 4839 lines (+71 / +2)
-    6 lipca:    2737 / 4845 lines (+36 / +6)
-    8 lipca:    2657 / 4849 lines (-80 / +4)
-    9 lipca:    2684 / 4849 / 26 lines (+27 / +0 / +26)
-    10 lipca:   2711 / 4849 / 25 lines (+13 / +0 / -1)
-    11 lipca:   2890 / 5218 / 25 lines (+179 / +369 / +0)
-    16 lipca:   2894 / 5132 / 25 lines (+4 / -86 / +0)
-    17 lipca:   3162 / 5576 / 25 lines (+268 / +444 / +0)
-    18 lipca:   3538 / 6197 / 25 lines (+376 / +621 / +0)
-    19 lipca:   3388 / 7034 / 25 lines (-150 / +837 / +0)
-    20 lipca:   x / x / 25 lines (+76 / +0 / +0)
+    4 lipca:    2633 / 4837 / 0     lines (+0   / +56   / +0)
+    5 lipca:    2701 / 4839 / 0     lines (+71  / +2    / +0)
+    6 lipca:    2737 / 4845 / 0     lines (+36  / +6    / +0)
+    8 lipca:    2657 / 4849 / 0     lines (-80  / +4    / +0)
+    9 lipca:    2684 / 4849 / 26    lines (+27  / +0    / +26)
+    10 lipca:   2711 / 4849 / 25    lines (+13  / +0    / -1)
+    11 lipca:   2890 / 5218 / 25    lines (+179 / +369  / +0)
+    16 lipca:   2894 / 5132 / 25    lines (+4   / -86   / +0)
+    17 lipca:   3162 / 5576 / 25    lines (+268 / +444  / +0)
+    18 lipca:   3538 / 6197 / 25    lines (+376 / +621  / +0)
+    19 lipca:   3388 / 7034 / 25    lines (-150 / +837  / +0)
+    20 lipca:   3464 / 7034 / 25    lines (+76  / +0    / +0)
 
-    START OF PRODUCTION:
-    24 kwietnia - 4 maja (9 / 11 days - 1700 / x lines):
-        Average speed of development: 155 lines per day (~160)
-        Average lines of code on a coding day: 189 lines per day (~190)
-        Average positive lines on a coding day: x lines per day
+    PREVIOUS PERIODS:
+        START OF PRODUCTION:
+        24 kwietnia - 4 maja (9 / 11 days - 1700 / x lines):
+            Average speed of development: 155 lines per day (~160)
+            Average lines of code on a coding day: 189 lines per day (~190)
+            Average positive lines on a coding day: x lines per day
 
-    DEPRESSION AFTER FAILURE TO DELIVER:
-    5 maja - 29 maja (10 / 25 days - 655 / x lines):
-        Average speed of development: 26 lines per day (~30)
-        Average lines of code on a coding day: 66 lines per day (~70)
-        Average positive lines on a coding day: 87 lines per day (~90)
+        DEPRESSION AFTER FAILURE TO DELIVER:
+        5 maja - 29 maja (10 / 25 days - 655 / x lines):
+            Average speed of development: 26 lines per day (~30)
+            Average lines of code on a coding day: 66 lines per day (~70)
+            Average positive lines on a coding day: 87 lines per day (~90)
 
-    LEARNING COLEMAK-DH:
-    17 czerwca - 29 czerwca (3 / 13 days - 235 / x lines):
-        Average speed of development: 18 lines per day (~20)
-        Average lines of code on a coding day: 78 lines per day (~80)
-        Average positive lines on a coding day: 79 lines per day (~80)
+        LEARNING COLEMAK-DH:
+        17 czerwca - 29 czerwca (3 / 13 days - 235 / x lines):
+            Average speed of development: 18 lines per day (~20)
+            Average lines of code on a coding day: 78 lines per day (~80)
+            Average positive lines on a coding day: 79 lines per day (~80)
 
-    DATABASE TWEAKS:
-    1 lipca - 3 lipca (2 / 3 days - 43 / x lines):
-        Average speed of development: 14 lines per day (~10)
-        Average lines of code on a coding day: 43 lines per day (~40)
-        Average positive lines on a coding day: 43 lines per day (~40)
+        DATABASE TWEAKS:
+        1 lipca - 3 lipca (2 / 3 days - 43 / x lines):
+            Average speed of development: 14 lines per day (~10)
+            Average lines of code on a coding day: 43 lines per day (~40)
+            Average positive lines on a coding day: 43 lines per day (~40)
 
-    GREAT COMEBACK:
-    4 lipca - 19 lipca (11 / 16 days - 744 / 2253 / 25 lines):
-        Average speed of development: 189 lines per day (~190)
-        Average lines of code on a coding day: 275 lines per day (~280)
-        Average positive lines on a coding day: 290 lines per day (~290)
+    CURRENT PERIOD:
+        GREAT COMEBACK:
+        4 lipca - 20 lipca (12 / 17 days - 820 / 2253 / 25 lines):
+            Average speed of development: 182 lines per day (~180)
+            Average lines of code on a coding day: 258 lines per day (~260)
+            Average positive lines on a coding day: 285 lines per day (~290)
 
 

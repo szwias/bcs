@@ -154,6 +154,39 @@ class ObrazZdarzenie(models.Model):
 
         super().save(*args, **kwargs)
 
+
+class TypWydarzenia(models.Model):
+    typ = models.CharField(
+        max_length=MEDIUM_LENGTH,
+        blank=True,
+        verbose_name="Typ wydarzenia",
+    )
+
+    class Meta:
+        verbose_name = "Typ wydarzenia"
+        verbose_name_plural = "Typy wydarzeń"
+        ordering = ["typ"]
+
+    def __str__(self):
+        return self.typ
+
+
+class TypWyjazdu(models.Model):
+    typ = models.CharField(
+        max_length=MEDIUM_LENGTH,
+        blank=True,
+        verbose_name="Typ wyjazdu",
+    )
+
+    class Meta:
+        verbose_name = "Typ wyjazdu"
+        verbose_name_plural = "Typy wyjazdów"
+        ordering = ["typ"]
+
+    def __str__(self):
+        return self.typ
+
+
 class Wydarzenie(models.Model):
     class TypyWydarzen(models.TextChoices):
         AKCJA = "Akcja", "Akcja"
