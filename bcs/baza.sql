@@ -2033,22 +2033,45 @@ COPY public.django_admin_log (id, action_time, object_id, object_repr, action_fl
 1610	2025-07-21 15:58:54.599599+02	19	Ułańskie Zdrowie	1	[{"added": {}}]	70	1
 1631	2025-07-21 16:57:15.460648+02	8	2025-05-14: Uroczystość "Uniwersytecki Dzień Pamięci"	2	[{"changed": {"fields": ["Typ wydarzenia"]}}]	19	1
 1652	2025-07-21 17:07:04.634107+02	3	2010-01-28: Karczma "Pierwsza karczma"	2	[{"changed": {"fields": ["Typ wydarzenia"]}}]	19	1
+1672	2025-07-21 21:17:13.185296+02	33	Piwnica przy Grodzkiej - Piwnica, Grodzka 53, 33-332 Kraków, Polska	1	[{"added": {}}]	48	1
+1691	2025-07-21 22:19:48.194381+02	13	Kopiec Kościuszki - Obiekt kultury, al. Waszyngtona 1, 30-204 Kraków, Polska	2	[{"changed": {"fields": ["Adres"]}}]	48	1
+1711	2025-07-21 23:06:52.333235+02	37	2011-07-04: Koncert "Koncert Jurka Bożyka"	1	[{"added": {}}]	19	1
 1589	2025-07-21 15:54:46.126031+02	1	Akcja	1	[{"added": {}}]	70	1
 1611	2025-07-21 15:59:03.846274+02	20	Uroczystość	1	[{"added": {}}]	70	1
 1632	2025-07-21 16:59:52.395651+02	8	2025-05-14: Uroczystość "Uniwersytecki Dzień Pamięci"	2	[]	19	1
 1653	2025-07-21 17:07:17.777892+02	2	2009-09-01:  "2009/2010"	3		19	1
+1673	2025-07-21 21:17:23.884673+02	14	2011-03-18: Wykład/Prelekcja "Wykład dla Stowarzyszenia Absolwentów UJ"	2	[{"changed": {"fields": ["Miejsca"]}}]	19	1
+1692	2025-07-21 22:20:01.523501+02	9	Shot Pub - Pub/Klub, Szpitalna, 30-962 Kraków, Polska	2	[{"changed": {"fields": ["Adres"]}}]	48	1
+1712	2025-07-21 23:07:31.002124+02	37	Klub AWARIA - Pub/Klub, Mikołajska 9, 31-027 Kraków, Polska	2	[{"changed": {"fields": ["Nazwa", "Adres"]}}]	48	1
 1590	2025-07-21 15:54:51.618971+02	2	Inny	1	[{"added": {}}]	70	1
 1612	2025-07-21 15:59:16.399498+02	21	Zawody sportowe	1	[{"added": {}}]	70	1
 1633	2025-07-21 17:00:03.50809+02	8	2025-05-14: Uroczystość "Uniwersytecki Dzień Pamięci"	2	[]	19	1
+1654	2025-07-21 20:35:15.616479+02	8	2011-11-06: Uroczystość "Uniwersytecki Dzień Pamięci"	2	[{"changed": {"fields": ["Data rozpocz\\u0119cia", "Data zako\\u0144czenia"]}}]	19	1
+1674	2025-07-21 21:21:20.903146+02	16	2011-04-03: Wycieczka "Wycieczka na Kopiec Kościuszki"	2	[{"changed": {"fields": ["Data rozpocz\\u0119cia", "Data zako\\u0144czenia", "Miejsca"]}}]	19	1
+1693	2025-07-21 22:20:11.886982+02	2	Wydział Historyczny UJ - Uczelnia, ul. Gołębia 24, 31-007 Kraków, Polska	2	[{"changed": {"fields": ["Adres"]}}]	48	1
+1713	2025-07-21 23:07:47.086408+02	37	AWARIA - Pub/Klub, Mikołajska 9, 31-027 Kraków, Polska	2	[{"changed": {"fields": ["Nazwa"]}}]	48	1
 1591	2025-07-21 15:55:01.572875+02	2	Inne	2	[{"changed": {"fields": ["Typ wydarzenia"]}}]	70	1
 1613	2025-07-21 15:59:21.768282+02	22	Nieoficjalne	1	[{"added": {}}]	70	1
 1634	2025-07-21 17:02:42.669227+02	26	2025-05-08 - 2025-05-11: Zagraniczny "Faerie Matricularum"	2	[{"changed": {"fields": ["Typ wyjazdu"]}}]	19	1
+1655	2025-07-21 20:35:53.303282+02	8	2010-11-06: Uroczystość "Uniwersytecki Dzień Pamięci"	2	[{"changed": {"fields": ["Data rozpocz\\u0119cia", "Data zako\\u0144czenia"]}}]	19	1
+1675	2025-07-21 21:22:04.599365+02	18	2011-04-16: Karczma "Czapkowa Karczma w klimatach międzywojennych"	2	[{"changed": {"fields": ["Data rozpocz\\u0119cia", "Data zako\\u0144czenia"]}}]	19	1
+1694	2025-07-21 22:22:16.141971+02	29	2011-05-20: Juwenalia "Korowód Juwenaliowy"	1	[{"added": {}}]	19	1
+1714	2025-07-21 23:10:02.094723+02	23	Dom studencki/Akademik	1	[{"added": {}}]	49	1
 1592	2025-07-21 15:55:15.46481+02	3	Karczma	1	[{"added": {}}]	70	1
 1614	2025-07-21 15:59:59.994348+02	1	Adapciak	1	[{"added": {}}]	71	1
 1635	2025-07-21 17:03:06.832616+02	4	Wyjazd Zagraniczny	2	[{"changed": {"fields": ["Typ wyjazdu"]}}]	71	1
+1656	2025-07-21 20:36:32.847602+02	9	2011-01-16: Karczma "Czapkowa Karczma Karnawałowa"	2	[{"changed": {"fields": ["Data rozpocz\\u0119cia", "Data zako\\u0144czenia"]}}]	19	1
+1676	2025-07-21 21:22:20.352671+02	19	2011-04-19: Walne "Spotkanie statutowe BCS"	2	[]	19	1
+1695	2025-07-21 22:27:31.432552+02	30	2011-05-19 - 2011-05-21: Juwenalia "Juwenalia 2011"	1	[{"added": {}}, {"added": {"name": "Zdarzenie", "object": "2011-05-19 - Ognisko na Kopcu Pi\\u0142sudskiego (Juwenalia \\"Juwenalia 2011\\")"}}, {"added": {"name": "Zdarzenie", "object": "2011-05-20 - Korow\\u00f3d juwenaliowy (Juwenalia \\"Juwenalia 2011\\")"}}, {"added": {"name": "Zdarzenie", "object": "2011-05-20 - Polska wy\\u017cerka dla Belg\\u00f3w (Juwenalia \\"Juwenalia 2011\\")"}}]	19	1
+1715	2025-07-21 23:10:06.510956+02	38	I Dom Akademicki Bratniak - Dom studencki/Akademik, Jabłonowskich 10/12, 31-114 Kraków, Polska	1	[{"added": {}}]	48	1
 1593	2025-07-21 15:55:27.625152+02	4	Wyjście do kina	1	[{"added": {}}]	70	1
 1615	2025-07-21 16:00:04.102257+02	2	Inny	1	[{"added": {}}]	71	1
 1636	2025-07-21 17:03:11.286514+02	26	2025-05-08 - 2025-05-11: Wyjazd Zagraniczny "Faerie Matricularum"	2	[]	19	1
+1657	2025-07-21 20:36:57.496272+02	9	2011-01-16: Karczma "Czapkowa Karczma Karnawałowa"	2	[{"changed": {"fields": ["Miejsca"]}}]	19	1
+1677	2025-07-21 22:16:36.980747+02	34	Kopiec Piłsudskiego - Szczyt, Kraków	1	[{"added": {}}]	48	1
+1696	2025-07-21 22:27:56.949425+02	29	2011-05-20: Juwenalia "Korowód Juwenaliowy"	3		19	1
+1697	2025-07-21 22:27:56.949461+02	28	2011-05-19: Ognisko "Ognisko na Kopcu Piłsudskiego"	3		19	1
+1716	2025-07-21 23:11:36.974146+02	38	2011-07-21: Inne "Petycja w sprawie niezamykania Klubu "Buda""	1	[{"added": {}}]	19	1
 406	2025-05-01 13:36:20.778128+02	2	2009/None	1	[{"added": {}}]	14	1
 407	2025-05-01 13:39:53.703156+02	2	2009/2010	2	[]	14	1
 408	2025-05-01 13:39:57.507703+02	3	2009/2010	1	[{"added": {}}]	14	1
@@ -2071,6 +2094,10 @@ COPY public.django_admin_log (id, action_time, object_id, object_repr, action_fl
 1594	2025-07-21 15:56:00.826694+02	5	Prelekcja	1	[{"added": {}}]	70	1
 1616	2025-07-21 16:00:09.592922+02	3	Kudłacze	1	[{"added": {}}]	71	1
 1637	2025-07-21 17:03:25.928363+02	4	Wyjazd zagraniczny	2	[{"changed": {"fields": ["Typ wyjazdu"]}}]	71	1
+1658	2025-07-21 20:37:07.002004+02	25	2010-05-12: Uroczystość "Złożenie kwiatów pod grobem królowej Jadwigi"	2	[]	19	1
+1678	2025-07-21 22:17:32.401711+02	28	2011-05-19: Ognisko "Ognisko na Kopcu Piłsudskiego"	1	[{"added": {}}]	19	1
+1698	2025-07-21 22:28:52.064952+02	31	2011-05-21: Karczma "Polsko-belgijsko-francuska Karczma Piwna"	1	[{"added": {}}]	19	1
+1717	2025-07-21 23:11:47.238852+02	38	2011-07-21: Inne "Petycja w sprawie niezamykania Klubu "Buda""	2	[{"changed": {"fields": ["Miejsca"]}}]	19	1
 501	2025-05-01 23:53:58.800979+02	1	Nie wiem - Inny, XXX	1	[{"added": {}}]	16	1
 502	2025-05-02 01:00:15.584059+02	1	Powstanie BCS	1	[{"added": {}}]	19	1
 503	2025-05-02 01:02:01.382838+02	1	Powstawanie idei BCS 2009-03-01 - 2009-08-20	1	[{"added": {}}]	15	1
@@ -2087,6 +2114,10 @@ COPY public.django_admin_log (id, action_time, object_id, object_repr, action_fl
 1595	2025-07-21 15:56:10.43507+02	6	Konferencja naukowa	1	[{"added": {}}]	70	1
 1617	2025-07-21 16:00:14.393007+02	4	Zagraniczny	1	[{"added": {}}]	71	1
 1638	2025-07-21 17:03:30.895455+02	26	2025-05-08 - 2025-05-11: Wyjazd zagraniczny "Faerie Matricularum"	2	[]	19	1
+1659	2025-07-21 20:37:31.089792+02	8	2010-11-06: Uroczystość "Uniwersytecki Dzień Pamięci"	2	[]	19	1
+1679	2025-07-21 22:17:58.669327+02	34	Kopiec Piłsudskiego - Szczyt, Kraków, Polska	2	[{"changed": {"fields": ["Adres"]}}]	48	1
+1699	2025-07-21 22:29:40.569806+02	26	Rejs	1	[{"added": {}}]	70	1
+1718	2025-07-21 23:12:05.258024+02	23	Dom studencki	2	[{"changed": {"fields": ["Typ miejsca"]}}]	49	1
 548	2025-05-04 21:36:00.340999+02	1	Powstawanie koncepcji BCS: 01.03.2009 - 20.08.2009	1	[{"added": {}}]	15	1
 549	2025-05-04 21:38:05.222505+02	3	CMUJ - Uczelnia, św. Anny, Kraków, Polska	1	[{"added": {}}]	16	1
 550	2025-05-04 21:40:29.877048+02	1	Założenie BCS	1	[{"added": {}}]	19	1
@@ -2164,12 +2195,16 @@ COPY public.django_admin_log (id, action_time, object_id, object_repr, action_fl
 1640	2025-07-21 17:03:58.353903+02	23	2011-05-17 - 2011-05-21: Akcja "Przygarnij Belga w Juwenalia!"	2	[{"changed": {"fields": ["Typ wydarzenia"]}}]	19	1
 628	2025-05-09 09:57:06.999414+02	1	Toast w stronę Nawojki	2	[]	26	1
 629	2025-05-13 12:25:14.242227+02	17	Bolonia - Miasto, Włochy	1	[{"added": {}}]	16	1
+1660	2025-07-21 20:38:02.728707+02	11	2011-02-12: Karczma "Czapkowa Karczma Posesyjna"	2	[{"changed": {"fields": ["Data rozpocz\\u0119cia", "Data zako\\u0144czenia", "Miejsca"]}}]	19	1
+1680	2025-07-21 22:18:24.868973+02	5	Auditorium Maximum UJ - Uczelnia, Krupnicza 33, 31-123 Kraków, Polska	2	[{"changed": {"fields": ["Adres"]}}]	48	1
+1700	2025-07-21 22:29:47.052806+02	32	2011-05-23: Rejs "Rozśpiewany rejs"	1	[{"added": {}}]	19	1
 633	2025-05-13 12:43:08.467624+02	1	ZAGR "Faerie Matricularum" - Bolonia - Miasto, Włochy, 08.05.2025 - 11.05.2025	1	[{"added": {}}, {"added": {"name": "Uczestnictwo", "object": "Bart\\u0142omiej \\"Nobod\\" Grzeszykowski - Kronika | Wyjazd - ZAGR \\"Faerie Matricularum\\" - Bolonia - Miasto, W\\u0142ochy, 08.05.2025 - 11.05.2025"}}, {"added": {"name": "Uczestnictwo", "object": "Micha\\u0142 \\"Cukier/Ma\\u0142olata\\" Malata - Kronika | Wyjazd - ZAGR \\"Faerie Matricularum\\" - Bolonia - Miasto, W\\u0142ochy, 08.05.2025 - 11.05.2025"}}, {"added": {"name": "Uczestnictwo", "object": "Martyna \\"Bober\\" Kubiak - Kronika | Wyjazd - ZAGR \\"Faerie Matricularum\\" - Bolonia - Miasto, W\\u0142ochy, 08.05.2025 - 11.05.2025"}}, {"added": {"name": "Uczestnictwo", "object": "Bartosz \\"Heniek\\" Hepek - Kronika | Wyjazd - ZAGR \\"Faerie Matricularum\\" - Bolonia - Miasto, W\\u0142ochy, 08.05.2025 - 11.05.2025"}}, {"added": {"name": "Uczestnictwo", "object": "Herman \\"Stabilizator/Rakieta\\" Chekurda - Kronika | Wyjazd - ZAGR \\"Faerie Matricularum\\" - Bolonia - Miasto, W\\u0142ochy, 08.05.2025 - 11.05.2025"}}, {"added": {"name": "Uczestnictwo", "object": "Maria \\"Felis\\" Turakiewicz - Kronika | Wyjazd - ZAGR \\"Faerie Matricularum\\" - Bolonia - Miasto, W\\u0142ochy, 08.05.2025 - 11.05.2025"}}, {"added": {"name": "Uczestnictwo", "object": "Michalina \\"Allec\\" Kokosi\\u0144ska - Kronika | Wyjazd - ZAGR \\"Faerie Matricularum\\" - Bolonia - Miasto, W\\u0142ochy, 08.05.2025 - 11.05.2025"}}, {"added": {"name": "Uczestnictwo", "object": "Damian \\"Bandera\\" Zych - Kronika | Wyjazd - ZAGR \\"Faerie Matricularum\\" - Bolonia - Miasto, W\\u0142ochy, 08.05.2025 - 11.05.2025"}}, {"added": {"name": "Uczestnictwo", "object": "Dorota \\"Wa\\u0107panna/Doris\\" Dro\\u017cy\\u0144ska - Kronika | Wyjazd - ZAGR \\"Faerie Matricularum\\" - Bolonia - Miasto, W\\u0142ochy, 08.05.2025 - 11.05.2025"}}, {"added": {"name": "Uczestnictwo", "object": "Bart\\u0142omiej \\"Kucharz\\" Olajossy - Kronika | Wyjazd - ZAGR \\"Faerie Matricularum\\" - Bolonia - Miasto, W\\u0142ochy, 08.05.2025 - 11.05.2025"}}, {"added": {"name": "Uczestnictwo", "object": "Natalia \\"Szynka\\" Ciesielska (Olajossy) - Kronika | Wyjazd - ZAGR \\"Faerie Matricularum\\" - Bolonia - Miasto, W\\u0142ochy, 08.05.2025 - 11.05.2025"}}]	18	1
 634	2025-05-13 12:46:48.911629+02	23	2011.17.05 - Akcja: Przygarnij Belga w Juwenalia!	2	[{"changed": {"fields": ["Typ wydarzenia"]}}]	19	1
 635	2025-05-13 12:46:59.781238+02	21	2011.07.05 - Wycieczka: Czapkowa eskapada rowerowa szlakiem Bema	2	[{"changed": {"fields": ["Typ wydarzenia"]}}]	19	1
 636	2025-05-13 12:47:08.625771+02	16	2011.03.04 - Wycieczka: Wycieczka na Kopiec Kościuszki	2	[{"changed": {"fields": ["Typ wydarzenia"]}}]	19	1
 637	2025-05-13 12:47:26.820487+02	7	2010.01.10 - Historyczne: Pierwsza inauguracja roku akademickiego	2	[{"changed": {"fields": ["Typ wydarzenia"]}}]	19	1
 638	2025-05-13 12:48:06.935742+02	1	2009.03.08 - Historyczne: Założenie BCS	2	[{"changed": {"fields": ["Typ wydarzenia"]}}]	19	1
+1719	2025-07-21 23:12:45.980706+02	28	Konkurs	1	[{"added": {}}]	70	1
 644	2025-05-13 13:03:06.703965+02	1	ZAGR "Faerie Matricularum" - Bolonia - Miasto, Włochy, 08.05.2025 - 11.05.2025	2	[{"added": {"name": "Uczestnictwo", "object": "Sandra \\"Sander\\" Chandzlik - Kronika | Wyjazd - ZAGR \\"Faerie Matricularum\\" - Bolonia - Miasto, W\\u0142ochy, 08.05.2025 - 11.05.2025"}}]	18	1
 645	2025-05-13 13:07:27.457983+02	1	Zagraniczny "Faerie Matricularum" - Bolonia - Miasto, Włochy, 08.05.2025 - 11.05.2025	2	[{"added": {"name": "Uczestnictwo", "object": "None - Kronika | Wyjazd - Zagraniczny \\"Faerie Matricularum\\" - Bolonia - Miasto, W\\u0142ochy, 08.05.2025 - 11.05.2025"}}]	18	1
 646	2025-05-13 13:23:39.039992+02	2	Uniwersytecki Dzień Pamięci - Uniwersytecki Dzień PamięciUniwersyteckiDzienPamieci_23yMlpx.jpg	2	[]	25	1
@@ -2243,6 +2278,7 @@ COPY public.django_admin_log (id, action_time, object_id, object_repr, action_fl
 716	2025-05-14 19:49:42.491452+02	9	2025-05-14 - Zwiedzanie MEUS	2	[{"changed": {"fields": ["Wydarzenie"]}}]	20	1
 717	2025-05-14 19:50:58.895457+02	9	2025-05-14 - Zwiedzanie MEUS	2	[{"changed": {"fields": ["Wydarzenie"]}}]	20	1
 718	2025-05-14 19:52:27.20759+02	9	2025-05-14 - Zwiedzanie MEUS	2	[{"changed": {"fields": ["Wydarzenie"]}}]	20	1
+1661	2025-07-21 20:39:18.398713+02	27	2011-03-05: Zawody sportowe "Puchar Prorektora CMUJ"	1	[{"added": {}}]	19	1
 720	2025-05-14 19:57:00.587265+02	1	2009-08-20: Historyczne "Założenie BCS"	2	[{"changed": {"fields": ["Data rozpocz\\u0119cia", "Data zako\\u0144czenia", "Typ wydarzenia"]}}, {"added": {"name": "Osoba", "object": "Tadeusz \\"Kumdo/Tadek\\" Hessel - Kronika | Wydarzenie - 2009-08-20: Historyczne \\"Za\\u0142o\\u017cenie BCS\\""}}, {"added": {"name": "Osoba", "object": "Kasper \\"Pumba\\" Krawet - Kronika | Wydarzenie - 2009-08-20: Historyczne \\"Za\\u0142o\\u017cenie BCS\\""}}, {"added": {"name": "Osoba", "object": "None - Kronika | Wydarzenie - 2009-08-20: Historyczne \\"Za\\u0142o\\u017cenie BCS\\""}}]	19	1
 721	2025-05-14 20:00:34.147638+02	2	2009-09-01: Wybory "Pierwsze wybory"	2	[{"changed": {"fields": ["Data rozpocz\\u0119cia", "Data zako\\u0144czenia", "Typ wydarzenia"]}}, {"added": {"name": "Osoba", "object": "Tadeusz \\"Kumdo/Tadek\\" Hessel - Kronika | Wydarzenie - 2009-09-01: Wybory \\"Pierwsze wybory\\""}}, {"added": {"name": "Osoba", "object": "Kasper \\"Pumba\\" Krawet - Kronika | Wydarzenie - 2009-09-01: Wybory \\"Pierwsze wybory\\""}}, {"added": {"name": "Osoba", "object": "Pawe\\u0142 Nawrot - Kronika | Wydarzenie - 2009-09-01: Wybory \\"Pierwsze wybory\\""}}, {"added": {"name": "Osoba", "object": "Jakub Nawrot - Kronika | Wydarzenie - 2009-09-01: Wybory \\"Pierwsze wybory\\""}}, {"added": {"name": "Osoba", "object": "Urszula Kasprzyk - Kronika | Wydarzenie - 2009-09-01: Wybory \\"Pierwsze wybory\\""}}, {"added": {"name": "Osoba", "object": "Ma\\u0142gorzata Lurzy\\u0144ska - Kronika | Wydarzenie - 2009-09-01: Wybory \\"Pierwsze wybory\\""}}, {"added": {"name": "Osoba", "object": "Micha\\u0142 Lenik - Kronika | Wydarzenie - 2009-09-01: Wybory \\"Pierwsze wybory\\""}}, {"added": {"name": "Osoba", "object": "Ma\\u0142gorzata \\u017burek - Kronika | Wydarzenie - 2009-09-01: Wybory \\"Pierwsze wybory\\""}}, {"added": {"name": "Osoba", "object": "Kamila Rozes\\u0142aniec - Kronika | Wydarzenie - 2009-09-01: Wybory \\"Pierwsze wybory\\""}}]	19	1
 722	2025-05-14 20:01:14.084029+02	2	2009-09-01: Wybory "2009/2010"	2	[{"changed": {"fields": ["Nazwa"]}}]	19	1
@@ -2305,6 +2341,10 @@ COPY public.django_admin_log (id, action_time, object_id, object_repr, action_fl
 1600	2025-07-21 15:57:03.478022+02	11	Planszówki	1	[{"added": {}}]	70	1
 1621	2025-07-21 16:55:04.670814+02	1	2009-08-20: Historyczne "Założenie BCS"	2	[]	19	1
 1642	2025-07-21 17:04:35.894369+02	24	Wycieczka rowerowa	1	[{"added": {}}]	70	1
+1662	2025-07-21 20:39:55.496689+02	12	2025-05-14: Karczma "Wielka Karczma Piwna"	2	[{"changed": {"fields": ["Miejsca"]}}]	19	1
+1681	2025-07-21 22:18:33.491599+02	24	Centrum Dydaktyczno Kongresowe - Uczelnia, świętego Łazarza 16, 31-530 Kraków, Polska	2	[{"changed": {"fields": ["Adres"]}}]	48	1
+1701	2025-07-21 22:32:12.15783+02	35	Opole - Miasto, Opole, Polska	1	[{"added": {}}]	48	1
+1720	2025-07-21 23:13:54.832168+02	39	2011-07-23 - 2011-09-16: Konkurs "Czapka zdobywa świat!"	1	[{"added": {}}]	19	1
 798	2025-05-15 12:53:00.734833+02	26	2025-05-08 - 2025-05-11: Nie dotyczy "Faerie Matricularum"	1	[{"added": {}}]	19	1
 799	2025-05-15 12:59:58.408698+02	26	2025-05-08 - 2025-05-11: Zagraniczny "Faerie Matricularum"	2	[{"changed": {"fields": ["Czy to wyjazd?", "Typ wyjazdu"]}}, {"added": {"name": "Zdarzenie", "object": "2025-05-09 - Impreza ze stoiskami balli i muzyk\\u0105"}}, {"added": {"name": "Zdarzenie", "object": "2025-05-09 - Przekazanie kluczy do miasta bolo\\u0144skim goliardom"}}, {"added": {"name": "Zdarzenie", "object": "2025-05-09 - Uroczyste nadanie feluk nowym goliardom"}}, {"added": {"name": "Zdarzenie", "object": "2025-05-09 - Zwiedzanie MEUS"}}, {"added": {"name": "Osoba", "object": "Micha\\u0142 \\"Cukier/Ma\\u0142olata\\" Malata - Kronika | Wydarzenie - 2025-05-08 - 2025-05-11: Zagraniczny \\"Faerie Matricularum\\""}}, {"added": {"name": "Osoba", "object": "Bart\\u0142omiej \\"Nobod\\" Grzeszykowski - Kronika | Wydarzenie - 2025-05-08 - 2025-05-11: Zagraniczny \\"Faerie Matricularum\\""}}, {"added": {"name": "Osoba", "object": "Bartosz \\"Heniek\\" Hepek - Kronika | Wydarzenie - 2025-05-08 - 2025-05-11: Zagraniczny \\"Faerie Matricularum\\""}}, {"added": {"name": "Osoba", "object": "Martyna \\"Bober\\" Kubiak - Kronika | Wydarzenie - 2025-05-08 - 2025-05-11: Zagraniczny \\"Faerie Matricularum\\""}}, {"added": {"name": "Osoba", "object": "Sandra \\"Sander\\" Chandzlik - Kronika | Wydarzenie - 2025-05-08 - 2025-05-11: Zagraniczny \\"Faerie Matricularum\\""}}, {"added": {"name": "Osoba", "object": "Maria \\"Felis\\" Turakiewicz - Kronika | Wydarzenie - 2025-05-08 - 2025-05-11: Zagraniczny \\"Faerie Matricularum\\""}}, {"added": {"name": "Osoba", "object": "Herman \\"Stabilizator/Rakieta\\" Chekurda - Kronika | Wydarzenie - 2025-05-08 - 2025-05-11: Zagraniczny \\"Faerie Matricularum\\""}}, {"added": {"name": "Osoba", "object": "Michalina \\"Allec\\" Kokosi\\u0144ska - Kronika | Wydarzenie - 2025-05-08 - 2025-05-11: Zagraniczny \\"Faerie Matricularum\\""}}, {"added": {"name": "Osoba", "object": "Damian \\"Bandera/Buch\\" Zych - Kronika | Wydarzenie - 2025-05-08 - 2025-05-11: Zagraniczny \\"Faerie Matricularum\\""}}, {"added": {"name": "Osoba", "object": "Dorota \\"Wa\\u0107panna/Doris\\" Dro\\u017cy\\u0144ska - Kronika | Wydarzenie - 2025-05-08 - 2025-05-11: Zagraniczny \\"Faerie Matricularum\\""}}, {"added": {"name": "Osoba", "object": "Bart\\u0142omiej \\"Kucharz\\" Olajossy - Kronika | Wydarzenie - 2025-05-08 - 2025-05-11: Zagraniczny \\"Faerie Matricularum\\""}}, {"added": {"name": "Osoba", "object": "Natalia \\"Szynka\\" Ciesielska (Olajossy) - Kronika | Wydarzenie - 2025-05-08 - 2025-05-11: Zagraniczny \\"Faerie Matricularum\\""}}, {"added": {"name": "Osoba", "object": "Kacper \\"Szogun\\" Wilk - Kronika | Wydarzenie - 2025-05-08 - 2025-05-11: Zagraniczny \\"Faerie Matricularum\\""}}, {"added": {"name": "Osoba", "object": "Krysia Cholewa - Kronika | Wydarzenie - 2025-05-08 - 2025-05-11: Zagraniczny \\"Faerie Matricularum\\""}}, {"added": {"name": "Osoba", "object": "Szymon \\"Tur\\" Zwias - Kronika | Wydarzenie - 2025-05-08 - 2025-05-11: Zagraniczny \\"Faerie Matricularum\\""}}, {"added": {"name": "Osoba", "object": "Wiktoria \\"Wedel\\" Dole\\u017cych - Kronika | Wydarzenie - 2025-05-08 - 2025-05-11: Zagraniczny \\"Faerie Matricularum\\""}}]	19	1
 800	2025-05-15 13:00:39.535508+02	19	2025-05-09 - Impreza ze stoiskami balli i muzyką	2	[{"changed": {"fields": ["Miejsce", "Opis"]}}]	20	1
@@ -2331,6 +2371,10 @@ COPY public.django_admin_log (id, action_time, object_id, object_repr, action_fl
 1601	2025-07-21 15:57:09.455421+02	12	Reaktywacja	1	[{"added": {}}]	70	1
 1622	2025-07-21 16:55:14.647882+02	1	2009-08-20: Historyczne "Założenie BCS"	2	[{"changed": {"fields": ["Typ wyjazdu"]}}]	19	1
 1643	2025-07-21 17:04:38.861736+02	21	2011-05-07: Wycieczka rowerowa "Czapkowa eskapada rowerowa szlakiem Bema"	2	[{"changed": {"fields": ["Typ wydarzenia"]}}]	19	1
+1663	2025-07-21 20:44:38.013033+02	2	Toast w stronę Nawojki	1	[{"added": {}}]	29	1
+1682	2025-07-21 22:18:41.143197+02	3	CMUJ - Uczelnia, Świętej Anny 12, 31-008 Kraków, Polska	2	[{"changed": {"fields": ["Adres"]}}]	48	1
+1702	2025-07-21 22:43:04.022445+02	33	2011-05-28: Inny "Wyjazd na Stiftungfest"	1	[{"added": {}}]	19	1
+1721	2025-07-21 23:16:30.296557+02	39	Hotel Studencki Piast - Dom studencki, Piastowska 47, 30-067 Kraków, Polska	1	[{"added": {}}]	48	1
 853	2025-05-19 23:45:04.109203+02	1	Django	1	[{"added": {}}]	37	1
 854	2025-05-19 23:48:47.041186+02	1	Django	2	[{"changed": {"fields": ["Sticky submit", "Sticky pagination", "Quick remove links for active filters at top of sidebar", "Collapsible stacked inlines", "Collapsible tabular inlines"]}}]	37	1
 855	2025-05-19 23:53:35.654209+02	1	Django	2	[{"changed": {"fields": ["Favicon"]}}]	37	1
@@ -2379,9 +2423,17 @@ COPY public.django_admin_log (id, action_time, object_id, object_repr, action_fl
 1602	2025-07-21 15:57:16.030908+02	13	Juwenalia	1	[{"added": {}}]	70	1
 1623	2025-07-21 16:55:24.292343+02	1	2009-08-20: Historyczne "Założenie BCS"	2	[]	19	1
 1644	2025-07-21 17:05:04.087252+02	25	Grill	1	[{"added": {}}]	70	1
+1664	2025-07-21 20:46:31.434137+02	6	2025-05-14 None - Spotkanie z babcią Tadka (Wykład/Prelekcja "Wykład dla Stowarzyszenia Absolwentów UJ")	2	[{"changed": {"fields": ["Wydarzenie", "Powi\\u0105zane osoby"]}}]	20	1
+1683	2025-07-21 22:18:47.071856+02	11	Collegium Iuridicum UJ - Uczelnia, Grodzka 53, 33-332 Kraków, Polska	2	[{"changed": {"fields": ["Adres"]}}]	48	1
+1703	2025-07-21 22:45:07.43929+02	22	Muzeum	1	[{"added": {}}]	49	1
+1722	2025-07-21 23:16:46.112394+02	40	2011-09-16: Karczma "Czapkowa karczma zwycięzców"	1	[{"added": {}}]	19	1
 1603	2025-07-21 15:57:26.566301+02	14	Wyjście do teatru	1	[{"added": {}}]	70	1
 1624	2025-07-21 16:55:40.823927+02	16	2025-05-14: Wycieczka "Wycieczka na Kopiec Kościuszki"	2	[{"changed": {"fields": ["Typ wydarzenia"]}}]	19	1
 1645	2025-07-21 17:05:06.996772+02	20	2011-04-30: Grill "Grill pod Żaczkiem: urodziny Geologa"	2	[{"changed": {"fields": ["Typ wydarzenia"]}}]	19	1
+1665	2025-07-21 20:47:21.231338+02	14	2011-03-18: Wykład/Prelekcja "Wykład dla Stowarzyszenia Absolwentów UJ"	2	[{"changed": {"fields": ["Data rozpocz\\u0119cia", "Data zako\\u0144czenia", "Uczestnicy wydarzenia"]}}]	19	1
+1684	2025-07-21 22:18:54.226473+02	6	Collegium Maius UJ - Uczelnia, Jagiellońska 15, 31-010 Kraków, Polska	2	[{"changed": {"fields": ["Adres"]}}]	48	1
+1704	2025-07-21 22:45:11.134598+02	36	Muzeum Anatomii UJ - Muzeum, Mikołaja Kopernika 12, 31-034 Kraków, Polska	1	[{"added": {}}]	48	1
+1723	2025-07-21 23:18:10.053097+02	24	Browar	1	[{"added": {}}]	49	1
 995	2025-07-10 18:58:38.71523+02	23	2025-05-14: Akcja "Przygarnij Belga w Juwenalia!"	2	[{"changed": {"fields": ["Typ wydarzenia"]}}]	19	1
 996	2025-07-10 18:58:54.094114+02	22	2025-05-14: Karczma "Majowa Karczma Piwna"	2	[{"changed": {"fields": ["Typ wydarzenia"]}}]	19	1
 997	2025-07-10 18:59:06.69423+02	21	2025-05-14: Wycieczka "Czapkowa eskapada rowerowa szlakiem Bema"	2	[{"changed": {"fields": ["Typ wydarzenia"]}}]	19	1
@@ -2416,19 +2468,39 @@ COPY public.django_admin_log (id, action_time, object_id, object_repr, action_fl
 1026	2025-07-11 01:08:40.450824+02	1	Bretelle	2	[{"added": {"name": "Osoba", "object": "Tadeusz \\"Kumdo/Tadek\\" Hessel - Encyklopedia | Zwyczaj - Bretelle"}}]	39	1
 1027	2025-07-11 01:08:56.0949+02	1	Bretelle	2	[]	39	1
 1028	2025-07-11 01:20:55.075021+02	17	2011-04-06: Konferencja naukowa/wykład/prelekcja "Wykład na Wydziale Polonistyki"	2	[{"changed": {"fields": ["Data rozpocz\\u0119cia", "Data zako\\u0144czenia", "Miejsca"]}}]	19	1
+1666	2025-07-21 20:48:43.773762+02	15	2011-03-25: Konferencja naukowa "Konferencja medyczna we Wrocławiu"	2	[{"changed": {"fields": ["Data rozpocz\\u0119cia", "Data zako\\u0144czenia", "Miejsca", "Uczestnicy wydarzenia"]}}]	19	1
+1685	2025-07-21 22:19:00.14811+02	7	Collegium Novum UJ - Uczelnia, Gołębia 24, 31-007 Kraków, Polska	2	[{"changed": {"fields": ["Adres"]}}]	48	1
+1705	2025-07-21 22:45:31.531817+02	34	2011-06-02: Odchamianie się "Wizyta w Muzeum Anatomii"	1	[{"added": {}}]	19	1
+1724	2025-07-21 23:18:11.595317+02	40	Browar Tychy - Browar, Mikołowska 5, 43-100 Tychy, Polska	1	[{"added": {}}]	48	1
 1605	2025-07-21 15:58:09.535842+02	4	Wyjście do kina	3		70	1
 1626	2025-07-21 16:56:28.976039+02	5	Wykład/Prelekcja	2	[{"changed": {"fields": ["Typ wydarzenia"]}}]	70	1
 1647	2025-07-21 17:05:37.955612+02	17	2011-04-06: Wykład/Prelekcja "Wykład na Wydziale Polonistyki"	2	[{"changed": {"fields": ["Typ wydarzenia"]}}]	19	1
+1667	2025-07-21 20:58:53.872465+02	12	2011-03-12: Karczma "Wielka Karczma Piwna"	2	[{"changed": {"fields": ["Data rozpocz\\u0119cia", "Data zako\\u0144czenia"]}}]	19	1
+1686	2025-07-21 22:19:06.109889+02	14	Gołębnik - Uczelnia, Gołębia 16, 31-007 Kraków, Polska	2	[{"changed": {"fields": ["Adres"]}}]	48	1
+1706	2025-07-21 22:45:47.721856+02	21	MEUS - Muzeum, Via Zamboni, 33, 40126 Bologna BO, Włochy	2	[{"changed": {"fields": ["Typ miejsca"]}}]	48	1
+1725	2025-07-21 23:18:41.829252+02	41	2011-09-29: Wycieczka "Wycieczka do browaru w Tychach"	1	[{"added": {}}]	19	1
 1072	2025-07-11 13:01:21.581927+02	1	Rucham ci starego	1	[{"added": {}}, {"added": {"name": "Osoba", "object": "Bartosz \\"Heniek\\" Hepek - Encyklopedia | Powiedzenie - Rucham ci starego"}}]	40	1
 1606	2025-07-21 15:58:23.253898+02	15	RPG	1	[{"added": {}}]	70	1
 1627	2025-07-21 16:56:33.296362+02	14	2025-05-14: Wykład/Prelekcja "Wykład dla Stowarzyszenia Absolwentów UJ"	2	[{"changed": {"fields": ["Typ wydarzenia"]}}]	19	1
 1648	2025-07-21 17:05:58.25583+02	6	2010-10-01: Uroczystość "Pierwsza inauguracja roku akademickiego BCS"	2	[{"changed": {"fields": ["Typ wydarzenia"]}}]	19	1
+1668	2025-07-21 21:03:18.754302+02	6	2011-03-18 None - Spotkanie z babcią Tadka (Wykład/Prelekcja "Wykład dla Stowarzyszenia Absolwentów UJ")	2	[]	20	1
+1687	2025-07-21 22:19:13.959032+02	4	Grób królowej Jadwigi - Obiekt kultury, Katedra Wawelska, 31-001 Kraków, Polska	2	[{"changed": {"fields": ["Adres"]}}]	48	1
+1707	2025-07-21 23:00:23.640536+02	35	2011-06-04: Walne "Wybory wydziałowych reprezentanów do Zarządu oraz Zarządu "Centralnego""	1	[{"added": {}}]	19	1
+1726	2025-07-21 23:20:29.959123+02	41	Pub Sarmacja - Pub/Klub, Św. Tomasza 8, 31-010 Kraków, Polska	1	[{"added": {}}]	48	1
 1607	2025-07-21 15:58:31.030329+02	16	Walne	1	[{"added": {}}]	70	1
 1628	2025-07-21 16:56:45.356765+02	12	2025-05-14: Karczma "Wielka Karczma Piwna"	2	[{"changed": {"fields": ["Typ wydarzenia"]}}]	19	1
 1649	2025-07-21 17:06:11.275323+02	25	2010-05-12: Uroczystość "Złożenie kwiatów pod grobem królowej Jadwigi"	2	[{"changed": {"fields": ["Typ wydarzenia"]}}]	19	1
+1669	2025-07-21 21:03:28.318566+02	6	2011-03-18 None - Spotkanie z babcią Tadka (Wykład/Prelekcja "Wykład dla Stowarzyszenia Absolwentów UJ")	2	[]	20	1
+1688	2025-07-21 22:19:22.036327+02	10	Klub Buda - Pub/Klub, Czapskich 2, 31-110 Kraków, Polska	2	[{"changed": {"fields": ["Adres"]}}]	48	1
+1708	2025-07-21 23:01:57.563793+02	27	Koncert	1	[{"added": {}}]	70	1
+1727	2025-07-21 23:21:34.32256+02	42	Gospoda Koko - Restauracja, Gołębia 8, 31-007 Kraków, Polska	1	[{"added": {}}]	48	1
 1608	2025-07-21 15:58:36.73889+02	17	Wycieczka	1	[{"added": {}}]	70	1
 1629	2025-07-21 16:56:54.611972+02	11	2025-05-14: Karczma "Czapkowa Karczma Posesyjna"	2	[{"changed": {"fields": ["Typ wydarzenia"]}}]	19	1
 1650	2025-07-21 17:06:27.263066+02	24	2010-04-28: Konferencja naukowa "Konferencja naukowa Roberto o folklorze studenckim"	2	[{"changed": {"fields": ["Typ wydarzenia"]}}]	19	1
+1670	2025-07-21 21:05:21.248497+02	6	2011-03-18 None - Spotkanie z babcią Tadka (Wykład/Prelekcja "Wykład dla Stowarzyszenia Absolwentów UJ")	2	[]	20	1
+1689	2025-07-21 22:19:29.673396+02	8	Klub Studencki Nawojka - Pub/Klub, Władysława Reymonta 11, 30-059 Kraków, Polska	2	[{"changed": {"fields": ["Adres"]}}]	48	1
+1709	2025-07-21 23:02:01.864124+02	36	2011-06-30: Koncert "Czapka dołącza do koncertu Vacancy & Los Purkos"	1	[{"added": {}}]	19	1
+1728	2025-07-21 23:26:08.331939+02	42	2011-10-01: Reaktywacja "Czapka Reactivation Party 2"	1	[{"added": {}}, {"added": {"name": "Zdarzenie", "object": "2011-10-01 - Polish beer and honey wine degustation (Reaktywacja \\"Czapka Reactivation Party 2\\")"}}]	19	1
 1321	2025-07-17 22:21:28.764815+02	1	Polska	1	[{"added": {}}]	46	1
 1322	2025-07-17 22:21:30.351371+02	1	Uniwersytet Jagielloński	1	[{"added": {}}]	44	1
 1323	2025-07-17 22:21:36.226786+02	1	Uniwersytet Jagielloński: Wydział Prawa i Administracji (WPiA)	1	[{"added": {}}]	45	1
@@ -2624,6 +2696,9 @@ COPY public.django_admin_log (id, action_time, object_id, object_repr, action_fl
 1609	2025-07-21 15:58:45.960001+02	18	Wybory	1	[{"added": {}}]	70	1
 1630	2025-07-21 16:57:02.737996+02	9	2025-05-14: Karczma "Czapkowa Karczma Karnawałowa"	2	[{"changed": {"fields": ["Typ wydarzenia"]}}]	19	1
 1651	2025-07-21 17:06:52.503129+02	24	2010-04-28: Wykład/Prelekcja "Prelekcja Roberto o folklorze studenckim"	2	[{"changed": {"fields": ["Nazwa", "Typ wydarzenia"]}}]	19	1
+1671	2025-07-21 21:17:01.234346+02	21	Piwnica	1	[{"added": {}}]	49	1
+1690	2025-07-21 22:19:40.202711+02	15	Klub Studencki "Żaczek" - Pub/Klub, al. 3 Maja 5, 30-063 Kraków, Polska	2	[{"changed": {"fields": ["Adres"]}}]	48	1
+1710	2025-07-21 23:04:58.689656+02	37	Klub Kawiarnia - Pub/Klub, XXX, Kraków, Polska	1	[{"added": {}}]	48	1
 1537	2025-07-19 19:03:13.882031+02	6	Polska: Bractwo Czapki Studenckiej Animus	2	[]	31	1
 1538	2025-07-19 19:04:03.628107+02	5	Polska: Bractwo Czapki Studenckiej UJ	2	[{"changed": {"fields": ["Za\\u0142o\\u017cyciele"]}}]	31	1
 \.
@@ -3013,6 +3088,7 @@ COPY public.encyklopedia_powiedzenie_adresaci (id, powiedzenie_id, osoba_id) FRO
 --
 
 COPY public.encyklopedia_tradycjabcs (id, nazwa, okolicznosci_powstania, inne, opis, autor_czlonek_id, wydarzenie_id, od_kogo_id, autor_id, zapozyczona_czy_autorska) FROM stdin;
+2	Toast w stronę Nawojki	Wyd		By wypić toast w stronę Nawojki, należy odwrócić się tyłkiem w stronę Klubu Nawojka i pić na hejnał.\r\nTradycja powstała po tym, gdy wygoniono Czapkę z Nawojki (może ale nie musi być to związane z bełtem na stół bilardowy)	\N	12	\N	\N	A
 \.
 
 
@@ -3151,6 +3227,9 @@ COPY public.kronika_typwydarzenia (id, typ) FROM stdin;
 5	Wykład/Prelekcja
 24	Wycieczka rowerowa
 25	Grill
+26	Rejs
+27	Koncert
+28	Konkurs
 \.
 
 
@@ -3172,26 +3251,40 @@ COPY public.kronika_typwyjazdu (id, typ) FROM stdin;
 --
 
 COPY public.kronika_wydarzenie (id, nazwa, opis, czy_to_wyjazd, data_rozpoczecia, data_zakonczenia, link, typ_wydarzenia_id, typ_wyjazdu_id) FROM stdin;
-12	Wielka Karczma Piwna		N	2025-05-14	2025-05-14		3	5
-11	Czapkowa Karczma Posesyjna		N	2025-05-14	2025-05-14		3	5
-9	Czapkowa Karczma Karnawałowa		N	2025-05-14	2025-05-14		3	5
+38	Petycja w sprawie niezamykania Klubu "Buda"	Klub jest zamknięty z powodu remontu akademika i Czapka organizuje petycję.	N	2011-07-21	2011-07-21		2	5
+9	Czapkowa Karczma Karnawałowa		N	2011-01-16	2011-01-16		3	5
+25	Złożenie kwiatów pod grobem królowej Jadwigi		N	2010-05-12	2010-05-12		20	5
+8	Uniwersytecki Dzień Pamięci	Aśka Lorenc: "Bractwo  biorze udział w Uniwersyteckim Dniu Pamięci (rocznicy Sondernaktion Krakau) - dużo fotek tego dnia robiła nam Anka Kaczmarz z Dziennika Polskiego (miała nam je wysłać i nie wysłała!).	N	2010-11-06	2010-11-06		20	5
+11	Czapkowa Karczma Posesyjna		N	2011-02-12	2011-02-12		3	5
+27	Puchar Prorektora CMUJ		N	2011-03-05	2011-03-05		21	5
+39	Czapka zdobywa świat!	Pierwsza edycja konkursu, w którym członkowie BCS przysyłają swoje czapki z różnych stron świata, w których spędzają wakacje.	N	2011-07-23	2011-09-16		28	5
+40	Czapkowa karczma zwycięzców		N	2011-09-16	2011-09-16		3	5
 1	Założenie BCS	Aśka Lorenc: "data powstania Bractwa Czapki Studenckiej. Oprócz noszenia czapek ważny jest folklor studencki: integracja, śpiew, wymienianie się pinsami, koleżeństwo. \r\nCzapka działa w ramach Collegium Medicum UJ. Wielu studentów ze wszystkich wydziałów posiada swoje własne czapki. "	N	2009-08-20	2009-08-20		8	5
-16	Wycieczka na Kopiec Kościuszki	Aśka Lorenc: "Studenci wielu wydziałów bierają się pod akademikiem Żaczek i wspólnie idą na Kopiec Kościuszki, śpiewając m.in pieśni żołnierskie. "	N	2025-05-14	2025-05-14		17	5
-15	Konferencja medyczna we Wrocławiu	Aśka Lorenc: "Czapka medyczna (i nie tylko) wpada do Wrocławia. We Wrocławiu ma miejsce konferencja medyczna i twórcy Czapki chcą skorzystać z okazji, by promować zwyczaj jej noszenia. "	N	2025-05-14	2025-05-14		6	5
-14	Wykład dla Stowarzyszenia Absolwentów UJ	Wykład Tadeusza na temat czapki studenckiej UJ dla Stowarzyszenia Absolwentów UJ (piwnica przy ul. Grodzkiej 53)	N	2025-05-14	2025-05-14		5	5
-8	Uniwersytecki Dzień Pamięci	Aśka Lorenc: "Bractwo  biorze udział w Uniwersyteckim Dniu Pamięci (rocznicy Sondernaktion Krakau) - dużo fotek tego dnia robiła nam Anka Kaczmarz z Dziennika Polskiego (miała nam je wysłać i nie wysłała!).	N	2025-05-14	2025-05-14		20	5
+15	Konferencja medyczna we Wrocławiu	Aśka Lorenc: "Czapka medyczna (i nie tylko) wpada do Wrocławia. We Wrocławiu ma miejsce konferencja medyczna i twórcy Czapki chcą skorzystać z okazji, by promować zwyczaj jej noszenia. "	N	2011-03-25	2011-03-25		6	5
+12	Wielka Karczma Piwna		N	2011-03-12	2011-03-12		3	5
+14	Wykład dla Stowarzyszenia Absolwentów UJ	Wykład Tadeusza na temat czapki studenckiej UJ dla Stowarzyszenia Absolwentów UJ (piwnica przy ul. Grodzkiej 53)	N	2011-03-18	2011-03-18		5	5
+16	Wycieczka na Kopiec Kościuszki	Aśka Lorenc: "Studenci wielu wydziałów bierają się pod akademikiem Żaczek i wspólnie idą na Kopiec Kościuszki, śpiewając m.in pieśni żołnierskie. "	N	2011-04-03	2011-04-03		17	5
+18	Czapkowa Karczma w klimatach międzywojennych		N	2011-04-16	2011-04-16		3	5
 26	Faerie Matricularum		T	2025-05-08	2025-05-11		23	4
-18	Czapkowa Karczma w klimatach międzywojennych		N	2025-04-16	2025-04-16		3	5
 23	Przygarnij Belga w Juwenalia!	nocleg w czasie Juwenaliów	N	2011-05-17	2011-05-21		1	5
 22	Majowa Karczma Piwna		N	2011-05-14	2011-05-14		3	5
 21	Czapkowa eskapada rowerowa szlakiem Bema		N	2011-05-07	2011-05-07		24	5
 20	Grill pod Żaczkiem: urodziny Geologa		N	2011-04-30	2011-04-30		25	5
-19	Spotkanie statutowe BCS		N	2011-04-19	2011-04-19		16	5
 17	Wykład na Wydziale Polonistyki		N	2011-04-06	2011-04-06		5	5
 6	Pierwsza inauguracja roku akademickiego BCS	Aśka Lorenc: "Bractwo spotyka się dość spontanicznie. Większość członków stanowią osoby z CMUJ, ale spotkania są organizowane w taki sposób, aby włączyć jak najwięcej osób. "	N	2010-10-01	2010-10-01		20	5
-25	Złożenie kwiatów pod grobem królowej Jadwigi		N	2010-05-12	2010-05-12		20	5
 24	Prelekcja Roberto o folklorze studenckim		N	2010-04-28	2010-04-28		5	5
 3	Pierwsza karczma		N	2010-01-28	2010-01-28		3	5
+41	Wycieczka do browaru w Tychach		N	2011-09-29	2011-09-29		17	5
+19	Spotkanie statutowe BCS		N	2011-04-19	2011-04-19		16	5
+30	Juwenalia 2011		N	2011-05-19	2011-05-21		13	5
+31	Polsko-belgijsko-francuska Karczma Piwna		N	2011-05-21	2011-05-21		3	5
+32	Rozśpiewany rejs		N	2011-05-23	2011-05-23		26	5
+33	Wyjazd na Stiftungfest	Aśka Lorenc: "Wyjazd na Stiftungfest do Opola - rewizyta u zaprzyjaźnionej korporacji Salia Silesia"	T	2011-05-28	2011-05-28		23	2
+34	Wizyta w Muzeum Anatomii		N	2011-06-02	2011-06-02		14	5
+35	Wybory wydziałowych reprezentanów do Zarządu oraz Zarządu "Centralnego"		N	2011-06-04	2011-06-04		16	5
+36	Czapka dołącza do koncertu Vacancy & Los Purkos		N	2011-06-30	2011-06-30		27	5
+37	Koncert Jurka Bożyka		N	2011-07-04	2011-07-04		27	5
+42	Czapka Reactivation Party 2		N	2011-10-01	2011-10-01		12	5
 \.
 
 
@@ -3226,6 +3319,27 @@ COPY public.kronika_wydarzenie_miejsca (id, wydarzenie_id, miejsce_id) FROM stdi
 24	19	10
 25	18	10
 26	17	14
+27	9	8
+28	11	9
+29	12	10
+30	15	12
+31	14	33
+32	16	13
+33	16	15
+36	30	16
+37	30	10
+38	30	13
+39	31	10
+40	33	35
+41	34	36
+42	36	10
+43	37	37
+44	38	38
+45	40	39
+46	41	40
+47	42	41
+48	42	42
+49	42	6
 \.
 
 
@@ -3234,6 +3348,10 @@ COPY public.kronika_wydarzenie_miejsca (id, wydarzenie_id, miejsce_id) FROM stdi
 --
 
 COPY public.kronika_wydarzenie_uczestnicy (id, wydarzenie_id, osoba_id) FROM stdin;
+1	14	148
+2	14	181
+3	15	148
+4	15	76
 \.
 
 
@@ -3251,8 +3369,8 @@ COPY public.kronika_wyjazd_obrazy (id, wyjazd_id, obrazwyjazd_id) FROM stdin;
 
 COPY public.kronika_zdarzenie (id, nazwa, data, opis, miejsce_id, wydarzenie_id, godzina) FROM stdin;
 19	Impreza ze stoiskami balli i muzyką	2025-05-09	Dalsza integracja z goliardią przy ich stoiskach z żarciem goliardii i muzyce granej przez goliardów. Zajęliśmy strategiczną pozycję na końcu placu, gdzie rozłożyliśmy naszą flagę (która stała dopóki ktoś nie wpadł na genialny pomysł skakania przez nią)	18	26	20:00:00
-6	Spotkanie z babcią Tadka	2011-03-18	Poznajemy babcię Tadka, która nosiła czapkę studencką, kiedy geologię przeniesiono z UJ na AGH.	\N	\N	\N
 5	Nowa tradycja: Toast w stronę Nawojki	2011-03-12		\N	\N	\N
+6	Spotkanie z babcią Tadka	2011-03-18	Poznajemy babcię Tadka, która nosiła czapkę studencką, kiedy geologię przeniesiono z UJ na AGH.	\N	14	\N
 1	Samorząd nosi czapki	2010-05-12	złożenie kwiatów pod grobem Królowej Jadwigi (czapki są zaproszone a Samorząd Studencki nosi nosi czapki)	4	25	\N
 25	Pub Crawl	2025-05-10	Za jedyne 5 eurasów nabyliśmy zielone przepustki na 4 różne trunki w 4 różnych lokacjach. Podczas tego eventu poznaliśmy najemników z Pizy, w tym tygrysa Kapitano	17	26	15:00:00
 24	Darmowy lunch dla uczestników parady	2025-05-10	Bułki z włoską szynką. Szczęśliwcy nie natrafili na mortadelę. Wolny czas, tam też spotkaliśmy się z Kucharzem i Szynką (Kucharz prowadził badania we Włoszech), którzy od tej pory trzymali się z nami	18	26	14:00:00
@@ -3268,6 +3386,10 @@ COPY public.kronika_zdarzenie (id, nazwa, data, opis, miejsce_id, wydarzenie_id,
 28	Zwiedzanie Piazza Magiore	2025-05-11	Jeden ze studentów sztuki postawił nam wszystkim darmowe piwo i postanowił pokazać parę tajemnic Bolonii.\r\n\r\n1. Iluzja optyczna fontanny Neptuna: autor chciał przyprawić Neptunowi dużego członka, jednak spotkało się to z dezaprobatą kościoła. Postanowił więc utrzeć klerowi nosa i ustawił palec boga w taki sposób, by z perspektywy księży idących (codziennie!) do bazyliki przypominał całkiem pokaźny maszt w erekcji\r\n\r\n2. Koniunkcja trzech wież Bolonii: trzy wieże symbolizujące kolejno władzę, ludzi i kościół są ustawione w jednej linii by pokazać równość tych trzech\r\n\r\n3. Największe skarby średniowieczej Bolonii: Pod łukiem jednej z arkad znajduje się fresk przestawiający winorośl, zboże i... konopię - Bolonia jako miasto portowe, masowo produkowała liny. Dziś przedstawienie konopii jako obrońcę ludu byłoby nie do pomyślenia\r\n\r\n4. Konfesjonał z czasów epidemii: Popularna atrakcja. 4 łuki - mówiąc do ściany pod dowolnym łukiem, słychać Cię w każdym innym	25	26	16:00:00
 29	Kolacje wszystkich balli	2025-05-11		\N	26	19:00:00
 30	Podróż z buta do centrum	2025-05-08	Część brygady przerażona ceną przejazdu Macroni Express wybrała podróż pieszą. Po drodze odwiedziliśmy miejscowy Carrefour, gdzie po dowiedzeniu się, iż we Włoszech picie publicznie jest legalne, połowa ludzi została tam na dłużej (na ławce przed sklepem)	30	26	06:30:00
+31	Ognisko na Kopcu Piłsudskiego	2011-05-19		34	30	\N
+32	Korowód juwenaliowy	2011-05-20		16	30	\N
+33	Polska wyżerka dla Belgów	2011-05-20		10	30	\N
+34	Polish beer and honey wine degustation	2011-10-01		\N	42	\N
 \.
 
 
@@ -3276,6 +3398,7 @@ COPY public.kronika_zdarzenie (id, nazwa, data, opis, miejsce_id, wydarzenie_id,
 --
 
 COPY public.kronika_zdarzenie_powiazane_osoby (id, zdarzenie_id, osoba_id) FROM stdin;
+1	6	181
 \.
 
 
@@ -3304,25 +3427,30 @@ COPY public.miejsca_kraj (id, kraj) FROM stdin;
 --
 
 COPY public.miejsca_miejsce (id, nazwa, adres, typ_id, zamkniete_na_stale) FROM stdin;
-5	Auditorium Maximum UJ	Krupnicza 33, 31-123 Kraków	2	f
+33	Piwnica przy Grodzkiej	Grodzka 53, 33-332 Kraków, Polska	21	f
+5	Auditorium Maximum UJ	Krupnicza 33, 31-123 Kraków, Polska	2	f
+24	Centrum Dydaktyczno Kongresowe	świętego Łazarza 16, 31-530 Kraków, Polska	2	f
+3	CMUJ	Świętej Anny 12, 31-008 Kraków, Polska	2	f
+11	Collegium Iuridicum UJ	Grodzka 53, 33-332 Kraków, Polska	2	f
+6	Collegium Maius UJ	Jagiellońska 15, 31-010 Kraków, Polska	2	f
+7	Collegium Novum UJ	Gołębia 24, 31-007 Kraków, Polska	2	f
+14	Gołębnik	Gołębia 16, 31-007 Kraków, Polska	2	f
+4	Grób królowej Jadwigi	Katedra Wawelska, 31-001 Kraków, Polska	3	f
+10	Klub Buda	Czapskich 2, 31-110 Kraków, Polska	4	f
+8	Klub Studencki Nawojka	Władysława Reymonta 11, 30-059 Kraków, Polska	4	f
+15	Klub Studencki "Żaczek"	al. 3 Maja 5, 30-063 Kraków, Polska	4	f
+13	Kopiec Kościuszki	al. Waszyngtona 1, 30-204 Kraków, Polska	3	f
+35	Opole	Opole, Polska	5	f
+21	MEUS	Via Zamboni, 33, 40126 Bologna BO, Włochy	22	f
+37	AWARIA	Mikołajska 9, 31-027 Kraków, Polska	4	f
+39	Hotel Studencki Piast	Piastowska 47, 30-067 Kraków, Polska	23	f
+41	Pub Sarmacja	Św. Tomasza 8, 31-010 Kraków, Polska	4	t
 27	Bar Birroteca Lupulus	Via Giuseppe Petroni, 7a, 40126 Bologna BO, Włochy	11	f
 26	Bazylika św. Petroniusza	Piazza Maggiore, 40124 Bologna BO, Włochy	10	f
 17	Bolonia	Bologna, Włochy	5	f
-24	Centrum Dydaktyczno Kongresowe	świętego Łazarza 16, 31-530 Kraków	2	f
-3	CMUJ	Świętej Anny 12, 31-008 Kraków	2	f
-11	Collegium Iuridicum UJ	Grodzka 53, 33-332 Kraków	2	f
-6	Collegium Maius UJ	Jagiellońska 15, 31-010 Kraków	2	f
-7	Collegium Novum UJ	Gołębia 24, 31-007 Kraków	2	f
 18	Giardini di via Filippo Re	Via Filippo Re, 40126 Bologna BO, Włochy	6	f
-14	Gołębnik	Gołębia 16, 31-007 Kraków	2	f
-4	Grób królowej Jadwigi	Katedra Wawelska, 31-001 Kraków	3	f
-10	Klub Buda	Czapskich 2, 31-110 Kraków	4	f
-8	Klub Studencki Nawojka	Władysława Reymonta 11, 30-059 Kraków	4	f
-15	Klub Studencki "Żaczek"	al. 3 Maja 5, 30-063 Kraków	4	f
-13	Kopiec Kościuszki	al. Waszyngtona 1, 30-204 Kraków	3	f
 16	Kraków	Kraków, Polska	5	f
 31	Krakowski Szlak Generała Bema	powiat krakowski, Polska	13	f
-21	MEUS	Via Zamboni, 33, 40126 Bologna BO, Włochy	3	f
 1	Nie wiem	XXX	1	f
 19	Palazzo d'Accursio	Piazza Maggiore, 6, 40121 Bologna BO, Włochy	3	f
 25	Piazza Maggiore	Piazza Maggiore, 40124 Bologna BO, Włochy	9	f
@@ -3333,8 +3461,13 @@ COPY public.miejsca_miejsce (id, nazwa, adres, typ_id, zamkniete_na_stale) FROM 
 20	Spawner Włochów	Via delle Moline, 7, 40126 Bologna BO, Włochy	7	f
 28	W dupie	Chyba wiesz, gdzie masz dupę	1	f
 12	Wrocław	Wrocław, Polska	5	f
-2	Wydział Historyczny UJ	ul. Gołębia 24, 31-007 Kraków	2	f
-9	Shot Pub	Szpitalna, 30-962 Kraków	4	t
+34	Kopiec Piłsudskiego	Kraków, Polska	20	f
+9	Shot Pub	Szpitalna, 30-962 Kraków, Polska	4	t
+2	Wydział Historyczny UJ	ul. Gołębia 24, 31-007 Kraków, Polska	2	f
+36	Muzeum Anatomii UJ	Mikołaja Kopernika 12, 31-034 Kraków, Polska	22	f
+38	I Dom Akademicki Bratniak	Jabłonowskich 10/12, 31-114 Kraków, Polska	23	f
+40	Browar Tychy	Mikołowska 5, 43-100 Tychy, Polska	24	f
+42	Gospoda Koko	Gołębia 8, 31-007 Kraków, Polska	8	f
 \.
 
 
@@ -3363,6 +3496,10 @@ COPY public.miejsca_typmiejsca (id, nazwa) FROM stdin;
 18	Schronisko
 19	Teatr
 20	Szczyt
+21	Piwnica
+22	Muzeum
+23	Dom studencki
+24	Browar
 \.
 
 
@@ -4042,7 +4179,7 @@ SELECT pg_catalog.setval('public.czlonkowie_zwierzeczapkowe_id_seq', 13, true);
 -- Name: django_admin_log_id_seq; Type: SEQUENCE SET; Schema: public; Owner: projectuser
 --
 
-SELECT pg_catalog.setval('public.django_admin_log_id_seq', 1653, true);
+SELECT pg_catalog.setval('public.django_admin_log_id_seq', 1728, true);
 
 
 --
@@ -4112,7 +4249,7 @@ SELECT pg_catalog.setval('public.encyklopedia_powiedzenie_id_seq', 1, false);
 -- Name: encyklopedia_tradycjabcs_id_seq; Type: SEQUENCE SET; Schema: public; Owner: projectuser
 --
 
-SELECT pg_catalog.setval('public.encyklopedia_tradycjabcs_id_seq', 1, true);
+SELECT pg_catalog.setval('public.encyklopedia_tradycjabcs_id_seq', 2, true);
 
 
 --
@@ -4196,7 +4333,7 @@ SELECT pg_catalog.setval('public.kronika_proces_zdarzenia_id_seq', 1, false);
 -- Name: kronika_typwydarzenia_id_seq; Type: SEQUENCE SET; Schema: public; Owner: projectuser
 --
 
-SELECT pg_catalog.setval('public.kronika_typwydarzenia_id_seq', 25, true);
+SELECT pg_catalog.setval('public.kronika_typwydarzenia_id_seq', 28, true);
 
 
 --
@@ -4210,21 +4347,21 @@ SELECT pg_catalog.setval('public.kronika_typwyjazdu_id_seq', 5, true);
 -- Name: kronika_wydarzenie_id_seq; Type: SEQUENCE SET; Schema: public; Owner: projectuser
 --
 
-SELECT pg_catalog.setval('public.kronika_wydarzenie_id_seq', 26, true);
+SELECT pg_catalog.setval('public.kronika_wydarzenie_id_seq', 42, true);
 
 
 --
 -- Name: kronika_wydarzenie_miejsca_id_seq; Type: SEQUENCE SET; Schema: public; Owner: projectuser
 --
 
-SELECT pg_catalog.setval('public.kronika_wydarzenie_miejsca_id_seq', 26, true);
+SELECT pg_catalog.setval('public.kronika_wydarzenie_miejsca_id_seq', 49, true);
 
 
 --
 -- Name: kronika_wydarzenie_uczestnicy_id_seq; Type: SEQUENCE SET; Schema: public; Owner: projectuser
 --
 
-SELECT pg_catalog.setval('public.kronika_wydarzenie_uczestnicy_id_seq', 1, false);
+SELECT pg_catalog.setval('public.kronika_wydarzenie_uczestnicy_id_seq', 4, true);
 
 
 --
@@ -4238,14 +4375,14 @@ SELECT pg_catalog.setval('public.kronika_wyjazd_obrazy_id_seq', 1, false);
 -- Name: kronika_zdarzenie_id_seq; Type: SEQUENCE SET; Schema: public; Owner: projectuser
 --
 
-SELECT pg_catalog.setval('public.kronika_zdarzenie_id_seq', 30, true);
+SELECT pg_catalog.setval('public.kronika_zdarzenie_id_seq', 34, true);
 
 
 --
 -- Name: kronika_zdarzenie_powiazane_osoby_id_seq; Type: SEQUENCE SET; Schema: public; Owner: projectuser
 --
 
-SELECT pg_catalog.setval('public.kronika_zdarzenie_powiazane_osoby_id_seq', 1, false);
+SELECT pg_catalog.setval('public.kronika_zdarzenie_powiazane_osoby_id_seq', 1, true);
 
 
 --
@@ -4259,14 +4396,14 @@ SELECT pg_catalog.setval('public.miejsca_kraj_id_seq', 12, true);
 -- Name: miejsca_miejsce_id_seq; Type: SEQUENCE SET; Schema: public; Owner: projectuser
 --
 
-SELECT pg_catalog.setval('public.miejsca_miejsce_id_seq', 32, true);
+SELECT pg_catalog.setval('public.miejsca_miejsce_id_seq', 42, true);
 
 
 --
 -- Name: miejsca_typmiejsca_id_seq; Type: SEQUENCE SET; Schema: public; Owner: projectuser
 --
 
-SELECT pg_catalog.setval('public.miejsca_typmiejsca_id_seq', 20, true);
+SELECT pg_catalog.setval('public.miejsca_typmiejsca_id_seq', 24, true);
 
 
 --
