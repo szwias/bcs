@@ -9,7 +9,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('czapki', '0001_initial'),
-        ('czlonkowie', '0002_delete_osoby_alter_zarzad_options_and_more'),
+        ('osoby', '0002_delete_osoby_alter_zarzad_options_and_more'),
     ]
 
     operations = [

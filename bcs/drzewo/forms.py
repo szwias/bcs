@@ -1,6 +1,6 @@
 # drzewo/drzewo.py
 from django import forms
-from czlonkowie.models import Czlonek
+from osoby.models import Czlonek
 from core.utils.Choices import TextChoose
 from core.utils.czas.Czas import MAKSYMALNA_ILOSC_POKOLEN
 
@@ -27,7 +27,7 @@ class ScopedTreeRenderForm(forms.Form):
     def __init__(self, *args, **kwargs): # TODO: add autocompletion
         super().__init__(*args, **kwargs)
         # self.fields['member'].widget = autocomplete.ModelSelect2(
-        #     url='czlonkowie_autocomplete:czlonek-records-autocomplete'
+        #     url='osoby_autocomplete:czlonek-records-autocomplete'
         # )
 
     def clean_gen(self):

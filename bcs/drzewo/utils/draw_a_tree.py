@@ -1,8 +1,8 @@
-# czlonkowie/management/commands/draw_a_tree.py
+# osoby/management/commands/draw_a_tree.py
 from collections import defaultdict
 from core.utils.Choices import TextChoose
 from core.utils.czas.Czas import ROK_ZALOZENIA, BIEZACY_ROK
-from czlonkowie.models import Czlonek
+from osoby.models import Czlonek
 from drzewo.utils.tree_rendering import render_layered_graph  # my helper
 from drzewo.utils.essentials import modify_layers_structure, TreeNode
 

@@ -6,7 +6,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('czlonkowie', '0010_rename_bractwo_innaosoba_bractwo_do_ktorego_nalezy'),
+        ('osoby', '0010_rename_bractwo_innaosoba_bractwo_do_ktorego_nalezy'),
         ('kronika', '0005_alter_charakterystykadzialanzarzadu_autor'),
     ]
 
@@ -18,21 +18,21 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='obrazwydarzenie',
             name='widoczne_osoby',
-            field=models.ManyToManyField(blank=True, to='czlonkowie.osoba', verbose_name='Widoczne osoby'),
+            field=models.ManyToManyField(blank=True, to='osoby.osoba', verbose_name='Widoczne osoby'),
         ),
         migrations.AddField(
             model_name='obrazzdarzenie',
             name='widoczne_osoby',
-            field=models.ManyToManyField(blank=True, to='czlonkowie.osoba', verbose_name='Widoczne osoby'),
+            field=models.ManyToManyField(blank=True, to='osoby.osoba', verbose_name='Widoczne osoby'),
         ),
         migrations.AddField(
             model_name='wydarzenie',
             name='uczestnicy',
-            field=models.ManyToManyField(blank=True, to='czlonkowie.osoba', verbose_name='Uczestnicy wydarzenia'),
+            field=models.ManyToManyField(blank=True, to='osoby.osoba', verbose_name='Uczestnicy wydarzenia'),
         ),
         migrations.AddField(
             model_name='zdarzenie',
             name='powiazane_osoby',
-            field=models.ManyToManyField(blank=True, to='czlonkowie.osoba', verbose_name='Powiązane osoby'),
+            field=models.ManyToManyField(blank=True, to='osoby.osoba', verbose_name='Powiązane osoby'),
         ),
     ]

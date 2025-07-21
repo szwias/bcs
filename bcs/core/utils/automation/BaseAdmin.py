@@ -65,7 +65,6 @@ class BaseModelAdmin(admin.ModelAdmin):
             elif (isinstance(f, str)
             and isinstance(self.model._meta.get_field(f), ForeignKey)):
                 # Wrap FK fields with our limited filter
-                print(self.model._meta.get_field(f))
                 smart_filters.append((f, UsedOnlyFKFilter))
             else:
                 smart_filters.append(f)

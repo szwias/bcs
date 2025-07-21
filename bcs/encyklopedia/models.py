@@ -37,7 +37,7 @@ class Bractwo(models.Model):
     )
 
     zalozyciele = models.ManyToManyField(
-        'czlonkowie.Osoba', blank=True, verbose_name="Założyciele"
+        'osoby.Osoba', blank=True, verbose_name="Założyciele"
     )
 
     rok_zalozenia = models.IntegerField(
@@ -104,7 +104,7 @@ class TradycjaBCS(models.Model):
     )
 
     autor = models.ForeignKey(
-        'czlonkowie.Osoba',
+        'osoby.Osoba',
         blank=True,
         null=True,
         on_delete=models.SET_NULL,
@@ -195,7 +195,7 @@ class Pojecie(models.Model):
     )
 
     autor = models.ForeignKey(
-        'czlonkowie.Osoba',
+        'osoby.Osoba',
         blank=True,
         null=True,
         on_delete=models.SET_NULL,
@@ -232,7 +232,7 @@ class Zrodlo(models.Model):
     )
 
     autorzy = models.ManyToManyField(
-        'czlonkowie.Osoba', blank=True, verbose_name="Autorzy"
+        'osoby.Osoba', blank=True, verbose_name="Autorzy"
     )
 
     zawartosc = models.TextField(
@@ -262,7 +262,7 @@ class Zwyczaj(models.Model):
     )
 
     autor = models.ForeignKey(
-        'czlonkowie.Osoba',
+        'osoby.Osoba',
         blank=True,
         null=True,
         on_delete=models.SET_NULL,
@@ -296,7 +296,7 @@ class Powiedzenie(models.Model):
     )
 
     autor = models.ForeignKey(
-        'czlonkowie.Osoba',
+        'osoby.Osoba',
         blank=True,
         null=True,
         on_delete=models.SET_NULL,
@@ -304,7 +304,7 @@ class Powiedzenie(models.Model):
     )
 
     adresaci = models.ManyToManyField(
-        'czlonkowie.Osoba',
+        'osoby.Osoba',
         blank=True,
         verbose_name="Adresat/adresaci powiedzenia",
         related_name="zwiazane_zen_powiedzenia"

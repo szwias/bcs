@@ -7,7 +7,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('czlonkowie', '0004_remove_bean_czapka_1_remove_bean_czapka_2_and_more'),
+        ('osoby', '0004_remove_bean_czapka_1_remove_bean_czapka_2_and_more'),
         ('kronika', '0003_alter_obrazzdarzenie_miejsce_alter_zdarzenie_miejsce_and_more'),
     ]
 
@@ -15,6 +15,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='charakterystykadzialanzarzadu',
             name='autor',
-            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, to='czlonkowie.oldczlonek', verbose_name='Autor'),
+            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, to='osoby.czlonek', verbose_name='Autor'),
         ),
     ]

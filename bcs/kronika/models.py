@@ -40,7 +40,7 @@ class Zdarzenie(models.Model):
     )
 
     powiazane_osoby = models.ManyToManyField(
-        'czlonkowie.Osoba', blank=True, verbose_name="Powiązane osoby"
+        'osoby.Osoba', blank=True, verbose_name="Powiązane osoby"
     )
 
     class Meta:
@@ -113,7 +113,7 @@ class ObrazZdarzenie(models.Model):
     )
 
     widoczne_osoby = models.ManyToManyField(
-        'czlonkowie.Osoba', blank=True, verbose_name="Widoczne osoby"
+        'osoby.Osoba', blank=True, verbose_name="Widoczne osoby"
     )
 
     class Meta:
@@ -227,12 +227,8 @@ class Wydarzenie(models.Model):
     )
 
     uczestnicy = models.ManyToManyField(
-        'czlonkowie.Osoba', blank=True, verbose_name="Uczestnicy wydarzenia"
+        'osoby.Osoba', blank=True, verbose_name="Uczestnicy wydarzenia"
     )
-
-    # obrazy = models.ManyToManyField(
-    #     "ObrazWydarzenie", blank=True, verbose_name="Zdjęcia", related_name="po_cholere_to_polaczenie"
-    # )
 
 
     class Meta:
@@ -274,7 +270,7 @@ class ObrazWydarzenie(models.Model):
     )
 
     widoczne_osoby = models.ManyToManyField(
-        'czlonkowie.Osoba', blank=True, verbose_name="Widoczne osoby"
+        'osoby.Osoba', blank=True, verbose_name="Widoczne osoby"
     )
 
     class Meta:
@@ -323,7 +319,7 @@ class Proces(models.Model):
 
 class CharakterystykaDzialanZarzadu(models.Model):
     zarzad = models.ForeignKey(
-        "czlonkowie.Zarzad",
+        "osoby.Zarzad",
         blank=True,
         null=True,
         on_delete=models.SET_NULL,
@@ -331,7 +327,7 @@ class CharakterystykaDzialanZarzadu(models.Model):
     )
 
     dawny_zarzad = models.ForeignKey(
-        "czlonkowie.DawnyZarzad",
+        "osoby.DawnyZarzad",
         blank=True,
         null=True,
         on_delete=models.SET_NULL,
@@ -339,7 +335,7 @@ class CharakterystykaDzialanZarzadu(models.Model):
     )
 
     autor = models.ForeignKey(
-        "czlonkowie.Czlonek",
+        "osoby.Czlonek",
         null=True,
         on_delete=models.SET_NULL,
         verbose_name="Autor",

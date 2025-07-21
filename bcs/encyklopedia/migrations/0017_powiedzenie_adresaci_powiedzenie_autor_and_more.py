@@ -7,7 +7,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('czlonkowie', '0010_rename_bractwo_innaosoba_bractwo_do_ktorego_nalezy'),
+        ('osoby', '0010_rename_bractwo_innaosoba_bractwo_do_ktorego_nalezy'),
         ('encyklopedia', '0016_pojecie_autor'),
     ]
 
@@ -15,21 +15,21 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='powiedzenie',
             name='adresaci',
-            field=models.ManyToManyField(blank=True, related_name='zwiazane_zen_powiedzenia', to='czlonkowie.osoba', verbose_name='Adresat/adresaci powiedzenia'),
+            field=models.ManyToManyField(blank=True, related_name='zwiazane_zen_powiedzenia', to='osoby.osoba', verbose_name='Adresat/adresaci powiedzenia'),
         ),
         migrations.AddField(
             model_name='powiedzenie',
             name='autor',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, to='czlonkowie.osoba', verbose_name='Autor'),
+            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, to='osoby.osoba', verbose_name='Autor'),
         ),
         migrations.AddField(
             model_name='zrodlo',
             name='autorzy',
-            field=models.ManyToManyField(blank=True, to='czlonkowie.osoba', verbose_name='Autorzy'),
+            field=models.ManyToManyField(blank=True, to='osoby.osoba', verbose_name='Autorzy'),
         ),
         migrations.AddField(
             model_name='zwyczaj',
             name='autor',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, to='czlonkowie.osoba', verbose_name='Osoba, która zapoczątkowała zwyczaj'),
+            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, to='osoby.osoba', verbose_name='Osoba, która zapoczątkowała zwyczaj'),
         ),
     ]

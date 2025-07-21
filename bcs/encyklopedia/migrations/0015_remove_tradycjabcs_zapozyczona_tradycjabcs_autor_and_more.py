@@ -7,7 +7,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('czlonkowie', '0010_rename_bractwo_innaosoba_bractwo_do_ktorego_nalezy'),
+        ('osoby', '0010_rename_bractwo_innaosoba_bractwo_do_ktorego_nalezy'),
         ('encyklopedia', '0014_bractwo_zalozyciele'),
     ]
 
@@ -19,7 +19,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='tradycjabcs',
             name='autor',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, to='czlonkowie.osoba', verbose_name='Autor tradycji'),
+            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, to='osoby.osoba', verbose_name='Autor tradycji'),
         ),
         migrations.AddField(
             model_name='tradycjabcs',

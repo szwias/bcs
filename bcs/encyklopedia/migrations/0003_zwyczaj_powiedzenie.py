@@ -7,7 +7,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('czlonkowie', '0001_initial'),
+        ('osoby', '0001_initial'),
         ('encyklopedia', '0002_alter_pojecie_options_alter_zrodlo_options_and_more'),
     ]
 
@@ -32,7 +32,7 @@ class Migration(migrations.Migration):
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('tekst', models.TextField(verbose_name='Tekst')),
                 ('kontekst', models.TextField(blank=True, verbose_name='Kontekst')),
-                ('autor', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, to='czlonkowie.czlonek', verbose_name='Autor')),
+                ('autor', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, to='osoby.czlonek', verbose_name='Autor')),
             ],
             options={
                 'verbose_name': 'Powiedzenie',

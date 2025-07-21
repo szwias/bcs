@@ -23,10 +23,10 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('autocomplete/core/', include('core.autocomplete_urls', 'core_autocomplete')),
     path('autocomplete/czapki', include('czapki.autocomplete_urls', 'czapki_autocomplete')),
-    path('autocomplete/czlonkowie/', include('czlonkowie.autocomplete_urls', 'czlonkowie_autocomplete')),
     path('autocomplete/encyklopedia/', include('encyklopedia.autocomplete_urls', 'encyklopedia_autocomplete')),
     path('autocomplete/kronika/', include('kronika.autocomplete_urls', 'kronika_autocomplete')),
     path('autocomplete/miejsca/', include('miejsca.autocomplete_urls', 'miejsca_autocomplete')),
+    path('autocomplete/osoby/', include('osoby.autocomplete_urls', 'osoby_autocomplete')),
     path("drzewo/", include("drzewo.urls")),
 ]
 

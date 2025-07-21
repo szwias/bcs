@@ -11,7 +11,7 @@ class Migration(migrations.Migration):
     dependencies = [
         ('contenttypes', '0002_remove_content_type_name'),
         ('czapki', '0004_alter_rodzajczapki_kraje'),
-        ('czlonkowie', '0004_remove_bean_czapka_1_remove_bean_czapka_2_and_more'),
+        ('osoby', '0004_remove_bean_czapka_1_remove_bean_czapka_2_and_more'),
         ('encyklopedia', '0013_alter_pojecie_origins_alter_tradycjabcs_nazwa_and_more'),
     ]
 
@@ -32,12 +32,12 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='oldbean',
             name='rodzic_1',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='old_beani_pierwszy_wybor', to='czlonkowie.oldczlonek', verbose_name='Rodzic czapkowy'),
+            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='old_beani_pierwszy_wybor', to='osoby.oldczlonek', verbose_name='Rodzic czapkowy'),
         ),
         migrations.AlterField(
             model_name='oldbean',
             name='rodzic_2',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='old_beani_drugi_wybor', to='czlonkowie.oldczlonek', verbose_name='Drugi rodzic czapkowy'),
+            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='old_beani_drugi_wybor', to='osoby.oldczlonek', verbose_name='Drugi rodzic czapkowy'),
         ),
         migrations.AlterField(
             model_name='oldczlonek',
@@ -77,7 +77,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Czlonek',
             fields=[
-                ('osoba_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='czlonkowie.osoba')),
+                ('osoba_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='osoby.osoba')),
                 ('staz', models.IntegerField(choices=[(2009, '2009'), (2010, '2010'), (2011, '2011'), (2012, '2012'), (2013, '2013'), (2014, '2014'), (2015, '2015'), (2016, '2016'), (2017, '2017'), (2018, '2018'), (2019, '2019'), (2020, '2020'), (2021, '2021'), (2022, '2022'), (2023, '2023'), (2024, '2024'), (2025, '2025'), (1111111111, 'Nie wiem')], default=2024, verbose_name='Rok pojawienia się')),
                 ('pewnosc_stazu', models.CharField(choices=[('T', 'Na pewno wcześniej się nie pojawiał'), ('N', 'Ale mógł pojawić się wcześniej')], default='T', verbose_name='Pewność daty stażu')),
                 ('aktywnosc', models.CharField(choices=[('A', 'Aktywny'), ('M', 'Aktywny tylko w mediach'), ('N', 'Nieaktywny'), ('O', 'Odszedł z grupy')], default='N', max_length=1, verbose_name='Aktywność')),
@@ -92,38 +92,38 @@ class Migration(migrations.Migration):
                 ('imie_piwne_2', models.CharField(blank=True, default='Nie dotyczy', max_length=100, verbose_name='Wpisz inne imię czapkowe:')),
                 ('czapka_1', models.ForeignKey(default=czapki.models.Czapka.get_dont_know_czapka, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='%(class)s_posiadacze_pierwszy_wybor', to='czapki.czapka', verbose_name='Czapka')),
                 ('czapka_2', models.ForeignKey(default=czapki.models.Czapka.get_not_applicable_czapka, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='%(class)s_posiadacze_drugi_wybor', to='czapki.czapka', verbose_name='Inna czapka')),
-                ('rodzic_1', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='dzieci_pierwszy_wybor', to='czlonkowie.czlonek', verbose_name='Rodzic czapkowy')),
-                ('rodzic_2', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='dzieci_drugi_wybor', to='czlonkowie.czlonek', verbose_name='Drugi rodzic czapkowy')),
+                ('rodzic_1', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='dzieci_pierwszy_wybor', to='osoby.czlonek', verbose_name='Rodzic czapkowy')),
+                ('rodzic_2', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='dzieci_drugi_wybor', to='osoby.czlonek', verbose_name='Drugi rodzic czapkowy')),
             ],
             options={
                 'verbose_name': 'Członek',
                 'verbose_name_plural': 'Członkowie',
                 'ordering': ['imie', 'imie_piwne_1', 'imie_piwne_2', 'nazwisko'],
             },
-            bases=('czlonkowie.osoba', models.Model),
+            bases=('osoby.osoba', models.Model),
         ),
         migrations.CreateModel(
             name='Bean',
             fields=[
-                ('osoba_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='czlonkowie.osoba')),
+                ('osoba_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='osoby.osoba')),
                 ('staz', models.IntegerField(choices=[(2009, '2009'), (2010, '2010'), (2011, '2011'), (2012, '2012'), (2013, '2013'), (2014, '2014'), (2015, '2015'), (2016, '2016'), (2017, '2017'), (2018, '2018'), (2019, '2019'), (2020, '2020'), (2021, '2021'), (2022, '2022'), (2023, '2023'), (2024, '2024'), (2025, '2025'), (1111111111, 'Nie wiem')], default=2024, verbose_name='Rok pojawienia się')),
                 ('pewnosc_stazu', models.CharField(choices=[('T', 'Na pewno wcześniej się nie pojawiał'), ('N', 'Ale mógł pojawić się wcześniej')], default='T', verbose_name='Pewność daty stażu')),
                 ('czapka_1', models.ForeignKey(default=czapki.models.Czapka.get_dont_know_czapka, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='%(class)s_posiadacze_pierwszy_wybor', to='czapki.czapka', verbose_name='Czapka')),
                 ('czapka_2', models.ForeignKey(default=czapki.models.Czapka.get_not_applicable_czapka, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='%(class)s_posiadacze_drugi_wybor', to='czapki.czapka', verbose_name='Inna czapka')),
-                ('rodzic_1', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='beani_pierwszy_wybor', to='czlonkowie.czlonek', verbose_name='Rodzic czapkowy')),
-                ('rodzic_2', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='beani_drugi_wybor', to='czlonkowie.czlonek', verbose_name='Drugi rodzic czapkowy')),
+                ('rodzic_1', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='beani_pierwszy_wybor', to='osoby.czlonek', verbose_name='Rodzic czapkowy')),
+                ('rodzic_2', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='beani_drugi_wybor', to='osoby.czlonek', verbose_name='Drugi rodzic czapkowy')),
             ],
             options={
                 'verbose_name': 'Bean',
                 'verbose_name_plural': 'Beani',
                 'ordering': ['imie', 'nazwisko'],
             },
-            bases=('czlonkowie.osoba', models.Model),
+            bases=('osoby.osoba', models.Model),
         ),
         migrations.CreateModel(
             name='InnaOsoba',
             fields=[
-                ('osoba_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='czlonkowie.osoba')),
+                ('osoba_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='osoby.osoba')),
                 ('opis', models.TextField(blank=True, verbose_name='Opis')),
                 ('kategoria', models.CharField(choices=[('I', 'Inna'), ('Inne BCS', 'Inne bractwo czapkowe'), ('Org', 'Organizacja'), ('PC', 'Przyjaciel Bractwa')], default='I', max_length=10, verbose_name='Kategoria')),
                 ('bractwo', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='czlonkowie_bractwa', to='encyklopedia.bractwo', verbose_name='Bractwo')),
@@ -133,6 +133,6 @@ class Migration(migrations.Migration):
                 'verbose_name_plural': 'Inne osoby (nie-członkowie)',
                 'ordering': ['imie', 'nazwisko'],
             },
-            bases=('czlonkowie.osoba',),
+            bases=('osoby.osoba',),
         ),
     ]

@@ -10,7 +10,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('czapki', '0004_alter_rodzajczapki_kraje'),
-        ('czlonkowie', '0003_alter_czlonek_czapka_1_alter_czlonek_czapka_2_and_more'),
+        ('osoby', '0003_alter_czlonek_czapka_1_alter_czlonek_czapka_2_and_more'),
         ('encyklopedia', '0013_alter_pojecie_origins_alter_tradycjabcs_nazwa_and_more'),
     ]
 
@@ -146,7 +146,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='halloffame',
             name='bean',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, to='czlonkowie.oldbean', verbose_name='Bean'),
+            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, to='osoby.oldbean', verbose_name='Bean'),
         ),
         migrations.AlterField(
             model_name='oldczlonek',
@@ -324,7 +324,7 @@ class Migration(migrations.Migration):
                 null=True,
                 on_delete=django.db.models.deletion.SET_NULL,
                 related_name='old_dzieci_pierwszy_wybor',
-                to='czlonkowie.oldczlonek',
+                to='osoby.oldczlonek',
                 verbose_name='Rodzic czapkowy'
             ),
         ),
@@ -336,83 +336,83 @@ class Migration(migrations.Migration):
                 null=True,
                 on_delete=django.db.models.deletion.SET_NULL,
                 related_name='old_dzieci_drugi_wybor',
-                to='czlonkowie.oldczlonek',
+                to='osoby.oldczlonek',
                 verbose_name='Drugi rodzic czapkowy'
             ),
         ),
         migrations.AlterField(
             model_name='dawnyzarzad',
             name='bibendi',
-            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='kadencje_jako_bibendi_dawnego_zarzadu', to='czlonkowie.oldczlonek', verbose_name='Bibendi'),
+            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='kadencje_jako_bibendi_dawnego_zarzadu', to='osoby.oldczlonek', verbose_name='Bibendi'),
         ),
         migrations.AlterField(
             model_name='dawnyzarzad',
             name='cantandi',
-            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='kadencje_jako_cantandi_dawnego_zarzadu', to='czlonkowie.oldczlonek', verbose_name='Cantandi'),
+            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='kadencje_jako_cantandi_dawnego_zarzadu', to='osoby.oldczlonek', verbose_name='Cantandi'),
         ),
         migrations.AlterField(
             model_name='dawnyzarzad',
             name='kasztelan',
-            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='kadencje_jako_kasztelan_dawnego_zarzadu', to='czlonkowie.oldczlonek', verbose_name='Kasztelan'),
+            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='kadencje_jako_kasztelan_dawnego_zarzadu', to='osoby.oldczlonek', verbose_name='Kasztelan'),
         ),
         migrations.AlterField(
             model_name='dawnyzarzad',
             name='kontakt_z_SKNHI',
-            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='kadencje_jako_kontakt_z_SKNHI_dawnego_zarzadu', to='czlonkowie.oldczlonek', verbose_name='Kontakt Z SKNHI'),
+            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='kadencje_jako_kontakt_z_SKNHI_dawnego_zarzadu', to='osoby.oldczlonek', verbose_name='Kontakt Z SKNHI'),
         ),
         migrations.AlterField(
             model_name='dawnyzarzad',
             name='kontakt_z_SSUJ',
-            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='kadencje_jako_kontakt_z_SSUJ_dawnego_zarzadu', to='czlonkowie.oldczlonek', verbose_name='Kontakt Z SSUJ'),
+            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='kadencje_jako_kontakt_z_SSUJ_dawnego_zarzadu', to='osoby.oldczlonek', verbose_name='Kontakt Z SSUJ'),
         ),
         migrations.AlterField(
             model_name='dawnyzarzad',
             name='magister_disciplinae',
-            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='kadencje_jako_magister_disciplinae_dawnego_zarzadu', to='czlonkowie.oldczlonek', verbose_name='Magister Disciplinae'),
+            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='kadencje_jako_magister_disciplinae_dawnego_zarzadu', to='osoby.oldczlonek', verbose_name='Magister Disciplinae'),
         ),
         migrations.AlterField(
             model_name='dawnyzarzad',
             name='skarbnik',
-            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='kadencje_jako_skarbnik_dawnego_zarzadu', to='czlonkowie.oldczlonek', verbose_name='Skarbnik'),
+            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='kadencje_jako_skarbnik_dawnego_zarzadu', to='osoby.oldczlonek', verbose_name='Skarbnik'),
         ),
         migrations.AlterField(
             model_name='halloffame',
             name='czlonek',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, to='czlonkowie.oldczlonek', verbose_name='Członek'),
+            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, to='osoby.oldczlonek', verbose_name='Członek'),
         ),
         migrations.AlterField(
             model_name='imieszlacheckie',
             name='imie',
-            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='czlonkowie.oldczlonek', verbose_name='Imię szlacheckie'),
+            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='osoby.oldczlonek', verbose_name='Imię szlacheckie'),
         ),
         migrations.AlterField(
             model_name='wielkimistrz',
             name='imie',
-            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, to='czlonkowie.oldczlonek', verbose_name='Imię'),
+            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, to='osoby.oldczlonek', verbose_name='Imię'),
         ),
         migrations.AlterField(
             model_name='zarzad',
             name='cantandi',
-            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='kadencje_jako_cantandi', to='czlonkowie.oldczlonek', verbose_name='Cantandi'),
+            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='kadencje_jako_cantandi', to='osoby.oldczlonek', verbose_name='Cantandi'),
         ),
         migrations.AlterField(
             model_name='zarzad',
             name='kasztelan',
-            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='kadencje_jako_kasztelan', to='czlonkowie.oldczlonek', verbose_name='Kasztelan'),
+            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='kadencje_jako_kasztelan', to='osoby.oldczlonek', verbose_name='Kasztelan'),
         ),
         migrations.AlterField(
             model_name='zarzad',
             name='sekretarz',
-            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='kadencje_jako_sekretarz', to='czlonkowie.oldczlonek', verbose_name='Sekretarz'),
+            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='kadencje_jako_sekretarz', to='osoby.oldczlonek', verbose_name='Sekretarz'),
         ),
         migrations.AlterField(
             model_name='zarzad',
             name='skarbnik',
-            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='kadencje_jako_skarbnik', to='czlonkowie.oldczlonek', verbose_name='Skarbnik'),
+            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='kadencje_jako_skarbnik', to='osoby.oldczlonek', verbose_name='Skarbnik'),
         ),
         migrations.AlterField(
             model_name='zwierzeczapkowe',
             name='czlonek',
-            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, to='czlonkowie.oldczlonek', verbose_name='Członek'),
+            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, to='osoby.oldczlonek', verbose_name='Członek'),
         ),
     ]

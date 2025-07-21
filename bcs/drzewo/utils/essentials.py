@@ -1,5 +1,5 @@
 from collections import defaultdict
-from czlonkowie.models import Czlonek
+from osoby.models import Czlonek
 from core.utils.Choices import IntAlt
 
 def modify_layers_structure(layers):

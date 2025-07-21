@@ -6,7 +6,7 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('czlonkowie', '0008_remove_oldbean_czapka_1_remove_oldbean_czapka_2_and_more'),
+        ('osoby', '0008_remove_oldbean_czapka_1_remove_oldbean_czapka_2_and_more'),
         ('kronika', '0005_alter_charakterystykadzialanzarzadu_autor'),
     ]
 

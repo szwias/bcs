@@ -5,8 +5,8 @@ from django.contrib.contenttypes.models import ContentType
 
 def migrate_old_to_new(apps, schema_editor):
     # Get models
-    Czlonek = apps.get_model('czlonkowie', 'Czlonek')
-    OldCzlonek = apps.get_model('czlonkowie', 'OldCzlonek')
+    Czlonek = apps.get_model('osoby', 'Czlonek')
+    OldCzlonek = apps.get_model('osoby', 'OldCzlonek')
 
     # STEP 1: Migrate Czlonek (ID-preserving)
     for old in OldCzlonek.objects.all():
@@ -43,7 +43,7 @@ def migrate_old_to_new(apps, schema_editor):
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('czlonkowie', '0005_osoba_alter_oldbean_rodzic_1_alter_oldbean_rodzic_2_and_more'),
+        ('osoby', '0005_osoba_alter_oldbean_rodzic_1_alter_oldbean_rodzic_2_and_more'),
     ]
 
     operations = [

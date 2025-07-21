@@ -42,11 +42,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'core',
     'czapki',
-    'czlonkowie',
     'encyklopedia',
     'drzewo',
     'kronika',
     'miejsca',
+    'osoby',
+    # 'osoby.apps.OsobyConfig',
     'dal',  # This is the django-autocomplete-light app
     'dal_select2',  # This is for the Select2 widget (optional but recommended)
 ]
