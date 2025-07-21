@@ -13,6 +13,7 @@ class Okolicznosci(models.TextChoices):
     INNE = "I", "Inne okoliczności"
     WYDARZENIE = "Wyd", "Na wydarzeniu czapkowym"
 
+# TODO: create Korporacja model
 
 class Bractwo(models.Model):
 

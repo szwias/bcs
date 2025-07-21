@@ -38,15 +38,6 @@ class TradycjaBCSForm(forms.ModelForm):
         fields = '__all__'
         widgets = build_widgets(autocomplete_widgets[TradycjaBCS.__name__])
 
-    def clean(self):
-        cd = super().clean()
-
-        rodzaj = cd.get('rodzaj')
-        if rodzaj != TradycjaBCS.Authors.BCS:
-            cd['okolicznosci_powstania'] = TradycjaBCS.Okolicznosci.INNE
-
-        return cd
-
 
 class TradycjaInnegoBractwaForm(forms.ModelForm):
     class Meta:

@@ -49,19 +49,18 @@ class Zdarzenie(models.Model):
         ordering = ["-data", "nazwa"]
 
     def __str__(self):
-        name = f"{self.data} {self.godzina} - {self.nazwa}"
+        godzina = str(self.godzina) + " " if self.godzina else ""
+        wydarzenie_name = ""
         if self.wydarzenie:
-            wydarzenie_name = ""
             if self.wydarzenie.typ_wydarzenia and not self.wydarzenie.typ_wydarzenia.is_sentinel():
                 typ = str(self.wydarzenie.typ_wydarzenia)
             elif self.wydarzenie.typ_wyjazdu:
                 typ = str(self.wydarzenie.typ_wyjazdu)
             else:
                 typ = ""
-            wydarzenie_name += f"{typ} \"{self.wydarzenie.nazwa}\""
-            name += f" ({wydarzenie_name})"
+            wydarzenie_name = f"{typ} \"{self.wydarzenie.nazwa}\""
 
-        return name
+        return f"{self.data} {godzina}- {self.nazwa} ({wydarzenie_name})"
 
     def save(self, *args, **kwargs):
         created = self._state.adding
