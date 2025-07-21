@@ -11,27 +11,42 @@ autocomplete_configs = [
     (
         Bean,
         ['staz'], [],
-        [czapki['Czapka'], Czlonek.__name__]),
+        [
+            Czlonek.__name__,
+            czapki['Czapka'],
+        ]),
     (
         Czlonek,
         ['rok_chrztu', 'miesiac_chrztu', 'dzien_chrztu', 'status', 'staz'], [],
-        [czapki['Czapka'], Czlonek.__name__]),
+        [
+            Czlonek.__name__,
+            czapki['Czapka'],
+        ]),
     (
         DawnyZarzad,
         [], [],
-        [WielkiMistrz.__name__, Czlonek.__name__, core['Kadencja'], kronika['CharakterystykaDzialanZarzadu']]),
+        [
+            Czlonek.__name__, WielkiMistrz.__name__,
+            core['Kadencja'], kronika['CharakterystykaDzialanZarzadu']
+        ]),
     (
         HallOfFame,
         [], [],
-        [Czlonek.__name__, Bean.__name__]),
+        [
+            Bean.__name__, Czlonek.__name__,
+        ]),
     (
         ImieSzlacheckie,
         [], [],
-        [Czlonek.__name__]),
+        [
+            Czlonek.__name__,
+        ]),
     (
         InnaOsoba,
         ['kategoria'], [],
-        [encyklopedia['Bractwo']]),
+        [
+            encyklopedia['Bractwo'],
+        ]),
     (
         Osoba,
         [], [],
@@ -39,15 +54,22 @@ autocomplete_configs = [
     (
         WielkiMistrz,
         [], [],
-        [Czlonek.__name__]),
+        [
+            Czlonek.__name__,
+        ]),
     (
         Zarzad,
         [], [],
-        [WielkiMistrz.__name__, Czlonek.__name__, core['Kadencja'], kronika['CharakterystykaDzialanZarzadu']]),
+        [
+            Czlonek.__name__, WielkiMistrz.__name__,
+            core['Kadencja'], kronika['CharakterystykaDzialanZarzadu'],
+        ]),
     (
         ZwierzeCzapkowe,
         [], [],
-        [Czlonek.__name__]),
+        [
+            Czlonek.__name__,
+        ]),
 ]
 
 autocomplete_urls, autocomplete_widgets = setup_autocompletes(autocomplete_configs, globals())

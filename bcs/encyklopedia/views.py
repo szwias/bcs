@@ -10,35 +10,53 @@ autocomplete_configs = [
     (
         Bractwo,
         ['wiek_tradycje', 'rok_zalozenia'], [],
-        [miejsca['Kraj'], GrupaBractw.__name__, osoby['Osoba']]),
+        [
+            GrupaBractw.__name__,
+            miejsca['Kraj'], osoby['Osoba'],
+        ]),
     (
         GrupaBractw,
         [], [],
-        [miejsca['Kraj'], czapki['RodzajCzapki']]),
+        [
+            czapki['RodzajCzapki'], miejsca['Kraj'],
+        ]),
     (
         Pojecie,
         ['origins'], [],
-        [kronika['Wydarzenie'], osoby['Osoba']]),
+        [
+            kronika['Wydarzenie'], osoby['Osoba'],
+        ]),
     (
         Powiedzenie,
         [], [],
-        [osoby['Osoba']]),
+        [
+            osoby['Osoba'],
+        ]),
     (
         TradycjaBCS,
         ['okolicznosci_powstania', 'zapozyczona_czy_autorska'], [],
-        [kronika['Wydarzenie'], GrupaBractw.__name__, osoby['Osoba']]),
+        [
+            GrupaBractw.__name__,
+            kronika['Wydarzenie'], osoby['Osoba'],
+        ]),
     (
         TradycjaInnegoBractwa,
         [], [],
-        [GrupaBractw.__name__]),
+        [
+            GrupaBractw.__name__],
+    ),
     (
         Zwyczaj,
         [], [],
-        [osoby['Osoba']]),
+        [
+            osoby['Osoba'],
+        ]),
     (
         Zrodlo,
         [], [],
-        [osoby['Osoba']])
+        [
+            osoby['Osoba'],
+        ])
 ]
 
 autocomplete_urls, autocomplete_widgets = setup_autocompletes(autocomplete_configs, globals())

@@ -5,17 +5,23 @@ autocomplete_configs = [
     (
         Miejsce,
         [], [],
-        [TypMiejsca.__name__]
+        [
+            TypMiejsca.__name__,
+        ]
     ),
     (
         Uczelnia,
         [], [],
-        [Kraj.__name__]
+        [
+            Kraj.__name__,
+        ]
     ),
     (
         Wydzial,
         [], [],
-        [Uczelnia.__name__]
+        [
+            Uczelnia.__name__,
+        ]
     ),
 ]
 

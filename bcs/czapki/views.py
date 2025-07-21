@@ -7,11 +7,15 @@ autocomplete_configs = [
     (
         Czapka,
         [], [],
-        [miejsca['Wydzial']]),
+        [
+            miejsca['Wydzial'],
+        ]),
     (
         RodzajCzapki,
         [], [],
-        [miejsca['Kraj']]),
+        [
+            miejsca['Kraj'],
+        ]),
 ]
 
 autocomplete_urls, autocomplete_widgets = setup_autocompletes(autocomplete_configs, globals())
