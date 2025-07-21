@@ -52,10 +52,12 @@ class Zdarzenie(models.Model):
         name = f"{self.data} {self.godzina} - {self.nazwa}"
         if self.wydarzenie:
             wydarzenie_name = ""
-            if self.wydarzenie.get_typ_wydarzenia_display() != TextAlt.NOT_APPLICABLE[1]:
-                typ = self.wydarzenie.get_typ_wydarzenia_display()
+            if self.wydarzenie.typ_wydarzenia and not self.wydarzenie.typ_wydarzenia.is_sentinel():
+                typ = str(self.wydarzenie.typ_wydarzenia)
+            elif self.wydarzenie.typ_wyjazdu:
+                typ = str(self.wydarzenie.typ_wyjazdu)
             else:
-                typ = self.wydarzenie.get_typ_wyjazdu_display()
+                typ = ""
             wydarzenie_name += f"{typ} \"{self.wydarzenie.nazwa}\""
             name += f" ({wydarzenie_name})"
 
@@ -170,6 +172,13 @@ class TypWydarzenia(models.Model):
     def __str__(self):
         return self.typ
 
+    def is_sentinel(self):
+        return self.typ == "Nie dotyczy"
+
+    @staticmethod
+    def get_not_applicable_typ():
+        return TypWydarzenia.objects.get(typ="Nie dotyczy")
+
 
 class TypWyjazdu(models.Model):
     typ = models.CharField(
@@ -186,33 +195,15 @@ class TypWyjazdu(models.Model):
     def __str__(self):
         return self.typ
 
+    def is_sentinel(self):
+        return self.typ == "Nie dotyczy"
+
+    @staticmethod
+    def get_not_applicable_typ():
+        return TypWyjazdu.objects.get(typ="Nie dotyczy")
+
 
 class Wydarzenie(models.Model):
-    class TypyWydarzen(models.TextChoices):
-        AKCJA = "Akcja", "Akcja"
-        INNE = "Inne", "Inne"
-        KARCZMA = "Karczma", "Karczma"
-        KINO = "Kino", "Kino"
-        KONFERENCJA_NAUKOWA = "KonfNauk", "Konferencja naukowa/wykład/prelekcja"
-        GROBY = "Groby", "Groby"
-        HISTORYCZNE = "Hist", "Historyczne"
-        OGNISKO = "Ognisko", "Grill/Ognisko"
-        OSTRY_DYZUR = "Ostry", "Ostry Dyżur"
-        PLANSZOWKI = "Plansz", "Planszówki"
-        REAKTYWACJA = "Reakty", "Reaktywacja"
-        TEATR = "Teatr", "Teatr"
-        WALNE = "Walne", "Walne"
-        WYCIECZKA = "Wyciecz", "Wycieczka"
-        WYBORY = "Wybory", "Wybory"
-        ULANSKIE_ZDROWIE = "Ulanskie", "Ułańskie Zdrowie"
-        UROCZYSTOSC = "Urocz", "Uroczystość"
-        ZAWODY_SPORTOWE = "ZawodySp", "Zawody sportowe"
-
-    class TypyWyjazdow(models.TextChoices):
-        ADAPCIAK = "Adapciak", "Adapciak"
-        INNY = "Inny", "Inny"
-        KUDLACZE = "Kudlacze", "Kudłacze"
-        ZAGRANICZNY = "ZAGR", "Wyjazd Zagraniczny"
 
     nazwa = models.CharField(
         max_length=MAX_LENGTH, verbose_name="Nazwa"
@@ -237,17 +228,19 @@ class Wydarzenie(models.Model):
         verbose_name="Czy to wyjazd?",
     )
 
-    typ_wydarzenia = models.CharField(
-        max_length=SHORT_LENGTH,
-        choices=TypyWydarzen.choices + [TextAlt.NOT_APPLICABLE],
-        default=TextAlt.NOT_APPLICABLE[0],
+    typ_wydarzenia = models.ForeignKey(
+        TypWydarzenia,
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
         verbose_name="Typ wydarzenia",
     )
 
-    typ_wyjazdu = models.CharField(
-        max_length=SHORT_LENGTH,
-        choices=TypyWyjazdow.choices + [TextAlt.NOT_APPLICABLE],
-        default=TextAlt.NOT_APPLICABLE[0],
+    typ_wyjazdu = models.ForeignKey(
+        TypWyjazdu,
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
         verbose_name="Typ wyjazdu",
     )
 
@@ -273,12 +266,17 @@ class Wydarzenie(models.Model):
         name = f"{self.data_rozpoczecia}"
         if self.data_zakonczenia != self.data_rozpoczecia:
             name += f" - {self.data_zakonczenia}"
-        if self.get_typ_wydarzenia_display() != TextAlt.NOT_APPLICABLE[1]:
-            typ = self.get_typ_wydarzenia_display()
+
+        if self.typ_wydarzenia and not self.typ_wydarzenia.is_sentinel():
+            typ = str(self.typ_wydarzenia)
+        elif self.typ_wyjazdu:
+            typ = str(self.typ_wyjazdu)
         else:
-            typ = self.get_typ_wyjazdu_display()
+            typ = ""
+
         name += f": {typ} \"{self.nazwa}\""
         return name
+
 
 class ObrazWydarzenie(models.Model):
     wydarzenie = models.ForeignKey(

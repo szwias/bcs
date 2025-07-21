@@ -1269,9 +1269,9 @@ CREATE TABLE public.kronika_wydarzenie (
     czy_to_wyjazd character varying(1) NOT NULL,
     data_rozpoczecia date NOT NULL,
     data_zakonczenia date NOT NULL,
-    typ_wydarzenia character varying(10) NOT NULL,
-    typ_wyjazdu character varying(10) NOT NULL,
-    link character varying(200) NOT NULL
+    link character varying(200) NOT NULL,
+    typ_wydarzenia_id bigint,
+    typ_wyjazdu_id bigint
 );
 
 
@@ -2031,16 +2031,24 @@ COPY public.czapki_rodzajczapki_kraje (id, rodzajczapki_id, kraj_id) FROM stdin;
 COPY public.django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) FROM stdin;
 1588	2025-07-21 15:13:24.35699+02	4	Kacper "Szogun/Czwarty Wilk Noboda" Wilk	2	[{"changed": {"fields": ["przezwiska"]}}]	61	1
 1610	2025-07-21 15:58:54.599599+02	19	Ułańskie Zdrowie	1	[{"added": {}}]	70	1
+1631	2025-07-21 16:57:15.460648+02	8	2025-05-14: Uroczystość "Uniwersytecki Dzień Pamięci"	2	[{"changed": {"fields": ["Typ wydarzenia"]}}]	19	1
+1652	2025-07-21 17:07:04.634107+02	3	2010-01-28: Karczma "Pierwsza karczma"	2	[{"changed": {"fields": ["Typ wydarzenia"]}}]	19	1
 1589	2025-07-21 15:54:46.126031+02	1	Akcja	1	[{"added": {}}]	70	1
 1611	2025-07-21 15:59:03.846274+02	20	Uroczystość	1	[{"added": {}}]	70	1
+1632	2025-07-21 16:59:52.395651+02	8	2025-05-14: Uroczystość "Uniwersytecki Dzień Pamięci"	2	[]	19	1
+1653	2025-07-21 17:07:17.777892+02	2	2009-09-01:  "2009/2010"	3		19	1
 1590	2025-07-21 15:54:51.618971+02	2	Inny	1	[{"added": {}}]	70	1
 1612	2025-07-21 15:59:16.399498+02	21	Zawody sportowe	1	[{"added": {}}]	70	1
+1633	2025-07-21 17:00:03.50809+02	8	2025-05-14: Uroczystość "Uniwersytecki Dzień Pamięci"	2	[]	19	1
 1591	2025-07-21 15:55:01.572875+02	2	Inne	2	[{"changed": {"fields": ["Typ wydarzenia"]}}]	70	1
 1613	2025-07-21 15:59:21.768282+02	22	Nieoficjalne	1	[{"added": {}}]	70	1
+1634	2025-07-21 17:02:42.669227+02	26	2025-05-08 - 2025-05-11: Zagraniczny "Faerie Matricularum"	2	[{"changed": {"fields": ["Typ wyjazdu"]}}]	19	1
 1592	2025-07-21 15:55:15.46481+02	3	Karczma	1	[{"added": {}}]	70	1
 1614	2025-07-21 15:59:59.994348+02	1	Adapciak	1	[{"added": {}}]	71	1
+1635	2025-07-21 17:03:06.832616+02	4	Wyjazd Zagraniczny	2	[{"changed": {"fields": ["Typ wyjazdu"]}}]	71	1
 1593	2025-07-21 15:55:27.625152+02	4	Wyjście do kina	1	[{"added": {}}]	70	1
 1615	2025-07-21 16:00:04.102257+02	2	Inny	1	[{"added": {}}]	71	1
+1636	2025-07-21 17:03:11.286514+02	26	2025-05-08 - 2025-05-11: Wyjazd Zagraniczny "Faerie Matricularum"	2	[]	19	1
 406	2025-05-01 13:36:20.778128+02	2	2009/None	1	[{"added": {}}]	14	1
 407	2025-05-01 13:39:53.703156+02	2	2009/2010	2	[]	14	1
 408	2025-05-01 13:39:57.507703+02	3	2009/2010	1	[{"added": {}}]	14	1
@@ -2062,6 +2070,7 @@ COPY public.django_admin_log (id, action_time, object_id, object_repr, action_fl
 424	2025-05-01 13:41:25.104324+02	2	2023/2024	2	[{"changed": {"fields": ["Rozpocz\\u0119cie"]}}]	14	1
 1594	2025-07-21 15:56:00.826694+02	5	Prelekcja	1	[{"added": {}}]	70	1
 1616	2025-07-21 16:00:09.592922+02	3	Kudłacze	1	[{"added": {}}]	71	1
+1637	2025-07-21 17:03:25.928363+02	4	Wyjazd zagraniczny	2	[{"changed": {"fields": ["Typ wyjazdu"]}}]	71	1
 501	2025-05-01 23:53:58.800979+02	1	Nie wiem - Inny, XXX	1	[{"added": {}}]	16	1
 502	2025-05-02 01:00:15.584059+02	1	Powstanie BCS	1	[{"added": {}}]	19	1
 503	2025-05-02 01:02:01.382838+02	1	Powstawanie idei BCS 2009-03-01 - 2009-08-20	1	[{"added": {}}]	15	1
@@ -2077,6 +2086,7 @@ COPY public.django_admin_log (id, action_time, object_id, object_repr, action_fl
 512	2025-05-02 01:26:28.840427+02	3	Konferencja naukowa - Roberto Martinez del Rio	2	[{"changed": {"fields": ["Nazwa", "Typ spotkania", "Data", "Miejsce"]}}]	17	1
 1595	2025-07-21 15:56:10.43507+02	6	Konferencja naukowa	1	[{"added": {}}]	70	1
 1617	2025-07-21 16:00:14.393007+02	4	Zagraniczny	1	[{"added": {}}]	71	1
+1638	2025-07-21 17:03:30.895455+02	26	2025-05-08 - 2025-05-11: Wyjazd zagraniczny "Faerie Matricularum"	2	[]	19	1
 548	2025-05-04 21:36:00.340999+02	1	Powstawanie koncepcji BCS: 01.03.2009 - 20.08.2009	1	[{"added": {}}]	15	1
 549	2025-05-04 21:38:05.222505+02	3	CMUJ - Uczelnia, św. Anny, Kraków, Polska	1	[{"added": {}}]	16	1
 550	2025-05-04 21:40:29.877048+02	1	Założenie BCS	1	[{"added": {}}]	19	1
@@ -2101,6 +2111,7 @@ COPY public.django_admin_log (id, action_time, object_id, object_repr, action_fl
 574	2025-05-05 09:42:37.77729+02	6	Collegium Maius - Uczelnia, Jagiellońska 15, Kraków, Polska	1	[{"added": {}}]	16	1
 575	2025-05-05 09:42:57.177165+02	6	2010.01.10 - Czapka Reactivation Party	1	[{"added": {}}, {"added": {"name": "Uczestnictwo", "object": "Kasper \\"Pumba\\" Krawet - Kronika | Wydarzenie - 2010.01.10 - Czapka Reactivation Party"}}]	19	1
 1596	2025-07-21 15:56:36.969435+02	7	Sprzątanie grobów	1	[{"added": {}}]	70	1
+1618	2025-07-21 16:28:48.541019+02	5	Nie dotyczy	1	[{"added": {}}]	71	1
 578	2025-05-05 09:47:51.972392+02	4	2010.01.10 - Prelekcje na temat studenckiego folkloru	1	[{"added": {}}, {"added": {"name": "Uczestnictwo", "object": "Kasper \\"Pumba\\" Krawet - Kronika | Zdarzenie - 2010.01.10 - Prelekcje na temat studenckiego folkloru"}}, {"added": {"name": "Uczestnictwo", "object": "None - Kronika | Zdarzenie - 2010.01.10 - Prelekcje na temat studenckiego folkloru"}}, {"added": {"name": "Uczestnictwo", "object": "None - Kronika | Zdarzenie - 2010.01.10 - Prelekcje na temat studenckiego folkloru"}}, {"added": {"name": "Uczestnictwo", "object": "None - Kronika | Zdarzenie - 2010.01.10 - Prelekcje na temat studenckiego folkloru"}}]	20	1
 579	2025-05-05 09:47:58.429495+02	7	2010.01.10 - Pierwsza inauguracja roku akademickiego	1	[{"added": {}}]	19	1
 580	2025-05-05 09:48:08.190611+02	7	2010.01.10 - Pierwsza inauguracja roku akademickiego	2	[]	19	1
@@ -2125,6 +2136,7 @@ COPY public.django_admin_log (id, action_time, object_id, object_repr, action_fl
 599	2025-05-05 15:28:18.659992+02	1	Toast w stronę Nawojki	2	[]	26	1
 600	2025-05-05 15:28:42.372195+02	13	2011.12.03 - Wielka Karczma Piwna	1	[{"added": {}}]	19	1
 601	2025-05-05 15:31:23.727975+02	11	Collegium Iuridicum UJ - Uczelnia, Grodzka 53, Kraków, Polska	1	[{"added": {}}]	16	1
+1639	2025-07-21 17:03:46.181791+02	18	2025-04-16: Karczma "Czapkowa Karczma w klimatach międzywojennych"	2	[{"changed": {"fields": ["Typ wydarzenia"]}}]	19	1
 603	2025-05-05 15:35:13.184105+02	6	2011.18.03 - Spotkanie z babcią Tadka	1	[{"added": {}}, {"added": {"name": "Uczestnictwo", "object": "Tadeusz \\"Kumdo/Tadek\\" Hessel - Kronika | Zdarzenie - 2011.18.03 - Spotkanie z babci\\u0105 Tadka"}}, {"added": {"name": "Uczestnictwo", "object": "None - Kronika | Zdarzenie - 2011.18.03 - Spotkanie z babci\\u0105 Tadka"}}]	20	1
 604	2025-05-05 15:35:39.41435+02	14	2011.18.03 - Wykład dla Stowarzyszenia Absolwentów UJ	1	[{"added": {}}, {"added": {"name": "Uczestnictwo", "object": "Tadeusz \\"Kumdo/Tadek\\" Hessel - Kronika | Wydarzenie - 2011.18.03 - Wyk\\u0142ad dla Stowarzyszenia Absolwent\\u00f3w UJ"}}]	19	1
 605	2025-05-05 15:40:09.469545+02	12	Wrocław - Miasto, Wrocław, Polska	1	[{"added": {}}]	16	1
@@ -2148,6 +2160,8 @@ COPY public.django_admin_log (id, action_time, object_id, object_repr, action_fl
 623	2025-05-06 11:11:30.104388+02	10	2011.16.01 - Karczma: Czapkowa Karczma Karnawałowa	3		19	1
 624	2025-05-06 11:11:56.351915+02	23	2011.17.05 - Akcja: Przygarnij Belga w Juwenalia!	2	[{"changed": {"fields": ["Nazwa"]}}]	19	1
 1597	2025-07-21 15:56:46.237614+02	8	Historyczne	1	[{"added": {}}]	70	1
+1619	2025-07-21 16:29:00.816686+02	23	Nie dotyczy	1	[{"added": {}}]	70	1
+1640	2025-07-21 17:03:58.353903+02	23	2011-05-17 - 2011-05-21: Akcja "Przygarnij Belga w Juwenalia!"	2	[{"changed": {"fields": ["Typ wydarzenia"]}}]	19	1
 628	2025-05-09 09:57:06.999414+02	1	Toast w stronę Nawojki	2	[]	26	1
 629	2025-05-13 12:25:14.242227+02	17	Bolonia - Miasto, Włochy	1	[{"added": {}}]	16	1
 633	2025-05-13 12:43:08.467624+02	1	ZAGR "Faerie Matricularum" - Bolonia - Miasto, Włochy, 08.05.2025 - 11.05.2025	1	[{"added": {}}, {"added": {"name": "Uczestnictwo", "object": "Bart\\u0142omiej \\"Nobod\\" Grzeszykowski - Kronika | Wyjazd - ZAGR \\"Faerie Matricularum\\" - Bolonia - Miasto, W\\u0142ochy, 08.05.2025 - 11.05.2025"}}, {"added": {"name": "Uczestnictwo", "object": "Micha\\u0142 \\"Cukier/Ma\\u0142olata\\" Malata - Kronika | Wyjazd - ZAGR \\"Faerie Matricularum\\" - Bolonia - Miasto, W\\u0142ochy, 08.05.2025 - 11.05.2025"}}, {"added": {"name": "Uczestnictwo", "object": "Martyna \\"Bober\\" Kubiak - Kronika | Wyjazd - ZAGR \\"Faerie Matricularum\\" - Bolonia - Miasto, W\\u0142ochy, 08.05.2025 - 11.05.2025"}}, {"added": {"name": "Uczestnictwo", "object": "Bartosz \\"Heniek\\" Hepek - Kronika | Wyjazd - ZAGR \\"Faerie Matricularum\\" - Bolonia - Miasto, W\\u0142ochy, 08.05.2025 - 11.05.2025"}}, {"added": {"name": "Uczestnictwo", "object": "Herman \\"Stabilizator/Rakieta\\" Chekurda - Kronika | Wyjazd - ZAGR \\"Faerie Matricularum\\" - Bolonia - Miasto, W\\u0142ochy, 08.05.2025 - 11.05.2025"}}, {"added": {"name": "Uczestnictwo", "object": "Maria \\"Felis\\" Turakiewicz - Kronika | Wyjazd - ZAGR \\"Faerie Matricularum\\" - Bolonia - Miasto, W\\u0142ochy, 08.05.2025 - 11.05.2025"}}, {"added": {"name": "Uczestnictwo", "object": "Michalina \\"Allec\\" Kokosi\\u0144ska - Kronika | Wyjazd - ZAGR \\"Faerie Matricularum\\" - Bolonia - Miasto, W\\u0142ochy, 08.05.2025 - 11.05.2025"}}, {"added": {"name": "Uczestnictwo", "object": "Damian \\"Bandera\\" Zych - Kronika | Wyjazd - ZAGR \\"Faerie Matricularum\\" - Bolonia - Miasto, W\\u0142ochy, 08.05.2025 - 11.05.2025"}}, {"added": {"name": "Uczestnictwo", "object": "Dorota \\"Wa\\u0107panna/Doris\\" Dro\\u017cy\\u0144ska - Kronika | Wyjazd - ZAGR \\"Faerie Matricularum\\" - Bolonia - Miasto, W\\u0142ochy, 08.05.2025 - 11.05.2025"}}, {"added": {"name": "Uczestnictwo", "object": "Bart\\u0142omiej \\"Kucharz\\" Olajossy - Kronika | Wyjazd - ZAGR \\"Faerie Matricularum\\" - Bolonia - Miasto, W\\u0142ochy, 08.05.2025 - 11.05.2025"}}, {"added": {"name": "Uczestnictwo", "object": "Natalia \\"Szynka\\" Ciesielska (Olajossy) - Kronika | Wyjazd - ZAGR \\"Faerie Matricularum\\" - Bolonia - Miasto, W\\u0142ochy, 08.05.2025 - 11.05.2025"}}]	18	1
@@ -2221,6 +2235,8 @@ COPY public.django_admin_log (id, action_time, object_id, object_repr, action_fl
 708	2025-05-14 00:56:15.054086+02	19	Palazzo d'Accursio, Piazza Maggiore, 6, Bolonia, Włochy (Obiekt kultury)	2	[{"changed": {"fields": ["Adres"]}}]	16	1
 709	2025-05-14 00:56:22.874621+02	20	Spawner Włochów, Via delle Moline, 7, Bolonia, Włochy (Lokum)	2	[{"changed": {"fields": ["Adres"]}}]	16	1
 1599	2025-07-21 15:56:57.274798+02	10	Ostry Dyżur	1	[{"added": {}}]	70	1
+1620	2025-07-21 16:49:37.159856+02	1	2009-08-20: Historyczne "Założenie BCS"	2	[{"changed": {"fields": ["Typ wydarzenia"]}}]	19	1
+1641	2025-07-21 17:04:08.932558+02	22	2011-05-14: Karczma "Majowa Karczma Piwna"	2	[{"changed": {"fields": ["Typ wydarzenia"]}}]	19	1
 713	2025-05-14 17:32:08.122834+02	1	Zagraniczny "Faerie Matricularum" - Bolonia - Miasto, Włochy, 08.05.2025 - 11.05.2025	3		18	1
 714	2025-05-14 18:23:56.834327+02	11	2025-05-09 - Impreza ze stoiskami balli i muzyką	2	[{"changed": {"fields": ["Miejsce"]}}]	20	1
 715	2025-05-14 19:49:25.973334+02	9	2025-05-14 - Zwiedzanie MEUS	2	[{"changed": {"fields": ["Wydarzenie"]}}]	20	1
@@ -2287,6 +2303,8 @@ COPY public.django_admin_log (id, action_time, object_id, object_repr, action_fl
 777	2025-05-15 00:42:12.905799+02	1	Impreza ze stoiskami balli i muzyką - karabinieri.jpg 2025-05-09	2	[]	34	1
 778	2025-05-15 00:42:20.318968+02	1	Impreza ze stoiskami balli i muzyką - karabinieri.jpg 2025-05-09	2	[]	34	1
 1600	2025-07-21 15:57:03.478022+02	11	Planszówki	1	[{"added": {}}]	70	1
+1621	2025-07-21 16:55:04.670814+02	1	2009-08-20: Historyczne "Założenie BCS"	2	[]	19	1
+1642	2025-07-21 17:04:35.894369+02	24	Wycieczka rowerowa	1	[{"added": {}}]	70	1
 798	2025-05-15 12:53:00.734833+02	26	2025-05-08 - 2025-05-11: Nie dotyczy "Faerie Matricularum"	1	[{"added": {}}]	19	1
 799	2025-05-15 12:59:58.408698+02	26	2025-05-08 - 2025-05-11: Zagraniczny "Faerie Matricularum"	2	[{"changed": {"fields": ["Czy to wyjazd?", "Typ wyjazdu"]}}, {"added": {"name": "Zdarzenie", "object": "2025-05-09 - Impreza ze stoiskami balli i muzyk\\u0105"}}, {"added": {"name": "Zdarzenie", "object": "2025-05-09 - Przekazanie kluczy do miasta bolo\\u0144skim goliardom"}}, {"added": {"name": "Zdarzenie", "object": "2025-05-09 - Uroczyste nadanie feluk nowym goliardom"}}, {"added": {"name": "Zdarzenie", "object": "2025-05-09 - Zwiedzanie MEUS"}}, {"added": {"name": "Osoba", "object": "Micha\\u0142 \\"Cukier/Ma\\u0142olata\\" Malata - Kronika | Wydarzenie - 2025-05-08 - 2025-05-11: Zagraniczny \\"Faerie Matricularum\\""}}, {"added": {"name": "Osoba", "object": "Bart\\u0142omiej \\"Nobod\\" Grzeszykowski - Kronika | Wydarzenie - 2025-05-08 - 2025-05-11: Zagraniczny \\"Faerie Matricularum\\""}}, {"added": {"name": "Osoba", "object": "Bartosz \\"Heniek\\" Hepek - Kronika | Wydarzenie - 2025-05-08 - 2025-05-11: Zagraniczny \\"Faerie Matricularum\\""}}, {"added": {"name": "Osoba", "object": "Martyna \\"Bober\\" Kubiak - Kronika | Wydarzenie - 2025-05-08 - 2025-05-11: Zagraniczny \\"Faerie Matricularum\\""}}, {"added": {"name": "Osoba", "object": "Sandra \\"Sander\\" Chandzlik - Kronika | Wydarzenie - 2025-05-08 - 2025-05-11: Zagraniczny \\"Faerie Matricularum\\""}}, {"added": {"name": "Osoba", "object": "Maria \\"Felis\\" Turakiewicz - Kronika | Wydarzenie - 2025-05-08 - 2025-05-11: Zagraniczny \\"Faerie Matricularum\\""}}, {"added": {"name": "Osoba", "object": "Herman \\"Stabilizator/Rakieta\\" Chekurda - Kronika | Wydarzenie - 2025-05-08 - 2025-05-11: Zagraniczny \\"Faerie Matricularum\\""}}, {"added": {"name": "Osoba", "object": "Michalina \\"Allec\\" Kokosi\\u0144ska - Kronika | Wydarzenie - 2025-05-08 - 2025-05-11: Zagraniczny \\"Faerie Matricularum\\""}}, {"added": {"name": "Osoba", "object": "Damian \\"Bandera/Buch\\" Zych - Kronika | Wydarzenie - 2025-05-08 - 2025-05-11: Zagraniczny \\"Faerie Matricularum\\""}}, {"added": {"name": "Osoba", "object": "Dorota \\"Wa\\u0107panna/Doris\\" Dro\\u017cy\\u0144ska - Kronika | Wydarzenie - 2025-05-08 - 2025-05-11: Zagraniczny \\"Faerie Matricularum\\""}}, {"added": {"name": "Osoba", "object": "Bart\\u0142omiej \\"Kucharz\\" Olajossy - Kronika | Wydarzenie - 2025-05-08 - 2025-05-11: Zagraniczny \\"Faerie Matricularum\\""}}, {"added": {"name": "Osoba", "object": "Natalia \\"Szynka\\" Ciesielska (Olajossy) - Kronika | Wydarzenie - 2025-05-08 - 2025-05-11: Zagraniczny \\"Faerie Matricularum\\""}}, {"added": {"name": "Osoba", "object": "Kacper \\"Szogun\\" Wilk - Kronika | Wydarzenie - 2025-05-08 - 2025-05-11: Zagraniczny \\"Faerie Matricularum\\""}}, {"added": {"name": "Osoba", "object": "Krysia Cholewa - Kronika | Wydarzenie - 2025-05-08 - 2025-05-11: Zagraniczny \\"Faerie Matricularum\\""}}, {"added": {"name": "Osoba", "object": "Szymon \\"Tur\\" Zwias - Kronika | Wydarzenie - 2025-05-08 - 2025-05-11: Zagraniczny \\"Faerie Matricularum\\""}}, {"added": {"name": "Osoba", "object": "Wiktoria \\"Wedel\\" Dole\\u017cych - Kronika | Wydarzenie - 2025-05-08 - 2025-05-11: Zagraniczny \\"Faerie Matricularum\\""}}]	19	1
 800	2025-05-15 13:00:39.535508+02	19	2025-05-09 - Impreza ze stoiskami balli i muzyką	2	[{"changed": {"fields": ["Miejsce", "Opis"]}}]	20	1
@@ -2311,6 +2329,8 @@ COPY public.django_admin_log (id, action_time, object_id, object_repr, action_fl
 819	2025-05-15 15:37:42.652051+02	27	Bar Birroteca Lupulus - Bar, Via Giuseppe Petroni, 7a, Bolonia, Włochy	2	[{"changed": {"fields": ["Typ miejsca"]}}]	16	1
 820	2025-05-15 15:53:51.150725+02	19	2025-05-09 - Impreza ze stoiskami balli i muzyką	2	[]	20	1
 1601	2025-07-21 15:57:09.455421+02	12	Reaktywacja	1	[{"added": {}}]	70	1
+1622	2025-07-21 16:55:14.647882+02	1	2009-08-20: Historyczne "Założenie BCS"	2	[{"changed": {"fields": ["Typ wyjazdu"]}}]	19	1
+1643	2025-07-21 17:04:38.861736+02	21	2011-05-07: Wycieczka rowerowa "Czapkowa eskapada rowerowa szlakiem Bema"	2	[{"changed": {"fields": ["Typ wydarzenia"]}}]	19	1
 853	2025-05-19 23:45:04.109203+02	1	Django	1	[{"added": {}}]	37	1
 854	2025-05-19 23:48:47.041186+02	1	Django	2	[{"changed": {"fields": ["Sticky submit", "Sticky pagination", "Quick remove links for active filters at top of sidebar", "Collapsible stacked inlines", "Collapsible tabular inlines"]}}]	37	1
 855	2025-05-19 23:53:35.654209+02	1	Django	2	[{"changed": {"fields": ["Favicon"]}}]	37	1
@@ -2357,7 +2377,11 @@ COPY public.django_admin_log (id, action_time, object_id, object_repr, action_fl
 928	2025-05-23 00:39:07.360334+02	26	2025-05-08 - 2025-05-11: Zagraniczny "Faerie Matricularum"	2	[{"changed": {"fields": ["Miejsca"]}}, {"added": {"name": "Zdarzenie", "object": "2025-05-08 06:30:00 - Podr\\u00f3\\u017c z buta do centrum"}}]	19	1
 929	2025-05-23 00:48:00.738142+02	30	2025-05-08 06:30:00 - Podróż z buta do centrum	2	[{"changed": {"fields": ["Opis"]}}, {"deleted": {"name": "Osoba", "object": "Micha\\u0142 \\"Cukier/Ma\\u0142olata\\" Malata - Kronika | Zdarzenie - 2025-05-08 06:30:00 - Podr\\u00f3\\u017c z buta do centrum"}}, {"deleted": {"name": "Osoba", "object": "Bart\\u0142omiej \\"Nobod\\" Grzeszykowski - Kronika | Zdarzenie - 2025-05-08 06:30:00 - Podr\\u00f3\\u017c z buta do centrum"}}, {"deleted": {"name": "Osoba", "object": "Martyna \\"Bober\\" Kubiak - Kronika | Zdarzenie - 2025-05-08 06:30:00 - Podr\\u00f3\\u017c z buta do centrum"}}, {"deleted": {"name": "Osoba", "object": "Damian \\"Bandera/Buch\\" Zych - Kronika | Zdarzenie - 2025-05-08 06:30:00 - Podr\\u00f3\\u017c z buta do centrum"}}, {"deleted": {"name": "Osoba", "object": "Dorota \\"Wa\\u0107panna/Doris\\" Dro\\u017cy\\u0144ska - Kronika | Zdarzenie - 2025-05-08 06:30:00 - Podr\\u00f3\\u017c z buta do centrum"}}, {"deleted": {"name": "Osoba", "object": "Bart\\u0142omiej \\"Kucharz\\" Olajossy - Kronika | Zdarzenie - 2025-05-08 06:30:00 - Podr\\u00f3\\u017c z buta do centrum"}}, {"deleted": {"name": "Osoba", "object": "Natalia \\"Szynka\\" Ciesielska (Olajossy) - Kronika | Zdarzenie - 2025-05-08 06:30:00 - Podr\\u00f3\\u017c z buta do centrum"}}, {"added": {"name": "Zdj\\u0119cie ze zdarzenia", "object": "Podr\\u00f3\\u017c z buta do centrum - Mural kotki 2025-05-08"}}, {"added": {"name": "Zdj\\u0119cie ze zdarzenia", "object": "Podr\\u00f3\\u017c z buta do centrum - Posterunek karabinieri 2025-05-08"}}, {"added": {"name": "Zdj\\u0119cie ze zdarzenia", "object": "Podr\\u00f3\\u017c z buta do centrum - Punkt zbi\\u00f3rkowy - fontanna Neptuna 2025-05-08"}}, {"added": {"name": "Zdj\\u0119cie ze zdarzenia", "object": "Podr\\u00f3\\u017c z buta do centrum - Jaka\\u015b kaplica 2025-05-08"}}]	20	1
 1602	2025-07-21 15:57:16.030908+02	13	Juwenalia	1	[{"added": {}}]	70	1
+1623	2025-07-21 16:55:24.292343+02	1	2009-08-20: Historyczne "Założenie BCS"	2	[]	19	1
+1644	2025-07-21 17:05:04.087252+02	25	Grill	1	[{"added": {}}]	70	1
 1603	2025-07-21 15:57:26.566301+02	14	Wyjście do teatru	1	[{"added": {}}]	70	1
+1624	2025-07-21 16:55:40.823927+02	16	2025-05-14: Wycieczka "Wycieczka na Kopiec Kościuszki"	2	[{"changed": {"fields": ["Typ wydarzenia"]}}]	19	1
+1645	2025-07-21 17:05:06.996772+02	20	2011-04-30: Grill "Grill pod Żaczkiem: urodziny Geologa"	2	[{"changed": {"fields": ["Typ wydarzenia"]}}]	19	1
 995	2025-07-10 18:58:38.71523+02	23	2025-05-14: Akcja "Przygarnij Belga w Juwenalia!"	2	[{"changed": {"fields": ["Typ wydarzenia"]}}]	19	1
 996	2025-07-10 18:58:54.094114+02	22	2025-05-14: Karczma "Majowa Karczma Piwna"	2	[{"changed": {"fields": ["Typ wydarzenia"]}}]	19	1
 997	2025-07-10 18:59:06.69423+02	21	2025-05-14: Wycieczka "Czapkowa eskapada rowerowa szlakiem Bema"	2	[{"changed": {"fields": ["Typ wydarzenia"]}}]	19	1
@@ -2384,6 +2408,8 @@ COPY public.django_admin_log (id, action_time, object_id, object_repr, action_fl
 1018	2025-07-10 20:45:12.278569+02	23	2011-05-17 - 2011-05-21: Akcja "Przygarnij Belga w Juwenalia!"	2	[{"changed": {"fields": ["Data zako\\u0144czenia"]}}]	19	1
 1019	2025-07-10 20:46:01.920068+02	18	2025-04-16: Karczma "Czapkowa Karczma w klimatach międzywojennych"	2	[{"changed": {"fields": ["Data rozpocz\\u0119cia", "Data zako\\u0144czenia", "Miejsca"]}}]	19	1
 1604	2025-07-21 15:57:49.472562+02	14	Odchamianie się	2	[{"changed": {"fields": ["Typ wydarzenia"]}}]	70	1
+1625	2025-07-21 16:55:52.62944+02	15	2025-05-14: Konferencja naukowa "Konferencja medyczna we Wrocławiu"	2	[{"changed": {"fields": ["Typ wydarzenia"]}}]	19	1
+1646	2025-07-21 17:05:19.904715+02	19	2011-04-19: Walne "Spotkanie statutowe BCS"	2	[{"changed": {"fields": ["Typ wydarzenia"]}}]	19	1
 1023	2025-07-11 00:21:29.458813+02	1	Zarząd 2009/2010 - Joanna "Aśka" Lorenc	2	[]	38	1
 1024	2025-07-11 00:37:41.300245+02	1	Bretelle	1	[{"added": {}}]	39	1
 1025	2025-07-11 00:39:41.594957+02	1	Bretelle	2	[{"changed": {"fields": ["Opis"]}}]	39	1
@@ -2391,10 +2417,18 @@ COPY public.django_admin_log (id, action_time, object_id, object_repr, action_fl
 1027	2025-07-11 01:08:56.0949+02	1	Bretelle	2	[]	39	1
 1028	2025-07-11 01:20:55.075021+02	17	2011-04-06: Konferencja naukowa/wykład/prelekcja "Wykład na Wydziale Polonistyki"	2	[{"changed": {"fields": ["Data rozpocz\\u0119cia", "Data zako\\u0144czenia", "Miejsca"]}}]	19	1
 1605	2025-07-21 15:58:09.535842+02	4	Wyjście do kina	3		70	1
+1626	2025-07-21 16:56:28.976039+02	5	Wykład/Prelekcja	2	[{"changed": {"fields": ["Typ wydarzenia"]}}]	70	1
+1647	2025-07-21 17:05:37.955612+02	17	2011-04-06: Wykład/Prelekcja "Wykład na Wydziale Polonistyki"	2	[{"changed": {"fields": ["Typ wydarzenia"]}}]	19	1
 1072	2025-07-11 13:01:21.581927+02	1	Rucham ci starego	1	[{"added": {}}, {"added": {"name": "Osoba", "object": "Bartosz \\"Heniek\\" Hepek - Encyklopedia | Powiedzenie - Rucham ci starego"}}]	40	1
 1606	2025-07-21 15:58:23.253898+02	15	RPG	1	[{"added": {}}]	70	1
+1627	2025-07-21 16:56:33.296362+02	14	2025-05-14: Wykład/Prelekcja "Wykład dla Stowarzyszenia Absolwentów UJ"	2	[{"changed": {"fields": ["Typ wydarzenia"]}}]	19	1
+1648	2025-07-21 17:05:58.25583+02	6	2010-10-01: Uroczystość "Pierwsza inauguracja roku akademickiego BCS"	2	[{"changed": {"fields": ["Typ wydarzenia"]}}]	19	1
 1607	2025-07-21 15:58:31.030329+02	16	Walne	1	[{"added": {}}]	70	1
+1628	2025-07-21 16:56:45.356765+02	12	2025-05-14: Karczma "Wielka Karczma Piwna"	2	[{"changed": {"fields": ["Typ wydarzenia"]}}]	19	1
+1649	2025-07-21 17:06:11.275323+02	25	2010-05-12: Uroczystość "Złożenie kwiatów pod grobem królowej Jadwigi"	2	[{"changed": {"fields": ["Typ wydarzenia"]}}]	19	1
 1608	2025-07-21 15:58:36.73889+02	17	Wycieczka	1	[{"added": {}}]	70	1
+1629	2025-07-21 16:56:54.611972+02	11	2025-05-14: Karczma "Czapkowa Karczma Posesyjna"	2	[{"changed": {"fields": ["Typ wydarzenia"]}}]	19	1
+1650	2025-07-21 17:06:27.263066+02	24	2010-04-28: Konferencja naukowa "Konferencja naukowa Roberto o folklorze studenckim"	2	[{"changed": {"fields": ["Typ wydarzenia"]}}]	19	1
 1321	2025-07-17 22:21:28.764815+02	1	Polska	1	[{"added": {}}]	46	1
 1322	2025-07-17 22:21:30.351371+02	1	Uniwersytet Jagielloński	1	[{"added": {}}]	44	1
 1323	2025-07-17 22:21:36.226786+02	1	Uniwersytet Jagielloński: Wydział Prawa i Administracji (WPiA)	1	[{"added": {}}]	45	1
@@ -2588,6 +2622,8 @@ COPY public.django_admin_log (id, action_time, object_id, object_repr, action_fl
 1511	2025-07-18 10:50:44.390821+02	6	Polska: Bractwo Czapki Studenckiej Animus	1	[{"added": {}}]	31	1
 1512	2025-07-18 16:06:44.121258+02	1	Wymienianie się pinsami	3		29	1
 1609	2025-07-21 15:58:45.960001+02	18	Wybory	1	[{"added": {}}]	70	1
+1630	2025-07-21 16:57:02.737996+02	9	2025-05-14: Karczma "Czapkowa Karczma Karnawałowa"	2	[{"changed": {"fields": ["Typ wydarzenia"]}}]	19	1
+1651	2025-07-21 17:06:52.503129+02	24	2010-04-28: Wykład/Prelekcja "Prelekcja Roberto o folklorze studenckim"	2	[{"changed": {"fields": ["Nazwa", "Typ wydarzenia"]}}]	19	1
 1537	2025-07-19 19:03:13.882031+02	6	Polska: Bractwo Czapki Studenckiej Animus	2	[]	31	1
 1538	2025-07-19 19:04:03.628107+02	5	Polska: Bractwo Czapki Studenckiej UJ	2	[{"changed": {"fields": ["Za\\u0142o\\u017cyciele"]}}]	31	1
 \.
@@ -2879,6 +2915,9 @@ COPY public.django_migrations (id, app, name, applied) FROM stdin;
 264	osoby	0010_rename_bractwo_innaosoba_bractwo_do_ktorego_nalezy	2025-07-20 21:37:12.00108+02
 265	osoby	0011_alter_bean_pewnosc_stazu_alter_czlonek_imie_piwne_1_and_more	2025-07-20 21:48:19.287755+02
 266	kronika	0007_typwydarzenia_typwyjazdu	2025-07-21 15:53:55.935528+02
+267	kronika	0008_rename_typ_wydarzenia_wydarzenie_old_typ_wydarzenia_and_more	2025-07-21 16:26:48.856366+02
+268	kronika	0009_remove_wydarzenie_old_typ_wydarzenia_and_more	2025-07-21 16:27:34.46941+02
+269	kronika	0010_alter_wydarzenie_typ_wydarzenia_and_more	2025-07-21 16:49:27.0697+02
 \.
 
 
@@ -3091,7 +3130,6 @@ COPY public.kronika_typwydarzenia (id, typ) FROM stdin;
 1	Akcja
 2	Inne
 3	Karczma
-5	Prelekcja
 6	Konferencja naukowa
 7	Sprzątanie grobów
 8	Historyczne
@@ -3109,6 +3147,10 @@ COPY public.kronika_typwydarzenia (id, typ) FROM stdin;
 20	Uroczystość
 21	Zawody sportowe
 22	Nieoficjalne
+23	Nie dotyczy
+5	Wykład/Prelekcja
+24	Wycieczka rowerowa
+25	Grill
 \.
 
 
@@ -3120,7 +3162,8 @@ COPY public.kronika_typwyjazdu (id, typ) FROM stdin;
 1	Adapciak
 2	Inny
 3	Kudłacze
-4	Zagraniczny
+5	Nie dotyczy
+4	Wyjazd zagraniczny
 \.
 
 
@@ -3128,28 +3171,27 @@ COPY public.kronika_typwyjazdu (id, typ) FROM stdin;
 -- Data for Name: kronika_wydarzenie; Type: TABLE DATA; Schema: public; Owner: projectuser
 --
 
-COPY public.kronika_wydarzenie (id, nazwa, opis, czy_to_wyjazd, data_rozpoczecia, data_zakonczenia, typ_wydarzenia, typ_wyjazdu, link) FROM stdin;
-22	Majowa Karczma Piwna		N	2011-05-14	2011-05-14	Karczma	n/a	
-21	Czapkowa eskapada rowerowa szlakiem Bema		N	2011-05-07	2011-05-07	Wyciecz	n/a	
-2	2009/2010	Aśka Lorenc: "Krótka charakterystyka działań Zarządu: \r\n    • Zarząd istnieje tylko formalnie, Tadek i Kasper sterują organizacją\r\n    • Działalność bardzo spontaniczna i nieregularna, głównie imprezy\r\n    • W pewnym ustalonym momencie Tadek przekazuje władzę Magdalenie (Kasztance)\r\n    • Kontakty z Belgami: Coluche, Cristo, Frederic Widart (i inni): częste przyjazdy i nieformalna opieka nad nowo powstającym bractwem; Bretelle: częste przyjazdy turystyczne do Krakowa dużą grupą"	N	2009-09-01	2009-09-01	Wybory	n/a	
-3	Pierwsza karczma		N	2010-01-28	2010-01-28	Karczma	n/a	
-24	Konferencja naukowa Roberto o folklorze studenckim		N	2010-04-28	2010-04-28	KonfNauk	n/a	
-20	Grill pod Żaczkiem: urodziny Geologa		N	2011-04-30	2011-04-30	Ognisko	n/a	
-25	Złożenie kwiatów pod grobem królowej Jadwigi		N	2010-05-12	2010-05-12	Urocz	n/a	
-19	Spotkanie statutowe BCS		N	2011-04-19	2011-04-19	Walne	n/a	
-23	Przygarnij Belga w Juwenalia!	nocleg w czasie Juwenaliów	N	2011-05-17	2011-05-21	Akcja	n/a	
-18	Czapkowa Karczma w klimatach międzywojennych		N	2025-04-16	2025-04-16	Karczma	n/a	
-17	Wykład na Wydziale Polonistyki		N	2011-04-06	2011-04-06	KonfNauk	n/a	
-6	Pierwsza inauguracja roku akademickiego BCS	Aśka Lorenc: "Bractwo spotyka się dość spontanicznie. Większość członków stanowią osoby z CMUJ, ale spotkania są organizowane w taki sposób, aby włączyć jak najwięcej osób. "	N	2010-10-01	2010-10-01	Urocz	n/a	
-26	Faerie Matricularum		T	2025-05-08	2025-05-11	n/a	ZAGR	
-16	Wycieczka na Kopiec Kościuszki	Aśka Lorenc: "Studenci wielu wydziałów bierają się pod akademikiem Żaczek i wspólnie idą na Kopiec Kościuszki, śpiewając m.in pieśni żołnierskie. "	N	2025-05-14	2025-05-14	Wyciecz	n/a	
-15	Konferencja medyczna we Wrocławiu	Aśka Lorenc: "Czapka medyczna (i nie tylko) wpada do Wrocławia. We Wrocławiu ma miejsce konferencja medyczna i twórcy Czapki chcą skorzystać z okazji, by promować zwyczaj jej noszenia. "	N	2025-05-14	2025-05-14	KonfNauk	n/a	
-14	Wykład dla Stowarzyszenia Absolwentów UJ	Wykład Tadeusza na temat czapki studenckiej UJ dla Stowarzyszenia Absolwentów UJ (piwnica przy ul. Grodzkiej 53)	N	2025-05-14	2025-05-14	KonfNauk	n/a	
-12	Wielka Karczma Piwna		N	2025-05-14	2025-05-14	Karczma	n/a	
-11	Czapkowa Karczma Posesyjna		N	2025-05-14	2025-05-14	Karczma	n/a	
-9	Czapkowa Karczma Karnawałowa		N	2025-05-14	2025-05-14	Karczma	n/a	
-8	Uniwersytecki Dzień Pamięci	Aśka Lorenc: "Bractwo  biorze udział w Uniwersyteckim Dniu Pamięci (rocznicy Sondernaktion Krakau) - dużo fotek tego dnia robiła nam Anka Kaczmarz z Dziennika Polskiego (miała nam je wysłać i nie wysłała!).	N	2025-05-14	2025-05-14	Urocz	n/a	
-1	Założenie BCS	Aśka Lorenc: "data powstania Bractwa Czapki Studenckiej. Oprócz noszenia czapek ważny jest folklor studencki: integracja, śpiew, wymienianie się pinsami, koleżeństwo. \r\nCzapka działa w ramach Collegium Medicum UJ. Wielu studentów ze wszystkich wydziałów posiada swoje własne czapki. "	N	2009-08-20	2009-08-20	Hist	n/a	
+COPY public.kronika_wydarzenie (id, nazwa, opis, czy_to_wyjazd, data_rozpoczecia, data_zakonczenia, link, typ_wydarzenia_id, typ_wyjazdu_id) FROM stdin;
+12	Wielka Karczma Piwna		N	2025-05-14	2025-05-14		3	5
+11	Czapkowa Karczma Posesyjna		N	2025-05-14	2025-05-14		3	5
+9	Czapkowa Karczma Karnawałowa		N	2025-05-14	2025-05-14		3	5
+1	Założenie BCS	Aśka Lorenc: "data powstania Bractwa Czapki Studenckiej. Oprócz noszenia czapek ważny jest folklor studencki: integracja, śpiew, wymienianie się pinsami, koleżeństwo. \r\nCzapka działa w ramach Collegium Medicum UJ. Wielu studentów ze wszystkich wydziałów posiada swoje własne czapki. "	N	2009-08-20	2009-08-20		8	5
+16	Wycieczka na Kopiec Kościuszki	Aśka Lorenc: "Studenci wielu wydziałów bierają się pod akademikiem Żaczek i wspólnie idą na Kopiec Kościuszki, śpiewając m.in pieśni żołnierskie. "	N	2025-05-14	2025-05-14		17	5
+15	Konferencja medyczna we Wrocławiu	Aśka Lorenc: "Czapka medyczna (i nie tylko) wpada do Wrocławia. We Wrocławiu ma miejsce konferencja medyczna i twórcy Czapki chcą skorzystać z okazji, by promować zwyczaj jej noszenia. "	N	2025-05-14	2025-05-14		6	5
+14	Wykład dla Stowarzyszenia Absolwentów UJ	Wykład Tadeusza na temat czapki studenckiej UJ dla Stowarzyszenia Absolwentów UJ (piwnica przy ul. Grodzkiej 53)	N	2025-05-14	2025-05-14		5	5
+8	Uniwersytecki Dzień Pamięci	Aśka Lorenc: "Bractwo  biorze udział w Uniwersyteckim Dniu Pamięci (rocznicy Sondernaktion Krakau) - dużo fotek tego dnia robiła nam Anka Kaczmarz z Dziennika Polskiego (miała nam je wysłać i nie wysłała!).	N	2025-05-14	2025-05-14		20	5
+26	Faerie Matricularum		T	2025-05-08	2025-05-11		23	4
+18	Czapkowa Karczma w klimatach międzywojennych		N	2025-04-16	2025-04-16		3	5
+23	Przygarnij Belga w Juwenalia!	nocleg w czasie Juwenaliów	N	2011-05-17	2011-05-21		1	5
+22	Majowa Karczma Piwna		N	2011-05-14	2011-05-14		3	5
+21	Czapkowa eskapada rowerowa szlakiem Bema		N	2011-05-07	2011-05-07		24	5
+20	Grill pod Żaczkiem: urodziny Geologa		N	2011-04-30	2011-04-30		25	5
+19	Spotkanie statutowe BCS		N	2011-04-19	2011-04-19		16	5
+17	Wykład na Wydziale Polonistyki		N	2011-04-06	2011-04-06		5	5
+6	Pierwsza inauguracja roku akademickiego BCS	Aśka Lorenc: "Bractwo spotyka się dość spontanicznie. Większość członków stanowią osoby z CMUJ, ale spotkania są organizowane w taki sposób, aby włączyć jak najwięcej osób. "	N	2010-10-01	2010-10-01		20	5
+25	Złożenie kwiatów pod grobem królowej Jadwigi		N	2010-05-12	2010-05-12		20	5
+24	Prelekcja Roberto o folklorze studenckim		N	2010-04-28	2010-04-28		5	5
+3	Pierwsza karczma		N	2010-01-28	2010-01-28		3	5
 \.
 
 
@@ -4000,7 +4042,7 @@ SELECT pg_catalog.setval('public.czlonkowie_zwierzeczapkowe_id_seq', 13, true);
 -- Name: django_admin_log_id_seq; Type: SEQUENCE SET; Schema: public; Owner: projectuser
 --
 
-SELECT pg_catalog.setval('public.django_admin_log_id_seq', 1617, true);
+SELECT pg_catalog.setval('public.django_admin_log_id_seq', 1653, true);
 
 
 --
@@ -4014,7 +4056,7 @@ SELECT pg_catalog.setval('public.django_content_type_id_seq', 71, true);
 -- Name: django_migrations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: projectuser
 --
 
-SELECT pg_catalog.setval('public.django_migrations_id_seq', 266, true);
+SELECT pg_catalog.setval('public.django_migrations_id_seq', 269, true);
 
 
 --
@@ -4154,14 +4196,14 @@ SELECT pg_catalog.setval('public.kronika_proces_zdarzenia_id_seq', 1, false);
 -- Name: kronika_typwydarzenia_id_seq; Type: SEQUENCE SET; Schema: public; Owner: projectuser
 --
 
-SELECT pg_catalog.setval('public.kronika_typwydarzenia_id_seq', 22, true);
+SELECT pg_catalog.setval('public.kronika_typwydarzenia_id_seq', 25, true);
 
 
 --
 -- Name: kronika_typwyjazdu_id_seq; Type: SEQUENCE SET; Schema: public; Owner: projectuser
 --
 
-SELECT pg_catalog.setval('public.kronika_typwyjazdu_id_seq', 4, true);
+SELECT pg_catalog.setval('public.kronika_typwyjazdu_id_seq', 5, true);
 
 
 --
@@ -5369,6 +5411,20 @@ CREATE INDEX kronika_wydarzenie_miejsca_wydarzenie_id_dcee8c3d ON public.kronika
 
 
 --
+-- Name: kronika_wydarzenie_typ_wydarzenia_id_c47b1796; Type: INDEX; Schema: public; Owner: projectuser
+--
+
+CREATE INDEX kronika_wydarzenie_typ_wydarzenia_id_c47b1796 ON public.kronika_wydarzenie USING btree (typ_wydarzenia_id);
+
+
+--
+-- Name: kronika_wydarzenie_typ_wyjazdu_id_7df495bc; Type: INDEX; Schema: public; Owner: projectuser
+--
+
+CREATE INDEX kronika_wydarzenie_typ_wyjazdu_id_7df495bc ON public.kronika_wydarzenie USING btree (typ_wyjazdu_id);
+
+
+--
 -- Name: kronika_wydarzenie_uczestnicy_osoba_id_d531e5e6; Type: INDEX; Schema: public; Owner: projectuser
 --
 
@@ -5803,6 +5859,22 @@ ALTER TABLE ONLY public.kronika_wydarzenie_miejsca
 
 ALTER TABLE ONLY public.kronika_wydarzenie_miejsca
     ADD CONSTRAINT kronika_wydarzenie_m_wydarzenie_id_dcee8c3d_fk_kronika_w FOREIGN KEY (wydarzenie_id) REFERENCES public.kronika_wydarzenie(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: kronika_wydarzenie kronika_wydarzenie_typ_wydarzenia_id_c47b1796_fk_kronika_t; Type: FK CONSTRAINT; Schema: public; Owner: projectuser
+--
+
+ALTER TABLE ONLY public.kronika_wydarzenie
+    ADD CONSTRAINT kronika_wydarzenie_typ_wydarzenia_id_c47b1796_fk_kronika_t FOREIGN KEY (typ_wydarzenia_id) REFERENCES public.kronika_typwydarzenia(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: kronika_wydarzenie kronika_wydarzenie_typ_wyjazdu_id_7df495bc_fk_kronika_t; Type: FK CONSTRAINT; Schema: public; Owner: projectuser
+--
+
+ALTER TABLE ONLY public.kronika_wydarzenie
+    ADD CONSTRAINT kronika_wydarzenie_typ_wyjazdu_id_7df495bc_fk_kronika_t FOREIGN KEY (typ_wyjazdu_id) REFERENCES public.kronika_typwyjazdu(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --

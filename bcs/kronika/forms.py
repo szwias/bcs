@@ -33,6 +33,17 @@ class WydarzenieForm(forms.ModelForm):
         fields = '__all__'
         widgets = build_widgets(autocomplete_widgets[Wydarzenie.__name__])
 
+    def clean(self):
+        cd = super().clean()
+
+        if not cd.get('typ_wydarzenia'):
+            cd['typ_wydarzenia'] = TypWydarzenia.get_not_applicable_typ()
+
+        if not cd.get('typ_wyjazdu'):
+            cd['typ_wyjazdu'] = TypWyjazdu.get_not_applicable_typ()
+
+        return cd
+
 
 class ObrazWydarzenieForm(forms.ModelForm):
     class Meta:

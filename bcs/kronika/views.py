@@ -8,19 +8,28 @@ autocomplete_configs = [
     (
         CharakterystykaDzialanZarzadu,
         [], [],
-        [osoby['Zarzad'], osoby['DawnyZarzad'], osoby['Czlonek']]),
+        [
+            osoby['Czlonek'], osoby['DawnyZarzad'], osoby['Zarzad']]),
     (
         ObrazWydarzenie,
         [], [],
-        [Wydarzenie.__name__, osoby['Osoba']]),
+        [
+            Wydarzenie.__name__,
+            osoby['Osoba']
+        ]),
     (
         ObrazZdarzenie,
         [], [],
-        [Zdarzenie.__name__, miejsca['Miejsce'], osoby['Osoba']]),
+        [
+            Zdarzenie.__name__,
+            miejsca['Miejsce'], osoby['Osoba']
+        ]),
     (
         Proces,
         [], [],
-        [Zdarzenie.__name__]),
+        [
+            Zdarzenie.__name__,
+        ]),
     (
         TypWydarzenia,
         [], [],
@@ -32,11 +41,17 @@ autocomplete_configs = [
     (
         Wydarzenie,
         ['typ_wydarzenia', 'typ_wyjazdu', 'czy_to_wyjazd'], [],
-        [miejsca['Miejsce' ], Zdarzenie.__name__, osoby['Osoba']]),
+        [
+            TypWydarzenia.__name__, TypWyjazdu.__name__, Zdarzenie.__name__,
+            miejsca['Miejsce' ], osoby['Osoba'],
+        ]),
     (
         Zdarzenie,
         [], [],
-        [ObrazZdarzenie.__name__, Wydarzenie.__name__, osoby['Osoba']]),
+        [
+            ObrazZdarzenie.__name__, Wydarzenie.__name__,
+            osoby['Osoba']
+        ]),
 ]
 
 autocomplete_urls, autocomplete_widgets = setup_autocompletes(autocomplete_configs, globals())
