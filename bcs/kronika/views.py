@@ -1,5 +1,5 @@
 from .models import *
-from core.utils.automation.AutocompletesGeneration import *
+from core.utils.autocompletion.AutocompletesGeneration import *
 
 from osoby.models_dict import names as osoby
 from miejsca.models_dict import names as miejsca

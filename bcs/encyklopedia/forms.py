@@ -1,7 +1,7 @@
 from django import forms
 from .models import Bractwo, GrupaBractw, Pojecie, Powiedzenie, TradycjaBCS, TradycjaInnegoBractwa, Zwyczaj, Zrodlo
 from .views import autocomplete_widgets
-from core.utils.automation.AutocompletesGeneration import build_widgets
+from core.utils.autocompletion.AutocompletesGeneration import build_widgets
 
 
 class BractwoForm(forms.ModelForm):

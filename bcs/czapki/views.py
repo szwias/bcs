@@ -1,4 +1,4 @@
-from core.utils.automation.AutocompletesGeneration import *
+from core.utils.autocompletion.AutocompletesGeneration import *
 from .models import Czapka, RodzajCzapki
 
 from miejsca.models_dict import names as miejsca

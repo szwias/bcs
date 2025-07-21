@@ -1,7 +1,7 @@
 from django import forms
 from core.models import *
 from .views import autocomplete_widgets
-from core.utils.automation.AutocompletesGeneration import *
+from core.utils.autocompletion.AutocompletesGeneration import *
 
 class KadencjaForm(forms.ModelForm):
     class Meta:

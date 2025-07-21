@@ -1,10 +1,9 @@
 from django import forms
 from dal import autocomplete
 
-from miejsca.models import Miejsce
 from .models import *
 from .views import autocomplete_widgets
-from core.utils.automation.AutocompletesGeneration import build_widgets
+from core.utils.autocompletion.AutocompletesGeneration import build_widgets
 
 
 class ZdarzenieForm(forms.ModelForm):
@@ -21,16 +20,12 @@ class ZdarzenieInlineForm(forms.ModelForm):
         fields = ["nazwa", "data", "godzina", "miejsce"]
         widgets = {'miejsce': autocomplete.ModelSelect2(url='kronika_autocomplete:custom-miejsce-from-wydarzenie-to-zdarzenie-autocomplete', forward=['wydarzenie'])}
 
-        def __init__(self, *args, **kwargs):
-            super().__init__(*args, **kwargs)
+    def __init__(self, *args, **kwargs):
+        parent_obj = kwargs.pop('parent_obj')
+        super().__init__(*args, **kwargs)
+        if parent_obj and not self.instance.pk and not self.initial.get('data'):
+            self.initial['data'] = parent_obj.data_rozpoczecia
 
-            # This will only work when there's a parent instance
-            wydarzenie = self.instance.wydarzenie
-            if wydarzenie:
-                self.fields['miejsce'].queryset = wydarzenie.miejsca.all()
-            else:
-                # No parent yet (e.g., new Wydarzenie), maybe no filtering or empty
-                self.fields['miejsce'].queryset = Miejsce.objects.none()
 
 class ObrazZdarzenieForm(forms.ModelForm):
     class Meta:

@@ -19,7 +19,7 @@ class Zdarzenie(models.Model):
     )
 
     data = models.DateField(
-        default=timezone.now, verbose_name="Data"
+        verbose_name="Data"
     )
 
     godzina = models.TimeField(

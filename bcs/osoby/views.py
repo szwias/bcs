@@ -1,6 +1,6 @@
 from .models import (
 Bean, Czlonek, InnaOsoba, Osoba, DawnyZarzad, HallOfFame, ImieSzlacheckie, WielkiMistrz, Zarzad, ZwierzeCzapkowe)
-from core.utils.automation.AutocompletesGeneration import *
+from core.utils.autocompletion.AutocompletesGeneration import *
 
 from core.models_dict import names as core
 from czapki.models_dict import names as czapki

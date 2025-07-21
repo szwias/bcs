@@ -1,4 +1,4 @@
-from core.utils.automation.AutocompletesGeneration import *
+from core.utils.autocompletion.AutocompletesGeneration import *
 from .models import Kraj, Miejsce, TypMiejsca, Uczelnia, Wydzial
 
 autocomplete_configs = [

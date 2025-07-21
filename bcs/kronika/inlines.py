@@ -1,19 +1,23 @@
 from django.contrib import admin
 
+from core.utils.autocompletion.AdvancedInlines import ParentAwareInline
 from .models import ObrazZdarzenie, ObrazWydarzenie, Zdarzenie, CharakterystykaDzialanZarzadu
 from .forms import ZdarzenieInlineForm, CharakterystykaDzialanZarzaduForm
+
 
 class ObrazWydarzenieInline(admin.StackedInline):  # or StackedInline
     model = ObrazWydarzenie
     extra = 0
     filter_horizontal = ["widoczne_osoby"]
 
-class ZdarzenieInline(admin.StackedInline):
+
+class ZdarzenieInline(ParentAwareInline):
     model = Zdarzenie
     form = ZdarzenieInlineForm
     extra = 0
     show_change_link = True
     ordering = ["data", "godzina"]
+
 
 class ObrazZdarzenieInline(admin.StackedInline):
     model = ObrazZdarzenie

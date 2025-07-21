@@ -1,5 +1,5 @@
 from .models import *
-from core.utils.automation.AutocompletesGeneration import *
+from core.utils.autocompletion.AutocompletesGeneration import *
 
 from czapki.models_dict import names as czapki
 from osoby.models_dict import names as osoby
