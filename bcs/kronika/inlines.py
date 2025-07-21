@@ -6,6 +6,7 @@ from .forms import ZdarzenieInlineForm, CharakterystykaDzialanZarzaduForm
 class ObrazWydarzenieInline(admin.StackedInline):  # or StackedInline
     model = ObrazWydarzenie
     extra = 0
+    filter_horizontal = ["widoczne_osoby"]
 
 class ZdarzenieInline(admin.StackedInline):
     model = Zdarzenie
