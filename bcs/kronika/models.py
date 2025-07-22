@@ -220,11 +220,8 @@ class Wydarzenie(models.Model):
         'miejsca.Miejsce', blank=True, verbose_name="Miejsca"
     )
 
-    czy_to_wyjazd = models.CharField(
-        max_length=TextChoose.LENGTH,
-        choices=TextChoose.choices(),
-        default=TextChoose.NO[0],
-        verbose_name="Czy to wyjazd?",
+    czy_to_wyjazd = models.BooleanField(
+        default=False, verbose_name="Czy to wyjazd?"
     )
 
     typ_wydarzenia = models.ForeignKey(

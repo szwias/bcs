@@ -15,8 +15,8 @@ class ObrazZdarzenieAdmin(BaseModelAdmin):
 
 @admin.register(Wydarzenie)
 class WydarzenieAdmin(BaseModelAdmin):
-    inlines = [ZdarzenieInline, ObrazWydarzenieInline]
     save_as = True
+    inlines = [ZdarzenieInline, ObrazWydarzenieInline]
     filter_horizontal = ("miejsca", "uczestnicy")
 
 @admin.register(Zdarzenie)
