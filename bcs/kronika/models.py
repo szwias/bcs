@@ -270,6 +270,9 @@ class Wydarzenie(models.Model):
         else:
             typ = ""
 
+        if typ in self.nazwa:
+            typ = ""
+
         name += f": {typ} \"{self.nazwa}\""
         return name
 
