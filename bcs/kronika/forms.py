@@ -17,7 +17,7 @@ class ZdarzenieForm(forms.ModelForm):
 class ZdarzenieInlineForm(forms.ModelForm):
     class Meta:
         model = Zdarzenie
-        fields = ["nazwa", "data", "godzina", "miejsce"]
+        fields = ["nazwa", "data", "godzina", "miejsce", "powiazane_osoby"]
         widgets = {'miejsce': autocomplete.ModelSelect2(url='miejsca_autocomplete:miejsce-records-autocomplete', forward=['wydarzenie'])}
 
     def __init__(self, *args, **kwargs):

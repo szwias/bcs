@@ -17,6 +17,7 @@ class ZdarzenieInline(ParentAwareInline, admin.StackedInline):
     extra = 0
     show_change_link = True
     ordering = ["data", "godzina"]
+    filter_horizontal = ["powiazane_osoby"]
 
 
 class ObrazZdarzenieInline(admin.StackedInline):
