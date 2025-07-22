@@ -274,7 +274,7 @@ class Wydarzenie(models.Model):
         else:
             typ = ""
 
-        if typ in self.nazwa:
+        if typ.lower() in self.nazwa.lower():
             typ = ""
 
         name += f": {typ} \"{self.nazwa}\""
