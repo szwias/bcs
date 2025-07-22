@@ -43,10 +43,12 @@ class WydarzenieForm(forms.ModelForm):
     def clean(self):
         cd = super().clean()
 
-        if not cd.get('typ_wydarzenia'):
+        ctw = cd.get('czy_to_wyjazd')
+
+        if not cd.get('typ_wydarzenia') or ctw:
             cd['typ_wydarzenia'] = TypWydarzenia.get_not_applicable_typ()
 
-        if not cd.get('typ_wyjazdu'):
+        if not cd.get('typ_wyjazdu') or not ctw:
             cd['typ_wyjazdu'] = TypWyjazdu.get_not_applicable_typ()
 
         return cd
