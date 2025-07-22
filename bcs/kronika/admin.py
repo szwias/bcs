@@ -19,6 +19,22 @@ class WydarzenieAdmin(BaseModelAdmin):
     inlines = [ZdarzenieInline, ObrazWydarzenieInline]
     filter_horizontal = ("miejsca", "uczestnicy")
 
+    def save_formset(self, request, form, formset, change):
+        instances = formset.save(commit=False)
+
+        # Save each inline instance
+        for instance in instances:
+            instance.wydarzenie = form.instance
+            instance.save()
+
+        # Save M2M if needed
+        formset.save_m2m()
+
+        # Collect miejsca from all Zdarzenie inlines
+        if formset.model == Zdarzenie:
+            miejsca_set = {z.miejsce for z in form.instance.zdarzenia_z_wydarzenia.all() if z.miejsce}
+            form.instance.miejsca.add(*miejsca_set)  # Replace all current with new set
+
 @admin.register(Zdarzenie)
 class ZdarzenieAdmin(BaseModelAdmin):
     inlines = [ObrazZdarzenieInline]
