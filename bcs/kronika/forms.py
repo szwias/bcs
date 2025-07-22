@@ -43,11 +43,8 @@ class WydarzenieForm(forms.ModelForm):
     def clean(self):
         cd = super().clean()
 
-        data_rozpoczecia = cd.get('data_rozpoczecia')
-        data_zakonczenia = cd.get('data_zakonczenia')
-
-        if data_rozpoczecia != data_zakonczenia:
-            cd['czy_jednodniowe'] = False
+        if cd.get('czy_jednodniowe'):
+            cd['data_zakonczenia'] = cd['data_rozpoczecia']
 
         ctw = cd.get('czy_to_wyjazd')
 
