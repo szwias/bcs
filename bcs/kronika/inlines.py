@@ -11,7 +11,7 @@ class ObrazWydarzenieInline(admin.StackedInline):  # or StackedInline
     filter_horizontal = ["widoczne_osoby"]
 
 
-class ZdarzenieInline(ParentAwareInline):
+class ZdarzenieInline(ParentAwareInline, admin.StackedInline):
     model = Zdarzenie
     form = ZdarzenieInlineForm
     extra = 0
