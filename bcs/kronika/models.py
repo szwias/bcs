@@ -208,6 +208,10 @@ class Wydarzenie(models.Model):
         max_length=MAX_LENGTH, verbose_name="Nazwa"
     )
 
+    czy_jednodniowe = models.BooleanField(
+        default=True, verbose_name="Jednodniowe"
+    )
+
     data_rozpoczecia = models.DateField(
         default=timezone.now, verbose_name="Data rozpoczęcia"
     )
