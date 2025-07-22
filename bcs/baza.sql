@@ -2045,6 +2045,39 @@ COPY public.django_admin_log (id, action_time, object_id, object_repr, action_fl
 1822	2025-07-22 03:54:41.221907+02	79	2012-05-16 - 2012-05-18: Juwenalia "Juwenalia 2012"	2	[{"changed": {"fields": ["Nazwa"]}}]	19	1
 1843	2025-07-22 04:11:34.510769+02	88	2012-10-01: Uroczystość "Inauguracja roku akademickiego 2012/2013"	1	[{"added": {}}]	19	1
 1861	2025-07-22 04:24:18.18784+02	86	2012-07-27 - 2012-07-31:  "Ordre de la Bretelle - wakacyjne odwiedziny"	2	[{"changed": {"fields": ["Jednodniowe"]}}]	19	1
+1879	2025-07-22 04:51:19.542348+02	59	Pałac Larischa - Budynek, Bracka 12, 31-005 Kraków, Polska	1	[{"added": {}}]	48	1
+1895	2025-07-22 05:05:56.309975+02	110	2013-10-23: Konkurs "Ostr dyżur czas zacząć!"	1	[{"added": {}}]	19	1
+1911	2025-07-22 05:14:42.046903+02	117	2014-02-27: Śpiewanie "Lekcja śpiewania z BCS UJ 2014"	1	[{"added": {}}]	19	1
+1927	2025-07-22 05:25:10.171383+02	126	2014-05-16:  "Karczma Juwenaliowa 2014"	1	[{"added": {}}]	19	1
+1943	2025-07-22 05:39:57.820476+02	136	2014-12-07: Odchamianie się "Czapkowe mikołajkowe wyjście do Muzeum Armii Krajowej"	1	[{"added": {}}]	19	1
+1959	2025-07-22 05:55:40.361323+02	144	2015-05-07 - 2015-05-10:  "Juwenalia 2015"	1	[{"added": {}}, {"added": {"name": "Zdarzenie", "object": "2015-05-07 - Wyk\\u0142ad Juwenaliowy BCS UJ (Juwenalia \\"Juwenalia 2015\\")"}}, {"added": {"name": "Zdarzenie", "object": "2015-05-07 - Le Mon\\u00f4me (Juwenalia \\"Juwenalia 2015\\")"}}, {"added": {"name": "Zdarzenie", "object": "2015-05-09 - CIBA Open Party - ZOO & Animals (Juwenalia \\"Juwenalia 2015\\")"}}, {"added": {"name": "Zdarzenie", "object": "2015-05-10 - Goodbye Party (Juwenalia \\"Juwenalia 2015\\")"}}]	19	1
+1976	2025-07-22 06:06:54.465899+02	153	2015-11-14:  "Karczma Jesienna BCS UJ"	1	[{"added": {}}]	19	1
+1992	2025-07-22 06:15:07.377643+02	163	2016-03-16:  "Idy Marcowe"	1	[{"added": {}}]	19	1
+2007	2025-07-22 06:25:08.358753+02	172	2016-06-11:  "Ognisko przedsesyjne BCS UJ"	1	[{"added": {}}]	19	1
+2020	2025-07-22 06:43:53.90284+02	178	2016-10-26:  "Wybory zarządu VIII kadencji BCS UJ + Walne Zgromadzenie"	1	[{"added": {}}]	19	1
+2035	2025-07-22 06:52:13.186857+02	183	2016-12-01: Wyjście do kina "Fantastyczne Czapki i jak je znaleźć"	1	[{"added": {}}]	19	1
+2065	2025-07-22 09:01:42.543529+02	194	2017-04-05: Inne "Cercle Marie Haps vs Czapka Studencka : Calotte vs Czapka"	1	[{"added": {}}]	19	1
+2078	2025-07-22 09:09:42.651843+02	201	2017-06-03: Zawody sportowe "Zakończenie sezonu na izoarenie"	1	[{"added": {}}]	19	1
+2091	2025-07-22 09:19:19.278291+02	209	2017-11-10:  "Jesienna Karczma BCS UJ"	1	[{"added": {}}]	19	1
+2103	2025-07-22 09:26:02.034407+02	220	2018-03-21 - 2018-03-18:  "Wiosenny Ostry Dyżur"	1	[{"added": {}}]	19	1
+2115	2025-07-22 09:33:02.460233+02	227	2018-05-17: Wykład/Prelekcja "Wykłady o europejskich tradycjach studenckich"	1	[{"added": {}}]	19	1
+2127	2025-07-22 09:48:09.929231+02	232	2018-09-08: Ognisko "Walne Zgromadzenie"	1	[{"added": {}}]	19	1
+2138	2025-07-22 09:58:12.533015+02	236	2018-09-28: Historyczne "Pakt Bractw w Bractwem Żółtego Szalika"	1	[{"added": {}}]	19	1
+2149	2025-07-22 10:05:20.76448+02	246	2019-01-17:  "Przedsesyjny Ostry Dyżur"	1	[{"added": {}}]	19	1
+2160	2025-07-22 10:13:38.918334+02	253	2019-04-25:  "Walne Zebranie"	1	[{"added": {}}]	19	1
+2199	2025-07-22 11:04:25.535013+02	253	2019-05-23 - 2019-05-26:  "Juwenalia 2019"	2	[{"changed": {"fields": ["Jednodniowe", "Data zako\\u0144czenia", "Typ wydarzenia"]}}, {"added": {"name": "Zdarzenie", "object": "2019-05-23 - Wyk\\u0142ad o polskim i europejskim folklorze studenckim (Juwenalia \\"Juwenalia 2019\\")"}}, {"added": {"name": "Zdarzenie", "object": "2019-05-23 - mpreza powitalna VII Mi\\u0119dzynarodowych Dni Folkloru Studenckiego BCS UJ (Juwenalia \\"Juwenalia 2019\\")"}}, {"added": {"name": "Zdarzenie", "object": "2019-05-24 - Korow\\u00f3d juwenaliowy (Juwenalia \\"Juwenalia 2019\\")"}}, {"added": {"name": "Zdarzenie", "object": "2019-05-25 - Ognisko na Ska\\u0142kach Twardowskiego (Juwenalia \\"Juwenalia 2019\\")"}}, {"added": {"name": "Zdarzenie", "object": "2019-05-25 - CIBA Open Party (Juwenalia \\"Juwenalia 2019\\")"}}, {"added": {"name": "Zdarzenie", "object": "2019-05-26 - Impreza Po\\u017cegnalna (Juwenalia \\"Juwenalia 2019\\")"}}, {"changed": {"name": "Zdarzenie", "object": "2019-05-23 - The last \\u201cDo widzenia party\\u201d (Juwenalia \\"Juwenalia 2019\\")", "fields": ["Powi\\u0105zane osoby"]}}]	19	1
+2210	2025-07-22 11:12:07.004985+02	260	2019-09-24: Inne "Martinus się broni"	2	[{"changed": {"fields": ["Jednodniowe"]}}]	19	1
+2221	2025-07-22 11:24:59.250833+02	101	Restauracja Eden - Restauracja, Bydgoska 19 A, 30, 30-001 Kraków, Polska	1	[{"added": {}}]	48	1
+2232	2025-07-22 11:31:14.407234+02	275	2020-09-29: Akcja "Studencie załóż czapkę (on-line)"	1	[{"added": {}}]	19	1
+2244	2025-07-22 11:37:55.180234+02	281	2021-02-12: Wieczór filmowy "Posesyjny Ostry Dyżur: film (on-line)"	1	[{"added": {}}]	19	1
+2258	2025-07-22 11:47:25.450383+02	285	2021-05-21: Wykład/Prelekcja "Historia i tradycja czapki studenckiej (on-line)"	1	[{"added": {}}]	19	1
+2267	2025-07-22 11:52:53.495829+02	289	2021-09-25:  "I Karczma Weterańska BCS UJ"	1	[{"added": {}}]	19	1
+2276	2025-07-22 11:59:47.097169+02	293	2021-11-06: Sprzątanie grobów "Grobbing z prof. Gajdą"	1	[{"added": {}}]	19	1
+2285	2025-07-22 12:05:06.534851+02	107	Pod Srebrnym Kurem - Restauracja, Topolowa 3, 31-512 Kraków, Polska	1	[{"added": {}}]	48	1
+2292	2025-07-22 12:08:15.096946+02	302	2021-11-26:  "Impreza Andrzejkowa (+wróżby)"	1	[{"added": {}}]	19	1
+2298	2025-07-22 12:12:43.500258+02	308	2022-02-03: Historyczny "edycja promocji noszenia czapki: Zapytaj, Zamów, Zakładaj. Czapki dofinansowane przez Samorząd Studentów UJ"	1	[{"added": {}}]	19	1
+2303	2025-07-22 12:16:21.959339+02	192	Olga Zatońska	1	[{"added": {}}]	69	1
+2308	2025-07-22 12:21:58.558391+02	315	2022-03-26:  "Zielony Ostry Dyżur (św. Patryka zamiast Id Marcowych)"	1	[{"added": {}}]	19	1
 1589	2025-07-21 15:54:46.126031+02	1	Akcja	1	[{"added": {}}]	70	1
 1611	2025-07-21 15:59:03.846274+02	20	Uroczystość	1	[{"added": {}}]	70	1
 1632	2025-07-21 16:59:52.395651+02	8	2025-05-14: Uroczystość "Uniwersytecki Dzień Pamięci"	2	[]	19	1
@@ -2060,6 +2093,45 @@ COPY public.django_admin_log (id, action_time, object_id, object_repr, action_fl
 1823	2025-07-22 03:54:51.975203+02	78	2012-05-17: Impreza "Impreza CIBA"	3		19	1
 1844	2025-07-22 04:12:07.3622+02	89	2012-10-03: Wybory "Czapkowe wybory"	1	[{"added": {}}]	19	1
 1862	2025-07-22 04:24:40.609506+02	23	2011-05-17 - 2011-05-21: Akcja "Przygarnij Belga w Juwenalia!"	2	[{"changed": {"fields": ["Jednodniowe"]}}]	19	1
+1880	2025-07-22 04:52:02.636412+02	102	2013-04-13:  "Karczma wiosenna 2013 BCS UJ"	1	[{"added": {}}]	19	1
+1896	2025-07-22 05:06:22.408699+02	110	2013-11-06: Ostry Dyżur "Ostry dyżur - vol. 2"	2	[{"changed": {"fields": ["Nazwa", "Data rozpocz\\u0119cia", "Typ wydarzenia"]}}]	19	1
+1912	2025-07-22 05:15:29.253664+02	118	2014-03-07:  "Tradycyjna Karczma BCS UJ"	1	[{"added": {}}]	19	1
+1928	2025-07-22 05:25:17.119096+02	127	2014-05-16:  "Karczma Juwenaliowa 2014"	1	[{"added": {}}]	19	1
+1944	2025-07-22 05:40:49.026104+02	137	2014-12-17: Śpiewanie "Wspólne kolędowanie w Collegium Maius (BCS UJ i NZS UJ)"	1	[{"added": {}}]	19	1
+1960	2025-07-22 05:56:35.650556+02	145	2015-06-10: Ostry Dyżur "Ostry dyżur przedsesyjny"	1	[{"added": {}}]	19	1
+1977	2025-07-22 06:07:20.129629+02	154	2015-11-21:  "Ułańskie Zdrowie"	1	[{"added": {}}]	19	1
+1993	2025-07-22 06:15:33.770123+02	164	2016-03-31:  "Poświąteczny Ostry Dyżur"	1	[{"added": {}}]	19	1
+2008	2025-07-22 06:26:09.031894+02	72	Chałupa Chemików - Schronisko, Danielki 122, 34-371 Ujsoły, Polska	1	[{"added": {}}]	48	1
+2021	2025-07-22 06:44:54.059653+02	179	2016-11-13:  "Listopadowy Ostry Dyżur"	1	[{"added": {}}]	19	1
+2036	2025-07-22 06:52:45.439206+02	184	2016-12-07:  "Walne Zgromadzenie"	1	[{"added": {}}]	19	1
+2066	2025-07-22 09:02:28.402523+02	76	Zielona Góra - Miasto, Zielona Góra, Polska	1	[{"added": {}}]	48	1
+2079	2025-07-22 09:10:14.740411+02	198	2017-05-12:  "Karczma juwenaliowa"	3		19	1
+2092	2025-07-22 09:19:49.045995+02	210	2017-11-25:  "Ułańskie Zdrowie"	1	[{"added": {}}]	19	1
+2104	2025-07-22 09:26:51.161729+02	41	Depositio Beanorum	1	[{"added": {}}]	70	1
+2116	2025-07-22 09:37:50.740667+02	84	Entropia - Bar, Warszauera 1, 31-057 Kraków, Polska	1	[{"added": {}}]	48	1
+2128	2025-07-22 09:49:50.156561+02	5	Miejscowość	2	[{"changed": {"fields": ["Typ miejsca"]}}]	49	1
+2139	2025-07-22 09:58:46.212585+02	237	2018-10-17:  "Depositio Beanorum"	1	[{"added": {}}]	19	1
+2150	2025-07-22 10:05:49.552991+02	247	2019-02-16: Inne "Starej czapkowej gwardii spotkanie na szczycie #2"	1	[{"added": {}}]	19	1
+2161	2025-07-22 10:17:35.156114+02	191	Loïc Smars	1	[{"added": {}}]	56	1
+2200	2025-07-22 11:04:42.30488+02	254	2019-04-06: Historyczny "Bankiet 10-lecia BCS UJ"	1	[{"added": {}}]	19	1
+2211	2025-07-22 11:12:44.031609+02	261	2019-09-24: Inne "Martinus się broni"	1	[{"added": {}}]	19	1
+2222	2025-07-22 11:25:16.264371+02	266	2019-11-22:  "Karczma"	1	[{"added": {}}]	19	1
+2233	2025-07-22 11:32:39.466298+02	275	2020-10-08: Wybory "Nadzwyczajne Walne Zgromadzenie BCS UJ (MS TEAMS)"	2	[{"changed": {"fields": ["Nazwa", "Data rozpocz\\u0119cia", "Typ wydarzenia", "Uczestnicy wydarzenia"]}}]	19	1
+2245	2025-07-22 11:38:30.726815+02	282	2021-02-27: Konkurs "Wielki konkurs czapkowy na zdjęcia, filmy, prace plastyczne/literackie…"	1	[{"added": {}}]	19	1
+2259	2025-07-22 11:48:12.643849+02	285	2021-06-02:  "Top secret Ostry dyżur"	2	[{"changed": {"fields": ["Nazwa", "Data rozpocz\\u0119cia", "Miejsca", "Typ wydarzenia"]}}]	19	1
+2268	2025-07-22 11:54:51.315741+02	289	2021-09-30 - 2021-10-02:  "Reaktywacja XIII"	2	[{"changed": {"fields": ["Nazwa", "Jednodniowe", "Data rozpocz\\u0119cia", "Data zako\\u0144czenia", "Miejsca", "Typ wydarzenia"]}}, {"added": {"name": "Zdarzenie", "object": "2021-10-01 - Inauguracja Roku Akademickiego (Reaktywacja \\"Reaktywacja XIII\\")"}}, {"added": {"name": "Zdarzenie", "object": "2021-10-02 - Open Party w tematyce \\u015bredniowiecznej (Reaktywacja \\"Reaktywacja XIII\\")"}}]	19	1
+2277	2025-07-22 12:00:26.474492+02	293	2021-11-10:  "Karczma Jesienna BCS UJ"	2	[{"changed": {"fields": ["Nazwa", "Data rozpocz\\u0119cia", "Miejsca", "Typ wydarzenia"]}}]	19	1
+2286	2025-07-22 12:05:25.433628+02	298	2021-11-13: Odwiedziny Profesora "Spotkanie z prof. Gajdą"	1	[{"added": {}}]	19	1
+2293	2025-07-22 12:08:55.77522+02	303	2021-12-09:  "Ostry Dyżur Mikołajkowy"	1	[{"added": {}}]	19	1
+2299	2025-07-22 12:13:19.520713+02	308	2022-02-03: Historyczny "Zapytaj, Zamów, Zakładaj dofinansowane przez Samorząd Studentów UJ"	2	[{"changed": {"fields": ["Nazwa"]}}]	19	1
+2304	2025-07-22 12:17:12.443807+02	311	2022-02-12:  "Ogłoszenie wyników 1. edycji konkursu na nowe zwrotki Czapkowych Opowieści"	1	[{"added": {}}]	19	1
+2309	2025-07-22 12:23:10.505017+02	316	2022-03-26: Rekrutacja "Wirtualny Dzień Otwarty UJ"	1	[{"added": {}}]	19	1
+2314	2025-07-22 12:27:50.947427+02	321	2022-06-06: Konferencja naukowa "Konferencja Gaudeamus Igitur! Kultura studencka na przestrzeni wieków"	1	[{"added": {}}]	19	1
+2318	2025-07-22 12:32:30.549918+02	109	BAR PO SCHODKACH - Bar, Marii Konopnickiej 92b, 30-333 Kraków, Polska	1	[{"added": {}}]	48	1
+2322	2025-07-22 12:34:24.781732+02	157	2022-09-29 - Reaktywacyjna impreza powitalna (Karczma "Karczma Reaktywacyjna")	3		20	1
+2325	2025-07-22 12:35:36.346106+02	325	2022-09-30:  "Karczma Reaktywacyjna"	1	[{"added": {}}]	19	1
+2326	2025-07-22 12:37:33.503763+02	325	2022-09-29 - 2022-10-02:  "Reaktywacja 2022"	2	[{"changed": {"fields": ["Nazwa", "Jednodniowe", "Data rozpocz\\u0119cia", "Data zako\\u0144czenia", "Miejsca", "Typ wydarzenia"]}}, {"added": {"name": "Zdarzenie", "object": "2022-09-29 - Reaktywacyjna impreza powitalna (Reaktywacja \\"Reaktywacja 2022\\")"}}, {"added": {"name": "Zdarzenie", "object": "2022-10-01 - Impreza przebierana o tematyce prehistorycznej (Reaktywacja \\"Reaktywacja 2022\\")"}}, {"added": {"name": "Zdarzenie", "object": "2022-10-02 - Po\\u017cegnanie wakacji (Reaktywacja \\"Reaktywacja 2022\\")"}}]	19	1
+2345	2025-07-22 12:47:05.07167+02	332	2022-12-17:  "Wigilia BCS UJ"	3		19	1
 1590	2025-07-21 15:54:51.618971+02	2	Inny	1	[{"added": {}}]	70	1
 1612	2025-07-21 15:59:16.399498+02	21	Zawody sportowe	1	[{"added": {}}]	70	1
 1633	2025-07-21 17:00:03.50809+02	8	2025-05-14: Uroczystość "Uniwersytecki Dzień Pamięci"	2	[]	19	1
@@ -2075,6 +2147,37 @@ COPY public.django_admin_log (id, action_time, object_id, object_repr, action_fl
 1824	2025-07-22 03:55:01.45359+02	80	2012-05-16 - 2012-05-18: Juwenalia "Juwenalia 2012"	1	[{"added": {}}, {"added": {"name": "Zdarzenie", "object": "2012-05-16 - Grill na AGHu z Belgami (Juwenalia \\"Juwenalia 2012\\")"}}, {"added": {"name": "Zdarzenie", "object": "2012-05-17 - Impreza CIBA (Juwenalia \\"Juwenalia 2012\\")"}}, {"added": {"name": "Zdarzenie", "object": "2012-05-18 - Korow\\u00f3d juwenaliowy (Juwenalia \\"Juwenalia 2012\\")"}}]	19	1
 1845	2025-07-22 04:14:21.974332+02	56	Still Bar - Bar, Gołębia 8, 33-332 Kraków, Polska	1	[{"added": {}}]	48	1
 1863	2025-07-22 04:24:57.813423+02	61	2011-12-03 - 2011-12-05: Wyjazd zagraniczny "Bankiet Tradycji Studenckich"	2	[{"changed": {"fields": ["Jednodniowe"]}}]	19	1
+1881	2025-07-22 04:52:35.490101+02	103	2013-04-24:  "Ostry Dyżur"	1	[{"added": {}}]	19	1
+1897	2025-07-22 05:07:08.206992+02	108	2013-10-23: Ostry Dyżur "Ostry dyżur czas zacząć!"	2	[{"changed": {"fields": ["Nazwa", "Data rozpocz\\u0119cia", "Miejsca", "Typ wydarzenia"]}}]	19	1
+1913	2025-07-22 05:15:39.441161+02	118	2014-03-07:  "Tradycyjna Karczma BCS UJ"	2	[{"changed": {"fields": ["Miejsca"]}}]	19	1
+1929	2025-07-22 05:26:14.01835+02	128	2014-06-27:  "Karczma Posesyjna BCS UJ"	1	[{"added": {}}]	19	1
+1945	2025-07-22 05:41:59.414952+02	65	Pod Prąd - Pub/Klub, Świętego Filipa 6, 31-150 Kraków	1	[{"added": {}}]	48	1
+1961	2025-07-22 05:57:12.486886+02	145	2015-05-08:  "Karczma Juwenaliowa 2015"	2	[{"changed": {"fields": ["Nazwa", "Data rozpocz\\u0119cia", "Miejsca", "Typ wydarzenia"]}}]	19	1
+1978	2025-07-22 06:07:54.268385+02	155	2015-11-25: Impreza "Western Party BCS UJ"	1	[{"added": {}}]	19	1
+1994	2025-07-22 06:15:53.726016+02	165	2016-04-13:  "Kwietniowy Ostry Dyżur"	1	[{"added": {}}]	19	1
+2009	2025-07-22 06:26:40.390589+02	173	2016-09-22 - 2016-09-25:  "Czapkowy Adapciak 2016"	1	[{"added": {}}]	19	1
+2022	2025-07-22 06:45:17.511946+02	179	2016-11-17:  "Drugi Listopadowy Ostry Dyżur"	2	[{"changed": {"fields": ["Nazwa", "Data rozpocz\\u0119cia", "Miejsca"]}}]	19	1
+2037	2025-07-22 06:53:12.737858+02	185	2016-12-10:  "Mikołajkowy Ostry Dyżur"	1	[{"added": {}}]	19	1
+2067	2025-07-22 09:02:56.842244+02	195	2017-04-20: Wycieczka "Rewizyta Żółtego Szalika"	1	[{"added": {}}]	19	1
+2080	2025-07-22 09:10:28.606396+02	202	2017-06-03: Zawody sportowe "Zakończenie sezonu na IzoArenie"	1	[{"added": {}}]	19	1
+2093	2025-07-22 09:20:15.540907+02	211	2017-11-29:  "Wielka Rekrutacja 2017"	1	[{"added": {}}]	19	1
+2105	2025-07-22 09:27:00.689644+02	221	2018-04-04:  "Depositio Beanorum"	1	[{"added": {}}]	19	1
+2117	2025-07-22 09:38:52.598896+02	227	2018-05-16 - 2018-05-20: Wykład/Prelekcja "Juwenalia 2018"	2	[{"changed": {"fields": ["Nazwa", "Jednodniowe", "Data rozpocz\\u0119cia", "Data zako\\u0144czenia", "Miejsca"]}}, {"added": {"name": "Zdarzenie", "object": "2018-05-16 - Czapki dla Chemik\\u00f3w (Wyk\\u0142ad/Prelekcja \\"Juwenalia 2018\\")"}}, {"added": {"name": "Zdarzenie", "object": "2018-05-17 - Wyk\\u0142ady o europejskich tradycjach studenckich (Wyk\\u0142ad/Prelekcja \\"Juwenalia 2018\\")"}}, {"added": {"name": "Zdarzenie", "object": "2018-05-17 - Poch\\u00f3d Le Mon\\u00f4me (Wyk\\u0142ad/Prelekcja \\"Juwenalia 2018\\")"}}, {"added": {"name": "Zdarzenie", "object": "2018-05-17 - Impreza powitalna VI mi\\u0119dzynarodowych Dni Folkloru Studenckiego (Wyk\\u0142ad/Prelekcja \\"Juwenalia 2018\\")"}}, {"added": {"name": "Zdarzenie", "object": "2018-05-18 - Korow\\u00f3d juwenaliowy (Wyk\\u0142ad/Prelekcja \\"Juwenalia 2018\\")"}}, {"added": {"name": "Zdarzenie", "object": "2018-05-19 - Turniej we Flanki (Wyk\\u0142ad/Prelekcja \\"Juwenalia 2018\\")"}}, {"added": {"name": "Zdarzenie", "object": "2018-05-19 - CIBA Open Party, temat: Bogowie i Boginie (Wyk\\u0142ad/Prelekcja \\"Juwenalia 2018\\")"}}, {"added": {"name": "Zdarzenie", "object": "2018-05-20 - Impreza Po\\u017cegnalna (Wyk\\u0142ad/Prelekcja \\"Juwenalia 2018\\")"}}]	19	1
+2129	2025-07-22 09:49:52.278043+02	86	Kasinka Mała - Miejscowość, Kasinka Mała, Polska	1	[{"added": {}}]	48	1
+2140	2025-07-22 09:59:40.701147+02	238	2018-10-24:  "Wybory"	1	[{"added": {}}]	19	1
+2151	2025-07-22 10:06:26.628351+02	248	2019-02-27:  "Posesyjny Ostry Dyżur - śpiewogranie"	1	[{"added": {}}]	19	1
+2162	2025-07-22 10:17:45.31963+02	253	2019-05-23: Impreza "The last “Do widzenia party”"	2	[{"changed": {"fields": ["Nazwa", "Data rozpocz\\u0119cia", "Miejsca", "Typ wydarzenia", "Opis", "Uczestnicy wydarzenia"]}}]	19	1
+2201	2025-07-22 11:06:18.069039+02	96	Restauracja ZBROJOWNIA - Restauracja, Rakowicka 22, 31-510 Kraków, Polska	1	[{"added": {}}]	48	1
+2212	2025-07-22 11:14:11.826362+02	87	Restauracja ZBROJOWNIA - Restauracja, Rakowicka 22, 31-510 Kraków, Polska	3		48	1
+2223	2025-07-22 11:26:17.282272+02	102	PUB Pod Ziemią - Pub/Klub, Miodowa 43, 31-052 Kraków	1	[{"added": {}}]	48	1
+2234	2025-07-22 11:32:53.790777+02	272	2020-05-15:  "Wirtualny Ostry Dyżur (Discord)"	2	[{"changed": {"fields": ["Nazwa"]}}]	19	1
+2246	2025-07-22 11:40:19.012569+02	2	Inny	2	[{"changed": {"fields": ["Typ wydarzenia"]}}]	70	1
+2260	2025-07-22 11:48:25.531067+02	283	2021-02-12:  "Posesyjny Ostry Dyżur: film (on-line)"	2	[{"changed": {"fields": ["Typ wydarzenia"]}}]	19	1
+2269	2025-07-22 11:54:56.558966+02	290	2021-06-30:  "Top secret ognisko"	1	[{"added": {}}]	19	1
+2278	2025-07-22 12:00:45.657154+02	290	2021-06-30:  "Top secret ognisko"	3		19	1
+2279	2025-07-22 12:00:45.657202+02	286	2021-06-02:  "Top secret Ostry dyżur"	3		19	1
+2287	2025-07-22 12:06:19.467136+02	29	Spotkanie z prof. Gajdą	2	[{"changed": {"fields": ["Typ wydarzenia"]}}]	70	1
+2310	2025-07-22 12:24:05.697613+02	317	2022-04-01:  "Kudłacze 2022"	1	[{"added": {}}]	19	1
 1591	2025-07-21 15:55:01.572875+02	2	Inne	2	[{"changed": {"fields": ["Typ wydarzenia"]}}]	70	1
 1613	2025-07-21 15:59:21.768282+02	22	Nieoficjalne	1	[{"added": {}}]	70	1
 1634	2025-07-21 17:02:42.669227+02	26	2025-05-08 - 2025-05-11: Zagraniczny "Faerie Matricularum"	2	[{"changed": {"fields": ["Typ wyjazdu"]}}]	19	1
@@ -2090,6 +2193,41 @@ COPY public.django_admin_log (id, action_time, object_id, object_repr, action_fl
 1825	2025-07-22 03:55:40.526333+02	81	2012-05-18: Karczma "Juwenaliowa Karczma Piwna z Belgami!"	1	[{"added": {}}]	19	1
 1846	2025-07-22 04:14:33.61505+02	90	2012-10-05:  "Karczma Reaktywacyjna"	1	[{"added": {}}]	19	1
 1864	2025-07-22 04:25:08.053682+02	83	2012-06-18 - 2012-09-30: Akcja "Promuję Bractwo - umieszczam informację o jego stronie"	2	[{"changed": {"fields": ["Jednodniowe"]}}]	19	1
+1882	2025-07-22 04:54:38.120199+02	60	"Wieliczka" - Muzeum, Daniłowicza 10, 32-020 Wieliczka, Polska	1	[{"added": {}}]	48	1
+1898	2025-07-22 05:07:20.566567+02	108	2013-10-23: Ostry Dyżur "Ostry dyżur czas zacząć! - vol. 1"	2	[{"changed": {"fields": ["Nazwa"]}}]	19	1
+1914	2025-07-22 05:15:44.242376+02	119	2014-03-07:  "Tradycyjna Karczma BCS UJ"	1	[{"added": {}}]	19	1
+1930	2025-07-22 05:26:52.137885+02	129	2014-06-28:  "Grill u profesora Gajdy"	1	[{"added": {}}]	19	1
+1946	2025-07-22 05:42:27.206127+02	137	2014-12-17:  "Karczma Wigilijna 2014"	2	[{"changed": {"fields": ["Nazwa", "Miejsca", "Typ wydarzenia", "Uczestnicy wydarzenia"]}}]	19	1
+1962	2025-07-22 05:59:31.608373+02	144	2015-06-10 - 2015-05-10:  "Ostry Dyżur Przedsesyjny"	2	[{"changed": {"fields": ["Nazwa", "Data rozpocz\\u0119cia", "Miejsca", "Typ wydarzenia"]}}, {"deleted": {"name": "Zdarzenie", "object": "2015-05-07 - Wyk\\u0142ad Juwenaliowy BCS UJ (Ostry Dy\\u017cur \\"Ostry Dy\\u017cur Przedsesyjny\\")"}}, {"deleted": {"name": "Zdarzenie", "object": "2015-05-07 - Le Mon\\u00f4me (Ostry Dy\\u017cur \\"Ostry Dy\\u017cur Przedsesyjny\\")"}}, {"deleted": {"name": "Zdarzenie", "object": "2015-05-09 - CIBA Open Party - ZOO & Animals (Ostry Dy\\u017cur \\"Ostry Dy\\u017cur Przedsesyjny\\")"}}, {"deleted": {"name": "Zdarzenie", "object": "2015-05-10 - Goodbye Party (Ostry Dy\\u017cur \\"Ostry Dy\\u017cur Przedsesyjny\\")"}}]	19	1
+1979	2025-07-22 06:08:45.136647+02	156	2015-12-09:  "Tradycyjny Ostry Dyżur"	1	[{"added": {}}]	19	1
+1995	2025-07-22 06:16:36.962986+02	166	2016-04-22:  "Rajd BCS UJ na Kudłacze 2016"	1	[{"added": {}}]	19	1
+2010	2025-07-22 06:27:13.283317+02	174	2016-09-30:  "Konkurs Wakacyjny"	1	[{"added": {}}]	19	1
+2023	2025-07-22 06:45:26.800463+02	180	2016-11-17:  "Drugi Listopadowy Ostry Dyżur"	1	[{"added": {}}]	19	1
+2038	2025-07-22 06:54:00.887647+02	75	Dom Małeckiego - Dom/Mieszkanie, Kraków, Polska	1	[{"added": {}}]	48	1
+2068	2025-07-22 09:03:24.229151+02	196	2017-04-26:  "Kwietniowy Ostry Dyżur II"	1	[{"added": {}}]	19	1
+2081	2025-07-22 09:10:52.734527+02	203	2017-06-10:  "Ognisko Przedsesyjne 2017"	1	[{"added": {}}]	19	1
+2094	2025-07-22 09:20:50.601457+02	212	2017-12-06:  "Mikołajkowy Ostry Dyżur"	1	[{"added": {}}]	19	1
+2106	2025-07-22 09:27:47.085305+02	222	2018-04-07: Wykład/Prelekcja "Czapka studencka oznaką prawdziwego żaka II"	1	[{"added": {}}]	19	1
+2118	2025-07-22 09:39:07.343337+02	227	2018-05-16 - 2018-05-20:  "Juwenalia 2018"	2	[{"changed": {"fields": ["Typ wydarzenia"]}}]	19	1
+2130	2025-07-22 09:50:20.092067+02	233	2018-09-21 - 2018-09-24:  "Adapciak BCS UJ"	1	[{"added": {}}]	19	1
+2141	2025-07-22 10:00:16.178538+02	239	2018-11-13:  "Wielka Rekrutacja BCS UJ"	1	[{"added": {}}]	19	1
+2152	2025-07-22 10:07:00.161666+02	249	2019-03-15:  "Karczma Wiosenna BCS UJ"	1	[{"added": {}}]	19	1
+2163	2025-07-22 10:21:03.324414+02	253	2019-05-23: Impreza "Juwenalia 2019"	2	[{"changed": {"fields": ["Nazwa", "Uczestnicy wydarzenia"]}}, {"added": {"name": "Zdarzenie", "object": "2019-05-23 - The last \\u201cDo widzenia party\\u201d (Impreza \\"Juwenalia 2019\\")"}}]	19	1
+2202	2025-07-22 11:06:29.73489+02	255	2019-05-24:  "Karczma Juwenaliowa 2019"	1	[{"added": {}}]	19	1
+2213	2025-07-22 11:14:21.129508+02	261	2019-09-27: Inne "Reaktywacja XI"	2	[{"changed": {"fields": ["Nazwa", "Data rozpocz\\u0119cia", "Data zako\\u0144czenia"]}}]	19	1
+2224	2025-07-22 11:26:28.939768+02	267	2019-12-04:  "Ostry Dyżur Mikołajkowy"	1	[{"added": {}}]	19	1
+2235	2025-07-22 11:33:50.78206+02	42	Granie on-line	1	[{"added": {}}]	70	1
+2247	2025-07-22 11:40:22.717288+02	273	2020-06-06: Inny "Hommage a Maurice"	2	[]	19	1
+2261	2025-07-22 11:48:37.938857+02	286	2021-06-02:  "Top secret Ostry dyżur"	1	[{"added": {}}]	19	1
+2270	2025-07-22 11:56:08.188178+02	104	Piwnica Pod Baranami - Bar, Pałac Pod Baranami, Rynek Główny 27, 31-010 Kraków, Polska	1	[{"added": {}}]	48	1
+2280	2025-07-22 12:00:53.45444+02	294	2021-11-10:  "Karczma Jesienna BCS UJ"	1	[{"added": {}}]	19	1
+2288	2025-07-22 12:06:25.250676+02	298	2021-11-13:  "Spotkanie z prof. Gajdą po Ułańskim Zdrowiu"	2	[{"changed": {"fields": ["Nazwa"]}}]	19	1
+2294	2025-07-22 12:10:13.597256+02	304	2021-12-16:  "Wyjście do kina na "Nasze Magiczne Encanto""	1	[{"added": {}}]	19	1
+2300	2025-07-22 12:13:35.562888+02	308	2022-02-03: Historyczny "Zapytaj, Zamów, Zakładaj" dofinansowane przez Samorząd Studentów UJ"	2	[{"changed": {"fields": ["Nazwa"]}}]	19	1
+2305	2025-07-22 12:19:24.463551+02	312	2022-03-03: Odchamianie się "Wyjście do teatru na spektakl “Dwaj mistrzowie komedii” wg Fredro i Moliera, w którym grał "Koziołek""	1	[{"added": {}}]	19	1
+2311	2025-07-22 12:24:44.003211+02	318	2022-04-22:  "Karczma Wiosenna BCS UJ w klimacie wielkanocnego śniadania"	1	[{"added": {}}]	19	1
+2315	2025-07-22 12:28:17.983581+02	322	2022-06-11:  "Depositio beanorum"	1	[{"added": {}}]	19	1
+2319	2025-07-22 12:33:06.562659+02	324	2022-09-29 - 2022-10-02:  "Reaktywacja 2022"	1	[{"added": {}}, {"added": {"name": "Zdarzenie", "object": "2022-09-29 - Reaktywacyjna impreza powitalna (Reaktywacja \\"Reaktywacja 2022\\")"}}, {"added": {"name": "Zdarzenie", "object": "2022-10-01 - Impreza przebierana o tematyce prehistorycznej (Reaktywacja \\"Reaktywacja 2022\\")"}}, {"added": {"name": "Zdarzenie", "object": "2022-10-02 - Po\\u017cegnanie wakacji (Reaktywacja \\"Reaktywacja 2022\\")"}}]	19	1
 1592	2025-07-21 15:55:15.46481+02	3	Karczma	1	[{"added": {}}]	70	1
 1614	2025-07-21 15:59:59.994348+02	1	Adapciak	1	[{"added": {}}]	71	1
 1635	2025-07-21 17:03:06.832616+02	4	Wyjazd Zagraniczny	2	[{"changed": {"fields": ["Typ wyjazdu"]}}]	71	1
@@ -2105,6 +2243,41 @@ COPY public.django_admin_log (id, action_time, object_id, object_repr, action_fl
 1826	2025-07-22 03:56:24.359534+02	6	Stiftungfest	1	[{"added": {}}]	71	1
 1847	2025-07-22 04:14:45.028298+02	90	2012-10-05:  "Karczma Reaktywacyjna 3"	2	[{"changed": {"fields": ["Nazwa"]}}]	19	1
 1865	2025-07-22 04:25:28.963529+02	55	2011-11-11 - 2011-11-16: Wyjazd zagraniczny "Czapka na CIBA"	2	[{"changed": {"fields": ["Jednodniowe"]}}]	19	1
+1883	2025-07-22 04:54:47.109657+02	103	2013-05-07 - 2013-05-14:  "Juwenalia 2013"	2	[{"changed": {"fields": ["Nazwa", "Jednodniowe", "Data rozpocz\\u0119cia", "Data zako\\u0144czenia", "Typ wydarzenia"]}}, {"added": {"name": "Zdarzenie", "object": "2013-05-08 - Wycieczka do Wieliczki (Juwenalia \\"Juwenalia 2013\\")"}}]	19	1
+1899	2025-07-22 05:07:29.778384+02	111	2013-11-06: Ostry Dyżur "Ostry dyżur - vol. 2"	1	[{"added": {}}]	19	1
+1915	2025-07-22 05:16:26.672833+02	120	2014-03-20:  "Wiosenny Ostry Dyżur BCS UJ"	1	[{"added": {}}]	19	1
+1931	2025-07-22 05:28:47.582057+02	130	2014-07-02: Konkurs "Z Czapką dookoła świata"	1	[{"added": {}}]	19	1
+1947	2025-07-22 05:43:02.672708+02	138	2014-12-17:  "Karczma Wigilijna 2014"	1	[{"added": {}}]	19	1
+1963	2025-07-22 05:59:45.322044+02	144	2015-06-10:  "Ostry Dyżur Przedsesyjny"	2	[{"changed": {"fields": ["Jednodniowe"]}}]	19	1
+1980	2025-07-22 06:09:38.970842+02	38	Kolędowanie	1	[{"added": {}}]	70	1
+1996	2025-07-22 06:16:49.558031+02	166	2016-04-22 - 2016-04-24:  "Rajd BCS UJ na Kudłacze 2016"	2	[{"changed": {"fields": ["Jednodniowe", "Data zako\\u0144czenia"]}}]	19	1
+2011	2025-07-22 06:27:45.507529+02	175	2016-09-30: Śpiewanie "International Cantus"	1	[{"added": {}}]	19	1
+2024	2025-07-22 06:45:41.640573+02	180	2016-11-13:  "Listopadowy Ostry Dyżur"	2	[{"changed": {"fields": ["Nazwa", "Data rozpocz\\u0119cia", "Miejsca"]}}]	19	1
+2039	2025-07-22 06:54:50.072313+02	185	2016-12-17: Ostry Dyżur "Wigilia Czapkowa"	2	[{"changed": {"fields": ["Nazwa", "Data rozpocz\\u0119cia", "Miejsca", "Uczestnicy wydarzenia"]}}]	19	1
+2069	2025-07-22 09:04:28.737333+02	196	2017-05-11 - 2017-05-14:  "Juwenalia 2017"	2	[{"changed": {"fields": ["Nazwa", "Jednodniowe", "Data rozpocz\\u0119cia", "Data zako\\u0144czenia", "Miejsca", "Typ wydarzenia"]}}, {"added": {"name": "Zdarzenie", "object": "2017-05-11 - Wyk\\u0142ady Juwenaliowe o tradycjach studenckich (Juwenalia \\"Juwenalia 2017\\")"}}]	19	1
+2082	2025-07-22 09:11:19.805031+02	204	2017-06-29:  "Grill u Profesora"	1	[{"added": {}}]	19	1
+2095	2025-07-22 09:21:36.183827+02	213	2017-12-16:  "Wigilia Czapkowa"	1	[{"added": {}}]	19	1
+2107	2025-07-22 09:28:44.245598+02	80	Kawiarnia Piast - Kawiarnia, Piastowska 47, 30-067 Kraków, Polska	1	[{"added": {}}]	48	1
+2119	2025-07-22 09:39:21.00544+02	226	2018-05-16: Rekrutacja "Czapki dla Chemików"	3		19	1
+2131	2025-07-22 09:51:23.044297+02	233	2018-09-21 - 2018-09-24:  "Adapciak BCS UJ"	2	[]	19	1
+2142	2025-07-22 10:01:18.32443+02	240	2018-11-23:  "Karczma Jesienna 2018"	1	[{"added": {}}]	19	1
+2153	2025-07-22 10:08:07.375542+02	90	Teatr Groteska - Teatr, Skarbowa 2, 31-121 Kraków, Polska	1	[{"added": {}}]	48	1
+2203	2025-07-22 11:07:42.000697+02	97	Katowice - Miejscowość, Katowice, Polska	1	[{"added": {}}]	48	1
+2214	2025-07-22 11:17:41.737768+02	99	Klub Dziekanat - Pub/Klub, 	1	[{"added": {}}]	48	1
+2225	2025-07-22 11:27:00.900187+02	268	2019-12-14:  "Wigilia Czapkowa 2019"	1	[{"added": {}}]	19	1
+2236	2025-07-22 11:34:04.711754+02	276	2020-10-24: Granie on-line "Czapkowe Among Us"	1	[{"added": {}}]	19	1
+2248	2025-07-22 11:40:57.718271+02	235	2018-09-08:  "Walne Zgromadzenie"	2	[{"changed": {"fields": ["Typ wydarzenia"]}}]	19	1
+2262	2025-07-22 11:51:07.391617+02	44	Delegacja	1	[{"added": {}}]	70	1
+2271	2025-07-22 11:56:17.002338+02	291	2021-09-30:  "Karczma Reaktywacyjna"	1	[{"added": {}}]	19	1
+2281	2025-07-22 12:01:40.032361+02	294	2021-11-06:  "Sprzątanie grobów z prof. Gajdą"	2	[{"changed": {"fields": ["Nazwa", "Data rozpocz\\u0119cia", "Miejsca", "Typ wydarzenia", "Uczestnicy wydarzenia"]}}]	19	1
+2289	2025-07-22 12:06:36.011527+02	299	2021-11-13:  "Spotkanie z prof. Gajdą po Ułańskim Zdrowiu"	1	[{"added": {}}]	19	1
+2295	2025-07-22 12:10:43.962989+02	305	2021-12-16:  "Karczma Wigilijna"	1	[{"added": {}}]	19	1
+2301	2025-07-22 12:13:43.676382+02	309	2022-02-03: Historyczny "Zapytaj, Zamów, Zakładaj" dofinansowane przez Samorząd Studentów UJ"	1	[{"added": {}}]	19	1
+2306	2025-07-22 12:20:07.304329+02	313	2022-03-09:  "Mateusz Żurek (Magister Cantandi) przedłuża konkurs na czapkowe zwrotki Czapkowych Opowieści i Czapkowej Siekiery Motyki"	1	[{"added": {}}]	19	1
+2312	2025-07-22 12:25:47.603525+02	319	2022-04-23: Wycieczka "Trzyosobowa delegacja na imprezę do Zielonej Góry"	1	[{"added": {}}]	19	1
+2316	2025-07-22 12:29:53.920655+02	108	Schronisko PTTK Stare Wierchy - Schronisko, 34-404 Klikuszowa, Polska	1	[{"added": {}}]	48	1
+2320	2025-07-22 12:33:51.257078+02	324	2022-09-30:  "Karczma Reaktywacyjna"	2	[{"changed": {"fields": ["Nazwa", "Jednodniowe", "Data rozpocz\\u0119cia", "Miejsca", "Typ wydarzenia"]}}, {"deleted": {"name": "Zdarzenie", "object": "2022-09-29 - Reaktywacyjna impreza powitalna (Karczma \\"Karczma Reaktywacyjna\\")"}}, {"deleted": {"name": "Zdarzenie", "object": "2022-10-01 - Impreza przebierana o tematyce prehistorycznej (Karczma \\"Karczma Reaktywacyjna\\")"}}, {"deleted": {"name": "Zdarzenie", "object": "2022-10-02 - Po\\u017cegnanie wakacji (Karczma \\"Karczma Reaktywacyjna\\")"}}]	19	1
+2323	2025-07-22 12:34:47.956672+02	158	2022-10-01 - Impreza przebierana o tematyce prehistorycznej (Karczma "Karczma Reaktywacyjna")	3		20	1
 1593	2025-07-21 15:55:27.625152+02	4	Wyjście do kina	1	[{"added": {}}]	70	1
 1615	2025-07-21 16:00:04.102257+02	2	Inny	1	[{"added": {}}]	71	1
 1636	2025-07-21 17:03:11.286514+02	26	2025-05-08 - 2025-05-11: Wyjazd Zagraniczny "Faerie Matricularum"	2	[]	19	1
@@ -2120,6 +2293,24 @@ COPY public.django_admin_log (id, action_time, object_id, object_repr, action_fl
 1809	2025-07-22 03:41:01.660257+02	75	2012-03-29: Ostry Dyżur "Czapkowy ostry dyżur 6 - Pożegnanie z Anną-Marią!"	1	[{"added": {}}]	19	1
 1827	2025-07-22 03:59:03.187946+02	81	2012-05-19:  "Stiftungfest"	2	[{"changed": {"fields": ["Nazwa", "Data rozpocz\\u0119cia", "Data zako\\u0144czenia", "Miejsca", "Czy to wyjazd?", "Typ wyjazdu"]}}]	19	1
 1848	2025-07-22 04:14:53.809225+02	91	2012-10-05:  "Karczma Reaktywacyjna 3"	1	[{"added": {}}]	19	1
+1866	2025-07-22 04:33:50.398815+02	96	2012-12-06: Wykład/Prelekcja "'O obyczajowości żaków krakowskich w XVI wieku', Mariusz Wolny"	1	[{"added": {}}]	19	1
+1884	2025-07-22 04:55:51.417795+02	103	2013-05-07 - 2013-05-14:  "Juwenalia 2013"	2	[{"changed": {"fields": ["Miejsca"]}}, {"added": {"name": "Zdarzenie", "object": "2013-05-09 - Konferencja o zwyczajach studenckich (Juwenalia \\"Juwenalia 2013\\")"}}]	19	1
+1900	2025-07-22 05:08:23.930379+02	112	2013-11-14:  "Walne Zgromadzenie BCS UJ"	1	[{"added": {}}]	19	1
+1916	2025-07-22 05:17:53.302884+02	120	2014-04-04:  "Kudłacze"	2	[{"changed": {"fields": ["Nazwa", "Data rozpocz\\u0119cia", "Miejsca", "Czy to wyjazd?", "Typ wyjazdu"]}}, {"added": {"name": "Zdarzenie", "object": "2014-04-04 - 5-lecie BCS UJ (Kud\\u0142acze \\"Kud\\u0142acze\\")"}}]	19	1
+1932	2025-07-22 05:30:53.146702+02	130	2014-10-03 - 2014-10-04: Reaktywacja "Czapka Reactivation Party VI"	2	[{"changed": {"fields": ["Nazwa", "Jednodniowe", "Data rozpocz\\u0119cia", "Data zako\\u0144czenia", "Miejsca", "Typ wydarzenia"]}}, {"added": {"name": "Zdarzenie", "object": "2014-10-03 - Traditional Cantus (Reaktywacja \\"Czapka Reactivation Party VI\\")"}}]	19	1
+1948	2025-07-22 05:43:45.597135+02	139	2015-03-05:  "Ostry Dyżur Przedwiosenny"	1	[{"added": {}}]	19	1
+1964	2025-07-22 05:59:52.557306+02	146	2015-06-10:  "Ostry Dyżur Przedsesyjny"	1	[{"added": {}}]	19	1
+1981	2025-07-22 06:09:46.168705+02	156	2015-12-19:  "Kolędowanie pod Collegium Novum"	2	[{"changed": {"fields": ["Nazwa", "Data rozpocz\\u0119cia", "Miejsca", "Typ wydarzenia"]}}]	19	1
+1997	2025-07-22 06:16:58.267073+02	167	2016-04-13:  "Kwietniowy Ostry Dyżur"	1	[{"added": {}}]	19	1
+2012	2025-07-22 06:35:27.203093+02	73	Winnica UJ - Uczelnia, 32-700 Łazy, Polska	1	[{"added": {}}]	48	1
+2025	2025-07-22 06:45:50.468383+02	180	2016-11-13:  "Listopadowy Ostry Dyżur"	2	[{"changed": {"fields": ["Miejsca"]}}]	19	1
+2040	2025-07-22 07:00:19.651913+02	183	2016-12-01: Wyjście do kina "Fantastyczne Czapki i jak je znaleźć"	3		19	1
+2041	2025-07-22 07:00:19.651956+02	181	2016-11-17:  "Drugi Listopadowy Ostry Dyżur"	3		19	1
+2042	2025-07-22 07:00:19.651977+02	177	2016-09-30:  "Konkurs Wakacyjny"	3		19	1
+2043	2025-07-22 07:00:19.651995+02	170	2016-05-05:  "Majowy Ostry Dyżur"	3		19	1
+2044	2025-07-22 07:00:19.652012+02	161	2016-01-20:  "Styczniowy Ostry Dyżur"	3		19	1
+2045	2025-07-22 07:00:19.65203+02	157	2015-12-19:  "Kolędowanie pod Collegium Novum"	3		19	1
+2046	2025-07-22 07:00:19.652047+02	149	2015-06-30: Odwiedziny Profesora "Tres faciunt collegium: grill u Profesora"	3		19	1
 406	2025-05-01 13:36:20.778128+02	2	2009/None	1	[{"added": {}}]	14	1
 407	2025-05-01 13:39:53.703156+02	2	2009/2010	2	[]	14	1
 408	2025-05-01 13:39:57.507703+02	3	2009/2010	1	[{"added": {}}]	14	1
@@ -2139,6 +2330,21 @@ COPY public.django_admin_log (id, action_time, object_id, object_repr, action_fl
 422	2025-05-01 13:41:01.9492+02	17	2023/2024	1	[{"added": {}}]	14	1
 423	2025-05-01 13:41:07.206425+02	17	2024/2025	2	[{"changed": {"fields": ["Rozpocz\\u0119cie"]}}]	14	1
 424	2025-05-01 13:41:25.104324+02	2	2023/2024	2	[{"changed": {"fields": ["Rozpocz\\u0119cie"]}}]	14	1
+2047	2025-07-22 07:00:19.652065+02	146	2015-06-10:  "Ostry Dyżur Przedsesyjny"	3		19	1
+2048	2025-07-22 07:00:19.652082+02	138	2014-12-17:  "Karczma Wigilijna 2014"	3		19	1
+2049	2025-07-22 07:00:19.652099+02	132	2014-10-23:  "Wybory Zarządu BCS UJ"	3		19	1
+2050	2025-07-22 07:00:19.652117+02	127	2014-05-16:  "Karczma Juwenaliowa 2014"	3		19	1
+2051	2025-07-22 07:00:19.652136+02	121	2014-04-04:  "Kudłacze"	3		19	1
+2052	2025-07-22 07:00:19.652153+02	119	2014-03-07:  "Tradycyjna Karczma BCS UJ"	3		19	1
+2053	2025-07-22 07:00:19.652169+02	115	2013-12-05:  "Ostry Dyżur - vol. 4"	3		19	1
+2054	2025-07-22 07:00:19.652186+02	111	2013-11-06: Ostry Dyżur "Ostry dyżur - vol. 2"	3		19	1
+2055	2025-07-22 07:00:19.652203+02	98	2013-02-20: Inne "Jacobs Czapka Winter Special"	3		19	1
+2056	2025-07-22 07:00:19.652219+02	91	2012-10-05:  "Karczma Reaktywacyjna 3"	3		19	1
+2083	2025-07-22 09:12:25.756517+02	78	SST "Lasek" - Schronisko, Pewel Wielka 4, 34-340 Pewel Wielka, Polska	1	[{"added": {}}]	48	1
+2096	2025-07-22 09:22:16.940506+02	214	2018-01-11:  "Styczniowy Ostry Dyżur"	1	[{"added": {}}]	19	1
+2108	2025-07-22 09:28:56.363038+02	223	2018-04-14:  "Karczma Wiosenna BCS UJ"	1	[{"added": {}}]	19	1
+2120	2025-07-22 09:39:28.808728+02	228	2018-05-11: Wykład/Prelekcja "Europejskie i polskie tradycje studenckie"	1	[{"added": {}}]	19	1
+2237	2025-07-22 11:34:55.774192+02	43	Wieczór filmowy	1	[{"added": {}}]	70	1
 1594	2025-07-21 15:56:00.826694+02	5	Prelekcja	1	[{"added": {}}]	70	1
 1616	2025-07-21 16:00:09.592922+02	3	Kudłacze	1	[{"added": {}}]	71	1
 1637	2025-07-21 17:03:25.928363+02	4	Wyjazd zagraniczny	2	[{"changed": {"fields": ["Typ wyjazdu"]}}]	71	1
@@ -2153,6 +2359,30 @@ COPY public.django_admin_log (id, action_time, object_id, object_repr, action_fl
 1810	2025-07-22 03:45:24.603652+02	52	Eco Resto Bar - Bar, Czysta, 31-121 Kraków, Polska	1	[{"added": {}}]	48	1
 1828	2025-07-22 03:59:46.915883+02	80	2012-05-16 - 2012-05-18:  "Juwenalia 2012"	2	[]	19	1
 1849	2025-07-22 04:15:50.714997+02	57	Klub Re - Pub/Klub, Świętego Krzyża 4, 31-027 Kraków, Polska	1	[{"added": {}}]	48	1
+1867	2025-07-22 04:34:01.654923+02	96	2012-12-06: Wykład/Prelekcja "'O obyczajowości żaków krakowskich w XVI wieku', Mariusz Wolny"	2	[{"changed": {"fields": ["Data zako\\u0144czenia"]}}]	19	1
+1885	2025-07-22 04:56:49.041354+02	103	2013-05-07 - 2013-05-14:  "Juwenalia 2013"	2	[{"changed": {"fields": ["Miejsca"]}}, {"added": {"name": "Zdarzenie", "object": "2013-05-10 - Korow\\u00f3d juwenaliowy (Juwenalia \\"Juwenalia 2013\\")"}}, {"changed": {"name": "Zdarzenie", "object": "2013-05-09 - Konferencja o zwyczajach studenckich (Juwenalia \\"Juwenalia 2013\\")", "fields": ["Miejsce"]}}]	19	1
+1901	2025-07-22 05:09:53.690952+02	61	Ułańskie Zdrowie - Szczyt, Leśna 79, 32-065 Krzeszowice, Polska	1	[{"added": {}}]	48	1
+1917	2025-07-22 05:17:59.285585+02	121	2014-04-04:  "Kudłacze"	1	[{"added": {}}, {"added": {"name": "Zdarzenie", "object": "2014-04-04 - 5-lecie BCS UJ (Kud\\u0142acze \\"Kud\\u0142acze\\")"}}]	19	1
+1933	2025-07-22 05:31:14.404701+02	131	2014-10-03 - 2014-10-04: Reaktywacja "Czapka Reactivation Party VI"	1	[{"added": {}}, {"added": {"name": "Zdarzenie", "object": "2014-10-03 - Traditional Cantus (Reaktywacja \\"Czapka Reactivation Party VI\\")"}}, {"added": {"name": "Zdarzenie", "object": "2014-10-04 - Open Party (Reaktywacja \\"Czapka Reactivation Party VI\\")"}}]	19	1
+1949	2025-07-22 05:44:17.603676+02	140	2015-03-14: Idy Marcowe "Idy Czapkowe 2015"	1	[{"added": {}}]	19	1
+1965	2025-07-22 06:00:50.604653+02	29	Las	1	[{"added": {}}]	49	1
+1982	2025-07-22 06:10:17.715713+02	62	2011-12-16:  "Kolędowanie pod Novum wraz z NZS UJ"	2	[{"changed": {"fields": ["Nazwa", "Typ wydarzenia"]}}]	19	1
+1998	2025-07-22 06:17:22.149367+02	168	2016-05-05:  "Majowy Ostry Dyżur"	1	[{"added": {}}]	19	1
+2013	2025-07-22 06:38:04.375217+02	175	2016-09-30 - 2016-10-02:  "Reaktywacja BCS UJ"	2	[{"changed": {"fields": ["Nazwa", "Jednodniowe", "Data zako\\u0144czenia", "Typ wydarzenia"]}}, {"added": {"name": "Zdarzenie", "object": "2016-09-30 - International Cantus (Reaktywacja \\"Reaktywacja BCS UJ\\")"}}, {"added": {"name": "Zdarzenie", "object": "2016-10-01 - Poch\\u00f3d inauguracyjny (Reaktywacja \\"Reaktywacja BCS UJ\\")"}}, {"added": {"name": "Zdarzenie", "object": "2016-10-01 - CIBA Open Party (Reaktywacja \\"Reaktywacja BCS UJ\\")"}}, {"added": {"name": "Zdarzenie", "object": "2016-10-02 - Zwiedzanie winnicy UJ w \\u0141azach (Reaktywacja \\"Reaktywacja BCS UJ\\")"}}, {"added": {"name": "Zdarzenie", "object": "2016-10-02 - Goodbye Party (Reaktywacja \\"Reaktywacja BCS UJ\\")"}}, {"added": {"name": "Zdarzenie", "object": "2016-10-02 - Orfeusz i Eurydyka - wyj\\u015bcie do oper (Reaktywacja \\"Reaktywacja BCS UJ\\")"}}]	19	1
+2026	2025-07-22 06:47:18.995924+02	180	2016-11-13:  "Listopadowy Ostry Dyżur"	2	[{"changed": {"fields": ["Miejsca"]}}]	19	1
+2057	2025-07-22 07:01:55.559082+02	186	2015-04-30: Grill "Ruszt u Małeckiego"	1	[{"added": {}}]	19	1
+2070	2025-07-22 09:06:15.278579+02	196	2017-05-11 - 2017-05-14:  "Juwenalia 2017"	2	[{"added": {"name": "Zdarzenie", "object": "2017-05-11 - Welcome Party (Juwenalia \\"Juwenalia 2017\\")"}}, {"added": {"name": "Zdarzenie", "object": "2017-05-12 - Korow\\u00f3d juwenaliowy (Juwenalia \\"Juwenalia 2017\\")"}}, {"added": {"name": "Zdarzenie", "object": "2017-05-12 - Mecz pi\\u0142ki no\\u017cnej (Juwenalia \\"Juwenalia 2017\\")"}}, {"added": {"name": "Zdarzenie", "object": "2017-05-13 - CIBA Open Party (Juwenalia \\"Juwenalia 2017\\")"}}, {"added": {"name": "Zdarzenie", "object": "2017-05-14 - Goodbye Party (Juwenalia \\"Juwenalia 2017\\")"}}]	19	1
+2084	2025-07-22 09:12:46.667444+02	8	Wyjazd integracyjny	1	[{"added": {}}]	71	1
+2097	2025-07-22 09:22:47.495083+02	215	2018-01-20: Impreza "Czapkowy Bal Karnawałowy"	1	[{"added": {}}]	19	1
+2109	2025-07-22 09:29:26.394154+02	224	2018-04-28:  "Kwietniowy Ostry Dyżur"	1	[{"added": {}}]	19	1
+2121	2025-07-22 09:40:30.82924+02	85	Restauracja Bazylia - Restauracja, Bolesława Limanowskiego 12, 30-534 Kraków, Polska	1	[{"added": {}}]	48	1
+2132	2025-07-22 09:51:56.674909+02	234	2018-09-21:  "Ostry Dyżur Adapciakowy"	1	[{"added": {}}]	19	1
+2143	2025-07-22 10:01:51.527093+02	241	2018-11-30:  "Andrzejki BCS UJ"	1	[{"added": {}}]	19	1
+2154	2025-07-22 10:08:24.105342+02	250	2019-03-20: Odchamianie się "Teatr z Czapką - Dzienniki Gwiazdowe"	1	[{"added": {}}]	19	1
+2204	2025-07-22 11:08:23.915967+02	98	Absurdalna - Pub/Klub, Staromiejska 9, 40-012 Katowice, Polska	1	[{"added": {}}]	48	1
+2215	2025-07-22 11:18:59.749391+02	100	Żywe Muzeum Obwarzanka - Muzeum, Ignacego Paderewskiego 4, 31-157 Kraków, Polska	1	[{"added": {}}]	48	1
+2226	2025-07-22 11:27:45.491625+02	269	2020-01-16:  "Piżama CzaParty - Przedsesyjny Ostry Dyżur"	1	[{"added": {}}]	19	1
+2238	2025-07-22 11:35:08.597657+02	277	2020-11-05: Wieczór filmowy "Czapkowy Wieczór Filmowy: Asterix i Obelix (on-line)"	1	[{"added": {}}]	19	1
 501	2025-05-01 23:53:58.800979+02	1	Nie wiem - Inny, XXX	1	[{"added": {}}]	16	1
 502	2025-05-02 01:00:15.584059+02	1	Powstanie BCS	1	[{"added": {}}]	19	1
 503	2025-05-02 01:02:01.382838+02	1	Powstawanie idei BCS 2009-03-01 - 2009-08-20	1	[{"added": {}}]	15	1
@@ -2180,6 +2410,18 @@ COPY public.django_admin_log (id, action_time, object_id, object_repr, action_fl
 1811	2025-07-22 03:45:43.032159+02	76	2012-04-21: Walne "Zebranie w sprawie statutu Bractwa"	1	[{"added": {}}]	19	1
 1829	2025-07-22 04:00:35.122472+02	33	2011-05-28:  "Wyjazd na Stiftungfest"	2	[{"changed": {"fields": ["Typ wyjazdu"]}}]	19	1
 1850	2025-07-22 04:16:04.445797+02	92	2012-10-06: Impreza "Czapka Open Party"	1	[{"added": {}}]	19	1
+1868	2025-07-22 04:36:19.406177+02	96	2012-12-06 - 2012-12-07: Wykład/Prelekcja "'O obyczajowości żaków krakowskich w XVI wieku', Mariusz Wolny"	2	[{"changed": {"fields": ["Data zako\\u0144czenia"]}}]	19	1
+1886	2025-07-22 04:57:50.650069+02	103	2013-05-07 - 2013-05-14:  "Juwenalia 2013"	2	[{"added": {"name": "Zdarzenie", "object": "2013-05-10 - International Cantus (Juwenalia \\"Juwenalia 2013\\")"}}, {"added": {"name": "Zdarzenie", "object": "2013-05-11 - CIBA Open Party (Juwenalia \\"Juwenalia 2013\\")"}}, {"changed": {"name": "Zdarzenie", "object": "2013-05-10 - Korow\\u00f3d juwenaliowy (Juwenalia \\"Juwenalia 2013\\")", "fields": ["Miejsce"]}}]	19	1
+1902	2025-07-22 05:10:08.778145+02	113	2013-11-30:  "Ułańskie Zdrowie"	1	[{"added": {}}]	19	1
+1918	2025-07-22 05:18:47.43322+02	122	2014-04-27:  "Wiosenny Obiad BCS UJ"	1	[{"added": {}}]	19	1
+1934	2025-07-22 05:33:03.700526+02	131	2014-10-23:  "Wybory Zarządu BCS UJ"	2	[{"changed": {"fields": ["Nazwa", "Jednodniowe", "Data rozpocz\\u0119cia", "Miejsca", "Typ wydarzenia", "Uczestnicy wydarzenia"]}}, {"deleted": {"name": "Zdarzenie", "object": "2014-10-03 - Traditional Cantus (Wybory \\"Wybory Zarz\\u0105du BCS UJ\\")"}}, {"deleted": {"name": "Zdarzenie", "object": "2014-10-04 - Open Party (Wybory \\"Wybory Zarz\\u0105du BCS UJ\\")"}}]	19	1
+1950	2025-07-22 05:45:57.192968+02	28	Kawiarnia	1	[{"added": {}}]	49	1
+1966	2025-07-22 06:01:18.706995+02	29	Las	3		49	1
+1983	2025-07-22 06:10:44.554585+02	157	2015-12-19:  "Kolędowanie pod Collegium Novum"	1	[{"added": {}}]	19	1
+1999	2025-07-22 06:19:21.068609+02	168	2016-05-12 - 2016-05-14:  "Juwenalia 2016"	2	[{"changed": {"fields": ["Nazwa", "Jednodniowe", "Data rozpocz\\u0119cia", "Data zako\\u0144czenia", "Miejsca", "Typ wydarzenia"]}}, {"added": {"name": "Zdarzenie", "object": "2016-05-05 - Wyk\\u0142ad Juwenaliowy (Juwenalia \\"Juwenalia 2016\\")"}}]	19	1
+2027	2025-07-22 06:47:22.782554+02	180	2016-11-13:  "Listopadowy Ostry Dyżur"	2	[]	19	1
+2058	2025-07-22 08:57:58.606707+02	187	2016-11-17:  "Drugi Listopadowy Ostry Dyżur"	1	[{"added": {}}]	19	1
+2071	2025-07-22 09:06:29.735264+02	196	2017-05-11 - 2017-05-14:  "Juwenalia 2017"	2	[]	19	1
 548	2025-05-04 21:36:00.340999+02	1	Powstawanie koncepcji BCS: 01.03.2009 - 20.08.2009	1	[{"added": {}}]	15	1
 549	2025-05-04 21:38:05.222505+02	3	CMUJ - Uczelnia, św. Anny, Kraków, Polska	1	[{"added": {}}]	16	1
 550	2025-05-04 21:40:29.877048+02	1	Założenie BCS	1	[{"added": {}}]	19	1
@@ -2286,6 +2528,7 @@ COPY public.django_admin_log (id, action_time, object_id, object_repr, action_fl
 658	2025-05-13 15:04:14.657727+02	3	ITA Monte Christo Balla	1	[{"added": {}}]	31	1
 660	2025-05-13 15:15:16.488513+02	1	Zagraniczny "Faerie Matricularum" - Bolonia - Miasto, Włochy, 08.05.2025 - 11.05.2025	2	[{"added": {"name": "Osoba", "object": "None - Kronika | Wyjazd - Zagraniczny \\"Faerie Matricularum\\" - Bolonia - Miasto, W\\u0142ochy, 08.05.2025 - 11.05.2025"}}]	18	1
 1598	2025-07-21 15:56:50.202574+02	9	Ognisko	1	[{"added": {}}]	70	1
+1967	2025-07-22 06:01:27.288016+02	30	Teren zielony	1	[{"added": {}}]	49	1
 663	2025-05-13 16:43:42.948558+02	3	CMUJ, św. Anny 12, Kraków, Polska (Uczelnia)	2	[{"changed": {"fields": ["Adres"]}}]	16	1
 664	2025-05-13 16:45:18.398485+02	1	Zagraniczny: "Faerie Matricularum" - Bolonia, Włochy (Miasto), 08.05.2025 - 11.05.2025	2	[]	18	1
 665	2025-05-13 16:46:51.555782+02	1	Zagraniczny: "Faerie Matricularum" - Bolonia, Włochy (Miasto), 08.05.2025 - 11.05.2025	2	[]	18	1
@@ -2419,6 +2662,7 @@ COPY public.django_admin_log (id, action_time, object_id, object_repr, action_fl
 1832	2025-07-22 04:02:44.803742+02	63	2011-12-16:  "Śpiewanie pod Novum wraz z NZS UJ"	3		19	1
 1833	2025-07-22 04:02:44.803761+02	59	2011-11-27:  "Karczma Andrzejkowa"	3		19	1
 1851	2025-07-22 04:16:51.525289+02	93	2012-10-24:  "Ostry Dyżur 2012 vol.1"	1	[{"added": {}}]	19	1
+1869	2025-07-22 04:40:18.806475+02	97	2013-01-07: Inne "Klub Buda wznawia działalność"	1	[{"added": {}}]	19	1
 798	2025-05-15 12:53:00.734833+02	26	2025-05-08 - 2025-05-11: Nie dotyczy "Faerie Matricularum"	1	[{"added": {}}]	19	1
 799	2025-05-15 12:59:58.408698+02	26	2025-05-08 - 2025-05-11: Zagraniczny "Faerie Matricularum"	2	[{"changed": {"fields": ["Czy to wyjazd?", "Typ wyjazdu"]}}, {"added": {"name": "Zdarzenie", "object": "2025-05-09 - Impreza ze stoiskami balli i muzyk\\u0105"}}, {"added": {"name": "Zdarzenie", "object": "2025-05-09 - Przekazanie kluczy do miasta bolo\\u0144skim goliardom"}}, {"added": {"name": "Zdarzenie", "object": "2025-05-09 - Uroczyste nadanie feluk nowym goliardom"}}, {"added": {"name": "Zdarzenie", "object": "2025-05-09 - Zwiedzanie MEUS"}}, {"added": {"name": "Osoba", "object": "Micha\\u0142 \\"Cukier/Ma\\u0142olata\\" Malata - Kronika | Wydarzenie - 2025-05-08 - 2025-05-11: Zagraniczny \\"Faerie Matricularum\\""}}, {"added": {"name": "Osoba", "object": "Bart\\u0142omiej \\"Nobod\\" Grzeszykowski - Kronika | Wydarzenie - 2025-05-08 - 2025-05-11: Zagraniczny \\"Faerie Matricularum\\""}}, {"added": {"name": "Osoba", "object": "Bartosz \\"Heniek\\" Hepek - Kronika | Wydarzenie - 2025-05-08 - 2025-05-11: Zagraniczny \\"Faerie Matricularum\\""}}, {"added": {"name": "Osoba", "object": "Martyna \\"Bober\\" Kubiak - Kronika | Wydarzenie - 2025-05-08 - 2025-05-11: Zagraniczny \\"Faerie Matricularum\\""}}, {"added": {"name": "Osoba", "object": "Sandra \\"Sander\\" Chandzlik - Kronika | Wydarzenie - 2025-05-08 - 2025-05-11: Zagraniczny \\"Faerie Matricularum\\""}}, {"added": {"name": "Osoba", "object": "Maria \\"Felis\\" Turakiewicz - Kronika | Wydarzenie - 2025-05-08 - 2025-05-11: Zagraniczny \\"Faerie Matricularum\\""}}, {"added": {"name": "Osoba", "object": "Herman \\"Stabilizator/Rakieta\\" Chekurda - Kronika | Wydarzenie - 2025-05-08 - 2025-05-11: Zagraniczny \\"Faerie Matricularum\\""}}, {"added": {"name": "Osoba", "object": "Michalina \\"Allec\\" Kokosi\\u0144ska - Kronika | Wydarzenie - 2025-05-08 - 2025-05-11: Zagraniczny \\"Faerie Matricularum\\""}}, {"added": {"name": "Osoba", "object": "Damian \\"Bandera/Buch\\" Zych - Kronika | Wydarzenie - 2025-05-08 - 2025-05-11: Zagraniczny \\"Faerie Matricularum\\""}}, {"added": {"name": "Osoba", "object": "Dorota \\"Wa\\u0107panna/Doris\\" Dro\\u017cy\\u0144ska - Kronika | Wydarzenie - 2025-05-08 - 2025-05-11: Zagraniczny \\"Faerie Matricularum\\""}}, {"added": {"name": "Osoba", "object": "Bart\\u0142omiej \\"Kucharz\\" Olajossy - Kronika | Wydarzenie - 2025-05-08 - 2025-05-11: Zagraniczny \\"Faerie Matricularum\\""}}, {"added": {"name": "Osoba", "object": "Natalia \\"Szynka\\" Ciesielska (Olajossy) - Kronika | Wydarzenie - 2025-05-08 - 2025-05-11: Zagraniczny \\"Faerie Matricularum\\""}}, {"added": {"name": "Osoba", "object": "Kacper \\"Szogun\\" Wilk - Kronika | Wydarzenie - 2025-05-08 - 2025-05-11: Zagraniczny \\"Faerie Matricularum\\""}}, {"added": {"name": "Osoba", "object": "Krysia Cholewa - Kronika | Wydarzenie - 2025-05-08 - 2025-05-11: Zagraniczny \\"Faerie Matricularum\\""}}, {"added": {"name": "Osoba", "object": "Szymon \\"Tur\\" Zwias - Kronika | Wydarzenie - 2025-05-08 - 2025-05-11: Zagraniczny \\"Faerie Matricularum\\""}}, {"added": {"name": "Osoba", "object": "Wiktoria \\"Wedel\\" Dole\\u017cych - Kronika | Wydarzenie - 2025-05-08 - 2025-05-11: Zagraniczny \\"Faerie Matricularum\\""}}]	19	1
 800	2025-05-15 13:00:39.535508+02	19	2025-05-09 - Impreza ze stoiskami balli i muzyką	2	[{"changed": {"fields": ["Miejsce", "Opis"]}}]	20	1
@@ -2456,6 +2700,19 @@ COPY public.django_admin_log (id, action_time, object_id, object_repr, action_fl
 1813	2025-07-22 03:47:33.369138+02	77	2012-05-12: Karczma "Karczma piwna przed Juwenaliową"	1	[{"added": {}}]	19	1
 1834	2025-07-22 04:03:37.139514+02	80	2012-05-18:  "Juwenaliowa Karczma Piwna z Belgami!"	2	[{"changed": {"fields": ["Nazwa", "Data rozpocz\\u0119cia", "Miejsca", "Typ wydarzenia"]}}, {"deleted": {"name": "Zdarzenie", "object": "2012-05-16 - Grill na AGHu z Belgami (Karczma \\"Juwenaliowa Karczma Piwna z Belgami!\\")"}}, {"deleted": {"name": "Zdarzenie", "object": "2012-05-17 - Impreza CIBA (Karczma \\"Juwenaliowa Karczma Piwna z Belgami!\\")"}}, {"deleted": {"name": "Zdarzenie", "object": "2012-05-18 - Korow\\u00f3d juwenaliowy (Karczma \\"Juwenaliowa Karczma Piwna z Belgami!\\")"}}]	19	1
 1852	2025-07-22 04:18:24.660052+02	7	Bankiet Tradycji Studenckich	1	[{"added": {}}]	71	1
+1870	2025-07-22 04:41:16.145633+02	97	2013-02-20 - 2013-01-07: Inne "Jacobs Czapka Winter Special"	2	[{"changed": {"fields": ["Nazwa", "Data rozpocz\\u0119cia", "Miejsca", "Opis", "Uczestnicy wydarzenia"]}}]	19	1
+1887	2025-07-22 04:58:28.615965+02	104	2013-05-28:  "Majowy Ostry Dyżur"	1	[{"added": {}}]	19	1
+1903	2025-07-22 05:10:53.276374+02	113	2013-11-30: Odwiedziny Profesora "Wizyta u Profesora"	2	[{"changed": {"fields": ["Nazwa", "Miejsca", "Typ wydarzenia", "Uczestnicy wydarzenia"]}}]	19	1
+1919	2025-07-22 05:19:13.972723+02	123	2014-05-09: Impreza "Piątkowa balanga w Budzie"	1	[{"added": {}}]	19	1
+1935	2025-07-22 05:34:48.651999+02	132	2014-10-23:  "Wybory Zarządu BCS UJ"	1	[{"added": {}}]	19	1
+1951	2025-07-22 05:46:32.250461+02	66	Cudowne Lata - Kawiarnia, Garncarska 5, 31-115 Kraków, Polska	1	[{"added": {}}]	48	1
+1968	2025-07-22 06:01:29.334462+02	70	Las Wolski - Teren zielony, Kraków, Polska	1	[{"added": {}}]	48	1
+1984	2025-07-22 06:11:48.040009+02	71	Restauracja Cechowa - Restauracja, Jagiellońska 11, 31-010 Kraków, Polska	1	[{"added": {}}]	48	1
+2000	2025-07-22 06:20:53.844312+02	168	2016-05-12 - 2016-05-14:  "Juwenalia 2016"	2	[]	19	1
+2028	2025-07-22 06:47:33.888308+02	178	2016-10-26:  "Wybory zarządu VIII kadencji BCS UJ + Walne Zgromadzenie"	2	[{"changed": {"fields": ["Miejsca"]}}]	19	1
+2059	2025-07-22 08:58:28.822831+02	188	2017-01-12:  "Styczniowy Ostry Dyżur"	1	[{"added": {}}]	19	1
+2072	2025-07-22 09:07:19.125232+02	197	2017-05-12:  "Karczma juwenaliowa"	1	[{"added": {}}]	19	1
+2085	2025-07-22 09:12:58.661844+02	204	2017-09-15 - 2017-09-18: Wyjazd integracyjny "Czapkowy obóz integracyjny 2017"	2	[{"changed": {"fields": ["Nazwa", "Jednodniowe", "Data rozpocz\\u0119cia", "Data zako\\u0144czenia", "Miejsca", "Czy to wyjazd?", "Typ wyjazdu"]}}]	19	1
 853	2025-05-19 23:45:04.109203+02	1	Django	1	[{"added": {}}]	37	1
 854	2025-05-19 23:48:47.041186+02	1	Django	2	[{"changed": {"fields": ["Sticky submit", "Sticky pagination", "Quick remove links for active filters at top of sidebar", "Collapsible stacked inlines", "Collapsible tabular inlines"]}}]	37	1
 855	2025-05-19 23:53:35.654209+02	1	Django	2	[{"changed": {"fields": ["Favicon"]}}]	37	1
@@ -2515,6 +2772,7 @@ COPY public.django_admin_log (id, action_time, object_id, object_repr, action_fl
 1814	2025-07-22 03:48:49.075959+02	54	Miasteczko AGH - Dom studencki, Józefa Rostafińskiego 7a, 30-072 Kraków, Polska	1	[{"added": {}}]	48	1
 1835	2025-07-22 04:05:50.753056+02	82	2012-05-19:  "Stiftungfest"	1	[{"added": {}}]	19	1
 1853	2025-07-22 04:18:38.259653+02	7	Bankiet Tradycji Studenckich	3		71	1
+1871	2025-07-22 04:43:43.968688+02	97	2013-02-20: Inne "Jacobs Czapka Winter Special"	2	[{"changed": {"fields": ["Jednodniowe"]}}]	19	1
 1603	2025-07-21 15:57:26.566301+02	14	Wyjście do teatru	1	[{"added": {}}]	70	1
 1624	2025-07-21 16:55:40.823927+02	16	2025-05-14: Wycieczka "Wycieczka na Kopiec Kościuszki"	2	[{"changed": {"fields": ["Typ wydarzenia"]}}]	19	1
 1645	2025-07-21 17:05:06.996772+02	20	2011-04-30: Grill "Grill pod Żaczkiem: urodziny Geologa"	2	[{"changed": {"fields": ["Typ wydarzenia"]}}]	19	1
@@ -2529,6 +2787,30 @@ COPY public.django_admin_log (id, action_time, object_id, object_repr, action_fl
 1815	2025-07-22 03:49:08.006085+02	78	2012-05-16: Grill "Grill na AGHu z Belgami"	1	[{"added": {}}]	19	1
 1836	2025-07-22 04:06:32.27923+02	83	2012-06-18 - 2012-09-30: Akcja "Promuję Bractwo - umieszczam informację o jego stronie"	1	[{"added": {}}]	19	1
 1854	2025-07-22 04:18:51.215555+02	94	2012-11-02: Wyjazd zagraniczny "Bankiet Europejski"	1	[{"added": {}}]	19	1
+1872	2025-07-22 04:44:21.130267+02	190	Ktoś Cubuk	1	[{"added": {}}]	69	1
+1888	2025-07-22 04:59:59.034578+02	105	2013-06-01: Inne "Loża medyków (zjazd absolwentów z lat 1952-1957)  zaprasza reprezentację Czapki"	1	[{"added": {}}]	19	1
+1904	2025-07-22 05:11:13.924274+02	46	2011-10-07: Odwiedziny Profesora "Kawa czy Herbata a w niej czapka!"	2	[{"changed": {"fields": ["Uczestnicy wydarzenia"]}}]	19	1
+1920	2025-07-22 05:19:50.383038+02	124	2014-05-13: Wykład/Prelekcja "Alegoria studenta - Polska, Europa, Średniowiecze"	1	[{"added": {}}]	19	1
+1936	2025-07-22 05:35:22.898199+02	44	Ogród Profesorski - Dom/Mieszkanie, Zabierzów, Polska	2	[{"changed": {"fields": ["Adres"]}}]	48	1
+1952	2025-07-22 05:46:48.297628+02	141	2015-03-27:  "Karczma Wiosenna 2015"	1	[{"added": {}}]	19	1
+1969	2025-07-22 06:01:40.956099+02	147	2015-06-12:  "Ognisko przedsesyjne"	1	[{"added": {}}]	19	1
+1985	2025-07-22 06:11:57.525853+02	158	2015-12-19:  "Karczma Wigilijna BCS UJ"	1	[{"added": {}}]	19	1
+2001	2025-07-22 06:21:58.058861+02	168	2016-05-12 - 2016-05-14:  "Juwenalia 2016"	2	[{"added": {"name": "Zdarzenie", "object": "2016-05-14 - Superheroes CIBA Open Party (Juwenalia \\"Juwenalia 2016\\")"}}, {"changed": {"name": "Zdarzenie", "object": "2016-05-12 - Wyk\\u0142ad Juwenaliowy (Juwenalia \\"Juwenalia 2016\\")", "fields": ["Data", "Miejsce"]}}]	19	1
+2014	2025-07-22 06:41:04.656808+02	176	2016-09-30 - 2016-10-02:  "Reaktywacja BCS UJ"	1	[{"added": {}}, {"added": {"name": "Zdarzenie", "object": "2016-09-30 - International Cantus (Reaktywacja \\"Reaktywacja BCS UJ\\")"}}, {"added": {"name": "Zdarzenie", "object": "2016-10-01 - CIBA Open Party (Reaktywacja \\"Reaktywacja BCS UJ\\")"}}, {"added": {"name": "Zdarzenie", "object": "2016-10-01 - Poch\\u00f3d inauguracyjny (Reaktywacja \\"Reaktywacja BCS UJ\\")"}}, {"added": {"name": "Zdarzenie", "object": "2016-10-02 - Zwiedzanie winnicy UJ w \\u0141azach (Reaktywacja \\"Reaktywacja BCS UJ\\")"}}, {"added": {"name": "Zdarzenie", "object": "2016-10-02 - Goodbye Party (Reaktywacja \\"Reaktywacja BCS UJ\\")"}}, {"added": {"name": "Zdarzenie", "object": "2016-10-02 - Orfeusz i Eurydyka - wyj\\u015bcie do oper (Reaktywacja \\"Reaktywacja BCS UJ\\")"}}]	19	1
+2029	2025-07-22 06:47:44.661336+02	179	2016-11-17:  "Drugi Listopadowy Ostry Dyżur"	2	[{"changed": {"fields": ["Miejsca"]}}]	19	1
+2060	2025-07-22 08:58:48.670838+02	189	2017-01-21:  "Styczniowy Ostry Dyżur II"	1	[{"added": {}}]	19	1
+2073	2025-07-22 09:07:32.01122+02	198	2017-05-12:  "Karczma juwenaliowa"	1	[{"added": {}}]	19	1
+2086	2025-07-22 09:13:08.315412+02	205	2017-09-15 - 2017-09-18: Wyjazd integracyjny "Czapkowy obóz integracyjny 2017"	1	[{"added": {}}]	19	1
+2098	2025-07-22 09:23:20.818972+02	216	2018-02-01:  "Ostry Dyżur a La Calotte"	1	[{"added": {}}]	19	1
+2110	2025-07-22 09:30:17.201347+02	81	Klub Podróżników Namaste - Pub/Klub, Jana III Sobieskiego 27, 40-082 Katowice, Polska	1	[{"added": {}}]	48	1
+2122	2025-07-22 09:40:43.2013+02	228	2018-05-18:  "Międzynarodowa Karczma"	2	[{"changed": {"fields": ["Nazwa", "Data rozpocz\\u0119cia", "Miejsca", "Typ wydarzenia"]}}]	19	1
+2133	2025-07-22 09:54:00.672018+02	87	Restauracja ZBROJOWNIA - Restauracja, Rakowicka 22, 31-510 Kraków, Polska	1	[{"added": {}}]	48	1
+2144	2025-07-22 10:02:35.348188+02	242	2018-12-01: Inne "Starej czapkowej gwardii spotkanie na szczycie"	1	[{"added": {}}]	19	1
+2155	2025-07-22 10:09:31.085645+02	91	Lubogoszcz - Szczyt, Kasina Wielka, Polska	1	[{"added": {}}]	48	1
+2205	2025-07-22 11:08:51.034644+02	256	2019-06-07: Wycieczka "Spotkanie z Animusem"	1	[{"added": {}}]	19	1
+2216	2025-07-22 11:21:07.749703+02	261	2019-09-27 - 2019-10-01:  "Reaktywacja XI"	2	[{"changed": {"fields": ["Jednodniowe", "Data zako\\u0144czenia", "Typ wydarzenia", "Uczestnicy wydarzenia"]}}, {"added": {"name": "Zdarzenie", "object": "2019-09-27 - Cantus (Reaktywacja \\"Reaktywacja XI\\")"}}, {"added": {"name": "Zdarzenie", "object": "2019-09-28 - CIBA Open Party, temat: Miami '80 (Reaktywacja \\"Reaktywacja XI\\")"}}, {"added": {"name": "Zdarzenie", "object": "2019-09-29 - Warsztaty w \\u017bywym Muzeum Obwarzanka (Reaktywacja \\"Reaktywacja XI\\")"}}, {"added": {"name": "Zdarzenie", "object": "2019-09-30 - Wycieczka turystyczno-krajoznawcza (Reaktywacja \\"Reaktywacja XI\\")"}}, {"added": {"name": "Zdarzenie", "object": "2019-10-01 - Inauguracja roku akademickiego (Reaktywacja \\"Reaktywacja XI\\")"}}, {"added": {"name": "Zdarzenie", "object": "2019-10-01 - After Reaktywacyjny (Reaktywacja \\"Reaktywacja XI\\")"}}]	19	1
+2227	2025-07-22 11:28:19.820506+02	270	2020-02-21:  "Bal(folk) Czapkowy Taneczny Ostry Dyżur"	1	[{"added": {}}]	19	1
+2239	2025-07-22 11:35:43.947797+02	278	2020-12-09: Wieczór filmowy "Czapkowy Wieczór Filmowy: Hydrozagadka (on-line)"	1	[{"added": {}}]	19	1
 995	2025-07-10 18:58:38.71523+02	23	2025-05-14: Akcja "Przygarnij Belga w Juwenalia!"	2	[{"changed": {"fields": ["Typ wydarzenia"]}}]	19	1
 996	2025-07-10 18:58:54.094114+02	22	2025-05-14: Karczma "Majowa Karczma Piwna"	2	[{"changed": {"fields": ["Typ wydarzenia"]}}]	19	1
 997	2025-07-10 18:59:06.69423+02	21	2025-05-14: Wycieczka "Czapkowa eskapada rowerowa szlakiem Bema"	2	[{"changed": {"fields": ["Typ wydarzenia"]}}]	19	1
@@ -2574,6 +2856,17 @@ COPY public.django_admin_log (id, action_time, object_id, object_repr, action_fl
 1816	2025-07-22 03:49:42.874262+02	35	Impreza	1	[{"added": {}}]	70	1
 1837	2025-07-22 04:07:19.334619+02	84	2012-06-29: Spontaniczne "Wakacyjna posiadówka czapkowa - zamiast odwiedzin u profesora"	1	[{"added": {}}]	19	1
 1855	2025-07-22 04:19:51.637897+02	95	2012-11-28:  "Ostry Dyżur vol.3"	1	[{"added": {}}]	19	1
+1873	2025-07-22 04:44:25.787884+02	98	2013-02-20: Inne "Jacobs Czapka Winter Special"	1	[{"added": {}}]	19	1
+1889	2025-07-22 05:00:36.90133+02	106	2013-06-28: Ostry Dyżur "Ale to już było - ostatni ostry dyżur"	1	[{"added": {}}]	19	1
+1905	2025-07-22 05:11:36.860956+02	114	2013-11-30: Odwiedziny Profesora "Wizyta u Profesora"	1	[{"added": {}}]	19	1
+1921	2025-07-22 05:21:04.259433+02	62	Filharmonia Krakowska - Obiekt kultury, Zwierzyniecka 1, 31-103 Kraków, Polska	1	[{"added": {}}]	48	1
+1937	2025-07-22 05:36:09.977765+02	133	2014-11-06:  "Ostry Dyżur vol.1 z BCS UJ"	1	[{"added": {}}]	19	1
+1953	2025-07-22 05:47:56.56031+02	142	2015-04-10:  "Kudłacze vol. 3 - szalony wypad w góry Czapki Studenckiej"	1	[{"added": {}}]	19	1
+1970	2025-07-22 06:02:50.211108+02	148	2015-06-30: Odwiedziny Profesora "Tres faciunt collegium: grill u profesora"	1	[{"added": {}}]	19	1
+1986	2025-07-22 06:12:55.213143+02	159	2016-01-07:  "Styczniowy Ostry Dyżur"	1	[{"added": {}}]	19	1
+2002	2025-07-22 06:23:30.370444+02	169	2016-05-12 - 2016-05-14:  "Juwenalia 2016"	1	[{"added": {}}, {"added": {"name": "Zdarzenie", "object": "2016-05-12 - Wyk\\u0142ad Juwenaliowy (Juwenalia \\"Juwenalia 2016\\")"}}, {"added": {"name": "Zdarzenie", "object": "2016-05-14 - Superheroes CIBA Open Party (Juwenalia \\"Juwenalia 2016\\")"}}]	19	1
+2015	2025-07-22 06:41:43.216707+02	39	Rekrutacja	1	[{"added": {}}]	70	1
+2030	2025-07-22 06:47:57.468096+02	181	2016-11-17:  "Drugi Listopadowy Ostry Dyżur"	1	[{"added": {}}]	19	1
 1605	2025-07-21 15:58:09.535842+02	4	Wyjście do kina	3		70	1
 1626	2025-07-21 16:56:28.976039+02	5	Wykład/Prelekcja	2	[{"changed": {"fields": ["Typ wydarzenia"]}}]	70	1
 1647	2025-07-21 17:05:37.955612+02	17	2011-04-06: Wykład/Prelekcja "Wykład na Wydziale Polonistyki"	2	[{"changed": {"fields": ["Typ wydarzenia"]}}]	19	1
@@ -2588,7 +2881,35 @@ COPY public.django_admin_log (id, action_time, object_id, object_repr, action_fl
 1817	2025-07-22 03:49:49.812364+02	78	2012-05-17: Impreza "Impreza CIBA"	2	[{"changed": {"fields": ["Nazwa", "Data rozpocz\\u0119cia", "Data zako\\u0144czenia", "Miejsca", "Typ wydarzenia"]}}]	19	1
 1838	2025-07-22 04:07:56.768321+02	85	2012-07-01: Konkurs "Czapka podbija świat! Edycja Druga"	1	[{"added": {}}]	19	1
 1856	2025-07-22 04:21:13.840674+02	95	2012-12-06: Wykład/Prelekcja "“O obyczajowości żaków krakowskich w XVI wieku”, Mariusz Wolny"	2	[{"changed": {"fields": ["Nazwa", "Data rozpocz\\u0119cia", "Data zako\\u0144czenia", "Miejsca", "Typ wydarzenia"]}}]	19	1
+1874	2025-07-22 04:48:01.581223+02	99	2013-03-07: Śpiewanie "GAUDEAMUS - czapkowe śpiewanie"	1	[{"added": {}}]	19	1
+1890	2025-07-22 05:02:42.998477+02	106	2013-09-30 - 2013-10-06: Reaktywacja "Reactivation Party V"	2	[{"changed": {"fields": ["Nazwa", "Jednodniowe", "Data rozpocz\\u0119cia", "Data zako\\u0144czenia", "Miejsca", "Typ wydarzenia"]}}, {"added": {"name": "Zdarzenie", "object": "2013-06-28 - Inauguracja 650 roku akademickiego na UJ w czapce studenckiej (Reaktywacja \\"Reactivation Party V\\")"}}]	19	1
+1906	2025-07-22 05:12:50.047687+02	114	2013-12-05:  "Ostry Dyżur - vol. 4"	2	[{"changed": {"fields": ["Nazwa", "Data rozpocz\\u0119cia", "Miejsca", "Typ wydarzenia", "Uczestnicy wydarzenia"]}}]	19	1
+1922	2025-07-22 05:21:28.073618+02	125	2014-05-14: Odchamianie się "Koncert uniwersytecki z okazji 650-lecia UJ: Carmina Burana"	1	[{"added": {}}]	19	1
+1938	2025-07-22 05:36:36.260316+02	134	2014-11-21:  "Ułańskie Zdrowie"	1	[{"added": {}}]	19	1
+1954	2025-07-22 05:48:44.55639+02	143	2015-04-30: Grill "Ruszt u Małeckiego"	1	[{"added": {}}]	19	1
+1971	2025-07-22 06:03:05.780251+02	148	2015-06-30: Odwiedziny Profesora "Tres faciunt collegium: grill u Profesora"	2	[{"changed": {"fields": ["Nazwa"]}}]	19	1
 1072	2025-07-11 13:01:21.581927+02	1	Rucham ci starego	1	[{"added": {}}, {"added": {"name": "Osoba", "object": "Bartosz \\"Heniek\\" Hepek - Encyklopedia | Powiedzenie - Rucham ci starego"}}]	40	1
+1987	2025-07-22 06:13:16.223839+02	159	2016-01-20:  "Styczniowy Ostry Dyżur"	2	[{"changed": {"fields": ["Data rozpocz\\u0119cia"]}}]	19	1
+2003	2025-07-22 06:23:49.034735+02	169	2016-05-12 - 2016-05-14:  "Juwenalia 2016"	3		19	1
+2016	2025-07-22 06:41:57.313881+02	176	2016-10-12:  "Wielka Rekrutacja BCS UJ"	2	[{"changed": {"fields": ["Nazwa", "Jednodniowe", "Data rozpocz\\u0119cia", "Miejsca", "Typ wydarzenia"]}}, {"deleted": {"name": "Zdarzenie", "object": "2016-09-30 - International Cantus (Rekrutacja \\"Wielka Rekrutacja BCS UJ\\")"}}, {"deleted": {"name": "Zdarzenie", "object": "2016-10-01 - CIBA Open Party (Rekrutacja \\"Wielka Rekrutacja BCS UJ\\")"}}, {"deleted": {"name": "Zdarzenie", "object": "2016-10-01 - Poch\\u00f3d inauguracyjny (Rekrutacja \\"Wielka Rekrutacja BCS UJ\\")"}}, {"deleted": {"name": "Zdarzenie", "object": "2016-10-02 - Zwiedzanie winnicy UJ w \\u0141azach (Rekrutacja \\"Wielka Rekrutacja BCS UJ\\")"}}, {"deleted": {"name": "Zdarzenie", "object": "2016-10-02 - Goodbye Party (Rekrutacja \\"Wielka Rekrutacja BCS UJ\\")"}}, {"deleted": {"name": "Zdarzenie", "object": "2016-10-02 - Orfeusz i Eurydyka - wyj\\u015bcie do oper (Rekrutacja \\"Wielka Rekrutacja BCS UJ\\")"}}]	19	1
+2031	2025-07-22 06:48:36.719908+02	182	2016-11-19:  "Ułańskie Zdrowie"	1	[{"added": {}}]	19	1
+2061	2025-07-22 08:59:26.878179+02	190	2017-03-04:  "Wiosenna Karczma"	1	[{"added": {}}]	19	1
+2074	2025-07-22 09:08:07.702033+02	199	2017-05-24:  "Majowy Ostry Dyżur"	1	[{"added": {}}]	19	1
+2087	2025-07-22 09:16:34.790681+02	205	2017-09-29 - 2017-10-01:  "Reaktywacja BCS UJ"	2	[{"changed": {"fields": ["Nazwa", "Data rozpocz\\u0119cia", "Data zako\\u0144czenia", "Miejsca", "Czy to wyjazd?", "Typ wydarzenia"]}}, {"added": {"name": "Zdarzenie", "object": "2017-09-29 - Reactivation Cantus (Reaktywacja \\"Reaktywacja BCS UJ\\")"}}, {"added": {"name": "Zdarzenie", "object": "2017-09-30 - CIBA Open Party (Reaktywacja \\"Reaktywacja BCS UJ\\")"}}, {"added": {"name": "Zdarzenie", "object": "2017-10-01 - Inauguracja roku akademickiego (Reaktywacja \\"Reaktywacja BCS UJ\\")"}}, {"added": {"name": "Zdarzenie", "object": "2017-10-01 - Goodbye Party (Reaktywacja \\"Reaktywacja BCS UJ\\")"}}]	19	1
+2099	2025-07-22 09:23:52.772919+02	217	2018-02-18:  "Ostry Dyżur - piwoterapia złamanych serc"	1	[{"added": {}}]	19	1
+2111	2025-07-22 09:30:41.242176+02	225	2018-05-11: Wykład/Prelekcja "Europejskie i polskie tradycje studenckie"	1	[{"added": {}}]	19	1
+2123	2025-07-22 09:40:51.178956+02	229	2018-05-18:  "Międzynarodowa Karczma"	1	[{"added": {}}]	19	1
+2134	2025-07-22 09:54:23.890431+02	234	2018-09-28 - 2018-10-01:  "Reaktywacja 2018"	2	[{"changed": {"fields": ["Nazwa", "Jednodniowe", "Data rozpocz\\u0119cia", "Data zako\\u0144czenia", "Miejsca", "Typ wydarzenia"]}}, {"added": {"name": "Zdarzenie", "object": "2018-09-28 - Cantus: X Reactivation (Reaktywacja \\"Reaktywacja 2018\\")"}}]	19	1
+2145	2025-07-22 10:03:42.508522+02	89	Zakład Dydaktyki Medycznej - Uczelnia, świętego Łazarza 16, 31-530 Kraków, Polska	1	[{"added": {}}]	48	1
+2156	2025-07-22 10:09:36.647004+02	251	2019-03-29:  "Kudłacze 2019"	1	[{"added": {}}]	19	1
+2206	2025-07-22 11:09:30.666543+02	257	2019-06-07: Odchamianie się "Teatr z Czapką vol. 2 - Skąpiec"	1	[{"added": {}}]	19	1
+2217	2025-07-22 11:21:20.715493+02	262	2019-09-24: Inne "Martinus się broni"	1	[{"added": {}}]	19	1
+2228	2025-07-22 11:28:58.990262+02	271	2020-02-28:  "Depositio Beanorum"	1	[{"added": {}}]	19	1
+2240	2025-07-22 11:36:26.885409+02	279	2020-12-28: Wieczór filmowy "Czapkowy świąteczny Wieczór Filmowy: Kevin sam w domu (on-line)"	1	[{"added": {}}]	19	1
+2249	2025-07-22 11:43:23.230511+02	82	2012-05-19:  "Stiftungfest"	3		19	1
+2263	2025-07-22 11:51:19.226372+02	44	Delegacja	3		70	1
+2272	2025-07-22 11:57:18.27802+02	292	2021-10-22: Wybory "Walne zgromadzenie BCS UJ"	1	[{"added": {}}]	19	1
+2346	2025-07-22 12:47:05.071708+02	327	2022-09-30:  "Karczma Reaktywacyjna"	3		19	1
 1606	2025-07-21 15:58:23.253898+02	15	RPG	1	[{"added": {}}]	70	1
 1627	2025-07-21 16:56:33.296362+02	14	2025-05-14: Wykład/Prelekcja "Wykład dla Stowarzyszenia Absolwentów UJ"	2	[{"changed": {"fields": ["Typ wydarzenia"]}}]	19	1
 1648	2025-07-21 17:05:58.25583+02	6	2010-10-01: Uroczystość "Pierwsza inauguracja roku akademickiego BCS"	2	[{"changed": {"fields": ["Typ wydarzenia"]}}]	19	1
@@ -2603,6 +2924,40 @@ COPY public.django_admin_log (id, action_time, object_id, object_repr, action_fl
 1818	2025-07-22 03:50:17.910817+02	51	2011-10-27: Impreza "Oktoberfest"	2	[{"changed": {"fields": ["Typ wydarzenia"]}}]	19	1
 1839	2025-07-22 04:08:40.188072+02	36	Bretelle	1	[{"added": {}}]	70	1
 1857	2025-07-22 04:23:22.679952+02	87	2012-08-03 - 2012-08-05: Wyjazd zagraniczny "Czapka na Pine Gouine 4: Rabelais"	2	[{"changed": {"fields": ["Jednodniowe"]}}]	19	1
+1875	2025-07-22 04:49:09.425515+02	58	Zielono Mi - Pub/Klub, Królowej Jadwigi 4, 30-202 Kraków, Polska	1	[{"added": {}}]	48	1
+1891	2025-07-22 05:04:05.134753+02	106	2013-09-30 - 2013-10-06: Reaktywacja "Reactivation Party V"	2	[{"added": {"name": "Zdarzenie", "object": "2013-10-04 - Co w nas zosta\\u0142o z tamtych lat? - o polskim \\u017caku s\\u0142\\u00f3w kilka (Reaktywacja \\"Reactivation Party V\\")"}}, {"changed": {"name": "Zdarzenie", "object": "2013-10-01 - Inauguracja 650 roku akademickiego na UJ w czapce studenckiej (Reaktywacja \\"Reactivation Party V\\")", "fields": ["Data"]}}]	19	1
+1907	2025-07-22 05:13:09.896055+02	113	2013-11-30: Odwiedziny Profesora "Wizyta u Profesora"	2	[{"changed": {"fields": ["Uczestnicy wydarzenia"]}}]	19	1
+1923	2025-07-22 05:23:51.567297+02	125	2014-05-14:  "Juwenalia 2014"	2	[{"changed": {"fields": ["Nazwa", "Miejsca", "Typ wydarzenia", "Opis"]}}, {"added": {"name": "Zdarzenie", "object": "2014-05-14 - Alegoria studenta - Polska, Europa, \\u015aredniowiecze (Juwenalia \\"Juwenalia 2014\\")"}}, {"added": {"name": "Zdarzenie", "object": "2014-05-14 - Koncert uniwersytecki z okazji 650-lecia UJ: Carmina Burana (Juwenalia \\"Juwenalia 2014\\")"}}, {"added": {"name": "Zdarzenie", "object": "2014-05-14 - Mi\\u0119dzynarodowe CIBA Open Disney Party (Juwenalia \\"Juwenalia 2014\\")"}}]	19	1
+1939	2025-07-22 05:38:15.018833+02	63	442 Sport Pub - Pub/Klub, Św. Tomasza 20, 31-020 Kraków	1	[{"added": {}}]	48	1
+1955	2025-07-22 05:50:17.340792+02	67	Collegium Witkowskiego UJ - Uczelnia, Gołębia 13, 31-007 Kraków, Polska	1	[{"added": {}}]	48	1
+1972	2025-07-22 06:03:12.063848+02	149	2015-06-30: Odwiedziny Profesora "Tres faciunt collegium: grill u Profesora"	1	[{"added": {}}]	19	1
+1988	2025-07-22 06:13:24.635744+02	160	2016-01-20:  "Styczniowy Ostry Dyżur"	1	[{"added": {}}]	19	1
+2004	2025-07-22 06:24:14.056586+02	167	2016-05-05:  "Majowy Ostry Dyżur"	2	[{"changed": {"fields": ["Nazwa", "Data rozpocz\\u0119cia"]}}]	19	1
+2017	2025-07-22 06:42:16.927764+02	176	2016-10-12:  "Wielka Rekrutacja BCS UJ"	2	[{"changed": {"fields": ["Miejsca"]}}, {"deleted": {"name": "Zdarzenie", "object": "2016-09-30 - International Cantus (Rekrutacja \\"Wielka Rekrutacja BCS UJ\\")"}}, {"deleted": {"name": "Zdarzenie", "object": "2016-10-01 - CIBA Open Party (Rekrutacja \\"Wielka Rekrutacja BCS UJ\\")"}}, {"deleted": {"name": "Zdarzenie", "object": "2016-10-01 - Poch\\u00f3d inauguracyjny (Rekrutacja \\"Wielka Rekrutacja BCS UJ\\")"}}, {"deleted": {"name": "Zdarzenie", "object": "2016-10-02 - Zwiedzanie winnicy UJ w \\u0141azach (Rekrutacja \\"Wielka Rekrutacja BCS UJ\\")"}}, {"deleted": {"name": "Zdarzenie", "object": "2016-10-02 - Goodbye Party (Rekrutacja \\"Wielka Rekrutacja BCS UJ\\")"}}, {"deleted": {"name": "Zdarzenie", "object": "2016-10-02 - Orfeusz i Eurydyka - wyj\\u015bcie do oper (Rekrutacja \\"Wielka Rekrutacja BCS UJ\\")"}}]	19	1
+2032	2025-07-22 06:49:11.26074+02	40	Wyjście do kina	1	[{"added": {}}]	70	1
+2062	2025-07-22 09:00:02.002342+02	191	2017-03-14:  "Marcowy Ostry Dyżur"	1	[{"added": {}}]	19	1
+2075	2025-07-22 09:08:27.336391+02	200	2017-06-01:  "Czerwcowy Ostry Dyżur"	1	[{"added": {}}]	19	1
+2088	2025-07-22 09:18:02.240632+02	206	2017-10-12:  "Wybory Czapkowe - Walne Zgromadzenie"	1	[{"added": {}}]	19	1
+2100	2025-07-22 09:24:08.902251+02	218	2018-02-28:  "Posesyjny Ostry Dyżur"	1	[{"added": {}}]	19	1
+2112	2025-07-22 09:31:37.797793+02	82	Wydział Chemii UJ - Uczelnia, Gronostajowa 2, 30-387 Kraków, Polska	1	[{"added": {}}]	48	1
+2124	2025-07-22 09:41:15.1056+02	230	2018-05-29:  "Majowy Ostry Dyżur"	1	[{"added": {}}]	19	1
+2135	2025-07-22 09:56:01.347363+02	88	Pub Pod grotami - Pub/Klub, Szewska 23, 31-009 Kraków, Polska	1	[{"added": {}}]	48	1
+2146	2025-07-22 10:03:52.915583+02	243	2018-12-05: Rekrutacja "Czapka studencka? A co to?"	1	[{"added": {}}]	19	1
+2157	2025-07-22 10:10:43.083971+02	92	Bon Ami - Restauracja, Kanonicza 11, 31-002 Kraków, Polska	1	[{"added": {}}]	48	1
+2196	2025-07-22 10:59:03.410007+02	93	Stefana Batorego 1, 31-140 Kraków - Bar, Stefana Batorego 1, 31-140 Kraków, Polska	1	[{"added": {}}]	48	1
+2207	2025-07-22 11:10:02.504034+02	258	2019-06-08:  "Ognisko Posesyjne BCS UJ"	1	[{"added": {}}]	19	1
+2218	2025-07-22 11:22:19.33651+02	263	2019-10-09:  "Wybory 2019/2020"	1	[{"added": {}}]	19	1
+2229	2025-07-22 11:29:44.845778+02	272	2020-05-15:  "Wirtualny Ostry Dyżur"	1	[{"added": {}}]	19	1
+2241	2025-07-22 11:36:59.942447+02	43	Wieczór filmowy	2	[]	70	1
+2250	2025-07-22 11:44:08.71741+02	262	2019-09-24: Inny "Martinus się broni"	3		19	1
+2251	2025-07-22 11:44:08.717499+02	254	2019-04-06: Historyczny "Bankiet 10-lecia BCS UJ"	3		19	1
+2252	2025-07-22 11:44:08.717552+02	231	2018-06-09:  "Ognisko Przedsesyjne BCS UJ"	3		19	1
+2253	2025-07-22 11:44:08.717599+02	207	2017-10-12:  "Wybory Czapkowe - Walne Zgromadzenie"	3		19	1
+2254	2025-07-22 11:44:08.717646+02	202	2017-06-03: Zawody sportowe "Zakończenie sezonu na IzoArenie"	3		19	1
+2255	2025-07-22 11:44:08.717692+02	187	2016-11-17:  "Drugi Listopadowy Ostry Dyżur"	3		19	1
+2264	2025-07-22 11:51:28.403551+02	287	2021-06-18: Inny "Jednoosobowa delegacja BCS UJ na Komerszu z okazji XI rocznicy reaktywacji Konwentu Arcadia"	1	[{"added": {}}]	19	1
+2273	2025-07-22 11:58:32.343964+02	32	Cmentarz	1	[{"added": {}}]	49	1
+2282	2025-07-22 12:03:01.988302+02	295	2021-11-11: Zawody sportowe "Monika Kwater i Mateusz Żurek biegną w górskim Biegu Niepodległości ze skawiny do Mogilan"	1	[{"added": {}}]	19	1
 1607	2025-07-21 15:58:31.030329+02	16	Walne	1	[{"added": {}}]	70	1
 1628	2025-07-21 16:56:45.356765+02	12	2025-05-14: Karczma "Wielka Karczma Piwna"	2	[{"changed": {"fields": ["Typ wydarzenia"]}}]	19	1
 1649	2025-07-21 17:06:11.275323+02	25	2010-05-12: Uroczystość "Złożenie kwiatów pod grobem królowej Jadwigi"	2	[{"changed": {"fields": ["Typ wydarzenia"]}}]	19	1
@@ -2617,6 +2972,46 @@ COPY public.django_admin_log (id, action_time, object_id, object_repr, action_fl
 1819	2025-07-22 03:50:26.002231+02	79	2012-05-17: Impreza "Impreza CIBA"	1	[{"added": {}}]	19	1
 1840	2025-07-22 04:08:44.768693+02	86	2012-07-27 - 2012-07-31:  "Ordre de la Bretelle - wakacyjne odwiedziny"	1	[{"added": {}}]	19	1
 1858	2025-07-22 04:23:32.965743+02	26	2025-05-08 - 2025-05-11: Wyjazd zagraniczny "Faerie Matricularum"	2	[{"changed": {"fields": ["Jednodniowe"]}}]	19	1
+1876	2025-07-22 04:49:22.314673+02	100	2013-03-08:  "Ostry Dyżur 2013"	1	[{"added": {}}]	19	1
+1892	2025-07-22 05:04:59.122515+02	107	2013-10-04:  "Karczma Reaktywacyjna"	1	[{"added": {}}]	19	1
+1908	2025-07-22 05:13:15.782705+02	46	2011-10-07: Odwiedziny Profesora "Kawa czy Herbata a w niej czapka!"	2	[]	19	1
+1924	2025-07-22 05:24:03.956115+02	125	2014-05-14:  "Juwenalia 2014"	2	[{"changed": {"name": "Zdarzenie", "object": "2014-05-14 - Mi\\u0119dzynarodowe CIBA Open Disney Party (Juwenalia \\"Juwenalia 2014\\")", "fields": ["Miejsce"]}}]	19	1
+1940	2025-07-22 05:38:42.684954+02	37	Andrzejki	1	[{"added": {}}]	70	1
+1956	2025-07-22 05:51:48.937929+02	68	New York Pizza Department - Restauracja, al. 29 Listopada 57, 31-425 Kraków, Polska	1	[{"added": {}}]	48	1
+1973	2025-07-22 06:03:49.433358+02	150	2015-10-15: Ostry Dyżur "Ostry dyżur vol. 1"	1	[{"added": {}}]	19	1
+1989	2025-07-22 06:13:48.836088+02	160	2016-01-07: Ostry Dyżur "Sylwester z Czapką"	2	[{"changed": {"fields": ["Nazwa", "Data rozpocz\\u0119cia"]}}]	19	1
+2005	2025-07-22 06:24:19.483539+02	170	2016-05-05:  "Majowy Ostry Dyżur"	1	[{"added": {}}]	19	1
+2018	2025-07-22 06:42:29.583195+02	176	2016-10-12:  "Wielka Rekrutacja BCS UJ"	3		19	1
+2033	2025-07-22 06:49:55.709176+02	74	Multikino - Kino, Dobrego Pasterza 128, 31-416 Kraków, Polska	1	[{"added": {}}]	48	1
+2063	2025-07-22 09:00:35.174514+02	192	2017-03-24:  "Kudłacze 2017"	1	[{"added": {}}]	19	1
+2076	2025-07-22 09:09:21.360777+02	31	Stadion	1	[{"added": {}}]	49	1
+2089	2025-07-22 09:18:10.152743+02	207	2017-10-12:  "Wybory Czapkowe - Walne Zgromadzenie"	1	[{"added": {}}]	19	1
+2101	2025-07-22 09:25:23.186607+02	79	Gorczańska Chata - Schronisko, Jamne, 34-453 Ochotnica Górna, Polska	1	[{"added": {}}]	48	1
+2113	2025-07-22 09:31:56.206881+02	226	2018-05-16: Rekrutacja "Czapki dla Chemików"	1	[{"added": {}}]	19	1
+2125	2025-07-22 09:41:46.636835+02	230	2018-06-09:  "Ognisko Przedsesyjne BCS UJ"	2	[{"changed": {"fields": ["Nazwa", "Data rozpocz\\u0119cia", "Miejsca", "Typ wydarzenia"]}}]	19	1
+2136	2025-07-22 09:57:28.194733+02	234	2018-09-28 - 2018-10-01:  "Reaktywacja 2018"	2	[{"added": {"name": "Zdarzenie", "object": "2018-09-29 - Pirackie Open Party (Reaktywacja \\"Reaktywacja 2018\\")"}}, {"added": {"name": "Zdarzenie", "object": "2018-09-30 - Spotkanie Po\\u017cegnalne (Reaktywacja \\"Reaktywacja 2018\\")"}}, {"added": {"name": "Zdarzenie", "object": "2018-10-01 - Inauguracja Roku Akademickiego (Reaktywacja \\"Reaktywacja 2018\\")"}}, {"added": {"name": "Zdarzenie", "object": "2018-10-01 - After Reaktywacyjny (Reaktywacja \\"Reaktywacja 2018\\")"}}]	19	1
+2147	2025-07-22 10:04:22.146856+02	244	2018-12-05:  "Mikołajkowy Ostry Dyżur"	1	[{"added": {}}]	19	1
+2158	2025-07-22 10:11:21.762514+02	252	2019-04-06: Historyczne "Bankiet 10-lecia BCS UJ"	1	[{"added": {}}]	19	1
+2197	2025-07-22 10:59:44.005782+02	94	Zaginiony Świat - Bar, Stefana Batorego 1, 31-140 Kraków	1	[{"added": {}}]	48	1
+2208	2025-07-22 11:10:54.215813+02	259	2019-09-16 - 2019-09-19:  "Adapciak 2019 BCS UJ"	1	[{"added": {}}]	19	1
+2219	2025-07-22 11:23:15.927868+02	264	2019-10-24 - 2019-11-30:  "Wielka Rekrutacja BCS UJ"	1	[{"added": {}}]	19	1
+2230	2025-07-22 11:30:10.983045+02	273	2020-06-06: Inne "Hommage a Maurice"	1	[{"added": {}}]	19	1
+2242	2025-07-22 11:37:01.949992+02	279	2020-12-28: Wieczór filmowy "Czapkowy Świąteczny Wieczór Filmowy: Kevin sam w domu (on-line)"	2	[{"changed": {"fields": ["Nazwa"]}}]	19	1
+2256	2025-07-22 11:46:16.875636+02	283	2021-02-12: Wieczór filmowy "Posesyjny Ostry Dyżur: film (on-line)"	1	[{"added": {}}]	19	1
+2265	2025-07-22 11:51:51.725481+02	288	2021-06-30:  "Top secret ognisko"	1	[{"added": {}}]	19	1
+2274	2025-07-22 11:58:36.392128+02	105	Cmentarz Rakowicki - Cmentarz, Rakowicka 26, 31-510 Kraków, Polska	1	[{"added": {}}]	48	1
+2283	2025-07-22 12:03:17.081045+02	296	2021-11-11: Zawody sportowe "Monika Kwater i Mateusz Żurek biegną w górskim Biegu Niepodległości ze skawiny do Mogilan"	1	[{"added": {}}]	19	1
+2290	2025-07-22 12:07:06.817575+02	300	2021-11-16: Historyczny "Czapka uruchamia kanał na Instagramie"	1	[{"added": {}}]	19	1
+2296	2025-07-22 12:11:36.067575+02	306	2022-01-13:  "Noworoczny Ostry Dyżur"	1	[{"added": {}}]	19	1
+2302	2025-07-22 12:14:09.982086+02	310	2022-02-11:  "Śródsesyjny Ostry Dyżur"	1	[{"added": {}}]	19	1
+2307	2025-07-22 12:20:30.546304+02	314	2022-03-09:  "Magister Cantandi przedłuża konkurs na czapkowe zwrotki Czapkowych Opowieści i Czapkowej Siekiery Motyki"	1	[{"added": {}}]	19	1
+2313	2025-07-22 12:26:37.804934+02	320	2022-05-19 - 2022-05-23:  "Juwenalia 2022"	1	[{"added": {}}]	19	1
+2317	2025-07-22 12:30:04.037202+02	323	2022-09-22 - 2022-09-24:  "Adapciak BCS UJ 2022"	1	[{"added": {}}]	19	1
+2321	2025-07-22 12:34:07.20553+02	324	2022-09-30:  "Karczma Reaktywacyjna"	2	[{"deleted": {"name": "Zdarzenie", "object": "2022-09-29 - Reaktywacyjna impreza powitalna (Karczma \\"Karczma Reaktywacyjna\\")"}}, {"deleted": {"name": "Zdarzenie", "object": "2022-10-01 - Impreza przebierana o tematyce prehistorycznej (Karczma \\"Karczma Reaktywacyjna\\")"}}, {"deleted": {"name": "Zdarzenie", "object": "2022-10-02 - Po\\u017cegnanie wakacji (Karczma \\"Karczma Reaktywacyjna\\")"}}]	19	1
+2324	2025-07-22 12:35:17.570768+02	159	2022-10-02 - Pożegnanie wakacji (Karczma "Karczma Reaktywacyjna")	3		20	1
+2327	2025-07-22 12:37:40.366243+02	326	2022-09-30:  "Karczma Reaktywacyjna"	1	[{"added": {}}]	19	1
+2328	2025-07-22 12:38:56.489913+02	326	2022-10-21: Wybory "Walne Zgromadzenie BCS UJ"	2	[{"changed": {"fields": ["Nazwa", "Data rozpocz\\u0119cia", "Miejsca", "Typ wydarzenia", "Uczestnicy wydarzenia"]}}]	19	1
+2371	2025-07-22 13:04:14.048011+02	33	Knajpa	1	[{"added": {}}]	49	1
 1608	2025-07-21 15:58:36.73889+02	17	Wycieczka	1	[{"added": {}}]	70	1
 1629	2025-07-21 16:56:54.611972+02	11	2025-05-14: Karczma "Czapkowa Karczma Posesyjna"	2	[{"changed": {"fields": ["Typ wydarzenia"]}}]	19	1
 1650	2025-07-21 17:06:27.263066+02	24	2010-04-28: Konferencja naukowa "Konferencja naukowa Roberto o folklorze studenckim"	2	[{"changed": {"fields": ["Typ wydarzenia"]}}]	19	1
@@ -2631,6 +3026,14 @@ COPY public.django_admin_log (id, action_time, object_id, object_repr, action_fl
 1820	2025-07-22 03:53:20.939833+02	79	2012-05-16 - 2012-05-18: Juwenalia "Juwenalia"	2	[{"changed": {"fields": ["Nazwa", "Data rozpocz\\u0119cia", "Data zako\\u0144czenia", "Miejsca", "Typ wydarzenia"]}}, {"added": {"name": "Zdarzenie", "object": "2012-05-16 - Grill na AGHu z Belgami (Juwenalia \\"Juwenalia\\")"}}]	19	1
 1841	2025-07-22 04:09:57.067661+02	55	Vieux-Lille - Miasto, Vieux-Lille, Francja	1	[{"added": {}}]	48	1
 1859	2025-07-22 04:24:02.095261+02	95	2012-12-06: Wykład/Prelekcja "'O obyczajowości żaków krakowskich w XVI wieku', Mariusz Wolny"	2	[{"changed": {"fields": ["Nazwa"]}}]	19	1
+1877	2025-07-22 04:49:57.335846+02	101	2013-03-20:  "Walne Zgromadzenie BCS UJ"	1	[{"added": {}}]	19	1
+1893	2025-07-22 05:05:03.912724+02	108	2013-10-04:  "Karczma Reaktywacyjna"	1	[{"added": {}}]	19	1
+1909	2025-07-22 05:13:22.627493+02	115	2013-12-05:  "Ostry Dyżur - vol. 4"	1	[{"added": {}}]	19	1
+1925	2025-07-22 05:24:14.408044+02	124	2014-05-13: Wykład/Prelekcja "Alegoria studenta - Polska, Europa, Średniowiecze"	3		19	1
+1941	2025-07-22 05:38:49.067751+02	135	2014-11-28:  "Czapkowe Andrzejki z BCS UJ"	1	[{"added": {}}]	19	1
+1957	2025-07-22 05:52:34.841183+02	69	Stary Port - Bar, Straszewskiego 27, Wejście od Jabłonowskich, 31-113 Kraków, Polska	1	[{"added": {}}]	48	1
+1974	2025-07-22 06:05:28.693284+02	151	2015-10-22: Wybory "Walne Zgromadzenie BCS UJ 2015/2016"	1	[{"added": {}}]	19	1
+1990	2025-07-22 06:13:56.966134+02	161	2016-01-20:  "Styczniowy Ostry Dyżur"	1	[{"added": {}}]	19	1
 1321	2025-07-17 22:21:28.764815+02	1	Polska	1	[{"added": {}}]	46	1
 1322	2025-07-17 22:21:30.351371+02	1	Uniwersytet Jagielloński	1	[{"added": {}}]	44	1
 1323	2025-07-17 22:21:36.226786+02	1	Uniwersytet Jagielloński: Wydział Prawa i Administracji (WPiA)	1	[{"added": {}}]	45	1
@@ -2837,8 +3240,95 @@ COPY public.django_admin_log (id, action_time, object_id, object_repr, action_fl
 1821	2025-07-22 03:54:27.403537+02	79	2012-05-16 - 2012-05-18: Juwenalia "Juwenalia"	2	[{"added": {"name": "Zdarzenie", "object": "2012-05-17 - Impreza CIBA (Juwenalia \\"Juwenalia\\")"}}, {"added": {"name": "Zdarzenie", "object": "2012-05-18 - Korow\\u00f3d juwenaliowy (Juwenalia \\"Juwenalia\\")"}}, {"changed": {"name": "Zdarzenie", "object": "2012-05-16 - Grill na AGHu z Belgami (Juwenalia \\"Juwenalia\\")", "fields": ["Miejsce"]}}]	19	1
 1842	2025-07-22 04:10:27.574524+02	87	2012-08-03 - 2012-08-05: Wyjazd zagraniczny "Czapka na Pine Gouine 4: Rabelais"	1	[{"added": {}}]	19	1
 1860	2025-07-22 04:24:09.137385+02	87	2012-08-03 - 2012-08-05: Wyjazd zagraniczny "Czapka na Pine Gouine 4: Rabelais"	2	[]	19	1
+1878	2025-07-22 04:51:17.662455+02	27	Budynek	1	[{"added": {}}]	49	1
+1894	2025-07-22 05:05:34.79788+02	109	2013-10-05: Konkurs "Czapka zdobywa świat 2.0"	1	[{"added": {}}]	19	1
+1910	2025-07-22 05:13:59.116328+02	116	2013-12-18: Wigilia "Karczma wigilijna BCS UJ 2013"	1	[{"added": {}}]	19	1
+1926	2025-07-22 05:24:33.808321+02	125	2014-05-13 - 2014-05-17:  "Juwenalia 2014"	2	[{"changed": {"fields": ["Jednodniowe", "Data rozpocz\\u0119cia", "Data zako\\u0144czenia"]}}]	19	1
+1942	2025-07-22 05:39:47.142069+02	64	Muzeum Armii Krajowej - Muzeum, Wita Stwosza 12, 31-511 Kraków, Polska	1	[{"added": {}}]	48	1
+1958	2025-07-22 05:53:01.3081+02	143	2015-05-07 - 2015-05-10:  "Juwenalia 2015"	2	[{"changed": {"fields": ["Nazwa", "Jednodniowe", "Data rozpocz\\u0119cia", "Data zako\\u0144czenia", "Miejsca", "Typ wydarzenia", "Uczestnicy wydarzenia"]}}]	19	1
+1975	2025-07-22 06:06:17.719978+02	152	2015-11-05:  "Piracki Ostry Dyżur"	1	[{"added": {}}]	19	1
+1991	2025-07-22 06:14:37.951592+02	162	2016-03-05:  "Karczma Wiosenna BCS UJ"	1	[{"added": {}}]	19	1
+2006	2025-07-22 06:24:36.863939+02	171	2016-06-01:  "Czerwcowy Ostry Dyżur"	1	[{"added": {}}]	19	1
+2019	2025-07-22 06:42:36.43443+02	177	2016-09-30:  "Konkurs Wakacyjny"	1	[{"added": {}}]	19	1
 1537	2025-07-19 19:03:13.882031+02	6	Polska: Bractwo Czapki Studenckiej Animus	2	[]	31	1
 1538	2025-07-19 19:04:03.628107+02	5	Polska: Bractwo Czapki Studenckiej UJ	2	[{"changed": {"fields": ["Za\\u0142o\\u017cyciele"]}}]	31	1
+2034	2025-07-22 06:50:17.848343+02	182	2016-11-19: Wyjście do kina "Fantastyczne Czapki i jak je znaleźć"	2	[{"changed": {"fields": ["Nazwa", "Miejsca", "Typ wydarzenia"]}}]	19	1
+2064	2025-07-22 09:01:08.854914+02	193	2017-03-30: Kudłacze "Marcowy Ostry Dyżur II"	1	[{"added": {}}]	19	1
+2077	2025-07-22 09:09:22.956224+02	77	IzoArena - Stadion, Sportowa 21, 36-040 Boguchwała, Polska	1	[{"added": {}}]	48	1
+2090	2025-07-22 09:18:41.838545+02	208	2017-10-25:  "Październikowy Ostry Dyżur"	1	[{"added": {}}]	19	1
+2102	2025-07-22 09:25:34.068446+02	219	2018-03-16 - 2018-03-18:  "Kudłacze 2018"	1	[{"added": {}}]	19	1
+2114	2025-07-22 09:32:45.647577+02	83	Strefa Studencka UJ - Uczelnia, Świętej Anny 6, 31-008 Kraków, Polska	1	[{"added": {}}]	48	1
+2126	2025-07-22 09:46:49.999231+02	231	2018-06-09:  "Ognisko Przedsesyjne BCS UJ"	1	[{"added": {}}]	19	1
+2137	2025-07-22 09:57:39.351914+02	235	2018-09-08: Ognisko "Walne Zgromadzenie"	1	[{"added": {}}]	19	1
+2148	2025-07-22 10:04:51.314527+02	245	2018-12-15:  "Wigilia Czapkowa"	1	[{"added": {}}]	19	1
+2159	2025-07-22 10:11:40.318429+02	8	Historyczny	2	[{"changed": {"fields": ["Typ wydarzenia"]}}]	70	1
+2198	2025-07-22 11:02:41.2709+02	95	Skałki Twardowskiego - Teren zielony, 30-001 Kraków, Polska	1	[{"added": {}}]	48	1
+2209	2025-07-22 11:11:31.236149+02	260	2019-09-24 - 2019-09-19: Inne "Martinus się broni"	1	[{"added": {}}]	19	1
+2220	2025-07-22 11:24:04.034975+02	265	2019-11-22: Wykład/Prelekcja "Wykład Czapka Studencka"	1	[{"added": {}}]	19	1
+2231	2025-07-22 11:30:34.21551+02	274	2020-06-30:  "Ognisko Posesyjne 2020"	1	[{"added": {}}]	19	1
+2243	2025-07-22 11:37:11.240267+02	280	2020-12-28: Wieczór filmowy "Czapkowy Świąteczny Wieczór Filmowy: Kevin sam w domu (on-line)"	1	[{"added": {}}]	19	1
+2257	2025-07-22 11:46:49.070906+02	284	2021-04-22:  "Czapkowy Wieczór Filmowy: Znachor (on-line)"	1	[{"added": {}}]	19	1
+2266	2025-07-22 11:52:46.918535+02	103	Kolanko No 6 - Restauracja, Józefa 17, 31-056 Kraków, Polska	1	[{"added": {}}]	48	1
+2275	2025-07-22 11:59:31.696198+02	106	Cmentarz Remuh - Cmentarz, Szeroka 40, 31-053 Kraków, Polska	1	[{"added": {}}]	48	1
+2284	2025-07-22 12:03:47.904987+02	297	2021-11-13:  "Ułańskie Zdrowie"	1	[{"added": {}}]	19	1
+2291	2025-07-22 12:07:40.968309+02	301	2021-11-22: Akcja "Zapytaj, Zamów, Zakładaj"	1	[{"added": {}}]	19	1
+2297	2025-07-22 12:11:50.372794+02	307	2022-01-22:  "Przedsesyjny Ostry Dyżur"	1	[{"added": {}}]	19	1
+2329	2025-07-22 12:39:20.492564+02	324	2022-09-30:  "Karczma Reaktywacyjna"	2	[{"changed": {"fields": ["Miejsca"]}}]	19	1
+2330	2025-07-22 12:39:30.854529+02	327	2022-09-30:  "Karczma Reaktywacyjna"	1	[{"added": {}}]	19	1
+2331	2025-07-22 12:40:05.0877+02	328	2022-11-14: Rekrutacja "Chemiku, załóż czapkę! Promocja na Wydziale Chemii UJ"	1	[{"added": {}}]	19	1
+2332	2025-07-22 12:40:35.687392+02	329	2022-11-17:  "Karczma Jesienna"	1	[{"added": {}}]	19	1
+2333	2025-07-22 12:41:02.684009+02	330	2022-12-07:  "Andrzejki BCS UJ"	1	[{"added": {}}]	19	1
+2334	2025-07-22 12:41:28.475346+02	331	2022-12-17:  "Mikołajkowy Ostry Dyżur"	1	[{"added": {}}]	19	1
+2335	2025-07-22 12:41:54.625797+02	331	2022-12-17:  "Wigilia BCS UJ"	2	[{"changed": {"fields": ["Nazwa", "Miejsca", "Typ wydarzenia"]}}]	19	1
+2336	2025-07-22 12:42:11.526037+02	330	2022-12-01:  "Andrzejki BCS UJ"	2	[{"changed": {"fields": ["Data rozpocz\\u0119cia"]}}]	19	1
+2337	2025-07-22 12:42:19.975889+02	332	2022-12-17:  "Wigilia BCS UJ"	1	[{"added": {}}]	19	1
+2338	2025-07-22 12:42:51.09858+02	333	2022-12-07:  "Mikołajkowy Ostry Dyżur"	1	[{"added": {}}]	19	1
+2339	2025-07-22 12:43:11.795072+02	334	2023-01-12:  "Noworoczny Ostry Dyżur"	1	[{"added": {}}]	19	1
+2340	2025-07-22 12:43:30.27731+02	335	2023-01-26:  "Przedsesyjny Ostry Dyżur"	1	[{"added": {}}]	19	1
+2341	2025-07-22 12:43:50.507617+02	336	2023-02-10:  "Międzysesyjny Ostry Dyżur"	1	[{"added": {}}]	19	1
+2342	2025-07-22 12:44:14.188792+02	337	2023-02-24:  "Posesyjny Ostry Dyżur"	1	[{"added": {}}]	19	1
+2343	2025-07-22 12:44:45.084553+02	338	2023-03-09:  "Przedwiosenny Ostry Dyżur"	1	[{"added": {}}]	19	1
+2344	2025-07-22 12:46:32.940166+02	338	2023-03-30:  "Karczma Idy Marcowe"	2	[{"changed": {"fields": ["Nazwa", "Data rozpocz\\u0119cia", "Miejsca", "Typ wydarzenia"]}}]	19	1
+2347	2025-07-22 12:47:19.368705+02	339	2023-02-24:  "Posesyjny Ostry Dyżur"	1	[{"added": {}}]	19	1
+2348	2025-07-22 12:47:57.006789+02	339	2023-03-09:  "Przedwiosenny Ostry Dyżur"	2	[{"changed": {"fields": ["Nazwa", "Data rozpocz\\u0119cia", "Miejsca"]}}]	19	1
+2349	2025-07-22 12:48:13.108269+02	338	2023-03-17:  "Karczma Idy Marcowe"	2	[{"changed": {"fields": ["Data rozpocz\\u0119cia"]}}]	19	1
+2350	2025-07-22 12:48:19.085722+02	340	2023-03-09:  "Przedwiosenny Ostry Dyżur"	1	[{"added": {}}]	19	1
+2351	2025-07-22 12:48:41.48944+02	341	2023-03-30:  "Wiosenny Ostry Dyżur"	1	[{"added": {}}]	19	1
+2352	2025-07-22 12:49:05.678183+02	342	2023-04-13:  "Ostry Dyżur Wielkanocny"	1	[{"added": {}}]	19	1
+2353	2025-07-22 12:49:29.779907+02	343	2023-05-11:  "Majowy Ostry Dyżur"	1	[{"added": {}}]	19	1
+2354	2025-07-22 12:50:39.03137+02	343	2023-05-18 - 2023-05-21:  "Juwenalia 2023"	2	[{"changed": {"fields": ["Nazwa", "Jednodniowe", "Data rozpocz\\u0119cia", "Data zako\\u0144czenia", "Typ wydarzenia"]}}, {"added": {"name": "Zdarzenie", "object": "2023-05-18 - Juwenaliowa Impreza Powitalna (Juwenalia \\"Juwenalia 2023\\")"}}]	19	1
+2355	2025-07-22 12:51:47.328842+02	343	2023-05-18 - 2023-05-21:  "Juwenalia 2023"	2	[{"added": {"name": "Zdarzenie", "object": "2023-05-20 - CIBA Party Anio\\u0142y i Demony (Juwenalia \\"Juwenalia 2023\\")"}}, {"added": {"name": "Zdarzenie", "object": "2023-05-21 - Juwenaliowa Impreza Po\\u017cegnalna (Juwenalia \\"Juwenalia 2023\\")"}}]	19	1
+2356	2025-07-22 12:51:53.914646+02	344	2023-04-13:  "Ostry Dyżur Wielkanocny"	1	[{"added": {}}]	19	1
+2357	2025-07-22 12:52:25.598447+02	345	2023-05-21:  "Karczma Juwenaliowa"	1	[{"added": {}}]	19	1
+2358	2025-07-22 12:53:02.571706+02	346	2023-06-02:  "Czerwcowy Ostry Dyżur"	1	[{"added": {}}]	19	1
+2359	2025-07-22 12:54:22.773719+02	347	2023-06-02:  "Czerwcowy Ostry Dyżur"	1	[{"added": {}}]	19	1
+2360	2025-07-22 12:54:47.645525+02	348	2023-06-16:  "Przedsesyjny Ostry Dyżur"	1	[{"added": {}}]	19	1
+2361	2025-07-22 12:55:51.91992+02	110	Kamieniołom Libana - Teren zielony, Za Torem 22, 33-332 Kraków, Polska	1	[{"added": {}}]	48	1
+2362	2025-07-22 12:56:03.528221+02	349	2023-06-30:  "Ognisko Posesyjne"	1	[{"added": {}}]	19	1
+2363	2025-07-22 12:56:59.060298+02	350	2023-09-21 - 2023-09-24:  "Adapciak BCS UJ 2023"	1	[{"added": {}}]	19	1
+2364	2025-07-22 12:59:42.642169+02	350	2023-09-28 - 2023-10-01:  "Reaktywacja 2023"	2	[{"changed": {"fields": ["Nazwa", "Data rozpocz\\u0119cia", "Data zako\\u0144czenia", "Miejsca", "Czy to wyjazd?", "Typ wydarzenia"]}}, {"added": {"name": "Zdarzenie", "object": "2023-09-28 - Reaktywacyjna Impreza Powitalna (Reaktywacja \\"Reaktywacja 2023\\")"}}, {"added": {"name": "Zdarzenie", "object": "2023-09-30 - Impreza przebierana w klimacie Disco (Reaktywacja \\"Reaktywacja 2023\\")"}}, {"added": {"name": "Zdarzenie", "object": "2023-10-01 - Poch\\u00f3d profesorski (Reaktywacja \\"Reaktywacja 2023\\")"}}, {"added": {"name": "Zdarzenie", "object": "2023-10-01 - Reaktywacyjna Impreza Po\\u017cegnalna (Reaktywacja \\"Reaktywacja 2023\\")"}}]	19	1
+2365	2025-07-22 12:59:49.432658+02	351	2023-06-30:  "Ognisko Posesyjne"	1	[{"added": {}}]	19	1
+2366	2025-07-22 13:00:21.860759+02	352	2023-09-29:  "Karczma Reaktywacyjna"	1	[{"added": {}}]	19	1
+2367	2025-07-22 13:00:52.639155+02	353	2023-10-12:  "Awaryjne Depositio Beanorum"	1	[{"added": {}}]	19	1
+2368	2025-07-22 13:01:48.075703+02	354	2023-10-19: Wybory "Walne Zgromadzenie BCS UJ"	1	[{"added": {}}]	19	1
+2369	2025-07-22 13:02:24.083018+02	355	2023-10-26:  "Halloweenowy Ostry Dyżur"	1	[{"added": {}}]	19	1
+2370	2025-07-22 13:02:59.879688+02	356	2023-11-12: Wyjście do kina "Czapka w kinie (Chłopi)"	1	[{"added": {}}]	19	1
+2372	2025-07-22 13:04:16.524196+02	111	Posiadówka - Knajpa, Św. Tomasza 7, 31-014 Kraków, Polska	1	[{"added": {}}]	48	1
+2373	2025-07-22 13:04:35.946552+02	357	2023-11-15:  "Karczma Jesienna"	1	[{"added": {}}]	19	1
+2374	2025-07-22 13:05:03.843614+02	358	2023-11-26: Wyjście do kina "Czapka w kinie (Napoleon)"	1	[{"added": {}}]	19	1
+2375	2025-07-22 13:05:38.321861+02	359	2023-11-30:  "Andrzejkowy Ostry Dyżur"	1	[{"added": {}}]	19	1
+2376	2025-07-22 13:06:11.565064+02	360	2023-12-03: Wyjście do kina "Czapka w kinie (Igrzyska Śmierci: Ballada Ptaków i Węży)"	1	[{"added": {}}]	19	1
+2377	2025-07-22 13:06:45.558203+02	361	2023-12-06:  "Mikołajkowy Ostry Dyżur"	1	[{"added": {}}]	19	1
+2378	2025-07-22 13:07:11.239997+02	362	2023-12-14: Wyjście do kina "Czapka w kinie (Maestro)"	1	[{"added": {}}]	19	1
+2379	2025-07-22 13:07:43.397317+02	362	2023-12-15: Wigilia "Karczma Wigilijna BCS UJ"	2	[{"changed": {"fields": ["Nazwa", "Data rozpocz\\u0119cia", "Miejsca", "Typ wydarzenia"]}}]	19	1
+2380	2025-07-22 13:08:35.432559+02	351	2023-06-30:  "Ognisko Posesyjne"	3		19	1
+2381	2025-07-22 13:08:35.432604+02	347	2023-06-02:  "Czerwcowy Ostry Dyżur"	3		19	1
+2382	2025-07-22 13:08:35.432626+02	344	2023-04-13:  "Ostry Dyżur Wielkanocny"	3		19	1
+2383	2025-07-22 13:08:35.432646+02	340	2023-03-09:  "Przedwiosenny Ostry Dyżur"	3		19	1
+2384	2025-07-22 13:08:35.432665+02	299	2021-11-13:  "Spotkanie z prof. Gajdą po Ułańskim Zdrowiu"	3		19	1
+2385	2025-07-22 13:08:35.432687+02	296	2021-11-11: Zawody sportowe "Monika Kwater i Mateusz Żurek biegną w górskim Biegu Niepodległości ze skawiny do Mogilan"	3		19	1
+2386	2025-07-22 13:08:35.432705+02	280	2020-12-28:  "Czapkowy Świąteczny Wieczór Filmowy: Kevin sam w domu (on-line)"	3		19	1
+2387	2025-07-22 13:09:21.242262+02	229	2018-05-18:  "Międzynarodowa Karczma"	3		19	1
 \.
 
 
@@ -3347,11 +3837,9 @@ COPY public.kronika_proces_zdarzenia (id, proces_id, zdarzenie_id) FROM stdin;
 
 COPY public.kronika_typwydarzenia (id, typ) FROM stdin;
 1	Akcja
-2	Inne
 3	Karczma
 6	Konferencja naukowa
 7	Sprzątanie grobów
-8	Historyczne
 9	Ognisko
 10	Ostry Dyżur
 11	Planszówki
@@ -3372,7 +3860,6 @@ COPY public.kronika_typwydarzenia (id, typ) FROM stdin;
 26	Rejs
 27	Koncert
 28	Konkurs
-29	Odwiedziny Profesora
 30	Wywiad
 22	Spontaniczne
 31	Śpiewanie
@@ -3381,6 +3868,16 @@ COPY public.kronika_typwydarzenia (id, typ) FROM stdin;
 34	Idy Marcowe
 35	Impreza
 36	Bretelle
+37	Andrzejki
+38	Kolędowanie
+39	Rekrutacja
+40	Wyjście do kina
+41	Depositio Beanorum
+8	Historyczny
+42	Granie on-line
+43	Wieczór filmowy
+2	Inny
+29	Spotkanie z prof. Gajdą
 \.
 
 
@@ -3395,6 +3892,7 @@ COPY public.kronika_typwyjazdu (id, typ) FROM stdin;
 5	Nie dotyczy
 4	Wyjazd zagraniczny
 6	Stiftungfest
+8	Wyjazd integracyjny
 \.
 
 
@@ -3413,13 +3911,11 @@ COPY public.kronika_wydarzenie (id, nazwa, opis, data_rozpoczecia, data_zakoncze
 81	Stiftungfest		2012-05-19	2012-05-19		23	6	t	t
 33	Wyjazd na Stiftungfest	Aśka Lorenc: "Wyjazd na Stiftungfest do Opola - rewizyta u zaprzyjaźnionej korporacji Salia Silesia"	2011-05-28	2011-05-28		23	6	t	t
 80	Juwenaliowa Karczma Piwna z Belgami!		2012-05-18	2012-05-18		3	5	f	t
-82	Stiftungfest		2012-05-19	2012-05-19		23	6	t	t
 84	Wakacyjna posiadówka czapkowa - zamiast odwiedzin u profesora		2012-06-29	2012-06-29		22	5	f	t
 85	Czapka podbija świat! Edycja Druga		2012-07-01	2012-07-01		28	5	f	t
 88	Inauguracja roku akademickiego 2012/2013		2012-10-01	2012-10-01		20	5	f	t
 89	Czapkowe wybory		2012-10-03	2012-10-03		18	5	f	t
 90	Karczma Reaktywacyjna 3		2012-10-05	2012-10-05		3	5	f	t
-91	Karczma Reaktywacyjna 3		2012-10-05	2012-10-05		3	5	f	t
 92	Czapka Open Party		2012-10-06	2012-10-06		35	5	f	t
 93	Ostry Dyżur 2012 vol.1		2012-10-24	2012-10-24		10	5	f	t
 94	Bankiet Europejski		2012-11-02	2012-11-02		23	4	t	t
@@ -3427,7 +3923,38 @@ COPY public.kronika_wydarzenie (id, nazwa, opis, data_rozpoczecia, data_zakoncze
 87	Czapka na Pine Gouine 4: Rabelais		2012-08-03	2012-08-05		23	4	t	f
 86	Ordre de la Bretelle - wakacyjne odwiedziny		2012-07-27	2012-07-31		36	5	f	f
 83	Promuję Bractwo - umieszczam informację o jego stronie		2012-06-18	2012-09-30		1	5	f	f
+116	Karczma wigilijna BCS UJ 2013		2013-12-18	2013-12-18		32	5	f	t
+96	'O obyczajowości żaków krakowskich w XVI wieku', Mariusz Wolny		2012-12-06	2012-12-07		5	5	f	f
+103	Juwenalia 2013		2013-05-07	2013-05-14		13	5	f	f
+97	Jacobs Czapka Winter Special	Cubuk zgubił czapkę - Pumba zrobił wydarzenie, żeby pokazać jej losy	2013-02-20	2013-02-20		2	5	f	t
+99	GAUDEAMUS - czapkowe śpiewanie		2013-03-07	2013-03-07		31	5	f	t
 38	Petycja w sprawie niezamykania Klubu "Buda"	Klub jest zamknięty z powodu remontu akademika i Czapka organizuje petycję.	2011-07-21	2011-07-21		2	5	f	t
+100	Ostry Dyżur 2013		2013-03-08	2013-03-08		10	5	f	t
+101	Walne Zgromadzenie BCS UJ		2013-03-20	2013-03-20		16	5	f	t
+102	Karczma wiosenna 2013 BCS UJ		2013-04-13	2013-04-13		3	5	f	t
+104	Majowy Ostry Dyżur		2013-05-28	2013-05-28		10	5	f	t
+105	Loża medyków (zjazd absolwentów z lat 1952-1957)  zaprasza reprezentację Czapki		2013-06-01	2013-06-01		2	5	f	t
+106	Reactivation Party V		2013-09-30	2013-10-06		12	5	f	f
+107	Karczma Reaktywacyjna		2013-10-04	2013-10-04		3	5	f	t
+109	Czapka zdobywa świat 2.0		2013-10-05	2013-10-05		28	5	f	t
+110	Ostry dyżur - vol. 2		2013-11-06	2013-11-06		10	5	f	t
+108	Ostry dyżur czas zacząć! - vol. 1		2013-10-23	2013-10-23		10	5	f	t
+112	Walne Zgromadzenie BCS UJ		2013-11-14	2013-11-14		16	5	f	t
+114	Ostry Dyżur - vol. 4		2013-12-05	2013-12-05		10	5	f	t
+113	Wizyta u Profesora		2013-11-30	2013-11-30		29	5	f	t
+117	Lekcja śpiewania z BCS UJ 2014		2014-02-27	2014-02-27		31	5	f	t
+118	Tradycyjna Karczma BCS UJ		2014-03-07	2014-03-07		3	5	f	t
+120	Kudłacze		2014-04-04	2014-04-04		23	3	t	t
+122	Wiosenny Obiad BCS UJ		2014-04-27	2014-04-27		33	5	f	t
+123	Piątkowa balanga w Budzie		2014-05-09	2014-05-09		35	5	f	t
+126	Karczma Juwenaliowa 2014		2014-05-16	2014-05-16		3	5	f	t
+125	Juwenalia 2014		2014-05-13	2014-05-17		13	5	f	f
+128	Karczma Posesyjna BCS UJ		2014-06-27	2014-06-27		3	5	f	t
+129	Grill u profesora Gajdy		2014-06-28	2014-06-28		25	5	f	t
+130	Czapka Reactivation Party VI		2014-10-03	2014-10-04		12	5	f	f
+131	Wybory Zarządu BCS UJ		2014-10-23	2014-10-23		18	5	f	t
+133	Ostry Dyżur vol.1 z BCS UJ		2014-11-06	2014-11-06		10	5	f	t
+134	Ułańskie Zdrowie		2014-11-21	2014-11-21		19	5	f	t
 9	Czapkowa Karczma Karnawałowa		2011-01-16	2011-01-16		3	5	f	t
 25	Złożenie kwiatów pod grobem królowej Jadwigi		2010-05-12	2010-05-12		20	5	f	t
 11	Czapkowa Karczma Posesyjna		2011-02-12	2011-02-12		3	5	f	t
@@ -3466,7 +3993,6 @@ COPY public.kronika_wydarzenie (id, nazwa, opis, data_rozpoczecia, data_zakoncze
 54	Uniwersytecki Dzień Pamięci		2011-11-07	2011-11-07		20	5	f	t
 57	Wspólne śpiewanie piosenek rajdowych z prof. Czerwińskim, organizatorem rajdów Eskulapów		2011-11-17	2011-11-17		31	5	f	t
 44	Ostry Dyżur czapkowy - spotkanie informacyjne BCS		2011-10-06	2011-10-06		10	5	f	t
-46	Kawa czy Herbata a w niej czapka!		2011-10-07	2011-10-07		29	5	f	t
 47	Tour des bars		2011-10-07	2011-10-07		2	5	f	t
 48	Ostry Dyżur Czapkowy		2011-10-20	2011-10-20		10	5	f	t
 49	Wywiad czapek dla MMKrakow.pl		2011-10-22	2011-10-22		30	5	f	t
@@ -3474,7 +4000,6 @@ COPY public.kronika_wydarzenie (id, nazwa, opis, data_rozpoczecia, data_zakoncze
 56	43 lekcja śpiewania w Święto Niepodległości z Loch Camelot		2011-11-12	2011-11-12		31	5	f	t
 58	Karczma Andrzejkowa		2011-11-27	2011-11-27		3	5	f	t
 60	Czapkowy Ostry Dyżur 4		2011-12-01	2011-12-01		10	5	f	t
-62	Śpiewanie pod Novum wraz z NZS UJ		2011-12-16	2011-12-16		31	5	f	t
 64	Wigilia BCS UJ		2011-12-17	2011-12-17		32	5	f	t
 65	Wybory - Wielki Mistrz, Kasztelan, Skarbnik		2012-01-15	2012-01-15		18	5	f	t
 70	Czapkowe wyjście kulturalne nr 1 w 2012		2012-03-01	2012-03-01		14	5	f	t
@@ -3483,6 +4008,205 @@ COPY public.kronika_wydarzenie (id, nazwa, opis, data_rozpoczecia, data_zakoncze
 23	Przygarnij Belga w Juwenalia!	nocleg w czasie Juwenaliów	2011-05-17	2011-05-21		1	5	f	f
 61	Bankiet Tradycji Studenckich		2011-12-03	2011-12-05		23	4	t	f
 55	Czapka na CIBA		2011-11-11	2011-11-16		23	4	t	f
+62	Kolędowanie pod Novum wraz z NZS UJ		2011-12-16	2011-12-16		38	5	f	t
+46	Kawa czy Herbata a w niej czapka!		2011-10-07	2011-10-07		29	5	f	t
+135	Czapkowe Andrzejki z BCS UJ		2014-11-28	2014-11-28		37	5	f	t
+136	Czapkowe mikołajkowe wyjście do Muzeum Armii Krajowej		2014-12-07	2014-12-07		14	5	f	t
+137	Karczma Wigilijna 2014		2014-12-17	2014-12-17		3	5	f	t
+139	Ostry Dyżur Przedwiosenny		2015-03-05	2015-03-05		10	5	f	t
+140	Idy Czapkowe 2015		2015-03-14	2015-03-14		34	5	f	t
+141	Karczma Wiosenna 2015		2015-03-27	2015-03-27		3	5	f	t
+142	Kudłacze vol. 3 - szalony wypad w góry Czapki Studenckiej		2015-04-10	2015-04-10		23	3	t	t
+143	Juwenalia 2015		2015-05-07	2015-05-10		13	5	f	f
+145	Karczma Juwenaliowa 2015		2015-05-08	2015-05-08		3	5	f	t
+144	Ostry Dyżur Przedsesyjny		2015-06-10	2015-06-10		10	5	f	t
+147	Ognisko przedsesyjne		2015-06-12	2015-06-12		9	5	f	t
+148	Tres faciunt collegium: grill u Profesora		2015-06-30	2015-06-30		29	5	f	t
+150	Ostry dyżur vol. 1		2015-10-15	2015-10-15		10	5	f	t
+151	Walne Zgromadzenie BCS UJ 2015/2016		2015-10-22	2015-10-22		18	5	f	t
+152	Piracki Ostry Dyżur		2015-11-05	2015-11-05		10	5	f	t
+153	Karczma Jesienna BCS UJ		2015-11-14	2015-11-14		3	5	f	t
+154	Ułańskie Zdrowie		2015-11-21	2015-11-21		19	5	f	t
+155	Western Party BCS UJ		2015-11-25	2015-11-25		35	5	f	t
+156	Kolędowanie pod Collegium Novum		2015-12-19	2015-12-19		38	5	f	t
+158	Karczma Wigilijna BCS UJ		2015-12-19	2015-12-19		3	5	f	t
+159	Styczniowy Ostry Dyżur		2016-01-20	2016-01-20		10	5	f	t
+160	Sylwester z Czapką		2016-01-07	2016-01-07		10	5	f	t
+162	Karczma Wiosenna BCS UJ		2016-03-05	2016-03-05		3	5	f	t
+163	Idy Marcowe		2016-03-16	2016-03-16		34	5	f	t
+164	Poświąteczny Ostry Dyżur		2016-03-31	2016-03-31		10	5	f	t
+165	Kwietniowy Ostry Dyżur		2016-04-13	2016-04-13		10	5	f	t
+166	Rajd BCS UJ na Kudłacze 2016		2016-04-22	2016-04-24		23	3	t	f
+168	Juwenalia 2016		2016-05-12	2016-05-14		13	5	f	f
+167	Majowy Ostry Dyżur		2016-05-05	2016-05-05		10	5	f	t
+171	Czerwcowy Ostry Dyżur		2016-06-01	2016-06-01		10	5	f	t
+172	Ognisko przedsesyjne BCS UJ		2016-06-11	2016-06-11		9	5	f	t
+173	Czapkowy Adapciak 2016		2016-09-22	2016-09-25		23	1	t	f
+174	Konkurs Wakacyjny		2016-09-30	2016-09-30		28	5	f	t
+175	Reaktywacja BCS UJ		2016-09-30	2016-10-02		12	5	f	f
+180	Listopadowy Ostry Dyżur		2016-11-13	2016-11-13		10	5	f	t
+178	Wybory zarządu VIII kadencji BCS UJ + Walne Zgromadzenie		2016-10-26	2016-10-26		18	5	f	t
+196	Juwenalia 2017		2017-05-11	2017-05-14		13	5	f	f
+179	Drugi Listopadowy Ostry Dyżur		2016-11-17	2016-11-17		10	5	f	t
+182	Fantastyczne Czapki i jak je znaleźć		2016-11-19	2016-11-19		40	5	f	t
+184	Walne Zgromadzenie		2016-12-07	2016-12-07		16	5	f	t
+185	Wigilia Czapkowa		2016-12-17	2016-12-17		10	5	f	t
+186	Ruszt u Małeckiego		2015-04-30	2015-04-30		25	5	f	t
+188	Styczniowy Ostry Dyżur		2017-01-12	2017-01-12		10	5	f	t
+189	Styczniowy Ostry Dyżur II		2017-01-21	2017-01-21		10	5	f	t
+190	Wiosenna Karczma		2017-03-04	2017-03-04		3	5	f	t
+191	Marcowy Ostry Dyżur		2017-03-14	2017-03-14		10	5	f	t
+192	Kudłacze 2017		2017-03-24	2017-03-24		23	3	t	t
+193	Marcowy Ostry Dyżur II		2017-03-30	2017-03-30		23	3	t	t
+194	Cercle Marie Haps vs Czapka Studencka : Calotte vs Czapka		2017-04-05	2017-04-05		2	5	f	t
+195	Rewizyta Żółtego Szalika		2017-04-20	2017-04-20		17	5	f	t
+197	Karczma juwenaliowa		2017-05-12	2017-05-12		3	5	f	t
+199	Majowy Ostry Dyżur		2017-05-24	2017-05-24		10	5	f	t
+200	Czerwcowy Ostry Dyżur		2017-06-01	2017-06-01		10	5	f	t
+201	Zakończenie sezonu na izoarenie		2017-06-03	2017-06-03		21	5	f	t
+203	Ognisko Przedsesyjne 2017		2017-06-10	2017-06-10		9	5	f	t
+204	Czapkowy obóz integracyjny 2017		2017-09-15	2017-09-18		23	8	t	f
+205	Reaktywacja BCS UJ		2017-09-29	2017-10-01		12	5	f	f
+206	Wybory Czapkowe - Walne Zgromadzenie		2017-10-12	2017-10-12		18	5	f	t
+208	Październikowy Ostry Dyżur		2017-10-25	2017-10-25		10	5	f	t
+209	Jesienna Karczma BCS UJ		2017-11-10	2017-11-10		3	5	f	t
+210	Ułańskie Zdrowie		2017-11-25	2017-11-25		19	5	f	t
+211	Wielka Rekrutacja 2017		2017-11-29	2017-11-29		39	5	f	t
+212	Mikołajkowy Ostry Dyżur		2017-12-06	2017-12-06		10	5	f	t
+213	Wigilia Czapkowa		2017-12-16	2017-12-16		32	5	f	t
+214	Styczniowy Ostry Dyżur		2018-01-11	2018-01-11		10	5	f	t
+215	Czapkowy Bal Karnawałowy		2018-01-20	2018-01-20		35	5	f	t
+216	Ostry Dyżur a La Calotte		2018-02-01	2018-02-01		10	5	f	t
+217	Ostry Dyżur - piwoterapia złamanych serc		2018-02-18	2018-02-18		10	5	f	t
+218	Posesyjny Ostry Dyżur		2018-02-28	2018-02-28		10	5	f	t
+219	Kudłacze 2018		2018-03-16	2018-03-18		23	3	t	f
+220	Wiosenny Ostry Dyżur		2018-03-21	2018-03-18		10	5	f	f
+221	Depositio Beanorum		2018-04-04	2018-04-04		41	5	f	t
+222	Czapka studencka oznaką prawdziwego żaka II		2018-04-07	2018-04-07		5	5	f	t
+223	Karczma Wiosenna BCS UJ		2018-04-14	2018-04-14		3	5	f	t
+224	Kwietniowy Ostry Dyżur		2018-04-28	2018-04-28		10	5	f	t
+225	Europejskie i polskie tradycje studenckie		2018-05-11	2018-05-11		5	5	f	t
+269	Piżama CzaParty - Przedsesyjny Ostry Dyżur		2020-01-16	2020-01-16		10	5	f	t
+227	Juwenalia 2018		2018-05-16	2018-05-20		13	5	f	f
+228	Międzynarodowa Karczma		2018-05-18	2018-05-18		3	5	f	t
+230	Ognisko Przedsesyjne BCS UJ		2018-06-09	2018-06-09		9	5	f	t
+232	Walne Zgromadzenie	Nadanie dewizy "In varietate unitas", przyjęcie statutu zgodnego z UJ, przyjęcie nowego herbu Bractwa (autor: Robert Fidura)	2018-09-08	2018-09-08		9	5	f	t
+233	Adapciak BCS UJ		2018-09-21	2018-09-24		23	1	t	f
+234	Reaktywacja 2018		2018-09-28	2018-10-01		12	5	f	f
+236	Pakt Bractw w Bractwem Żółtego Szalika		2018-09-28	2018-09-28		8	5	f	t
+237	Depositio Beanorum		2018-10-17	2018-10-17		41	5	f	t
+238	Wybory		2018-10-24	2018-10-24		18	5	f	t
+239	Wielka Rekrutacja BCS UJ		2018-11-13	2018-11-13		39	5	f	t
+240	Karczma Jesienna 2018		2018-11-23	2018-11-23		3	5	f	t
+241	Andrzejki BCS UJ		2018-11-30	2018-11-30		37	5	f	t
+242	Starej czapkowej gwardii spotkanie na szczycie		2018-12-01	2018-12-01		2	5	f	t
+243	Czapka studencka? A co to?		2018-12-05	2018-12-05		39	5	f	t
+244	Mikołajkowy Ostry Dyżur		2018-12-05	2018-12-05		10	5	f	t
+245	Wigilia Czapkowa		2018-12-15	2018-12-15		32	5	f	t
+246	Przedsesyjny Ostry Dyżur		2019-01-17	2019-01-17		10	5	f	t
+247	Starej czapkowej gwardii spotkanie na szczycie #2		2019-02-16	2019-02-16		2	5	f	t
+248	Posesyjny Ostry Dyżur - śpiewogranie		2019-02-27	2019-02-27		10	5	f	t
+249	Karczma Wiosenna BCS UJ		2019-03-15	2019-03-15		3	5	f	t
+250	Teatr z Czapką - Dzienniki Gwiazdowe		2019-03-20	2019-03-20		14	5	f	t
+251	Kudłacze 2019		2019-03-29	2019-03-29		23	3	t	t
+252	Bankiet 10-lecia BCS UJ		2019-04-06	2019-04-06		8	5	f	t
+270	Bal(folk) Czapkowy Taneczny Ostry Dyżur		2020-02-21	2020-02-21		10	5	f	t
+253	Juwenalia 2019		2019-05-23	2019-05-26		13	5	f	f
+255	Karczma Juwenaliowa 2019		2019-05-24	2019-05-24		3	5	f	t
+256	Spotkanie z Animusem		2019-06-07	2019-06-07		17	5	f	t
+257	Teatr z Czapką vol. 2 - Skąpiec		2019-06-07	2019-06-07		14	5	f	t
+258	Ognisko Posesyjne BCS UJ		2019-06-08	2019-06-08		9	5	f	t
+259	Adapciak 2019 BCS UJ		2019-09-16	2019-09-19		23	1	t	f
+260	Martinus się broni		2019-09-24	2019-09-24		2	5	f	t
+271	Depositio Beanorum		2020-02-28	2020-02-28		41	5	f	t
+261	Reaktywacja XI		2019-09-27	2019-10-01		12	5	f	f
+263	Wybory 2019/2020		2019-10-09	2019-10-09		18	5	f	t
+264	Wielka Rekrutacja BCS UJ		2019-10-24	2019-11-30		39	5	f	f
+265	Wykład Czapka Studencka		2019-11-22	2019-11-22		5	5	f	t
+266	Karczma		2019-11-22	2019-11-22		3	5	f	t
+267	Ostry Dyżur Mikołajkowy		2019-12-04	2019-12-04		10	5	f	t
+268	Wigilia Czapkowa 2019		2019-12-14	2019-12-14		32	5	f	t
+274	Ognisko Posesyjne 2020		2020-06-30	2020-06-30		9	5	f	t
+275	Nadzwyczajne Walne Zgromadzenie BCS UJ (MS TEAMS)		2020-10-08	2020-10-08		18	5	f	t
+272	Wirtualny Ostry Dyżur (Discord)		2020-05-15	2020-05-15		10	5	f	t
+276	Czapkowe Among Us		2020-10-24	2020-10-24		42	5	f	t
+277	Czapkowy Wieczór Filmowy: Asterix i Obelix (on-line)		2020-11-05	2020-11-05		43	5	f	t
+278	Czapkowy Wieczór Filmowy: Hydrozagadka (on-line)		2020-12-09	2020-12-09		43	5	f	t
+279	Czapkowy Świąteczny Wieczór Filmowy: Kevin sam w domu (on-line)		2020-12-28	2020-12-28		43	5	f	t
+281	Posesyjny Ostry Dyżur: film (on-line)		2021-02-12	2021-02-12		43	5	f	t
+282	Wielki konkurs czapkowy na zdjęcia, filmy, prace plastyczne/literackie…		2021-02-27	2021-02-27		28	5	f	t
+273	Hommage a Maurice		2020-06-06	2020-06-06		2	5	f	t
+235	Walne Zgromadzenie	Nadanie dewizy "In varietate unitas", przyjęcie statutu zgodnego z UJ, przyjęcie nowego herbu Bractwa (autor: Robert Fidura)	2018-09-08	2018-09-08		16	5	f	t
+284	Czapkowy Wieczór Filmowy: Znachor (on-line)		2021-04-22	2021-04-22		43	5	f	t
+285	Top secret Ostry dyżur		2021-06-02	2021-06-02		10	5	f	t
+283	Posesyjny Ostry Dyżur: film (on-line)		2021-02-12	2021-02-12		10	5	f	t
+287	Jednoosobowa delegacja BCS UJ na Komerszu z okazji XI rocznicy reaktywacji Konwentu Arcadia		2021-06-18	2021-06-18		2	5	f	t
+288	Top secret ognisko		2021-06-30	2021-06-30		9	5	f	t
+289	Reaktywacja XIII		2021-09-30	2021-10-02		12	5	f	f
+291	Karczma Reaktywacyjna		2021-09-30	2021-09-30		3	5	f	t
+292	Walne zgromadzenie BCS UJ		2021-10-22	2021-10-22		18	5	f	t
+293	Karczma Jesienna BCS UJ		2021-11-10	2021-11-10		3	5	f	t
+294	Sprzątanie grobów z prof. Gajdą		2021-11-06	2021-11-06		7	5	f	t
+295	Monika Kwater i Mateusz Żurek biegną w górskim Biegu Niepodległości ze skawiny do Mogilan		2021-11-11	2021-11-11		21	5	f	t
+297	Ułańskie Zdrowie		2021-11-13	2021-11-13		19	5	f	t
+298	Spotkanie z prof. Gajdą po Ułańskim Zdrowiu		2021-11-13	2021-11-13		29	5	f	t
+300	Czapka uruchamia kanał na Instagramie		2021-11-16	2021-11-16		8	5	f	t
+301	Zapytaj, Zamów, Zakładaj		2021-11-22	2021-11-22		1	5	f	t
+302	Impreza Andrzejkowa (+wróżby)		2021-11-26	2021-11-26		35	5	f	t
+303	Ostry Dyżur Mikołajkowy		2021-12-09	2021-12-09		10	5	f	t
+304	Wyjście do kina na "Nasze Magiczne Encanto"		2021-12-16	2021-12-16		40	5	f	t
+305	Karczma Wigilijna		2021-12-16	2021-12-16		3	5	f	t
+306	Noworoczny Ostry Dyżur		2022-01-13	2022-01-13		10	5	f	t
+307	Przedsesyjny Ostry Dyżur		2022-01-22	2022-01-22		10	5	f	t
+335	Przedsesyjny Ostry Dyżur		2023-01-26	2023-01-26		10	5	f	t
+308	Zapytaj, Zamów, Zakładaj" dofinansowane przez Samorząd Studentów UJ		2022-02-03	2022-02-03		8	5	f	t
+309	Zapytaj, Zamów, Zakładaj" dofinansowane przez Samorząd Studentów UJ		2022-02-03	2022-02-03		8	5	f	t
+310	Śródsesyjny Ostry Dyżur		2022-02-11	2022-02-11		10	5	f	t
+311	Ogłoszenie wyników 1. edycji konkursu na nowe zwrotki Czapkowych Opowieści	11 głosami wygrała ją Olga Zatońska. Stworzyła ku chwale Bractwa następujące zwrotki:\r\n1. Rok za rokiem mija szybko\r\nJuż jest lato już jest zima\r\nPorzucone dzieci płaczą\r\nA Pryka wciąż nima!\r\n2. Przy gitarze Kotlet smutno\r\nśpiewać kolędy próbuje\r\nnikt nie słucha, każdy z Ciepłym\r\nTannenbaum fałszuje\r\n3. O noszenie szala mistrza\r\npojedynek się odbywał\r\nGomułka już nie mógł piwa\r\nna głowę je wylał!	2022-02-12	2022-02-12		28	5	f	t
+312	Wyjście do teatru na spektakl “Dwaj mistrzowie komedii” wg Fredro i Moliera, w którym grał "Koziołek"		2022-03-03	2022-03-03		14	5	f	t
+313	Mateusz Żurek (Magister Cantandi) przedłuża konkurs na czapkowe zwrotki Czapkowych Opowieści i Czapkowej Siekiery Motyki		2022-03-09	2022-03-09		28	5	f	t
+314	Magister Cantandi przedłuża konkurs na czapkowe zwrotki Czapkowych Opowieści i Czapkowej Siekiery Motyki		2022-03-09	2022-03-09		28	5	f	t
+315	Zielony Ostry Dyżur (św. Patryka zamiast Id Marcowych)		2022-03-26	2022-03-26		10	5	f	t
+316	Wirtualny Dzień Otwarty UJ	Czapka ma swój wirtualny pokój, w którym nadaje Wielki Mistrz wraz z częścią Zarządu ze Starego Portu	2022-03-26	2022-03-26		39	5	f	t
+317	Kudłacze 2022		2022-04-01	2022-04-01		23	3	t	t
+318	Karczma Wiosenna BCS UJ w klimacie wielkanocnego śniadania		2022-04-22	2022-04-22		3	5	f	t
+319	Trzyosobowa delegacja na imprezę do Zielonej Góry		2022-04-23	2022-04-23		17	5	f	t
+320	Juwenalia 2022		2022-05-19	2022-05-23		13	5	f	f
+321	Konferencja Gaudeamus Igitur! Kultura studencka na przestrzeni wieków		2022-06-06	2022-06-06		6	5	f	t
+322	Depositio beanorum		2022-06-11	2022-06-11		41	5	f	t
+323	Adapciak BCS UJ 2022		2022-09-22	2022-09-24		23	1	t	f
+336	Międzysesyjny Ostry Dyżur		2023-02-10	2023-02-10		10	5	f	t
+325	Reaktywacja 2022		2022-09-29	2022-10-02		12	5	f	f
+326	Walne Zgromadzenie BCS UJ		2022-10-21	2022-10-21		18	5	f	t
+324	Karczma Reaktywacyjna		2022-09-30	2022-09-30		3	5	f	t
+328	Chemiku, załóż czapkę! Promocja na Wydziale Chemii UJ		2022-11-14	2022-11-14		39	5	f	t
+329	Karczma Jesienna		2022-11-17	2022-11-17		3	5	f	t
+331	Wigilia BCS UJ		2022-12-17	2022-12-17		32	5	f	t
+330	Andrzejki BCS UJ		2022-12-01	2022-12-01		37	5	f	t
+333	Mikołajkowy Ostry Dyżur		2022-12-07	2022-12-07		10	5	f	t
+334	Noworoczny Ostry Dyżur		2023-01-12	2023-01-12		10	5	f	t
+337	Posesyjny Ostry Dyżur		2023-02-24	2023-02-24		10	5	f	t
+339	Przedwiosenny Ostry Dyżur		2023-03-09	2023-03-09		10	5	f	t
+338	Karczma Idy Marcowe		2023-03-17	2023-03-17		3	5	f	t
+341	Wiosenny Ostry Dyżur		2023-03-30	2023-03-30		10	5	f	t
+342	Ostry Dyżur Wielkanocny		2023-04-13	2023-04-13		10	5	f	t
+343	Juwenalia 2023		2023-05-18	2023-05-21		13	5	f	f
+345	Karczma Juwenaliowa		2023-05-21	2023-05-21		3	5	f	t
+346	Czerwcowy Ostry Dyżur		2023-06-02	2023-06-02		10	5	f	t
+348	Przedsesyjny Ostry Dyżur		2023-06-16	2023-06-16		10	5	f	t
+349	Ognisko Posesyjne		2023-06-30	2023-06-30		9	5	f	t
+350	Reaktywacja 2023		2023-09-28	2023-10-01		12	5	f	f
+352	Karczma Reaktywacyjna		2023-09-29	2023-09-29		3	5	f	t
+353	Awaryjne Depositio Beanorum		2023-10-12	2023-10-12		41	5	f	t
+354	Walne Zgromadzenie BCS UJ		2023-10-19	2023-10-19		18	5	f	t
+355	Halloweenowy Ostry Dyżur		2023-10-26	2023-10-26		10	5	f	t
+356	Czapka w kinie (Chłopi)		2023-11-12	2023-11-12		40	5	f	t
+357	Karczma Jesienna		2023-11-15	2023-11-15		3	5	f	t
+358	Czapka w kinie (Napoleon)		2023-11-26	2023-11-26		40	5	f	t
+359	Andrzejkowy Ostry Dyżur		2023-11-30	2023-11-30		10	5	f	t
+360	Czapka w kinie (Igrzyska Śmierci: Ballada Ptaków i Węży)		2023-12-03	2023-12-03		40	5	f	t
+361	Mikołajkowy Ostry Dyżur		2023-12-06	2023-12-06		10	5	f	t
+362	Karczma Wigilijna BCS UJ		2023-12-15	2023-12-15		32	5	f	t
 \.
 
 
@@ -3566,14 +4290,241 @@ COPY public.kronika_wydarzenie_miejsca (id, wydarzenie_id, miejsce_id) FROM stdi
 87	79	54
 90	80	53
 93	81	35
-94	82	35
 95	87	55
 96	90	56
-97	91	56
 98	92	57
 99	93	56
 100	94	47
 102	95	7
+103	96	7
+105	99	10
+106	100	58
+107	102	10
+108	103	10
+109	103	59
+110	103	60
+111	103	16
+112	104	56
+114	106	10
+115	106	59
+116	107	10
+118	112	10
+120	113	44
+122	114	58
+124	116	10
+125	118	10
+127	120	50
+129	122	10
+130	123	10
+131	125	62
+132	125	10
+133	126	10
+135	128	58
+136	129	44
+137	130	10
+139	131	58
+141	133	37
+142	134	61
+143	135	63
+144	136	64
+146	137	65
+148	139	58
+149	140	65
+150	141	66
+151	142	50
+152	143	67
+153	143	68
+154	143	69
+159	145	68
+160	144	56
+162	147	70
+163	148	44
+165	150	66
+166	151	58
+167	152	69
+168	153	10
+169	154	61
+170	155	69
+172	156	48
+174	158	71
+175	159	69
+176	160	69
+178	162	10
+179	163	69
+180	164	69
+181	165	69
+182	166	50
+183	167	69
+186	171	69
+187	172	70
+188	173	72
+189	175	16
+190	175	73
+191	175	69
+206	180	69
+207	178	69
+208	179	69
+211	182	74
+213	184	69
+215	185	66
+216	185	75
+217	186	75
+219	188	69
+220	189	69
+221	190	10
+222	191	69
+223	192	50
+224	193	69
+225	195	76
+227	196	16
+228	196	10
+229	196	69
+233	197	68
+235	199	69
+236	200	69
+237	201	77
+239	203	70
+241	204	78
+243	205	16
+244	205	69
+245	205	68
+246	205	53
+247	206	69
+249	208	69
+250	209	10
+251	210	61
+252	211	10
+253	212	69
+254	213	39
+255	214	69
+256	215	8
+257	216	10
+258	217	69
+259	218	69
+260	219	79
+261	220	69
+262	221	69
+263	222	76
+264	223	80
+265	224	69
+266	225	81
+269	227	69
+270	227	16
+271	227	82
+272	227	83
+273	227	84
+274	227	54
+275	227	57
+284	228	85
+287	230	70
+289	233	86
+292	234	68
+293	234	69
+294	234	16
+296	234	88
+297	237	69
+298	239	69
+299	240	15
+300	241	8
+301	242	53
+302	243	89
+303	244	69
+304	245	39
+305	246	69
+306	247	53
+307	248	15
+308	249	15
+309	250	90
+310	251	91
+311	252	92
+312	253	16
+346	253	69
+347	253	10
+349	253	83
+350	253	94
+351	253	95
+353	255	96
+354	256	98
+355	257	90
+356	258	70
+357	259	86
+358	261	96
+359	261	99
+360	261	100
+361	261	69
+362	261	16
+363	263	69
+364	265	67
+365	266	101
+366	267	102
+367	268	39
+368	269	8
+369	270	8
+370	271	69
+371	274	70
+372	285	69
+374	288	70
+376	289	69
+377	289	6
+379	291	104
+380	292	69
+383	293	69
+385	294	105
+386	294	106
+387	297	61
+388	298	107
+390	302	15
+391	303	69
+392	305	15
+393	306	69
+394	307	69
+395	310	69
+396	311	69
+397	312	90
+398	315	69
+399	316	69
+400	317	50
+401	318	15
+402	319	76
+403	321	5
+404	322	69
+405	323	108
+406	323	69
+407	323	6
+410	324	68
+416	325	69
+417	325	109
+418	326	69
+422	328	82
+423	329	56
+424	330	15
+426	331	15
+428	333	69
+429	334	69
+430	335	69
+431	336	69
+432	337	56
+434	338	56
+436	339	69
+438	341	69
+439	342	69
+440	343	69
+443	343	109
+445	345	68
+446	346	69
+448	348	69
+449	349	110
+451	350	69
+452	350	109
+453	350	6
+455	352	69
+456	353	69
+457	354	69
+458	355	56
+459	357	111
+460	359	8
+461	361	15
+462	362	39
 \.
 
 
@@ -3589,6 +4540,83 @@ COPY public.kronika_wydarzenie_uczestnicy (id, wydarzenie_id, osoba_id) FROM std
 5	56	103
 6	57	188
 8	65	97
+10	97	76
+13	105	148
+14	105	76
+16	46	157
+18	113	157
+19	129	157
+20	130	157
+22	131	129
+23	131	109
+24	131	15
+25	131	53
+26	131	150
+34	148	157
+36	151	96
+37	151	128
+38	151	133
+39	151	118
+40	151	95
+41	178	131
+42	178	118
+43	178	89
+44	178	90
+45	178	95
+46	185	95
+47	186	95
+48	206	67
+49	206	154
+50	206	41
+51	206	122
+52	206	159
+58	238	41
+59	238	113
+60	238	25
+61	238	30
+62	238	159
+63	252	157
+65	253	182
+66	253	191
+100	260	103
+103	263	130
+104	263	42
+105	263	113
+106	263	120
+107	263	125
+108	275	64
+109	275	130
+110	275	25
+111	275	155
+112	275	125
+113	292	64
+114	292	110
+115	292	25
+116	292	155
+117	292	30
+118	294	157
+119	295	118
+120	295	110
+123	308	185
+124	309	185
+125	310	185
+126	311	192
+127	312	130
+128	313	130
+129	314	130
+130	316	30
+131	319	64
+132	319	120
+133	319	30
+134	326	64
+135	326	121
+136	326	109
+137	326	110
+138	354	130
+139	354	37
+140	354	102
+141	354	116
+142	354	29
 \.
 
 
@@ -3605,35 +4633,112 @@ COPY public.kronika_wyjazd_obrazy (id, wyjazd_id, obrazwyjazd_id) FROM stdin;
 --
 
 COPY public.kronika_zdarzenie (id, nazwa, data, opis, miejsce_id, wydarzenie_id, godzina) FROM stdin;
+77	CIBA Open Party	2016-10-01		\N	175	\N
+51	Inauguracja 650 roku akademickiego na UJ w czapce studenckiej	2013-10-01		\N	106	\N
+53	5-lecie BCS UJ	2014-04-04		\N	120	\N
+55	Alegoria studenta - Polska, Europa, Średniowiecze	2014-05-14		\N	125	\N
+56	Koncert uniwersytecki z okazji 650-lecia UJ: Carmina Burana	2014-05-14		62	125	\N
+78	Zwiedzanie winnicy UJ w Łazach	2016-10-02		73	175	\N
 19	Impreza ze stoiskami balli i muzyką	2025-05-09	Dalsza integracja z goliardią przy ich stoiskach z żarciem goliardii i muzyce granej przez goliardów. Zajęliśmy strategiczną pozycję na końcu placu, gdzie rozłożyliśmy naszą flagę (która stała dopóki ktoś nie wpadł na genialny pomysł skakania przez nią)	18	26	20:00:00
+57	Międzynarodowe CIBA Open Disney Party	2014-05-14		10	125	\N
+79	Goodbye Party	2016-10-02		69	175	\N
 5	Nowa tradycja: Toast w stronę Nawojki	2011-03-12		\N	\N	\N
+65	Wykład Juwenaliowy	2016-05-12		67	168	\N
 6	Spotkanie z babcią Tadka	2011-03-18	Poznajemy babcię Tadka, która nosiła czapkę studencką, kiedy geologię przeniesiono z UJ na AGH.	\N	14	\N
+80	Orfeusz i Eurydyka - wyjście do oper	2016-10-02		\N	175	\N
 1	Samorząd nosi czapki	2010-05-12	złożenie kwiatów pod grobem Królowej Jadwigi (czapki są zaproszone a Samorząd Studencki nosi nosi czapki)	4	25	\N
+67	Wykład Juwenaliowy	2016-05-12		67	\N	\N
+68	Superheroes CIBA Open Party	2016-05-14		10	\N	\N
 25	Pub Crawl	2025-05-10	Za jedyne 5 eurasów nabyliśmy zielone przepustki na 4 różne trunki w 4 różnych lokacjach. Podczas tego eventu poznaliśmy najemników z Pizy, w tym tygrysa Kapitano	17	26	15:00:00
+75	International Cantus	2016-09-30		\N	175	\N
 24	Darmowy lunch dla uczestników parady	2025-05-10	Bułki z włoską szynką. Szczęśliwcy nie natrafili na mortadelę. Wolny czas, tam też spotkaliśmy się z Kucharzem i Szynką (Kucharz prowadził badania we Włoszech), którzy od tej pory trzymali się z nami	18	26	14:00:00
 2	International Cantus: Gaudeamus	2010-10-01		6	6	\N
+76	Pochód inauguracyjny	2016-10-01		16	175	\N
 20	Przekazanie kluczy do miasta bolońskim goliardom	2025-05-09	Podczas Faerie Matricularum zgodnie z tradycją burmistrz przekazuje goliardom klucze (zrobione z ciasta). Wydarzeniu towarzyszą fittone oraz sztandary. Śpiewa się Viva Bologna oraz Gaudeamus Igitur.	19	26	12:00:00
+87	Wykłady Juwenaliowe o tradycjach studenckich	2017-05-11		\N	196	\N
 3	Pierwszy pochód z Collegium Maius do Auditorium Maximum	2010-10-01		5	6	\N
 23	Parada przebierana	2025-05-10	Z okazji Faerie Matricularum Bolońscy goliardzi co roku organizują paradę z platformami. Każda balla przebiera się wg ustalonego theme'u i przygotowuje platformę. Balla naszych gospodarzy, Monte Christo, przebrała się za ciemną stronę mocy z uniwersum Władcy Pierścieni oraz Hobbita. Zamiast platformy mieli chodzącego Smauga. Większość z nas przebrała się za Uruk-hai, ale pojawili się także dwaj nazgule oraz oko Saurona. Podczas parady śpiewaliśmy polskie piosenki.\r\nPrzed paradą szedł orszak perkusyjny, dbający o to, by każdy nas słyszał. Przeszliśmy od Piazza Vittorio Puntoni do Piazza Magiore. Orszak zakończył się odśpiewaniem Gaudeamus.	29	26	12:00:00
+93	Reactivation Cantus	2017-09-29		68	205	\N
+94	CIBA Open Party	2017-09-30		53	205	\N
 12	Prelekcje na temat studenckiego folkloru	2010-10-01		24	6	\N
 22	Zwiedzanie MEUS	2025-05-09	MEUS - muzeum studenckiego folkloru. Zobaczyliśmy wiele niecodziennych czapek, średniowieczne narzędzia do ujarzmiania beanów, symbol goliardii w postaci słupa. Dowiedzieliśmy się dlaczego Angela Merkel ma bliznę na policzku oraz że na Uniwersytecie Bolońskim studiował Mirosław z Polski	21	26	16:00:00
+95	Inauguracja roku akademickiego	2017-10-01		16	205	\N
+96	Goodbye Party	2017-10-01		69	205	\N
 21	Uroczyste nadanie feluk nowym goliardom	2025-05-09	Dwóch nowych członków dołączyło do szeregu goliardów. Zostali (a właściwie to tylko chłopak, bo dziewczynie ktoś zajomał czapkę) ochrzczeni przez burmistrza i fittone. W programie składanie przysięgi, oberwanie ozdób z feluki, obsypanie popiołem z peta i picie całej butelki wina przesiąkającego przez czapkę. Po chrzcie na uczestników czekał stół z przekąskami i popitą. Delegacja Polski zdążyła wypić 3 z 4 butelek aperola zanim Włosi skapnęli się co jest grane. Henio zamienił się w barmana i zaczął wydawać Włochom resztę szamy	21	26	17:00:00
 26	Impreza z muzyką w Giardini Filippo Re	2025-05-10	Wydarzenie podobne do tego z dnia poprzedniego, ale tym razem było więcej niezależnych budek, co oznaczało więcej goliardów wolnych do zabawy. Dołączyli także goście z Belgii.\r\nTo właśnie podczas tego wydarzenia Henio i Nobod dołączyli w szeregi najemników z Pizy.	18	26	19:00:00
+105	Cantus: X Reactivation	2018-09-28		\N	234	\N
+110	The last “Do widzenia party”	2019-05-23		16	253	\N
+143	Wykład o polskim i europejskim folklorze studenckim	2019-05-23		83	253	\N
+144	mpreza powitalna VII Międzynarodowych Dni Folkloru Studenckiego BCS UJ	2019-05-23		94	253	\N
+145	Korowód juwenaliowy	2019-05-24		16	253	\N
+146	Ognisko na Skałkach Twardowskiego	2019-05-25		95	253	\N
+147	CIBA Open Party	2019-05-25		10	253	\N
+148	Impreza Pożegnalna	2019-05-26		69	253	\N
+155	Inauguracja Roku Akademickiego	2021-10-01		6	289	\N
+156	Open Party w tematyce średniowiecznej	2021-10-02		69	289	\N
+160	Reaktywacyjna impreza powitalna	2022-09-29		69	325	\N
+161	Impreza przebierana o tematyce prehistorycznej	2022-10-01		109	325	\N
+162	Pożegnanie wakacji	2022-10-02		69	325	\N
+163	Juwenaliowa Impreza Powitalna	2023-05-18		69	343	\N
+164	CIBA Party Anioły i Demony	2023-05-20		109	343	\N
+165	Juwenaliowa Impreza Pożegnalna	2023-05-21		69	343	\N
+166	Reaktywacyjna Impreza Powitalna	2023-09-28		69	350	\N
+167	Impreza przebierana w klimacie Disco	2023-09-30		109	350	\N
 27	Wyścig gokartów	2025-05-11	Co roku każda z balli wystawia do zawodów swoje gokarty (tak, mają swoje własnoręcznie zbudowane wózki), ozdabiając je z jajem. Balla Monte Christo użyła do tego pozostałości z kostiumu Smauga, balla Impero przywiązała swojego potężnego członka Odyna do łóżka na kółkach, pojawił się też wózek inwalidzki. \r\n\r\nPierwsza konkurencja polegała na zebraniu największej ilości narodowości w orszaku za danym wózkiem. Zapewniliśmy naszym gospodarzom zwycięstwo w tej kategorii.\r\n\r\nW następnej konkurencji goliardzi przypięli po trzy balony do swoich wózków. W specjalnie wyznaczonej do tego strefie trzyosobowe drużyny (dwóch pchających wózek i jeden pasażer) starały się przekłuć balony przeciwników za pomocą szaszłyków.\r\nW naszej drużynie jednym z pchających był Nobod, zaś pasażerem Stefano. Walczyli dzielnie, ale w końcu przegrali z wózkiem inwalidzkim.\r\n\r\nOstatnią konkurencją  był wyścig, poprzedzony obaleniem całej butli wina przez drużyny. Przez oszustwo pasażera (Stefano) nasza drużyna (Szymon Zwias i Nobod) musiała oprócz tego wyzerować puszkę piwa, którego to zadania podjął się Nobod. Przez to opóźnienie musieliśmy nieźle przyspieszyć. Sklejany taśmą klejącą gruchot nie wytrzymał i rozpadł się podczas morderczego biegu posyłając pchających na bruk, a Stefano w bliżej nieokreślonym kierunku. Mimo fiasko incydent spotkał się z wiwatem ze strony goliardów na cześć pchających.	25	26	14:00:00
 28	Zwiedzanie Piazza Magiore	2025-05-11	Jeden ze studentów sztuki postawił nam wszystkim darmowe piwo i postanowił pokazać parę tajemnic Bolonii.\r\n\r\n1. Iluzja optyczna fontanny Neptuna: autor chciał przyprawić Neptunowi dużego członka, jednak spotkało się to z dezaprobatą kościoła. Postanowił więc utrzeć klerowi nosa i ustawił palec boga w taki sposób, by z perspektywy księży idących (codziennie!) do bazyliki przypominał całkiem pokaźny maszt w erekcji\r\n\r\n2. Koniunkcja trzech wież Bolonii: trzy wieże symbolizujące kolejno władzę, ludzi i kościół są ustawione w jednej linii by pokazać równość tych trzech\r\n\r\n3. Największe skarby średniowieczej Bolonii: Pod łukiem jednej z arkad znajduje się fresk przestawiający winorośl, zboże i... konopię - Bolonia jako miasto portowe, masowo produkowała liny. Dziś przedstawienie konopii jako obrońcę ludu byłoby nie do pomyślenia\r\n\r\n4. Konfesjonał z czasów epidemii: Popularna atrakcja. 4 łuki - mówiąc do ściany pod dowolnym łukiem, słychać Cię w każdym innym	25	26	16:00:00
 29	Kolacje wszystkich balli	2025-05-11		\N	26	19:00:00
+48	Korowód juwenaliowy	2013-05-10		16	103	\N
 30	Podróż z buta do centrum	2025-05-08	Część brygady przerażona ceną przejazdu Macroni Express wybrała podróż pieszą. Po drodze odwiedziliśmy miejscowy Carrefour, gdzie po dowiedzeniu się, iż we Włoszech picie publicznie jest legalne, połowa ludzi została tam na dłużej (na ławce przed sklepem)	30	26	06:30:00
 31	Ognisko na Kopcu Piłsudskiego	2011-05-19		34	30	\N
 32	Korowód juwenaliowy	2011-05-20		16	30	\N
 33	Polska wyżerka dla Belgów	2011-05-20		10	30	\N
+52	Co w nas zostało z tamtych lat? - o polskim żaku słów kilka	2013-10-04		59	106	\N
+49	International Cantus	2013-05-10		10	103	\N
 34	Polish beer and honey wine degustation	2011-10-01		41	42	\N
 35	Pochód z Collegium Maius	2011-10-01		6	42	\N
 36	Obiad w Koko	2011-10-01		42	42	\N
 37	International Cantus	2011-10-02		43	43	\N
 38	3-lecie BCS UJ	2012-03-09		\N	71	\N
+97	Czapki dla Chemików	2018-05-16		82	227	\N
+50	CIBA Open Party	2013-05-11		10	103	\N
 40	Grill na AGHu z Belgami	2012-05-16		54	79	\N
 41	Impreza CIBA	2012-05-17		41	79	\N
 42	Korowód juwenaliowy	2012-05-18		16	79	\N
+58	Traditional Cantus	2014-10-03		\N	130	\N
+46	Wycieczka do Wieliczki	2013-05-08		60	103	\N
+98	Wykłady o europejskich tradycjach studenckich	2018-05-17		83	227	\N
+47	Konferencja o zwyczajach studenckich	2013-05-09		59	103	\N
+66	Superheroes CIBA Open Party	2016-05-14		10	168	\N
+84	Zwiedzanie winnicy UJ w Łazach	2016-10-02		73	\N	\N
+85	Goodbye Party	2016-10-02		69	\N	\N
+86	Orfeusz i Eurydyka - wyjście do oper	2016-10-02		\N	\N	\N
+81	International Cantus	2016-09-30		\N	\N	\N
+82	CIBA Open Party	2016-10-01		\N	\N	\N
+99	Pochód Le Monôme	2018-05-17		16	227	\N
+100	Impreza powitalna VI międzynarodowych Dni Folkloru Studenckiego	2018-05-17		57	227	\N
+83	Pochód inauguracyjny	2016-10-01		16	\N	\N
+54	5-lecie BCS UJ	2014-04-04		50	\N	\N
+88	Welcome Party	2017-05-11		10	196	\N
+89	Korowód juwenaliowy	2017-05-12		16	196	\N
+90	Mecz piłki nożnej	2017-05-12		\N	196	\N
+91	CIBA Open Party	2017-05-13		10	196	\N
+92	Goodbye Party	2017-05-14		69	196	\N
+101	Korowód juwenaliowy	2018-05-18		16	227	\N
+102	Turniej we Flanki	2018-05-19		54	227	\N
+103	CIBA Open Party, temat: Bogowie i Boginie	2018-05-19		84	227	\N
+104	Impreza Pożegnalna	2018-05-20		69	227	\N
+106	Pirackie Open Party	2018-09-29		68	234	\N
+107	Spotkanie Pożegnalne	2018-09-30		88	234	\N
+108	Inauguracja Roku Akademickiego	2018-10-01		16	234	\N
+109	After Reaktywacyjny	2018-10-01		69	234	\N
+149	Cantus	2019-09-27		96	261	\N
+150	CIBA Open Party, temat: Miami '80	2019-09-28		99	261	\N
+151	Warsztaty w Żywym Muzeum Obwarzanka	2019-09-29		100	261	\N
+152	Wycieczka turystyczno-krajoznawcza	2019-09-30		16	261	\N
+153	Inauguracja roku akademickiego	2019-10-01		16	261	\N
+154	After Reaktywacyjny	2019-10-01		69	261	\N
+168	Pochód profesorski	2023-10-01		6	350	\N
+169	Reaktywacyjna Impreza Pożegnalna	2023-10-01		69	350	\N
 \.
 
 
@@ -3643,6 +4748,8 @@ COPY public.kronika_zdarzenie (id, nazwa, data, opis, miejsce_id, wydarzenie_id,
 
 COPY public.kronika_zdarzenie_powiazane_osoby (id, zdarzenie_id, osoba_id) FROM stdin;
 1	6	181
+2	110	182
+3	110	191
 \.
 
 
@@ -3686,6 +4793,7 @@ COPY public.miejsca_miejsce (id, nazwa, adres, typ_id, zamkniete_na_stale) FROM 
 13	Kopiec Kościuszki	al. Waszyngtona 1, 30-204 Kraków, Polska	3	f
 35	Opole	Opole, Polska	5	f
 21	MEUS	Via Zamboni, 33, 40126 Bologna BO, Włochy	22	f
+99	Klub Dziekanat		4	t
 37	AWARIA	Mikołajska 9, 31-027 Kraków, Polska	4	f
 39	Hotel Studencki Piast	Piastowska 47, 30-067 Kraków, Polska	23	f
 41	Pub Sarmacja	Św. Tomasza 8, 31-010 Kraków, Polska	4	t
@@ -3697,6 +4805,31 @@ COPY public.miejsca_miejsce (id, nazwa, adres, typ_id, zamkniete_na_stale) FROM 
 53	Artefakt Cafe	Dajwór 3, 31-052 Kraków, Polska	11	t
 55	Vieux-Lille	Vieux-Lille, Francja	5	f
 57	Klub Re	Świętego Krzyża 4, 31-027 Kraków, Polska	4	f
+59	Pałac Larischa	Bracka 12, 31-005 Kraków, Polska	27	f
+61	Ułańskie Zdrowie	Leśna 79, 32-065 Krzeszowice, Polska	20	f
+63	442 Sport Pub	Św. Tomasza 20, 31-020 Kraków	4	f
+65	Pod Prąd	Świętego Filipa 6, 31-150 Kraków	4	t
+67	Collegium Witkowskiego UJ	Gołębia 13, 31-007 Kraków, Polska	2	f
+69	Stary Port	Straszewskiego 27, Wejście od Jabłonowskich, 31-113 Kraków, Polska	11	f
+71	Restauracja Cechowa	Jagiellońska 11, 31-010 Kraków, Polska	8	f
+73	Winnica UJ	32-700 Łazy, Polska	2	f
+75	Dom Małeckiego	Kraków, Polska	25	f
+77	IzoArena	Sportowa 21, 36-040 Boguchwała, Polska	31	f
+79	Gorczańska Chata	Jamne, 34-453 Ochotnica Górna, Polska	18	f
+81	Klub Podróżników Namaste	Jana III Sobieskiego 27, 40-082 Katowice, Polska	4	f
+83	Strefa Studencka UJ	Świętej Anny 6, 31-008 Kraków, Polska	2	f
+85	Restauracja Bazylia	Bolesława Limanowskiego 12, 30-534 Kraków, Polska	8	t
+89	Zakład Dydaktyki Medycznej	świętego Łazarza 16, 31-530 Kraków, Polska	2	f
+91	Lubogoszcz	Kasina Wielka, Polska	20	f
+93	Stefana Batorego 1, 31-140 Kraków	Stefana Batorego 1, 31-140 Kraków, Polska	11	f
+95	Skałki Twardowskiego	30-001 Kraków, Polska	30	f
+97	Katowice	Katowice, Polska	5	f
+101	Restauracja Eden	Bydgoska 19 A, 30, 30-001 Kraków, Polska	8	t
+103	Kolanko No 6	Józefa 17, 31-056 Kraków, Polska	8	f
+105	Cmentarz Rakowicki	Rakowicka 26, 31-510 Kraków, Polska	32	f
+107	Pod Srebrnym Kurem	Topolowa 3, 31-512 Kraków, Polska	8	t
+109	BAR PO SCHODKACH	Marii Konopnickiej 92b, 30-333 Kraków, Polska	11	f
+111	Posiadówka	Św. Tomasza 7, 31-014 Kraków, Polska	33	f
 27	Bar Birroteca Lupulus	Via Giuseppe Petroni, 7a, 40126 Bologna BO, Włochy	11	f
 26	Bazylika św. Petroniusza	Piazza Maggiore, 40124 Bologna BO, Włochy	10	f
 17	Bolonia	Bologna, Włochy	5	f
@@ -3720,13 +4853,40 @@ COPY public.miejsca_miejsce (id, nazwa, adres, typ_id, zamkniete_na_stale) FROM 
 38	I Dom Akademicki Bratniak	Jabłonowskich 10/12, 31-114 Kraków, Polska	23	f
 40	Browar Tychy	Mikołowska 5, 43-100 Tychy, Polska	24	f
 42	Gospoda Koko	Gołębia 8, 31-007 Kraków, Polska	8	f
-44	Ogród Profesorski	XXX, Polska	25	f
 46	Belgia	Belgia	26	f
 48	Plac pod Novum	Plac Nowowiejski 3, 30-052 Kraków, Polska	9	f
 50	Kudłacze	Sucha Działy 948, 32-432 Pcim, Polska	20	f
 52	Eco Resto Bar	Czysta, 31-121 Kraków, Polska	11	t
 54	Miasteczko AGH	Józefa Rostafińskiego 7a, 30-072 Kraków, Polska	23	f
 56	Still Bar	Gołębia 8, 33-332 Kraków, Polska	11	f
+58	Zielono Mi	Królowej Jadwigi 4, 30-202 Kraków, Polska	4	f
+60	"Wieliczka"	Daniłowicza 10, 32-020 Wieliczka, Polska	22	f
+62	Filharmonia Krakowska	Zwierzyniecka 1, 31-103 Kraków, Polska	3	f
+44	Ogród Profesorski	Zabierzów, Polska	25	f
+64	Muzeum Armii Krajowej	Wita Stwosza 12, 31-511 Kraków, Polska	22	f
+66	Cudowne Lata	Garncarska 5, 31-115 Kraków, Polska	28	f
+68	New York Pizza Department	al. 29 Listopada 57, 31-425 Kraków, Polska	8	f
+70	Las Wolski	Kraków, Polska	30	f
+72	Chałupa Chemików	Danielki 122, 34-371 Ujsoły, Polska	18	f
+74	Multikino	Dobrego Pasterza 128, 31-416 Kraków, Polska	17	f
+76	Zielona Góra	Zielona Góra, Polska	5	f
+78	SST "Lasek"	Pewel Wielka 4, 34-340 Pewel Wielka, Polska	18	f
+80	Kawiarnia Piast	Piastowska 47, 30-067 Kraków, Polska	28	f
+82	Wydział Chemii UJ	Gronostajowa 2, 30-387 Kraków, Polska	2	f
+84	Entropia	Warszauera 1, 31-057 Kraków, Polska	11	f
+86	Kasinka Mała	Kasinka Mała, Polska	5	f
+88	Pub Pod grotami	Szewska 23, 31-009 Kraków, Polska	4	f
+90	Teatr Groteska	Skarbowa 2, 31-121 Kraków, Polska	19	f
+92	Bon Ami	Kanonicza 11, 31-002 Kraków, Polska	8	t
+94	Zaginiony Świat	Stefana Batorego 1, 31-140 Kraków	11	f
+96	Restauracja ZBROJOWNIA	Rakowicka 22, 31-510 Kraków, Polska	8	t
+98	Absurdalna	Staromiejska 9, 40-012 Katowice, Polska	4	f
+100	Żywe Muzeum Obwarzanka	Ignacego Paderewskiego 4, 31-157 Kraków, Polska	22	f
+102	PUB Pod Ziemią	Miodowa 43, 31-052 Kraków	4	f
+104	Piwnica Pod Baranami	Pałac Pod Baranami, Rynek Główny 27, 31-010 Kraków, Polska	11	f
+106	Cmentarz Remuh	Szeroka 40, 31-053 Kraków, Polska	32	f
+108	Schronisko PTTK Stare Wierchy	34-404 Klikuszowa, Polska	18	f
+110	Kamieniołom Libana	Za Torem 22, 33-332 Kraków, Polska	30	f
 \.
 
 
@@ -3739,7 +4899,6 @@ COPY public.miejsca_typmiejsca (id, nazwa) FROM stdin;
 2	Uczelnia
 3	Obiekt kultury
 4	Pub/Klub
-5	Miasto
 6	Park
 7	Lokum
 8	Restauracja
@@ -3761,6 +4920,13 @@ COPY public.miejsca_typmiejsca (id, nazwa) FROM stdin;
 24	Browar
 25	Dom/Mieszkanie
 26	Kraj
+27	Budynek
+28	Kawiarnia
+30	Teren zielony
+31	Stadion
+5	Miejscowość
+32	Cmentarz
+33	Knajpa
 \.
 
 
@@ -4004,9 +5170,9 @@ COPY public.osoby_czlonek (osoba_ptr_id, staz, pewnosc_stazu, aktywnosc, ochrzcz
 172	2023	T	A	T	2025	2	13	C	other	Marchewa	n/a	Nie dotyczy	6	30	120	171
 155	2019	N	N	T	2019	11	22	W	other	Prawnik	n/a	Nie dotyczy	2	30	113	171
 156	1111111111	N	N	d/n	1111111111	1111111111	1111111111	d/n	d/n	Nie wiem	n/a	Nie dotyczy	6	30	\N	171
-157	2009	T	N	T	2009	1111111111	1111111111	H	other	Profesor	n/a	Nie dotyczy	11	30	171	171
 158	2011	N	N	T	1111111111	1111111111	1111111111	W	other	Estel	n/a	Nie dotyczy	18	30	158	171
 159	2017	N	N	T	1111111111	1111111111	1111111111	W	other	Rana	n/a	Nie dotyczy	3	30	42	171
+157	2009	T	N	T	2009	1111111111	1111111111	H	other	Profesor	n/a	Nie dotyczy	11	30	171	171
 \.
 
 
@@ -4061,7 +5227,6 @@ COPY public.osoby_imieszlacheckie (id, imie_id) FROM stdin;
 COPY public.osoby_innaosoba (osoba_ptr_id, opis, kategoria, bractwo_do_ktorego_nalezy_id) FROM stdin;
 180	Przyjaciel Bractwa, Członek Honoris Causa. Założyciel Klubu "Buda", w którym spotykała się wczesna Czapka. We wczesnym okresie działalności Bractwa, nieformalnie przewodził BCS. Tak, to ten Pan Andrzej z "Chińskiej Piosenki Pana Andrzeja"	PC	\N
 181		PC	\N
-182	Belg	Inne BCS	\N
 183	Francuz	Inne BCS	\N
 184	Lekarz z Hiszpanii	Inne BCS	\N
 185	Samorząd Studentów Uniwersytetu Jagiellońskiego	Org	\N
@@ -4069,6 +5234,8 @@ COPY public.osoby_innaosoba (osoba_ptr_id, opis, kategoria, bractwo_do_ktorego_n
 187	Profesor, który pomógł Tadkowi i Kasprowi w stworzeniu BCS UJ	PC	\N
 188	Organizator Rajdów Eskulapów	PC	\N
 189	Niezależne Zrzeszenie Studentów UJ	Org	\N
+182	Belg	Inne BCS	\N
+191	Belg	Inne BCS	\N
 \.
 
 
@@ -4191,7 +5358,6 @@ COPY public.osoby_osoba (id, imie, nazwisko, przezwiska, polymorphic_ctype_id) F
 167	Dawid	Otłowski	{}	60
 7	Mateusz	Sokół	{Scorpio,Szczur,Scoppiato}	61
 179	Wiktoria	Doleżych	{Wedel}	61
-182	Christobalt	Miltrugno	{}	56
 185	SSUJ		{}	56
 187	Zdzisław	Gajda	{Profesor}	56
 5	Konrad		{Austriak}	61
@@ -4249,12 +5415,16 @@ COPY public.osoby_osoba (id, imie, nazwisko, przezwiska, polymorphic_ctype_id) F
 172	Weronika	Marchewka	{}	60
 155	Wiktor	Sobol	{}	60
 156	Wiktoria	Kałka	{}	60
-157	Zdzisław	Gajda	{}	60
 158	Zofia	Krasińska-Krawet	{}	60
 159	Zuzanna	Żmuda	{}	60
 4	Kacper	Wilk	{Szogun,"Czwarty Wilk Noboda"}	61
 188	Profesor	Czerwiński	{}	56
 189	NZS UJ		{}	56
+190	Ktoś	Cubuk	{}	69
+157	Zdzisław	Gajda	{}	60
+182	Christobalt	Miltrugno	{}	56
+191	Loïc	Smars	{}	56
+192	Olga	Zatońska	{}	69
 \.
 
 
@@ -4444,7 +5614,7 @@ SELECT pg_catalog.setval('public.czlonkowie_zwierzeczapkowe_id_seq', 13, true);
 -- Name: django_admin_log_id_seq; Type: SEQUENCE SET; Schema: public; Owner: projectuser
 --
 
-SELECT pg_catalog.setval('public.django_admin_log_id_seq', 1865, true);
+SELECT pg_catalog.setval('public.django_admin_log_id_seq', 2387, true);
 
 
 --
@@ -4598,35 +5768,35 @@ SELECT pg_catalog.setval('public.kronika_proces_zdarzenia_id_seq', 1, false);
 -- Name: kronika_typwydarzenia_id_seq; Type: SEQUENCE SET; Schema: public; Owner: projectuser
 --
 
-SELECT pg_catalog.setval('public.kronika_typwydarzenia_id_seq', 36, true);
+SELECT pg_catalog.setval('public.kronika_typwydarzenia_id_seq', 44, true);
 
 
 --
 -- Name: kronika_typwyjazdu_id_seq; Type: SEQUENCE SET; Schema: public; Owner: projectuser
 --
 
-SELECT pg_catalog.setval('public.kronika_typwyjazdu_id_seq', 7, true);
+SELECT pg_catalog.setval('public.kronika_typwyjazdu_id_seq', 8, true);
 
 
 --
 -- Name: kronika_wydarzenie_id_seq; Type: SEQUENCE SET; Schema: public; Owner: projectuser
 --
 
-SELECT pg_catalog.setval('public.kronika_wydarzenie_id_seq', 95, true);
+SELECT pg_catalog.setval('public.kronika_wydarzenie_id_seq', 362, true);
 
 
 --
 -- Name: kronika_wydarzenie_miejsca_id_seq; Type: SEQUENCE SET; Schema: public; Owner: projectuser
 --
 
-SELECT pg_catalog.setval('public.kronika_wydarzenie_miejsca_id_seq', 102, true);
+SELECT pg_catalog.setval('public.kronika_wydarzenie_miejsca_id_seq', 462, true);
 
 
 --
 -- Name: kronika_wydarzenie_uczestnicy_id_seq; Type: SEQUENCE SET; Schema: public; Owner: projectuser
 --
 
-SELECT pg_catalog.setval('public.kronika_wydarzenie_uczestnicy_id_seq', 9, true);
+SELECT pg_catalog.setval('public.kronika_wydarzenie_uczestnicy_id_seq', 142, true);
 
 
 --
@@ -4640,14 +5810,14 @@ SELECT pg_catalog.setval('public.kronika_wyjazd_obrazy_id_seq', 1, false);
 -- Name: kronika_zdarzenie_id_seq; Type: SEQUENCE SET; Schema: public; Owner: projectuser
 --
 
-SELECT pg_catalog.setval('public.kronika_zdarzenie_id_seq', 45, true);
+SELECT pg_catalog.setval('public.kronika_zdarzenie_id_seq', 169, true);
 
 
 --
 -- Name: kronika_zdarzenie_powiazane_osoby_id_seq; Type: SEQUENCE SET; Schema: public; Owner: projectuser
 --
 
-SELECT pg_catalog.setval('public.kronika_zdarzenie_powiazane_osoby_id_seq', 1, true);
+SELECT pg_catalog.setval('public.kronika_zdarzenie_powiazane_osoby_id_seq', 3, true);
 
 
 --
@@ -4661,14 +5831,14 @@ SELECT pg_catalog.setval('public.miejsca_kraj_id_seq', 12, true);
 -- Name: miejsca_miejsce_id_seq; Type: SEQUENCE SET; Schema: public; Owner: projectuser
 --
 
-SELECT pg_catalog.setval('public.miejsca_miejsce_id_seq', 57, true);
+SELECT pg_catalog.setval('public.miejsca_miejsce_id_seq', 111, true);
 
 
 --
 -- Name: miejsca_typmiejsca_id_seq; Type: SEQUENCE SET; Schema: public; Owner: projectuser
 --
 
-SELECT pg_catalog.setval('public.miejsca_typmiejsca_id_seq', 26, true);
+SELECT pg_catalog.setval('public.miejsca_typmiejsca_id_seq', 33, true);
 
 
 --
@@ -4689,7 +5859,7 @@ SELECT pg_catalog.setval('public.miejsca_wydzial_id_seq', 37, true);
 -- Name: osoby_osoba_id_seq; Type: SEQUENCE SET; Schema: public; Owner: projectuser
 --
 
-SELECT pg_catalog.setval('public.osoby_osoba_id_seq', 189, true);
+SELECT pg_catalog.setval('public.osoby_osoba_id_seq', 192, true);
 
 
 --
