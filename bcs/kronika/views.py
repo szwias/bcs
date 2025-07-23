@@ -1,4 +1,8 @@
-from .models import *
+from .models import (
+    CharakterystykaDzialanZarzadu,
+    TypWydarzeniaHistorycznego,
+    WydarzenieHistoryczne
+)
 from core.utils.autocompletion.AutocompletesGeneration import *
 
 from osoby.models_dict import names as osoby
@@ -10,6 +14,8 @@ autocomplete_configs = [
         [],
         [osoby["Czlonek"], osoby["DawnyZarzad"], osoby["Zarzad"]],
     ),
+    (TypWydarzeniaHistorycznego, [], [], []),
+    (WydarzenieHistoryczne, [], [], [TypWydarzeniaHistorycznego.__name__])
 ]
 
 autocomplete_urls, autocomplete_widgets = setup_autocompletes(

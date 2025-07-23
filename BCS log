@@ -29,21 +29,21 @@ Python / SQL / HTML lines of code:
     1 lipca:    2590 / y lines (+0)
     3 lipca:    2633 / y lines (+43)
     ----------------------------------------: SQL & HTML lines tracking added
-    4 lipca:    2633 / 4837 / 0     lines (+0   / +56   / +0)
-    5 lipca:    2701 / 4839 / 0     lines (+71  / +2    / +0)
-    6 lipca:    2737 / 4845 / 0     lines (+36  / +6    / +0)
-    8 lipca:    2657 / 4849 / 0     lines (-80  / +4    / +0)
-    9 lipca:    2684 / 4849 / 26    lines (+27  / +0    / +26)
-    10 lipca:   2711 / 4849 / 25    lines (+13  / +0    / -1)
-    11 lipca:   2890 / 5218 / 25    lines (+179 / +369  / +0)
-    16 lipca:   2894 / 5132 / 25    lines (+4   / -86   / +0)
-    17 lipca:   3162 / 5576 / 25    lines (+268 / +444  / +0)
-    18 lipca:   3538 / 6197 / 25    lines (+376 / +621  / +0)
-    19 lipca:   3388 / 7034 / 25    lines (-150 / +837  / +0)
-    20 lipca:   3464 / 7034 / 25    lines (+76  / +0    / +0)
-    21 lipca:   3596 / 6337 / 25    lines (+132 / -697  / +0)
-    22 lipca:   3655 / 7774 / 25    lines (+59  / +1437 / +0)
-    23 lipca:   x / 8310 / x        lines (+847 / +x    / +2)
+    4 lipca:    2633 / 4837 / 0     lines (+0   / +56   / +0)   = +56
+    5 lipca:    2701 / 4839 / 0     lines (+71  / +2    / +0)   = +73
+    6 lipca:    2737 / 4845 / 0     lines (+36  / +6    / +0)   = +42
+    8 lipca:    2657 / 4849 / 0     lines (-80  / +4    / +0)   = -76
+    9 lipca:    2684 / 4849 / 26    lines (+27  / +0    / +26)  = +53
+    10 lipca:   2711 / 4849 / 25    lines (+13  / +0    / -1)   = +12
+    11 lipca:   2890 / 5218 / 25    lines (+179 / +369  / +0)   = +548
+    16 lipca:   2894 / 5132 / 25    lines (+4   / -86   / +0)   = -82
+    17 lipca:   3162 / 5576 / 25    lines (+268 / +444  / +0)   = +712
+    18 lipca:   3538 / 6197 / 25    lines (+376 / +621  / +0)   = +997
+    19 lipca:   3388 / 7034 / 25    lines (-150 / +837  / +0)   = +687
+    20 lipca:   3464 / 7034 / 25    lines (+76  / +0    / +0)   = +76
+    21 lipca:   3596 / 6337 / 25    lines (+132 / -697  / +0)   = -565
+    22 lipca:   3655 / 7774 / 25    lines (+59  / +1437 / +0)   = +1496
+    23 lipca:   x / 8451 / x        lines (+852 / +x    / +2)
 
     PREVIOUS PERIODS:
         START OF PRODUCTION:
@@ -51,24 +51,28 @@ Python / SQL / HTML lines of code:
             Average speed of development: 155 lines per day (~160)
             Average lines of code on a coding day: 189 lines per day (~190)
             Average positive lines on a coding day: x lines per day
+            Amplitude: unknown
 
         DEPRESSION AFTER FAILURE TO DELIVER:
         5 maja - 29 maja (10 / 25 days - 655 / x lines):
             Average speed of development: 26 lines per day (~30)
             Average lines of code on a coding day: 66 lines per day (~70)
             Average positive lines on a coding day: 87 lines per day (~90)
+            Amplitude: 275 lines (per day)
 
         LEARNING COLEMAK-DH:
         17 czerwca - 29 czerwca (3 / 13 days - 235 / x lines):
             Average speed of development: 18 lines per day (~20)
             Average lines of code on a coding day: 78 lines per day (~80)
             Average positive lines on a coding day: 79 lines per day (~80)
+            Amplitude: 202 lines (per day)
 
         DATABASE TWEAKS:
         1 lipca - 3 lipca (2 / 3 days - 43 / x lines):
             Average speed of development: 14 lines per day (~10)
             Average lines of code on a coding day: 43 lines per day (~40)
             Average positive lines on a coding day: 43 lines per day (~40)
+            Amplitude: 43 lines (per day)
 
     CURRENT PERIOD:
         GREAT COMEBACK:
@@ -76,5 +80,6 @@ Python / SQL / HTML lines of code:
             Average speed of development: 212 lines per day (~210)
             Average lines of code on a coding day: 288 lines per day (~290)
             Average positive lines on a coding day: 360 lines per day (~360)
+            Amplitude: 2061 lines (per day)
 
 
