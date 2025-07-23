@@ -1730,6 +1730,7 @@ COPY public.auth_permission (id, name, content_type_id, codename) FROM stdin;
 155	Can delete Theme	37	delete_theme
 156	Can view Theme	37	view_theme
 157	Can add Charakterystyka działań Zarządu	38	add_charakterystykadzialanzarzadu
+290	Can change Inna osoba	68	change_innaoldosoba
 158	Can change Charakterystyka działań Zarządu	38	change_charakterystykadzialanzarzadu
 159	Can delete Charakterystyka działań Zarządu	38	delete_charakterystykadzialanzarzadu
 160	Can view Charakterystyka działań Zarządu	38	view_charakterystykadzialanzarzadu
@@ -1834,7 +1835,6 @@ COPY public.auth_permission (id, name, content_type_id, codename) FROM stdin;
 287	Can delete Bean	67	delete_oldbean
 288	Can view Bean	67	view_oldbean
 289	Can add Inna osoba	68	add_innaoldosoba
-290	Can change Inna osoba	68	change_innaoldosoba
 291	Can delete Inna osoba	68	delete_innaoldosoba
 292	Can view Inna osoba	68	view_innaoldosoba
 293	Can add osoba	69	add_osoba
@@ -1853,10 +1853,10 @@ COPY public.auth_permission (id, name, content_type_id, codename) FROM stdin;
 306	Can change Zdjęcie ze zdarzenia	72	change_obrazzdarzenie
 307	Can delete Zdjęcie ze zdarzenia	72	delete_obrazzdarzenie
 308	Can view Zdjęcie ze zdarzenia	72	view_obrazzdarzenie
-309	Can add Zdarzenie	73	add_zdarzenie
-310	Can change Zdarzenie	73	change_zdarzenie
-311	Can delete Zdarzenie	73	delete_zdarzenie
-312	Can view Zdarzenie	73	view_zdarzenie
+309	Can add Typ wyjazdu	73	add_typwyjazdu
+310	Can change Typ wyjazdu	73	change_typwyjazdu
+311	Can delete Typ wyjazdu	73	delete_typwyjazdu
+312	Can view Typ wyjazdu	73	view_typwyjazdu
 313	Can add Typ wydarzenia	74	add_typwydarzenia
 314	Can change Typ wydarzenia	74	change_typwydarzenia
 315	Can delete Typ wydarzenia	74	delete_typwydarzenia
@@ -1865,14 +1865,14 @@ COPY public.auth_permission (id, name, content_type_id, codename) FROM stdin;
 318	Can change Wydarzenie	75	change_wydarzenie
 319	Can delete Wydarzenie	75	delete_wydarzenie
 320	Can view Wydarzenie	75	view_wydarzenie
-321	Can add Typ wyjazdu	76	add_typwyjazdu
-322	Can change Typ wyjazdu	76	change_typwyjazdu
-323	Can delete Typ wyjazdu	76	delete_typwyjazdu
-324	Can view Typ wyjazdu	76	view_typwyjazdu
-325	Can add Zdjęcie z wydarzenia	77	add_obrazwydarzenie
-326	Can change Zdjęcie z wydarzenia	77	change_obrazwydarzenie
-327	Can delete Zdjęcie z wydarzenia	77	delete_obrazwydarzenie
-328	Can view Zdjęcie z wydarzenia	77	view_obrazwydarzenie
+321	Can add Zdjęcie z wydarzenia	76	add_obrazwydarzenie
+322	Can change Zdjęcie z wydarzenia	76	change_obrazwydarzenie
+323	Can delete Zdjęcie z wydarzenia	76	delete_obrazwydarzenie
+324	Can view Zdjęcie z wydarzenia	76	view_obrazwydarzenie
+325	Can add Zdarzenie	77	add_zdarzenie
+326	Can change Zdarzenie	77	change_zdarzenie
+327	Can delete Zdarzenie	77	delete_zdarzenie
+328	Can view Zdarzenie	77	view_zdarzenie
 \.
 
 
@@ -2361,6 +2361,7 @@ COPY public.django_admin_log (id, action_time, object_id, object_repr, action_fl
 508	2025-05-02 01:17:30.161855+02	2	Pierwsza karczma BCS	1	[{"added": {}}]	17	1
 509	2025-05-02 01:17:33.901529+02	3	Pierwsza karczma BCS	1	[{"added": {}}]	17	1
 572	2025-05-05 09:12:23.779572+02	5	2010.12.05 - Złożenie kwiatów pod grobem Królowej Jadwigi	3		19	1
+1967	2025-07-22 06:01:27.288016+02	30	Teren zielony	1	[{"added": {}}]	49	1
 510	2025-05-02 01:19:01.266411+02	3	Konferencja naukowa na Wydziale Historycznym (Roberto Martinez del Rio)	2	[{"changed": {"fields": ["Nazwa"]}}]	17	1
 511	2025-05-02 01:23:19.478631+02	2	Wydział Historyczny UJ - Uczel, ul. Gołębia 24, Kraków, Polska	1	[{"added": {}}]	16	1
 512	2025-05-02 01:26:28.840427+02	3	Konferencja naukowa - Roberto Martinez del Rio	2	[{"changed": {"fields": ["Nazwa", "Typ spotkania", "Data", "Miejsce"]}}]	17	1
@@ -2496,7 +2497,6 @@ COPY public.django_admin_log (id, action_time, object_id, object_repr, action_fl
 658	2025-05-13 15:04:14.657727+02	3	ITA Monte Christo Balla	1	[{"added": {}}]	31	1
 660	2025-05-13 15:15:16.488513+02	1	Zagraniczny "Faerie Matricularum" - Bolonia - Miasto, Włochy, 08.05.2025 - 11.05.2025	2	[{"added": {"name": "Osoba", "object": "None - Kronika | Wyjazd - Zagraniczny \\"Faerie Matricularum\\" - Bolonia - Miasto, W\\u0142ochy, 08.05.2025 - 11.05.2025"}}]	18	1
 1598	2025-07-21 15:56:50.202574+02	9	Ognisko	1	[{"added": {}}]	70	1
-1967	2025-07-22 06:01:27.288016+02	30	Teren zielony	1	[{"added": {}}]	49	1
 663	2025-05-13 16:43:42.948558+02	3	CMUJ, św. Anny 12, Kraków, Polska (Uczelnia)	2	[{"changed": {"fields": ["Adres"]}}]	16	1
 664	2025-05-13 16:45:18.398485+02	1	Zagraniczny: "Faerie Matricularum" - Bolonia, Włochy (Miasto), 08.05.2025 - 11.05.2025	2	[]	18	1
 665	2025-05-13 16:46:51.555782+02	1	Zagraniczny: "Faerie Matricularum" - Bolonia, Włochy (Miasto), 08.05.2025 - 11.05.2025	2	[]	18	1
@@ -2576,6 +2576,7 @@ COPY public.django_admin_log (id, action_time, object_id, object_repr, action_fl
 767	2025-05-14 23:29:47.193464+02	6	2010-10-01: Uroczystość "Pierwsza inauguracja roku akademickiego BCS"	2	[{"deleted": {"name": "Zdarzenie", "object": "2025-05-14 - bobo"}}]	19	1
 768	2025-05-14 23:31:18.570248+02	6	2010-10-01: Uroczystość "Pierwsza inauguracja roku akademickiego BCS"	2	[{"added": {"name": "Zdarzenie", "object": "2010-10-01 - bobo"}}]	19	1
 770	2025-05-14 23:32:22.904678+02	18	2010-10-01 - bobo	2	[]	20	1
+771	2025-05-14 23:32:27.125455+02	18	2010-10-01 - bobo	2	[]	20	1
 739	2025-05-14 20:47:31.762372+02	2	2010-10-01 - International Cantus: Gaudeamus	2	[{"changed": {"name": "Osoba", "object": "None - Kronika | Zdarzenie - 2010-10-01 - International Cantus: Gaudeamus", "fields": ["Cz\\u0142onek"]}}, {"changed": {"name": "Osoba", "object": "None - Kronika | Zdarzenie - 2010-10-01 - International Cantus: Gaudeamus", "fields": ["Inna osoba"]}}, {"changed": {"name": "Osoba", "object": "None - Kronika | Zdarzenie - 2010-10-01 - International Cantus: Gaudeamus", "fields": ["Inna osoba"]}}, {"changed": {"name": "Osoba", "object": "None - Kronika | Zdarzenie - 2010-10-01 - International Cantus: Gaudeamus", "fields": ["Inna osoba"]}}]	20	1
 740	2025-05-14 20:47:38.535016+02	2	2010-10-01 - International Cantus: Gaudeamus	2	[]	20	1
 741	2025-05-14 20:48:22.920262+02	3	2010-10-01 - Pierwszy pochód z Collegium Maius do Auditorium Maximum	2	[{"changed": {"fields": ["Wydarzenie", "Miejsce"]}}]	20	1
@@ -2605,7 +2606,6 @@ COPY public.django_admin_log (id, action_time, object_id, object_repr, action_fl
 765	2025-05-14 23:23:40.368555+02	16	2025-05-14 - bobo	3		20	1
 766	2025-05-14 23:24:40.076932+02	6	2010-10-01: Uroczystość "Pierwsza inauguracja roku akademickiego BCS"	2	[{"added": {"name": "Zdarzenie", "object": "2025-05-14 - bobo"}}]	19	1
 769	2025-05-14 23:31:56.989219+02	18	2010-10-01 - bobo	2	[{"changed": {"fields": ["Miejsce"]}}]	20	1
-771	2025-05-14 23:32:27.125455+02	18	2010-10-01 - bobo	2	[]	20	1
 772	2025-05-14 23:32:47.121223+02	6	2010-10-01: Uroczystość "Pierwsza inauguracja roku akademickiego BCS"	2	[{"deleted": {"name": "Zdarzenie", "object": "2010-10-01 - bobo"}}]	19	1
 773	2025-05-14 23:40:04.710904+02	6	2010-10-01: Uroczystość "Pierwsza inauguracja roku akademickiego BCS"	2	[]	19	1
 774	2025-05-14 23:55:56.461316+02	6	2010-10-01: Uroczystość "Pierwsza inauguracja roku akademickiego BCS"	2	[]	19	1
@@ -2697,6 +2697,7 @@ COPY public.django_admin_log (id, action_time, object_id, object_repr, action_fl
 866	2025-05-21 23:19:29.403366+02	29	Piazza Vittorio Puntoni - Ogród/Plac, Bolonia, Włochy	1	[{"added": {}}]	16	1
 867	2025-05-21 23:23:29.714157+02	26	2025-05-08 - 2025-05-11: Zagraniczny "Faerie Matricularum"	2	[{"added": {"name": "Zdarzenie", "object": "2025-05-10 12:00:00 - Parada przebierana"}}, {"added": {"name": "Zdarzenie", "object": "2025-05-10 14:00:00 - Darmowy lunch dla uczestnik\\u00f3w parady"}}, {"changed": {"name": "Zdarzenie", "object": "2025-05-09 20:00:00 - Impreza ze stoiskami balli i muzyk\\u0105", "fields": ["Godzina"]}}]	19	1
 868	2025-05-21 23:26:35.870341+02	24	2025-05-10 14:00:00 - Darmowy lunch dla uczestników parady	2	[{"changed": {"fields": ["Miejsce", "Opis"]}}]	20	1
+1361	2025-07-17 22:50:00.732266+02	11	Niemcy: Każda uczelnia	1	[{"added": {}}]	44	1
 869	2025-05-21 23:37:14.015033+02	23	2025-05-10 12:00:00 - Parada przebierana	2	[{"changed": {"fields": ["Opis"]}}, {"deleted": {"name": "Osoba", "object": "Bart\\u0142omiej \\"Kucharz\\" Olajossy - Kronika | Zdarzenie - 2025-05-10 12:00:00 - Parada przebierana"}}, {"deleted": {"name": "Osoba", "object": "Natalia \\"Szynka\\" Ciesielska (Olajossy) - Kronika | Zdarzenie - 2025-05-10 12:00:00 - Parada przebierana"}}]	20	1
 870	2025-05-21 23:37:35.719713+02	26	2025-05-08 - 2025-05-11: Zagraniczny "Faerie Matricularum"	2	[{"changed": {"name": "Zdarzenie", "object": "2025-05-10 14:00:00 - Darmowy lunch dla uczestnik\\u00f3w parady", "fields": ["Miejsce"]}}]	19	1
 871	2025-05-21 23:39:10.429534+02	24	2025-05-10 14:00:00 - Darmowy lunch dla uczestników parady	2	[{"changed": {"fields": ["Miejsce"]}}, {"deleted": {"name": "Osoba", "object": "Micha\\u0142 \\"Cukier/Ma\\u0142olata\\" Malata - Kronika | Zdarzenie - 2025-05-10 14:00:00 - Darmowy lunch dla uczestnik\\u00f3w parady"}}, {"deleted": {"name": "Osoba", "object": "Bart\\u0142omiej \\"Nobod\\" Grzeszykowski - Kronika | Zdarzenie - 2025-05-10 14:00:00 - Darmowy lunch dla uczestnik\\u00f3w parady"}}, {"deleted": {"name": "Osoba", "object": "Bartosz \\"Heniek\\" Hepek - Kronika | Zdarzenie - 2025-05-10 14:00:00 - Darmowy lunch dla uczestnik\\u00f3w parady"}}, {"deleted": {"name": "Osoba", "object": "Martyna \\"Bober\\" Kubiak - Kronika | Zdarzenie - 2025-05-10 14:00:00 - Darmowy lunch dla uczestnik\\u00f3w parady"}}, {"deleted": {"name": "Osoba", "object": "Sandra \\"Sander\\" Chandzlik - Kronika | Zdarzenie - 2025-05-10 14:00:00 - Darmowy lunch dla uczestnik\\u00f3w parady"}}, {"deleted": {"name": "Osoba", "object": "Maria \\"Felis\\" Turakiewicz - Kronika | Zdarzenie - 2025-05-10 14:00:00 - Darmowy lunch dla uczestnik\\u00f3w parady"}}, {"deleted": {"name": "Osoba", "object": "Herman \\"Stabilizator/Rakieta\\" Chekurda - Kronika | Zdarzenie - 2025-05-10 14:00:00 - Darmowy lunch dla uczestnik\\u00f3w parady"}}, {"deleted": {"name": "Osoba", "object": "Michalina \\"Allec\\" Kokosi\\u0144ska - Kronika | Zdarzenie - 2025-05-10 14:00:00 - Darmowy lunch dla uczestnik\\u00f3w parady"}}, {"deleted": {"name": "Osoba", "object": "Damian \\"Bandera/Buch\\" Zych - Kronika | Zdarzenie - 2025-05-10 14:00:00 - Darmowy lunch dla uczestnik\\u00f3w parady"}}, {"deleted": {"name": "Osoba", "object": "Dorota \\"Wa\\u0107panna/Doris\\" Dro\\u017cy\\u0144ska - Kronika | Zdarzenie - 2025-05-10 14:00:00 - Darmowy lunch dla uczestnik\\u00f3w parady"}}, {"deleted": {"name": "Osoba", "object": "Bart\\u0142omiej \\"Kucharz\\" Olajossy - Kronika | Zdarzenie - 2025-05-10 14:00:00 - Darmowy lunch dla uczestnik\\u00f3w parady"}}, {"deleted": {"name": "Osoba", "object": "Natalia \\"Szynka\\" Ciesielska (Olajossy) - Kronika | Zdarzenie - 2025-05-10 14:00:00 - Darmowy lunch dla uczestnik\\u00f3w parady"}}, {"deleted": {"name": "Osoba", "object": "Kacper \\"Szogun\\" Wilk - Kronika | Zdarzenie - 2025-05-10 14:00:00 - Darmowy lunch dla uczestnik\\u00f3w parady"}}, {"deleted": {"name": "Osoba", "object": "Krysia Cholewa - Kronika | Zdarzenie - 2025-05-10 14:00:00 - Darmowy lunch dla uczestnik\\u00f3w parady"}}, {"deleted": {"name": "Osoba", "object": "Szymon \\"Tur\\" Zwias - Kronika | Zdarzenie - 2025-05-10 14:00:00 - Darmowy lunch dla uczestnik\\u00f3w parady"}}, {"deleted": {"name": "Osoba", "object": "Wiktoria \\"Wedel\\" Dole\\u017cych - Kronika | Zdarzenie - 2025-05-10 14:00:00 - Darmowy lunch dla uczestnik\\u00f3w parady"}}, {"deleted": {"name": "Osoba", "object": "Micha\\u0142 \\"Cukier/Ma\\u0142olata\\" Malata - Kronika | Zdarzenie - 2025-05-10 14:00:00 - Darmowy lunch dla uczestnik\\u00f3w parady"}}, {"deleted": {"name": "Osoba", "object": "Bart\\u0142omiej \\"Nobod\\" Grzeszykowski - Kronika | Zdarzenie - 2025-05-10 14:00:00 - Darmowy lunch dla uczestnik\\u00f3w parady"}}, {"deleted": {"name": "Osoba", "object": "Bartosz \\"Heniek\\" Hepek - Kronika | Zdarzenie - 2025-05-10 14:00:00 - Darmowy lunch dla uczestnik\\u00f3w parady"}}, {"deleted": {"name": "Osoba", "object": "Martyna \\"Bober\\" Kubiak - Kronika | Zdarzenie - 2025-05-10 14:00:00 - Darmowy lunch dla uczestnik\\u00f3w parady"}}, {"deleted": {"name": "Osoba", "object": "Sandra \\"Sander\\" Chandzlik - Kronika | Zdarzenie - 2025-05-10 14:00:00 - Darmowy lunch dla uczestnik\\u00f3w parady"}}, {"deleted": {"name": "Osoba", "object": "Maria \\"Felis\\" Turakiewicz - Kronika | Zdarzenie - 2025-05-10 14:00:00 - Darmowy lunch dla uczestnik\\u00f3w parady"}}, {"deleted": {"name": "Osoba", "object": "Herman \\"Stabilizator/Rakieta\\" Chekurda - Kronika | Zdarzenie - 2025-05-10 14:00:00 - Darmowy lunch dla uczestnik\\u00f3w parady"}}, {"deleted": {"name": "Osoba", "object": "Michalina \\"Allec\\" Kokosi\\u0144ska - Kronika | Zdarzenie - 2025-05-10 14:00:00 - Darmowy lunch dla uczestnik\\u00f3w parady"}}, {"deleted": {"name": "Osoba", "object": "Damian \\"Bandera/Buch\\" Zych - Kronika | Zdarzenie - 2025-05-10 14:00:00 - Darmowy lunch dla uczestnik\\u00f3w parady"}}, {"deleted": {"name": "Osoba", "object": "Dorota \\"Wa\\u0107panna/Doris\\" Dro\\u017cy\\u0144ska - Kronika | Zdarzenie - 2025-05-10 14:00:00 - Darmowy lunch dla uczestnik\\u00f3w parady"}}, {"deleted": {"name": "Osoba", "object": "Bart\\u0142omiej \\"Kucharz\\" Olajossy - Kronika | Zdarzenie - 2025-05-10 14:00:00 - Darmowy lunch dla uczestnik\\u00f3w parady"}}, {"deleted": {"name": "Osoba", "object": "Natalia \\"Szynka\\" Ciesielska (Olajossy) - Kronika | Zdarzenie - 2025-05-10 14:00:00 - Darmowy lunch dla uczestnik\\u00f3w parady"}}, {"deleted": {"name": "Osoba", "object": "Kacper \\"Szogun\\" Wilk - Kronika | Zdarzenie - 2025-05-10 14:00:00 - Darmowy lunch dla uczestnik\\u00f3w parady"}}, {"deleted": {"name": "Osoba", "object": "Krysia Cholewa - Kronika | Zdarzenie - 2025-05-10 14:00:00 - Darmowy lunch dla uczestnik\\u00f3w parady"}}, {"deleted": {"name": "Osoba", "object": "Szymon \\"Tur\\" Zwias - Kronika | Zdarzenie - 2025-05-10 14:00:00 - Darmowy lunch dla uczestnik\\u00f3w parady"}}, {"deleted": {"name": "Osoba", "object": "Wiktoria \\"Wedel\\" Dole\\u017cych - Kronika | Zdarzenie - 2025-05-10 14:00:00 - Darmowy lunch dla uczestnik\\u00f3w parady"}}]	20	1
@@ -2879,6 +2880,7 @@ COPY public.django_admin_log (id, action_time, object_id, object_repr, action_fl
 2272	2025-07-22 11:57:18.27802+02	292	2021-10-22: Wybory "Walne zgromadzenie BCS UJ"	1	[{"added": {}}]	19	1
 2346	2025-07-22 12:47:05.071708+02	327	2022-09-30:  "Karczma Reaktywacyjna"	3		19	1
 1606	2025-07-21 15:58:23.253898+02	15	RPG	1	[{"added": {}}]	70	1
+1437	2025-07-18 08:59:58.479017+02	5	Miasto	1	[{"added": {}}]	49	1
 1627	2025-07-21 16:56:33.296362+02	14	2025-05-14: Wykład/Prelekcja "Wykład dla Stowarzyszenia Absolwentów UJ"	2	[{"changed": {"fields": ["Typ wydarzenia"]}}]	19	1
 1648	2025-07-21 17:05:58.25583+02	6	2010-10-01: Uroczystość "Pierwsza inauguracja roku akademickiego BCS"	2	[{"changed": {"fields": ["Typ wydarzenia"]}}]	19	1
 1668	2025-07-21 21:03:18.754302+02	6	2011-03-18 None - Spotkanie z babcią Tadka (Wykład/Prelekcja "Wykład dla Stowarzyszenia Absolwentów UJ")	2	[]	20	1
@@ -3042,7 +3044,6 @@ COPY public.django_admin_log (id, action_time, object_id, object_repr, action_fl
 1358	2025-07-17 22:46:06.308678+02	3	Nie dotyczy	1	[{"added": {}}]	46	1
 1359	2025-07-17 22:46:07.891937+02	10	Nie dotyczy	1	[{"added": {}}]	44	1
 1360	2025-07-17 22:49:53.60323+02	4	Niemcy	1	[{"added": {}}]	46	1
-1361	2025-07-17 22:50:00.732266+02	11	Niemcy: Każda uczelnia	1	[{"added": {}}]	44	1
 1362	2025-07-17 22:50:40.122631+02	11	Niemcy: Nie wiem	2	[{"changed": {"fields": ["Uczelnia", "Akronim"]}}]	44	1
 1363	2025-07-17 22:51:16.234425+02	22	XXX_Niemcy: Nie wiem (XXX)	1	[{"added": {}}]	45	1
 1364	2025-07-17 22:54:53.410346+02	23	XXX: Nie wiem (XXX)	1	[{"added": {}}]	45	1
@@ -3118,7 +3119,6 @@ COPY public.django_admin_log (id, action_time, object_id, object_repr, action_fl
 1434	2025-07-18 08:57:34.385235+02	10	Shot Pub - Pub/Klub, Szpitalna 5, Kraków, Polska	1	[{"added": {}}]	48	1
 1435	2025-07-18 08:57:58.188598+02	11	Klub Buda - Pub/Klub, Czapskich 2, Kraków, Polska	1	[{"added": {}}]	48	1
 1436	2025-07-18 08:58:31.234285+02	12	Collegium Iuridicum UJ - Uczelnia, Grodzka 53, Kraków, Polska	1	[{"added": {}}]	48	1
-1437	2025-07-18 08:59:58.479017+02	5	Miasto	1	[{"added": {}}]	49	1
 1438	2025-07-18 09:00:01.654811+02	13	Wrocław - Miasto, Wrocław, Polska	1	[{"added": {}}]	48	1
 1439	2025-07-18 09:00:24.1393+02	6	Auditorium Maximum UJ - Uczelnia, Krupnicza 33, 31-123 Kraków	2	[{"changed": {"fields": ["Adres"]}}]	48	1
 1440	2025-07-18 09:00:53.262331+02	4	CMUJ - Uczelnia, Świętej Anny 12, 31-008 Kraków	2	[{"changed": {"fields": ["Adres"]}}]	48	1
@@ -3243,6 +3243,7 @@ COPY public.django_admin_log (id, action_time, object_id, object_repr, action_fl
 2297	2025-07-22 12:11:50.372794+02	307	2022-01-22:  "Przedsesyjny Ostry Dyżur"	1	[{"added": {}}]	19	1
 2329	2025-07-22 12:39:20.492564+02	324	2022-09-30:  "Karczma Reaktywacyjna"	2	[{"changed": {"fields": ["Miejsca"]}}]	19	1
 2330	2025-07-22 12:39:30.854529+02	327	2022-09-30:  "Karczma Reaktywacyjna"	1	[{"added": {}}]	19	1
+2392	2025-07-23 13:59:15.441866+02	350	2023-09-28 - 2023-10-01:  "Reaktywacja 2023"	2	[]	75	1
 2331	2025-07-22 12:40:05.0877+02	328	2022-11-14: Rekrutacja "Chemiku, załóż czapkę! Promocja na Wydziale Chemii UJ"	1	[{"added": {}}]	19	1
 2332	2025-07-22 12:40:35.687392+02	329	2022-11-17:  "Karczma Jesienna"	1	[{"added": {}}]	19	1
 2333	2025-07-22 12:41:02.684009+02	330	2022-12-07:  "Andrzejki BCS UJ"	1	[{"added": {}}]	19	1
@@ -3364,11 +3365,11 @@ COPY public.django_content_type (id, app_label, model) FROM stdin;
 70	kronika	typwydarzenia
 71	kronika	typwyjazdu
 72	kalendarz	obrazzdarzenie
-73	kalendarz	zdarzenie
+73	kalendarz	typwyjazdu
 74	kalendarz	typwydarzenia
 75	kalendarz	wydarzenie
-76	kalendarz	typwyjazdu
-77	kalendarz	obrazwydarzenie
+76	kalendarz	obrazwydarzenie
+77	kalendarz	zdarzenie
 \.
 
 
@@ -3604,10 +3605,8 @@ COPY public.django_migrations (id, app, name, applied) FROM stdin;
 272	kronika	0013_wydarzenie_czy_to_wyjazd	2025-07-22 03:18:11.636247+02
 273	kronika	0014_remove_wydarzenie_old_czy_to_wyjazd	2025-07-22 03:21:17.38366+02
 274	kronika	0015_wydarzenie_czy_jednodniowe	2025-07-22 04:22:44.371357+02
-275	kalendarz	0001_initial	2025-07-23 14:09:04.031628+02
-276	kalendarz	0002_alter_obrazwydarzenie_widoczne_osoby_and_more	2025-07-23 16:46:02.06751+02
-277	encyklopedia	0018_alter_pojecie_wydarzenie_and_more	2025-07-23 16:47:02.297128+02
-278	kronika	0016_remove_obrazzdarzenie_miejsce_and_more	2025-07-23 16:49:43.279992+02
+275	kalendarz	0001_initial	2025-07-23 13:57:19.714513+02
+276	kalendarz	0002_alter_obrazwydarzenie_widoczne_osoby_and_more	2025-07-23 16:27:14.73944+02
 \.
 
 
@@ -4142,7 +4141,6 @@ COPY public.kalendarz_wydarzenie (id, nazwa, opis, data_rozpoczecia, data_zakonc
 346	Czerwcowy Ostry Dyżur		2023-06-02	2023-06-02		10	5	f	t
 348	Przedsesyjny Ostry Dyżur		2023-06-16	2023-06-16		10	5	f	t
 349	Ognisko Posesyjne		2023-06-30	2023-06-30		9	5	f	t
-350	Reaktywacja 2023		2023-09-28	2023-10-01		12	5	f	f
 352	Karczma Reaktywacyjna		2023-09-29	2023-09-29		3	5	f	t
 353	Awaryjne Depositio Beanorum		2023-10-12	2023-10-12		41	5	f	t
 354	Walne Zgromadzenie BCS UJ		2023-10-19	2023-10-19		18	5	f	t
@@ -4154,6 +4152,7 @@ COPY public.kalendarz_wydarzenie (id, nazwa, opis, data_rozpoczecia, data_zakonc
 360	Czapka w kinie (Igrzyska Śmierci: Ballada Ptaków i Węży)		2023-12-03	2023-12-03		40	5	f	t
 361	Mikołajkowy Ostry Dyżur		2023-12-06	2023-12-06		10	5	f	t
 362	Karczma Wigilijna BCS UJ		2023-12-15	2023-12-15		32	5	f	t
+350	Reaktywacja 2023		2023-09-28	2023-10-01		12	5	f	f
 \.
 
 
@@ -5582,7 +5581,7 @@ SELECT pg_catalog.setval('public.czlonkowie_zwierzeczapkowe_id_seq', 13, true);
 -- Name: django_admin_log_id_seq; Type: SEQUENCE SET; Schema: public; Owner: projectuser
 --
 
-SELECT pg_catalog.setval('public.django_admin_log_id_seq', 2391, true);
+SELECT pg_catalog.setval('public.django_admin_log_id_seq', 2392, true);
 
 
 --
@@ -5596,7 +5595,7 @@ SELECT pg_catalog.setval('public.django_content_type_id_seq', 77, true);
 -- Name: django_migrations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: projectuser
 --
 
-SELECT pg_catalog.setval('public.django_migrations_id_seq', 278, true);
+SELECT pg_catalog.setval('public.django_migrations_id_seq', 276, true);
 
 
 --
@@ -5743,7 +5742,7 @@ SELECT pg_catalog.setval('public.kronika_wydarzenie_id_seq', 362, true);
 -- Name: kronika_wydarzenie_miejsca_id_seq; Type: SEQUENCE SET; Schema: public; Owner: projectuser
 --
 
-SELECT pg_catalog.setval('public.kronika_wydarzenie_miejsca_id_seq', 462, true);
+SELECT pg_catalog.setval('public.kronika_wydarzenie_miejsca_id_seq', 465, true);
 
 
 --
@@ -7142,11 +7141,11 @@ ALTER TABLE ONLY public.encyklopedia_pojecie
 
 
 --
--- Name: encyklopedia_pojecie encyklopedia_pojecie_wydarzenie_id_373336c0_fk_kalendarz; Type: FK CONSTRAINT; Schema: public; Owner: projectuser
+-- Name: encyklopedia_pojecie encyklopedia_pojecie_wydarzenie_id_373336c0_fk_kronika_w; Type: FK CONSTRAINT; Schema: public; Owner: projectuser
 --
 
 ALTER TABLE ONLY public.encyklopedia_pojecie
-    ADD CONSTRAINT encyklopedia_pojecie_wydarzenie_id_373336c0_fk_kalendarz FOREIGN KEY (wydarzenie_id) REFERENCES public.kalendarz_wydarzenie(id) DEFERRABLE INITIALLY DEFERRED;
+    ADD CONSTRAINT encyklopedia_pojecie_wydarzenie_id_373336c0_fk_kronika_w FOREIGN KEY (wydarzenie_id) REFERENCES public.kalendarz_wydarzenie(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
@@ -7206,11 +7205,11 @@ ALTER TABLE ONLY public.encyklopedia_tradycjabcs
 
 
 --
--- Name: encyklopedia_tradycjabcs encyklopedia_tradycj_wydarzenie_id_121d8343_fk_kalendarz; Type: FK CONSTRAINT; Schema: public; Owner: projectuser
+-- Name: encyklopedia_tradycjabcs encyklopedia_tradycj_wydarzenie_id_121d8343_fk_kronika_w; Type: FK CONSTRAINT; Schema: public; Owner: projectuser
 --
 
 ALTER TABLE ONLY public.encyklopedia_tradycjabcs
-    ADD CONSTRAINT encyklopedia_tradycj_wydarzenie_id_121d8343_fk_kalendarz FOREIGN KEY (wydarzenie_id) REFERENCES public.kalendarz_wydarzenie(id) DEFERRABLE INITIALLY DEFERRED;
+    ADD CONSTRAINT encyklopedia_tradycj_wydarzenie_id_121d8343_fk_kronika_w FOREIGN KEY (wydarzenie_id) REFERENCES public.kalendarz_wydarzenie(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --

@@ -36,11 +36,10 @@ class Zdarzenie(models.Model):
 
     powiazane_osoby = models.ManyToManyField(
         "osoby.Osoba", blank=True, verbose_name="Powiązane osoby",
-        db_table="kronika_zdarzenie_powiazane_osoby"
+
     )
 
     class Meta:
-        db_table = "kronika_zdarzenie"
         verbose_name = "Zdarzenie"
         verbose_name_plural = "Zdarzenia"
         ordering = ["-data", "nazwa"]
@@ -98,11 +97,9 @@ class ObrazZdarzenie(models.Model):
 
     widoczne_osoby = models.ManyToManyField(
         "osoby.Osoba", blank=True, verbose_name="Widoczne osoby",
-        db_table="kronika_obrazzdarzenie_widoczne_osoby"
     )
 
     class Meta:
-        db_table = "kronika_obrazzdarzenie"
         verbose_name = "Zdjęcie ze zdarzenia"
         verbose_name_plural = "Zdjęcia ze zdarzeń"
         ordering = ["-data"]
@@ -147,7 +144,6 @@ class TypWydarzenia(models.Model):
     )
 
     class Meta:
-        db_table = "kronika_typwydarzenia"
         verbose_name = "Typ wydarzenia"
         verbose_name_plural = "Typy wydarzeń"
         ordering = ["typ"]
@@ -171,7 +167,6 @@ class TypWyjazdu(models.Model):
     )
 
     class Meta:
-        db_table = "kronika_typwyjazdu"
         verbose_name = "Typ wyjazdu"
         verbose_name_plural = "Typy wyjazdów"
         ordering = ["typ"]
@@ -205,7 +200,6 @@ class Wydarzenie(models.Model):
 
     miejsca = models.ManyToManyField(
         "miejsca.Miejsce", blank=True, verbose_name="Miejsca",
-        db_table="kronika_wydarzenie_miejsca"
     )
 
     czy_to_wyjazd = models.BooleanField(
@@ -234,11 +228,9 @@ class Wydarzenie(models.Model):
 
     uczestnicy = models.ManyToManyField(
         "osoby.Osoba", blank=True, verbose_name="Uczestnicy wydarzenia",
-        db_table="kronika_wydarzenie_uczestnicy"
     )
 
     class Meta:
-        db_table = "kronika_wydarzenie"
         verbose_name = "Wydarzenie"
         verbose_name_plural = "Wydarzenia"
         ordering = ["-data_rozpoczecia"]
@@ -284,11 +276,9 @@ class ObrazWydarzenie(models.Model):
 
     widoczne_osoby = models.ManyToManyField(
         "osoby.Osoba", blank=True, verbose_name="Widoczne osoby",
-        db_table="kronika_obrazwydarzenie_widoczne_osoby"
     )
 
     class Meta:
-        db_table = "kronika_obrazwydarzenie"
         verbose_name = "Zdjęcie z wydarzenia"
         verbose_name_plural = "Zdjęcia z wydarzeń"
         ordering = ["-wydarzenie"]
