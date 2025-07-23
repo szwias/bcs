@@ -45,7 +45,18 @@ class RelacjaPrawna(models.Model):
         max_length=1, choices=Wybory.choices, verbose_name="Rodzaj relacji"
     )
 
+    dokument = models.ForeignKey(
+        "dokumenty.Dokument",
+        blank=True,
+        null=True,
+        on_delete=models.PROTECT,
+        verbose_name="Dokument",
+    )
+
     class Meta:
         verbose_name = "Relacja prawna"
         verbose_name_plural = "Prawa i obowiązki"
         ordering = ["tytul"]
+
+    def __str__(self):
+        return self.tytul
