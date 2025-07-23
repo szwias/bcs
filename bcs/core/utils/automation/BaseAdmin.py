@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.admin.filters import RelatedFieldListFilter
-from django.db.models import ForeignKey
+from django.db.models import ForeignKey, ManyToManyField
 from django.utils.module_loading import import_string
 import inspect
 from django.apps import apps
@@ -21,6 +21,46 @@ class UsedOnlyFKFilter(RelatedFieldListFilter):
         )
 
         # Restore original limit_choices_to in case it's reused elsewhere
+        field.remote_field.limit_choices_to = self._original_limit_choices_to
+
+
+def get_used_m2m_ids(model, m2m_field_name):
+    field = model._meta.get_field(m2m_field_name)
+
+    through_model = field.remote_field.through
+    target_model = field.remote_field.model
+
+    # Find FK field name in through model pointing to target model
+    for f in through_model._meta.fields:
+        if (
+            f.is_relation
+            and f.remote_field
+            and f.remote_field.model == target_model
+        ):
+            target_fk_name = f.name
+            break
+    else:
+        raise RuntimeError(
+            "Could not determine foreign key to related model in through table."
+        )
+
+    return through_model.objects.values_list(
+        target_fk_name, flat=True
+    ).distinct()
+
+
+class UsedOnlyM2MFilter(RelatedFieldListFilter):
+    def __init__(self, field, request, params, model, model_admin, field_path):
+        used_ids = get_used_m2m_ids(model, field.name)
+        # Limit the choices shown in the filter dropdown
+        self._original_limit_choices_to = field.remote_field.limit_choices_to
+        field.remote_field.limit_choices_to = {"pk__in": used_ids}
+
+        super().__init__(
+            field, request, params, model, model_admin, field_path
+        )
+
+        # Restore original
         field.remote_field.limit_choices_to = self._original_limit_choices_to
 
 
@@ -56,19 +96,24 @@ class BaseModelAdmin(admin.ModelAdmin):
 
     def smart_wrap_filters(self, list_filter):
         filters = list_filter
-        # print(filters)
         smart_filters = []
+
         for f in filters:
             if isinstance(f, tuple):
-                # Already a custom filter, leave as-is
+                # Already a custom filter
                 smart_filters.append(f)
-            elif isinstance(f, str) and isinstance(
-                self.model._meta.get_field(f), ForeignKey
-            ):
-                # Wrap FK fields with our limited filter
-                smart_filters.append((f, UsedOnlyFKFilter))
+            elif isinstance(f, str):
+                field = self.model._meta.get_field(f)
+
+                if isinstance(field, ForeignKey):
+                    smart_filters.append((f, UsedOnlyFKFilter))
+                elif isinstance(field, ManyToManyField):
+                    smart_filters.append((f, UsedOnlyM2MFilter))
+                else:
+                    smart_filters.append(f)
             else:
                 smart_filters.append(f)
+
         return smart_filters
 
     def __init__(self, model, admin_site):
