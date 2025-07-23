@@ -12,7 +12,6 @@ from .models import (
 )
 from core.utils.autocompletion.AutocompletesGeneration import *
 
-from core.models_dict import names as core
 from czapki.models_dict import names as czapki
 from encyklopedia.models_dict import names as encyklopedia
 from kronika.models_dict import names as kronika
@@ -35,8 +34,8 @@ autocomplete_configs = [
         [
             Czlonek.__name__,
             WielkiMistrz.__name__,
-            core["Kadencja"],
             kronika["CharakterystykaDzialanZarzadu"],
+            kronika["Kadencja"],
         ],
     ),
     (HallOfFame, [], [], [Bean.__name__, Czlonek.__name__]),
@@ -51,8 +50,8 @@ autocomplete_configs = [
         [
             Czlonek.__name__,
             WielkiMistrz.__name__,
-            core["Kadencja"],
             kronika["CharakterystykaDzialanZarzadu"],
+            kronika["Kadencja"],
         ],
     ),
     (ZwierzeCzapkowe, [], [], [Czlonek.__name__])

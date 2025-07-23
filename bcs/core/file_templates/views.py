@@ -35,8 +35,8 @@ autocomplete_configs = [
         [
             Czlonek.__name__,
             WielkiMistrz.__name__,
-            core["Kadencja"],
             kronika["CharakterystykaDzialanZarzadu"]
+            kronika["Kadencja"],
         ]
     ),
     (HallOfFame, [], [], [Bean.__name__, Czlonek.__name__]),
@@ -50,8 +50,8 @@ autocomplete_configs = [
         [
             Czlonek.__name__,
             WielkiMistrz.__name__,
-            core["Kadencja"],
             kronika["CharakterystykaDzialanZarzadu"]
+            kronika["Kadencja"],
         ]
     ),
     (ZwierzeCzapkowe, [], [], [Czlonek.__name__])

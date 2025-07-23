@@ -1,6 +1,7 @@
 from django.db import models
 
 from core.utils.Consts import MEDIUM_LENGTH, NAME_LENGTH
+from core.utils.czas import Czas
 
 
 class CharakterystykaDzialanZarzadu(models.Model):
@@ -65,9 +66,9 @@ class WydarzenieHistoryczne(models.Model):
         verbose_name="Typ wydarzenia historycznego",
     )
 
-    data = models.DateField(blank=True, verbose_name="Data")
+    data = models.DateField(blank=True, null=True, verbose_name="Data")
 
-    opis = models.TextField(blank=True, verbose_name="Opis")
+    opis = models.TextField(blank=True, null=True, verbose_name="Opis")
 
     class Meta:
         verbose_name = "Wydarzenie historyczne"
@@ -76,3 +77,19 @@ class WydarzenieHistoryczne(models.Model):
 
     def __str__(self):
         return f'{self.data}: {self.typ} "{self.nazwa}"'
+
+
+class Kadencja(models.Model):
+    rozpoczecie = models.IntegerField(
+        choices=Czas.LATA_BCS, verbose_name="Rozpoczęcie"
+    )
+
+    zakonczenie = models.IntegerField(blank=True, verbose_name="Zakonczenie")
+
+    class Meta:
+        verbose_name = "Kadencja"
+        verbose_name_plural = "Kadencje"
+        ordering = ["rozpoczecie"]
+
+    def __str__(self):
+        return f"{self.rozpoczecie}/{self.zakonczenie}"

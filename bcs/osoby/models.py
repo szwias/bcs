@@ -10,7 +10,7 @@ from core.utils.Consts import (
 )
 from core.utils.czas import Czas
 from core.utils.czas.Czas import ROK_ZALOZENIA
-from core.models import Kadencja
+from kronika.models import Kadencja
 from czapki.models import Czapka
 from core.utils.Choices import TextAlt, TextChoose, IntAlt
 
