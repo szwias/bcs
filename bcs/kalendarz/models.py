@@ -62,24 +62,6 @@ class Zdarzenie(models.Model):
 
         return f"{self.data} {godzina}- {self.nazwa} ({wydarzenie_name})"
 
-    def save(self, *args, **kwargs): # TODO: remove it, it's obsolete
-        created = self._state.adding
-        super().save(*args, **kwargs)
-
-        if self.wydarzenie:
-            if (
-                self.wydarzenie.data_rozpoczecia
-                == self.wydarzenie.data_zakonczenia
-            ):
-                self.data = self.wydarzenie.data_rozpoczecia
-            if created:
-                for osoba in self.wydarzenie.uczestnicy.all():
-                    osoba.pk = None
-                    osoba.content_object = self
-                    osoba.save()
-
-        super().save(*args, **kwargs)
-
 
 class ObrazZdarzenie(models.Model):
     zdarzenie = models.ForeignKey(
