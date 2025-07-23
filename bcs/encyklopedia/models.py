@@ -3,7 +3,7 @@ from django.db import models
 from core.utils.Choices import IntAlt
 from core.utils.Consts import *
 from core.utils.czas import Czas
-from kronika.models import Wydarzenie
+from kalendarz.models import Wydarzenie
 
 
 class Lengths:

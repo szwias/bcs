@@ -88,6 +88,7 @@ WSGI_APPLICATION = "bcs.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
+        # "NAME": "test_mirror_db",
         "NAME": config("DB_NAME"),
         "USER": config("DB_USER"),
         "PASSWORD": config("DB_PASSWORD"),

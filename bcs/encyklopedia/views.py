@@ -3,7 +3,7 @@ from core.utils.autocompletion.AutocompletesGeneration import *
 
 from czapki.models_dict import names as czapki
 from osoby.models_dict import names as osoby
-from kronika.models_dict import names as kronika
+from kalendarz.models_dict import names as kalendarz
 from miejsca.models_dict import names as miejsca
 
 autocomplete_configs = [
@@ -31,7 +31,7 @@ autocomplete_configs = [
         ["origins"],
         [],
         [
-            kronika["Wydarzenie"],
+            kalendarz["Wydarzenie"],
             osoby["Osoba"],
         ],
     ),
@@ -49,7 +49,7 @@ autocomplete_configs = [
         [],
         [
             GrupaBractw.__name__,
-            kronika["Wydarzenie"],
+            kalendarz["Wydarzenie"],
             osoby["Osoba"],
         ],
     ),

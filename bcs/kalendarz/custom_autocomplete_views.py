@@ -1,5 +1,5 @@
 from dal import autocomplete
-from kronika.models import Wydarzenie
+from .models import Wydarzenie
 from miejsca.models import Miejsce
 
 

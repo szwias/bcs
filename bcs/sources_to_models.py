@@ -1,5 +1,5 @@
 from encyklopedia.models import *
-from kronika.models import TypWydarzenia, TypWyjazdu, Wydarzenie, Zdarzenie
+from kalendarz.models import Zdarzenie, TypWydarzenia, TypWyjazdu, Wydarzenie
 from kronika.models import (
     CharakterystykaDzialanZarzadu as PodsumowanieKadencji,
 )
