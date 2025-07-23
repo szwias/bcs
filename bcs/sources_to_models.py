@@ -1,3 +1,4 @@
+from dokumenty.models import Edykt, Ukaz
 from encyklopedia.models import *
 from kalendarz.models import Zdarzenie, TypWydarzenia, TypWyjazdu, Wydarzenie
 from kronika.models import (

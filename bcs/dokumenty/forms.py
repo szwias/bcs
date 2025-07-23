@@ -1,21 +1,33 @@
 from django import forms
-from dal import autocomplete
-from .models import *
+from .models import Dokument, Edykt, Ukaz
+from osoby.models import Czlonek
 from .views import autocomplete_widgets
 from core.utils.autocompletion.AutocompletesGeneration import build_widgets
 
-"""
-class ZarzadForm(drzewo.ModelForm):
+class DokumentForm(forms.ModelForm):
     class Meta:
-        model = Zarzad
-        fields = "__all__"
+        model = Dokument
+        fields = '__all__'
+        widgets = build_widgets(autocomplete_widgets["Dokument"])
 
-        widgets = build_widgets(autocomplete_widgets["DawnyZarzad"])
-        widgets.update(
-            {
-                "kadencja": autocomplete.ModelSelect2(
-                    url="core:custom-kadencja-autocomplete"
-                )
-            }
-        )
-"""
+
+class EdyktForm(forms.ModelForm):
+    class Meta:
+        model = Edykt
+        fields = '__all__'
+        widgets = build_widgets(autocomplete_widgets["Edykt"])
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields["autorzy"].queryset = Czlonek.objects.all()
+
+
+class UkazForm(forms.ModelForm):
+    class Meta:
+        model = Ukaz
+        fields = '__all__'
+        widgets = build_widgets(autocomplete_widgets["Ukaz"])
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields["autorzy"].queryset = Czlonek.objects.all()
