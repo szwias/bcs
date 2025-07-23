@@ -5,6 +5,7 @@ from prawo.models import RelacjaPrawna
 @admin.register(RelacjaPrawna)
 class RelacjaPrawnaAdmin(BaseModelAdmin):
     filter_horizontal = ["podmiot"]
+    list_filter = ["prawo_czy_obowiazek", "podmiot"]
 
 
 register_all_models(
