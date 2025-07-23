@@ -31,6 +31,10 @@ urlpatterns = [
         include("czapki.autocomplete_urls", "czapki_autocomplete"),
     ),
     path(
+        "autocomplete/dokumenty",
+        include("dokumenty.autocomplete_urls", "dokumenty_autocomplete"),
+    ),
+    path(
         "autocomplete/encyklopedia/",
         include("encyklopedia.autocomplete_urls", "encyklopedia_autocomplete"),
     ),
