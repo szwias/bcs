@@ -8,7 +8,10 @@ class Migration(migrations.Migration):
     dependencies = [
         ("kalendarz", "0001_initial"),
         ("miejsca", "0004_miejsce_zamkniete_na_stale_alter_miejsce_adres"),
-        ("osoby", "0011_alter_bean_pewnosc_stazu_alter_czlonek_imie_piwne_1_and_more"),
+        (
+            "osoby",
+            "0011_alter_bean_pewnosc_stazu_alter_czlonek_imie_piwne_1_and_more",
+        ),
     ]
 
     operations = [
@@ -37,7 +40,9 @@ class Migration(migrations.Migration):
             model_name="wydarzenie",
             name="uczestnicy",
             field=models.ManyToManyField(
-                blank=True, to="osoby.osoba", verbose_name="Uczestnicy wydarzenia"
+                blank=True,
+                to="osoby.osoba",
+                verbose_name="Uczestnicy wydarzenia",
             ),
         ),
         migrations.AlterField(

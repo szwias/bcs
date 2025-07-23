@@ -6,12 +6,12 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('encyklopedia', '0003_zwyczaj_powiedzenie'),
+        ("encyklopedia", "0003_zwyczaj_powiedzenie"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='powiedzenie',
-            name='autor',
+            model_name="powiedzenie",
+            name="autor",
         ),
     ]

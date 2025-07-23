@@ -4,17 +4,18 @@ from osoby.models import Czlonek
 from .views import autocomplete_widgets
 from core.utils.autocompletion.AutocompletesGeneration import build_widgets
 
+
 class DokumentForm(forms.ModelForm):
     class Meta:
         model = Dokument
-        fields = '__all__'
+        fields = "__all__"
         widgets = build_widgets(autocomplete_widgets["Dokument"])
 
 
 class EdyktForm(forms.ModelForm):
     class Meta:
         model = Edykt
-        fields = '__all__'
+        fields = "__all__"
         widgets = build_widgets(autocomplete_widgets["Edykt"])
 
     def __init__(self, *args, **kwargs):
@@ -25,7 +26,7 @@ class EdyktForm(forms.ModelForm):
 class UkazForm(forms.ModelForm):
     class Meta:
         model = Ukaz
-        fields = '__all__'
+        fields = "__all__"
         widgets = build_widgets(autocomplete_widgets["Ukaz"])
 
     def __init__(self, *args, **kwargs):

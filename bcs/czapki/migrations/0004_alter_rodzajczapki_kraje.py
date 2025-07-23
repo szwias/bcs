@@ -6,14 +6,18 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('czapki', '0003_rodzajczapki'),
-        ('miejsca', '0004_miejsce_zamkniete_na_stale_alter_miejsce_adres'),
+        ("czapki", "0003_rodzajczapki"),
+        ("miejsca", "0004_miejsce_zamkniete_na_stale_alter_miejsce_adres"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='rodzajczapki',
-            name='kraje',
-            field=models.ManyToManyField(blank=True, to='miejsca.kraj', verbose_name='Kraje występowania'),
+            model_name="rodzajczapki",
+            name="kraje",
+            field=models.ManyToManyField(
+                blank=True,
+                to="miejsca.kraj",
+                verbose_name="Kraje występowania",
+            ),
         ),
     ]

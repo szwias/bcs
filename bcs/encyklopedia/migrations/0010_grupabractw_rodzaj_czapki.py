@@ -7,14 +7,20 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('czapki', '0004_alter_rodzajczapki_kraje'),
-        ('encyklopedia', '0009_alter_grupabractw_kraje'),
+        ("czapki", "0004_alter_rodzajczapki_kraje"),
+        ("encyklopedia", "0009_alter_grupabractw_kraje"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='grupabractw',
-            name='rodzaj_czapki',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, to='czapki.rodzajczapki', verbose_name='Rodzaj czapki'),
+            model_name="grupabractw",
+            name="rodzaj_czapki",
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.SET_NULL,
+                to="czapki.rodzajczapki",
+                verbose_name="Rodzaj czapki",
+            ),
         ),
     ]

@@ -6,24 +6,45 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('osoby', '0006_migrate_data_from_oldczlonek_to_czlonek'),
+        ("osoby", "0006_migrate_data_from_oldczlonek_to_czlonek"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='innaoldosoba',
-            options={'ordering': ['imie', 'nazwisko'], 'verbose_name': 'Inna osoba (stara wersja)', 'verbose_name_plural': 'Inne osoby (nie-członkowie) (stara wersja)'},
+            name="innaoldosoba",
+            options={
+                "ordering": ["imie", "nazwisko"],
+                "verbose_name": "Inna osoba (stara wersja)",
+                "verbose_name_plural": "Inne osoby (nie-członkowie) (stara wersja)",
+            },
         ),
         migrations.AlterModelOptions(
-            name='oldbean',
-            options={'ordering': ['imie', 'nazwisko'], 'verbose_name': 'Bean (stara wersja)', 'verbose_name_plural': 'Beani (stara wersja)'},
+            name="oldbean",
+            options={
+                "ordering": ["imie", "nazwisko"],
+                "verbose_name": "Bean (stara wersja)",
+                "verbose_name_plural": "Beani (stara wersja)",
+            },
         ),
         migrations.AlterModelOptions(
-            name='oldczlonek',
-            options={'ordering': ['imie', 'imie_piwne_1', 'imie_piwne_2', 'nazwisko'], 'verbose_name': 'Członek (stara wersja)', 'verbose_name_plural': 'Członkowie (stara wersja)'},
+            name="oldczlonek",
+            options={
+                "ordering": [
+                    "imie",
+                    "imie_piwne_1",
+                    "imie_piwne_2",
+                    "nazwisko",
+                ],
+                "verbose_name": "Członek (stara wersja)",
+                "verbose_name_plural": "Członkowie (stara wersja)",
+            },
         ),
         migrations.AlterModelOptions(
-            name='osoba',
-            options={'ordering': ('imie', 'przezwiska', 'nazwisko'), 'verbose_name': 'Osoba', 'verbose_name_plural': 'Osoby'},
+            name="osoba",
+            options={
+                "ordering": ("imie", "przezwiska", "nazwisko"),
+                "verbose_name": "Osoba",
+                "verbose_name_plural": "Osoby",
+            },
         ),
     ]

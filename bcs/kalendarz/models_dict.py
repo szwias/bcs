@@ -1,7 +1,13 @@
 from collections import defaultdict
 from core.utils.autocompletion.AutocompletesGeneration import add_model_name
-from .models import (ObrazWydarzenie, ObrazZdarzenie, TypWydarzenia,
-                     TypWyjazdu, Wydarzenie, Zdarzenie)
+from .models import (
+    ObrazWydarzenie,
+    ObrazZdarzenie,
+    TypWydarzenia,
+    TypWyjazdu,
+    Wydarzenie,
+    Zdarzenie,
+)
 
 names = defaultdict(str)
 

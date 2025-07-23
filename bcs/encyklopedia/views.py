@@ -17,32 +17,9 @@ autocomplete_configs = [
             osoby["Osoba"],
         ],
     ),
-    (
-        GrupaBractw,
-        [],
-        [],
-        [
-            czapki["RodzajCzapki"],
-            miejsca["Kraj"],
-        ],
-    ),
-    (
-        Pojecie,
-        ["origins"],
-        [],
-        [
-            kalendarz["Wydarzenie"],
-            osoby["Osoba"],
-        ],
-    ),
-    (
-        Powiedzenie,
-        [],
-        [],
-        [
-            osoby["Osoba"],
-        ],
-    ),
+    (GrupaBractw, [], [], [czapki["RodzajCzapki"], miejsca["Kraj"]]),
+    (Pojecie, ["origins"], [], [kalendarz["Wydarzenie"], osoby["Osoba"]]),
+    (Powiedzenie, [], [], [osoby["Osoba"]]),
     (
         TradycjaBCS,
         ["okolicznosci_powstania", "zapozyczona_czy_autorska"],
@@ -53,28 +30,9 @@ autocomplete_configs = [
             osoby["Osoba"],
         ],
     ),
-    (
-        TradycjaInnegoBractwa,
-        [],
-        [],
-        [GrupaBractw.__name__],
-    ),
-    (
-        Zwyczaj,
-        [],
-        [],
-        [
-            osoby["Osoba"],
-        ],
-    ),
-    (
-        Zrodlo,
-        [],
-        [],
-        [
-            osoby["Osoba"],
-        ],
-    ),
+    (TradycjaInnegoBractwa, [], [], [GrupaBractw.__name__]),
+    (Zwyczaj, [], [], [osoby["Osoba"]]),
+    (Zrodlo, [], [], [osoby["Osoba"]]),
 ]
 
 autocomplete_urls, autocomplete_widgets = setup_autocompletes(

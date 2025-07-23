@@ -11,7 +11,10 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ("miejsca", "0004_miejsce_zamkniete_na_stale_alter_miejsce_adres"),
-        ("osoby", "0011_alter_bean_pewnosc_stazu_alter_czlonek_imie_piwne_1_and_more"),
+        (
+            "osoby",
+            "0011_alter_bean_pewnosc_stazu_alter_czlonek_imie_piwne_1_and_more",
+        ),
     ]
 
     operations = [
@@ -30,7 +33,9 @@ class Migration(migrations.Migration):
                 (
                     "typ",
                     models.CharField(
-                        blank=True, max_length=100, verbose_name="Typ wydarzenia"
+                        blank=True,
+                        max_length=100,
+                        verbose_name="Typ wydarzenia",
                     ),
                 ),
             ],
@@ -79,10 +84,15 @@ class Migration(migrations.Migration):
                         verbose_name="ID",
                     ),
                 ),
-                ("nazwa", models.CharField(max_length=255, verbose_name="Nazwa")),
+                (
+                    "nazwa",
+                    models.CharField(max_length=255, verbose_name="Nazwa"),
+                ),
                 (
                     "czy_jednodniowe",
-                    models.BooleanField(default=True, verbose_name="Jednodniowe"),
+                    models.BooleanField(
+                        default=True, verbose_name="Jednodniowe"
+                    ),
                 ),
                 (
                     "data_rozpoczecia",
@@ -100,7 +110,9 @@ class Migration(migrations.Migration):
                 ),
                 (
                     "czy_to_wyjazd",
-                    models.BooleanField(default=False, verbose_name="Czy to wyjazd?"),
+                    models.BooleanField(
+                        default=False, verbose_name="Czy to wyjazd?"
+                    ),
                 ),
                 (
                     "link",
@@ -169,12 +181,15 @@ class Migration(migrations.Migration):
                 ),
                 (
                     "tytul",
-                    models.CharField(blank=True, max_length=100, verbose_name="Tytuł"),
+                    models.CharField(
+                        blank=True, max_length=100, verbose_name="Tytuł"
+                    ),
                 ),
                 (
                     "obraz",
                     models.ImageField(
-                        upload_to="kronika/wydarzenia/", verbose_name="Dodaj obraz"
+                        upload_to="kronika/wydarzenia/",
+                        verbose_name="Dodaj obraz",
                     ),
                 ),
                 ("opis", models.TextField(blank=True, verbose_name="Opis")),
@@ -218,11 +233,16 @@ class Migration(migrations.Migration):
                         verbose_name="ID",
                     ),
                 ),
-                ("nazwa", models.CharField(max_length=255, verbose_name="Nazwa")),
+                (
+                    "nazwa",
+                    models.CharField(max_length=255, verbose_name="Nazwa"),
+                ),
                 ("data", models.DateField(verbose_name="Data")),
                 (
                     "godzina",
-                    models.TimeField(blank=True, null=True, verbose_name="Godzina"),
+                    models.TimeField(
+                        blank=True, null=True, verbose_name="Godzina"
+                    ),
                 ),
                 ("opis", models.TextField(blank=True, verbose_name="Opis")),
                 (
@@ -278,7 +298,9 @@ class Migration(migrations.Migration):
                 ),
                 (
                     "tytul",
-                    models.CharField(blank=True, max_length=100, verbose_name="Tytuł"),
+                    models.CharField(
+                        blank=True, max_length=100, verbose_name="Tytuł"
+                    ),
                 ),
                 (
                     "data",
@@ -291,7 +313,8 @@ class Migration(migrations.Migration):
                 (
                     "obraz",
                     models.ImageField(
-                        upload_to="kronika/zdarzenia/", verbose_name="Dodaj obraz"
+                        upload_to="kronika/zdarzenia/",
+                        verbose_name="Dodaj obraz",
                     ),
                 ),
                 ("opis", models.TextField(blank=True, verbose_name="Opis")),

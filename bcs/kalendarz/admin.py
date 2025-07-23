@@ -1,6 +1,10 @@
 from core.utils.automation.BaseAdmin import *
-from kalendarz.models import Zdarzenie, ObrazZdarzenie, Wydarzenie, \
-    ObrazWydarzenie
+from kalendarz.models import (
+    Zdarzenie,
+    ObrazZdarzenie,
+    Wydarzenie,
+    ObrazWydarzenie,
+)
 from .inlines import (
     ZdarzenieInline,
     ObrazWydarzenieInline,

@@ -7,37 +7,76 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('osoby', '0001_initial'),
-        ('encyklopedia', '0002_alter_pojecie_options_alter_zrodlo_options_and_more'),
+        ("osoby", "0001_initial"),
+        (
+            "encyklopedia",
+            "0002_alter_pojecie_options_alter_zrodlo_options_and_more",
+        ),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Zwyczaj',
+            name="Zwyczaj",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('nazwa', models.CharField(max_length=100, verbose_name='Nazwa')),
-                ('data_powstania', models.DateField(blank=True, verbose_name='Data powstania')),
-                ('opis', models.TextField(blank=True, verbose_name='Opis')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "nazwa",
+                    models.CharField(max_length=100, verbose_name="Nazwa"),
+                ),
+                (
+                    "data_powstania",
+                    models.DateField(
+                        blank=True, verbose_name="Data powstania"
+                    ),
+                ),
+                ("opis", models.TextField(blank=True, verbose_name="Opis")),
             ],
             options={
-                'verbose_name': 'Zwyczaj',
-                'verbose_name_plural': 'Zwyczaje',
-                'ordering': ('nazwa',),
+                "verbose_name": "Zwyczaj",
+                "verbose_name_plural": "Zwyczaje",
+                "ordering": ("nazwa",),
             },
         ),
         migrations.CreateModel(
-            name='Powiedzenie',
+            name="Powiedzenie",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('tekst', models.TextField(verbose_name='Tekst')),
-                ('kontekst', models.TextField(blank=True, verbose_name='Kontekst')),
-                ('autor', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, to='osoby.czlonek', verbose_name='Autor')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("tekst", models.TextField(verbose_name="Tekst")),
+                (
+                    "kontekst",
+                    models.TextField(blank=True, verbose_name="Kontekst"),
+                ),
+                (
+                    "autor",
+                    models.ForeignKey(
+                        blank=True,
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        to="osoby.czlonek",
+                        verbose_name="Autor",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Powiedzenie',
-                'verbose_name_plural': 'Powiedzenia',
-                'ordering': ('tekst',),
+                "verbose_name": "Powiedzenie",
+                "verbose_name_plural": "Powiedzenia",
+                "ordering": ("tekst",),
             },
         ),
     ]

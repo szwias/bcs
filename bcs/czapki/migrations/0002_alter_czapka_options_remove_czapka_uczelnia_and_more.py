@@ -6,21 +6,27 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('czapki', '0001_initial'),
+        ("czapki", "0001_initial"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='czapka',
-            options={'ordering': ['wydzial', 'kolor'], 'verbose_name': 'Czapka', 'verbose_name_plural': 'Czapki'},
+            name="czapka",
+            options={
+                "ordering": ["wydzial", "kolor"],
+                "verbose_name": "Czapka",
+                "verbose_name_plural": "Czapki",
+            },
         ),
         migrations.RemoveField(
-            model_name='czapka',
-            name='uczelnia',
+            model_name="czapka",
+            name="uczelnia",
         ),
         migrations.AddField(
-            model_name='czapka',
-            name='inny_powod',
-            field=models.CharField(blank=True, max_length=100, verbose_name='Inny powód koloru'),
+            model_name="czapka",
+            name="inny_powod",
+            field=models.CharField(
+                blank=True, max_length=100, verbose_name="Inny powód koloru"
+            ),
         ),
     ]

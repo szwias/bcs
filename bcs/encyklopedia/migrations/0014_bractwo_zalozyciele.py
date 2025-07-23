@@ -6,14 +6,19 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('osoby', '0010_rename_bractwo_innaosoba_bractwo_do_ktorego_nalezy'),
-        ('encyklopedia', '0013_alter_pojecie_origins_alter_tradycjabcs_nazwa_and_more'),
+        ("osoby", "0010_rename_bractwo_innaosoba_bractwo_do_ktorego_nalezy"),
+        (
+            "encyklopedia",
+            "0013_alter_pojecie_origins_alter_tradycjabcs_nazwa_and_more",
+        ),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='bractwo',
-            name='zalozyciele',
-            field=models.ManyToManyField(blank=True, to='osoby.osoba', verbose_name='Założyciele'),
+            model_name="bractwo",
+            name="zalozyciele",
+            field=models.ManyToManyField(
+                blank=True, to="osoby.osoba", verbose_name="Założyciele"
+            ),
         ),
     ]

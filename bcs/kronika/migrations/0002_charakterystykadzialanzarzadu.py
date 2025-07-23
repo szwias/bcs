@@ -7,24 +7,64 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('osoby', '0002_delete_osoby_alter_zarzad_options_and_more'),
-        ('kronika', '0001_initial'),
+        ("osoby", "0002_delete_osoby_alter_zarzad_options_and_more"),
+        ("kronika", "0001_initial"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='CharakterystykaDzialanZarzadu',
+            name="CharakterystykaDzialanZarzadu",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('charakterystyka', models.TextField(blank=True, verbose_name='Charakterystyka działań Zarządu')),
-                ('autor', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, to='osoby.czlonek', verbose_name='Autor')),
-                ('dawny_zarzad', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, to='osoby.dawnyzarzad', verbose_name='Dawny Zarząd')),
-                ('zarzad', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, to='osoby.zarzad', verbose_name='Zarząd')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "charakterystyka",
+                    models.TextField(
+                        blank=True,
+                        verbose_name="Charakterystyka działań Zarządu",
+                    ),
+                ),
+                (
+                    "autor",
+                    models.ForeignKey(
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        to="osoby.czlonek",
+                        verbose_name="Autor",
+                    ),
+                ),
+                (
+                    "dawny_zarzad",
+                    models.ForeignKey(
+                        blank=True,
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        to="osoby.dawnyzarzad",
+                        verbose_name="Dawny Zarząd",
+                    ),
+                ),
+                (
+                    "zarzad",
+                    models.ForeignKey(
+                        blank=True,
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        to="osoby.zarzad",
+                        verbose_name="Zarząd",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Charakterystyka działań Zarządu',
-                'verbose_name_plural': 'Charakterystyki działań Zarządów',
-                'ordering': ['-zarzad'],
+                "verbose_name": "Charakterystyka działań Zarządu",
+                "verbose_name_plural": "Charakterystyki działań Zarządów",
+                "ordering": ["-zarzad"],
             },
         ),
     ]

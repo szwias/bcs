@@ -8,32 +8,60 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('czapki', '0001_initial'),
-        ('osoby', '0002_delete_osoby_alter_zarzad_options_and_more'),
+        ("czapki", "0001_initial"),
+        ("osoby", "0002_delete_osoby_alter_zarzad_options_and_more"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='czlonek',
-            name='czapka_1',
-            field=models.ForeignKey(default=czapki.models.Czapka.get_dont_know_czapka, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='%(class)s_posiadacze_pierwszy_wybor', to='czapki.czapka', verbose_name='Czapka'),
+            model_name="czlonek",
+            name="czapka_1",
+            field=models.ForeignKey(
+                default=czapki.models.Czapka.get_dont_know_czapka,
+                null=True,
+                on_delete=django.db.models.deletion.SET_NULL,
+                related_name="%(class)s_posiadacze_pierwszy_wybor",
+                to="czapki.czapka",
+                verbose_name="Czapka",
+            ),
         ),
         migrations.AlterField(
-            model_name='czlonek',
-            name='czapka_2',
-            field=models.ForeignKey(default=czapki.models.Czapka.get_not_applicable_czapka, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='%(class)s_posiadacze_drugi_wybor', to='czapki.czapka', verbose_name='Inna czapka'),
+            model_name="czlonek",
+            name="czapka_2",
+            field=models.ForeignKey(
+                default=czapki.models.Czapka.get_not_applicable_czapka,
+                null=True,
+                on_delete=django.db.models.deletion.SET_NULL,
+                related_name="%(class)s_posiadacze_drugi_wybor",
+                to="czapki.czapka",
+                verbose_name="Inna czapka",
+            ),
         ),
         migrations.AlterField(
-            model_name='bean',
-            name='czapka_1',
-            field=models.ForeignKey(default=czapki.models.Czapka.get_dont_know_czapka, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='%(class)s_posiadacze_pierwszy_wybor', to='czapki.czapka', verbose_name='Czapka'),
+            model_name="bean",
+            name="czapka_1",
+            field=models.ForeignKey(
+                default=czapki.models.Czapka.get_dont_know_czapka,
+                null=True,
+                on_delete=django.db.models.deletion.SET_NULL,
+                related_name="%(class)s_posiadacze_pierwszy_wybor",
+                to="czapki.czapka",
+                verbose_name="Czapka",
+            ),
         ),
         migrations.AlterField(
-            model_name='bean',
-            name='czapka_2',
-            field=models.ForeignKey(default=czapki.models.Czapka.get_not_applicable_czapka, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='%(class)s_posiadacze_drugi_wybor', to='czapki.czapka', verbose_name='Inna czapka'),
+            model_name="bean",
+            name="czapka_2",
+            field=models.ForeignKey(
+                default=czapki.models.Czapka.get_not_applicable_czapka,
+                null=True,
+                on_delete=django.db.models.deletion.SET_NULL,
+                related_name="%(class)s_posiadacze_drugi_wybor",
+                to="czapki.czapka",
+                verbose_name="Inna czapka",
+            ),
         ),
         migrations.DeleteModel(
-            name='Czapka',
+            name="Czapka",
         ),
     ]

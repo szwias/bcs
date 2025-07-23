@@ -6,13 +6,24 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('encyklopedia', '0005_alter_bractwo_panstwo'),
+        ("encyklopedia", "0005_alter_bractwo_panstwo"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='bractwo',
-            name='czapka',
-            field=models.CharField(choices=[('CAL', 'Calotte'), ('CZA', 'Czapka'), ('FAL', 'Faluch'), ('FEL', 'Feluca'), ('I', 'Inna')], max_length=3, null=True, verbose_name='Czapka'),
+            model_name="bractwo",
+            name="czapka",
+            field=models.CharField(
+                choices=[
+                    ("CAL", "Calotte"),
+                    ("CZA", "Czapka"),
+                    ("FAL", "Faluch"),
+                    ("FEL", "Feluca"),
+                    ("I", "Inna"),
+                ],
+                max_length=3,
+                null=True,
+                verbose_name="Czapka",
+            ),
         ),
     ]

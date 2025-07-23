@@ -10,7 +10,10 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ("contenttypes", "0002_remove_content_type_name"),
-        ("osoby", "0011_alter_bean_pewnosc_stazu_alter_czlonek_imie_piwne_1_and_more"),
+        (
+            "osoby",
+            "0011_alter_bean_pewnosc_stazu_alter_czlonek_imie_piwne_1_and_more",
+        ),
     ]
 
     operations = [
@@ -26,10 +29,15 @@ class Migration(migrations.Migration):
                         verbose_name="ID",
                     ),
                 ),
-                ("tytul", models.CharField(max_length=255, verbose_name="Tytuł")),
+                (
+                    "tytul",
+                    models.CharField(max_length=255, verbose_name="Tytuł"),
+                ),
                 (
                     "data",
-                    models.DateField(auto_now_add=True, verbose_name="Data wydania"),
+                    models.DateField(
+                        auto_now_add=True, verbose_name="Data wydania"
+                    ),
                 ),
                 (
                     "streszczenie",
@@ -76,7 +84,10 @@ class Migration(migrations.Migration):
                         verbose_name="ID",
                     ),
                 ),
-                ("nazwa", models.CharField(max_length=40, verbose_name="Nazwa")),
+                (
+                    "nazwa",
+                    models.CharField(max_length=40, verbose_name="Nazwa"),
+                ),
                 (
                     "polymorphic_ctype",
                     models.ForeignKey(
@@ -108,7 +119,10 @@ class Migration(migrations.Migration):
                         to="prawo.dokument",
                     ),
                 ),
-                ("numer", models.IntegerField(blank=True, verbose_name="Numer")),
+                (
+                    "numer",
+                    models.IntegerField(blank=True, verbose_name="Numer"),
+                ),
             ],
             options={
                 "verbose_name": "Edykt",
@@ -131,7 +145,10 @@ class Migration(migrations.Migration):
                         to="prawo.dokument",
                     ),
                 ),
-                ("numer", models.IntegerField(blank=True, verbose_name="Numer")),
+                (
+                    "numer",
+                    models.IntegerField(blank=True, verbose_name="Numer"),
+                ),
             ],
             options={
                 "verbose_name": "Ukaz",
@@ -196,7 +213,10 @@ class Migration(migrations.Migration):
                         verbose_name="ID",
                     ),
                 ),
-                ("tytul", models.CharField(max_length=255, verbose_name="Tytuł")),
+                (
+                    "tytul",
+                    models.CharField(max_length=255, verbose_name="Tytuł"),
+                ),
                 (
                     "prawo_czy_obowiazek",
                     models.CharField(

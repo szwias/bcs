@@ -7,36 +7,52 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('encyklopedia', '0011_remove_bractwo_czapka_bractwo_grupa_bractw'),
+        ("encyklopedia", "0011_remove_bractwo_czapka_bractwo_grupa_bractw"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='tradycjabcs',
-            name='autor_rodzaj',
+            model_name="tradycjabcs",
+            name="autor_rodzaj",
         ),
         migrations.RemoveField(
-            model_name='tradycjainnegobractwa',
-            name='autor_rodzaj',
+            model_name="tradycjainnegobractwa",
+            name="autor_rodzaj",
         ),
         migrations.AddField(
-            model_name='tradycjabcs',
-            name='od_kogo',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, to='encyklopedia.grupabractw', verbose_name='Od kogo zapożyczona'),
+            model_name="tradycjabcs",
+            name="od_kogo",
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.SET_NULL,
+                to="encyklopedia.grupabractw",
+                verbose_name="Od kogo zapożyczona",
+            ),
         ),
         migrations.AddField(
-            model_name='tradycjabcs',
-            name='zapozyczona',
-            field=models.BooleanField(default=False, verbose_name='Zapożyczona'),
+            model_name="tradycjabcs",
+            name="zapozyczona",
+            field=models.BooleanField(
+                default=False, verbose_name="Zapożyczona"
+            ),
         ),
         migrations.AddField(
-            model_name='tradycjainnegobractwa',
-            name='od_kogo',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, to='encyklopedia.grupabractw', verbose_name='Od kogo zapożyczona'),
+            model_name="tradycjainnegobractwa",
+            name="od_kogo",
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.SET_NULL,
+                to="encyklopedia.grupabractw",
+                verbose_name="Od kogo zapożyczona",
+            ),
         ),
         migrations.AddField(
-            model_name='tradycjainnegobractwa',
-            name='zapozyczona',
-            field=models.BooleanField(default=False, verbose_name='Zapożyczona'),
+            model_name="tradycjainnegobractwa",
+            name="zapozyczona",
+            field=models.BooleanField(
+                default=False, verbose_name="Zapożyczona"
+            ),
         ),
     ]

@@ -8,48 +8,107 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Kraj',
+            name="Kraj",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('kraj', models.CharField(max_length=100, verbose_name='Kraj')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "kraj",
+                    models.CharField(max_length=100, verbose_name="Kraj"),
+                ),
             ],
             options={
-                'verbose_name': 'Kraj',
-                'verbose_name_plural': 'Kraje',
-                'ordering': ['kraj'],
+                "verbose_name": "Kraj",
+                "verbose_name_plural": "Kraje",
+                "ordering": ["kraj"],
             },
         ),
         migrations.CreateModel(
-            name='Uczelnia',
+            name="Uczelnia",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('nazwa', models.CharField(max_length=255, verbose_name='Uczelnia')),
-                ('akronim', models.CharField(max_length=10, verbose_name='Akronim')),
-                ('kraj', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, to='miejsca.kraj', verbose_name='Kraj')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "nazwa",
+                    models.CharField(max_length=255, verbose_name="Uczelnia"),
+                ),
+                (
+                    "akronim",
+                    models.CharField(max_length=10, verbose_name="Akronim"),
+                ),
+                (
+                    "kraj",
+                    models.ForeignKey(
+                        blank=True,
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        to="miejsca.kraj",
+                        verbose_name="Kraj",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Uczelnia',
-                'verbose_name_plural': 'Uczelnie',
-                'ordering': ['nazwa'],
+                "verbose_name": "Uczelnia",
+                "verbose_name_plural": "Uczelnie",
+                "ordering": ["nazwa"],
             },
         ),
         migrations.CreateModel(
-            name='Wydzial',
+            name="Wydzial",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('nazwa', models.CharField(blank=True, max_length=255, verbose_name='Wydział')),
-                ('skrot', models.CharField(blank=True, max_length=10, verbose_name='Skrót')),
-                ('uczelnia', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, to='miejsca.uczelnia', verbose_name='Uczelnia')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "nazwa",
+                    models.CharField(
+                        blank=True, max_length=255, verbose_name="Wydział"
+                    ),
+                ),
+                (
+                    "skrot",
+                    models.CharField(
+                        blank=True, max_length=10, verbose_name="Skrót"
+                    ),
+                ),
+                (
+                    "uczelnia",
+                    models.ForeignKey(
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        to="miejsca.uczelnia",
+                        verbose_name="Uczelnia",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Wydział',
-                'verbose_name_plural': 'Wydziały',
-                'ordering': ['uczelnia', 'nazwa'],
+                "verbose_name": "Wydział",
+                "verbose_name_plural": "Wydziały",
+                "ordering": ["uczelnia", "nazwa"],
             },
         ),
     ]

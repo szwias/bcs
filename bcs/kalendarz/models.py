@@ -35,8 +35,9 @@ class Zdarzenie(models.Model):
     opis = models.TextField(blank=True, verbose_name="Opis")
 
     powiazane_osoby = models.ManyToManyField(
-        "osoby.Osoba", blank=True, verbose_name="Powiązane osoby",
-
+        "osoby.Osoba",
+        blank=True,
+        verbose_name="Powiązane osoby",
     )
 
     class Meta:
@@ -96,7 +97,9 @@ class ObrazZdarzenie(models.Model):
     opis = models.TextField(blank=True, verbose_name="Opis")
 
     widoczne_osoby = models.ManyToManyField(
-        "osoby.Osoba", blank=True, verbose_name="Widoczne osoby",
+        "osoby.Osoba",
+        blank=True,
+        verbose_name="Widoczne osoby",
     )
 
     class Meta:
@@ -199,7 +202,9 @@ class Wydarzenie(models.Model):
     )
 
     miejsca = models.ManyToManyField(
-        "miejsca.Miejsce", blank=True, verbose_name="Miejsca",
+        "miejsca.Miejsce",
+        blank=True,
+        verbose_name="Miejsca",
     )
 
     czy_to_wyjazd = models.BooleanField(
@@ -227,7 +232,9 @@ class Wydarzenie(models.Model):
     opis = models.TextField(blank=True, verbose_name="Opis")
 
     uczestnicy = models.ManyToManyField(
-        "osoby.Osoba", blank=True, verbose_name="Uczestnicy wydarzenia",
+        "osoby.Osoba",
+        blank=True,
+        verbose_name="Uczestnicy wydarzenia",
     )
 
     class Meta:
@@ -275,7 +282,9 @@ class ObrazWydarzenie(models.Model):
     opis = models.TextField(blank=True, verbose_name="Opis")
 
     widoczne_osoby = models.ManyToManyField(
-        "osoby.Osoba", blank=True, verbose_name="Widoczne osoby",
+        "osoby.Osoba",
+        blank=True,
+        verbose_name="Widoczne osoby",
     )
 
     class Meta:

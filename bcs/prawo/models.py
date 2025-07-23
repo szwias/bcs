@@ -42,9 +42,8 @@ class RelacjaPrawna(models.Model):
     )
 
     prawo_czy_obowiazek = models.CharField(
-        max_length=1,
-        choices=Wybory.choices,
-        verbose_name="Rodzaj relacji")
+        max_length=1, choices=Wybory.choices, verbose_name="Rodzaj relacji"
+    )
 
     class Meta:
         verbose_name = "Relacja prawna"

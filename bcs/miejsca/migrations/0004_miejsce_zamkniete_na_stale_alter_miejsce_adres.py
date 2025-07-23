@@ -6,18 +6,22 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('miejsca', '0003_typmiejsca_miejsce'),
+        ("miejsca", "0003_typmiejsca_miejsce"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='miejsce',
-            name='zamkniete_na_stale',
-            field=models.BooleanField(default=False, verbose_name='Zamknięte na stałe'),
+            model_name="miejsce",
+            name="zamkniete_na_stale",
+            field=models.BooleanField(
+                default=False, verbose_name="Zamknięte na stałe"
+            ),
         ),
         migrations.AlterField(
-            model_name='miejsce',
-            name='adres',
-            field=models.CharField(blank=True, max_length=255, verbose_name='Adres'),
+            model_name="miejsce",
+            name="adres",
+            field=models.CharField(
+                blank=True, max_length=255, verbose_name="Adres"
+            ),
         ),
     ]

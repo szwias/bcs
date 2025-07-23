@@ -9,22 +9,53 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('miejsca', '0001_initial'),
+        ("miejsca", "0001_initial"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Czapka',
+            name="Czapka",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('kolor', models.CharField(default='', max_length=255, verbose_name='Kolor')),
-                ('uczelnia', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, to='miejsca.uczelnia', verbose_name='Uczelnia')),
-                ('wydzial', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, to='miejsca.wydzial', verbose_name='Wydział')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "kolor",
+                    models.CharField(
+                        default="", max_length=255, verbose_name="Kolor"
+                    ),
+                ),
+                (
+                    "uczelnia",
+                    models.ForeignKey(
+                        blank=True,
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        to="miejsca.uczelnia",
+                        verbose_name="Uczelnia",
+                    ),
+                ),
+                (
+                    "wydzial",
+                    models.ForeignKey(
+                        blank=True,
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        to="miejsca.wydzial",
+                        verbose_name="Wydział",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Czapka',
-                'verbose_name_plural': 'Czapki',
-                'ordering': ['uczelnia', 'kolor', 'wydzial'],
+                "verbose_name": "Czapka",
+                "verbose_name_plural": "Czapki",
+                "ordering": ["uczelnia", "kolor", "wydzial"],
             },
         ),
     ]

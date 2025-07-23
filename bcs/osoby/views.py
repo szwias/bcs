@@ -18,15 +18,7 @@ from encyklopedia.models_dict import names as encyklopedia
 from kronika.models_dict import names as kronika
 
 autocomplete_configs = [
-    (
-        Bean,
-        ["staz"],
-        [],
-        [
-            Czlonek.__name__,
-            czapki["Czapka"],
-        ],
-    ),
+    (Bean, ["staz"], [], [Czlonek.__name__, czapki["Czapka"]]),
     (
         Czlonek,
         ["rok_chrztu", "miesiac_chrztu", "dzien_chrztu", "status", "staz"],
@@ -47,40 +39,11 @@ autocomplete_configs = [
             kronika["CharakterystykaDzialanZarzadu"],
         ],
     ),
-    (
-        HallOfFame,
-        [],
-        [],
-        [
-            Bean.__name__,
-            Czlonek.__name__,
-        ],
-    ),
-    (
-        ImieSzlacheckie,
-        [],
-        [],
-        [
-            Czlonek.__name__,
-        ],
-    ),
-    (
-        InnaOsoba,
-        ["kategoria"],
-        [],
-        [
-            encyklopedia["Bractwo"],
-        ],
-    ),
+    (HallOfFame, [], [], [Bean.__name__, Czlonek.__name__]),
+    (ImieSzlacheckie, [], [], [Czlonek.__name__]),
+    (InnaOsoba, ["kategoria"], [], [encyklopedia["Bractwo"]]),
     (Osoba, [], [], []),
-    (
-        WielkiMistrz,
-        [],
-        [],
-        [
-            Czlonek.__name__,
-        ],
-    ),
+    (WielkiMistrz, [], [], [Czlonek.__name__]),
     (
         Zarzad,
         [],
@@ -92,14 +55,7 @@ autocomplete_configs = [
             kronika["CharakterystykaDzialanZarzadu"],
         ],
     ),
-    (
-        ZwierzeCzapkowe,
-        [],
-        [],
-        [
-            Czlonek.__name__,
-        ],
-    ),
+    (ZwierzeCzapkowe, [], [], [Czlonek.__name__])
 ]
 
 autocomplete_urls, autocomplete_widgets = setup_autocompletes(

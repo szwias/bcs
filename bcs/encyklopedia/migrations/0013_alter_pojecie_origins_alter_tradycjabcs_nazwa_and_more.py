@@ -6,28 +6,42 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('encyklopedia', '0012_remove_tradycjabcs_autor_rodzaj_and_more'),
+        ("encyklopedia", "0012_remove_tradycjabcs_autor_rodzaj_and_more"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='pojecie',
-            name='origins',
-            field=models.CharField(blank=True, choices=[('I', 'Inne okoliczności'), ('Wyd', 'Na wydarzeniu czapkowym')], verbose_name='Pierwszy raz pojawiło się:'),
+            model_name="pojecie",
+            name="origins",
+            field=models.CharField(
+                blank=True,
+                choices=[
+                    ("I", "Inne okoliczności"),
+                    ("Wyd", "Na wydarzeniu czapkowym"),
+                ],
+                verbose_name="Pierwszy raz pojawiło się:",
+            ),
         ),
         migrations.AlterField(
-            model_name='tradycjabcs',
-            name='nazwa',
-            field=models.CharField(max_length=100, verbose_name='Tradycja'),
+            model_name="tradycjabcs",
+            name="nazwa",
+            field=models.CharField(max_length=100, verbose_name="Tradycja"),
         ),
         migrations.AlterField(
-            model_name='tradycjabcs',
-            name='okolicznosci_powstania',
-            field=models.CharField(choices=[('I', 'Inne okoliczności'), ('Wyd', 'Na wydarzeniu czapkowym')], max_length=3, verbose_name='Okoliczności powstania'),
+            model_name="tradycjabcs",
+            name="okolicznosci_powstania",
+            field=models.CharField(
+                choices=[
+                    ("I", "Inne okoliczności"),
+                    ("Wyd", "Na wydarzeniu czapkowym"),
+                ],
+                max_length=3,
+                verbose_name="Okoliczności powstania",
+            ),
         ),
         migrations.AlterField(
-            model_name='tradycjainnegobractwa',
-            name='nazwa',
-            field=models.CharField(max_length=100, verbose_name='Tradycja'),
+            model_name="tradycjainnegobractwa",
+            name="nazwa",
+            field=models.CharField(max_length=100, verbose_name="Tradycja"),
         ),
     ]

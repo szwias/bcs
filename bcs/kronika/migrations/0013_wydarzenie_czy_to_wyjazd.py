@@ -6,13 +6,15 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('kronika', '0012_rename_czy_to_wyjazd_wydarzenie_old_czy_to_wyjazd'),
+        ("kronika", "0012_rename_czy_to_wyjazd_wydarzenie_old_czy_to_wyjazd"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='wydarzenie',
-            name='czy_to_wyjazd',
-            field=models.BooleanField(default=False, verbose_name='Czy to wyjazd?'),
+            model_name="wydarzenie",
+            name="czy_to_wyjazd",
+            field=models.BooleanField(
+                default=False, verbose_name="Czy to wyjazd?"
+            ),
         ),
     ]

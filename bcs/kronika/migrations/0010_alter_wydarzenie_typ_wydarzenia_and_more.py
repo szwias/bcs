@@ -7,18 +7,30 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('kronika', '0009_remove_wydarzenie_old_typ_wydarzenia_and_more'),
+        ("kronika", "0009_remove_wydarzenie_old_typ_wydarzenia_and_more"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='wydarzenie',
-            name='typ_wydarzenia',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, to='kronika.typwydarzenia', verbose_name='Typ wydarzenia'),
+            model_name="wydarzenie",
+            name="typ_wydarzenia",
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.SET_NULL,
+                to="kronika.typwydarzenia",
+                verbose_name="Typ wydarzenia",
+            ),
         ),
         migrations.AlterField(
-            model_name='wydarzenie',
-            name='typ_wyjazdu',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, to='kronika.typwyjazdu', verbose_name='Typ wyjazdu'),
+            model_name="wydarzenie",
+            name="typ_wyjazdu",
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.SET_NULL,
+                to="kronika.typwyjazdu",
+                verbose_name="Typ wyjazdu",
+            ),
         ),
     ]

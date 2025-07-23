@@ -6,10 +6,12 @@ from .models import Dokument, Edykt, Ukaz
 class DokumentAdmin(BaseModelAdmin):
     filter_horizontal = ["autorzy"]
 
+
 @admin.register(Edykt)
 class EdyktAdmin(BaseModelAdmin):
     fields = ["tytul", "numer", "autorzy", "tekst"]
     filter_horizontal = ["autorzy"]
+
 
 @admin.register(Ukaz)
 class UkazAdmin(BaseModelAdmin):

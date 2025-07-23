@@ -7,26 +7,39 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('kronika', '0008_rename_typ_wydarzenia_wydarzenie_old_typ_wydarzenia_and_more'),
+        (
+            "kronika",
+            "0008_rename_typ_wydarzenia_wydarzenie_old_typ_wydarzenia_and_more",
+        ),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='wydarzenie',
-            name='old_typ_wydarzenia',
+            model_name="wydarzenie",
+            name="old_typ_wydarzenia",
         ),
         migrations.RemoveField(
-            model_name='wydarzenie',
-            name='old_typ_wyjazdu',
+            model_name="wydarzenie",
+            name="old_typ_wyjazdu",
         ),
         migrations.AddField(
-            model_name='wydarzenie',
-            name='typ_wydarzenia',
-            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, to='kronika.typwydarzenia', verbose_name='Typ wydarzenia'),
+            model_name="wydarzenie",
+            name="typ_wydarzenia",
+            field=models.ForeignKey(
+                null=True,
+                on_delete=django.db.models.deletion.SET_NULL,
+                to="kronika.typwydarzenia",
+                verbose_name="Typ wydarzenia",
+            ),
         ),
         migrations.AddField(
-            model_name='wydarzenie',
-            name='typ_wyjazdu',
-            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, to='kronika.typwyjazdu', verbose_name='Typ wyjazdu'),
+            model_name="wydarzenie",
+            name="typ_wyjazdu",
+            field=models.ForeignKey(
+                null=True,
+                on_delete=django.db.models.deletion.SET_NULL,
+                to="kronika.typwyjazdu",
+                verbose_name="Typ wyjazdu",
+            ),
         ),
     ]

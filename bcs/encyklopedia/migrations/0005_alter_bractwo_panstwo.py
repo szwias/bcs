@@ -7,14 +7,20 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('encyklopedia', '0004_remove_powiedzenie_autor'),
-        ('miejsca', '0004_miejsce_zamkniete_na_stale_alter_miejsce_adres'),
+        ("encyklopedia", "0004_remove_powiedzenie_autor"),
+        ("miejsca", "0004_miejsce_zamkniete_na_stale_alter_miejsce_adres"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='bractwo',
-            name='panstwo',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, to='miejsca.kraj', verbose_name='Kraj pochodzenia'),
+            model_name="bractwo",
+            name="panstwo",
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.SET_NULL,
+                to="miejsca.kraj",
+                verbose_name="Kraj pochodzenia",
+            ),
         ),
     ]

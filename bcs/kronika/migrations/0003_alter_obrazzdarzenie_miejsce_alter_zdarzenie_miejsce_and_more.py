@@ -7,27 +7,43 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('kronika', '0002_charakterystykadzialanzarzadu'),
-        ('miejsca', '0003_typmiejsca_miejsce'),
+        ("kronika", "0002_charakterystykadzialanzarzadu"),
+        ("miejsca", "0003_typmiejsca_miejsce"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='obrazzdarzenie',
-            name='miejsce',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='zdjecia_miejsca', to='miejsca.miejsce', verbose_name='Miejsce'),
+            model_name="obrazzdarzenie",
+            name="miejsce",
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.SET_NULL,
+                related_name="zdjecia_miejsca",
+                to="miejsca.miejsce",
+                verbose_name="Miejsce",
+            ),
         ),
         migrations.AlterField(
-            model_name='zdarzenie',
-            name='miejsce',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='zdarzenia_z_miejsca', to='miejsca.miejsce', verbose_name='Miejsce'),
+            model_name="zdarzenie",
+            name="miejsce",
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.SET_NULL,
+                related_name="zdarzenia_z_miejsca",
+                to="miejsca.miejsce",
+                verbose_name="Miejsce",
+            ),
         ),
         migrations.AlterField(
-            model_name='wydarzenie',
-            name='miejsca',
-            field=models.ManyToManyField(blank=True, to='miejsca.miejsce', verbose_name='Miejsca'),
+            model_name="wydarzenie",
+            name="miejsca",
+            field=models.ManyToManyField(
+                blank=True, to="miejsca.miejsce", verbose_name="Miejsca"
+            ),
         ),
         migrations.DeleteModel(
-            name='Miejsce',
+            name="Miejsce",
         ),
     ]

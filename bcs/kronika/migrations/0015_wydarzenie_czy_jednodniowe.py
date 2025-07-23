@@ -6,13 +6,15 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('kronika', '0014_remove_wydarzenie_old_czy_to_wyjazd'),
+        ("kronika", "0014_remove_wydarzenie_old_czy_to_wyjazd"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='wydarzenie',
-            name='czy_jednodniowe',
-            field=models.BooleanField(default=True, verbose_name='Jednodniowe'),
+            model_name="wydarzenie",
+            name="czy_jednodniowe",
+            field=models.BooleanField(
+                default=True, verbose_name="Jednodniowe"
+            ),
         ),
     ]

@@ -7,24 +7,34 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('osoby', '0010_rename_bractwo_innaosoba_bractwo_do_ktorego_nalezy'),
-        ('encyklopedia', '0014_bractwo_zalozyciele'),
+        ("osoby", "0010_rename_bractwo_innaosoba_bractwo_do_ktorego_nalezy"),
+        ("encyklopedia", "0014_bractwo_zalozyciele"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='tradycjabcs',
-            name='zapozyczona',
+            model_name="tradycjabcs",
+            name="zapozyczona",
         ),
         migrations.AddField(
-            model_name='tradycjabcs',
-            name='autor',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, to='osoby.osoba', verbose_name='Autor tradycji'),
+            model_name="tradycjabcs",
+            name="autor",
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.SET_NULL,
+                to="osoby.osoba",
+                verbose_name="Autor tradycji",
+            ),
         ),
         migrations.AddField(
-            model_name='tradycjabcs',
-            name='zapozyczona_czy_autorska',
-            field=models.CharField(choices=[('Z', 'Zapożyczona'), ('A', 'Autorka')], default='Z', verbose_name='Zapożyczona czy autorska'),
+            model_name="tradycjabcs",
+            name="zapozyczona_czy_autorska",
+            field=models.CharField(
+                choices=[("Z", "Zapożyczona"), ("A", "Autorka")],
+                default="Z",
+                verbose_name="Zapożyczona czy autorska",
+            ),
             preserve_default=False,
         ),
     ]

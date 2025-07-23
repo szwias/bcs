@@ -7,34 +7,75 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('miejsca', '0002_alter_uczelnia_options'),
+        ("miejsca", "0002_alter_uczelnia_options"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='TypMiejsca',
+            name="TypMiejsca",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('nazwa', models.CharField(max_length=100, verbose_name='Typ miejsca')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "nazwa",
+                    models.CharField(
+                        max_length=100, verbose_name="Typ miejsca"
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Typ miejsca',
-                'verbose_name_plural': 'Typy miejsc',
-                'ordering': ['nazwa'],
+                "verbose_name": "Typ miejsca",
+                "verbose_name_plural": "Typy miejsc",
+                "ordering": ["nazwa"],
             },
         ),
         migrations.CreateModel(
-            name='Miejsce',
+            name="Miejsce",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('nazwa', models.CharField(max_length=255, verbose_name='Nazwa')),
-                ('adres', models.CharField(blank=True, default='Ulica 1, Kraków, Polska', max_length=255, verbose_name='Adres')),
-                ('typ', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, to='miejsca.typmiejsca', verbose_name='Typ miejsca')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "nazwa",
+                    models.CharField(max_length=255, verbose_name="Nazwa"),
+                ),
+                (
+                    "adres",
+                    models.CharField(
+                        blank=True,
+                        default="Ulica 1, Kraków, Polska",
+                        max_length=255,
+                        verbose_name="Adres",
+                    ),
+                ),
+                (
+                    "typ",
+                    models.ForeignKey(
+                        blank=True,
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        to="miejsca.typmiejsca",
+                        verbose_name="Typ miejsca",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Miejsce',
-                'verbose_name_plural': 'Miejsca',
-                'ordering': ['nazwa'],
+                "verbose_name": "Miejsce",
+                "verbose_name_plural": "Miejsca",
+                "ordering": ["nazwa"],
             },
         ),
     ]

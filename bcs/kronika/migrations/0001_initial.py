@@ -9,112 +9,395 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Miejsce',
+            name="Miejsce",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('nazwa', models.CharField(max_length=255, verbose_name='Nazwa')),
-                ('adres', models.CharField(blank=True, default='Ulica 1, Kraków, Polska', max_length=255, verbose_name='Adres')),
-                ('typ', models.CharField(choices=[('Bar', 'Bar'), ('Mleczny', 'Bar mleczny'), ('Dworzec', 'Dworzec'), ('Inny', 'Inny'), ('Karaoke', 'Karaoke'), ('Kino', 'Kino'), ('Lokum', 'Lokum'), ('Lotnisko', 'Lotnisko'), ('Miasto', 'Miasto'), ('ObKult', 'Obiekt kultury'), ('OgrodPlac', 'Ogród/Plac'), ('Pub', 'Pub/Klub'), ('Restaur', 'Restauracja'), ('Schronisko', 'Schronisko'), ('Szczyt', 'Szczyt'), ('Szlak', 'Szlak'), ('Teatr', 'Teatr'), ('Uczel', 'Uczelnia')], max_length=10, verbose_name='Typ miejsca')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "nazwa",
+                    models.CharField(max_length=255, verbose_name="Nazwa"),
+                ),
+                (
+                    "adres",
+                    models.CharField(
+                        blank=True,
+                        default="Ulica 1, Kraków, Polska",
+                        max_length=255,
+                        verbose_name="Adres",
+                    ),
+                ),
+                (
+                    "typ",
+                    models.CharField(
+                        choices=[
+                            ("Bar", "Bar"),
+                            ("Mleczny", "Bar mleczny"),
+                            ("Dworzec", "Dworzec"),
+                            ("Inny", "Inny"),
+                            ("Karaoke", "Karaoke"),
+                            ("Kino", "Kino"),
+                            ("Lokum", "Lokum"),
+                            ("Lotnisko", "Lotnisko"),
+                            ("Miasto", "Miasto"),
+                            ("ObKult", "Obiekt kultury"),
+                            ("OgrodPlac", "Ogród/Plac"),
+                            ("Pub", "Pub/Klub"),
+                            ("Restaur", "Restauracja"),
+                            ("Schronisko", "Schronisko"),
+                            ("Szczyt", "Szczyt"),
+                            ("Szlak", "Szlak"),
+                            ("Teatr", "Teatr"),
+                            ("Uczel", "Uczelnia"),
+                        ],
+                        max_length=10,
+                        verbose_name="Typ miejsca",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Miejsce',
-                'verbose_name_plural': 'Miejsca',
-                'ordering': ['nazwa'],
+                "verbose_name": "Miejsce",
+                "verbose_name_plural": "Miejsca",
+                "ordering": ["nazwa"],
             },
         ),
         migrations.CreateModel(
-            name='ObrazWydarzenie',
+            name="ObrazWydarzenie",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('tytul', models.CharField(blank=True, max_length=100, verbose_name='Tytuł')),
-                ('obraz', models.ImageField(upload_to='kronika/wydarzenia/', verbose_name='Dodaj obraz')),
-                ('opis', models.TextField(blank=True, verbose_name='Opis')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "tytul",
+                    models.CharField(
+                        blank=True, max_length=100, verbose_name="Tytuł"
+                    ),
+                ),
+                (
+                    "obraz",
+                    models.ImageField(
+                        upload_to="kronika/wydarzenia/",
+                        verbose_name="Dodaj obraz",
+                    ),
+                ),
+                ("opis", models.TextField(blank=True, verbose_name="Opis")),
             ],
             options={
-                'verbose_name': 'Zdjęcie z wydarzenia',
-                'verbose_name_plural': 'Zdjęcia z wydarzeń',
-                'ordering': ['-wydarzenie'],
+                "verbose_name": "Zdjęcie z wydarzenia",
+                "verbose_name_plural": "Zdjęcia z wydarzeń",
+                "ordering": ["-wydarzenie"],
             },
         ),
         migrations.CreateModel(
-            name='Wydarzenie',
+            name="Wydarzenie",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('nazwa', models.CharField(max_length=255, verbose_name='Nazwa')),
-                ('data_rozpoczecia', models.DateField(default=django.utils.timezone.now, verbose_name='Data rozpoczęcia')),
-                ('data_zakonczenia', models.DateField(default=django.utils.timezone.now, verbose_name='Data zakończenia')),
-                ('czy_to_wyjazd', models.CharField(choices=[('T', 'Tak'), ('N', 'Nie')], default='N', max_length=1, verbose_name='Czy to wyjazd?')),
-                ('typ_wydarzenia', models.CharField(choices=[('Akcja', 'Akcja'), ('Inne', 'Inne'), ('Karczma', 'Karczma'), ('Kino', 'Kino'), ('KonfNauk', 'Konferencja naukowa/wykład/prelekcja'), ('Groby', 'Groby'), ('Hist', 'Historyczne'), ('Ognisko', 'Grill/Ognisko'), ('Ostry', 'Ostry Dyżur'), ('Plansz', 'Planszówki'), ('Reakty', 'Reaktywacja'), ('Teatr', 'Teatr'), ('Walne', 'Walne'), ('Wyciecz', 'Wycieczka'), ('Wybory', 'Wybory'), ('Ulanskie', 'Ułańskie Zdrowie'), ('Urocz', 'Uroczystość'), ('ZawodySp', 'Zawody sportowe'), ('n/a', 'Nie dotyczy')], default='n/a', max_length=10, verbose_name='Typ wydarzenia')),
-                ('typ_wyjazdu', models.CharField(choices=[('Adapciak', 'Adapciak'), ('Inny', 'Inny'), ('Kudlacze', 'Kudłacze'), ('ZAGR', 'Wyjazd Zagraniczny'), ('n/a', 'Nie dotyczy')], default='n/a', max_length=10, verbose_name='Typ wyjazdu')),
-                ('link', models.URLField(blank=True, verbose_name='Link do wydarzenia na FB')),
-                ('opis', models.TextField(blank=True, verbose_name='Opis')),
-                ('miejsca', models.ManyToManyField(blank=True, to='kronika.miejsce', verbose_name='Miejsca')),
-                ('obrazy', models.ManyToManyField(blank=True, related_name='po_cholere_to_polaczenie', to='kronika.obrazwydarzenie', verbose_name='Zdjęcia')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "nazwa",
+                    models.CharField(max_length=255, verbose_name="Nazwa"),
+                ),
+                (
+                    "data_rozpoczecia",
+                    models.DateField(
+                        default=django.utils.timezone.now,
+                        verbose_name="Data rozpoczęcia",
+                    ),
+                ),
+                (
+                    "data_zakonczenia",
+                    models.DateField(
+                        default=django.utils.timezone.now,
+                        verbose_name="Data zakończenia",
+                    ),
+                ),
+                (
+                    "czy_to_wyjazd",
+                    models.CharField(
+                        choices=[("T", "Tak"), ("N", "Nie")],
+                        default="N",
+                        max_length=1,
+                        verbose_name="Czy to wyjazd?",
+                    ),
+                ),
+                (
+                    "typ_wydarzenia",
+                    models.CharField(
+                        choices=[
+                            ("Akcja", "Akcja"),
+                            ("Inne", "Inne"),
+                            ("Karczma", "Karczma"),
+                            ("Kino", "Kino"),
+                            (
+                                "KonfNauk",
+                                "Konferencja naukowa/wykład/prelekcja",
+                            ),
+                            ("Groby", "Groby"),
+                            ("Hist", "Historyczne"),
+                            ("Ognisko", "Grill/Ognisko"),
+                            ("Ostry", "Ostry Dyżur"),
+                            ("Plansz", "Planszówki"),
+                            ("Reakty", "Reaktywacja"),
+                            ("Teatr", "Teatr"),
+                            ("Walne", "Walne"),
+                            ("Wyciecz", "Wycieczka"),
+                            ("Wybory", "Wybory"),
+                            ("Ulanskie", "Ułańskie Zdrowie"),
+                            ("Urocz", "Uroczystość"),
+                            ("ZawodySp", "Zawody sportowe"),
+                            ("n/a", "Nie dotyczy"),
+                        ],
+                        default="n/a",
+                        max_length=10,
+                        verbose_name="Typ wydarzenia",
+                    ),
+                ),
+                (
+                    "typ_wyjazdu",
+                    models.CharField(
+                        choices=[
+                            ("Adapciak", "Adapciak"),
+                            ("Inny", "Inny"),
+                            ("Kudlacze", "Kudłacze"),
+                            ("ZAGR", "Wyjazd Zagraniczny"),
+                            ("n/a", "Nie dotyczy"),
+                        ],
+                        default="n/a",
+                        max_length=10,
+                        verbose_name="Typ wyjazdu",
+                    ),
+                ),
+                (
+                    "link",
+                    models.URLField(
+                        blank=True, verbose_name="Link do wydarzenia na FB"
+                    ),
+                ),
+                ("opis", models.TextField(blank=True, verbose_name="Opis")),
+                (
+                    "miejsca",
+                    models.ManyToManyField(
+                        blank=True,
+                        to="kronika.miejsce",
+                        verbose_name="Miejsca",
+                    ),
+                ),
+                (
+                    "obrazy",
+                    models.ManyToManyField(
+                        blank=True,
+                        related_name="po_cholere_to_polaczenie",
+                        to="kronika.obrazwydarzenie",
+                        verbose_name="Zdjęcia",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Wydarzenie',
-                'verbose_name_plural': 'Wydarzenia',
-                'ordering': ['-data_rozpoczecia'],
+                "verbose_name": "Wydarzenie",
+                "verbose_name_plural": "Wydarzenia",
+                "ordering": ["-data_rozpoczecia"],
             },
         ),
         migrations.AddField(
-            model_name='obrazwydarzenie',
-            name='wydarzenie',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='zdjecia_z_wydarzenia', to='kronika.wydarzenie', verbose_name='Wydarzenie'),
+            model_name="obrazwydarzenie",
+            name="wydarzenie",
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.SET_NULL,
+                related_name="zdjecia_z_wydarzenia",
+                to="kronika.wydarzenie",
+                verbose_name="Wydarzenie",
+            ),
         ),
         migrations.CreateModel(
-            name='Zdarzenie',
+            name="Zdarzenie",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('nazwa', models.CharField(max_length=255, verbose_name='Nazwa')),
-                ('data', models.DateField(default=django.utils.timezone.now, verbose_name='Data')),
-                ('godzina', models.TimeField(blank=True, null=True, verbose_name='Godzina')),
-                ('opis', models.TextField(blank=True, verbose_name='Opis')),
-                ('miejsce', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='zdarzenia_z_miejsca', to='kronika.miejsce', verbose_name='Miejsce')),
-                ('wydarzenie', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='zdarzenia_z_wydarzenia', to='kronika.wydarzenie', verbose_name='Wydarzenie')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "nazwa",
+                    models.CharField(max_length=255, verbose_name="Nazwa"),
+                ),
+                (
+                    "data",
+                    models.DateField(
+                        default=django.utils.timezone.now, verbose_name="Data"
+                    ),
+                ),
+                (
+                    "godzina",
+                    models.TimeField(
+                        blank=True, null=True, verbose_name="Godzina"
+                    ),
+                ),
+                ("opis", models.TextField(blank=True, verbose_name="Opis")),
+                (
+                    "miejsce",
+                    models.ForeignKey(
+                        blank=True,
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        related_name="zdarzenia_z_miejsca",
+                        to="kronika.miejsce",
+                        verbose_name="Miejsce",
+                    ),
+                ),
+                (
+                    "wydarzenie",
+                    models.ForeignKey(
+                        blank=True,
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        related_name="zdarzenia_z_wydarzenia",
+                        to="kronika.wydarzenie",
+                        verbose_name="Wydarzenie",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Zdarzenie',
-                'verbose_name_plural': 'Zdarzenia',
-                'ordering': ['-data', 'nazwa'],
+                "verbose_name": "Zdarzenie",
+                "verbose_name_plural": "Zdarzenia",
+                "ordering": ["-data", "nazwa"],
             },
         ),
         migrations.CreateModel(
-            name='Proces',
+            name="Proces",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('nazwa', models.CharField(max_length=255, verbose_name='Nazwa')),
-                ('data_rozpoczecia', models.DateField(default=django.utils.timezone.now, verbose_name='Data rozpoczęcia')),
-                ('data_zakonczenia', models.DateField(default=django.utils.timezone.now, verbose_name='Data zakończenia')),
-                ('opis', models.TextField(blank=True, verbose_name='Opis')),
-                ('zdarzenia', models.ManyToManyField(blank=True, to='kronika.zdarzenie', verbose_name='Zdarzenia')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "nazwa",
+                    models.CharField(max_length=255, verbose_name="Nazwa"),
+                ),
+                (
+                    "data_rozpoczecia",
+                    models.DateField(
+                        default=django.utils.timezone.now,
+                        verbose_name="Data rozpoczęcia",
+                    ),
+                ),
+                (
+                    "data_zakonczenia",
+                    models.DateField(
+                        default=django.utils.timezone.now,
+                        verbose_name="Data zakończenia",
+                    ),
+                ),
+                ("opis", models.TextField(blank=True, verbose_name="Opis")),
+                (
+                    "zdarzenia",
+                    models.ManyToManyField(
+                        blank=True,
+                        to="kronika.zdarzenie",
+                        verbose_name="Zdarzenia",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Proces',
-                'verbose_name_plural': 'Procesy',
-                'ordering': ['-data_rozpoczecia'],
+                "verbose_name": "Proces",
+                "verbose_name_plural": "Procesy",
+                "ordering": ["-data_rozpoczecia"],
             },
         ),
         migrations.CreateModel(
-            name='ObrazZdarzenie',
+            name="ObrazZdarzenie",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('tytul', models.CharField(blank=True, max_length=100, verbose_name='Tytuł')),
-                ('data', models.DateField(blank=True, default=django.utils.timezone.now, verbose_name='Data wykonania')),
-                ('obraz', models.ImageField(upload_to='kronika/zdarzenia/', verbose_name='Dodaj obraz')),
-                ('opis', models.TextField(blank=True, verbose_name='Opis')),
-                ('miejsce', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='zdjecia_miejsca', to='kronika.miejsce', verbose_name='Miejsce')),
-                ('zdarzenie', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='zdjecia_ze_zdarzenia', to='kronika.zdarzenie', verbose_name='Zdarzenie')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "tytul",
+                    models.CharField(
+                        blank=True, max_length=100, verbose_name="Tytuł"
+                    ),
+                ),
+                (
+                    "data",
+                    models.DateField(
+                        blank=True,
+                        default=django.utils.timezone.now,
+                        verbose_name="Data wykonania",
+                    ),
+                ),
+                (
+                    "obraz",
+                    models.ImageField(
+                        upload_to="kronika/zdarzenia/",
+                        verbose_name="Dodaj obraz",
+                    ),
+                ),
+                ("opis", models.TextField(blank=True, verbose_name="Opis")),
+                (
+                    "miejsce",
+                    models.ForeignKey(
+                        blank=True,
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        related_name="zdjecia_miejsca",
+                        to="kronika.miejsce",
+                        verbose_name="Miejsce",
+                    ),
+                ),
+                (
+                    "zdarzenie",
+                    models.ForeignKey(
+                        blank=True,
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        related_name="zdjecia_ze_zdarzenia",
+                        to="kronika.zdarzenie",
+                        verbose_name="Zdarzenie",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Zdjęcie ze zdarzenia',
-                'verbose_name_plural': 'Zdjęcia ze zdarzeń',
-                'ordering': ['-data'],
+                "verbose_name": "Zdjęcie ze zdarzenia",
+                "verbose_name_plural": "Zdjęcia ze zdarzeń",
+                "ordering": ["-data"],
             },
         ),
     ]
