@@ -530,6 +530,9 @@ class Zarzad(models.Model):
         related_name="kadencje_jako_cantandi",
     )
 
+    # TODO: add wybory field linked to kalendarz.Wydarzenie or
+    #  kronika.Wydarzenie (the latter would be better - less clatter)
+
     class Meta:
         verbose_name = "Zarząd"
         verbose_name_plural = "Zarządy"
