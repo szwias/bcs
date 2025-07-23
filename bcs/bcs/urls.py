@@ -35,6 +35,10 @@ urlpatterns = [
         include("encyklopedia.autocomplete_urls", "encyklopedia_autocomplete"),
     ),
     path(
+        "autocomplete/kalendarz/",
+        include("kalendarz.autocomplete_urls", "kalendarz_autocomplete"),
+    ),
+    path(
         "autocomplete/kronika/",
         include("kronika.autocomplete_urls", "kronika_autocomplete"),
     ),
