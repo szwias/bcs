@@ -14,9 +14,11 @@ class UsedOnlyFKFilter(RelatedFieldListFilter):
 
         # Limit the field's queryset before calling the parent init
         self._original_limit_choices_to = field.remote_field.limit_choices_to
-        field.remote_field.limit_choices_to = {'pk__in': used_ids}
+        field.remote_field.limit_choices_to = {"pk__in": used_ids}
 
-        super().__init__(field, request, params, model, model_admin, field_path)
+        super().__init__(
+            field, request, params, model, model_admin, field_path
+        )
 
         # Restore original limit_choices_to in case it's reused elsewhere
         field.remote_field.limit_choices_to = self._original_limit_choices_to
@@ -24,10 +26,9 @@ class UsedOnlyFKFilter(RelatedFieldListFilter):
 
 class BaseModelAdmin(admin.ModelAdmin):
 
-    actions = ['save_selected']
+    actions = ["save_selected"]
     list_filter_exclude = set()
     save_as = True
-
 
     def save_selected(self, request, queryset):
         pass
@@ -35,7 +36,7 @@ class BaseModelAdmin(admin.ModelAdmin):
     save_selected.short_description = "Save selected objects"
 
     def _get_list_filter(self):
-        exclude = getattr(self, 'list_filter_exclude', set())
+        exclude = getattr(self, "list_filter_exclude", set())
 
         if exclude == "__all__":
             return []
@@ -43,12 +44,11 @@ class BaseModelAdmin(admin.ModelAdmin):
         list_filter = list(self.list_filter)
         if not list_filter:
             for field in self.model._meta.get_fields():
-                if (
-                        field.name not in exclude
-                        and (
-                        getattr(field, 'choices', None) or
-                        isinstance(field, (models.BooleanField, models.ForeignKey))
-                )
+                if field.name not in exclude and (
+                    getattr(field, "choices", None)
+                    or isinstance(
+                        field, (models.BooleanField, models.ForeignKey)
+                    )
                 ):
                     list_filter.append(field.name)
 
@@ -62,8 +62,9 @@ class BaseModelAdmin(admin.ModelAdmin):
             if isinstance(f, tuple):
                 # Already a custom filter, leave as-is
                 smart_filters.append(f)
-            elif (isinstance(f, str)
-            and isinstance(self.model._meta.get_field(f), ForeignKey)):
+            elif isinstance(f, str) and isinstance(
+                self.model._meta.get_field(f), ForeignKey
+            ):
                 # Wrap FK fields with our limited filter
                 smart_filters.append((f, UsedOnlyFKFilter))
             else:
@@ -84,7 +85,9 @@ class BaseModelAdmin(admin.ModelAdmin):
             pass
 
 
-def register_all_models(*, skip_models=None, custom_admins=None, base_admin_class=BaseModelAdmin):
+def register_all_models(
+    *, skip_models=None, custom_admins=None, base_admin_class=BaseModelAdmin
+):
     """
     Auto-registers all models in the caller's app with BaseModelAdmin,
     unless overridden in `custom_admins`.
@@ -99,7 +102,7 @@ def register_all_models(*, skip_models=None, custom_admins=None, base_admin_clas
     # Automatically infer the caller's app label
     caller_frame = inspect.stack()[1]
     caller_module = inspect.getmodule(caller_frame.frame)
-    app_label = caller_module.__name__.split('.')[0]
+    app_label = caller_module.__name__.split(".")[0]
     app_config = apps.get_app_config(app_label)
 
     for model in app_config.get_models():
@@ -112,8 +115,7 @@ def register_all_models(*, skip_models=None, custom_admins=None, base_admin_clas
             pass
 
         admin_class = custom_admins.get(
-            model,
-            type(f'{model.__name__}Admin', (base_admin_class,), {})
+            model, type(f"{model.__name__}Admin", (base_admin_class,), {})
         )
 
         admin.site.register(model, admin_class)

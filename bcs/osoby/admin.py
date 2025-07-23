@@ -1,17 +1,30 @@
 from core.utils.automation.BaseAdmin import *
-from .models import (Bean, Czlonek, InnaOsoba, DawnyZarzad, Zarzad, HallOfFame, ImieSzlacheckie, WielkiMistrz,
-    ZwierzeCzapkowe, Osoba)
+from .models import (
+    Bean,
+    Czlonek,
+    InnaOsoba,
+    DawnyZarzad,
+    Zarzad,
+    HallOfFame,
+    ImieSzlacheckie,
+    WielkiMistrz,
+    ZwierzeCzapkowe,
+    Osoba,
+)
 from kronika.inlines import CharakterystykaDzialanZarzaduInline
 
 from django.contrib.contenttypes.models import ContentType
 
+
 class UsedContentTypeFilter(admin.SimpleListFilter):
-    title = 'Typ osoby'
-    parameter_name = 'typ_osoby'
+    title = "Typ osoby"
+    parameter_name = "typ_osoby"
 
     def lookups(self, request, model_admin):
         # Get only content types that are actually used in this model
-        used_ct_ids = model_admin.model.objects.values_list('polymorphic_ctype', flat=True).distinct()
+        used_ct_ids = model_admin.model.objects.values_list(
+            "polymorphic_ctype", flat=True
+        ).distinct()
         used_cts = ContentType.objects.filter(id__in=used_ct_ids)
         return [
             (ct.id, apps.get_model(ct.app_label, ct.model)._meta.verbose_name)
@@ -23,47 +36,58 @@ class UsedContentTypeFilter(admin.SimpleListFilter):
             return queryset.filter(polymorphic_ctype_id=self.value())
         return queryset
 
+
 @admin.register(Osoba)
 class OsobaAdmin(BaseModelAdmin):
     list_filter = [UsedContentTypeFilter]
 
+
 @admin.register(Bean)
 class BeanAdmin(BaseModelAdmin):
-    list_filter = ['staz', 'pewnosc_stazu']
+    list_filter = ["staz", "pewnosc_stazu"]
+
 
 @admin.register(Czlonek)
 class CzlonekAdmin(BaseModelAdmin):
-    list_filter_exclude = ['polymorphic_ctype', 'osoba_ptr']
+    list_filter_exclude = ["polymorphic_ctype", "osoba_ptr"]
+
 
 @admin.register(InnaOsoba)
 class InnaOsobaAdmin(BaseModelAdmin):
-    list_filter_exclude = ['polymorphic_ctype', 'osoba_ptr']
+    list_filter_exclude = ["polymorphic_ctype", "osoba_ptr"]
+
 
 @admin.register(DawnyZarzad)
 class DawnyZarzadAdmin(BaseModelAdmin):
     list_filter_exclude = "__all__"
     inlines = [CharakterystykaDzialanZarzaduInline]
 
+
 @admin.register(Zarzad)
 class ZarzadAdmin(BaseModelAdmin):
     list_filter_exclude = "__all__"
     inlines = [CharakterystykaDzialanZarzaduInline]
 
+
 @admin.register(HallOfFame)
 class HallOfFameAdmin(BaseModelAdmin):
     list_filter_exclude = "__all__"
+
 
 @admin.register(ImieSzlacheckie)
 class ImieSzlacheckieAdmin(BaseModelAdmin):
     list_filter_exclude = "__all__"
 
+
 @admin.register(WielkiMistrz)
 class WielkiMistrzAdmin(BaseModelAdmin):
     list_filter_exclude = "__all__"
 
+
 @admin.register(ZwierzeCzapkowe)
 class ZwierzeCzapkoweAdmin(BaseModelAdmin):
     list_filter_exclude = "__all__"
+
 
 register_all_models(
     custom_admins={

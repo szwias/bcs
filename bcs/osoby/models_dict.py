@@ -1,11 +1,17 @@
 from collections import defaultdict
 from core.utils.autocompletion.AutocompletesGeneration import add_model_name
 from .models import (
-    Bean, Czlonek, InnaOsoba, Osoba, \
-    ImieSzlacheckie, ZwierzeCzapkowe, \
-    DawnyZarzad, WielkiMistrz, Zarzad, \
-    HallOfFame, \
-    )
+    Bean,
+    Czlonek,
+    InnaOsoba,
+    Osoba,
+    ImieSzlacheckie,
+    ZwierzeCzapkowe,
+    DawnyZarzad,
+    WielkiMistrz,
+    Zarzad,
+    HallOfFame,
+)
 
 names = defaultdict(str)
 

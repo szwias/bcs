@@ -1,7 +1,12 @@
 from django.contrib import admin
 
 from core.utils.autocompletion.AdvancedInlines import ParentAwareInline
-from .models import ObrazZdarzenie, ObrazWydarzenie, Zdarzenie, CharakterystykaDzialanZarzadu
+from .models import (
+    ObrazZdarzenie,
+    ObrazWydarzenie,
+    Zdarzenie,
+    CharakterystykaDzialanZarzadu,
+)
 from .forms import ZdarzenieInlineForm, CharakterystykaDzialanZarzaduForm
 
 
@@ -25,6 +30,7 @@ class ObrazZdarzenieInline(admin.StackedInline):
     extra = 0
     fields = ["tytul", "obraz"]
     show_change_link = True
+
 
 class CharakterystykaDzialanZarzaduInline(admin.StackedInline):
     model = CharakterystykaDzialanZarzadu

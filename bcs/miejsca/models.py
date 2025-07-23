@@ -3,31 +3,27 @@ from core.utils.Consts import MAX_LENGTH, SHORT_LENGTH, MEDIUM_LENGTH
 
 
 class Kraj(models.Model):
-    kraj = models.CharField(
-        max_length=MEDIUM_LENGTH, verbose_name='Kraj',
-    )
+    kraj = models.CharField(max_length=MEDIUM_LENGTH, verbose_name="Kraj")
 
     class Meta:
-        verbose_name = 'Kraj'
-        verbose_name_plural = 'Kraje'
-        ordering = ['kraj']
+        verbose_name = "Kraj"
+        verbose_name_plural = "Kraje"
+        ordering = ["kraj"]
 
     def __str__(self):
         return self.kraj
 
     @staticmethod
     def get_polska():
-        return Kraj.objects.get(kraj='Polska')
+        return Kraj.objects.get(kraj="Polska")
 
 
 class Miejsce(models.Model):
 
-    nazwa = models.CharField(
-        max_length=MAX_LENGTH, verbose_name="Nazwa",
-    )
+    nazwa = models.CharField(max_length=MAX_LENGTH, verbose_name="Nazwa")
 
     adres = models.CharField(
-        max_length=MAX_LENGTH, blank=True, verbose_name="Adres",
+        max_length=MAX_LENGTH, blank=True, verbose_name="Adres"
     )
 
     typ = models.ForeignKey(
@@ -39,7 +35,7 @@ class Miejsce(models.Model):
     )
 
     zamkniete_na_stale = models.BooleanField(
-        default=False, verbose_name="Zamknięte na stałe",
+        default=False, verbose_name="Zamknięte na stałe"
     )
 
     class Meta:
@@ -54,13 +50,13 @@ class Miejsce(models.Model):
 class TypMiejsca(models.Model):
 
     nazwa = models.CharField(
-        max_length=MEDIUM_LENGTH, verbose_name='Typ miejsca',
+        max_length=MEDIUM_LENGTH, verbose_name="Typ miejsca"
     )
 
     class Meta:
-        verbose_name = 'Typ miejsca'
-        verbose_name_plural = 'Typy miejsc'
-        ordering = ['nazwa']
+        verbose_name = "Typ miejsca"
+        verbose_name_plural = "Typy miejsc"
+        ordering = ["nazwa"]
 
     def __str__(self):
         return self.nazwa
@@ -68,13 +64,9 @@ class TypMiejsca(models.Model):
 
 class Uczelnia(models.Model):
 
-    nazwa = models.CharField(
-        max_length=MAX_LENGTH, verbose_name="Uczelnia"
-    )
+    nazwa = models.CharField(max_length=MAX_LENGTH, verbose_name="Uczelnia")
 
-    akronim = models.CharField(
-        max_length=SHORT_LENGTH, verbose_name="Akronim"
-    )
+    akronim = models.CharField(max_length=SHORT_LENGTH, verbose_name="Akronim")
 
     kraj = models.ForeignKey(
         Kraj,
@@ -87,7 +79,7 @@ class Uczelnia(models.Model):
     class Meta:
         verbose_name = "Uczelnia"
         verbose_name_plural = "Uczelnie"
-        ordering = ['kraj', 'nazwa']
+        ordering = ["kraj", "nazwa"]
 
     def __str__(self):
         return f"{self.nazwa} ({self.akronim})"
@@ -110,6 +102,7 @@ class Uczelnia(models.Model):
         )
         return uczelnia
 
+
 class Wydzial(models.Model):
 
     nazwa = models.CharField(
@@ -121,16 +114,13 @@ class Wydzial(models.Model):
     )
 
     uczelnia = models.ForeignKey(
-        Uczelnia,
-        null=True,
-        on_delete=models.SET_NULL,
-        verbose_name="Uczelnia",
+        Uczelnia, null=True, on_delete=models.SET_NULL, verbose_name="Uczelnia"
     )
 
     class Meta:
         verbose_name = "Wydział"
         verbose_name_plural = "Wydziały"
-        ordering = ['uczelnia', 'nazwa']
+        ordering = ["uczelnia", "nazwa"]
 
     def __str__(self):
         return f"{str(self.uczelnia.akronim)}: {self.nazwa} ({self.skrot})"

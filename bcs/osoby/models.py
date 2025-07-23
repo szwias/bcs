@@ -2,7 +2,12 @@ from django.contrib.postgres.fields import ArrayField
 from django.db import models
 from polymorphic.models import PolymorphicModel
 from roman import fromRoman
-from core.utils.Consts import MAX_LENGTH, MEDIUM_LENGTH, SHORT_LENGTH, NAME_LENGTH
+from core.utils.Consts import (
+    MAX_LENGTH,
+    MEDIUM_LENGTH,
+    SHORT_LENGTH,
+    NAME_LENGTH,
+)
 from core.utils.czas import Czas
 from core.utils.czas.Czas import ROK_ZALOZENIA
 from core.models import Kadencja
@@ -16,16 +21,17 @@ class Lengths:
 
 
 class Osoba(PolymorphicModel):
-    imie = models.CharField(
-        max_length=NAME_LENGTH, verbose_name='Imię'
-    )
+    imie = models.CharField(max_length=NAME_LENGTH, verbose_name="Imię")
 
     nazwisko = models.CharField(
-        max_length=NAME_LENGTH, blank=True, verbose_name='Nazwisko'
+        max_length=NAME_LENGTH, blank=True, verbose_name="Nazwisko"
     )
 
     przezwiska = ArrayField(
-        models.CharField(max_length=MAX_LENGTH), blank=True, default=list, verbose_name="Przezwiska"
+        models.CharField(max_length=MAX_LENGTH),
+        blank=True,
+        default=list,
+        verbose_name="Przezwiska",
     )
 
     class Meta:
@@ -36,10 +42,10 @@ class Osoba(PolymorphicModel):
     def __str__(self):
         name = f"{self.imie} "
         if len(self.przezwiska) > 0:
-            name += f"\"{self.przezwiska[0]}"
+            name += f'"{self.przezwiska[0]}'
             if len(self.przezwiska) > 1:
                 name += f"/{self.przezwiska[1]}"
-            name += "\" "
+            name += '" '
         name += f"{self.nazwisko}"
         return name
 
@@ -51,9 +57,7 @@ class InnaOsoba(Osoba):
         ORGANIZACJA = "Org", "Organizacja"
         PRZYJACIEL_CZAPKI = "PC", "Przyjaciel Bractwa"
 
-    opis = models.TextField(
-        blank=True, verbose_name="Opis",
-    )
+    opis = models.TextField(blank=True, verbose_name="Opis")
 
     kategoria = models.CharField(
         max_length=SHORT_LENGTH,
@@ -68,13 +72,13 @@ class InnaOsoba(Osoba):
         null=True,
         on_delete=models.SET_NULL,
         verbose_name="Bractwo",
-        related_name="czlonkowie_bractwa"
+        related_name="czlonkowie_bractwa",
     )
 
     class Meta:
         verbose_name = "Inna osoba"
         verbose_name_plural = "Inne osoby (nie-członkowie)"
-        ordering = ['imie', 'nazwisko']
+        ordering = ["imie", "nazwisko"]
 
 
 class OsobaBCS(models.Model):
@@ -83,31 +87,33 @@ class OsobaBCS(models.Model):
         NIE = "N", "Ale mógł pojawić się wcześniej"
 
     czapka_1 = models.ForeignKey(
-        'czapki.Czapka',
+        "czapki.Czapka",
         on_delete=models.SET_NULL,
         null=True,
         default=Czapka.get_dont_know_czapka,
         verbose_name="Czapka",
-        related_name="%(class)s_posiadacze_pierwszy_wybor"
+        related_name="%(class)s_posiadacze_pierwszy_wybor",
     )
 
     czapka_2 = models.ForeignKey(
-        'czapki.Czapka',
+        "czapki.Czapka",
         on_delete=models.SET_NULL,
         null=True,
         default=Czapka.get_not_applicable_czapka,
         verbose_name="Inna czapka",
-        related_name="%(class)s_posiadacze_drugi_wybor"
+        related_name="%(class)s_posiadacze_drugi_wybor",
     )
 
     staz = models.IntegerField(
         choices=Czas.LATA_BCS + [IntAlt.DONT_KNOW],
         default=2024,  # TODO: bieżący rok
-        verbose_name='Rok pojawienia się'
+        verbose_name="Rok pojawienia się",
     )
 
     pewnosc_stazu = models.CharField(
-        choices=PewnoscStazu.choices, default=PewnoscStazu.TAK, verbose_name="Pewność roku pojawienia się"
+        choices=PewnoscStazu.choices,
+        default=PewnoscStazu.TAK,
+        verbose_name="Pewność roku pojawienia się",
     )
 
     class Meta:
@@ -116,13 +122,26 @@ class OsobaBCS(models.Model):
 
 class Czlonek(Osoba, OsobaBCS):
     class Aktywnosc(models.TextChoices):
-        AKTYWNY = 'A', "Aktywny",
-        AKTYWNY_MEDIALNIE = 'M', "Aktywny tylko w mediach",
-        NIEAKTYWNY = 'N', "Nieaktywny",
-        ODSZEDL = 'O', "Odszedł z grupy",
+        AKTYWNY = (
+            "A",
+            "Aktywny",
+        )
+        AKTYWNY_MEDIALNIE = (
+            "M",
+            "Aktywny tylko w mediach",
+        )
+        NIEAKTYWNY = (
+            "N",
+            "Nieaktywny",
+        )
+        ODSZEDL = (
+            "O",
+            "Odszedł z grupy",
+        )
+
     class Status(models.TextChoices):
         CZLONEK = "C", "Członek"
-        WYKLETY = "X", "Wydalony (np. \"Jezus\")"
+        WYKLETY = "X", 'Wydalony (np. "Jezus")'
         WETERAN = "W", "Weteran"
         HONOROWY = "H", "Członek Honoris Causa"
 
@@ -130,15 +149,12 @@ class Czlonek(Osoba, OsobaBCS):
         max_length=Lengths.AKTYWNOSC,
         choices=Aktywnosc.choices,
         default=Aktywnosc.NIEAKTYWNY,
-        verbose_name='Aktywność'
+        verbose_name="Aktywność",
     )
 
     ochrzczony = models.CharField(
         max_length=max(TextAlt.LENGTH, TextChoose.LENGTH),
-        choices=[
-            *TextChoose.choices(),
-            TextAlt.DONT_KNOW
-        ],
+        choices=[*TextChoose.choices(), TextAlt.DONT_KNOW],
         default=TextAlt.DONT_KNOW,
         verbose_name="Czy ochrzczony",
     )
@@ -146,70 +162,78 @@ class Czlonek(Osoba, OsobaBCS):
     rok_chrztu = models.IntegerField(
         choices=Czas.LATA_BCS + [IntAlt.DONT_KNOW] + [IntAlt.NOT_APPLICABLE],
         default=IntAlt.DONT_KNOW,
-        verbose_name='Rok chrztu'
+        verbose_name="Rok chrztu",
     )
 
     miesiac_chrztu = models.IntegerField(
         choices=Czas.MIESIACE + [IntAlt.DONT_KNOW] + [IntAlt.NOT_APPLICABLE],
         default=IntAlt.DONT_KNOW,
-        verbose_name='Miesiąc chrztu'
+        verbose_name="Miesiąc chrztu",
     )
 
     dzien_chrztu = models.IntegerField(
         choices=Czas.DNI + [IntAlt.DONT_KNOW] + [IntAlt.NOT_APPLICABLE],
         default=IntAlt.DONT_KNOW,
-        verbose_name='Dzień chrztu'
+        verbose_name="Dzień chrztu",
     )
 
     status = models.CharField(
         max_length=max(Lengths.STATUS, TextAlt.LENGTH),
         choices=Status.choices + [TextAlt.DONT_KNOW],
         default=TextAlt.DONT_KNOW,
-        verbose_name='Status'
+        verbose_name="Status",
     )
 
     imie_piwne_1_wybor = models.CharField(
         max_length=TextAlt.LENGTH,
         choices=TextAlt.choices(),
         default=TextAlt.DONT_KNOW,
-        verbose_name="Czy posiada imię czapkowe"
+        verbose_name="Czy posiada imię czapkowe",
     )
 
     imie_piwne_1 = models.CharField(
-        blank=True, max_length=MEDIUM_LENGTH, default="Nie wiem", verbose_name="Imię czapkowe"
+        blank=True,
+        max_length=MEDIUM_LENGTH,
+        default="Nie wiem",
+        verbose_name="Imię czapkowe",
     )
 
     imie_piwne_2_wybor = models.CharField(
         max_length=TextAlt.LENGTH,
         choices=TextAlt.choices(),
         default=TextAlt.NOT_APPLICABLE,
-        verbose_name="Czy posiada inne imię czapkowe"
+        verbose_name="Czy posiada inne imię czapkowe",
     )
 
     imie_piwne_2 = models.CharField(
-        blank=True, max_length=MEDIUM_LENGTH, default="Nie dotyczy", verbose_name="Inne imię czapkowe"
+        blank=True,
+        max_length=MEDIUM_LENGTH,
+        default="Nie dotyczy",
+        verbose_name="Inne imię czapkowe",
     )
 
     rodzic_1 = models.ForeignKey(
-        'self',
+        "self",
         on_delete=models.SET_NULL,
-        null=True, blank=True,
+        null=True,
+        blank=True,
         verbose_name="Rodzic czapkowy",
-        related_name='dzieci_pierwszy_wybor',
+        related_name="dzieci_pierwszy_wybor",
     )
 
     rodzic_2 = models.ForeignKey(
-        'self',
+        "self",
         on_delete=models.SET_NULL,
-        null=True, blank=True,
+        null=True,
+        blank=True,
         verbose_name="Drugi rodzic czapkowy",
-        related_name='dzieci_drugi_wybor',
+        related_name="dzieci_drugi_wybor",
     )
 
     class Meta:
         verbose_name = "Członek"
         verbose_name_plural = "Członkowie"
-        ordering = ['imie', 'imie_piwne_1', 'imie_piwne_2', 'nazwisko']
+        ordering = ["imie", "imie_piwne_1", "imie_piwne_2", "nazwisko"]
 
     def __str__(self):
         name = f"{self.imie} "
@@ -235,26 +259,44 @@ class Czlonek(Osoba, OsobaBCS):
     @staticmethod
     def get_dont_know_czlonek():
         czlonek = Czlonek.objects.get(
-            imie="Nie", nazwisko="wiem",
-            czapka_1=Czapka.get_dont_know_czapka(), czapka_2=Czapka.get_not_applicable_czapka(),
-            staz=IntAlt.DONT_KNOW[0], pewnosc_stazu=OsobaBCS.PewnoscStazu.NIE,
-            aktywnosc=Czlonek.Aktywnosc.NIEAKTYWNY, ochrzczony=TextChoose.YES[0], status=TextAlt.DONT_KNOW[0],
-            rok_chrztu=ROK_ZALOZENIA, miesiac_chrztu=IntAlt.DONT_KNOW[0], dzien_chrztu=IntAlt.DONT_KNOW[0],
-            imie_piwne_1_wybor=TextAlt.DONT_KNOW[0], imie_piwne_1="Nie wiem",
-            imie_piwne_2_wybor=TextAlt.NOT_APPLICABLE[0], imie_piwne_2="Nie dotyczy",
+            imie="Nie",
+            nazwisko="wiem",
+            czapka_1=Czapka.get_dont_know_czapka(),
+            czapka_2=Czapka.get_not_applicable_czapka(),
+            staz=IntAlt.DONT_KNOW[0],
+            pewnosc_stazu=OsobaBCS.PewnoscStazu.NIE,
+            aktywnosc=Czlonek.Aktywnosc.NIEAKTYWNY,
+            ochrzczony=TextChoose.YES[0],
+            status=TextAlt.DONT_KNOW[0],
+            rok_chrztu=ROK_ZALOZENIA,
+            miesiac_chrztu=IntAlt.DONT_KNOW[0],
+            dzien_chrztu=IntAlt.DONT_KNOW[0],
+            imie_piwne_1_wybor=TextAlt.DONT_KNOW[0],
+            imie_piwne_1="Nie wiem",
+            imie_piwne_2_wybor=TextAlt.NOT_APPLICABLE[0],
+            imie_piwne_2="Nie dotyczy",
         )
         return czlonek
 
     @staticmethod
     def get_not_applicable_czlonek():
         czlonek = Czlonek.objects.get(
-            imie="Nie", nazwisko="dotyczy",
-            czapka_1=Czapka.get_dont_know_czapka(), czapka_2=Czapka.get_not_applicable_czapka(),
-            staz=IntAlt.DONT_KNOW[0], pewnosc_stazu=OsobaBCS.PewnoscStazu.TAK,
-            aktywnosc=Czlonek.Aktywnosc.NIEAKTYWNY, ochrzczony=TextChoose.NO[0], status=TextAlt.DONT_KNOW[0],
-            rok_chrztu=IntAlt.NOT_APPLICABLE[0], miesiac_chrztu=IntAlt.NOT_APPLICABLE[0], dzien_chrztu=IntAlt.NOT_APPLICABLE[0],
-            imie_piwne_1_wybor=TextAlt.NOT_APPLICABLE[0], imie_piwne_1="Nie dotyczy",
-            imie_piwne_2_wybor=TextAlt.NOT_APPLICABLE[0], imie_piwne_2="Nie dotyczy",
+            imie="Nie",
+            nazwisko="dotyczy",
+            czapka_1=Czapka.get_dont_know_czapka(),
+            czapka_2=Czapka.get_not_applicable_czapka(),
+            staz=IntAlt.DONT_KNOW[0],
+            pewnosc_stazu=OsobaBCS.PewnoscStazu.TAK,
+            aktywnosc=Czlonek.Aktywnosc.NIEAKTYWNY,
+            ochrzczony=TextChoose.NO[0],
+            status=TextAlt.DONT_KNOW[0],
+            rok_chrztu=IntAlt.NOT_APPLICABLE[0],
+            miesiac_chrztu=IntAlt.NOT_APPLICABLE[0],
+            dzien_chrztu=IntAlt.NOT_APPLICABLE[0],
+            imie_piwne_1_wybor=TextAlt.NOT_APPLICABLE[0],
+            imie_piwne_1="Nie dotyczy",
+            imie_piwne_2_wybor=TextAlt.NOT_APPLICABLE[0],
+            imie_piwne_2="Nie dotyczy",
         )
         return czlonek
 
@@ -279,23 +321,25 @@ class Bean(Osoba, OsobaBCS):
     rodzic_1 = models.ForeignKey(
         Czlonek,
         on_delete=models.SET_NULL,
-        null=True, blank=True,
+        null=True,
+        blank=True,
         verbose_name="Rodzic czapkowy",
-        related_name='beani_pierwszy_wybor',
+        related_name="beani_pierwszy_wybor",
     )
 
     rodzic_2 = models.ForeignKey(
         Czlonek,
         on_delete=models.SET_NULL,
-        null=True, blank=True,
+        null=True,
+        blank=True,
         verbose_name="Drugi rodzic czapkowy",
-        related_name='beani_drugi_wybor',
+        related_name="beani_drugi_wybor",
     )
 
     class Meta:
         verbose_name = "Bean"
         verbose_name_plural = "Beani"
-        ordering = ['imie', 'nazwisko']
+        ordering = ["imie", "nazwisko"]
 
 
 class ImieSzlacheckie(models.Model):
@@ -309,24 +353,22 @@ class ImieSzlacheckie(models.Model):
     class Meta:
         verbose_name = "Imię szlacheckie"
         verbose_name_plural = "Imiona szlacheckie"
-        ordering = ['imie__imie_piwne_1', 'imie__imie', 'imie__nazwisko']
+        ordering = ["imie__imie_piwne_1", "imie__imie", "imie__nazwisko"]
 
     @property
     def posiadacz(self):
         return self.imie
 
     def __str__(self):
-        name = f"\"{self.imie.imie_piwne_1}\" - {self.imie.imie}"
+        name = f'"{self.imie.imie_piwne_1}" - {self.imie.imie}'
         if self.imie.nazwisko:
             name += f" {self.imie.nazwisko}"
         return name
 
+
 class ZwierzeCzapkowe(models.Model):
     czlonek = models.ForeignKey(
-        Czlonek,
-        on_delete=models.SET_NULL,
-        null=True,
-        verbose_name="Członek"
+        Czlonek, on_delete=models.SET_NULL, null=True, verbose_name="Członek"
     )
 
     zwierze = models.CharField(
@@ -334,23 +376,26 @@ class ZwierzeCzapkowe(models.Model):
     )
 
     wyjasnienie = models.CharField(
-        max_length=MEDIUM_LENGTH, blank=True, verbose_name="Wyjaśnienie (opcjonalne)"
+        max_length=MEDIUM_LENGTH,
+        blank=True,
+        verbose_name="Wyjaśnienie (opcjonalne)",
     )
 
     class Meta:
         verbose_name = "Zwierzę czapkowe"
         verbose_name_plural = "Zwierzęta czapkowe"
-        ordering = ['zwierze', 'czlonek__imie_piwne_1']
+        ordering = ["zwierze", "czlonek__imie_piwne_1"]
 
     @property
     def imie(self):
         return self.czlonek
 
     def __str__(self):
-        name =  f"\"{self.czlonek.imie_piwne_1}\" - {self.zwierze}"
+        name = f'"{self.czlonek.imie_piwne_1}" - {self.zwierze}'
         if self.wyjasnienie:
             name += f" ({self.wyjasnienie})"
         return name
+
 
 class DawnyZarzad(models.Model):
     kadencja = models.ForeignKey(
@@ -378,7 +423,7 @@ class DawnyZarzad(models.Model):
     )
 
     skarbnik = models.ForeignKey(
-       Czlonek,
+        Czlonek,
         on_delete=models.SET_NULL,
         null=True,
         verbose_name="Skarbnik",
@@ -428,10 +473,13 @@ class DawnyZarzad(models.Model):
     class Meta:
         verbose_name = "Dawny Zarząd"
         verbose_name_plural = "Dawne Zarządy"
-        ordering = ['-kadencja']
+        ordering = ["-kadencja"]
 
     def __str__(self):
-        return f"Dawny Zarząd {str(self.kadencja)} - WM {str(self.wielki_mistrz)}"
+        return (
+            f"Dawny Zarząd {str(self.kadencja)} - WM {str(self.wielki_mistrz)}"
+        )
+
 
 class Zarzad(models.Model):
     kadencja = models.ForeignKey(
@@ -485,10 +533,11 @@ class Zarzad(models.Model):
     class Meta:
         verbose_name = "Zarząd"
         verbose_name_plural = "Zarządy"
-        ordering = ['-kadencja']
+        ordering = ["-kadencja"]
 
     def __str__(self):
         return f"Zarząd {str(self.kadencja)} - WM {str(self.wielki_mistrz)}"
+
 
 class WielkiMistrz(models.Model):
     imie = models.ForeignKey(
@@ -499,21 +548,20 @@ class WielkiMistrz(models.Model):
     )
 
     tadeusz = models.CharField(
-        max_length=SHORT_LENGTH, verbose_name="Tadeusz",
+        max_length=SHORT_LENGTH,
+        verbose_name="Tadeusz",
     )
 
     tadeusz_numeric = models.IntegerField(
-        editable=False, db_index=True, default=0,
+        editable=False, db_index=True, default=0
     )
 
-    tytuly = models.TextField(
-        blank=True, verbose_name="Tytuły",
-    )
+    tytuly = models.TextField(blank=True, verbose_name="Tytuły")
 
     class Meta:
         verbose_name = "Wielki Mistrz"
         verbose_name_plural = "Wielcy Mistrzowie"
-        ordering = ['-tadeusz_numeric']
+        ordering = ["-tadeusz_numeric"]
 
     def __str__(self):
         name = f"{str(self.imie)} - Tadeusz {self.tadeusz}"
@@ -527,6 +575,7 @@ class WielkiMistrz(models.Model):
         except ValueError:
             self.tadeusz_numeric = 0
         super().save(*args, **kwargs)
+
 
 class HallOfFame(models.Model):
     czlonek = models.ForeignKey(
@@ -546,27 +595,28 @@ class HallOfFame(models.Model):
     )
 
     nazwa_alternatywna = models.CharField(
-        max_length=MEDIUM_LENGTH, blank=True, verbose_name="Nazwa alternatywna",
+        max_length=MEDIUM_LENGTH, blank=True, verbose_name="Nazwa alternatywna"
     )
 
-    zaslugi = models.CharField(
-        max_length=MAX_LENGTH, verbose_name="Zasługi",
-    )
+    zaslugi = models.CharField(max_length=MAX_LENGTH, verbose_name="Zasługi")
 
     order_field = models.CharField(
-        max_length=MAX_LENGTH, blank=True, editable=False,
+        max_length=MAX_LENGTH, blank=True, editable=False
     )
 
     class Meta:
         verbose_name = "Hall of Fame"
         verbose_name_plural = "Hall of Fame"
-        ordering = ['order_field']
-
+        ordering = ["order_field"]
 
     def __str__(self):
         return f"{self.nazwa_alternatywna or self.czlonek or self.bean}: {self.zaslugi}"
 
-    def  save(self, *args, **kwargs):
+    def save(self, *args, **kwargs):
         if not self.order_field:
-            self.order_field = self.nazwa_alternatywna if self.nazwa_alternatywna else str(self.czlonek)
+            self.order_field = (
+                self.nazwa_alternatywna
+                if self.nazwa_alternatywna
+                else str(self.czlonek)
+            )
         super().save(*args, **kwargs)

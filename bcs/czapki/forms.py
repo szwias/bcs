@@ -3,16 +3,18 @@ from .models import *
 from .views import autocomplete_widgets
 from core.utils.autocompletion.AutocompletesGeneration import build_widgets
 
+
 class CzapkaForm(forms.ModelForm):
     class Meta:
         model = Czapka
-        fields = '__all__'
+        fields = "__all__"
 
-        widgets = build_widgets(autocomplete_widgets['Czapka'])
+        widgets = build_widgets(autocomplete_widgets["Czapka"])
+
 
 class RodzajCzapkiForm(forms.ModelForm):
     class Meta:
         model = RodzajCzapki
-        fields = '__all__'
+        fields = "__all__"
 
-        widgets = build_widgets(autocomplete_widgets['RodzajCzapki'])
+        widgets = build_widgets(autocomplete_widgets["RodzajCzapki"])

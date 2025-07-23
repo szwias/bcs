@@ -1,7 +1,6 @@
 import os
 from django.db import models
 
-from core.utils.Choices import TextChoose, TextAlt
 from core.utils.Consts import *
 from django.utils import timezone
 
@@ -18,16 +17,12 @@ class Zdarzenie(models.Model):
         related_name="zdarzenia_z_wydarzenia",
     )
 
-    data = models.DateField(
-        verbose_name="Data"
-    )
+    data = models.DateField(verbose_name="Data")
 
-    godzina = models.TimeField(
-        null=True, blank=True, verbose_name="Godzina"
-    )
+    godzina = models.TimeField(null=True, blank=True, verbose_name="Godzina")
 
     miejsce = models.ForeignKey(
-        'miejsca.Miejsce',
+        "miejsca.Miejsce",
         blank=True,
         null=True,
         on_delete=models.SET_NULL,
@@ -35,12 +30,10 @@ class Zdarzenie(models.Model):
         related_name="zdarzenia_z_miejsca",
     )
 
-    opis = models.TextField(
-        blank=True, verbose_name="Opis"
-    )
+    opis = models.TextField(blank=True, verbose_name="Opis")
 
     powiazane_osoby = models.ManyToManyField(
-        'osoby.Osoba', blank=True, verbose_name="Powiązane osoby"
+        "osoby.Osoba", blank=True, verbose_name="Powiązane osoby"
     )
 
     class Meta:
@@ -52,13 +45,16 @@ class Zdarzenie(models.Model):
         godzina = str(self.godzina) + " " if self.godzina else ""
         wydarzenie_name = ""
         if self.wydarzenie:
-            if self.wydarzenie.typ_wydarzenia and not self.wydarzenie.typ_wydarzenia.is_sentinel():
+            if (
+                self.wydarzenie.typ_wydarzenia
+                and not self.wydarzenie.typ_wydarzenia.is_sentinel()
+            ):
                 typ = str(self.wydarzenie.typ_wydarzenia)
             elif self.wydarzenie.typ_wyjazdu:
                 typ = str(self.wydarzenie.typ_wyjazdu)
             else:
                 typ = ""
-            wydarzenie_name = f"{typ} \"{self.wydarzenie.nazwa}\""
+            wydarzenie_name = f'{typ} "{self.wydarzenie.nazwa}"'
 
         return f"{self.data} {godzina}- {self.nazwa} ({wydarzenie_name})"
 
@@ -67,7 +63,10 @@ class Zdarzenie(models.Model):
         super().save(*args, **kwargs)
 
         if self.wydarzenie:
-            if self.wydarzenie.data_rozpoczecia == self.wydarzenie.data_zakonczenia:
+            if (
+                self.wydarzenie.data_rozpoczecia
+                == self.wydarzenie.data_zakonczenia
+            ):
                 self.data = self.wydarzenie.data_rozpoczecia
             if created:
                 for osoba in self.wydarzenie.uczestnicy.all():
@@ -89,15 +88,15 @@ class ObrazZdarzenie(models.Model):
     )
 
     tytul = models.CharField(
-        max_length=MEDIUM_LENGTH, blank=True, verbose_name="Tytuł",
+        max_length=MEDIUM_LENGTH, blank=True, verbose_name="Tytuł"
     )
 
     data = models.DateField(
-        default=timezone.now, blank=True, verbose_name="Data wykonania",
+        default=timezone.now, blank=True, verbose_name="Data wykonania"
     )
 
     miejsce = models.ForeignKey(
-        'miejsca.Miejsce',
+        "miejsca.Miejsce",
         blank=True,
         null=True,
         on_delete=models.SET_NULL,
@@ -106,15 +105,13 @@ class ObrazZdarzenie(models.Model):
     )
 
     obraz = models.ImageField(
-        upload_to="kronika/zdarzenia/", verbose_name="Dodaj obraz",
+        upload_to="kronika/zdarzenia/", verbose_name="Dodaj obraz"
     )
 
-    opis = models.TextField(
-        blank=True, verbose_name="Opis",
-    )
+    opis = models.TextField(blank=True, verbose_name="Opis")
 
     widoczne_osoby = models.ManyToManyField(
-        'osoby.Osoba', blank=True, verbose_name="Widoczne osoby"
+        "osoby.Osoba", blank=True, verbose_name="Widoczne osoby"
     )
 
     class Meta:
@@ -158,9 +155,7 @@ class ObrazZdarzenie(models.Model):
 
 class TypWydarzenia(models.Model):
     typ = models.CharField(
-        max_length=MEDIUM_LENGTH,
-        blank=True,
-        verbose_name="Typ wydarzenia",
+        max_length=MEDIUM_LENGTH, blank=True, verbose_name="Typ wydarzenia"
     )
 
     class Meta:
@@ -204,9 +199,7 @@ class TypWyjazdu(models.Model):
 
 class Wydarzenie(models.Model):
 
-    nazwa = models.CharField(
-        max_length=MAX_LENGTH, verbose_name="Nazwa"
-    )
+    nazwa = models.CharField(max_length=MAX_LENGTH, verbose_name="Nazwa")
 
     czy_jednodniowe = models.BooleanField(
         default=True, verbose_name="Jednodniowe"
@@ -221,7 +214,7 @@ class Wydarzenie(models.Model):
     )
 
     miejsca = models.ManyToManyField(
-        'miejsca.Miejsce', blank=True, verbose_name="Miejsca"
+        "miejsca.Miejsce", blank=True, verbose_name="Miejsca"
     )
 
     czy_to_wyjazd = models.BooleanField(
@@ -244,18 +237,13 @@ class Wydarzenie(models.Model):
         verbose_name="Typ wyjazdu",
     )
 
-    link = models.URLField(
-        blank=True, verbose_name="Link do wydarzenia na FB"
-    )
+    link = models.URLField(blank=True, verbose_name="Link do wydarzenia na FB")
 
-    opis = models.TextField(
-        blank=True, verbose_name="Opis"
-    )
+    opis = models.TextField(blank=True, verbose_name="Opis")
 
     uczestnicy = models.ManyToManyField(
-        'osoby.Osoba', blank=True, verbose_name="Uczestnicy wydarzenia"
+        "osoby.Osoba", blank=True, verbose_name="Uczestnicy wydarzenia"
     )
-
 
     class Meta:
         verbose_name = "Wydarzenie"
@@ -277,7 +265,7 @@ class Wydarzenie(models.Model):
         if typ.lower() in self.nazwa.lower():
             typ = ""
 
-        name += f": {typ} \"{self.nazwa}\""
+        name += f': {typ} "{self.nazwa}"'
         return name
 
 
@@ -288,23 +276,21 @@ class ObrazWydarzenie(models.Model):
         null=True,
         on_delete=models.SET_NULL,
         verbose_name="Wydarzenie",
-        related_name="zdjecia_z_wydarzenia"
+        related_name="zdjecia_z_wydarzenia",
     )
 
     tytul = models.CharField(
-        max_length=MEDIUM_LENGTH, blank=True, verbose_name="Tytuł",
+        max_length=MEDIUM_LENGTH, blank=True, verbose_name="Tytuł"
     )
 
     obraz = models.ImageField(
-        upload_to="kronika/wydarzenia/", verbose_name="Dodaj obraz",
+        upload_to="kronika/wydarzenia/", verbose_name="Dodaj obraz"
     )
 
-    opis = models.TextField(
-        blank=True, verbose_name="Opis",
-    )
+    opis = models.TextField(blank=True, verbose_name="Opis")
 
     widoczne_osoby = models.ManyToManyField(
-        'osoby.Osoba', blank=True, verbose_name="Widoczne osoby"
+        "osoby.Osoba", blank=True, verbose_name="Widoczne osoby"
     )
 
     class Meta:
@@ -323,24 +309,20 @@ class ObrazWydarzenie(models.Model):
 
 
 class Proces(models.Model):
-    nazwa = models.CharField(
-        max_length=MAX_LENGTH, verbose_name="Nazwa",
-    )
+    nazwa = models.CharField(max_length=MAX_LENGTH, verbose_name="Nazwa")
 
     data_rozpoczecia = models.DateField(
-        default=timezone.now, verbose_name="Data rozpoczęcia",
+        default=timezone.now, verbose_name="Data rozpoczęcia"
     )
 
     data_zakonczenia = models.DateField(
-        default=timezone.now, verbose_name="Data zakończenia",
+        default=timezone.now, verbose_name="Data zakończenia"
     )
 
-    opis = models.TextField(
-        blank=True, verbose_name="Opis",
-    )
+    opis = models.TextField(blank=True, verbose_name="Opis")
 
     zdarzenia = models.ManyToManyField(
-        Zdarzenie, blank=True, verbose_name="Zdarzenia",
+        Zdarzenie, blank=True, verbose_name="Zdarzenia"
     )
 
     class Meta:
@@ -349,7 +331,10 @@ class Proces(models.Model):
         ordering = ["-data_rozpoczecia"]
 
     def __str__(self):
-        return f"{self.nazwa}: {self.data_rozpoczecia} - {self.data_zakonczenia}"
+        return (
+            f"{self.nazwa}: {self.data_rozpoczecia} - {self.data_zakonczenia}"
+        )
+
 
 class CharakterystykaDzialanZarzadu(models.Model):
     zarzad = models.ForeignKey(
@@ -376,7 +361,7 @@ class CharakterystykaDzialanZarzadu(models.Model):
     )
 
     charakterystyka = models.TextField(
-        blank=True, verbose_name="Charakterystyka działań Zarządu",
+        blank=True, verbose_name="Charakterystyka działań Zarządu"
     )
 
     class Meta:

@@ -14,19 +14,42 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+
 from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('autocomplete/core/', include('core.autocomplete_urls', 'core_autocomplete')),
-    path('autocomplete/czapki', include('czapki.autocomplete_urls', 'czapki_autocomplete')),
-    path('autocomplete/encyklopedia/', include('encyklopedia.autocomplete_urls', 'encyklopedia_autocomplete')),
-    path('autocomplete/kronika/', include('kronika.autocomplete_urls', 'kronika_autocomplete')),
-    path('autocomplete/miejsca/', include('miejsca.autocomplete_urls', 'miejsca_autocomplete')),
-    path('autocomplete/osoby/', include('osoby.autocomplete_urls', 'osoby_autocomplete')),
+    path("admin/", admin.site.urls),
+    path(
+        "autocomplete/core/",
+        include("core.autocomplete_urls", "core_autocomplete"),
+    ),
+    path(
+        "autocomplete/czapki",
+        include("czapki.autocomplete_urls", "czapki_autocomplete"),
+    ),
+    path(
+        "autocomplete/encyklopedia/",
+        include("encyklopedia.autocomplete_urls", "encyklopedia_autocomplete"),
+    ),
+    path(
+        "autocomplete/kronika/",
+        include("kronika.autocomplete_urls", "kronika_autocomplete"),
+    ),
+    path(
+        "autocomplete/miejsca/",
+        include("miejsca.autocomplete_urls", "miejsca_autocomplete"),
+    ),
+    path(
+        "autocomplete/osoby/",
+        include("osoby.autocomplete_urls", "osoby_autocomplete"),
+    ),
+    path(
+        "autocomplete/prawo/",
+        include("prawo.autocomplete_urls", "prawo_autocomplete"),
+    ),
     path("drzewo/", include("drzewo.urls")),
 ]
 

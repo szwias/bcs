@@ -5,9 +5,14 @@ from dal import autocomplete
 from caseconverter import kebabcase
 from functools import partial
 
-def generate_autocomplete_views(model, label_list, value_list, model_list, globals_dict=None):
+
+def generate_autocomplete_views(
+    model, label_list, value_list, model_list, globals_dict=None
+):
     if globals_dict is None:
-        raise ValueError("globals_dict is required to register views (usually pass globals())")
+        raise ValueError(
+            "globals_dict is required to register views (usually pass globals())"
+        )
 
     model_name = model.__name__
     app_label = model._meta.app_label
@@ -25,10 +30,17 @@ def generate_autocomplete_views(model, label_list, value_list, model_list, globa
         )
         globals_dict[view_name] = view_class
 
-        url_name = f"{kebabcase(model_name)}-{kebabcase(field)}-by-label-autocomplete"
-        url_patterns.append(path(f"{url_name}/", view_class.as_view(), name=url_name))
+        url_name = (
+            f"{kebabcase(model_name)}-{kebabcase(field)}-by-label-autocomplete"
+        )
+        url_patterns.append(
+            path(f"{url_name}/", view_class.as_view(), name=url_name)
+        )
 
-        widgets[field] = partial(autocomplete.ListSelect2, url=f"{app_label}_autocomplete:{url_name}")
+        widgets[field] = partial(
+            autocomplete.ListSelect2,
+            url=f"{app_label}_autocomplete:{url_name}",
+        )
 
     for field in value_list:
         view_name = f"{field.title().replace('_', '')}Autocomplete"
@@ -39,13 +51,20 @@ def generate_autocomplete_views(model, label_list, value_list, model_list, globa
         )
         globals_dict[view_name] = view_class
 
-        url_name = f"{kebabcase(model_name)}-{kebabcase(field)}-by-value-autocomplete"
-        url_patterns.append(path(f"{url_name}/", view_class.as_view(), name=url_name))
+        url_name = (
+            f"{kebabcase(model_name)}-{kebabcase(field)}-by-value-autocomplete"
+        )
+        url_patterns.append(
+            path(f"{url_name}/", view_class.as_view(), name=url_name)
+        )
 
-        widgets[field] = partial(autocomplete.ListSelect2, url=f"{app_label}_autocomplete:{url_name}")
+        widgets[field] = partial(
+            autocomplete.ListSelect2,
+            url=f"{app_label}_autocomplete:{url_name}",
+        )
 
     for model_name_str in model_list:
-        if '.' in model_name_str:
+        if "." in model_name_str:
             related_model = apps.get_model(model_name_str)
         else:
             related_model = apps.get_model(app_label, model_name_str)
@@ -59,13 +78,19 @@ def generate_autocomplete_views(model, label_list, value_list, model_list, globa
         globals_dict[view_name] = view_class
 
         url_name = f"{kebabcase(model_name_str)}-records-autocomplete"
-        url_patterns.append(path(f"{url_name}/", view_class.as_view(), name=url_name))
+        url_patterns.append(
+            path(f"{url_name}/", view_class.as_view(), name=url_name)
+        )
 
         for field in model._meta.fields:
-            if getattr(field, 'related_model', None) == related_model:
-                widgets[field.name] = partial(autocomplete.ModelSelect2, url=f"{app_label}_autocomplete:{url_name}")
+            if getattr(field, "related_model", None) == related_model:
+                widgets[field.name] = partial(
+                    autocomplete.ModelSelect2,
+                    url=f"{app_label}_autocomplete:{url_name}",
+                )
 
     return url_patterns, {model_name: widgets}
+
 
 def setup_autocompletes(configs, globals_dict):
     autocomplete_urls = []
@@ -79,7 +104,7 @@ def setup_autocompletes(configs, globals_dict):
             label_list=label_list,
             value_list=value_list,
             model_list=record_list,
-            globals_dict=globals_dict
+            globals_dict=globals_dict,
         )
 
         autocomplete_urls += urls
@@ -87,9 +112,11 @@ def setup_autocompletes(configs, globals_dict):
 
     return autocomplete_urls, autocomplete_widgets
 
+
 def build_widgets(widget_factories):
     return {field: factory() for field, factory in widget_factories.items()}
 
+
 def add_model_name(model, dictionary, key):
-    if hasattr(model, '_meta'):
+    if hasattr(model, "_meta"):
         dictionary[key] = f"{model._meta.app_label}.{model.__name__}"

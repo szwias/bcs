@@ -9,20 +9,21 @@ from kronika.models import Wydarzenie
 class Lengths:
     OKOLICZNOSCI_LENGTH = 3
 
+
 class Okolicznosci(models.TextChoices):
     INNE = "I", "Inne okoliczności"
     WYDARZENIE = "Wyd", "Na wydarzeniu czapkowym"
 
+
 # TODO: create Korporacja model
+
 
 class Bractwo(models.Model):
 
-    nazwa = models.CharField(
-        max_length=MAX_LENGTH, verbose_name="Nazwa",
-    )
+    nazwa = models.CharField(max_length=MAX_LENGTH, verbose_name="Nazwa")
 
     panstwo = models.ForeignKey(
-        'miejsca.Kraj',
+        "miejsca.Kraj",
         blank=True,
         null=True,
         on_delete=models.SET_NULL,
@@ -30,7 +31,7 @@ class Bractwo(models.Model):
     )
 
     grupa_bractw = models.ForeignKey(
-        'encyklopedia.GrupaBractw',
+        "encyklopedia.GrupaBractw",
         blank=True,
         null=True,
         on_delete=models.SET_NULL,
@@ -38,15 +39,19 @@ class Bractwo(models.Model):
     )
 
     zalozyciele = models.ManyToManyField(
-        'osoby.Osoba', blank=True, verbose_name="Założyciele"
+        "osoby.Osoba", blank=True, verbose_name="Założyciele"
     )
 
     rok_zalozenia = models.IntegerField(
-        choices=Czas.LATA_BRACTW + [IntAlt.DONT_KNOW], default=IntAlt.DONT_KNOW, verbose_name="Rok założenia",
+        choices=Czas.LATA_BRACTW + [IntAlt.DONT_KNOW],
+        default=IntAlt.DONT_KNOW,
+        verbose_name="Rok założenia",
     )
 
     wiek_tradycje = models.IntegerField(
-        choices=Czas.WIEKI + [IntAlt.DONT_KNOW], default=IntAlt.DONT_KNOW, verbose_name="Tradycje sięgają którego wieku",
+        choices=Czas.WIEKI + [IntAlt.DONT_KNOW],
+        default=IntAlt.DONT_KNOW,
+        verbose_name="Tradycje sięgają którego wieku",
     )
 
     class Meta:
@@ -59,20 +64,16 @@ class Bractwo(models.Model):
 
 
 class GrupaBractw(models.Model):
-    nazwa = models.CharField(
-        max_length=NAME_LENGTH, verbose_name="Nazwa",
-    )
+    nazwa = models.CharField(max_length=NAME_LENGTH, verbose_name="Nazwa")
 
     kraje = models.ManyToManyField(
-        'miejsca.Kraj', blank=True, verbose_name="Kraje",
+        "miejsca.Kraj", blank=True, verbose_name="Kraje"
     )
 
-    opis = models.TextField(
-        blank=True, verbose_name="Opis",
-    )
+    opis = models.TextField(blank=True, verbose_name="Opis")
 
     rodzaj_czapki = models.ForeignKey(
-        'czapki.RodzajCzapki',
+        "czapki.RodzajCzapki",
         blank=True,
         null=True,
         on_delete=models.SET_NULL,
@@ -88,32 +89,29 @@ class GrupaBractw(models.Model):
         kraje = ", ".join(str(k) for k in self.kraje.all())
         return f"{self.nazwa}: {kraje}"
 
-class TradycjaBCS(models.Model):
 
+class TradycjaBCS(models.Model):
 
     class Origins(models.TextChoices):
         ZAPOZYCZONA = "Z", "Zapożyczona"
         AUTORSKA = "A", "Autorka"
 
-
-    nazwa = models.CharField(
-        max_length=MEDIUM_LENGTH, verbose_name="Tradycja",
-    )
+    nazwa = models.CharField(max_length=MEDIUM_LENGTH, verbose_name="Tradycja")
 
     zapozyczona_czy_autorska = models.CharField(
         choices=Origins.choices, verbose_name="Zapożyczona czy autorska"
     )
 
     autor = models.ForeignKey(
-        'osoby.Osoba',
+        "osoby.Osoba",
         blank=True,
         null=True,
         on_delete=models.SET_NULL,
-        verbose_name="Autor tradycji"
+        verbose_name="Autor tradycji",
     )
 
     od_kogo = models.ForeignKey(
-        'encyklopedia.GrupaBractw',
+        "encyklopedia.GrupaBractw",
         blank=True,
         null=True,
         on_delete=models.SET_NULL,
@@ -121,7 +119,9 @@ class TradycjaBCS(models.Model):
     )
 
     okolicznosci_powstania = models.CharField(
-        max_length=Lengths.OKOLICZNOSCI_LENGTH, choices=Okolicznosci.choices, verbose_name="Okoliczności powstania",
+        max_length=Lengths.OKOLICZNOSCI_LENGTH,
+        choices=Okolicznosci.choices,
+        verbose_name="Okoliczności powstania",
     )
 
     wydarzenie = models.ForeignKey(
@@ -130,16 +130,16 @@ class TradycjaBCS(models.Model):
         null=True,
         on_delete=models.SET_NULL,
         verbose_name="Wydarzenie",
-        related_name="tradycje_zapoczatkowane_wydarzeniem"
+        related_name="tradycje_zapoczatkowane_wydarzeniem",
     )
 
     inne = models.CharField(
-        max_length=MAX_LENGTH, blank=True, verbose_name="Inna okoliczność (wpisz):",
+        max_length=MAX_LENGTH,
+        blank=True,
+        verbose_name="Inna okoliczność (" "wpisz):",
     )
 
-    opis = models.TextField(
-        blank=True, verbose_name="Opis",
-    )
+    opis = models.TextField(blank=True, verbose_name="Opis")
 
     class Meta:
         verbose_name = "Tradycja BCS"
@@ -152,16 +152,14 @@ class TradycjaBCS(models.Model):
 
 class TradycjaInnegoBractwa(models.Model):
 
-    nazwa = models.CharField(
-        max_length=MEDIUM_LENGTH, verbose_name="Tradycja",
-    )
+    nazwa = models.CharField(max_length=MEDIUM_LENGTH, verbose_name="Tradycja")
 
     bractwo = models.ForeignKey(
         Bractwo,
         blank=True,
         null=True,
         on_delete=models.SET_NULL,
-        verbose_name="Bractwo"
+        verbose_name="Bractwo",
     )
 
     zapozyczona = models.BooleanField(
@@ -169,16 +167,14 @@ class TradycjaInnegoBractwa(models.Model):
     )
 
     od_kogo = models.ForeignKey(
-        'encyklopedia.GrupaBractw',
+        "encyklopedia.GrupaBractw",
         blank=True,
         null=True,
         on_delete=models.SET_NULL,
         verbose_name="Od kogo zapożyczona",
     )
 
-    opis = models.TextField(
-        blank=True, verbose_name="Opis",
-    )
+    opis = models.TextField(blank=True, verbose_name="Opis")
 
     class Meta:
         verbose_name = "Tradycja innego bractwa"
@@ -191,24 +187,22 @@ class TradycjaInnegoBractwa(models.Model):
 
 class Pojecie(models.Model):
 
-    nazwa = models.CharField(
-        max_length=MEDIUM_LENGTH, verbose_name="Nazwa",
-    )
+    nazwa = models.CharField(max_length=MEDIUM_LENGTH, verbose_name="Nazwa")
 
     autor = models.ForeignKey(
-        'osoby.Osoba',
+        "osoby.Osoba",
         blank=True,
         null=True,
         on_delete=models.SET_NULL,
-        verbose_name="Autor pojęcia"
+        verbose_name="Autor pojęcia",
     )
 
-    opis = models.TextField(
-        blank=True, verbose_name="Opis",
-    )
+    opis = models.TextField(blank=True, verbose_name="Opis")
 
     origins = models.CharField(
-        blank=True, choices=Okolicznosci.choices, verbose_name="Pierwszy raz pojawiło się:",
+        blank=True,
+        choices=Okolicznosci.choices,
+        verbose_name="Pierwszy raz pojawiło się:",
     )
 
     wydarzenie = models.ForeignKey(
@@ -227,26 +221,19 @@ class Pojecie(models.Model):
     def __str__(self):
         return self.nazwa
 
+
 class Zrodlo(models.Model):
-    nazwa = models.CharField(
-        max_length=255, blank=True, verbose_name="Nazwa"
-    )
+    nazwa = models.CharField(max_length=255, blank=True, verbose_name="Nazwa")
 
     autorzy = models.ManyToManyField(
-        'osoby.Osoba', blank=True, verbose_name="Autorzy"
+        "osoby.Osoba", blank=True, verbose_name="Autorzy"
     )
 
-    zawartosc = models.TextField(
-        blank=True, verbose_name="Zawartość"
-    )
+    zawartosc = models.TextField(blank=True, verbose_name="Zawartość")
 
-    link = models.URLField(
-        blank=True, verbose_name="Link"
-    )
+    link = models.URLField(blank=True, verbose_name="Link")
 
-    gdzie_znalezc = models.TextField(
-        blank=True, verbose_name="Gdzie znaleźć"
-    )
+    gdzie_znalezc = models.TextField(blank=True, verbose_name="Gdzie znaleźć")
 
     class Meta:
         verbose_name = "Źródło"
@@ -257,26 +244,23 @@ class Zrodlo(models.Model):
         autorzy = ", ".join(a for a in self.autorzy.all())
         return f"{self.nazwa} | {autorzy}"
 
+
 class Zwyczaj(models.Model):
-    nazwa = models.CharField(
-        max_length=MEDIUM_LENGTH, verbose_name="Nazwa",
-    )
+    nazwa = models.CharField(max_length=MEDIUM_LENGTH, verbose_name="Nazwa")
 
     autor = models.ForeignKey(
-        'osoby.Osoba',
+        "osoby.Osoba",
         blank=True,
         null=True,
         on_delete=models.SET_NULL,
-        verbose_name="Osoba, która zapoczątkowała zwyczaj"
+        verbose_name="Osoba, która zapoczątkowała zwyczaj",
     )
 
     data_powstania = models.DateField(
-        blank=True, verbose_name="Data powstania",
+        blank=True, verbose_name="Data powstania"
     )
 
-    opis = models.TextField(
-        blank=True, verbose_name="Opis",
-    )
+    opis = models.TextField(blank=True, verbose_name="Opis")
 
     class Meta:
         verbose_name = "Zwyczaj"
@@ -286,29 +270,26 @@ class Zwyczaj(models.Model):
     def __str__(self):
         return self.nazwa
 
+
 class Powiedzenie(models.Model):
 
-    tekst = models.TextField(
-        verbose_name="Tekst",
-    )
+    tekst = models.TextField(verbose_name="Tekst")
 
-    kontekst = models.TextField(
-        blank=True, verbose_name="Kontekst",
-    )
+    kontekst = models.TextField(blank=True, verbose_name="Kontekst")
 
     autor = models.ForeignKey(
-        'osoby.Osoba',
+        "osoby.Osoba",
         blank=True,
         null=True,
         on_delete=models.SET_NULL,
-        verbose_name="Autor"
+        verbose_name="Autor",
     )
 
     adresaci = models.ManyToManyField(
-        'osoby.Osoba',
+        "osoby.Osoba",
         blank=True,
         verbose_name="Adresat/adresaci powiedzenia",
-        related_name="zwiazane_zen_powiedzenia"
+        related_name="zwiazane_zen_powiedzenia",
     )
 
     class Meta:
@@ -319,7 +300,9 @@ class Powiedzenie(models.Model):
     def __str__(self):
         tekst = str(self.tekst)
         kontekst = str(self.kontekst)
-        short_tekst = f"\"{tekst if len(tekst) <= 100 else tekst[:100] + '...'}\""
+        short_tekst = (
+            f"\"{tekst if len(tekst) <= 100 else tekst[:100] + '...'}\""
+        )
         adresaci = ", ".join(str(a) for a in self.adresat.all())
         adresat_str = f" do {adresaci}" if adresaci else ""
         kontekst = f"{' (' + kontekst + ')' if len(kontekst) <= 100 else ''}"

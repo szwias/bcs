@@ -9,54 +9,74 @@ from miejsca.models_dict import names as miejsca
 autocomplete_configs = [
     (
         Bractwo,
-        ['wiek_tradycje', 'rok_zalozenia'], [],
+        ["wiek_tradycje", "rok_zalozenia"],
+        [],
         [
             GrupaBractw.__name__,
-            miejsca['Kraj'], osoby['Osoba'],
-        ]),
+            miejsca["Kraj"],
+            osoby["Osoba"],
+        ],
+    ),
     (
         GrupaBractw,
-        [], [],
+        [],
+        [],
         [
-            czapki['RodzajCzapki'], miejsca['Kraj'],
-        ]),
+            czapki["RodzajCzapki"],
+            miejsca["Kraj"],
+        ],
+    ),
     (
         Pojecie,
-        ['origins'], [],
+        ["origins"],
+        [],
         [
-            kronika['Wydarzenie'], osoby['Osoba'],
-        ]),
+            kronika["Wydarzenie"],
+            osoby["Osoba"],
+        ],
+    ),
     (
         Powiedzenie,
-        [], [],
+        [],
+        [],
         [
-            osoby['Osoba'],
-        ]),
+            osoby["Osoba"],
+        ],
+    ),
     (
         TradycjaBCS,
-        ['okolicznosci_powstania', 'zapozyczona_czy_autorska'], [],
+        ["okolicznosci_powstania", "zapozyczona_czy_autorska"],
+        [],
         [
             GrupaBractw.__name__,
-            kronika['Wydarzenie'], osoby['Osoba'],
-        ]),
+            kronika["Wydarzenie"],
+            osoby["Osoba"],
+        ],
+    ),
     (
         TradycjaInnegoBractwa,
-        [], [],
-        [
-            GrupaBractw.__name__],
+        [],
+        [],
+        [GrupaBractw.__name__],
     ),
     (
         Zwyczaj,
-        [], [],
+        [],
+        [],
         [
-            osoby['Osoba'],
-        ]),
+            osoby["Osoba"],
+        ],
+    ),
     (
         Zrodlo,
-        [], [],
+        [],
+        [],
         [
-            osoby['Osoba'],
-        ])
+            osoby["Osoba"],
+        ],
+    ),
 ]
 
-autocomplete_urls, autocomplete_widgets = setup_autocompletes(autocomplete_configs, globals())
+autocomplete_urls, autocomplete_widgets = setup_autocompletes(
+    autocomplete_configs, globals()
+)

@@ -6,18 +6,30 @@ from osoby.models import Czlonek
 from drzewo.utils.tree_rendering import render_layered_graph  # my helper
 from drzewo.utils.essentials import modify_layers_structure, TreeNode
 
+
 def generate_full_tree(path, onp):
     layers, edges, helper_dict = build_layers_and_edges_from_db(onp)
     render_layered_graph(layers, edges, path)
 
+
 def generate_scoped_tree(path, member, depth, gen, onp):
     _, _, helper_dict = build_layers_and_edges_from_db(onp)
-    layers, edges = build_scoped_layers_and_edges(member, depth, gen, onp, helper_dict)
-    render_layered_graph(layers, edges,path, node_attrs={str(member): {
-                "fillcolor": 'green',
+    layers, edges = build_scoped_layers_and_edges(
+        member, depth, gen, onp, helper_dict
+    )
+    render_layered_graph(
+        layers,
+        edges,
+        path,
+        node_attrs={
+            str(member): {
+                "fillcolor": "green",
                 "style": "filled",
-                "shape": "ellipse"
-            }})
+                "shape": "ellipse",
+            }
+        },
+    )
+
 
 def build_scoped_layers_and_edges(member, depth, gen, onp, helper_dict):
     layers = {}
@@ -55,8 +67,11 @@ def build_scoped_layers_and_edges(member, depth, gen, onp, helper_dict):
 
     return layers, edges
 
+
 def build_layers_and_edges_from_db(onp):
-    layers = {rocznik: [set()] for rocznik in range(ROK_ZALOZENIA, BIEZACY_ROK + 1)}
+    layers = {
+        rocznik: [set()] for rocznik in range(ROK_ZALOZENIA, BIEZACY_ROK + 1)
+    }
     edges = {}
     helper_dict = defaultdict(lambda: [None, []])
     go = 1
@@ -68,7 +83,11 @@ def build_layers_and_edges_from_db(onp):
 
     while members:
         if go == 1:
-            stack.append(TreeNode(Czlonek.objects.get(imie="Zdzisław", nazwisko="Gajda"), 0))
+            stack.append(
+                TreeNode(
+                    Czlonek.objects.get(imie="Zdzisław", nazwisko="Gajda"), 0
+                )
+            )
         elif go == 2 and not onp:
             stack.append(TreeNode(Czlonek.get_dont_know_czlonek(), 0))
         else:
@@ -89,7 +108,7 @@ def build_layers_and_edges_from_db(onp):
             layer = node.layer
             year = node.year
             member = node.member
-            paczek = node.paczek # support dla ludzi, którzy "wypączkowali"
+            paczek = node.paczek  # support dla ludzi, którzy "wypączkowali"
 
             while len(layers[year]) <= layer:
                 layers[year].append(set())
@@ -97,11 +116,19 @@ def build_layers_and_edges_from_db(onp):
             helper_dict[str(member)][0] = f"{year}_{layer}"
 
             children = member.get_children()
-            baptised_children = [c for c in children if c.ochrzczony == TextChoose.YES[0]]
+            baptised_children = [
+                c for c in children if c.ochrzczony == TextChoose.YES[0]
+            ]
             step_children = member.get_step_children()
-            baptised_step_children = [sc for sc in step_children if sc.ochrzczony == TextChoose.YES[0]]
+            baptised_step_children = [
+                sc
+                for sc in step_children
+                if sc.ochrzczony == TextChoose.YES[0]
+            ]
 
-            for child in reversed(baptised_children):  # reversed to keep order similar to recursion
+            for child in reversed(
+                baptised_children
+            ):  # reversed to keep order similar to recursion
                 if paczek:
                     if child == member:
                         continue

@@ -7,51 +7,47 @@ from miejsca.models_dict import names as miejsca
 autocomplete_configs = [
     (
         CharakterystykaDzialanZarzadu,
-        [], [],
-        [
-            osoby['Czlonek'], osoby['DawnyZarzad'], osoby['Zarzad']]),
-    (
-        ObrazWydarzenie,
-        [], [],
-        [
-            Wydarzenie.__name__,
-            osoby['Osoba']
-        ]),
+        [],
+        [],
+        [osoby["Czlonek"], osoby["DawnyZarzad"], osoby["Zarzad"]],
+    ),
+    (ObrazWydarzenie, [], [], [Wydarzenie.__name__, osoby["Osoba"]]),
     (
         ObrazZdarzenie,
-        [], [],
-        [
-            Zdarzenie.__name__,
-            miejsca['Miejsce'], osoby['Osoba']
-        ]),
+        [],
+        [],
+        [Zdarzenie.__name__, miejsca["Miejsce"], osoby["Osoba"]],
+    ),
     (
         Proces,
-        [], [],
+        [],
+        [],
         [
             Zdarzenie.__name__,
-        ]),
-    (
-        TypWydarzenia,
-        [], [],
-        []),
-    (
-        TypWyjazdu,
-        [], [],
-        []),
+        ],
+    ),
+    (TypWydarzenia, [], [], []),
+    (TypWyjazdu, [], [], []),
     (
         Wydarzenie,
-        ['typ_wydarzenia', 'typ_wyjazdu'], [],
+        ["typ_wydarzenia", "typ_wyjazdu"],
+        [],
         [
-            TypWydarzenia.__name__, TypWyjazdu.__name__, Zdarzenie.__name__,
-            miejsca['Miejsce' ], osoby['Osoba'],
-        ]),
+            TypWydarzenia.__name__,
+            TypWyjazdu.__name__,
+            Zdarzenie.__name__,
+            miejsca["Miejsce"],
+            osoby["Osoba"],
+        ],
+    ),
     (
         Zdarzenie,
-        [], [],
-        [
-            ObrazZdarzenie.__name__, Wydarzenie.__name__,
-            osoby['Osoba']
-        ]),
+        [],
+        [],
+        [ObrazZdarzenie.__name__, Wydarzenie.__name__, osoby["Osoba"]],
+    ),
 ]
 
-autocomplete_urls, autocomplete_widgets = setup_autocompletes(autocomplete_configs, globals())
+autocomplete_urls, autocomplete_widgets = setup_autocompletes(
+    autocomplete_configs, globals()
+)

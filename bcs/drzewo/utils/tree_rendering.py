@@ -1,6 +1,7 @@
 import pygraphviz as pgv
 
-def render_layered_graph(layers, edges, path, rankdir='TB', node_attrs=None):
+
+def render_layered_graph(layers, edges, path, rankdir="TB", node_attrs=None):
     G = pgv.AGraph(strict=True, directed=True)
     G.graph_attr.update(rankdir=rankdir)
 
@@ -16,7 +17,7 @@ def render_layered_graph(layers, edges, path, rankdir='TB', node_attrs=None):
             attrs = node_attrs.get(node, {})
             G.add_node(node, **attrs)
 
-        G.add_subgraph(nodes + [dummy], rank='same')
+        G.add_subgraph(nodes + [dummy], rank="same")
 
     # Edges
     if isinstance(edges, dict):
@@ -34,8 +35,9 @@ def render_layered_graph(layers, edges, path, rankdir='TB', node_attrs=None):
         if current_nodes:
             G.add_edge(current_nodes[0], next_dummy, style="invis")
 
-    G.layout(prog='dot')
+    G.layout(prog="dot")
     G.draw(path=path)
+
 
 def build_node_attrs_from_colors(color_groups):
     node_attrs = {}
@@ -44,6 +46,6 @@ def build_node_attrs_from_colors(color_groups):
             node_attrs[node] = {
                 "fillcolor": color,
                 "style": "filled",
-                "shape": "ellipse"
+                "shape": "ellipse",
             }
     return node_attrs

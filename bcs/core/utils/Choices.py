@@ -8,6 +8,7 @@ class TextChoose:
     def choices(cls):
         return [cls.YES, cls.NO]
 
+
 class TextAlt:
     NOT_APPLICABLE = "n/a", "Nie dotyczy"
     DONT_KNOW = "d/n", "Nie wiem"
@@ -19,6 +20,7 @@ class TextAlt:
     @classmethod
     def choices(cls):
         return [cls.NOT_APPLICABLE, cls.DONT_KNOW, cls.OTHER]
+
 
 class IntAlt:
     NOT_APPLICABLE = 1010101010, "Nie dotyczy"

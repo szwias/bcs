@@ -1,6 +1,10 @@
 from core.utils.automation.BaseAdmin import *
 from .models import ObrazWydarzenie, ObrazZdarzenie, Wydarzenie, Zdarzenie
-from .inlines import ZdarzenieInline, ObrazWydarzenieInline, ObrazZdarzenieInline
+from .inlines import (
+    ZdarzenieInline,
+    ObrazWydarzenieInline,
+    ObrazZdarzenieInline,
+)
 
 
 @admin.register(ObrazWydarzenie)
@@ -8,10 +12,12 @@ class ObrazWydarzenieAdmin(BaseModelAdmin):
     save_as = True
     filter_horizontal = ["widoczne_osoby"]
 
+
 @admin.register(ObrazZdarzenie)
 class ObrazZdarzenieAdmin(BaseModelAdmin):
     save_as = True
     filter_horizontal = ["widoczne_osoby"]
+
 
 @admin.register(Wydarzenie)
 class WydarzenieAdmin(BaseModelAdmin):
@@ -32,8 +38,15 @@ class WydarzenieAdmin(BaseModelAdmin):
 
         # Collect miejsca from all Zdarzenie inlines
         if formset.model == Zdarzenie:
-            miejsca_set = {z.miejsce for z in form.instance.zdarzenia_z_wydarzenia.all() if z.miejsce}
-            form.instance.miejsca.add(*miejsca_set)  # Replace all current with new set
+            miejsca_set = {
+                z.miejsce
+                for z in form.instance.zdarzenia_z_wydarzenia.all()
+                if z.miejsce
+            }
+            form.instance.miejsca.add(
+                *miejsca_set
+            )  # Replace all current with new set
+
 
 @admin.register(Zdarzenie)
 class ZdarzenieAdmin(BaseModelAdmin):

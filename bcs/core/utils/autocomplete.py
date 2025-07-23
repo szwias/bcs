@@ -1,6 +1,7 @@
 from django.http import JsonResponse
 from dal import autocomplete
 
+
 class ChoiceAutocompleteByLabelMixin:
     def get_autocomplete_results(self, choices, *args, **kwargs):
         query = self.q.lower() if self.q else ""
@@ -15,6 +16,7 @@ class ChoiceAutocompleteByLabelMixin:
         results = self.get_autocomplete_results(self.get_choices())
         return JsonResponse({"results": results})
 
+
 class ChoiceAutocompleteByValueMixin:
     def get_autocomplete_results(self, choices, *args, **kwargs):
         query = self.q.lower() if self.q else ""
@@ -28,7 +30,10 @@ class ChoiceAutocompleteByValueMixin:
         results = self.get_autocomplete_results(self.get_choices())
         return JsonResponse({"results": results})
 
-class FieldChoicesAutocompleteByLabel(ChoiceAutocompleteByLabelMixin, autocomplete.Select2ListView):
+
+class FieldChoicesAutocompleteByLabel(
+    ChoiceAutocompleteByLabelMixin, autocomplete.Select2ListView
+):
     model = None
     field_name = None
 
@@ -36,13 +41,17 @@ class FieldChoicesAutocompleteByLabel(ChoiceAutocompleteByLabelMixin, autocomple
         model_field = self.model._meta.get_field(self.field_name)
         return model_field.choices
 
-class FieldChoicesAutocompleteByValue(ChoiceAutocompleteByValueMixin, autocomplete.Select2ListView):
+
+class FieldChoicesAutocompleteByValue(
+    ChoiceAutocompleteByValueMixin, autocomplete.Select2ListView
+):
     model = None
     field_name = None
 
     def get_choices(self):
         model_field = self.model._meta.get_field(self.field_name)
         return model_field.choices
+
 
 class StrMatchingAutocomplete(autocomplete.Select2QuerySetView):
     model = None
