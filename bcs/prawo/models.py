@@ -57,7 +57,7 @@ class RelacjaPrawna(models.Model):
     tytul = models.CharField(max_length=MAX_LENGTH, verbose_name="Tytuł")
 
     podmiot = models.ManyToManyField(
-        Podmiot, on_delete=models.CASCADE, verbose_name="Podmiot"
+        Podmiot, blank=True, verbose_name="Podmiot"
     )
 
     class Meta:
