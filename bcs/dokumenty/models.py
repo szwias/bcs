@@ -8,13 +8,9 @@ from core.utils.Consts import MAX_LENGTH
 class Dokument(PolymorphicModel):
     tytul = models.CharField(max_length=MAX_LENGTH, verbose_name="Tytuł")
 
-    data = models.DateField(
-        auto_now_add=True, blank=True, verbose_name="Data wydania"
-    )
+    data = models.DateField(blank=True, verbose_name="Data wydania")
 
-    streszczenie = models.CharField(
-        max_length=MAX_LENGTH, blank=True, verbose_name="Streszczenie"
-    )
+    streszczenie = models.TextField(blank=True, verbose_name="Streszczenie")
 
     autorzy = models.ManyToManyField(
         "osoby.Osoba",
@@ -23,12 +19,17 @@ class Dokument(PolymorphicModel):
         related_name="wydane_dokumenty",
     )
 
-    tekst = models.TextField(blank=True, verbose_name="Tekst")
+    plik = models.FileField(
+        upload_to="pdfs/", blank=True, verbose_name="Tekst"
+    )
 
     class Meta:
         verbose_name = "Dokument"
         verbose_name_plural = "Dokumenty"
         ordering = ["-data"]
+
+    def __str__(self):
+        return f"{self.tytul} - {self.data}"
 
 
 class Edykt(Dokument):

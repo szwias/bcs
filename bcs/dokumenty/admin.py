@@ -5,18 +5,21 @@ from .models import Dokument, Edykt, Ukaz
 @admin.register(Dokument)
 class DokumentAdmin(BaseModelAdmin):
     filter_horizontal = ["autorzy"]
+    list_filter_exclude = ["polymorphic_ctype"]
 
 
 @admin.register(Edykt)
 class EdyktAdmin(BaseModelAdmin):
-    fields = ["tytul", "numer", "autorzy", "tekst"]
+    fields = ["tytul", "numer", "data", "autorzy", "streszczenie", "plik"]
     filter_horizontal = ["autorzy"]
+    list_filter_exclude = ["polymorphic_ctype"]
 
 
 @admin.register(Ukaz)
 class UkazAdmin(BaseModelAdmin):
-    fields = ["tytul", "numer", "autorzy", "tekst"]
+    fields = ["tytul", "numer", "data", "autorzy", "streszczenie", "plik"]
     filter_horizontal = ["autorzy"]
+    list_filter_exclude = ["polymorphic_ctype"]
 
 
 register_all_models(
