@@ -35,7 +35,7 @@ class RelacjaPrawna(models.Model):
         PRAWO = "P", "Prawo"
         OBOWIAZEK = "O", "Obowiązek"
 
-    tytul = models.CharField(max_length=MAX_LENGTH, verbose_name="Tytuł")
+    tresc = models.TextField(max_length=MAX_LENGTH, verbose_name="Treść")
 
     podmiot = models.ManyToManyField(
         Podmiot, blank=True, verbose_name="Podmiot"
@@ -56,7 +56,8 @@ class RelacjaPrawna(models.Model):
     class Meta:
         verbose_name = "Relacja prawna"
         verbose_name_plural = "Prawa i obowiązki"
-        ordering = ["tytul"]
+        ordering = ["tresc"]
 
     def __str__(self):
-        return self.tytul
+        przedawnione = " - PRZEDAWNIONE" if self.przedawnione else ""
+        return f"{self.tresc}{przedawnione}"
