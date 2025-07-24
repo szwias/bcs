@@ -21,7 +21,7 @@ class ZdarzenieForm(forms.ModelForm):
         widgets.update(
             {
                 "miejsce": autocomplete.ModelSelect2(
-                    url="kronika_autocomplete:custom-miejsce-from-wydarzenie-to-zdarzenie-autocomplete",
+                    url="kalendarz_autocomplete:custom-miejsce-from-wydarzenie-to-zdarzenie-autocomplete",
                     forward=["wydarzenie"],
                 )
             }
