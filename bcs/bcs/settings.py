@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     "miejsca",
     "osoby",
     "prawo",
+    "slowniczek_lacinski",
     "dal",  # This is the django-autocomplete-light app
     "dal_select2",  # This is for the Select2 widget (optional but recommended)
 ]

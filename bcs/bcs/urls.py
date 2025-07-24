@@ -58,6 +58,13 @@ urlpatterns = [
         "autocomplete/prawo/",
         include("prawo.autocomplete_urls", "prawo_autocomplete"),
     ),
+    path(
+        "autocomplete/slowniczek_lacinski/",
+        include(
+            "slowniczek_lacinski.autocomplete_urls",
+            "slowniczek_lacinski_autocomplete",
+        ),
+    ),
     path("drzewo/", include("drzewo.urls")),
 ]
 
