@@ -9,6 +9,7 @@ from .models import (
 )
 from core.utils.autocompletion.AutocompletesGeneration import *
 
+from kalendarz.models_dict import names as kalendarz
 from osoby.models_dict import names as osoby
 
 autocomplete_configs = [
@@ -25,7 +26,12 @@ autocomplete_configs = [
         [WydarzenieHistoryczne.__name__, osoby["Zarzad"]],
     ),
     (TypWydarzeniaHistorycznego, [], [], []),
-    (WydarzenieHistoryczne, [], [], [TypWydarzeniaHistorycznego.__name__]),
+    (
+        WydarzenieHistoryczne,
+        [],
+        [],
+        [TypWydarzeniaHistorycznego.__name__]
+    ),
 ]
 
 autocomplete_urls, autocomplete_widgets = setup_autocompletes(

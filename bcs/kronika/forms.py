@@ -1,4 +1,8 @@
 from django import forms
+from django.db.models.functions import Cast
+from django.forms import CharField
+
+from kalendarz.models import Wydarzenie
 from .models import (
     CharakterystykaDzialanZarzadu,
     Kadencja,
@@ -41,3 +45,17 @@ class WydarzenieHistoryczneForm(forms.ModelForm):
         widgets = build_widgets(
             autocomplete_widgets[WydarzenieHistoryczne.__name__]
         )
+
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        data_value = self.data.get("data") or self.initial.get("data")
+
+        if data_value:
+            self.fields["wydarzenie"].queryset = Wydarzenie.objects.filter(
+                data_rozpoczecia=data_value,
+                czy_jednodniowe=True
+            )
+        else:
+            self.fields["wydarzenie"].queryset = Wydarzenie.objects.none()
