@@ -1,7 +1,7 @@
 from django.db import models
 
 from core.utils.Consts import MEDIUM_LENGTH, NAME_LENGTH
-from core.utils.czas import Czas
+from core.utils import Czas
 
 
 class CharakterystykaDzialanZarzadu(models.Model):
@@ -41,6 +41,39 @@ class CharakterystykaDzialanZarzadu(models.Model):
         return f"{self.autor}: {self.zarzad.kadencja if self.zarzad else self.dawny_zarzad.kadencja}"
 
 
+class Kadencja(models.Model):
+
+    lata = models.IntegerField(
+        choices=Czas.KADENCJE, verbose_name="Lata"
+    )
+
+    rozpoczecie = models.ForeignKey(
+        "kronika.WydarzenieHistoryczne",
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+        verbose_name="Rozpoczęcie kadencji",
+        related_name="rozpoczyna_kadencje",
+    )
+
+    zakonczenie = models.ForeignKey(
+        "kronika.WydarzenieHistoryczne",
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+        verbose_name="Zakończenie kadencji",
+        related_name="konczy_kadencje"
+    )
+
+    class Meta:
+        verbose_name = "Kadencja"
+        verbose_name_plural = "Kadencje"
+        ordering = ["lata"]
+
+    def __str__(self):
+        return self.get_lata_display()
+
+
 class TypWydarzeniaHistorycznego(models.Model):
     typ = models.CharField(
         max_length=NAME_LENGTH, verbose_name="Typ wydarzenia historycznego"
@@ -76,20 +109,8 @@ class WydarzenieHistoryczne(models.Model):
         ordering = ["nazwa"]
 
     def __str__(self):
-        return f'{self.data}: {self.typ} "{self.nazwa}"'
-
-
-class Kadencja(models.Model):
-    rozpoczecie = models.IntegerField(
-        choices=Czas.LATA_BCS, verbose_name="Rozpoczęcie"
-    )
-
-    zakonczenie = models.IntegerField(blank=True, verbose_name="Zakonczenie")
-
-    class Meta:
-        verbose_name = "Kadencja"
-        verbose_name_plural = "Kadencje"
-        ordering = ["rozpoczecie"]
-
-    def __str__(self):
-        return f"{self.rozpoczecie}/{self.zakonczenie}"
+        if str(self.typ).lower() in self.nazwa.lower():
+            typ = ""
+        else:
+            typ = self.typ
+        return f'{self.data}: {typ} "{self.nazwa}"'

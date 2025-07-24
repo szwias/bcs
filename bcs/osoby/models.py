@@ -8,8 +8,8 @@ from core.utils.Consts import (
     SHORT_LENGTH,
     NAME_LENGTH,
 )
-from core.utils.czas import Czas
-from core.utils.czas.Czas import ROK_ZALOZENIA
+from core.utils import Czas
+from core.utils.Czas import ROK_ZALOZENIA
 from kronika.models import Kadencja
 from czapki.models import Czapka
 from core.utils.Choices import TextAlt, TextChoose, IntAlt

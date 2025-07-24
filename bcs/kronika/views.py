@@ -9,18 +9,6 @@ from .models import (
 )
 from core.utils.autocompletion.AutocompletesGeneration import *
 
-
-class CustomKadencjaAutocomplete(autocomplete.Select2QuerySetView):
-    def get_queryset(self):
-        qs = Kadencja.objects.all()
-
-        if self.q:
-            qs = qs.annotate(
-                rozpoczecie_str=Cast("rozpoczecie", output_field=CharField())
-            ).filter(rozpoczecie_str__icontains=self.q)
-        return qs
-
-
 from osoby.models_dict import names as osoby
 
 autocomplete_configs = [
@@ -30,7 +18,12 @@ autocomplete_configs = [
         [],
         [osoby["Czlonek"], osoby["DawnyZarzad"], osoby["Zarzad"]],
     ),
-    (Kadencja, [], ["rozpoczecie"], []),
+    (
+        Kadencja,
+        [],
+        ["lata"],
+        [WydarzenieHistoryczne.__name__, osoby["Zarzad"]],
+    ),
     (TypWydarzeniaHistorycznego, [], [], []),
     (WydarzenieHistoryczne, [], [], [TypWydarzeniaHistorycznego.__name__]),
 ]

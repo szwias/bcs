@@ -2,7 +2,7 @@
 from django import forms
 from osoby.models import Czlonek
 from core.utils.Choices import TextChoose
-from core.utils.czas.Czas import MAKSYMALNA_ILOSC_POKOLEN
+from core.utils.Czas import MAKSYMALNA_ILOSC_POKOLEN
 
 
 class FullTreeRenderForm(forms.Form):

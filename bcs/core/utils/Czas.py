@@ -5,6 +5,7 @@ ZALOZENIE_PIERWSZEGO_UNIWERSYTETU = 1000
 ROK_ZALOZENIA = 2009
 BIEZACY_ROK = datetime.now().year
 LATA_BCS = [(i, str(i)) for i in range(ROK_ZALOZENIA, BIEZACY_ROK + 1)]
+KADENCJE = [(i, f"{i}/{i + 1}") for i in range(ROK_ZALOZENIA, BIEZACY_ROK + 1)]
 LATA_BRACTW = [
     (i, str(i)) for i in range(ZALOZENIE_PIERWSZEGO_UNIWERSYTETU, BIEZACY_ROK)
 ]

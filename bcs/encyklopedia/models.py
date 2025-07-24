@@ -2,7 +2,7 @@ from django.db import models
 
 from core.utils.Choices import IntAlt
 from core.utils.Consts import *
-from core.utils.czas import Czas
+from core.utils import Czas
 from kalendarz.models import Wydarzenie
 
 

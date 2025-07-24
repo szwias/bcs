@@ -1,5 +1,5 @@
 Python / SQL / HTML lines of code:
-    --------------------------: no tracking whatsoever
+    --------------------------: no tracking whatsoever - 1700 lines
     23 kwietnia:    0       / 0 lines
     24 kwietnia:    x       / y lines
     25 kwietnia:    x       / y lines
@@ -10,7 +10,7 @@ Python / SQL / HTML lines of code:
     2 maja:         x       / y lines
     3 maja:         x       / y lines
     4 maja:         1700    / y lines
-    ----------------------------------: may; Python lines tracking
+    ----------------------------------: may; Python lines tracking - 505 lines
     5 maja:     1850 / y lines (+150)
     9 maja:     1966 / y lines (+154)
     13 maja:    2200 / y lines (+234)
@@ -21,14 +21,14 @@ Python / SQL / HTML lines of code:
     21 maja:    2355 / y lines (+3)
     22 maja:    2355 / y lines (+0)
     29 maja:    2355 / y lines (+0)
-    ---------------------------------: june; Python lines tracking
+    ---------------------------------: june; Python lines tracking - 235 lines
     17 czerwca: 2556 / y    lines (+201)
     21 czerwca: 2591 / 4781 lines (+35)
     29 czerwca: 2590 / y    lines (-1)
-    --------------------------------------: july; Python lines tracking
+    --------------------------------------: july; Python lines tracking - 43 lines
     1 lipca:    2590 / y lines (+0)
     3 lipca:    2633 / y lines (+43)
-    ----------------------------------------: SQL & HTML lines tracking added
+    ----------------------------------------: SQL & HTML lines tracking added - 5645 lines
     4 lipca:    2633 / 4837 / 0     lines (+0   / +56   / +0)   = +56
     5 lipca:    2701 / 4839 / 0     lines (+71  / +2    / +0)   = +73
     6 lipca:    2737 / 4845 / 0     lines (+36  / +6    / +0)   = +42
@@ -43,7 +43,8 @@ Python / SQL / HTML lines of code:
     20 lipca:   3464 / 7034 / 25    lines (+76  / +0    / +0)   = +76
     21 lipca:   3596 / 6337 / 25    lines (+132 / -697  / +0)   = -565
     22 lipca:   3655 / 7774 / 25    lines (+59  / +1437 / +0)   = +1496
-    23 lipca:   x / 8451 / x        lines (+852 / +x    / +2)
+    23 lipca:   4591 / 8451 / 28    lines (+936 / +677  / +3)   = +1616
+    24 lipca:   x / x / x   lines (+x / +x / +x)    = +x
 
     PREVIOUS PERIODS:
         START OF PRODUCTION:
@@ -76,10 +77,10 @@ Python / SQL / HTML lines of code:
 
     CURRENT PERIOD:
         GREAT COMEBACK:
-        4 lipca - 22 lipca (14 / 19 days - 1011 / 2993 / 25 lines):
-            Average speed of development: 212 lines per day (~210)
-            Average lines of code on a coding day: 288 lines per day (~290)
-            Average positive lines on a coding day: 360 lines per day (~360)
-            Amplitude: 2061 lines (per day)
+        4 lipca - 23 lipca (15 / 20 days - 1947 / 3670 / 28 lines):
+            Average speed of development: 282 lines per day (~280)
+            Average lines of code on a coding day: 376 lines per day (~380)
+            Average positive lines on a coding day: 444 lines per day (~440)
+            Amplitude: 2181 lines (per day)
 
 
