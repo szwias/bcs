@@ -7,13 +7,16 @@ from core.utils.Consts import MAX_LENGTH, NAME_LENGTH
 class Podmiot(PolymorphicModel):
     nazwa = models.CharField(max_length=NAME_LENGTH, verbose_name="Nazwa")
 
+    aktualne = models.BooleanField(default=True, verbose_name="Aktualne")
+
     class Meta:
         verbose_name = "Podmiot"
         verbose_name_plural = "Podmioty"
         ordering = ["nazwa"]
 
     def __str__(self):
-        return self.nazwa
+        aktualnosc = "" if self.aktualne else " - NIEAKTUALNE"
+        return f"{self.nazwa}{aktualnosc}"
 
 
 class Rola(Podmiot):
