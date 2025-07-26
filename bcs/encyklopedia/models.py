@@ -1,4 +1,5 @@
 from django.db import models
+from polymorphic.models import PolymorphicModel
 
 from core.utils.Choices import IntAlt
 from core.utils.Consts import *
@@ -63,6 +64,58 @@ class Bractwo(models.Model):
         return f"{str(self.panstwo)}: {self.nazwa}"
 
 
+class Cytat(PolymorphicModel):
+    tekst = models.TextField(verbose_name="Tekst")
+
+    kontekst = models.TextField(blank=True, verbose_name="Kontekst")
+
+    zrodlo = models.ForeignKey(
+        "zrodla.Zrodlo",
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+        verbose_name="Źródło",
+    )
+
+    autor = models.ForeignKey(
+        "osoby.Osoba",
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+        verbose_name="Autor",
+    )
+
+    adresaci = models.ManyToManyField(
+        "osoby.Osoba",
+        blank=True,
+        verbose_name="Adresat/adresaci powiedzenia",
+        related_name="zwiazane_zen_powiedzenia",
+    )
+
+    class Meta:
+        verbose_name = "Cytat"
+        verbose_name_plural = "Cytaty"
+        ordering = ("tekst",)
+
+    def __str__(self):
+        tekst = str(self.tekst)
+        kontekst = str(self.kontekst)
+        short_tekst = (
+            f"\"{tekst if len(tekst) <= 100 else tekst[:100] + '...'}\""
+        )
+        adresaci = ", ".join(str(a) for a in self.adresat.all())
+        adresat_str = f" do {adresaci}" if adresaci else ""
+        kontekst = f"{' (' + kontekst + ')' if len(kontekst) <= 100 else ''}"
+        return f"{short_tekst} - {self.autor}{adresat_str}{kontekst}"
+
+class Aforyzm(Cytat):
+
+    class Meta:
+        verbose_name = "Aforyzm"
+        verbose_name_plural = "Aforyzmy"
+        ordering = ["tekst"]
+
+
 class GrupaBractw(models.Model):
     nazwa = models.CharField(max_length=NAME_LENGTH, verbose_name="Nazwa")
 
@@ -88,6 +141,43 @@ class GrupaBractw(models.Model):
     def __str__(self):
         kraje = ", ".join(str(k) for k in self.kraje.all())
         return f"{self.nazwa}: {kraje}"
+
+
+class Pojecie(models.Model):
+
+    nazwa = models.CharField(max_length=MEDIUM_LENGTH, verbose_name="Nazwa")
+
+    autor = models.ForeignKey(
+        "osoby.Osoba",
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+        verbose_name="Autor pojęcia",
+    )
+
+    opis = models.TextField(blank=True, verbose_name="Opis")
+
+    origins = models.CharField(
+        blank=True,
+        choices=Okolicznosci.choices,
+        verbose_name="Pierwszy raz pojawiło się:",
+    )
+
+    wydarzenie = models.ForeignKey(
+        Wydarzenie,
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+        verbose_name="Wydarzenie",
+    )
+
+    class Meta:
+        verbose_name = "Pojęcie"
+        verbose_name_plural = "Pojęcia"
+        ordering = ("nazwa",)
+
+    def __str__(self):
+        return self.nazwa
 
 
 class TradycjaBCS(models.Model):
@@ -185,43 +275,6 @@ class TradycjaInnegoBractwa(models.Model):
         return self.nazwa
 
 
-class Pojecie(models.Model):
-
-    nazwa = models.CharField(max_length=MEDIUM_LENGTH, verbose_name="Nazwa")
-
-    autor = models.ForeignKey(
-        "osoby.Osoba",
-        blank=True,
-        null=True,
-        on_delete=models.SET_NULL,
-        verbose_name="Autor pojęcia",
-    )
-
-    opis = models.TextField(blank=True, verbose_name="Opis")
-
-    origins = models.CharField(
-        blank=True,
-        choices=Okolicznosci.choices,
-        verbose_name="Pierwszy raz pojawiło się:",
-    )
-
-    wydarzenie = models.ForeignKey(
-        Wydarzenie,
-        blank=True,
-        null=True,
-        on_delete=models.SET_NULL,
-        verbose_name="Wydarzenie",
-    )
-
-    class Meta:
-        verbose_name = "Pojęcie"
-        verbose_name_plural = "Pojęcia"
-        ordering = ("nazwa",)
-
-    def __str__(self):
-        return self.nazwa
-
-
 class Zwyczaj(models.Model):
     nazwa = models.CharField(max_length=MEDIUM_LENGTH, verbose_name="Nazwa")
 
@@ -246,47 +299,3 @@ class Zwyczaj(models.Model):
 
     def __str__(self):
         return self.nazwa
-
-
-class Powiedzenie(models.Model):
-
-    tekst = models.TextField(verbose_name="Tekst")
-
-    kontekst = models.TextField(blank=True, verbose_name="Kontekst")
-
-    # TODO: zrodlo field that can reference any source - to do that,
-    #  Zrodlo and Dokument would have to be the same class
-    #  Also, Powiedzenie and Aforyzm should be the same class
-    #  Lastly all sources models should be in one app, so rename dokumenty to
-    #  zrodla, while it's still possible
-
-    autor = models.ForeignKey(
-        "osoby.Osoba",
-        blank=True,
-        null=True,
-        on_delete=models.SET_NULL,
-        verbose_name="Autor",
-    )
-
-    adresaci = models.ManyToManyField(
-        "osoby.Osoba",
-        blank=True,
-        verbose_name="Adresat/adresaci powiedzenia",
-        related_name="zwiazane_zen_powiedzenia",
-    )
-
-    class Meta:
-        verbose_name = "Powiedzenie"
-        verbose_name_plural = "Powiedzenia"
-        ordering = ("tekst",)
-
-    def __str__(self):
-        tekst = str(self.tekst)
-        kontekst = str(self.kontekst)
-        short_tekst = (
-            f"\"{tekst if len(tekst) <= 100 else tekst[:100] + '...'}\""
-        )
-        adresaci = ", ".join(str(a) for a in self.adresat.all())
-        adresat_str = f" do {adresaci}" if adresaci else ""
-        kontekst = f"{' (' + kontekst + ')' if len(kontekst) <= 100 else ''}"
-        return f"{short_tekst} - {self.autor}{adresat_str}{kontekst}"

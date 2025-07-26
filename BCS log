@@ -44,7 +44,9 @@ Python / SQL / HTML lines of code:
     21 lipca:   3596 / 6337 / 25    lines (+132 / -697  / +0)   = -565
     22 lipca:   3655 / 7774 / 25    lines (+59  / +1437 / +0)   = +1496
     23 lipca:   4591 / 8451 / 28    lines (+936 / +677  / +3)   = +1616
-    24 lipca:   x / 8637 / x   lines (+x / +54 / +x)    = +x
+    24 lipca:   4624 / 8578 / 28    lines (+33  / +127  / +0)   = +160
+    26 lipca:   4620 / 8637 / 28    lines (-4   / +59   / +0)   = +55
+    27 lipca:   x / x / x   lines (+x / +x / +x)    = +x
 
     PREVIOUS PERIODS:
         START OF PRODUCTION:
@@ -77,10 +79,10 @@ Python / SQL / HTML lines of code:
 
     CURRENT PERIOD:
         GREAT COMEBACK:
-        4 lipca - 23 lipca (15 / 20 days - 1947 / 3670 / 28 lines):
-            Average speed of development: 282 lines per day (~280)
-            Average lines of code on a coding day: 376 lines per day (~380)
-            Average positive lines on a coding day: 444 lines per day (~440)
+        4 lipca - 26 lipca (17 / 23 days - 1976 / 3856 / 28 lines):
+            Average speed of development: 225 lines per day (~230)
+            Average lines of code on a coding day: 345 lines per day (~350)
+            Average positive lines on a coding day: 405 lines per day (~410)
             Amplitude: 2181 lines (per day)
 
 
