@@ -1,5 +1,5 @@
 from django import forms
-from .models import Dokument, Edykt, Ukaz
+from .models import Dokument, Edykt, Ukaz, Zrodlo, ZrodloOgolne
 from osoby.models import Czlonek
 from .views import autocomplete_widgets
 from core.utils.autocompletion.AutocompletesGeneration import build_widgets
@@ -32,3 +32,17 @@ class UkazForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields["autorzy"].queryset = Czlonek.objects.all()
+
+
+class ZrodloForm(forms.ModelForm):
+    class Meta:
+        model = Zrodlo
+        fields = "__all__"
+        widgets = build_widgets(autocomplete_widgets[Zrodlo.__name__])
+
+
+class ZrodloOgolneForm(forms.ModelForm):
+    class Meta:
+        model = ZrodloOgolne
+        fields = "__all__"
+        widgets = build_widgets(autocomplete_widgets[ZrodloOgolne.__name__])

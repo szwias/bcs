@@ -7,6 +7,7 @@ autocomplete_configs = [
     (Dokument, [], [], [osoby["Osoba"]]),
     (Edykt, [], [], [osoby["Osoba"]]),
     (Ukaz, [], [], [osoby["Osoba"]]),
+    (Zrodlo, [], [], [osoby["Osoba"]]),
     (ZrodloOgolne, [], [], [osoby["Osoba"]]),
 ]
 

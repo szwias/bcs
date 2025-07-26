@@ -26,8 +26,14 @@ class Migration(migrations.Migration):
                         verbose_name="ID",
                     ),
                 ),
-                ("tytul", models.CharField(max_length=255, verbose_name="Tytuł")),
-                ("data", models.DateField(blank=True, verbose_name="Data wydania")),
+                (
+                    "tytul",
+                    models.CharField(max_length=255, verbose_name="Tytuł"),
+                ),
+                (
+                    "data",
+                    models.DateField(blank=True, verbose_name="Data wydania"),
+                ),
                 (
                     "streszczenie",
                     models.TextField(blank=True, verbose_name="Streszczenie"),
@@ -78,7 +84,10 @@ class Migration(migrations.Migration):
                         to="zrodla.dokument",
                     ),
                 ),
-                ("numer", models.IntegerField(blank=True, verbose_name="Numer")),
+                (
+                    "numer",
+                    models.IntegerField(blank=True, verbose_name="Numer"),
+                ),
             ],
             options={
                 "verbose_name": "Edykt",
@@ -101,7 +110,10 @@ class Migration(migrations.Migration):
                         to="zrodla.dokument",
                     ),
                 ),
-                ("numer", models.IntegerField(blank=True, verbose_name="Numer")),
+                (
+                    "numer",
+                    models.IntegerField(blank=True, verbose_name="Numer"),
+                ),
             ],
             options={
                 "verbose_name": "Ukaz",

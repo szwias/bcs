@@ -46,7 +46,6 @@ class WydarzenieHistoryczneForm(forms.ModelForm):
             autocomplete_widgets[WydarzenieHistoryczne.__name__]
         )
 
-
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
@@ -54,8 +53,7 @@ class WydarzenieHistoryczneForm(forms.ModelForm):
 
         if data_value:
             self.fields["wydarzenie"].queryset = Wydarzenie.objects.filter(
-                data_rozpoczecia=data_value,
-                czy_jednodniowe=True
+                data_rozpoczecia=data_value, czy_jednodniowe=True
             )
         else:
             self.fields["wydarzenie"].queryset = Wydarzenie.objects.none()

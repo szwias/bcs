@@ -22,10 +22,15 @@ class Migration(migrations.Migration):
                         verbose_name="ID",
                     ),
                 ),
-                ("zwrot", models.CharField(max_length=255, verbose_name="Zwrot")),
+                (
+                    "zwrot",
+                    models.CharField(max_length=255, verbose_name="Zwrot"),
+                ),
                 (
                     "tlumaczenie",
-                    models.CharField(max_length=255, verbose_name="Tłumaczenie"),
+                    models.CharField(
+                        max_length=255, verbose_name="Tłumaczenie"
+                    ),
                 ),
                 (
                     "uzywany_na_karczmie",

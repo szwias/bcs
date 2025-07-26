@@ -26,12 +26,7 @@ autocomplete_configs = [
         [WydarzenieHistoryczne.__name__, osoby["Zarzad"]],
     ),
     (TypWydarzeniaHistorycznego, [], [], []),
-    (
-        WydarzenieHistoryczne,
-        [],
-        [],
-        [TypWydarzeniaHistorycznego.__name__]
-    ),
+    (WydarzenieHistoryczne, [], [], [TypWydarzeniaHistorycznego.__name__]),
 ]
 
 autocomplete_urls, autocomplete_widgets = setup_autocompletes(

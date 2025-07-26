@@ -4,26 +4,31 @@ from polymorphic.models import PolymorphicModel
 from core.utils.Consts import MAX_LENGTH
 
 
-# Create your models here.
-class Dokument(PolymorphicModel):
-    tytul = models.CharField(max_length=MAX_LENGTH, verbose_name="Tytuł")
-
-    data = models.DateField(blank=True, verbose_name="Data wydania")
-
-    streszczenie = models.TextField(blank=True, verbose_name="Streszczenie")
+class Zrodlo(PolymorphicModel):
+    tytul = models.CharField(
+        max_length=MAX_LENGTH, blank=True, verbose_name="Tytuł"
+    )
 
     autorzy = models.ManyToManyField(
         "osoby.Osoba",
         blank=True,
         verbose_name="Autorzy",
-        related_name="wydane_dokumenty",
+        related_name="%(class)s_ktorych_jest_autorem",
     )
 
-    plik = models.FileField(
-        upload_to="pdfs/", blank=True, verbose_name="Tekst"
-    )
+    plik = models.FileField(upload_to="pdfs/", blank=True, verbose_name="Plik")
 
-class ZrodloOgolne(models.Model):
+    class Meta:
+        verbose_name = "Źródło"
+        verbose_name_plural = "Źródła"
+        ordering = ("tytul",)
+
+    def __str__(self):
+        autorzy = ", ".join(a for a in self.autorzy.all())
+        return f"{self.nazwa} | {autorzy}"
+
+
+class ZrodloOgolne(Zrodlo):
 
     zawartosc = models.TextField(blank=True, verbose_name="Zawartość")
 
@@ -34,6 +39,12 @@ class ZrodloOgolne(models.Model):
         verbose_name_plural = "Źródła różne"
         ordering = ("tytul",)
 
+
+class Dokument(Zrodlo):
+
+    data = models.DateField(blank=True, verbose_name="Data wydania")
+
+    streszczenie = models.TextField(blank=True, verbose_name="Streszczenie")
 
     class Meta:
         verbose_name = "Dokument"

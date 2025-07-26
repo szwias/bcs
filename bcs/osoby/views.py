@@ -54,7 +54,7 @@ autocomplete_configs = [
             kronika["Kadencja"],
         ],
     ),
-    (ZwierzeCzapkowe, [], [], [Czlonek.__name__])
+    (ZwierzeCzapkowe, [], [], [Czlonek.__name__]),
 ]
 
 autocomplete_urls, autocomplete_widgets = setup_autocompletes(

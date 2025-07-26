@@ -26,7 +26,10 @@ class Migration(migrations.Migration):
                         verbose_name="ID",
                     ),
                 ),
-                ("nazwa", models.CharField(max_length=40, verbose_name="Nazwa")),
+                (
+                    "nazwa",
+                    models.CharField(max_length=40, verbose_name="Nazwa"),
+                ),
                 (
                     "aktualne",
                     models.BooleanField(default=True, verbose_name="Aktualne"),
@@ -104,7 +107,10 @@ class Migration(migrations.Migration):
                         verbose_name="ID",
                     ),
                 ),
-                ("tresc", models.TextField(max_length=255, verbose_name="Treść")),
+                (
+                    "tresc",
+                    models.TextField(max_length=255, verbose_name="Treść"),
+                ),
                 (
                     "prawo_czy_obowiazek",
                     models.CharField(
@@ -115,7 +121,9 @@ class Migration(migrations.Migration):
                 ),
                 (
                     "przedawnione",
-                    models.BooleanField(default=False, verbose_name="Przedawnione"),
+                    models.BooleanField(
+                        default=False, verbose_name="Przedawnione"
+                    ),
                 ),
                 (
                     "dokument",

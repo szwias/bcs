@@ -6,6 +6,7 @@ from kronika.models import Kadencja
 class KadencjaAdmin(BaseModelAdmin):
     list_filter_exclude = "__all__"
 
+
 register_all_models(
     custom_admins={
         Kadencja: KadencjaAdmin,

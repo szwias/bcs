@@ -222,29 +222,6 @@ class Pojecie(models.Model):
         return self.nazwa
 
 
-class Zrodlo(models.Model):
-    nazwa = models.CharField(max_length=255, blank=True, verbose_name="Nazwa")
-
-    autorzy = models.ManyToManyField(
-        "osoby.Osoba", blank=True, verbose_name="Autorzy"
-    )
-
-    zawartosc = models.TextField(blank=True, verbose_name="Zawartość")
-
-    link = models.URLField(blank=True, verbose_name="Link")
-
-    gdzie_znalezc = models.TextField(blank=True, verbose_name="Gdzie znaleźć")
-
-    class Meta:
-        verbose_name = "Źródło"
-        verbose_name_plural = "Źródła"
-        ordering = ("nazwa",)
-
-    def __str__(self):
-        autorzy = ", ".join(a for a in self.autorzy.all())
-        return f"{self.nazwa} | {autorzy}"
-
-
 class Zwyczaj(models.Model):
     nazwa = models.CharField(max_length=MEDIUM_LENGTH, verbose_name="Nazwa")
 

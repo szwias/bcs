@@ -8,7 +8,10 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ("kronika", "0018_alter_wydarzeniehistoryczne_data_and_more"),
-        ("osoby", "0011_alter_bean_pewnosc_stazu_alter_czlonek_imie_piwne_1_and_more"),
+        (
+            "osoby",
+            "0011_alter_bean_pewnosc_stazu_alter_czlonek_imie_piwne_1_and_more",
+        ),
     ]
 
     operations = [

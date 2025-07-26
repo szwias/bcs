@@ -9,7 +9,7 @@ autocomplete_configs = [
         RelacjaPrawna,
         [],
         ["prawo_czy_obowiazek"],
-        [Podmiot.__name__, zrodla["Dokument"]]
+        [Podmiot.__name__, zrodla["Dokument"]],
     ),
     (Struktura, [], [], []),
     (Rola, [], [], []),

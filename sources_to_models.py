@@ -7,6 +7,7 @@ from kronika.models import (
 from miejsca.models import *
 from osoby.models import *
 from prawo.models import *
+from zrodla.models import *
 
 mapping = {
     "AS/Kalendarium": [
@@ -37,7 +38,7 @@ mapping = {
                 TradycjaBCS,
                 TradycjaInnegoBractwa,
                 Pojecie,
-                Zrodlo,
+                ZrodloOgolne,
                 Zwyczaj,
             ]
         },
@@ -65,7 +66,7 @@ mapping = {
                 ZadanieChrzcielne,
             ]
         },
-        {"encyklopedia": [Pojecie, Powiedzenie, Zwyczaj, Zrodlo]},
+        {"encyklopedia": [Pojecie, Powiedzenie, Zwyczaj, ZrodloOgolne]},
         {"osoby": [Czlonek, HallOfFame, InnaOsoba, WielkiMistrz]},
         {"prawo": [Obowiazek, Prawo, Rola, Struktura]},
         {"slowniczek-lacinski": [InnyZwrot]},
@@ -79,7 +80,7 @@ mapping = {
         {"spiewnik": [Kategoria, Piosenka]},
     ],
     "AS/FB/Ogólne": [
-        {"encyklopedia": [Korporacja, Pojecie, Zrodlo]},
+        {"encyklopedia": [Korporacja, Pojecie, ZrodloOgolne]},
         {"multimedia": [ZdjecieArchiwum]},
     ],
     "AS/FB/Statuty": [

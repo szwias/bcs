@@ -1,5 +1,5 @@
 from core.utils.automation.BaseAdmin import *
-from .models import Bractwo, TradycjaBCS, GrupaBractw, Powiedzenie, Zrodlo
+from .models import Bractwo, TradycjaBCS, GrupaBractw, Powiedzenie
 
 
 @admin.register(Bractwo)
@@ -23,17 +23,11 @@ class TradycjaBCSAdmin(BaseModelAdmin):
     list_filter_exclude = ["wydarzenie"]
 
 
-@admin.register(Zrodlo)
-class ZrodloAdmin(BaseModelAdmin):
-    filter_horizontal = ["autorzy"]
-
-
 register_all_models(
     custom_admins={
         Bractwo: BractwoAdmin,
         GrupaBractw: GrupaBractwAdmin,
         Powiedzenie: PowiedzenieAdmin,
         TradycjaBCS: TradycjaBCSAdmin,
-        Zrodlo: ZrodloAdmin,
     }
 )

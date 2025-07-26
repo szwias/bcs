@@ -1,25 +1,30 @@
 from core.utils.automation.BaseAdmin import *
-from .models import Dokument, Edykt, Ukaz
+from .models import Dokument, Edykt, Ukaz, Zrodlo, ZrodloOgolne
+
+
+@admin.register(Zrodlo)
+class ZrodloAdmin(BaseModelAdmin):
+    filter_horizontal = ["autorzy"]
 
 
 @admin.register(Dokument)
-class DokumentAdmin(BaseModelAdmin):
-    filter_horizontal = ["autorzy"]
+class DokumentAdmin(ZrodloAdmin):
     list_filter_exclude = ["polymorphic_ctype"]
+
+
+@admin.register(ZrodloOgolne)
+class ZrodloOgolneAdmin(ZrodloAdmin):
+    pass
 
 
 @admin.register(Edykt)
-class EdyktAdmin(BaseModelAdmin):
+class EdyktAdmin(DokumentAdmin):
     fields = ["tytul", "numer", "data", "autorzy", "streszczenie", "plik"]
-    filter_horizontal = ["autorzy"]
-    list_filter_exclude = ["polymorphic_ctype"]
 
 
 @admin.register(Ukaz)
-class UkazAdmin(BaseModelAdmin):
+class UkazAdmin(DokumentAdmin):
     fields = ["tytul", "numer", "data", "autorzy", "streszczenie", "plik"]
-    filter_horizontal = ["autorzy"]
-    list_filter_exclude = ["polymorphic_ctype"]
 
 
 register_all_models(
@@ -27,5 +32,7 @@ register_all_models(
         Dokument: DokumentAdmin,
         Edykt: EdyktAdmin,
         Ukaz: UkazAdmin,
+        Zrodlo: ZrodloAdmin,
+        ZrodloOgolne: ZrodloAdmin,
     }
 )

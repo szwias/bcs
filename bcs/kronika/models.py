@@ -43,9 +43,7 @@ class CharakterystykaDzialanZarzadu(models.Model):
 
 class Kadencja(models.Model):
 
-    lata = models.IntegerField(
-        choices=Czas.KADENCJE, verbose_name="Lata"
-    )
+    lata = models.IntegerField(choices=Czas.KADENCJE, verbose_name="Lata")
 
     rozpoczecie = models.ForeignKey(
         "kronika.WydarzenieHistoryczne",
@@ -62,7 +60,7 @@ class Kadencja(models.Model):
         null=True,
         on_delete=models.SET_NULL,
         verbose_name="Zakończenie kadencji",
-        related_name="konczy_kadencje"
+        related_name="konczy_kadencje",
     )
 
     class Meta:

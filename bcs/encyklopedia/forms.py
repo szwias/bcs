@@ -7,7 +7,6 @@ from .models import (
     TradycjaBCS,
     TradycjaInnegoBractwa,
     Zwyczaj,
-    Zrodlo,
 )
 from .views import autocomplete_widgets
 from core.utils.autocompletion.AutocompletesGeneration import build_widgets
@@ -62,10 +61,3 @@ class ZwyczajForm(forms.ModelForm):
         model = Zwyczaj
         fields = "__all__"
         widgets = build_widgets(autocomplete_widgets[Zwyczaj.__name__])
-
-
-class ZrodloForm(forms.ModelForm):
-    class Meta:
-        model = Zrodlo
-        fields = "__all__"
-        widgets = build_widgets(autocomplete_widgets[Zrodlo.__name__])

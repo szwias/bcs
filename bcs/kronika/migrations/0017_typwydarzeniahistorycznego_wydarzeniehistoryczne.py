@@ -26,7 +26,8 @@ class Migration(migrations.Migration):
                 (
                     "typ",
                     models.CharField(
-                        max_length=40, verbose_name="Typ wydarzenia historycznego"
+                        max_length=40,
+                        verbose_name="Typ wydarzenia historycznego",
                     ),
                 ),
             ],
@@ -48,7 +49,10 @@ class Migration(migrations.Migration):
                         verbose_name="ID",
                     ),
                 ),
-                ("nazwa", models.CharField(max_length=100, verbose_name="Nazwa")),
+                (
+                    "nazwa",
+                    models.CharField(max_length=100, verbose_name="Nazwa"),
+                ),
                 ("data", models.DateField(blank=True, verbose_name="Data")),
                 ("opis", models.TextField(blank=True, verbose_name="Opis")),
                 (
