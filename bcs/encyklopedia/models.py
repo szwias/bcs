@@ -277,6 +277,12 @@ class Powiedzenie(models.Model):
 
     kontekst = models.TextField(blank=True, verbose_name="Kontekst")
 
+    # TODO: zrodlo field that can reference any source - to do that,
+    #  Zrodlo and Dokument would have to be the same class
+    #  Also, Powiedzenie and Aforyzm should be the same class
+    #  Lastly all sources models should be in one app, so rename dokumenty to
+    #  zrodla, while it's still possible
+
     autor = models.ForeignKey(
         "osoby.Osoba",
         blank=True,
