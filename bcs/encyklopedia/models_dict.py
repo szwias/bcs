@@ -8,7 +8,6 @@ from .models import (
     Zwyczaj,
     Pojecie,
     Powiedzenie,
-    Zrodlo,
 )
 
 names = defaultdict(str)
@@ -22,5 +21,3 @@ add_model_name(Zwyczaj, names, "Zwyczaj")
 
 add_model_name(Pojecie, names, "Pojecie")
 add_model_name(Powiedzenie, names, "Powiedzenie")
-
-add_model_name(Zrodlo, names, "Zrodlo")

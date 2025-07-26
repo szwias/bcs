@@ -32,7 +32,6 @@ autocomplete_configs = [
     ),
     (TradycjaInnegoBractwa, [], [], [GrupaBractw.__name__]),
     (Zwyczaj, [], [], [osoby["Osoba"]]),
-    (Zrodlo, [], [], [osoby["Osoba"]]),
 ]
 
 autocomplete_urls, autocomplete_widgets = setup_autocompletes(

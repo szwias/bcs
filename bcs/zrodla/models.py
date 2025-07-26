@@ -23,6 +23,18 @@ class Dokument(PolymorphicModel):
         upload_to="pdfs/", blank=True, verbose_name="Tekst"
     )
 
+class ZrodloOgolne(models.Model):
+
+    zawartosc = models.TextField(blank=True, verbose_name="Zawartość")
+
+    gdzie_znalezc = models.TextField(blank=True, verbose_name="Gdzie znaleźć")
+
+    class Meta:
+        verbose_name = "Źródło"
+        verbose_name_plural = "Źródła różne"
+        ordering = ("tytul",)
+
+
     class Meta:
         verbose_name = "Dokument"
         verbose_name_plural = "Dokumenty"

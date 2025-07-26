@@ -159,6 +159,9 @@ class Czlonek(Osoba, OsobaBCS):
         verbose_name="Czy ochrzczony",
     )
 
+    # TODO: instead of following three fields add depositio_beanorum - fk to
+    #  kalendarz.Wydarzenie
+
     rok_chrztu = models.IntegerField(
         choices=Czas.LATA_BCS + [IntAlt.DONT_KNOW] + [IntAlt.NOT_APPLICABLE],
         default=IntAlt.DONT_KNOW,
