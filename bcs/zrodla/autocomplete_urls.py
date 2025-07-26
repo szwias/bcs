@@ -1,5 +1,5 @@
 from .views import autocomplete_urls
 
-app_name = "dokumenty_autocomplete"
+app_name = "zrodla_autocomplete"
 
 urlpatterns = autocomplete_urls

@@ -53,7 +53,7 @@ class RelacjaPrawna(models.Model):
     )
 
     dokument = models.ForeignKey(
-        "dokumenty.Dokument",
+        "zrodla.Dokument",
         blank=True,
         null=True,
         on_delete=models.PROTECT,

@@ -31,10 +31,6 @@ urlpatterns = [
         include("czapki.autocomplete_urls", "czapki_autocomplete"),
     ),
     path(
-        "autocomplete/dokumenty",
-        include("dokumenty.autocomplete_urls", "dokumenty_autocomplete"),
-    ),
-    path(
         "autocomplete/encyklopedia/",
         include("encyklopedia.autocomplete_urls", "encyklopedia_autocomplete"),
     ),
@@ -64,6 +60,10 @@ urlpatterns = [
             "slowniczek_lacinski.autocomplete_urls",
             "slowniczek_lacinski_autocomplete",
         ),
+    ),
+    path(
+        "autocomplete/zrodla/",
+        include("zrodla.autocomplete_urls", "zrodla_autocomplete"),
     ),
     path("drzewo/", include("drzewo.urls")),
 ]

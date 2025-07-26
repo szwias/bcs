@@ -1,7 +1,7 @@
 from .models import Podmiot, RelacjaPrawna, Struktura, Rola
 from core.utils.autocompletion.AutocompletesGeneration import *
 
-from dokumenty.models_dict import names as dokumenty
+from zrodla.models_dict import names as zrodla
 
 autocomplete_configs = [
     (Podmiot, [], [], []),
@@ -9,7 +9,7 @@ autocomplete_configs = [
         RelacjaPrawna,
         [],
         ["prawo_czy_obowiazek"],
-        [Podmiot.__name__, dokumenty["Dokument"]]
+        [Podmiot.__name__, zrodla["Dokument"]]
     ),
     (Struktura, [], [], []),
     (Rola, [], [], []),
