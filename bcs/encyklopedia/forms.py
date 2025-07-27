@@ -1,9 +1,10 @@
 from django import forms
 from .models import (
+    Aforyzm,
     Bractwo,
+    Cytat,
     GrupaBractw,
     Pojecie,
-    Powiedzenie,
     TradycjaBCS,
     TradycjaInnegoBractwa,
     Zwyczaj,
@@ -12,11 +13,25 @@ from .views import autocomplete_widgets
 from core.utils.autocompletion.AutocompletesGeneration import build_widgets
 
 
+class AforyzmForm(forms.ModelForm):
+    class Meta:
+        model = Aforyzm
+        fields = "__all__"
+        widgets = build_widgets(autocomplete_widgets[Aforyzm.__name__])
+
+
 class BractwoForm(forms.ModelForm):
     class Meta:
         model = Bractwo
         fields = "__all__"
         widgets = build_widgets(autocomplete_widgets[Bractwo.__name__])
+
+
+class CytatForm(forms.ModelForm):
+    class Meta:
+        model = Cytat
+        fields = "__all__"
+        widgets = build_widgets(autocomplete_widgets[Cytat.__name__])
 
 
 class GrupaBractwForm(forms.ModelForm):
@@ -31,13 +46,6 @@ class PojecieForm(forms.ModelForm):
         model = Pojecie
         fields = "__all__"
         widgets = build_widgets(autocomplete_widgets[Pojecie.__name__])
-
-
-class PowiedzienieForm(forms.ModelForm):
-    class Meta:
-        model = Powiedzenie
-        fields = "__all__"
-        widgets = build_widgets(autocomplete_widgets[Powiedzenie.__name__])
 
 
 class TradycjaBCSForm(forms.ModelForm):
