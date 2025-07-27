@@ -6,6 +6,7 @@ import inspect
 from django.apps import apps
 from django.db import models
 from polymorphic.models import PolymorphicModel
+from django.forms import Textarea
 
 
 def is_polymorphic_parent(model):
@@ -163,6 +164,12 @@ class BaseModelAdmin(admin.ModelAdmin):
                     ),
                 )
             ]
+
+        self.formfield_overrides = {
+            models.TextField: {'widget': Textarea(attrs={
+                'spellcheck': 'false'
+            })},
+        }
 
         app_label = model._meta.app_label
         model_name = model.__name__
