@@ -18,17 +18,19 @@ class DokumentAdmin(ZrodloAdmin):
 
 @admin.register(ZrodloOgolne)
 class ZrodloOgolneAdmin(ZrodloAdmin):
-    pass
+    list_filter_exclude = ["zrodlo_ptr"]
 
 
 @admin.register(Edykt)
 class EdyktAdmin(DokumentAdmin):
     fields = ["tytul", "numer", "data", "autorzy", "streszczenie", "plik"]
+    list_filter_exclude = ["dokument_ptr", "polymorphic_ctype", "zrodlo_ptr"]
 
 
 @admin.register(Ukaz)
 class UkazAdmin(DokumentAdmin):
     fields = ["tytul", "numer", "data", "autorzy", "streszczenie", "plik"]
+    list_filter_exclude = ["dokument_ptr", "polymorphic_ctype", "zrodlo_ptr"]
 
 
 register_all_models(
