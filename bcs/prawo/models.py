@@ -63,7 +63,6 @@ class RelacjaPrawna(models.Model):
     class Meta:
         verbose_name = "Relacja prawna"
         verbose_name_plural = "Prawa i obowiązki"
-        ordering = ["tresc"]
 
     def __str__(self):
         przedawnione = " - PRZEDAWNIONE" if self.przedawnione else ""

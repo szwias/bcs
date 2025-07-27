@@ -54,8 +54,9 @@ class Dokument(Zrodlo):
         ordering = ["-data"]
 
     def __str__(self):
+        data = self.data or ""
         streszczenie = " (" + str(self.streszczenie) + ")" if self.streszczenie else ""
-        return f"{self.tytul} - {self.data}{streszczenie}"
+        return f"{self.tytul} - {data}{streszczenie}"
 
 
 class Edykt(Dokument):
