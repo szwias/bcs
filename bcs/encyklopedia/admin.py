@@ -3,7 +3,14 @@ from core.utils.automation.BaseAdmin import (
     BaseModelAdmin,
     register_all_models,
 )
-from .models import Aforyzm, Bractwo, Cytat, GrupaBractw, TradycjaBCS
+from .models import (
+    Aforyzm,
+    Bractwo,
+    Cytat,
+    GrupaBractw,
+    Powiedzenie,
+    TradycjaBCS,
+)
 
 
 @admin.register(Aforyzm)
@@ -27,6 +34,11 @@ class GrupaBractwAdmin(BaseModelAdmin):
     filter_horizontal = ["kraje"]
 
 
+@admin.register(Powiedzenie)
+class PowiedzenieAdmin(BaseModelAdmin):
+    filter_horizontal = ["adresaci"]
+
+
 @admin.register(TradycjaBCS)
 class TradycjaBCSAdmin(BaseModelAdmin):
     list_filter_exclude = ["wydarzenie"]
@@ -38,6 +50,7 @@ register_all_models(
         Bractwo: BractwoAdmin,
         Cytat: CytatAdmin,
         GrupaBractw: GrupaBractwAdmin,
+        Powiedzenie: PowiedzenieAdmin,
         TradycjaBCS: TradycjaBCSAdmin,
     }
 )

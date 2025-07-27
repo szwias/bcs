@@ -5,6 +5,7 @@ from .models import (
     Cytat,
     GrupaBractw,
     Pojecie,
+    Powiedzenie,
     TradycjaBCS,
     TradycjaInnegoBractwa,
     Zwyczaj,
@@ -46,6 +47,13 @@ class PojecieForm(forms.ModelForm):
         model = Pojecie
         fields = "__all__"
         widgets = build_widgets(autocomplete_widgets[Pojecie.__name__])
+
+
+class PowiedzenieForm(forms.ModelForm):
+    class Meta:
+        model = Powiedzenie
+        fields = "__all__"
+        widgets = build_widgets(autocomplete_widgets[Powiedzenie.__name__])
 
 
 class TradycjaBCSForm(forms.ModelForm):

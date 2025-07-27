@@ -100,9 +100,9 @@ class Cytat(PolymorphicModel):
         short_tekst = (
             f"\"{tekst if len(tekst) <= 100 else tekst[:100] + '...'}\""
         )
-        adresaci = ", ".join(str(a) for a in self.adresat.all())
+        adresaci = ", ".join(str(a) for a in self.adresaci.all())
         adresat_str = f" do {adresaci}" if adresaci else ""
-        kontekst = f"{' (' + kontekst + ')' if len(kontekst) <= 100 else ''}"
+        kontekst = f"{' (' + kontekst + ')' if kontekst and len(kontekst) <= 100 else ''}"
         return f"{short_tekst} - {self.autor}{adresat_str}{kontekst}"
 
 
@@ -111,6 +111,14 @@ class Aforyzm(Cytat):
     class Meta:
         verbose_name = "Aforyzm"
         verbose_name_plural = "Aforyzmy"
+        ordering = ["tekst"]
+
+
+class Powiedzenie(Cytat):
+
+    class Meta:
+        verbose_name = "Powiedzenie"
+        verbose_name_plural = "Powiedzenia"
         ordering = ["tekst"]
 
 

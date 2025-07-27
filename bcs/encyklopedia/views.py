@@ -18,6 +18,7 @@ autocomplete_configs = [
     (Cytat, [], [], [osoby["Osoba"], zrodla["Zrodlo"]]),
     (GrupaBractw, [], [], [czapki["RodzajCzapki"], miejsca["Kraj"]]),
     (Pojecie, ["origins"], [], [kalendarz["Wydarzenie"], osoby["Osoba"]]),
+    (Powiedzenie, [], [], [osoby["Osoba"], zrodla["Zrodlo"]]),
     (
         TradycjaBCS,
         ["okolicznosci_powstania", "zapozyczona_czy_autorska"],
