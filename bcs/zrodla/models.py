@@ -42,9 +42,11 @@ class ZrodloOgolne(Zrodlo):
 
 class Dokument(Zrodlo):
 
-    data = models.DateField(blank=True, verbose_name="Data wydania")
+    data = models.DateField(blank=True, null=True, verbose_name="Data wydania")
 
-    streszczenie = models.TextField(blank=True, verbose_name="Streszczenie")
+    streszczenie = models.TextField(
+        max_length=MAX_LENGTH, blank=True, verbose_name="Streszczenie"
+    )
 
     class Meta:
         verbose_name = "Dokument"
@@ -52,11 +54,12 @@ class Dokument(Zrodlo):
         ordering = ["-data"]
 
     def __str__(self):
-        return f"{self.tytul} - {self.data}"
+        streszczenie = " (" + str(self.streszczenie) + ")" if self.streszczenie else ""
+        return f"{self.tytul} - {self.data}{streszczenie}"
 
 
 class Edykt(Dokument):
-    numer = models.IntegerField(blank=True, verbose_name="Numer")
+    numer = models.IntegerField(blank=True, null=True, verbose_name="Numer")
 
     class Meta:
         verbose_name = "Edykt"
@@ -65,7 +68,7 @@ class Edykt(Dokument):
 
 
 class Ukaz(Dokument):
-    numer = models.IntegerField(blank=True, verbose_name="Numer")
+    numer = models.IntegerField(blank=True, null=True, verbose_name="Numer")
 
     class Meta:
         verbose_name = "Ukaz"

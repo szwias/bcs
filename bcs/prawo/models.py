@@ -67,4 +67,5 @@ class RelacjaPrawna(models.Model):
 
     def __str__(self):
         przedawnione = " - PRZEDAWNIONE" if self.przedawnione else ""
-        return f"{self.tresc}{przedawnione}"
+        podmiot = ", ".join(str(p) for p in self.podmiot.all())
+        return f"{podmiot}: {self.tresc}{przedawnione}"
