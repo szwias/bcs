@@ -16,9 +16,6 @@ class Okolicznosci(models.TextChoices):
     WYDARZENIE = "Wyd", "Na wydarzeniu czapkowym"
 
 
-# TODO: create Korporacja model
-
-
 class Bractwo(models.Model):
 
     nazwa = models.CharField(max_length=MAX_LENGTH, verbose_name="Nazwa")

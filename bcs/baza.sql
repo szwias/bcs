@@ -364,9 +364,7 @@ CREATE TABLE public.osoby_halloffame (
     id bigint NOT NULL,
     nazwa_alternatywna character varying(100) NOT NULL,
     zaslugi character varying(255) NOT NULL,
-    czlonek_id bigint,
     order_field character varying(255) NOT NULL,
-    bean_id bigint,
     osoba_id bigint
 );
 
@@ -1051,7 +1049,8 @@ ALTER TABLE public.kalendarz_zdarzenie_powiazane_osoby OWNER TO projectuser;
 CREATE TABLE public.kronika_charakterystykadzialanzarzadu (
     id bigint NOT NULL,
     charakterystyka text NOT NULL,
-    autor_id bigint
+    autor_id bigint,
+    zarzad_id bigint
 );
 
 
@@ -3791,6 +3790,39 @@ COPY public.django_admin_log (id, action_time, object_id, object_repr, action_fl
 2561	2025-07-27 17:20:05.324837+02	3	Weterani BCS: Bycie skarbnicą wiedzy, którą chętnie się dzielą	2	[]	63	1
 2562	2025-07-27 17:20:44.129796+02	194	Piotr Kociński	1	[{"added": {}}]	61	1
 2563	2025-07-27 17:21:10.950354+02	7	Piotr Kociński: Rozmowa o aspektach technicznych tworzenia takiej strony	2	[{"changed": {"fields": ["Bean", "Osoba"]}}]	63	1
+2564	2025-07-27 17:23:00.296162+02	4	Bartłomiej "Kucharz" Olajossy: Podzielenie się swoją bazą członków BCS	2	[]	63	1
+2565	2025-07-27 17:23:36.347587+02	4	Bartłomiej "Kucharz" Olajossy: Podzielenie się swoją bazą członków BCS	2	[]	63	1
+2566	2025-07-27 17:42:35.604288+02	9	"Hrabina" - Patrycja Szaniawska	2	[]	64	1
+2567	2025-07-27 18:01:21.835533+02	1	Zarząd 2009/2010 - WM Tadeusz "Kumdo/Tadek" Hessel - Tadeusz I	1	[{"added": {}}]	62	1
+2568	2025-07-27 18:01:26.143003+02	2	Zarząd 2009/2010 - WM Tadeusz "Kumdo/Tadek" Hessel - Tadeusz I	1	[{"added": {}}]	62	1
+2569	2025-07-27 18:01:44.138171+02	2	Zarząd 2010/2011 - WM Tadeusz "Kumdo/Tadek" Hessel - Tadeusz I	2	[{"changed": {"fields": ["Kadencja", "Cantandi"]}}]	62	1
+2570	2025-07-27 18:03:16.528353+02	3	Zarząd 2011/2012 - WM Magdalena "Kasztanka" Brilha - Tadeusz II	1	[{"added": {}}]	59	1
+2571	2025-07-27 18:03:20.344077+02	4	Zarząd 2011/2012 - WM Magdalena "Kasztanka" Brilha - Tadeusz II	1	[{"added": {}}]	59	1
+2572	2025-07-27 18:03:42.236307+02	5	Zarząd 2012/2013 - WM Magdalena "Kasztanka" Brilha - Tadeusz II	1	[{"added": {}}]	59	1
+2573	2025-07-27 18:04:15.329906+02	6	Zarząd 2013/2014 - WM Magdalena "Kasztanka" Brilha - Tadeusz II	1	[{"added": {}}]	59	1
+2574	2025-07-27 18:05:01.856854+02	7	Zarząd 2014/2015 - WM Grażyna "Malina" Malinowska - Tadeusz III	1	[{"added": {}}]	59	1
+2575	2025-07-27 18:05:59.152015+02	8	Zarząd 2015/2016 - WM Paweł "Synek" Mucha - Tadeusz IV, Jaśnie Oświecony Paweł Synek Tadeusz IV Mucha, Wielki Mistrz BCS, członek Zarządu KU AZS UJ, kierownik sekcji narciarsko-sportowej UJ i student 	1	[{"added": {}}]	59	1
+2576	2025-07-27 18:06:47.597015+02	9	Zarząd 2016/2017 - WM Maciej "Dzidzia" Małecki - Tadeusz V	1	[{"added": {}}]	59	1
+2577	2025-07-27 18:07:23.57431+02	10	Zarząd 2017/2018 - WM Damian "Bandera/Buch" Zych - Tadeusz V, Wielki Antymistrz Bandera Łże-Tadeusz VI, czerwono-czarny ognień tańczący na wioskach wrogów	1	[{"added": {}}]	59	1
+2578	2025-07-27 18:08:15.766035+02	11	Zarząd 2018/2019 - WM Damian "Bandera/Buch" Zych - Tadeusz V, Wielki Antymistrz Bandera Łże-Tadeusz VI, czerwono-czarny ognień tańczący na wioskach wrogów	1	[{"added": {}}]	59	1
+2579	2025-07-27 18:08:46.45688+02	12	Zarząd 2019/2020 - WM Michał "I Sekretarz PZPR towarzysz Władysław Gomułka, ps. Wiesław/Gomuł" Gumułka - Tadeusz VI, Ostatni Książę Pszczyny, władca studentów i zwierząt nie wyłączając smoków i panter	1	[{"added": {}}]	59	1
+2580	2025-07-27 18:09:36.587919+02	13	Zarząd 2020/2021 - WM Patrycja "Chat" Karauda - Tadeusz VIII	1	[{"added": {}}]	59	1
+2581	2025-07-27 18:10:10.088657+02	14	Zarząd 2021/2022 - WM Bartłomiej "Kucharz" Olajossy - Tadeusz IX, Gałązka z Boskiego Drzewa Wpierdolu	1	[{"added": {}}]	59	1
+2582	2025-07-27 18:11:32.544716+02	15	Zarząd 2022/2023 - WM John "Jasiek" Graff-Warburton - Tadeusz X, Zawsze Trzeźwy Landlord Czerwonomakowskich Luster	1	[{"added": {}}]	59	1
+2583	2025-07-27 18:12:25.269463+02	16	Zarząd 2023/2024 - WM Paulina "Koziołek" Kozioł - Tadeusz X, Patronka Słowa Mówionego i Pisanego, Jedyny Prawowity Tadeusz X	1	[{"added": {}}]	59	1
+2584	2025-07-27 18:13:11.360303+02	16	Zarząd 2024/2025 - WM Michał "Cukier/Małolata" Malata - Tadeusz XI, Czerwona Opcja Śląska	2	[{"changed": {"fields": ["Kadencja", "Wielki Mistrz", "Kasztelan", "Skarbnik", "Cantandi"]}}]	59	1
+2585	2025-07-27 18:20:07.320445+02	11	Joanna "Aśka" Lorenc: 2020/2021	2	[{"changed": {"fields": ["Zarz\\u0105d"]}}]	38	1
+2586	2025-07-27 18:20:27.212297+02	10	Joanna "Aśka" Lorenc: 2019/2020	2	[{"changed": {"fields": ["Zarz\\u0105d"]}}]	38	1
+2587	2025-07-27 18:20:56.159554+02	9	Joanna "Aśka" Lorenc: 2018/2019	2	[{"changed": {"fields": ["Zarz\\u0105d"]}}]	38	1
+2588	2025-07-27 18:21:13.045176+02	8	Joanna "Aśka" Lorenc: 2018/2019	2	[{"changed": {"fields": ["Zarz\\u0105d"]}}]	38	1
+2589	2025-07-27 18:21:26.46601+02	8	Joanna "Aśka" Lorenc: 2017/2018	2	[{"changed": {"fields": ["Zarz\\u0105d"]}}]	38	1
+2590	2025-07-27 18:21:52.383621+02	7	Joanna "Aśka" Lorenc: 2016/2017	2	[{"changed": {"fields": ["Zarz\\u0105d"]}}]	38	1
+2591	2025-07-27 18:22:11.518316+02	6	Joanna "Aśka" Lorenc: 2015/2016	2	[{"changed": {"fields": ["Zarz\\u0105d"]}}]	38	1
+2592	2025-07-27 18:22:17.932138+02	5	Joanna "Aśka" Lorenc: 2014/2015	2	[{"changed": {"fields": ["Zarz\\u0105d"]}}]	38	1
+2593	2025-07-27 18:22:26.507951+02	4	Joanna "Aśka" Lorenc: 2013/2014	2	[{"changed": {"fields": ["Zarz\\u0105d"]}}]	38	1
+2594	2025-07-27 18:22:35.908138+02	3	Joanna "Aśka" Lorenc: 2012/2013	2	[{"changed": {"fields": ["Zarz\\u0105d"]}}]	38	1
+2595	2025-07-27 18:23:13.031158+02	2	Joanna "Aśka" Lorenc: 2011/2012	2	[{"changed": {"fields": ["Zarz\\u0105d"]}}]	38	1
+2596	2025-07-27 18:23:21.973601+02	1	Joanna "Aśka" Lorenc: 2009/2010	2	[{"changed": {"fields": ["Zarz\\u0105d"]}}]	38	1
 \.
 
 
@@ -4166,6 +4198,9 @@ COPY public.django_migrations (id, app, name, applied) FROM stdin;
 326	osoby	0018_dawnyzarzad_nowyzarzad	2025-07-27 16:46:39.389829+02
 327	osoby	0019_alter_dawnyzarzad_options_alter_nowyzarzad_options_and_more	2025-07-27 17:04:59.950989+02
 328	osoby	0020_halloffame_osoba	2025-07-27 17:15:49.685713+02
+329	osoby	0021_remove_halloffame_bean_remove_halloffame_czlonek	2025-07-27 17:22:49.771085+02
+330	kronika	0021_charakterystykadzialanzarzadu_zarzad	2025-07-27 18:17:55.325312+02
+331	kronika	0022_alter_charakterystykadzialanzarzadu_options_and_more	2025-07-27 18:25:22.022239+02
 \.
 
 
@@ -5255,18 +5290,18 @@ COPY public.kalendarz_zdarzenie_powiazane_osoby (id, zdarzenie_id, osoba_id) FRO
 -- Data for Name: kronika_charakterystykadzialanzarzadu; Type: TABLE DATA; Schema: public; Owner: projectuser
 --
 
-COPY public.kronika_charakterystykadzialanzarzadu (id, charakterystyka, autor_id) FROM stdin;
-1	Krótka charakterystyka działań Zarządu: \r\n- Zarząd istnieje tylko formalnie, Tadek i Kasper sterują organizacją\r\n- Działalność bardzo spontaniczna i nieregularna, głównie imprezy\r\n- W pewnym ustalonym momencie Tadek przekazuje władzę Magdalenie (Kasztance)\r\n- Kontakty z Belgami: Coluche, Cristo, Frederic Widart (i inni): częste przyjazdy i nieformalna opieka nad nowo powstającym bractwem; Bretelle: częste przyjazdy turystyczne do Krakowa dużą grupą	63
-2	Krótka charakterystyka działań Zarządu: \r\n- Bogata działalność mimo braku spisanego planu\r\n- Ukończenie statutu i uformowanie się formalnego Zarządu\r\n- Liczne nieformalne spotkania na Topolowej\r\n- Dobra organizacja mimo braku spisanego planu działania	63
-3	Krótka charakterystyka działań Zarządu: \r\n- Liczne wyjazdy zagraniczne\r\n- Kontynuacja poprzednich doświadczeń Magdaleny	63
-4	Krótka charakterystyka działań Zarządu: \r\n- Liczne wyjazdy zagraniczne\r\n- Kontynuacja poprzednich doświadczeń Magdaleny	63
-5	Krótka charakterystyka działań Zarządu: \r\n- Liczne nieformalne wyjazdy zagraniczne\r\n- Częstsze odwiedziny u Profesora w Zabierzowie\r\n- Ukończenie śpiewnika	63
-6	Krótka charakterystyka działań Zarządu: \r\n- Wprowadzenie Ukazów;\r\n- Kalendarz imprez\r\n- Regularne ostre dyżury w sali klubowej w Starym Porcie\r\n- Rozliczenie finansowe na koniec działalności	63
-7	Krótka charakterystyka działań Zarządu: \r\n- Monika Kwater praktycznie kieruje bractwem\r\n- Próby wprowadzenia nowego herbu (nieudane)\r\n- Pierwsze kontakty z Bractwem Żółtego Szalika\r\n- Wprowadzenie zespołów: ds historii, śpiewnika i kultury	63
-8	Krótka charakterystyka działań Zarządu: \r\n- Nowy Statut (zgodny z wytycznymi UJ)\r\n- #DobryPR (Zuza)\r\n- Depositio Beanorum	63
-9	Krótka charakterystyka działań Zarządu: \r\n- Kucharz wprowadza stan konta on line\r\n- 10-lecie czapki\r\n- Kasper wybija medal z Boyem i rozkręca promocję nietypowego medalu z Karolem Wojtyłą\r\n- Zarząd: czapki honoris causa dla Tadka i Kaspra\r\n- Powołanie muzeum folkloru studenckiego pod opieką Kaspra\r\n- Angielska nazwa organizacji: Fellowship of the Students’ Cap of Jagiellonian University\r\n- Ustalenie nowych zasad członkostwa\r\n- Czapka studencka została wpisana do statutu UJ	63
-10	Krótka charakterystyka działań Zarządu: \r\n- Próby rozkręcenia działalności na początku\r\n- COVID-19 i lockdown	63
-11	Krótka charakterystyka działań Zarządu: \r\n- COVID-19: większość spotkań odwołana albo on-line\r\n- Pakt Bractw z Animusem: czy został podpisany?	63
+COPY public.kronika_charakterystykadzialanzarzadu (id, charakterystyka, autor_id, zarzad_id) FROM stdin;
+11	Krótka charakterystyka działań Zarządu: \r\n- COVID-19: większość spotkań odwołana albo on-line\r\n- Pakt Bractw z Animusem: czy został podpisany?	63	13
+10	Krótka charakterystyka działań Zarządu: \r\n- Próby rozkręcenia działalności na początku\r\n- COVID-19 i lockdown	63	12
+9	Krótka charakterystyka działań Zarządu: \r\n- Kucharz wprowadza stan konta on line\r\n- 10-lecie czapki\r\n- Kasper wybija medal z Boyem i rozkręca promocję nietypowego medalu z Karolem Wojtyłą\r\n- Zarząd: czapki honoris causa dla Tadka i Kaspra\r\n- Powołanie muzeum folkloru studenckiego pod opieką Kaspra\r\n- Angielska nazwa organizacji: Fellowship of the Students’ Cap of Jagiellonian University\r\n- Ustalenie nowych zasad członkostwa\r\n- Czapka studencka została wpisana do statutu UJ	63	11
+8	Krótka charakterystyka działań Zarządu: \r\n- Nowy Statut (zgodny z wytycznymi UJ)\r\n- #DobryPR (Zuza)\r\n- Depositio Beanorum	63	10
+7	Krótka charakterystyka działań Zarządu: \r\n- Monika Kwater praktycznie kieruje bractwem\r\n- Próby wprowadzenia nowego herbu (nieudane)\r\n- Pierwsze kontakty z Bractwem Żółtego Szalika\r\n- Wprowadzenie zespołów: ds historii, śpiewnika i kultury	63	9
+6	Krótka charakterystyka działań Zarządu: \r\n- Wprowadzenie Ukazów;\r\n- Kalendarz imprez\r\n- Regularne ostre dyżury w sali klubowej w Starym Porcie\r\n- Rozliczenie finansowe na koniec działalności	63	8
+5	Krótka charakterystyka działań Zarządu: \r\n- Liczne nieformalne wyjazdy zagraniczne\r\n- Częstsze odwiedziny u Profesora w Zabierzowie\r\n- Ukończenie śpiewnika	63	7
+4	Krótka charakterystyka działań Zarządu: \r\n- Liczne wyjazdy zagraniczne\r\n- Kontynuacja poprzednich doświadczeń Magdaleny	63	6
+3	Krótka charakterystyka działań Zarządu: \r\n- Liczne wyjazdy zagraniczne\r\n- Kontynuacja poprzednich doświadczeń Magdaleny	63	5
+2	Krótka charakterystyka działań Zarządu: \r\n- Bogata działalność mimo braku spisanego planu\r\n- Ukończenie statutu i uformowanie się formalnego Zarządu\r\n- Liczne nieformalne spotkania na Topolowej\r\n- Dobra organizacja mimo braku spisanego planu działania	63	3
+1	Krótka charakterystyka działań Zarządu: \r\n- Zarząd istnieje tylko formalnie, Tadek i Kasper sterują organizacją\r\n- Działalność bardzo spontaniczna i nieregularna, głównie imprezy\r\n- W pewnym ustalonym momencie Tadek przekazuje władzę Magdalenie (Kasztance)\r\n- Kontakty z Belgami: Coluche, Cristo, Frederic Widart (i inni): częste przyjazdy i nieformalna opieka nad nowo powstającym bractwem; Bretelle: częste przyjazdy turystyczne do Krakowa dużą grupą	63	1
 \.
 
 
@@ -5747,6 +5782,8 @@ COPY public.osoby_czlonek (osoba_ptr_id, staz, pewnosc_stazu, aktywnosc, ochrzcz
 --
 
 COPY public.osoby_dawnyzarzad (zarzad_ptr_id, bibendi_id, "kontakt_z_SKNHI_id", "kontakt_z_SSUJ_id", magister_disciplinae_id) FROM stdin;
+1	134	68	101	61
+2	134	68	101	61
 \.
 
 
@@ -5754,16 +5791,16 @@ COPY public.osoby_dawnyzarzad (zarzad_ptr_id, bibendi_id, "kontakt_z_SKNHI_id", 
 -- Data for Name: osoby_halloffame; Type: TABLE DATA; Schema: public; Owner: projectuser
 --
 
-COPY public.osoby_halloffame (id, nazwa_alternatywna, zaslugi, czlonek_id, order_field, bean_id, osoba_id) FROM stdin;
-4		Podzielenie się swoją bazą członków BCS	\N	Bartłomiej "Kucharz" Olajossy	\N	30
-9		Wprowadzenie rejestru chrztów - to BARDZO pomogło	\N	Damian "Bandera" Zych	\N	41
-6		Odpowiedź na pytanie "Jak dołączyć do BCS?" (odpowiedź to: przyjdź na spotkanie)	\N	Czat firmowy BCS	\N	130
-1		Udostępnienie swojego kalendarium czapkowego i od zatrzęsienia innych materiałów	\N	Joanna "Aśka" Lorenc	\N	63
-10		Dzielenie się wszystkimi materiałami jakie wpadły mu w ręce	\N	Krzysztof "Artifex" Trela	\N	165
-8		Pomoc w identyfikacji paru członków z dawnych lat	\N	Łukasz "Ciepły" Ciepły (Lindert)	\N	89
-2		Wywarcie na mnie presji, żebym wreszcie wziął się do roboty i bycie spoko starym	\N	Marceli "Księciunio" Mart-Łakomy	\N	102
-3	Weterani BCS	Bycie skarbnicą wiedzy, którą chętnie się dzielą	\N	Weterani BCS	\N	\N
-7		Rozmowa o aspektach technicznych tworzenia takiej strony	\N	Piotr Kociński	\N	194
+COPY public.osoby_halloffame (id, nazwa_alternatywna, zaslugi, order_field, osoba_id) FROM stdin;
+9		Wprowadzenie rejestru chrztów - to BARDZO pomogło	Damian "Bandera" Zych	41
+6		Odpowiedź na pytanie "Jak dołączyć do BCS?" (odpowiedź to: przyjdź na spotkanie)	Czat firmowy BCS	130
+1		Udostępnienie swojego kalendarium czapkowego i od zatrzęsienia innych materiałów	Joanna "Aśka" Lorenc	63
+10		Dzielenie się wszystkimi materiałami jakie wpadły mu w ręce	Krzysztof "Artifex" Trela	165
+8		Pomoc w identyfikacji paru członków z dawnych lat	Łukasz "Ciepły" Ciepły (Lindert)	89
+2		Wywarcie na mnie presji, żebym wreszcie wziął się do roboty i bycie spoko starym	Marceli "Księciunio" Mart-Łakomy	102
+3	Weterani BCS	Bycie skarbnicą wiedzy, którą chętnie się dzielą	Weterani BCS	\N
+7		Rozmowa o aspektach technicznych tworzenia takiej strony	Piotr Kociński	194
+4		Podzielenie się swoją bazą członków BCS	Bartłomiej "Kucharz" Olajossy	30
 \.
 
 
@@ -5808,6 +5845,20 @@ COPY public.osoby_innaosoba (osoba_ptr_id, opis, kategoria, bractwo_do_ktorego_n
 --
 
 COPY public.osoby_nowyzarzad (zarzad_ptr_id, sekretarz_id) FROM stdin;
+3	142
+4	142
+5	142
+6	146
+7	129
+8	128
+9	89
+10	159
+11	159
+12	130
+13	130
+14	64
+15	121
+16	102
 \.
 
 
@@ -6027,6 +6078,22 @@ COPY public.osoby_wielkimistrz (id, tadeusz, tytuly, tadeusz_numeric, imie_id) F
 --
 
 COPY public.osoby_zarzad (id, cantandi_id, kadencja_id, kasztelan_id, polymorphic_ctype_id, skarbnik_id, wielki_mistrz_id) FROM stdin;
+1	115	1	76	62	151	3
+2	32	2	76	62	151	3
+3	24	3	19	59	158	4
+4	24	3	19	59	158	4
+5	133	4	19	59	158	4
+6	76	5	142	59	65	4
+7	150	6	109	59	15	7
+8	96	7	95	59	118	8
+9	90	8	118	59	131	1
+10	67	9	154	59	122	9
+11	25	10	113	59	30	9
+12	42	11	125	59	120	12
+13	64	12	155	59	25	17
+14	110	13	155	59	25	13
+15	110	14	109	59	64	14
+16	31	16	29	59	107	15
 \.
 
 
@@ -6293,7 +6360,7 @@ SELECT pg_catalog.setval('public.czlonkowie_zwierzeczapkowe_id_seq', 13, true);
 -- Name: django_admin_log_id_seq; Type: SEQUENCE SET; Schema: public; Owner: projectuser
 --
 
-SELECT pg_catalog.setval('public.django_admin_log_id_seq', 2563, true);
+SELECT pg_catalog.setval('public.django_admin_log_id_seq', 2596, true);
 
 
 --
@@ -6307,7 +6374,7 @@ SELECT pg_catalog.setval('public.django_content_type_id_seq', 99, true);
 -- Name: django_migrations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: projectuser
 --
 
-SELECT pg_catalog.setval('public.django_migrations_id_seq', 328, true);
+SELECT pg_catalog.setval('public.django_migrations_id_seq', 331, true);
 
 
 --
@@ -6538,7 +6605,7 @@ SELECT pg_catalog.setval('public.osoby_osoba_id_seq', 194, true);
 -- Name: osoby_zarzad_id_seq; Type: SEQUENCE SET; Schema: public; Owner: projectuser
 --
 
-SELECT pg_catalog.setval('public.osoby_zarzad_id_seq', 1, false);
+SELECT pg_catalog.setval('public.osoby_zarzad_id_seq', 16, true);
 
 
 --
@@ -7387,20 +7454,6 @@ CREATE INDEX czapki_rodzajczapki_kraje_rodzajczapki_id_ceb62ce8 ON public.czapki
 
 
 --
--- Name: czlonkowie_halloffame_bean_id_40be3fd4; Type: INDEX; Schema: public; Owner: projectuser
---
-
-CREATE INDEX czlonkowie_halloffame_bean_id_40be3fd4 ON public.osoby_halloffame USING btree (bean_id);
-
-
---
--- Name: czlonkowie_halloffame_czlonek_id_371cd174; Type: INDEX; Schema: public; Owner: projectuser
---
-
-CREATE INDEX czlonkowie_halloffame_czlonek_id_371cd174 ON public.osoby_halloffame USING btree (czlonek_id);
-
-
---
 -- Name: czlonkowie_imieszlacheckie_imie_id_f1ec203c; Type: INDEX; Schema: public; Owner: projectuser
 --
 
@@ -7601,6 +7654,13 @@ CREATE INDEX encyklopedia_zwyczaj_autor_id_204c103c ON public.encyklopedia_zwycz
 --
 
 CREATE INDEX kronika_charakterystykadzialanzarzadu_autor_id_82571297 ON public.kronika_charakterystykadzialanzarzadu USING btree (autor_id);
+
+
+--
+-- Name: kronika_charakterystykadzialanzarzadu_zarzad_id_2a4e46b5; Type: INDEX; Schema: public; Owner: projectuser
+--
+
+CREATE INDEX kronika_charakterystykadzialanzarzadu_zarzad_id_2a4e46b5 ON public.kronika_charakterystykadzialanzarzadu USING btree (zarzad_id);
 
 
 --
@@ -8190,6 +8250,14 @@ ALTER TABLE ONLY public.kronika_charakterystykadzialanzarzadu
 
 
 --
+-- Name: kronika_charakterystykadzialanzarzadu kronika_charakteryst_zarzad_id_2a4e46b5_fk_osoby_zar; Type: FK CONSTRAINT; Schema: public; Owner: projectuser
+--
+
+ALTER TABLE ONLY public.kronika_charakterystykadzialanzarzadu
+    ADD CONSTRAINT kronika_charakteryst_zarzad_id_2a4e46b5_fk_osoby_zar FOREIGN KEY (zarzad_id) REFERENCES public.osoby_zarzad(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
 -- Name: kronika_kadencja kronika_kadencja_rozpoczecie_id_a18b9a93_fk_kronika_w; Type: FK CONSTRAINT; Schema: public; Owner: projectuser
 --
 
@@ -8491,22 +8559,6 @@ ALTER TABLE ONLY public.osoby_dawnyzarzad
 
 ALTER TABLE ONLY public.osoby_dawnyzarzad
     ADD CONSTRAINT osoby_dawnyzarzad_zarzad_ptr_id_0e0eceaa_fk_osoby_zarzad_id FOREIGN KEY (zarzad_ptr_id) REFERENCES public.osoby_zarzad(id) DEFERRABLE INITIALLY DEFERRED;
-
-
---
--- Name: osoby_halloffame osoby_halloffam_bean_id_fk_osoby; Type: FK CONSTRAINT; Schema: public; Owner: projectuser
---
-
-ALTER TABLE ONLY public.osoby_halloffame
-    ADD CONSTRAINT osoby_halloffam_bean_id_fk_osoby FOREIGN KEY (bean_id) REFERENCES public.osoby_bean(osoba_ptr_id) DEFERRABLE INITIALLY DEFERRED;
-
-
---
--- Name: osoby_halloffame osoby_halloffam_czlonek_id_fk_osoby; Type: FK CONSTRAINT; Schema: public; Owner: projectuser
---
-
-ALTER TABLE ONLY public.osoby_halloffame
-    ADD CONSTRAINT osoby_halloffam_czlonek_id_fk_osoby FOREIGN KEY (czlonek_id) REFERENCES public.osoby_czlonek(osoba_ptr_id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --

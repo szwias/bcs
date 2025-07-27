@@ -13,7 +13,7 @@ autocomplete_configs = [
         CharakterystykaDzialanZarzadu,
         [],
         [],
-        [osoby["Czlonek"]],
+        [osoby["Czlonek"], osoby["Zarzad"]],
     ),
     (
         Kadencja,

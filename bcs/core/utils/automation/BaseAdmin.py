@@ -153,7 +153,15 @@ class BaseModelAdmin(admin.ModelAdmin):
                 if f.concrete
                 and not f.many_to_many
                 and not f.is_relation
-                and isinstance(f, (models.CharField, models.TextField))
+                and isinstance(
+                    f,
+                    (
+                        models.CharField,
+                        models.DateField,
+                        models.IntegerField,
+                        models.TextField,
+                    ),
+                )
             ]
 
         app_label = model._meta.app_label
