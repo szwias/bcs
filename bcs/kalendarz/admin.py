@@ -1,4 +1,4 @@
-from core.utils.automation.BaseAdmin import *
+from core.utils.automation.BaseAdmin import admin, BaseModelAdmin, register_all_models
 from kalendarz.models import (
     Zdarzenie,
     ObrazZdarzenie,

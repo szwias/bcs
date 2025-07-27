@@ -1,4 +1,4 @@
-from core.utils.automation.BaseAdmin import *
+from core.utils.automation.BaseAdmin import admin, BaseModelAdmin, register_all_models
 from .models import Aforyzm, Bractwo, Cytat, GrupaBractw, TradycjaBCS
 
 

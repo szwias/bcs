@@ -5,6 +5,17 @@ from django.utils.module_loading import import_string
 import inspect
 from django.apps import apps
 from django.db import models
+from polymorphic.models import PolymorphicModel
+
+
+def is_polymorphic_parent(model):
+    if not issubclass(model, PolymorphicModel):
+        return False
+    # Check if any direct subclass is polymorphic (a child model)
+    for subclass in model.__subclasses__():
+        if issubclass(subclass, PolymorphicModel):
+            return True
+    return False
 
 
 class UsedOnlyFKFilter(RelatedFieldListFilter):
@@ -116,6 +127,20 @@ class BaseModelAdmin(admin.ModelAdmin):
 
         return smart_filters
 
+    def has_add_permission(self, request):
+        return not is_polymorphic_parent(self.model)
+
+    def has_change_permission(self, request, obj=None):
+        return not is_polymorphic_parent(self.model)
+
+    def has_delete_permission(self, request, obj=None):
+        return not is_polymorphic_parent(self.model)
+
+    def get_model_perms(self, request):
+        if is_polymorphic_parent(self.model):
+            return {}  # Hide from admin index
+        return super().get_model_perms(request)
+
     def __init__(self, model, admin_site):
         super().__init__(model, admin_site)
 
@@ -123,9 +148,12 @@ class BaseModelAdmin(admin.ModelAdmin):
 
         if not self.search_fields:
             self.search_fields = [
-                f.name for f in model._meta.get_fields()
-                if f.concrete and not f.many_to_many and not f.is_relation
-                   and isinstance(f, (models.CharField, models.TextField))
+                f.name
+                for f in model._meta.get_fields()
+                if f.concrete
+                and not f.many_to_many
+                and not f.is_relation
+                and isinstance(f, (models.CharField, models.TextField))
             ]
 
         app_label = model._meta.app_label
