@@ -1,4 +1,8 @@
-from core.utils.automation.BaseAdmin import admin, BaseModelAdmin, register_all_models
+from core.utils.automation.BaseAdmin import (
+    admin,
+    BaseModelAdmin,
+    register_all_models,
+)
 from prawo.models import RelacjaPrawna
 
 

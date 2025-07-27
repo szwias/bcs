@@ -22,7 +22,7 @@ autocomplete_configs = [
         TradycjaBCS,
         ["okolicznosci_powstania", "zapozyczona_czy_autorska"],
         [],
-        [GrupaBractw.__name__, kalendarz["Wydarzenie"], osoby["Osoba"]]
+        [GrupaBractw.__name__, kalendarz["Wydarzenie"], osoby["Osoba"]],
     ),
     (TradycjaInnegoBractwa, [], [], [GrupaBractw.__name__]),
     (Zwyczaj, [], [], [osoby["Osoba"]]),

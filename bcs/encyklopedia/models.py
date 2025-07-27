@@ -108,6 +108,7 @@ class Cytat(PolymorphicModel):
         kontekst = f"{' (' + kontekst + ')' if len(kontekst) <= 100 else ''}"
         return f"{short_tekst} - {self.autor}{adresat_str}{kontekst}"
 
+
 class Aforyzm(Cytat):
 
     class Meta:

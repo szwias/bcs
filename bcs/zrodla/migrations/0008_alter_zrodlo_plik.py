@@ -6,13 +6,18 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ("zrodla", "0007_remove_dokument_plik_remove_zrodloogolne_link_and_more"),
+        (
+            "zrodla",
+            "0007_remove_dokument_plik_remove_zrodloogolne_link_and_more",
+        ),
     ]
 
     operations = [
         migrations.AlterField(
             model_name="zrodlo",
             name="plik",
-            field=models.FileField(blank=True, upload_to="pdfs/", verbose_name="Plik"),
+            field=models.FileField(
+                blank=True, upload_to="pdfs/", verbose_name="Plik"
+            ),
         ),
     ]

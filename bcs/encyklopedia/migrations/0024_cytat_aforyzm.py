@@ -27,7 +27,10 @@ class Migration(migrations.Migration):
                     ),
                 ),
                 ("tekst", models.TextField(verbose_name="Tekst")),
-                ("kontekst", models.TextField(blank=True, verbose_name="Kontekst")),
+                (
+                    "kontekst",
+                    models.TextField(blank=True, verbose_name="Kontekst"),
+                ),
                 (
                     "adresaci",
                     models.ManyToManyField(
