@@ -120,6 +120,14 @@ class BaseModelAdmin(admin.ModelAdmin):
         super().__init__(model, admin_site)
 
         self.list_filter = self.smart_wrap_filters(self._get_list_filter())
+
+        if not self.search_fields:
+            self.search_fields = [
+                f.name for f in model._meta.get_fields()
+                if f.concrete and not f.many_to_many and not f.is_relation
+                   and isinstance(f, (models.CharField, models.TextField))
+            ]
+
         app_label = model._meta.app_label
         model_name = model.__name__
         form_path = f"{app_label}.forms.{model_name}Form"
