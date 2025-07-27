@@ -40,7 +40,7 @@ autocomplete_configs = [
             kronika["Kadencja"],
         ],
     ),
-    (HallOfFame, [], [], [Bean.__name__, Czlonek.__name__]),
+    (HallOfFame, [], [], [Osoba.__name__]),
     (ImieSzlacheckie, [], [], [Czlonek.__name__]),
     (InnaOsoba, ["kategoria"], [], [encyklopedia["Bractwo"]]),
     (

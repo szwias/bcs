@@ -21,21 +21,14 @@ class Lengths:
 
 
 class HallOfFame(models.Model):
-    # TODO: replace czlonek and bean with osoba
-    czlonek = models.ForeignKey(
-        "osoby.Czlonek",
-        blank=True,
-        null=True,
-        on_delete=models.SET_NULL,
-        verbose_name="Członek",
-    )
 
-    bean = models.ForeignKey(
-        "osoby.Bean",
+    osoba = models.ForeignKey(
+        "osoby.Osoba",
         blank=True,
         null=True,
         on_delete=models.SET_NULL,
-        verbose_name="Bean",
+        verbose_name="Osoba",
+        related_name="wzmianka_w_hall_of_fame",
     )
 
     nazwa_alternatywna = models.CharField(
@@ -44,6 +37,7 @@ class HallOfFame(models.Model):
 
     zaslugi = models.CharField(max_length=MAX_LENGTH, verbose_name="Zasługi")
 
+    # TODO: introduce a better ordering logic
     order_field = models.CharField(
         max_length=MAX_LENGTH, blank=True, editable=False
     )
@@ -54,15 +48,11 @@ class HallOfFame(models.Model):
         ordering = ["order_field"]
 
     def __str__(self):
-        return f"{self.nazwa_alternatywna or self.czlonek or self.bean}: {self.zaslugi}"
+        return f"{self.nazwa_alternatywna or self.osoba}: {self.zaslugi}"
 
     def save(self, *args, **kwargs):
         if not self.order_field:
-            self.order_field = (
-                self.nazwa_alternatywna
-                if self.nazwa_alternatywna
-                else str(self.czlonek)
-            )
+            self.order_field = self.nazwa_alternatywna or str(self.osoba)
         super().save(*args, **kwargs)
 
 
