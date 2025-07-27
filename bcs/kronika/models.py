@@ -4,14 +4,14 @@ from core.utils.Consts import MEDIUM_LENGTH, NAME_LENGTH
 from core.utils import Czas
 
 
-class CharakterystykaDzialanZarzadu(models.Model):
+class PodsumowanieKadencji(models.Model):
 
     zarzad = models.ForeignKey(
         "osoby.Zarzad",
         null=True,
         on_delete=models.SET_NULL,
         verbose_name="Zarząd",
-        related_name="charakterystyki"
+        related_name="podsumowania_kadencji"
     )
 
     autor = models.ForeignKey(
@@ -21,13 +21,13 @@ class CharakterystykaDzialanZarzadu(models.Model):
         verbose_name="Autor",
     )
 
-    charakterystyka = models.TextField(
-        blank=True, verbose_name="Charakterystyka działań Zarządu"
+    podsumowanie = models.TextField(
+        blank=True, verbose_name="Podsumowanie kadencji"
     )
 
     class Meta:
-        verbose_name = "Charakterystyka działań Zarządu"
-        verbose_name_plural = "Charakterystyki działań Zarządów"
+        verbose_name = "Podsumowanie kadencji"
+        verbose_name_plural = "Podsumowania kadencji"
         ordering = ["-zarzad"]
 
     def __str__(self):

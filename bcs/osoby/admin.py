@@ -16,7 +16,7 @@ from .models import (
     ZwierzeCzapkowe,
     Osoba,
 )
-from kronika.inlines import CharakterystykaDzialanZarzaduInline
+from kronika.inlines import PodsumowanieKadencjiInline
 
 
 class OsobyUsedContentTypeFilter(UsedContentTypeFilter):
@@ -47,13 +47,13 @@ class InnaOsobaAdmin(BaseModelAdmin):
 @admin.register(DawnyZarzad)
 class DawnyZarzadAdmin(BaseModelAdmin):
     list_filter_exclude = "__all__"
-    # inlines = [CharakterystykaDzialanZarzaduInline]
+    inlines = [PodsumowanieKadencjiInline]
 
 
 @admin.register(NowyZarzad)
 class ZarzadAdmin(BaseModelAdmin):
     list_filter_exclude = "__all__"
-    # inlines = [CharakterystykaDzialanZarzaduInline]
+    inlines = [PodsumowanieKadencjiInline]
 
 
 @admin.register(HallOfFame)

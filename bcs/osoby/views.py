@@ -36,7 +36,7 @@ autocomplete_configs = [
         [
             Czlonek.__name__,
             WielkiMistrz.__name__,
-            kronika["CharakterystykaDzialanZarzadu"],
+            kronika["PodsumowanieKadencji"],
             kronika["Kadencja"],
         ],
     ),
@@ -50,7 +50,7 @@ autocomplete_configs = [
         [
             Czlonek.__name__,
             WielkiMistrz.__name__,
-            kronika["CharakterystykaDzialanZarzadu"],
+            kronika["PodsumowanieKadencji"],
             kronika["Kadencja"],
         ],
     ),

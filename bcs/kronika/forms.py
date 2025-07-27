@@ -2,7 +2,7 @@ from django import forms
 
 from kalendarz.models import Wydarzenie
 from .models import (
-    CharakterystykaDzialanZarzadu,
+    PodsumowanieKadencji,
     Kadencja,
     TypWydarzeniaHistorycznego,
     WydarzenieHistoryczne,
@@ -18,12 +18,12 @@ class KadencjaForm(forms.ModelForm):
         widgets = build_widgets(autocomplete_widgets[Kadencja.__name__])
 
 
-class CharakterystykaDzialanZarzaduForm(forms.ModelForm):
+class PodsumowanieKadencjiForm(forms.ModelForm):
     class Meta:
-        model = CharakterystykaDzialanZarzadu
+        model = PodsumowanieKadencji
         fields = "__all__"
         widgets = build_widgets(
-            autocomplete_widgets[CharakterystykaDzialanZarzadu.__name__]
+            autocomplete_widgets[PodsumowanieKadencji.__name__]
         )
 
 

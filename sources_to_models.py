@@ -2,7 +2,7 @@ from dokumenty.models import Edykt, Ukaz
 from encyklopedia.models import *
 from kalendarz.models import Zdarzenie, TypWydarzenia, TypWyjazdu, Wydarzenie
 from kronika.models import (
-    CharakterystykaDzialanZarzadu as PodsumowanieKadencji,
+    PodsumowanieKadencji as PodsumowanieKadencji,
 )
 from miejsca.models import *
 from osoby.models import *

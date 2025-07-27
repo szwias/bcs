@@ -1,5 +1,5 @@
 from .models import (
-    CharakterystykaDzialanZarzadu,
+    PodsumowanieKadencji,
     Kadencja,
     TypWydarzeniaHistorycznego,
     WydarzenieHistoryczne,
@@ -10,7 +10,7 @@ from osoby.models_dict import names as osoby
 
 autocomplete_configs = [
     (
-        CharakterystykaDzialanZarzadu,
+        PodsumowanieKadencji,
         [],
         [],
         [osoby["Czlonek"], osoby["Zarzad"]],
