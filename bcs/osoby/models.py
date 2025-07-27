@@ -159,8 +159,16 @@ class Czlonek(Osoba, OsobaBCS):
         verbose_name="Czy ochrzczony",
     )
 
-    # TODO: instead of following three fields add depositio_beanorum - fk to
-    #  kalendarz.Wydarzenie
+    depositio_beanorum = models.ForeignKey(
+        "kalendarz.Wydarzenie",
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+        verbose_name="Depositio beanorum",
+    )
+
+    # TODO: add kalendarz.Wydarzenie records past 2023 so that you can fill
+    #  column above and then remove following three fields
 
     rok_chrztu = models.IntegerField(
         choices=Czas.LATA_BCS + [IntAlt.DONT_KNOW] + [IntAlt.NOT_APPLICABLE],

@@ -14,6 +14,7 @@ from core.utils.autocompletion.AutocompletesGeneration import *
 
 from czapki.models_dict import names as czapki
 from encyklopedia.models_dict import names as encyklopedia
+from kalendarz.models_dict import names as kalendarz
 from kronika.models_dict import names as kronika
 
 autocomplete_configs = [
@@ -25,6 +26,7 @@ autocomplete_configs = [
         [
             Czlonek.__name__,
             czapki["Czapka"],
+            kalendarz["Wydarzenie"],
         ],
     ),
     (
