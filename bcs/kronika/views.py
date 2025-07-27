@@ -1,6 +1,3 @@
-from django.db.models import CharField
-from django.db.models.functions import Cast
-
 from .models import (
     CharakterystykaDzialanZarzadu,
     Kadencja,
@@ -9,7 +6,7 @@ from .models import (
 )
 from core.utils.autocompletion.AutocompletesGeneration import *
 
-from kalendarz.models_dict import names as kalendarz
+from kronika.models_dict import names as kronika
 from osoby.models_dict import names as osoby
 
 autocomplete_configs = [
@@ -17,13 +14,16 @@ autocomplete_configs = [
         CharakterystykaDzialanZarzadu,
         [],
         [],
-        [osoby["Czlonek"], osoby["DawnyZarzad"], osoby["Zarzad"]],
+        [osoby["Czlonek"], osoby["DawnyZarzad"], osoby["NowyZarzad"]],
     ),
     (
         Kadencja,
         [],
-        ["lata"],
-        [WydarzenieHistoryczne.__name__, osoby["Zarzad"]],
+        [],
+        [
+            WydarzenieHistoryczne.__name__,
+            kronika["Kadencja"],
+            osoby["NowyZarzad"]],
     ),
     (TypWydarzeniaHistorycznego, [], [], []),
     (WydarzenieHistoryczne, [], [], [TypWydarzeniaHistorycznego.__name__]),

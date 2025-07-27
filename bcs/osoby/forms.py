@@ -6,6 +6,42 @@ from core.utils.autocompletion.AutocompletesGeneration import build_widgets
 from django.contrib.postgres.forms import SimpleArrayField
 
 
+class DawnyZarzadForm(forms.ModelForm):
+    class Meta:
+        model = DawnyZarzad
+        fields = "__all__"
+
+        widgets = build_widgets(autocomplete_widgets[DawnyZarzad.__name__])
+
+
+class HallOfFameForm(forms.ModelForm):
+    class Meta:
+        model = HallOfFame
+        exclude = ["ordering"]
+        widgets = build_widgets(autocomplete_widgets[HallOfFame.__name__])
+
+
+class ImieSzlacheckieForm(forms.ModelForm):
+    posiadacz_display = forms.CharField(
+        label="Posiadacz",
+        required=False,
+        disabled=True,
+    )
+
+    class Meta:
+        model = ImieSzlacheckie
+        fields = ["imie", "posiadacz_display"]
+        widgets = build_widgets(autocomplete_widgets[ImieSzlacheckie.__name__])
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        if self.instance and self.instance.imie:
+            imie = self.instance.imie
+            self.fields["posiadacz_display"].initial = (
+                f"{imie.imie} {imie.nazwisko}"
+            )
+
+# ----------------------------------------------
 class OsobaForm(forms.ModelForm):
     class Meta:
         model = Osoba
@@ -18,6 +54,28 @@ class OsobaForm(forms.ModelForm):
         widget=forms.Textarea(attrs={"rows": 3, "cols": 50}),
         delimiter=",",
     )
+
+
+class BeanForm(OsobaForm):
+    class Meta:
+        model = Bean
+        fields = "__all__"
+        widgets = build_widgets(autocomplete_widgets[Bean.__name__])
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        if not self.instance.pk:
+            self.fields["czapka_1"].initial = Czapka.get_dont_know_czapka()
+            self.fields["czapka_2"].initial = (
+                Czapka.get_not_applicable_czapka()
+            )
+            self.fields["rodzic_1"].initial = (
+                Czlonek.get_not_applicable_czlonek()
+            )
+            self.fields["rodzic_2"].initial = (
+                Czlonek.get_not_applicable_czlonek()
+            )
 
 
 class CzlonekForm(OsobaForm):
@@ -97,54 +155,26 @@ class CzlonekForm(OsobaForm):
         return cd
 
 
-class BeanForm(OsobaForm):
-    class Meta:
-        model = Bean
-        fields = "__all__"
-        widgets = build_widgets(autocomplete_widgets["Bean"])
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-
-        if not self.instance.pk:
-            self.fields["czapka_1"].initial = Czapka.get_dont_know_czapka()
-            self.fields["czapka_2"].initial = (
-                Czapka.get_not_applicable_czapka()
-            )
-            self.fields["rodzic_1"].initial = (
-                Czlonek.get_not_applicable_czlonek()
-            )
-            self.fields["rodzic_2"].initial = (
-                Czlonek.get_not_applicable_czlonek()
-            )
-
-
 class InnaOsobaForm(OsobaForm):
     class Meta:
         model = InnaOsoba
         fields = "__all__"
-        widgets = build_widgets(autocomplete_widgets["InnaOsoba"])
+        widgets = build_widgets(autocomplete_widgets[InnaOsoba.__name__])
+# ----------------------------------------------
 
 
-class ImieSzlacheckieForm(forms.ModelForm):
-    posiadacz_display = forms.CharField(
-        label="Posiadacz",
-        required=False,
-        disabled=True,
-    )
-
+class NowyZarzadForm(forms.ModelForm):
     class Meta:
-        model = ImieSzlacheckie
-        fields = ["imie", "posiadacz_display"]
-        widgets = build_widgets(autocomplete_widgets["ImieSzlacheckie"])
+        model = NowyZarzad
+        fields = "__all__"
+        widgets = build_widgets(autocomplete_widgets[NowyZarzad.__name__])
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        if self.instance and self.instance.imie:
-            imie = self.instance.imie
-            self.fields["posiadacz_display"].initial = (
-                f"{imie.imie} {imie.nazwisko}"
-            )
+
+class WielkiMistrzForm(forms.ModelForm):
+    class Meta:
+        model = WielkiMistrz
+        fields = "__all__"
+        widgets = build_widgets(autocomplete_widgets[WielkiMistrz.__name__])
 
 
 class ZwierzeCzapkoweForm(forms.ModelForm):
@@ -157,53 +187,10 @@ class ZwierzeCzapkoweForm(forms.ModelForm):
     class Meta:
         model = ZwierzeCzapkowe
         fields = ["czlonek", "imie_display", "zwierze", "wyjasnienie"]
-        widgets = build_widgets(autocomplete_widgets["ZwierzeCzapkowe"])
+        widgets = build_widgets(autocomplete_widgets[ZwierzeCzapkowe.__name__])
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         if self.instance and self.instance.czlonek:
             czlonek = self.instance.czlonek
             self.fields["imie_display"].initial = f'"{czlonek.imie_piwne_1}"'
-
-
-class DawnyZarzadForm(forms.ModelForm):
-    class Meta:
-        model = DawnyZarzad
-        fields = "__all__"
-
-        widgets = build_widgets(autocomplete_widgets["DawnyZarzad"])
-        widgets.update(
-            {
-                "kadencja": autocomplete.ModelSelect2(
-                    url="core_autocomplete:custom-kadencja-autocomplete"
-                )
-            }
-        )
-
-
-class ZarzadForm(forms.ModelForm):
-    class Meta:
-        model = Zarzad
-        fields = "__all__"
-        widgets = build_widgets(autocomplete_widgets["Zarzad"])
-        widgets.update(
-            {
-                "kadencja": autocomplete.ModelSelect2(
-                    url="core_autocomplete:custom-kadencja-autocomplete"
-                )
-            }
-        )
-
-
-class WielkiMistrzForm(forms.ModelForm):
-    class Meta:
-        model = WielkiMistrz
-        fields = "__all__"
-        widgets = build_widgets(autocomplete_widgets["WielkiMistrz"])
-
-
-class HallOfFameForm(forms.ModelForm):
-    class Meta:
-        model = HallOfFame
-        exclude = ["ordering"]
-        widgets = build_widgets(autocomplete_widgets["HallOfFame"])

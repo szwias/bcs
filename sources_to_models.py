@@ -14,7 +14,7 @@ mapping = {
         {"kalendarium": [Wydarzenie, Zdarzenie, TypWydarzenia, TypWyjazdu]},
         {"kronika": [PodsumowanieKadencji]},
         {"miejsca": [Miejsce, TypMiejsca]},
-        {"osoby": [DawnyZarzad, Zarzad, WielkiMistrz]},
+        {"osoby": [DawnyZarzad, NowyZarzad, WielkiMistrz]},
     ],
     "AS/Foty": [
         {

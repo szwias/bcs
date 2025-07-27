@@ -492,7 +492,7 @@ class DawnyZarzad(models.Model):
         )
 
 
-class Zarzad(models.Model):
+class NowyZarzad(models.Model):
     kadencja = models.ForeignKey(
         Kadencja,
         on_delete=models.SET_NULL,

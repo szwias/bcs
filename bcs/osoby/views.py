@@ -7,7 +7,7 @@ from .models import (
     HallOfFame,
     ImieSzlacheckie,
     WielkiMistrz,
-    Zarzad,
+    NowyZarzad,
     ZwierzeCzapkowe,
 )
 from core.utils.autocompletion.AutocompletesGeneration import *
@@ -43,10 +43,8 @@ autocomplete_configs = [
     (HallOfFame, [], [], [Bean.__name__, Czlonek.__name__]),
     (ImieSzlacheckie, [], [], [Czlonek.__name__]),
     (InnaOsoba, ["kategoria"], [], [encyklopedia["Bractwo"]]),
-    (Osoba, [], [], []),
-    (WielkiMistrz, [], [], [Czlonek.__name__]),
     (
-        Zarzad,
+        NowyZarzad,
         [],
         [],
         [
@@ -56,6 +54,8 @@ autocomplete_configs = [
             kronika["Kadencja"],
         ],
     ),
+    (Osoba, [], [], []),
+    (WielkiMistrz, [], [], [Czlonek.__name__]),
     (ZwierzeCzapkowe, [], [], [Czlonek.__name__]),
 ]
 

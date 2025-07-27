@@ -5,7 +5,7 @@ from .models import (
     Czlonek,
     InnaOsoba,
     DawnyZarzad,
-    Zarzad,
+    NowyZarzad,
     HallOfFame,
     ImieSzlacheckie,
     WielkiMistrz,
@@ -43,13 +43,13 @@ class InnaOsobaAdmin(BaseModelAdmin):
 @admin.register(DawnyZarzad)
 class DawnyZarzadAdmin(BaseModelAdmin):
     list_filter_exclude = "__all__"
-    inlines = [CharakterystykaDzialanZarzaduInline]
+    # inlines = [CharakterystykaDzialanZarzaduInline]
 
 
-@admin.register(Zarzad)
+@admin.register(NowyZarzad)
 class ZarzadAdmin(BaseModelAdmin):
     list_filter_exclude = "__all__"
-    inlines = [CharakterystykaDzialanZarzaduInline]
+    # inlines = [CharakterystykaDzialanZarzaduInline]
 
 
 @admin.register(HallOfFame)
@@ -77,7 +77,7 @@ register_all_models(
         Bean: BeanAdmin,
         Czlonek: CzlonekAdmin,
         DawnyZarzad: DawnyZarzadAdmin,
-        Zarzad: ZarzadAdmin,
+        NowyZarzad: ZarzadAdmin,
         HallOfFame: HallOfFameAdmin,
         ImieSzlacheckie: ImieSzlacheckieAdmin,
         InnaOsoba: InnaOsobaAdmin,
