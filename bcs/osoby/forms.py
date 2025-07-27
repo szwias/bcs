@@ -10,7 +10,6 @@ class DawnyZarzadForm(forms.ModelForm):
     class Meta:
         model = DawnyZarzad
         fields = "__all__"
-
         widgets = build_widgets(autocomplete_widgets[DawnyZarzad.__name__])
 
 
@@ -41,6 +40,22 @@ class ImieSzlacheckieForm(forms.ModelForm):
                 f"{imie.imie} {imie.nazwisko}"
             )
 
+
+class NowyZarzadForm(forms.ModelForm):
+    class Meta:
+        model = NowyZarzad
+        fields = [
+            "kadencja",
+            "wielki_mistrz",
+            "kasztelan",
+            "skarbnik",
+            "sekretarz",
+            "cantandi",
+        ]
+        widgets = build_widgets(autocomplete_widgets[NowyZarzad.__name__])
+
+
+# OsobaForm Family
 # ----------------------------------------------
 class OsobaForm(forms.ModelForm):
     class Meta:
@@ -160,14 +175,9 @@ class InnaOsobaForm(OsobaForm):
         model = InnaOsoba
         fields = "__all__"
         widgets = build_widgets(autocomplete_widgets[InnaOsoba.__name__])
-# ----------------------------------------------
 
 
-class NowyZarzadForm(forms.ModelForm):
-    class Meta:
-        model = NowyZarzad
-        fields = "__all__"
-        widgets = build_widgets(autocomplete_widgets[NowyZarzad.__name__])
+# ---------------------------------------------- END
 
 
 class WielkiMistrzForm(forms.ModelForm):

@@ -6,7 +6,6 @@ from .models import (
 )
 from core.utils.autocompletion.AutocompletesGeneration import *
 
-from kronika.models_dict import names as kronika
 from osoby.models_dict import names as osoby
 
 autocomplete_configs = [
@@ -14,16 +13,13 @@ autocomplete_configs = [
         CharakterystykaDzialanZarzadu,
         [],
         [],
-        [osoby["Czlonek"], osoby["DawnyZarzad"], osoby["NowyZarzad"]],
+        [osoby["Czlonek"]],
     ),
     (
         Kadencja,
         [],
         [],
-        [
-            WydarzenieHistoryczne.__name__,
-            kronika["Kadencja"],
-            osoby["NowyZarzad"]],
+        [Kadencja.__name__, WydarzenieHistoryczne.__name__, osoby["Zarzad"]],
     ),
     (TypWydarzeniaHistorycznego, [], [], []),
     (WydarzenieHistoryczne, [], [], [TypWydarzeniaHistorycznego.__name__]),

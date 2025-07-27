@@ -2,10 +2,14 @@
 
 from django.db import migrations
 
+
 class Migration(migrations.Migration):
 
     dependencies = [
-        ("kronika", "0020_alter_charakterystykadzialanzarzadu_options_and_more"),
+        (
+            "kronika",
+            "0020_alter_charakterystykadzialanzarzadu_options_and_more",
+        ),
         ("osoby", "0013_czlonek_depositio_beanorum"),
     ]
 
