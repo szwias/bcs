@@ -61,7 +61,7 @@ class Byt(PolymorphicModel):
 
 # OSOBA FAMILY
 # ---------------------------------------
-class Osoba(PolymorphicModel):
+class Osoba(Byt):
     imie = models.CharField(max_length=NAME_LENGTH, verbose_name="Imię")
 
     nazwisko = models.CharField(
@@ -461,7 +461,7 @@ class WielkiMistrz(models.Model):
 
 # ZARZAD FAMILY
 # ---------------------------------------
-class Zarzad(PolymorphicModel):
+class Zarzad(Byt):
     kadencja = models.ForeignKey(
         Kadencja,
         blank=True,
