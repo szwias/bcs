@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     "kalendarz",
     "kronika",
     "miejsca",
+    "multimedia",
     "osoby",
     "prawo",
     "slowniczek_lacinski",

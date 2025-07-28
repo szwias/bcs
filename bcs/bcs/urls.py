@@ -47,6 +47,10 @@ urlpatterns = [
         include("miejsca.autocomplete_urls", "miejsca_autocomplete"),
     ),
     path(
+        "autocomplete/multimedia/",
+        include("multimedia.autocomplete_urls", "multimedia_autocomplete"),
+    ),
+    path(
         "autocomplete/osoby/",
         include("osoby.autocomplete_urls", "osoby_autocomplete"),
     ),
