@@ -1,8 +1,9 @@
 from .models import (
-    PodsumowanieKadencji,
     Kadencja,
+    PodsumowanieKadencji,
     TypWydarzeniaHistorycznego,
     WydarzenieHistoryczne,
+    ZadanieChrzcielne,
 )
 from core.utils.autocompletion.AutocompletesGeneration import *
 
@@ -23,6 +24,7 @@ autocomplete_configs = [
     ),
     (TypWydarzeniaHistorycznego, [], [], []),
     (WydarzenieHistoryczne, [], [], [TypWydarzeniaHistorycznego.__name__]),
+    (ZadanieChrzcielne, [], [], [osoby["Czlonek"]])
 ]
 
 autocomplete_urls, autocomplete_widgets = setup_autocompletes(

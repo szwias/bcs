@@ -114,3 +114,38 @@ class WydarzenieHistoryczne(models.Model):
         else:
             typ = self.typ
         return f'{self.data}: {typ} "{self.nazwa}"'
+
+
+class ZadanieChrzcielne(models.Model):
+    nazwa = models.CharField(
+        max_length=NAME_LENGTH, verbose_name="Nazwa krótka"
+    )
+
+    autor = models.ForeignKey(
+        "osoby.Czlonek",
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+        verbose_name="Autor",
+        related_name="zadanie_chrzcielne",
+    )
+
+    opis = models.TextField(blank=True, null=True, verbose_name="Opis")
+
+    zalacznik = models.FileField(
+        upload_to="pdfs/", blank=True, null=True, verbose_name="Załącznik"
+    )
+
+    zdjecia = models.ImageField(
+        upload_to="images/", blank=True, null=True, verbose_name="Zdjęcia"
+    )
+
+    link = models.URLField(blank=True, null=True, verbose_name="Link")
+
+    class Meta:
+        verbose_name = "Zadanie chrzcielne"
+        verbose_name_plural = "Zadania chrzcielne"
+        ordering = ["nazwa"]
+
+    def __str__(self):
+        return f"{self.autor} - {self.nazwa}"

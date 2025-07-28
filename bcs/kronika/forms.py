@@ -2,10 +2,11 @@ from django import forms
 
 from kalendarz.models import Wydarzenie
 from .models import (
-    PodsumowanieKadencji,
     Kadencja,
+    PodsumowanieKadencji,
     TypWydarzeniaHistorycznego,
     WydarzenieHistoryczne,
+    ZadanieChrzcielne,
 )
 from .views import autocomplete_widgets
 from core.utils.autocompletion.AutocompletesGeneration import build_widgets
@@ -55,3 +56,12 @@ class WydarzenieHistoryczneForm(forms.ModelForm):
             )
         else:
             self.fields["wydarzenie"].queryset = Wydarzenie.objects.none()
+
+
+class ZadanieChrzcielneForm(forms.ModelForm):
+    class Meta:
+        model = ZadanieChrzcielne
+        fields = "__all__"
+        widgets = build_widgets(
+            autocomplete_widgets[ZadanieChrzcielne.__name__]
+        )
