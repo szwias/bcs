@@ -4000,6 +4000,9 @@ COPY public.django_admin_log (id, action_time, object_id, object_repr, action_fl
 2719	2025-07-28 20:05:10.248053+02	5	"Połączenie elegancji z prostotą stanowi o szlachectwie każdej rzeczy i persony." - Zarząd 2015/2016 - WM Paweł "Synek" Mucha - Tadeusz IV, Jaśnie Oświecony Paweł Synek Tadeusz IV Mucha, Wielki Mistrz	2	[{"changed": {"fields": ["Autor"]}}]	98	1
 2720	2025-07-28 20:05:22.369201+02	7	"Wielu mistrzów zakon mieć musi." - Zarząd 2015/2016 - WM Paweł "Synek" Mucha - Tadeusz IV, Jaśnie Oświecony Paweł Synek Tadeusz IV Mucha, Wielki Mistrz BCS, członek Zarządu KU AZS UJ, kierownik sekcj	2	[{"changed": {"fields": ["Autor"]}}]	98	1
 2721	2025-07-28 20:05:33.144997+02	2	"W każdym momencie czasu kryje się przeszłość, teraźniejszość i przyszłość. W\r\nkażdym momencie czasu ..." - Zarząd 2015/2016 - WM Paweł "Synek" Mucha - Tadeusz IV, Jaśnie Oświecony Paweł Synek Tadeusz	2	[{"changed": {"fields": ["Autor"]}}]	98	1
+2722	2025-07-28 23:54:33.23836+02	3	Konsul BCS za granicami RP	2	[]	41	1
+2723	2025-07-28 23:54:38.918362+02	2	Łagr radości	2	[]	41	1
+2724	2025-07-28 23:57:45.203681+02	4	Zespół	1	[{"added": {}}]	41	1
 \.
 
 
@@ -4513,6 +4516,7 @@ COPY public.encyklopedia_pojecie (id, nazwa, opis, origins, wydarzenie_id, autor
 1	Bractwo Czapki Studenckiej UJ	Bractwo Czapki Studenckiej Uniwersytetu Jagiellońskiego (BCS UJ) to organizacja studencka działająca na Uniwersytecie Jagiellońskim, której celem jest propagowanie noszenia czapki studenckiej na UJ oraz innych polskich uczelniach, integracja międzywydziałowa, międzyuczelniana i międzynarodowa oraz kultywowanie i poznawanie tradycji studenckich.	I	\N	\N	\N
 3	Konsul BCS za granicami RP	Urząd w BCS. Konsul pełni obowiązki Wielkiego Mistrza i Kasztelana na delegacjach zagranicznych w razie ich nieobecności.	I	\N	202	3
 2	Łagr radości	Patrz: źródło	I	\N	202	9
+4	Zespół	Struktura zajmująca się realizacją ważnego bractwa celu. Składa się z osób z BCS pod przewodnictwem Koordynatora wybieranego przez WM/WZ za zasięgnięciem rady ustępującego z urzędu koordynatora	I	\N	202	10
 \.
 
 
@@ -6987,7 +6991,7 @@ SELECT pg_catalog.setval('public.czlonkowie_zwierzeczapkowe_id_seq', 13, true);
 -- Name: django_admin_log_id_seq; Type: SEQUENCE SET; Schema: public; Owner: projectuser
 --
 
-SELECT pg_catalog.setval('public.django_admin_log_id_seq', 2721, true);
+SELECT pg_catalog.setval('public.django_admin_log_id_seq', 2724, true);
 
 
 --
@@ -7050,7 +7054,7 @@ SELECT pg_catalog.setval('public.encyklopedia_grupabractw_kraje_id_seq', 8, true
 -- Name: encyklopedia_pojecie_id_seq; Type: SEQUENCE SET; Schema: public; Owner: projectuser
 --
 
-SELECT pg_catalog.setval('public.encyklopedia_pojecie_id_seq', 3, true);
+SELECT pg_catalog.setval('public.encyklopedia_pojecie_id_seq', 4, true);
 
 
 --
