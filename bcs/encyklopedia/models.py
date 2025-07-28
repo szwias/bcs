@@ -177,6 +177,14 @@ class Pojecie(models.Model):
         verbose_name="Wydarzenie",
     )
 
+    zrodlo = models.ForeignKey(
+        "zrodla.Zrodlo",
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+        verbose_name="Źródło"
+    )
+
     class Meta:
         verbose_name = "Pojęcie"
         verbose_name_plural = "Pojęcia"
