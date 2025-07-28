@@ -12,6 +12,7 @@ class Lengths:
 
 
 class Okolicznosci(models.TextChoices):
+    DOKUMENT = "Dok", "W dokumencie"
     INNE = "I", "Inne okoliczności"
     WYDARZENIE = "Wyd", "Na wydarzeniu czapkowym"
 
