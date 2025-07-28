@@ -192,10 +192,17 @@ class TradycjaBCS(models.Model):
         ZAPOZYCZONA = "Z", "Zapożyczona"
         AUTORSKA = "A", "Autorka"
 
+    class PewnoscStazu(models.TextChoices):
+        TAK = "T", "Na pewno wcześniej się nie pojawiała"
+        NIE = "N", "Ale mogła pojawić się wcześniej"
+
     nazwa = models.CharField(max_length=MEDIUM_LENGTH, verbose_name="Tradycja")
 
     zapozyczona_czy_autorska = models.CharField(
-        choices=Origins.choices, verbose_name="Zapożyczona czy autorska"
+        choices=Origins.choices,
+        blank=True,
+        null=True,
+        verbose_name="Zapożyczona czy autorska",
     )
 
     autor = models.ForeignKey(
@@ -217,6 +224,8 @@ class TradycjaBCS(models.Model):
     okolicznosci_powstania = models.CharField(
         max_length=Lengths.OKOLICZNOSCI_LENGTH,
         choices=Okolicznosci.choices,
+        blank=True,
+        null=True,
         verbose_name="Okoliczności powstania",
     )
 
@@ -235,6 +244,13 @@ class TradycjaBCS(models.Model):
         verbose_name="Inna okoliczność (" "wpisz):",
     )
 
+    pewnosc_stazu = models.CharField(
+        choices=PewnoscStazu.choices,
+        blank=True,
+        null=True,
+        verbose_name="Pewność czasu pojawienia się",
+    )
+
     opis = models.TextField(blank=True, verbose_name="Opis")
 
     class Meta:
@@ -243,7 +259,22 @@ class TradycjaBCS(models.Model):
         ordering = ("nazwa",)
 
     def __str__(self):
-        return self.nazwa
+        autorska = (
+            " - Autorska"
+            if self.zapozyczona_czy_autorska == TradycjaBCS.Origins.AUTORSKA
+            else ""
+        )
+        kontekst = ", "
+        if (
+            self.okolicznosci_powstania == Okolicznosci.WYDARZENIE
+            and self.wydarzenie
+        ):
+            kontekst += str(self.wydarzenie)
+        elif self.okolicznosci_powstania == Okolicznosci.INNE and self.inne:
+            kontekst += str(self.inne)
+        else:
+            kontekst = ""
+        return f"{self.nazwa}{autorska}{kontekst}"
 
 
 class TradycjaInnegoBractwa(models.Model):
