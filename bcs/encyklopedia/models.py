@@ -154,6 +154,8 @@ class Pojecie(models.Model):
 
     nazwa = models.CharField(max_length=MEDIUM_LENGTH, verbose_name="Nazwa")
 
+    complete = models.BooleanField(default=False, verbose_name="Notatka kompletna")
+
     autor = models.ForeignKey(
         "osoby.Byt",
         blank=True,
