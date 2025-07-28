@@ -5,10 +5,15 @@ from core.utils.Consts import MAX_LENGTH
 
 class Zwrot(models.Model):
 
-    zwrot = models.CharField(max_length=MAX_LENGTH, verbose_name="Zwrot")
+    zwrot = models.TextField(
+        max_length=MAX_LENGTH, blank=True, null=True, verbose_name="Zwrot"
+    )
 
-    tlumaczenie = models.CharField(
-        max_length=MAX_LENGTH, verbose_name="Tłumaczenie"
+    tlumaczenie = models.TextField(
+        max_length=MAX_LENGTH,
+        blank=True,
+        null=True,
+        verbose_name="Tłumaczenie"
     )
 
     uzywany_na_karczmie = models.BooleanField(
@@ -21,4 +26,5 @@ class Zwrot(models.Model):
         ordering = ["zwrot"]
 
     def __str__(self):
-        return self.zwrot
+        karczma = " (KARCZMA)" if self.uzywany_na_karczmie else ""
+        return f"{self.zwrot} - {self.tlumaczenie}{karczma}"

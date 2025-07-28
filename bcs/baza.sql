@@ -1728,9 +1728,9 @@ ALTER TABLE public.prawo_struktura OWNER TO projectuser;
 
 CREATE TABLE public.slowniczek_lacinski_zwrot (
     id bigint NOT NULL,
-    zwrot character varying(255) NOT NULL,
-    tlumaczenie character varying(255) NOT NULL,
-    uzywany_na_karczmie boolean NOT NULL
+    uzywany_na_karczmie boolean NOT NULL,
+    tlumaczenie text,
+    zwrot text
 );
 
 
@@ -3888,6 +3888,48 @@ COPY public.django_admin_log (id, action_time, object_id, object_repr, action_fl
 2644	2025-07-27 23:53:24.592061+02	9	Koordynator Zespołu: Prawo do wydalenia członka z Zespołu	1	[{"added": {}}]	83	1
 2645	2025-07-27 23:54:32.162202+02	10	Członek Zespołu: Obowiązek do udziału w pracy Zespołu w stopniu ustalonym z Koordynatorem	1	[{"added": {}}]	83	1
 2646	2025-07-27 23:55:42.180976+02	11	Koordynator Zespołu: Prawo do jednorazowej reelekcji (każdorazowo na Zespół)	1	[{"added": {}}]	83	1
+2647	2025-07-28 01:33:06.805037+02	11	Ukaz #005 o zespołach: Historycznym, Śpiewnika i Kultury -  (Zarząd powołuje do życia zespoły:\r\nDs. Śpiewnika BCS, Historyczny BCS, ds. Kultury, ds. otwarcia parasola\r\nKoordynatorzy kolejno: Maciej So	1	[{"added": {}}]	93	1
+2648	2025-07-28 01:36:54.488248+02	11	Ukaz #006 o Yodzie -  (Zarząd powołuje urząd Magistra Jody. Zostaje nim Łukasz Pryk - ma obowiązek mówić wspak oraz sypać mądrościami)	2	[{"changed": {"fields": ["Tytu\\u0142", "Numer", "Streszczenie", "Plik"]}}]	93	1
+2649	2025-07-28 01:37:19.699407+02	22	Magister Joda - NIEAKTUALNE	1	[{"added": {}}]	80	1
+2650	2025-07-28 01:37:45.858775+02	23	Magister Disciplinae	1	[{"added": {}}]	80	1
+2651	2025-07-28 01:38:00.478482+02	24	Magister Kuflendi	1	[{"added": {}}]	80	1
+2652	2025-07-28 01:39:12.345429+02	12	Magister Joda - NIEAKTUALNE: Obowiązek mowy wspak	1	[{"added": {}}]	83	1
+2653	2025-07-28 01:39:57.679377+02	13	Magister Joda - NIEAKTUALNE: Obowiązek znajomości mądrości i aforyzmów - PRZEDAWNIONE	1	[{"added": {}}]	83	1
+2654	2025-07-28 01:40:05.886681+02	12	Magister Joda - NIEAKTUALNE: Obowiązek mowy wspak - PRZEDAWNIONE	2	[{"changed": {"fields": ["Przedawnione"]}}]	83	1
+2655	2025-07-28 01:40:11.145145+02	14	Magister Joda - NIEAKTUALNE: Obowiązek znajomości mądrości i aforyzmów - PRZEDAWNIONE	1	[{"added": {}}]	83	1
+2656	2025-07-28 01:40:32.926869+02	14	Magister Joda - NIEAKTUALNE: Prawo używania kremu do zmarszczek - PRZEDAWNIONE	2	[{"changed": {"fields": ["Tre\\u015b\\u0107", "Rodzaj relacji"]}}]	83	1
+2657	2025-07-28 01:42:00.281648+02	7	"Estetyka jest tą wartością, która przyciąga swym naturalnym i niewymuszonym pięknem, a kultura postę..." - Paweł "Synek" Mucha (Patrz: źródło)	1	[{"added": {}}]	98	1
+2658	2025-07-28 01:42:15.433477+02	7	"Wielu mistrzów zakon mieć musi." - Paweł "Synek" Mucha (Patrz: źródło)	2	[{"changed": {"fields": ["Tekst", "\\u0179r\\u00f3d\\u0142o"]}}]	98	1
+2659	2025-07-28 01:42:41.825569+02	12	Ukaz #006 o Yodzie -  (Zarząd powołuje urząd Magistra Jody. Zostaje nim Łukasz Pryk - ma obowiązek mówić wspak oraz sypać mądrościami)	1	[{"added": {}}]	93	1
+2660	2025-07-28 01:45:34.64209+02	12	Ukaz #007 o Walnym -  (Zarząd ogłasza termin Walnego Zgromadzenia na którym odbędą się Wybory na 26.10.2016 otwierając tym samym kampanię wyborczą.)	2	[{"changed": {"fields": ["Tytu\\u0142", "Numer", "Autorzy", "Streszczenie", "Plik"]}}]	93	1
+2661	2025-07-28 01:46:20.563175+02	13	Ukaz #007 o Walnym -  (Zarząd ogłasza termin Walnego Zgromadzenia na którym odbędą się Wybory na 26.10.2016 otwierając tym samym kampanię wyborczą.)	1	[{"added": {}}]	93	1
+2662	2025-07-28 01:52:50.221073+02	13	Ukaz VIII o wznowieniu ukazów i o 3 zespołach - 2017-10-19 (Zarząd:\r\n- wznawia tradycję wydawania ukazów\r\n- powołuje zespoły - ds. Śpiewnika, ds. herbu, ds. statutu - pod przewodnictwem kolejno: "Baro	2	[{"changed": {"fields": ["Tytu\\u0142", "Numer", "Data wydania", "Autorzy", "Streszczenie", "Plik"]}}]	93	1
+2663	2025-07-28 01:53:35.417111+02	2	Ante Diem	1	[{"added": {}}]	91	1
+2664	2025-07-28 01:54:02.843078+02	3	XIV Kalendas Novembres	1	[{"added": {}}]	91	1
+2665	2025-07-28 01:54:22.54933+02	4	A. D.	1	[{"added": {}}]	91	1
+2666	2025-07-28 01:55:23.738573+02	3	XIV Kalendas Novembres	2	[{"changed": {"fields": ["T\\u0142umaczenie"]}}]	91	1
+2667	2025-07-28 01:58:28.399405+02	4	A. D.	2	[{"changed": {"fields": ["Zwrot", "T\\u0142umaczenie"]}}]	91	1
+2668	2025-07-28 01:58:40.549661+02	2	Ante Diem	2	[{"changed": {"fields": ["Zwrot", "T\\u0142umaczenie"]}}]	91	1
+2669	2025-07-28 01:58:51.755972+02	1	Fiat!	2	[{"changed": {"fields": ["Zwrot", "T\\u0142umaczenie"]}}]	91	1
+2670	2025-07-28 01:59:04.795126+02	3	XIV Kalendas Novembres	2	[{"changed": {"fields": ["Zwrot", "T\\u0142umaczenie"]}}]	91	1
+2671	2025-07-28 02:01:29.440529+02	3	XIV Kalendas Novembres	2	[{"changed": {"fields": ["Zwrot", "T\\u0142umaczenie"]}}]	91	1
+2672	2025-07-28 02:01:42.3375+02	1	Fiat!	2	[{"changed": {"fields": ["Zwrot", "T\\u0142umaczenie"]}}]	91	1
+2673	2025-07-28 02:01:52.620511+02	2	Ante Diem	2	[{"changed": {"fields": ["Zwrot", "T\\u0142umaczenie"]}}]	91	1
+2674	2025-07-28 02:02:03.693122+02	4	A. D.	2	[{"changed": {"fields": ["Zwrot", "T\\u0142umaczenie"]}}]	91	1
+2675	2025-07-28 02:03:26.810567+02	14	Ukaz VIII o wznowieniu ukazów i o 3 zespołach - 2017-10-19 (Zarząd:\r\n- wznawia tradycję wydawania ukazów\r\n- powołuje zespoły - ds. Śpiewnika, ds. herbu, ds. statutu - pod przewodnictwem kolejno: "Baro	1	[{"added": {}}]	93	1
+2676	2025-07-28 02:12:39.743094+02	14	Ukaz IX o nowym statucie i herbie; o zbiórce na Dni Tradycji Studenckich - 2018-03-30 (Zarząd ogłasza termin WZ, na którym poruszone zostaną kwestie:\r\n- głosowanie nad przyjęciem Statutu BCS\r\n- akcept	2	[{"changed": {"fields": ["Tytu\\u0142", "Numer", "Data wydania", "Streszczenie", "Plik"]}}]	93	1
+2677	2025-07-28 02:14:01.001025+02	15	Członek Zwyczajny: Prawo do głosowania na Walnym Zgromadzeniu	1	[{"added": {}}]	83	1
+2678	2025-07-28 02:14:29.310346+02	4	A. D. (Anno Domini) - roku pańskiego	2	[{"changed": {"fields": ["Zwrot"]}}]	91	1
+2679	2025-07-28 02:15:35.062229+02	5	Kalendas - Kalendy (1. dzień miesiąca)	1	[{"added": {}}]	91	1
+2680	2025-07-28 02:16:47.782681+02	6	Primo - Po pierwsze	1	[{"added": {}}]	91	1
+2681	2025-07-28 02:17:03.502841+02	7	Secundo - Po drugie	1	[{"added": {}}]	91	1
+2682	2025-07-28 02:17:15.40032+02	8	Tertio - Po trzecie	1	[{"added": {}}]	91	1
+2683	2025-07-28 02:19:59.37565+02	9	Magister Cantandi - Mistrz śpiewu	1	[{"added": {}}]	91	1
+2684	2025-07-28 02:20:29.776702+02	10	Magister Disciplinae - Mistrz Dyscypliny	1	[{"added": {}}]	91	1
+2685	2025-07-28 02:20:34.971342+02	9	Magister Cantandi - Mistrz śpiewu	2	[{"changed": {"fields": ["U\\u017cywany na Karczmie"]}}]	91	1
+2686	2025-07-28 02:22:12.757432+02	5	Kalendae - Kalendy (1. dzień miesiąca)	2	[{"changed": {"fields": ["Zwrot"]}}]	91	1
+2687	2025-07-28 02:23:37.146099+02	11	Nonae - Nony (ósmy dzień przed Idami)	1	[{"added": {}}]	91	1
+2688	2025-07-28 02:25:02.218917+02	12	Idus - Idy (15 dnia miesiąca w marcu, maju, lipcu, październiku i 13 dnia w resztę miesięcy)	1	[{"added": {}}]	91	1
 \.
 
 
@@ -4272,6 +4314,11 @@ COPY public.django_migrations (id, app, name, applied) FROM stdin;
 335	zrodla	0009_alter_dokument_streszczenie_alter_zrodlo_tytul	2025-07-27 21:55:00.034526+02
 336	zrodla	0010_alter_dokument_data	2025-07-27 21:55:49.605714+02
 337	zrodla	0011_alter_edykt_numer_alter_ukaz_numer	2025-07-27 21:56:53.088963+02
+338	prawo	0002_alter_relacjaprawna_options	2025-07-28 01:58:03.755874+02
+339	slowniczek_lacinski	0002_zwrot_cosik_zwrot_wtf	2025-07-28 01:58:03.763503+02
+340	slowniczek_lacinski	0003_alter_zwrot_options_remove_zwrot_tlumaczenie_and_more	2025-07-28 01:59:41.906238+02
+341	slowniczek_lacinski	0004_zwrot_tlumaczenie_zwrot_zwrot	2025-07-28 02:01:12.789814+02
+342	slowniczek_lacinski	0005_alter_zwrot_options_remove_zwrot_cosik_and_more	2025-07-28 02:02:46.334882+02
 \.
 
 
@@ -4296,6 +4343,7 @@ COPY public.encyklopedia_aforyzm (cytat_ptr_id) FROM stdin;
 2
 5
 6
+7
 \.
 
 
@@ -4330,6 +4378,7 @@ COPY public.encyklopedia_cytat (id, tekst, kontekst, autor_id, polymorphic_ctype
 5	Połączenie elegancji z prostotą stanowi o szlachectwie każdej rzeczy i persony.	Patrz: źródło	133	98	4
 6	Estetyka jest tą wartością, która przyciąga swym naturalnym i niewymuszonym pięknem, a kultura postępowania świadczy o postrzeganiu nas jako godnych uwagi i partnerstwa.	Patrz: źródło	133	98	4
 2	W każdym momencie czasu kryje się przeszłość, teraźniejszość i przyszłość. W\r\nkażdym momencie czasu kryje się wieczność.	Patrz: źródło	133	98	2
+7	Wielu mistrzów zakon mieć musi.	Patrz: źródło	133	98	11
 \.
 
 
@@ -6232,6 +6281,9 @@ COPY public.prawo_podmiot (id, nazwa, polymorphic_ctype_id, aktualne) FROM stdin
 19	Reprezentant Wydziału	80	f
 20	Koordynator Zespołu	80	t
 21	Członek Zespołu	80	t
+22	Magister Joda	80	f
+23	Magister Disciplinae	80	t
+24	Magister Kuflendi	80	t
 \.
 
 
@@ -6250,6 +6302,10 @@ COPY public.prawo_relacjaprawna (id, prawo_czy_obowiazek, dokument_id, tresc, pr
 9	P	10	Prawo do wydalenia członka z Zespołu	f
 10	O	10	Obowiązek do udziału w pracy Zespołu w stopniu ustalonym z Koordynatorem	f
 11	P	10	Prawo do jednorazowej reelekcji (każdorazowo na Zespół)	f
+13	O	11	Obowiązek znajomości mądrości i aforyzmów	t
+12	O	11	Obowiązek mowy wspak	t
+14	P	11	Prawo używania kremu do zmarszczek	t
+15	P	14	Prawo do głosowania na Walnym Zgromadzeniu	f
 \.
 
 
@@ -6268,6 +6324,10 @@ COPY public.prawo_relacjaprawna_podmiot (id, relacjaprawna_id, podmiot_id) FROM 
 9	9	20
 10	10	21
 11	11	20
+12	12	22
+13	13	22
+14	14	22
+15	15	1
 \.
 
 
@@ -6290,6 +6350,9 @@ COPY public.prawo_rola (podmiot_ptr_id) FROM stdin;
 19
 20
 21
+22
+23
+24
 \.
 
 
@@ -6311,8 +6374,19 @@ COPY public.prawo_struktura (podmiot_ptr_id) FROM stdin;
 -- Data for Name: slowniczek_lacinski_zwrot; Type: TABLE DATA; Schema: public; Owner: projectuser
 --
 
-COPY public.slowniczek_lacinski_zwrot (id, zwrot, tlumaczenie, uzywany_na_karczmie) FROM stdin;
-1	Fiat!	Niech się stanie!	f
+COPY public.slowniczek_lacinski_zwrot (id, uzywany_na_karczmie, tlumaczenie, zwrot) FROM stdin;
+3	f	czternasty dzień przed Kalendami listopadowymi (19 października)	XIV Kalendas Novembres
+1	f	Niech się stanie!	Fiat!
+2	f	na dzień przed	Ante Diem
+4	f	roku pańskiego	A. D. (Anno Domini)
+6	f	Po pierwsze	Primo
+7	f	Po drugie	Secundo
+8	f	Po trzecie	Tertio
+10	t	Mistrz Dyscypliny	Magister Disciplinae
+9	t	Mistrz śpiewu	Magister Cantandi
+5	f	Kalendy (1. dzień miesiąca)	Kalendae
+11	f	Nony (ósmy dzień przed Idami)	Nonae
+12	f	Idy (15 dnia miesiąca w marcu, maju, lipcu, październiku i 13 dnia w resztę miesięcy)	Idus
 \.
 
 
@@ -6327,6 +6401,10 @@ COPY public.zrodla_dokument (data, streszczenie, zrodlo_ptr_id) FROM stdin;
 2015-10-27	Zarząd wyznacza Macieja Małeckiego (Kasztelana) do zaprojektowania i wykonania oficjalnej papeterii i biletów wizytowych BCS.	4
 \N	Zarząd zachęca do zamiany depresji na pracę na rzecz rozwoju naszego społeczeństwa i grozi zamknięciem w łagrze radości w razie nieposłuszeństwa.	9
 \N	Zarząd powołuje do życia zespoły:\r\nDs. Śpiewnika BCS, Historyczny BCS, ds. Kultury, ds. otwarcia parasola\r\nKoordynatorzy kolejno: Maciej Solon, Patryk Gujda, Tomasz Krok, Spumante\r\nKoordynatorów nominuje WM na 1 rok, można być dwa razy\r\nUdział dobrowolny	10
+\N	Zarząd powołuje urząd Magistra Jody. Zostaje nim Łukasz Pryk - ma obowiązek mówić wspak oraz sypać mądrościami	11
+\N	Zarząd ogłasza termin Walnego Zgromadzenia na którym odbędą się Wybory na 26.10.2016 otwierając tym samym kampanię wyborczą.	12
+2017-10-19	Zarząd:\r\n- wznawia tradycję wydawania ukazów\r\n- powołuje zespoły - ds. Śpiewnika, ds. herbu, ds. statutu - pod przewodnictwem kolejno: "Baronessy", "Bandery", Weroniki Manisty.\r\nZespoły są zobowiązane do comiesięcznych raportów Zarządowi	13
+2018-03-30	Zarząd ogłasza termin WZ, na którym poruszone zostaną kwestie:\r\n- głosowanie nad przyjęciem Statutu BCS\r\n- akceptacja projektu nowego herbu BCS\r\n- ogłoszenie nadzwyczajnej zbiórki pieniężnej\r\nOd teraz głosować mogą Członkowie-studenci/chrzczeni w dniu WZ	14
 \.
 
 
@@ -6349,6 +6427,10 @@ COPY public.zrodla_ukaz (dokument_ptr_id, numer) FROM stdin;
 4	3
 9	4
 10	5
+11	6
+12	7
+13	8
+14	9
 \.
 
 
@@ -6363,6 +6445,10 @@ COPY public.zrodla_zrodlo (id, tytul, polymorphic_ctype_id, plik) FROM stdin;
 4	Ukaz #003 o papeterii	93	pdfs/2015-10_Ukaz_003_transkrypcja_o_papeterii.pdf
 9	Ukaz #004 o przymusie pozytywnej kapitalizacji	93	pdfs/Ukaz_004_o_przymusie_pozytywnej_kapitalizacji.pdf
 10	Ukaz #005 o zespołach: Historycznym, Śpiewnika i Kultury	93	pdfs/2016-02_Ukaz_005_o_zespołach__Historycznym_Śpiewnika_i_Kultury.pdf
+11	Ukaz #006 o Yodzie	93	pdfs/Ukaz_006_o_Yodzie.pdf
+12	Ukaz #007 o Walnym	93	pdfs/Ukaz_007_o_Walnym_wybory.pdf
+13	Ukaz VIII o wznowieniu ukazów i o 3 zespołach	93	pdfs/2017-10_Ukaz_VIII_o_wznowieniu_ukazów_i_o_3_zespołach_śpiewnik_herb_statut.pdf
+14	Ukaz IX o nowym statucie i herbie; o zbiórce na Dni Tradycji Studenckich	93	pdfs/2018-03_Ukaz_IX_o_nowym_statucie_i_herbie_o_zbiórce_na_Dni_Tradycji_Studenckich.pdf
 \.
 
 
@@ -6395,6 +6481,25 @@ COPY public.zrodla_zrodlo_autorzy (id, zrodlo_id, osoba_id) FROM stdin;
 22	10	128
 23	10	133
 24	10	95
+25	11	96
+26	11	128
+27	11	133
+28	11	95
+29	12	96
+30	12	128
+31	12	133
+32	12	95
+33	12	118
+39	13	67
+40	13	154
+41	13	41
+42	13	122
+43	13	159
+44	14	67
+45	14	154
+46	14	41
+47	14	122
+48	14	159
 \.
 
 
@@ -6508,7 +6613,7 @@ SELECT pg_catalog.setval('public.czlonkowie_zwierzeczapkowe_id_seq', 13, true);
 -- Name: django_admin_log_id_seq; Type: SEQUENCE SET; Schema: public; Owner: projectuser
 --
 
-SELECT pg_catalog.setval('public.django_admin_log_id_seq', 2646, true);
+SELECT pg_catalog.setval('public.django_admin_log_id_seq', 2688, true);
 
 
 --
@@ -6522,7 +6627,7 @@ SELECT pg_catalog.setval('public.django_content_type_id_seq', 99, true);
 -- Name: django_migrations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: projectuser
 --
 
-SELECT pg_catalog.setval('public.django_migrations_id_seq', 337, true);
+SELECT pg_catalog.setval('public.django_migrations_id_seq', 342, true);
 
 
 --
@@ -6550,7 +6655,7 @@ SELECT pg_catalog.setval('public.encyklopedia_cytat_adresaci_id_seq', 1, false);
 -- Name: encyklopedia_cytat_id_seq; Type: SEQUENCE SET; Schema: public; Owner: projectuser
 --
 
-SELECT pg_catalog.setval('public.encyklopedia_cytat_id_seq', 6, true);
+SELECT pg_catalog.setval('public.encyklopedia_cytat_id_seq', 7, true);
 
 
 --
@@ -6592,7 +6697,7 @@ SELECT pg_catalog.setval('public.encyklopedia_tradycjainnegobractwa_id_seq', 1, 
 -- Name: encyklopedia_zwyczaj_id_seq; Type: SEQUENCE SET; Schema: public; Owner: projectuser
 --
 
-SELECT pg_catalog.setval('public.encyklopedia_zwyczaj_id_seq', 1, false);
+SELECT pg_catalog.setval('public.encyklopedia_zwyczaj_id_seq', 1, true);
 
 
 --
@@ -6760,42 +6865,42 @@ SELECT pg_catalog.setval('public.osoby_zarzad_id_seq', 16, true);
 -- Name: prawo_podmiot_id_seq; Type: SEQUENCE SET; Schema: public; Owner: projectuser
 --
 
-SELECT pg_catalog.setval('public.prawo_podmiot_id_seq', 21, true);
+SELECT pg_catalog.setval('public.prawo_podmiot_id_seq', 24, true);
 
 
 --
 -- Name: prawo_relacjaprawna_id_seq; Type: SEQUENCE SET; Schema: public; Owner: projectuser
 --
 
-SELECT pg_catalog.setval('public.prawo_relacjaprawna_id_seq', 11, true);
+SELECT pg_catalog.setval('public.prawo_relacjaprawna_id_seq', 15, true);
 
 
 --
 -- Name: prawo_relacjaprawna_podmiot_id_seq; Type: SEQUENCE SET; Schema: public; Owner: projectuser
 --
 
-SELECT pg_catalog.setval('public.prawo_relacjaprawna_podmiot_id_seq', 11, true);
+SELECT pg_catalog.setval('public.prawo_relacjaprawna_podmiot_id_seq', 15, true);
 
 
 --
 -- Name: slowniczek_lacinski_zwrot_id_seq; Type: SEQUENCE SET; Schema: public; Owner: projectuser
 --
 
-SELECT pg_catalog.setval('public.slowniczek_lacinski_zwrot_id_seq', 1, true);
+SELECT pg_catalog.setval('public.slowniczek_lacinski_zwrot_id_seq', 12, true);
 
 
 --
 -- Name: zrodla_zrodlo_autorzy_id_seq; Type: SEQUENCE SET; Schema: public; Owner: projectuser
 --
 
-SELECT pg_catalog.setval('public.zrodla_zrodlo_autorzy_id_seq', 24, true);
+SELECT pg_catalog.setval('public.zrodla_zrodlo_autorzy_id_seq', 48, true);
 
 
 --
 -- Name: zrodla_zrodlo_id_seq; Type: SEQUENCE SET; Schema: public; Owner: projectuser
 --
 
-SELECT pg_catalog.setval('public.zrodla_zrodlo_id_seq', 10, true);
+SELECT pg_catalog.setval('public.zrodla_zrodlo_id_seq', 14, true);
 
 
 --

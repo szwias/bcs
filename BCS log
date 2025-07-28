@@ -1,5 +1,5 @@
 Python / SQL / HTML lines of code:
-    --------------------------: no tracking whatsoever - 1700 lines
+    --------------------------: no tracking whatsoever - 1724 lines
     23 kwietnia:    0       / 0 lines
     24 kwietnia:    x       / y lines
     25 kwietnia:    x       / y lines
@@ -10,7 +10,7 @@ Python / SQL / HTML lines of code:
     2 maja:         x       / y lines
     3 maja:         x       / y lines
     4 maja:         1742    / y lines
-    ----------------------------------: may; Python lines tracking - 505 lines
+    ----------------------------------: may; Python lines tracking - 695 lines
     5 maja:     1892 / y lines (+150)
     9 maja:     2045 / y lines (+153)
     13 maja:    2280 / y lines (+235)
@@ -21,14 +21,14 @@ Python / SQL / HTML lines of code:
     21 maja:    2437 / y lines (+10)
     22 maja:    2437 / y lines (+0)
     29 maja:    2437 / y lines (+0)
-    ---------------------------------: june; Python lines tracking - 235 lines
+    ---------------------------------: june; Python lines tracking - 228 lines
     17 czerwca: 2631 / y    lines (+194)
     21 czerwca: 2666 / 4781 lines (+35)
     29 czerwca: 2665 / y    lines (-1)
     --------------------------------------: july; Python lines tracking - 43 lines
     1 lipca:    2665 / y lines (+0)
     3 lipca:    2708 / y lines (+43)
-    ----------------------------------------: SQL & HTML lines tracking added - 5645 lines
+    ----------------------------------------: SQL & HTML lines tracking added - 6198 lines
     4 lipca:    2709 / 4837 / 0     lines (+1   / +56   / +0)   = +56
     5 lipca:    2780 / 4839 / 0     lines (+71  / +2    / +0)   = +73
     6 lipca:    2812 / 4845 / 0     lines (+32  / +6    / +0)   = +42
@@ -47,6 +47,7 @@ Python / SQL / HTML lines of code:
     24 lipca:   4480 / 8578 / 28    lines (-69  / +127  / +0)   = +160
     26 lipca:   4486 / 8637 / 28    lines (+6   / +59   / +0)   = +55
     27 lipca:   4569 / 9146 / 28    lines (+83  / +509  / +0)   = +602
+    28 lipca:   x / 9251 / xlines (+83 / +x / +x)= +x
 
     PREVIOUS PERIODS:
         START OF PRODUCTION:
@@ -84,5 +85,3 @@ Python / SQL / HTML lines of code:
             Average lines of code on a coding day: 344 lines per day (~340)
             Average positive lines on a coding day: 405 lines per day (~400)
             Amplitude: 2181 lines (per day)
-
-
