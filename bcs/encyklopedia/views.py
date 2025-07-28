@@ -8,22 +8,22 @@ from osoby.models_dict import names as osoby
 from zrodla.models_dict import names as zrodla
 
 autocomplete_configs = [
-    (Aforyzm, [], [], [osoby["Osoba"], zrodla["Zrodlo"]]),
+    (Aforyzm, [], [], [osoby["Byt"], osoby["Osoba"], zrodla["Zrodlo"]]),
     (
         Bractwo,
         ["wiek_tradycje", "rok_zalozenia"],
         [],
         [GrupaBractw.__name__, miejsca["Kraj"], osoby["Osoba"]],
     ),
-    (Cytat, [], [], [osoby["Osoba"], zrodla["Zrodlo"]]),
+    (Cytat, [], [], [osoby["Byt"], osoby["Osoba"], zrodla["Zrodlo"]]),
     (GrupaBractw, [], [], [czapki["RodzajCzapki"], miejsca["Kraj"]]),
     (
         Pojecie,
         ["origins"],
         [],
-        [kalendarz["Wydarzenie"], osoby["Osoba"], zrodla["Zrodlo"]],
+        [kalendarz["Wydarzenie"], osoby["Byt"], zrodla["Zrodlo"]],
     ),
-    (Powiedzenie, [], [], [osoby["Osoba"], zrodla["Zrodlo"]]),
+    (Powiedzenie, [], [], [osoby["Byt"], osoby["Osoba"], zrodla["Zrodlo"]]),
     (
         TradycjaBCS,
         [

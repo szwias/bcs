@@ -3940,6 +3940,7 @@ COPY public.django_admin_log (id, action_time, object_id, object_repr, action_fl
 2659	2025-07-28 01:42:41.825569+02	12	Ukaz #006 o Yodzie -  (Zarząd powołuje urząd Magistra Jody. Zostaje nim Łukasz Pryk - ma obowiązek mówić wspak oraz sypać mądrościami)	1	[{"added": {}}]	93	1
 2660	2025-07-28 01:45:34.64209+02	12	Ukaz #007 o Walnym -  (Zarząd ogłasza termin Walnego Zgromadzenia na którym odbędą się Wybory na 26.10.2016 otwierając tym samym kampanię wyborczą.)	2	[{"changed": {"fields": ["Tytu\\u0142", "Numer", "Autorzy", "Streszczenie", "Plik"]}}]	93	1
 2661	2025-07-28 01:46:20.563175+02	13	Ukaz #007 o Walnym -  (Zarząd ogłasza termin Walnego Zgromadzenia na którym odbędą się Wybory na 26.10.2016 otwierając tym samym kampanię wyborczą.)	1	[{"added": {}}]	93	1
+2717	2025-07-28 20:04:28.642391+02	2	Łagr radości	2	[{"changed": {"fields": ["Autor poj\\u0119cia"]}}]	41	1
 2662	2025-07-28 01:52:50.221073+02	13	Ukaz VIII o wznowieniu ukazów i o 3 zespołach - 2017-10-19 (Zarząd:\r\n- wznawia tradycję wydawania ukazów\r\n- powołuje zespoły - ds. Śpiewnika, ds. herbu, ds. statutu - pod przewodnictwem kolejno: "Baro	2	[{"changed": {"fields": ["Tytu\\u0142", "Numer", "Data wydania", "Autorzy", "Streszczenie", "Plik"]}}]	93	1
 2663	2025-07-28 01:53:35.417111+02	2	Ante Diem	1	[{"added": {}}]	91	1
 2664	2025-07-28 01:54:02.843078+02	3	XIV Kalendas Novembres	1	[{"added": {}}]	91	1
@@ -3994,6 +3995,11 @@ COPY public.django_admin_log (id, action_time, object_id, object_repr, action_fl
 2713	2025-07-28 14:09:42.918719+02	2	Łagr radości	2	[{"changed": {"fields": ["Opis", "\\u0179r\\u00f3d\\u0142o"]}}]	41	1
 2714	2025-07-28 19:30:58.578067+02	3	Konsul BCS za granicami RP	1	[{"added": {}}]	41	1
 2715	2025-07-28 19:51:40.477012+02	7	Mateusz "Skorpion/Szczur" Sokół	2	[{"changed": {"fields": ["przezwiska"]}}]	61	1
+2716	2025-07-28 20:04:13.15105+02	3	Konsul BCS za granicami RP	2	[{"changed": {"fields": ["Autor poj\\u0119cia"]}}]	41	1
+2718	2025-07-28 20:04:49.274005+02	6	"Estetyka jest tą wartością, która przyciąga swym naturalnym i niewymuszonym pięknem, a kultura postę..." - Zarząd 2015/2016 - WM Paweł "Synek" Mucha - Tadeusz IV, Jaśnie Oświecony Paweł Synek Tadeusz	2	[{"changed": {"fields": ["Autor"]}}]	98	1
+2719	2025-07-28 20:05:10.248053+02	5	"Połączenie elegancji z prostotą stanowi o szlachectwie każdej rzeczy i persony." - Zarząd 2015/2016 - WM Paweł "Synek" Mucha - Tadeusz IV, Jaśnie Oświecony Paweł Synek Tadeusz IV Mucha, Wielki Mistrz	2	[{"changed": {"fields": ["Autor"]}}]	98	1
+2720	2025-07-28 20:05:22.369201+02	7	"Wielu mistrzów zakon mieć musi." - Zarząd 2015/2016 - WM Paweł "Synek" Mucha - Tadeusz IV, Jaśnie Oświecony Paweł Synek Tadeusz IV Mucha, Wielki Mistrz BCS, członek Zarządu KU AZS UJ, kierownik sekcj	2	[{"changed": {"fields": ["Autor"]}}]	98	1
+2721	2025-07-28 20:05:33.144997+02	2	"W każdym momencie czasu kryje się przeszłość, teraźniejszość i przyszłość. W\r\nkażdym momencie czasu ..." - Zarząd 2015/2016 - WM Paweł "Synek" Mucha - Tadeusz IV, Jaśnie Oświecony Paweł Synek Tadeusz	2	[{"changed": {"fields": ["Autor"]}}]	98	1
 \.
 
 
@@ -4398,6 +4404,7 @@ COPY public.django_migrations (id, app, name, applied) FROM stdin;
 356	osoby	0027_change_columns_names	2025-07-28 18:11:03.579117+02
 357	osoby	0023_remove_osoba_id_remove_osoba_polymorphic_ctype_and_more	2025-07-28 19:07:37.162183+02
 358	osoby	0024_set_polymorphic_ctype	2025-07-28 19:23:28.052577+02
+359	encyklopedia	0030_alter_cytat_autor_alter_pojecie_autor	2025-07-28 20:03:22.498622+02
 \.
 
 
@@ -4454,10 +4461,10 @@ COPY public.encyklopedia_bractwo_zalozyciele (id, bractwo_id, osoba_id) FROM std
 COPY public.encyklopedia_cytat (id, tekst, kontekst, autor_id, polymorphic_ctype_id, zrodlo_id) FROM stdin;
 3	Niech wieść ta niesie się od Nowej Huty po Ruczaj, niech głoszą ją na Wydziałach Prawa i Administracji, Lekarskim, Farmaceutycznym, Nauk o Zdrowiu, Filozoficznym, Historycznym, Filologicznym, Polonistyki, Fizyki, Astronomii i Informatyki Stosowanej, Matematyki i Informatyki, Chemii, Biologii i Nauk o Ziemii, Zarządzania i Komunikacji Społecznej, Studiów Międzynarodowych i Politycznych, Biochemii, Biofizyki i Biotechnologii. Niech wieść niesie się przez Uniwersytety Krakowskie i Polskie, niech słyszą o niej Europejczycy, Belgowie i Francuzi i Włosi i niech sławią Naszą chwałę.	Patrz: źródło	133	40	2
 4	(...) niech będzie przeklęty po wsze czasy! Niech nigdy się nie upije! Niech głos mu się załamie, kiedy będzie śpiewał, a chrypka niech mu doskwiera przy\r\nkażdej pieśni! Niech odpadną mu wszystkie pinsy! Niech Czapka wyblaknie, a żółty sznureczek się urwie! Niech wszyscy zobaczą, co ma w ogródku! Niech połknie pinsa wrzuconego do piwa i strawi tak, żeby już nie mógł go odzyskać! Niech będzie wiadomym wszem i wobec, że jest mąciwodą i nie hołduje zasadom braterstwa.	Patrz: źródło	133	40	3
-5	Połączenie elegancji z prostotą stanowi o szlachectwie każdej rzeczy i persony.	Patrz: źródło	133	98	4
-6	Estetyka jest tą wartością, która przyciąga swym naturalnym i niewymuszonym pięknem, a kultura postępowania świadczy o postrzeganiu nas jako godnych uwagi i partnerstwa.	Patrz: źródło	133	98	4
-2	W każdym momencie czasu kryje się przeszłość, teraźniejszość i przyszłość. W\r\nkażdym momencie czasu kryje się wieczność.	Patrz: źródło	133	98	2
-7	Wielu mistrzów zakon mieć musi.	Patrz: źródło	133	98	11
+6	Estetyka jest tą wartością, która przyciąga swym naturalnym i niewymuszonym pięknem, a kultura postępowania świadczy o postrzeganiu nas jako godnych uwagi i partnerstwa.	Patrz: źródło	202	98	4
+5	Połączenie elegancji z prostotą stanowi o szlachectwie każdej rzeczy i persony.	Patrz: źródło	202	98	4
+7	Wielu mistrzów zakon mieć musi.	Patrz: źródło	202	98	11
+2	W każdym momencie czasu kryje się przeszłość, teraźniejszość i przyszłość. W\r\nkażdym momencie czasu kryje się wieczność.	Patrz: źródło	202	98	2
 \.
 
 
@@ -4504,8 +4511,8 @@ COPY public.encyklopedia_grupabractw_kraje (id, grupabractw_id, kraj_id) FROM st
 
 COPY public.encyklopedia_pojecie (id, nazwa, opis, origins, wydarzenie_id, autor_id, zrodlo_id) FROM stdin;
 1	Bractwo Czapki Studenckiej UJ	Bractwo Czapki Studenckiej Uniwersytetu Jagiellońskiego (BCS UJ) to organizacja studencka działająca na Uniwersytecie Jagiellońskim, której celem jest propagowanie noszenia czapki studenckiej na UJ oraz innych polskich uczelniach, integracja międzywydziałowa, międzyuczelniana i międzynarodowa oraz kultywowanie i poznawanie tradycji studenckich.	I	\N	\N	\N
-2	Łagr radości	Patrz: źródło	I	\N	133	9
-3	Konsul BCS za granicami RP	Urząd w BCS. Konsul pełni obowiązki Wielkiego Mistrza i Kasztelana na delegacjach zagranicznych w razie ich nieobecności.	I	\N	133	3
+3	Konsul BCS za granicami RP	Urząd w BCS. Konsul pełni obowiązki Wielkiego Mistrza i Kasztelana na delegacjach zagranicznych w razie ich nieobecności.	I	\N	202	3
+2	Łagr radości	Patrz: źródło	I	\N	202	9
 \.
 
 
@@ -6568,7 +6575,6 @@ COPY public.osoby_wielkimistrz (id, tadeusz, tytuly, tadeusz_numeric, imie_id) F
 COPY public.osoby_zarzad (cantandi_id, kadencja_id, kasztelan_id, skarbnik_id, wielki_mistrz_id, byt_ptr_id) FROM stdin;
 115	1	76	151	3	195
 32	2	76	151	3	196
-24	3	19	158	4	198
 24	3	19	158	4	197
 133	4	19	158	4	199
 76	5	142	65	4	200
@@ -6981,7 +6987,7 @@ SELECT pg_catalog.setval('public.czlonkowie_zwierzeczapkowe_id_seq', 13, true);
 -- Name: django_admin_log_id_seq; Type: SEQUENCE SET; Schema: public; Owner: projectuser
 --
 
-SELECT pg_catalog.setval('public.django_admin_log_id_seq', 2715, true);
+SELECT pg_catalog.setval('public.django_admin_log_id_seq', 2721, true);
 
 
 --
@@ -6995,7 +7001,7 @@ SELECT pg_catalog.setval('public.django_content_type_id_seq', 101, true);
 -- Name: django_migrations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: projectuser
 --
 
-SELECT pg_catalog.setval('public.django_migrations_id_seq', 358, true);
+SELECT pg_catalog.setval('public.django_migrations_id_seq', 359, true);
 
 
 --
@@ -8741,14 +8747,6 @@ ALTER TABLE ONLY public.django_admin_log
 
 
 --
--- Name: encyklopedia_aforyzm encyklopedia_aforyzm_cytat_ptr_id_06cd8c90_fk_encyklope; Type: FK CONSTRAINT; Schema: public; Owner: projectuser
---
-
-ALTER TABLE ONLY public.encyklopedia_aforyzm
-    ADD CONSTRAINT encyklopedia_aforyzm_cytat_ptr_id_06cd8c90_fk_encyklope FOREIGN KEY (cytat_ptr_id) REFERENCES public.encyklopedia_cytat(id) DEFERRABLE INITIALLY DEFERRED;
-
-
---
 -- Name: encyklopedia_bractwo_zalozyciele encyklopedia_bractwo_bractwo_id_fa3e8369_fk_encyklope; Type: FK CONSTRAINT; Schema: public; Owner: projectuser
 --
 
@@ -8778,14 +8776,6 @@ ALTER TABLE ONLY public.encyklopedia_bractwo
 
 ALTER TABLE ONLY public.encyklopedia_cytat_adresaci
     ADD CONSTRAINT encyklopedia_cytat_a_cytat_id_940dd658_fk_encyklope FOREIGN KEY (cytat_id) REFERENCES public.encyklopedia_cytat(id) DEFERRABLE INITIALLY DEFERRED;
-
-
---
--- Name: encyklopedia_cytat encyklopedia_cytat_polymorphic_ctype_id_492091c8_fk_django_co; Type: FK CONSTRAINT; Schema: public; Owner: projectuser
---
-
-ALTER TABLE ONLY public.encyklopedia_cytat
-    ADD CONSTRAINT encyklopedia_cytat_polymorphic_ctype_id_492091c8_fk_django_co FOREIGN KEY (polymorphic_ctype_id) REFERENCES public.django_content_type(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
@@ -8834,14 +8824,6 @@ ALTER TABLE ONLY public.encyklopedia_pojecie
 
 ALTER TABLE ONLY public.encyklopedia_pojecie
     ADD CONSTRAINT encyklopedia_pojecie_zrodlo_id_b6f91499_fk_zrodla_zrodlo_id FOREIGN KEY (zrodlo_id) REFERENCES public.zrodla_zrodlo(id) DEFERRABLE INITIALLY DEFERRED;
-
-
---
--- Name: encyklopedia_powiedzenie encyklopedia_powiedz_cytat_ptr_id_e0f110e4_fk_encyklope; Type: FK CONSTRAINT; Schema: public; Owner: projectuser
---
-
-ALTER TABLE ONLY public.encyklopedia_powiedzenie
-    ADD CONSTRAINT encyklopedia_powiedz_cytat_ptr_id_e0f110e4_fk_encyklope FOREIGN KEY (cytat_ptr_id) REFERENCES public.encyklopedia_cytat(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
@@ -9165,14 +9147,6 @@ ALTER TABLE ONLY public.osoby_dawnyzarzad
 
 
 --
--- Name: osoby_imieszlacheckie osoby_imieszlac_imie_id_fk_osoby; Type: FK CONSTRAINT; Schema: public; Owner: projectuser
---
-
-ALTER TABLE ONLY public.osoby_imieszlacheckie
-    ADD CONSTRAINT osoby_imieszlac_imie_id_fk_osoby FOREIGN KEY (imie_id) REFERENCES public.osoby_czlonek(osoba_ptr_id) DEFERRABLE INITIALLY DEFERRED;
-
-
---
 -- Name: osoby_innaosoba osoby_innaosoba_bractwo_do_ktorego_n_fk_encyklope; Type: FK CONSTRAINT; Schema: public; Owner: projectuser
 --
 
@@ -9202,14 +9176,6 @@ ALTER TABLE ONLY public.osoby_osoba
 
 ALTER TABLE ONLY public.osoby_wielkimistrz
     ADD CONSTRAINT osoby_wielkimis_imie_id_fk_osoby FOREIGN KEY (imie_id) REFERENCES public.osoby_czlonek(osoba_ptr_id) DEFERRABLE INITIALLY DEFERRED;
-
-
---
--- Name: osoby_zarzad osoby_zarzad_byt_ptr_id_6910bec7_fk_osoby_byt_id; Type: FK CONSTRAINT; Schema: public; Owner: projectuser
---
-
-ALTER TABLE ONLY public.osoby_zarzad
-    ADD CONSTRAINT osoby_zarzad_byt_ptr_id_6910bec7_fk_osoby_byt_id FOREIGN KEY (byt_ptr_id) REFERENCES public.osoby_byt(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --

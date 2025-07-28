@@ -75,7 +75,7 @@ class Cytat(PolymorphicModel):
     )
 
     autor = models.ForeignKey(
-        "osoby.Osoba",
+        "osoby.Byt",
         blank=True,
         null=True,
         on_delete=models.SET_NULL,
@@ -154,7 +154,7 @@ class Pojecie(models.Model):
     nazwa = models.CharField(max_length=MEDIUM_LENGTH, verbose_name="Nazwa")
 
     autor = models.ForeignKey(
-        "osoby.Osoba",
+        "osoby.Byt",
         blank=True,
         null=True,
         on_delete=models.SET_NULL,
