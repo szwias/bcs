@@ -56,6 +56,9 @@ class HallOfFame(models.Model):
         super().save(*args, **kwargs)
 
 
+class Byt(PolymorphicModel):
+    pass
+
 # OSOBA FAMILY
 # ---------------------------------------
 class Osoba(PolymorphicModel):

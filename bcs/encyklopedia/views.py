@@ -17,11 +17,20 @@ autocomplete_configs = [
     ),
     (Cytat, [], [], [osoby["Osoba"], zrodla["Zrodlo"]]),
     (GrupaBractw, [], [], [czapki["RodzajCzapki"], miejsca["Kraj"]]),
-    (Pojecie, ["origins"], [], [kalendarz["Wydarzenie"], osoby["Osoba"], zrodla["Zrodlo"]]),
+    (
+        Pojecie,
+        ["origins"],
+        [],
+        [kalendarz["Wydarzenie"], osoby["Osoba"], zrodla["Zrodlo"]],
+    ),
     (Powiedzenie, [], [], [osoby["Osoba"], zrodla["Zrodlo"]]),
     (
         TradycjaBCS,
-        ["okolicznosci_powstania", "zapozyczona_czy_autorska", "pewnosc_stazu"],
+        [
+            "okolicznosci_powstania",
+            "zapozyczona_czy_autorska",
+            "pewnosc_stazu",
+        ],
         [],
         [GrupaBractw.__name__, kalendarz["Wydarzenie"], osoby["Osoba"]],
     ),
