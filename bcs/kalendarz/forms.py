@@ -2,11 +2,9 @@ from django import forms
 from dal import autocomplete
 
 from .models import (
-    ObrazZdarzenie,
     TypWydarzenia,
     TypWyjazdu,
     Wydarzenie,
-    ObrazWydarzenie,
     Zdarzenie,
 )
 from .views import autocomplete_widgets
@@ -50,13 +48,6 @@ class ZdarzenieInlineForm(forms.ModelForm):
             self.initial["data"] = parent_obj.data_rozpoczecia
 
 
-class ObrazZdarzenieForm(forms.ModelForm):
-    class Meta:
-        model = ObrazZdarzenie
-        fields = "__all__"
-        widgets = build_widgets(autocomplete_widgets[ObrazZdarzenie.__name__])
-
-
 class WydarzenieForm(forms.ModelForm):
     class Meta:
         model = Wydarzenie
@@ -78,13 +69,6 @@ class WydarzenieForm(forms.ModelForm):
             cd["typ_wyjazdu"] = TypWyjazdu.get_not_applicable_typ()
 
         return cd
-
-
-class ObrazWydarzenieForm(forms.ModelForm):
-    class Meta:
-        model = ObrazWydarzenie
-        fields = "__all__"
-        widgets = build_widgets(autocomplete_widgets[ObrazWydarzenie.__name__])
 
 
 class TypWydarzeniaForm(forms.ModelForm):

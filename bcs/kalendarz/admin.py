@@ -3,29 +3,9 @@ from core.utils.automation.BaseAdmin import (
     BaseModelAdmin,
     register_all_models,
 )
-from kalendarz.models import (
-    Zdarzenie,
-    ObrazZdarzenie,
-    Wydarzenie,
-    ObrazWydarzenie,
-)
-from .inlines import (
-    ZdarzenieInline,
-    ObrazWydarzenieInline,
-    ObrazZdarzenieInline,
-)
-
-
-@admin.register(ObrazWydarzenie)
-class ObrazWydarzenieAdmin(BaseModelAdmin):
-    save_as = True
-    filter_horizontal = ["widoczne_osoby"]
-
-
-@admin.register(ObrazZdarzenie)
-class ObrazZdarzenieAdmin(BaseModelAdmin):
-    save_as = True
-    filter_horizontal = ["widoczne_osoby"]
+from kalendarz.models import Zdarzenie, Wydarzenie
+from .inlines import ZdarzenieInline
+from multimedia.inlines import ObrazWydarzenieInline, ObrazZdarzenieInline
 
 
 @admin.register(Wydarzenie)
@@ -66,8 +46,6 @@ class ZdarzenieAdmin(BaseModelAdmin):
 
 register_all_models(
     custom_admins={
-        ObrazWydarzenie: ObrazWydarzenieAdmin,
-        ObrazZdarzenie: ObrazZdarzenieAdmin,
         Wydarzenie: WydarzenieAdmin,
         Zdarzenie: ZdarzenieAdmin,
     }

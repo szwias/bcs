@@ -1,17 +1,12 @@
+from multimedia.models import ObrazZdarzenie, ObrazWydarzenie
 from .models import *
 from core.utils.autocompletion.AutocompletesGeneration import *
 
 from miejsca.models_dict import names as miejsca
+from multimedia.models_dict import names as multimedia
 from osoby.models_dict import names as osoby
 
 autocomplete_configs = [
-    (ObrazWydarzenie, [], [], [Wydarzenie.__name__, osoby["Osoba"]]),
-    (
-        ObrazZdarzenie,
-        [],
-        [],
-        [Zdarzenie.__name__, miejsca["Miejsce"], osoby["Osoba"]],
-    ),
     (TypWydarzenia, [], [], []),
     (TypWyjazdu, [], [], []),
     (
@@ -30,7 +25,7 @@ autocomplete_configs = [
         Zdarzenie,
         [],
         [],
-        [ObrazZdarzenie.__name__, Wydarzenie.__name__, osoby["Osoba"]],
+        [Wydarzenie.__name__, multimedia["ObrazZdarzenie"], osoby["Osoba"]],
     ),
 ]
 
