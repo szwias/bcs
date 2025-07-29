@@ -54,9 +54,13 @@ class Dokument(Zrodlo):
         ordering = ["-data"]
 
     def __str__(self):
-        data = self.data or ""
-        streszczenie = " (" + str(self.streszczenie) + ")" if self.streszczenie else ""
-        return f"{self.tytul} - {data}{streszczenie}"
+        return self.tytul
+
+    def data_column(self):
+        return self.data or ""
+
+    def short_description(self):
+        return str(self.streszczenie) or ""
 
 
 class Edykt(Dokument):
