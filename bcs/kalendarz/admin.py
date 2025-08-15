@@ -1,3 +1,4 @@
+from core.utils.Czas import ROK_ZALOZENIA, BIEZACY_ROK
 from core.utils.automation.BaseAdmin import (
     admin,
     BaseModelAdmin,
@@ -8,11 +9,26 @@ from .inlines import ZdarzenieInline
 from multimedia.inlines import ObrazWydarzenieInline, ObrazZdarzenieInline
 
 
+class YearListFilter(admin.SimpleListFilter):
+    title = 'Rok'
+    parameter_name = 'rok'
+
+    def lookups(self, request, model_admin):
+        years = range(ROK_ZALOZENIA, BIEZACY_ROK + 1)
+        return [(year, year) for year in years]
+
+    def queryset(self, request, queryset):
+        if self.value():
+            return queryset.filter(data_rozpoczecia__year=self.value())
+        return queryset
+
+
 @admin.register(Wydarzenie)
 class WydarzenieAdmin(BaseModelAdmin):
     save_as = True
     inlines = [ZdarzenieInline, ObrazWydarzenieInline]
     filter_horizontal = ("miejsca", "uczestnicy")
+    list_filter = [YearListFilter, "czy_jednodniowe", "czy_to_wyjazd", "typ_wydarzenia", "typ_wyjazdu", "miejsca"]
 
     def save_formset(self, request, form, formset, change):
         instances = formset.save(commit=False)
