@@ -1,11 +1,12 @@
 from .models import (
     Bean,
     Czlonek,
-    InnaOsoba,
-    Osoba,
     DawnyZarzad,
     HallOfFame,
     ImieSzlacheckie,
+    InnaOsoba,
+    KomisjaRewizyjna,
+    Osoba,
     WielkiMistrz,
     NowyZarzad,
     ZwierzeCzapkowe,
@@ -43,6 +44,7 @@ autocomplete_configs = [
     (HallOfFame, [], [], [Osoba.__name__]),
     (ImieSzlacheckie, [], [], [Czlonek.__name__]),
     (InnaOsoba, ["kategoria"], [], [encyklopedia["Bractwo"]]),
+    (KomisjaRewizyjna, [], [], [Osoba.__name__, kronika["Kadencja"]]),
     (
         NowyZarzad,
         [],

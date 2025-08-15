@@ -54,10 +54,8 @@ class Dokument(Zrodlo):
         ordering = ["-data"]
 
     def __str__(self):
-        return self.tytul
-
-    def data_column(self):
-        return self.data or ""
+        data = self.data or ""
+        return f"{self.tytul} - {data}"
 
     def short_description(self):
         return str(self.streszczenie) or ""

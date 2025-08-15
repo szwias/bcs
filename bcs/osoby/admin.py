@@ -7,14 +7,15 @@ from core.utils.filters import UsedContentTypeFilter
 from .models import (
     Bean,
     Czlonek,
-    InnaOsoba,
     DawnyZarzad,
-    NowyZarzad,
     HallOfFame,
     ImieSzlacheckie,
+    InnaOsoba,
+    KomisjaRewizyjna,
+    NowyZarzad,
+    Osoba,
     WielkiMistrz,
     ZwierzeCzapkowe,
-    Osoba,
 )
 from kronika.inlines import PodsumowanieKadencjiInline
 
@@ -76,6 +77,12 @@ class ZwierzeCzapkoweAdmin(BaseModelAdmin):
     list_filter_exclude = "__all__"
 
 
+@admin.register(KomisjaRewizyjna)
+class KomisjaRewizyjnaAdmin(BaseModelAdmin):
+    list_filter_exclude = "__all__"
+    filter_horizontal = ["sklad"]
+
+
 register_all_models(
     custom_admins={
         Bean: BeanAdmin,
@@ -85,6 +92,7 @@ register_all_models(
         HallOfFame: HallOfFameAdmin,
         ImieSzlacheckie: ImieSzlacheckieAdmin,
         InnaOsoba: InnaOsobaAdmin,
+        KomisjaRewizyjna: KomisjaRewizyjnaAdmin,
         Osoba: OsobaAdmin,
         WielkiMistrz: WielkiMistrzAdmin,
         ZwierzeCzapkowe: ZwierzeCzapkoweAdmin,

@@ -8,6 +8,7 @@ from .models import (
     HallOfFame,
     ImieSzlacheckie,
     InnaOsoba,
+    KomisjaRewizyjna,
     NowyZarzad,
     Osoba,
     WielkiMistrz,
@@ -29,6 +30,7 @@ add_model_name(DawnyZarzad, names, "DawnyZarzad")
 add_model_name(NowyZarzad, names, "NowyZarzad")
 
 add_model_name(ImieSzlacheckie, names, "ImieSzlacheckie")
+add_model_name(KomisjaRewizyjna, names, "KomisjaRewizyjna")
 add_model_name(WielkiMistrz, names, "WielkiMistrz")
 add_model_name(ZwierzeCzapkowe, names, "ZwierzeCzapkowe")
 

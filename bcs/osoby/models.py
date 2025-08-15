@@ -59,6 +59,7 @@ class HallOfFame(models.Model):
 class Byt(PolymorphicModel):
     pass
 
+
 # OSOBA FAMILY
 # ---------------------------------------
 class Osoba(Byt):
@@ -420,6 +421,33 @@ class ImieSzlacheckie(models.Model):
             name += f" {self.imie.nazwisko}"
         return name
 
+# OSOBA DEPENDENT
+# ------------------------------------------------------
+
+
+class KomisjaRewizyjna(models.Model):
+    kadencja = models.ForeignKey(
+        "kronika.Kadencja",
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+        verbose_name="Kadencja",
+    )
+
+    sklad = models.ManyToManyField(Osoba, blank=True, verbose_name="Skład")
+
+    dzialalnosc = models.TextField(
+        blank=True, null=True, verbose_name="Działalność"
+    )
+
+    class Meta:
+        verbose_name = "Komisja rewizyjna"
+        verbose_name_plural = "Komisja rewizyjna"
+        ordering = ["kadencja"]
+
+    def __str__(self):
+        return f"Komisja rewizyjna {self.kadencja}"
+
 
 class WielkiMistrz(models.Model):
     imie = models.ForeignKey(
@@ -457,6 +485,37 @@ class WielkiMistrz(models.Model):
         except ValueError:
             self.tadeusz_numeric = 0
         super().save(*args, **kwargs)
+
+
+class ZwierzeCzapkowe(models.Model):
+    czlonek = models.ForeignKey(
+        Czlonek, on_delete=models.SET_NULL, null=True, verbose_name="Członek"
+    )
+
+    zwierze = models.CharField(
+        max_length=MEDIUM_LENGTH, verbose_name="Zwierzę"
+    )
+
+    wyjasnienie = models.CharField(
+        max_length=MEDIUM_LENGTH,
+        blank=True,
+        verbose_name="Wyjaśnienie (opcjonalne)",
+    )
+
+    class Meta:
+        verbose_name = "Zwierzę czapkowe"
+        verbose_name_plural = "Zwierzęta czapkowe"
+        ordering = ["zwierze", "czlonek__imie_piwne_1"]
+
+    @property
+    def imie(self):
+        return self.czlonek
+
+    def __str__(self):
+        name = f'"{self.czlonek.imie_piwne_1}" - {self.zwierze}'
+        if self.wyjasnienie:
+            name += f" ({self.wyjasnienie})"
+        return name
 
 
 # ZARZAD FAMILY
@@ -577,34 +636,3 @@ class NowyZarzad(Zarzad):
 
 
 # --------------------------------------- END
-
-
-class ZwierzeCzapkowe(models.Model):
-    czlonek = models.ForeignKey(
-        Czlonek, on_delete=models.SET_NULL, null=True, verbose_name="Członek"
-    )
-
-    zwierze = models.CharField(
-        max_length=MEDIUM_LENGTH, verbose_name="Zwierzę"
-    )
-
-    wyjasnienie = models.CharField(
-        max_length=MEDIUM_LENGTH,
-        blank=True,
-        verbose_name="Wyjaśnienie (opcjonalne)",
-    )
-
-    class Meta:
-        verbose_name = "Zwierzę czapkowe"
-        verbose_name_plural = "Zwierzęta czapkowe"
-        ordering = ["zwierze", "czlonek__imie_piwne_1"]
-
-    @property
-    def imie(self):
-        return self.czlonek
-
-    def __str__(self):
-        name = f'"{self.czlonek.imie_piwne_1}" - {self.zwierze}'
-        if self.wyjasnienie:
-            name += f" ({self.wyjasnienie})"
-        return name

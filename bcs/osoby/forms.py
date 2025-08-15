@@ -41,6 +41,13 @@ class ImieSzlacheckieForm(forms.ModelForm):
             )
 
 
+class KomisjaRewizyjnaForm(forms.ModelForm):
+    class Meta:
+        model = KomisjaRewizyjna
+        fields = "__all__"
+        widgets = build_widgets(autocomplete_widgets[KomisjaRewizyjna.__name__])
+
+
 class NowyZarzadForm(forms.ModelForm):
     class Meta:
         model = NowyZarzad

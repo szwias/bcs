@@ -14,11 +14,7 @@ class ZrodloAdmin(BaseModelAdmin):
 @admin.register(Dokument)
 class DokumentAdmin(ZrodloAdmin):
     list_filter_exclude = ["polymorphic_ctype"]
-    list_display = ["tytul", "data_column", "streszczenie"]
-
-    def data_column(self, obj):
-        return obj.data_column()
-    data_column.short_description = "Data"
+    list_display = ["tytul", "streszczenie"]
 
     def streszczenie(self, obj):
         return obj.streszczenie()
