@@ -133,7 +133,7 @@ class ZadanieChrzcielne(models.Model):
     opis = models.TextField(blank=True, null=True, verbose_name="Opis")
 
     zalacznik = models.FileField(
-        upload_to="pdfs/", blank=True, null=True, verbose_name="Załącznik"
+        upload_to="pdfs/", blank=True, null=True, verbose_name="Załącznik (pdf)"
     )
 
     zdjecia = models.ImageField(
