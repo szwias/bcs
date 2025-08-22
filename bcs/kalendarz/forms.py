@@ -5,6 +5,8 @@ from .models import (
     TypWydarzenia,
     TypWyjazdu,
     Wydarzenie,
+    WydarzenieDummy,
+    WydarzenieKalendarzowe,
     Zdarzenie,
 )
 from .views import autocomplete_widgets
@@ -48,9 +50,41 @@ class ZdarzenieInlineForm(forms.ModelForm):
             self.initial["data"] = parent_obj.data_rozpoczecia
 
 
+class WydarzenieKalendarzoweForm(forms.ModelForm):
+    class Meta:
+        model = WydarzenieKalendarzowe
+        fields = "__all__"
+        widgets = build_widgets(
+            autocomplete_widgets[WydarzenieKalendarzowe.__name__]
+        )
+
+
 class WydarzenieForm(forms.ModelForm):
     class Meta:
         model = Wydarzenie
+        fields = "__all__"
+        widgets = build_widgets(autocomplete_widgets[Wydarzenie.__name__])
+
+    def clean(self):
+        cd = super().clean()
+
+        if cd.get("czy_jednodniowe"):
+            cd["data_zakonczenia"] = cd["data_rozpoczecia"]
+
+        ctw = cd.get("czy_to_wyjazd")
+
+        if not cd.get("typ_wydarzenia") or ctw:
+            cd["typ_wydarzenia"] = TypWydarzenia.get_not_applicable_typ()
+
+        if not cd.get("typ_wyjazdu") or not ctw:
+            cd["typ_wyjazdu"] = TypWyjazdu.get_not_applicable_typ()
+
+        return cd
+
+
+class WydarzenieDummyForm(forms.ModelForm):
+    class Meta:
+        model = WydarzenieDummy
         fields = "__all__"
         widgets = build_widgets(autocomplete_widgets[Wydarzenie.__name__])
 

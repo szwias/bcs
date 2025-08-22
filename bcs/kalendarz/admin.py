@@ -65,7 +65,14 @@ class WydarzenieDummyAdmin(BaseModelAdmin):
     save_as = True
     inlines = [ZdarzenieInline, ObrazWydarzenieInline]
     filter_horizontal = ("miejsca", "uczestnicy")
-    list_filter = [YearListFilter, "czy_jednodniowe", "czy_to_wyjazd", "typ_wydarzenia", "typ_wyjazdu", "miejsca"]
+    list_filter = [
+        YearListFilter,
+        "czy_jednodniowe",
+        "czy_to_wyjazd",
+        "typ_wydarzenia",
+        "typ_wyjazdu",
+        "miejsca",
+    ]
 
     def save_formset(self, request, form, formset, change):
         instances = formset.save(commit=False)
@@ -100,6 +107,7 @@ class ZdarzenieAdmin(BaseModelAdmin):
 register_all_models(
     custom_admins={
         Wydarzenie: WydarzenieAdmin,
+        WydarzenieDummy: WydarzenieDummyAdmin,
         Zdarzenie: ZdarzenieAdmin,
     }
 )

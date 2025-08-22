@@ -4,12 +4,16 @@ from .models import (
     TypWydarzenia,
     TypWyjazdu,
     Wydarzenie,
+    WydarzenieDummy,
+    WydarzenieKalendarzowe,
     Zdarzenie,
 )
 
 names = defaultdict(str)
 
 add_model_name(Wydarzenie, names, "Wydarzenie")
+add_model_name(WydarzenieDummy, names, "WydarzenieDummy")
+add_model_name(WydarzenieKalendarzowe, names, "WydarzenieKalendarzowe")
 add_model_name(Zdarzenie, names, "Zdarzenie")
 
 add_model_name(TypWydarzenia, names, "TypWydarzenia")
