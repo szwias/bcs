@@ -1,6 +1,6 @@
 from django import forms
 
-from kalendarz.models import Wydarzenie
+from kalendarz.models import WydarzenieKalendarzowe
 from .models import (
     Kadencja,
     PodsumowanieKadencji,
@@ -51,11 +51,11 @@ class WydarzenieHistoryczneForm(forms.ModelForm):
         data_value = self.data.get("data") or self.initial.get("data")
 
         if data_value:
-            self.fields["wydarzenie"].queryset = Wydarzenie.objects.filter(
+            self.fields["wydarzenie"].queryset = WydarzenieKalendarzowe.objects.filter(
                 data_rozpoczecia=data_value, czy_jednodniowe=True
             )
         else:
-            self.fields["wydarzenie"].queryset = Wydarzenie.objects.none()
+            self.fields["wydarzenie"].queryset = WydarzenieKalendarzowe.objects.none()
 
 
 class ZadanieChrzcielneForm(forms.ModelForm):

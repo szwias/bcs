@@ -95,7 +95,7 @@ class WydarzenieHistoryczne(models.Model):
     opis = models.TextField(blank=True, null=True, verbose_name="Opis")
 
     wydarzenie = models.ForeignKey(
-        "kalendarz.Wydarzenie",
+        "kalendarz.WydarzenieKalendarzowe",
         blank=True,
         null=True,
         on_delete=models.SET_NULL,
