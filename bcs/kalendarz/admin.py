@@ -58,6 +58,11 @@ class WydarzenieAdmin(BaseModelAdmin):
             form.instance.miejsca.add(
                 *miejsca_set
             )  # Replace all current with new set
+
+
+@admin.register(WydarzenieDummy)
+class WydarzenieDummyAdmin(BaseModelAdmin):
+    save_as = True
     inlines = [ZdarzenieInline, ObrazWydarzenieInline]
     filter_horizontal = ("miejsca", "uczestnicy")
     list_filter = [YearListFilter, "czy_jednodniowe", "czy_to_wyjazd", "typ_wydarzenia", "typ_wyjazdu", "miejsca"]

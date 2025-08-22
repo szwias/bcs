@@ -88,7 +88,7 @@ class ObrazZdarzenie(Obraz):
 
 class ObrazWydarzenie(Obraz):
     wydarzenie = models.ForeignKey(
-        "kalendarz.Wydarzenie",
+        "kalendarz.WydarzenieKalendarzowe",
         blank=True,
         null=True,
         on_delete=models.SET_NULL,
