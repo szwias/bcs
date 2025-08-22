@@ -1,9 +1,9 @@
 from dal import autocomplete
-from .models import Wydarzenie
+from .models import WydarzenieKalendarzowe
 from miejsca.models import Miejsce
 
 
-class CustomMiejsceFromWydarzenieToZdarzenieAutocomplete(
+class CustomMiejsceFromWydarzenieKalendarzoweToZdarzenieAutocomplete(
     autocomplete.Select2QuerySetView
 ):
     def get_queryset(self):
@@ -13,9 +13,9 @@ class CustomMiejsceFromWydarzenieToZdarzenieAutocomplete(
 
         if wydarzenie_id:
             try:
-                wydarzenie = Wydarzenie.objects.get(pk=wydarzenie_id)
+                wydarzenie = WydarzenieKalendarzowe.objects.get(pk=wydarzenie_id)
                 qs = wydarzenie.miejsca.all()
-            except Wydarzenie.DoesNotExist:
+            except WydarzenieKalendarzowe.DoesNotExist:
                 qs = Miejsce.objects.none()
 
         if self.q:

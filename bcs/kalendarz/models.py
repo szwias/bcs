@@ -10,7 +10,7 @@ class Zdarzenie(models.Model):
     nazwa = models.CharField(max_length=MAX_LENGTH, verbose_name="Nazwa")
 
     wydarzenie = models.ForeignKey(
-        "Wydarzenie",
+        "WydarzenieKalendarzowe",
         blank=True,
         null=True,
         on_delete=models.SET_NULL,
@@ -107,11 +107,11 @@ class TypWyjazdu(models.Model):
 
 
 class WydarzenieKalendarzowe(PolymorphicModel):
-    
+
     nazwa = models.CharField(max_length=MAX_LENGTH, verbose_name="Nazwa")
 
     data_rozpoczecia = models.DateField(
-        default=timezone.now(), verbose_name="Data rozpoczecia"
+        default=timezone.now, verbose_name="Data rozpoczecia"
     )
 
     link = models.URLField(blank=True, verbose_name="Link do wydarzenia na FB")
@@ -203,6 +203,7 @@ class Wydarzenie(models.Model):
 
         name += f': {typ} "{self.nazwa}"'
         return name
+
 
 class WydarzenieDummy(WydarzenieKalendarzowe):
 

@@ -8,7 +8,7 @@ app_name = "kalendarz_autocomplete"
 urlpatterns = [
     path(
         "custom-miejsce-from-wydarzenie-to-zdarzenie-autocomplete/",
-        custom_autocomplete_views.CustomMiejsceFromWydarzenieToZdarzenieAutocomplete.as_view(),
+        custom_autocomplete_views.CustomMiejsceFromWydarzenieKalendarzoweToZdarzenieAutocomplete.as_view(),
         name="custom-miejsce-from-wydarzenie-to-zdarzenie-autocomplete",
     ),
 ] + autocomplete_urls

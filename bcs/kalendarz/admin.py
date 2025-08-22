@@ -4,14 +4,14 @@ from core.utils.automation.BaseAdmin import (
     BaseModelAdmin,
     register_all_models,
 )
-from kalendarz.models import Zdarzenie, Wydarzenie
+from kalendarz.models import Zdarzenie, Wydarzenie, WydarzenieKalendarzowe, WydarzenieDummy
 from .inlines import ZdarzenieInline
 from multimedia.inlines import ObrazWydarzenieInline, ObrazZdarzenieInline
 
 
 class YearListFilter(admin.SimpleListFilter):
-    title = 'Rok'
-    parameter_name = 'rok'
+    title = "Rok"
+    parameter_name = "rok"
 
     def lookups(self, request, model_admin):
         years = range(ROK_ZALOZENIA, BIEZACY_ROK + 1)
@@ -26,6 +26,38 @@ class YearListFilter(admin.SimpleListFilter):
 @admin.register(Wydarzenie)
 class WydarzenieAdmin(BaseModelAdmin):
     save_as = True
+    # inlines = [ZdarzenieInline, ObrazWydarzenieInline]
+    filter_horizontal = ("miejsca", "uczestnicy")
+    list_filter = [
+        YearListFilter,
+        "czy_jednodniowe",
+        "czy_to_wyjazd",
+        "typ_wydarzenia",
+        "typ_wyjazdu",
+        "miejsca",
+    ]
+
+    def save_formset(self, request, form, formset, change):
+        instances = formset.save(commit=False)
+
+        # Save each inline instance
+        for instance in instances:
+            instance.wydarzenie = form.instance
+            instance.save()
+
+        # Save M2M if needed
+        formset.save_m2m()
+
+        # Collect miejsca from all Zdarzenie inlines
+        if formset.model == Zdarzenie:
+            miejsca_set = {
+                z.miejsce
+                for z in form.instance.zdarzenia_z_wydarzenia.all()
+                if z.miejsce
+            }
+            form.instance.miejsca.add(
+                *miejsca_set
+            )  # Replace all current with new set
     inlines = [ZdarzenieInline, ObrazWydarzenieInline]
     filter_horizontal = ("miejsca", "uczestnicy")
     list_filter = [YearListFilter, "czy_jednodniowe", "czy_to_wyjazd", "typ_wydarzenia", "typ_wyjazdu", "miejsca"]
