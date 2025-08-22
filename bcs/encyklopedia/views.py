@@ -21,7 +21,7 @@ autocomplete_configs = [
         Pojecie,
         ["origins"],
         [],
-        [kalendarz["Wydarzenie"], osoby["Byt"], zrodla["Zrodlo"]],
+        [kalendarz["WydarzenieKalendarzowe"], osoby["Byt"], zrodla["Zrodlo"]],
     ),
     (Powiedzenie, [], [], [osoby["Byt"], osoby["Osoba"], zrodla["Zrodlo"]]),
     (
@@ -32,7 +32,7 @@ autocomplete_configs = [
             "pewnosc_stazu",
         ],
         [],
-        [GrupaBractw.__name__, kalendarz["Wydarzenie"], osoby["Osoba"]],
+        [GrupaBractw.__name__, kalendarz["WydarzenieKalendarzowe"], osoby["Osoba"]],
     ),
     (TradycjaInnegoBractwa, [], [], [GrupaBractw.__name__]),
     (Zwyczaj, [], [], [osoby["Osoba"]]),

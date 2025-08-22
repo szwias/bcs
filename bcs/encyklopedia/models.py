@@ -4,7 +4,6 @@ from polymorphic.models import PolymorphicModel
 from core.utils.Choices import IntAlt
 from core.utils.Consts import *
 from core.utils import Czas
-from kalendarz.models import Wydarzenie
 
 
 class Lengths:
@@ -173,7 +172,7 @@ class Pojecie(models.Model):
     )
 
     wydarzenie = models.ForeignKey(
-        Wydarzenie,
+        "kalendarz.WydarzenieKalendarzowe",
         blank=True,
         null=True,
         on_delete=models.SET_NULL,
@@ -241,7 +240,7 @@ class TradycjaBCS(models.Model):
     )
 
     wydarzenie = models.ForeignKey(
-        Wydarzenie,
+        "kalendarz.WydarzenieKalendarzowe",
         blank=True,
         null=True,
         on_delete=models.SET_NULL,
