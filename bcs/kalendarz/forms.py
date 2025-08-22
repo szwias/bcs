@@ -4,7 +4,6 @@ from dal import autocomplete
 from .models import (
     TypWydarzenia,
     TypWyjazdu,
-    Wydarzenie,
     WydarzenieDummy,
     WydarzenieKalendarzowe,
     Zdarzenie,
@@ -59,34 +58,11 @@ class WydarzenieKalendarzoweForm(forms.ModelForm):
         )
 
 
-class WydarzenieForm(forms.ModelForm):
-    class Meta:
-        model = Wydarzenie
-        fields = "__all__"
-        widgets = build_widgets(autocomplete_widgets[Wydarzenie.__name__])
-
-    def clean(self):
-        cd = super().clean()
-
-        if cd.get("czy_jednodniowe"):
-            cd["data_zakonczenia"] = cd["data_rozpoczecia"]
-
-        ctw = cd.get("czy_to_wyjazd")
-
-        if not cd.get("typ_wydarzenia") or ctw:
-            cd["typ_wydarzenia"] = TypWydarzenia.get_not_applicable_typ()
-
-        if not cd.get("typ_wyjazdu") or not ctw:
-            cd["typ_wyjazdu"] = TypWyjazdu.get_not_applicable_typ()
-
-        return cd
-
-
 class WydarzenieDummyForm(forms.ModelForm):
     class Meta:
         model = WydarzenieDummy
         fields = "__all__"
-        widgets = build_widgets(autocomplete_widgets[Wydarzenie.__name__])
+        widgets = build_widgets(autocomplete_widgets[WydarzenieDummy.__name__])
 
     def clean(self):
         cd = super().clean()

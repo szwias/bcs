@@ -52,7 +52,7 @@ class WydarzenieHistoryczneForm(forms.ModelForm):
 
         if data_value:
             self.fields["wydarzenie"].queryset = WydarzenieKalendarzowe.objects.filter(
-                data_rozpoczecia=data_value, czy_jednodniowe=True
+                data_rozpoczecia=data_value
             )
         else:
             self.fields["wydarzenie"].queryset = WydarzenieKalendarzowe.objects.none()

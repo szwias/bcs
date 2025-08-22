@@ -10,18 +10,6 @@ autocomplete_configs = [
     (TypWydarzenia, [], [], []),
     (TypWyjazdu, [], [], []),
     (
-        Wydarzenie,
-        ["typ_wydarzenia", "typ_wyjazdu"],
-        [],
-        [
-            TypWydarzenia.__name__,
-            TypWyjazdu.__name__,
-            Zdarzenie.__name__,
-            miejsca["Miejsce"],
-            osoby["Osoba"],
-        ],
-    ),
-    (
         WydarzenieDummy,
         ["typ_wydarzenia", "typ_wyjazdu"],
         [],
@@ -38,7 +26,7 @@ autocomplete_configs = [
         Zdarzenie,
         [],
         [],
-        [Wydarzenie.__name__, multimedia["ObrazZdarzenie"], osoby["Osoba"]],
+        [WydarzenieKalendarzowe.__name__, multimedia["ObrazZdarzenie"], osoby["Osoba"]],
     ),
 ]
 

@@ -3,7 +3,6 @@ from core.utils.autocompletion.AutocompletesGeneration import add_model_name
 from .models import (
     TypWydarzenia,
     TypWyjazdu,
-    Wydarzenie,
     WydarzenieDummy,
     WydarzenieKalendarzowe,
     Zdarzenie,
@@ -11,7 +10,6 @@ from .models import (
 
 names = defaultdict(str)
 
-add_model_name(Wydarzenie, names, "Wydarzenie")
 add_model_name(WydarzenieDummy, names, "WydarzenieDummy")
 add_model_name(WydarzenieKalendarzowe, names, "WydarzenieKalendarzowe")
 add_model_name(Zdarzenie, names, "Zdarzenie")
