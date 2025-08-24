@@ -3,5 +3,14 @@ from core.utils.automation.BaseAdmin import (
     BaseModelAdmin,
     register_all_models
 )
+from .models import Piosenka
 
-register_all_models()
+@admin.register(Piosenka)
+class PiosenkaAdmin(BaseModelAdmin):
+    filter_horizontal = ["kategorie", "znani_czapce_autorzy"]
+
+register_all_models(
+    custom_admins={
+        Piosenka: PiosenkaAdmin
+    }
+)
