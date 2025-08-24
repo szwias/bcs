@@ -80,6 +80,7 @@ class BaseModelAdmin(admin.ModelAdmin):
 
     actions = ["save_selected"]
     list_filter_exclude = set()
+    hide_base_class_from_index = True
     save_as = True
 
     def save_selected(self, request, queryset):
@@ -129,16 +130,16 @@ class BaseModelAdmin(admin.ModelAdmin):
         return smart_filters
 
     def has_add_permission(self, request):
-        return not is_polymorphic_parent(self.model)
+        return not (is_polymorphic_parent(self.model) and self.hide_base_class_from_index)
 
     def has_change_permission(self, request, obj=None):
-        return not is_polymorphic_parent(self.model)
+        return not (is_polymorphic_parent(self.model) and self.hide_base_class_from_index)
 
     def has_delete_permission(self, request, obj=None):
-        return not is_polymorphic_parent(self.model)
+        return not (is_polymorphic_parent(self.model) and self.hide_base_class_from_index)
 
     def get_model_perms(self, request):
-        if is_polymorphic_parent(self.model):
+        if is_polymorphic_parent(self.model) and self.hide_base_class_from_index:
             return {}  # Hide from admin index
         return super().get_model_perms(request)
 
