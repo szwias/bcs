@@ -4,7 +4,8 @@ from core.utils.automation.BaseAdmin import (
     BaseModelAdmin,
     register_all_models,
 )
-from kalendarz.models import Zdarzenie, WydarzenieKalendarzowe, Wydarzenie
+from kalendarz.models import Zdarzenie, WydarzenieKalendarzowe, Wydarzenie, \
+    DepositioBeanorum
 from .inlines import ZdarzenieInline
 from multimedia.inlines import ObrazWydarzenieInline, ObrazZdarzenieInline
 
@@ -21,6 +22,13 @@ class YearListFilter(admin.SimpleListFilter):
         if self.value():
             return queryset.filter(data_rozpoczecia__year=self.value())
         return queryset
+
+
+@admin.register(DepositioBeanorum)
+class DepositioBeanorumAdmin(BaseModelAdmin):
+    save_as = True
+    filter_horizontal = ["chrzczeni"]
+    list_filter_exclude = ["polymorphic_ctype", "wydarzeniekalendarzowe_ptr"]
 
 
 @admin.register(WydarzenieKalendarzowe)
@@ -76,6 +84,7 @@ class ZdarzenieAdmin(BaseModelAdmin):
 
 register_all_models(
     custom_admins={
+        DepositioBeanorum: DepositioBeanorumAdmin,
         Wydarzenie: WydarzenieAdmin,
         WydarzenieKalendarzowe: WydarzenieKalendarzoweAdmin,
         Zdarzenie: ZdarzenieAdmin,

@@ -13,7 +13,7 @@ class KategoriaPiosenki(models.Model):
     class Meta:
         verbose_name = "Kategoria piosenki"
         verbose_name_plural = "Kategorie piosenek"
-        ordering = ['nazwa']
+        ordering = ["nazwa"]
 
     def __str__(self):
         return self.nazwa
@@ -41,20 +41,32 @@ class Piosenka(models.Model):
         upload_to="piosenki/",
         blank=True,
         help_text=
-        "Dodaj tekst w formacie .json, przykład: " +
-        "[{\"chords\": [\"G\", \"C\"], \"line\": \"Tekst wiersza\"}, " +
-        "{\"chords\": [\"G\", \"D\"], \"line\": \"Tekst wiersza\"}]",
-        verbose_name="Tekst w formacie .json"
+        """
+        Dodaj tekst w formacie .json, przykład:
+        [
+          {"tekst": "Tekst wiersza", "chwyty": ["C", "D"]}, 
+          {"tekst": "Tekst wiersza", "chwyty": ["G", "D"]},
+          {"tekst": "", "chwyty": []},
+          {"tekst": "Po ostatniej linii nie dajemy przecinka", "chwyty": ["Am"]}
+        ]
+        """,
+        verbose_name="Tekst w formacie .json",
     )
 
     tekst_alternatywny = models.FileField(
         upload_to="piosenki/",
         blank=True,
         help_text=
-        "Dodaj tekst w formacie .json, przykład: " +
-        "[{\"chords\": [\"G\", \"C\"], \"line\": \"Tekst wiersza\"}, " +
-        "{\"chords\": [\"G\", \"D\"], \"line\": \"Tekst wiersza\"}]",
-        verbose_name="Tekst alternatywny (np. tłumaczenie) w formacie .json"
+        """
+        Dodaj tekst w formacie .json, przykład:
+        [
+          {"tekst": "Tekst wiersza", "chwyty": ["C", "D"]}, 
+          {"tekst": "Tekst wiersza", "chwyty": ["G", "D"]},
+          {"tekst": "", "chwyty": []},
+          {"tekst": "Po ostatniej linii nie dajemy przecinka", "chwyty": ["Am"]}
+        ]
+        """,
+        verbose_name="Tekst alternatywny (np. tłumaczenie) w formacie .json",
     )
 
     class Meta:

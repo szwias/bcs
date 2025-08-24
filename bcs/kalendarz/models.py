@@ -127,6 +127,50 @@ class WydarzenieKalendarzowe(PolymorphicModel):
         return f"{self.data_rozpoczecia} - {self.nazwa}"
 
 
+class DepositioBeanorum(WydarzenieKalendarzowe):
+
+    miejsce = models.ForeignKey(
+        "miejsca.Miejsce",
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+        verbose_name="Miejsce",
+    )
+
+    chrzczeni = models.ManyToManyField(
+        "osoby.Czlonek",
+        blank=True,
+        verbose_name="Chrzczeni",
+    )
+
+    hymn = models.ForeignKey(
+        "spiewnik.Piosenka",
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+        verbose_name="Odśpiewany przez beanów hymn",
+    )
+
+    dokument = models.ForeignKey(
+        "zrodla.Dokument",
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+        verbose_name="Dokument chrzcielny",
+    )
+
+    class Meta:
+        verbose_name = "Depositio Beanorum"
+        verbose_name_plural = "Depositio Beanorum"
+        ordering = ["-data_rozpoczecia"]
+
+    def __str__(self):
+        chrzczeni = ", ".join(
+            [f"{c.imie} {c.nazwisko}" for c in self.chrzczeni.all()]
+        )
+        return f"{self.data_rozpoczecia} \"{self.nazwa}\" - {chrzczeni}"
+
+
 class Wydarzenie(WydarzenieKalendarzowe):
 
     czy_jednodniowe = models.BooleanField(

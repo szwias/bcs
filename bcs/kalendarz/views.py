@@ -1,12 +1,24 @@
-from multimedia.models import ObrazZdarzenie, ObrazWydarzenie
 from .models import *
 from core.utils.autocompletion.AutocompletesGeneration import *
 
 from miejsca.models_dict import names as miejsca
 from multimedia.models_dict import names as multimedia
 from osoby.models_dict import names as osoby
+from spiewnik.models_dict import names as spiewnik
+from zrodla.models_dict import names as zrodla
 
 autocomplete_configs = [
+    (
+        DepositioBeanorum,
+        [],
+        [],
+        [
+            miejsca["Miejsce"],
+            osoby["Czlonek"],
+            spiewnik["Piosenka"],
+            zrodla["Dokument"]
+        ]
+    ),
     (TypWydarzenia, [], [], []),
     (TypWyjazdu, [], [], []),
     (
@@ -26,7 +38,11 @@ autocomplete_configs = [
         Zdarzenie,
         [],
         [],
-        [WydarzenieKalendarzowe.__name__, multimedia["ObrazZdarzenie"], osoby["Osoba"]],
+        [
+            WydarzenieKalendarzowe.__name__,
+            multimedia["ObrazZdarzenie"],
+            osoby["Osoba"]
+        ],
     ),
 ]
 

@@ -6,10 +6,19 @@ from .models import (
     TypWyjazdu,
     Wydarzenie,
     WydarzenieKalendarzowe,
-    Zdarzenie,
+    Zdarzenie, DepositioBeanorum,
 )
 from .views import autocomplete_widgets
 from core.utils.autocompletion.AutocompletesGeneration import build_widgets
+
+
+class DepositioBeanorumForm(forms.ModelForm):
+    class Meta:
+        model = DepositioBeanorum
+        fields = '__all__'
+        widgets = build_widgets(
+            autocomplete_widgets[DepositioBeanorum.__name__]
+        )
 
 
 class ZdarzenieForm(forms.ModelForm):
