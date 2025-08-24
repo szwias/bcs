@@ -66,6 +66,13 @@ urlpatterns = [
         ),
     ),
     path(
+        "autocomplete/spiewnik/",
+        include(
+            "spiewnik.autocomplete_urls",
+            "spiewnik_autocomplete",
+        ),
+    ),
+    path(
         "autocomplete/zrodla/",
         include("zrodla.autocomplete_urls", "zrodla_autocomplete"),
     ),

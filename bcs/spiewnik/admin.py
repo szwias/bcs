@@ -1,4 +1,3 @@
-"""
 from core.utils.automation.BaseAdmin import (
     admin,
     BaseModelAdmin,
@@ -6,4 +5,3 @@ from core.utils.automation.BaseAdmin import (
 )
 
 register_all_models()
-"""
