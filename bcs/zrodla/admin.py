@@ -18,6 +18,7 @@ class DokumentAdmin(ZrodloAdmin):
 
     def streszczenie(self, obj):
         return obj.streszczenie()
+
     streszczenie.short_description = "Streszczenie"
 
 

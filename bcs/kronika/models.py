@@ -11,7 +11,7 @@ class PodsumowanieKadencji(models.Model):
         null=True,
         on_delete=models.SET_NULL,
         verbose_name="Zarząd",
-        related_name="podsumowania_kadencji"
+        related_name="podsumowania_kadencji",
     )
 
     autor = models.ForeignKey(
@@ -133,7 +133,10 @@ class ZadanieChrzcielne(models.Model):
     opis = models.TextField(blank=True, null=True, verbose_name="Opis")
 
     zalacznik = models.FileField(
-        upload_to="pdfs/", blank=True, null=True, verbose_name="Załącznik (pdf)"
+        upload_to="pdfs/",
+        blank=True,
+        null=True,
+        verbose_name="Załącznik (pdf)",
     )
 
     zdjecia = models.ImageField(

@@ -16,8 +16,8 @@ class RelacjaPrawnaAdmin(BaseModelAdmin):
     def get_queryset(self, request):
         qs = super().get_queryset(request)
         return qs.annotate(
-            podmiot_list=StringAgg('podmiot__nazwa', delimiter=', ')
-        ).order_by('podmiot_list')
+            podmiot_list=StringAgg("podmiot__nazwa", delimiter=", ")
+        ).order_by("podmiot_list")
 
 
 register_all_models(

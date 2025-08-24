@@ -32,7 +32,11 @@ autocomplete_configs = [
             "pewnosc_stazu",
         ],
         [],
-        [GrupaBractw.__name__, kalendarz["WydarzenieKalendarzowe"], osoby["Osoba"]],
+        [
+            GrupaBractw.__name__,
+            kalendarz["WydarzenieKalendarzowe"],
+            osoby["Osoba"],
+        ],
     ),
     (TradycjaInnegoBractwa, [], [], [GrupaBractw.__name__]),
     (Zwyczaj, [], [], [osoby["Osoba"]]),

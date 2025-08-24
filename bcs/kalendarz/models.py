@@ -168,7 +168,7 @@ class DepositioBeanorum(WydarzenieKalendarzowe):
         chrzczeni = ", ".join(
             [f"{c.imie} {c.nazwisko}" for c in self.chrzczeni.all()]
         )
-        return f"{self.data_rozpoczecia} \"{self.nazwa}\" - {chrzczeni}"
+        return f'{self.data_rozpoczecia} "{self.nazwa}" - {chrzczeni}'
 
 
 class Wydarzenie(WydarzenieKalendarzowe):

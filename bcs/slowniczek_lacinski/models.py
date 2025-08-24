@@ -13,7 +13,7 @@ class Zwrot(models.Model):
         max_length=MAX_LENGTH,
         blank=True,
         null=True,
-        verbose_name="Tłumaczenie"
+        verbose_name="Tłumaczenie",
     )
 
     uzywany_na_karczmie = models.BooleanField(

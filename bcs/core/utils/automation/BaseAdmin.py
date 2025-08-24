@@ -130,16 +130,28 @@ class BaseModelAdmin(admin.ModelAdmin):
         return smart_filters
 
     def has_add_permission(self, request):
-        return not (is_polymorphic_parent(self.model) and self.hide_base_class_from_index)
+        return not (
+            is_polymorphic_parent(self.model)
+            and self.hide_base_class_from_index
+        )
 
     def has_change_permission(self, request, obj=None):
-        return not (is_polymorphic_parent(self.model) and self.hide_base_class_from_index)
+        return not (
+            is_polymorphic_parent(self.model)
+            and self.hide_base_class_from_index
+        )
 
     def has_delete_permission(self, request, obj=None):
-        return not (is_polymorphic_parent(self.model) and self.hide_base_class_from_index)
+        return not (
+            is_polymorphic_parent(self.model)
+            and self.hide_base_class_from_index
+        )
 
     def get_model_perms(self, request):
-        if is_polymorphic_parent(self.model) and self.hide_base_class_from_index:
+        if (
+            is_polymorphic_parent(self.model)
+            and self.hide_base_class_from_index
+        ):
             return {}  # Hide from admin index
         return super().get_model_perms(request)
 
@@ -167,9 +179,9 @@ class BaseModelAdmin(admin.ModelAdmin):
             ]
 
         self.formfield_overrides = {
-            models.TextField: {'widget': Textarea(attrs={
-                'spellcheck': 'false'
-            })},
+            models.TextField: {
+                "widget": Textarea(attrs={"spellcheck": "false"})
+            },
         }
 
         app_label = model._meta.app_label

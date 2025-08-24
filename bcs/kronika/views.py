@@ -24,7 +24,7 @@ autocomplete_configs = [
     ),
     (TypWydarzeniaHistorycznego, [], [], []),
     (WydarzenieHistoryczne, [], [], [TypWydarzeniaHistorycznego.__name__]),
-    (ZadanieChrzcielne, [], [], [osoby["Czlonek"]])
+    (ZadanieChrzcielne, [], [], [osoby["Czlonek"]]),
 ]
 
 autocomplete_urls, autocomplete_widgets = setup_autocompletes(

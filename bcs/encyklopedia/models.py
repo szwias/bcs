@@ -153,7 +153,9 @@ class Pojecie(models.Model):
 
     nazwa = models.CharField(max_length=MEDIUM_LENGTH, verbose_name="Nazwa")
 
-    complete = models.BooleanField(default=False, verbose_name="Notatka kompletna")
+    complete = models.BooleanField(
+        default=False, verbose_name="Notatka kompletna"
+    )
 
     autor = models.ForeignKey(
         "osoby.Byt",
@@ -184,7 +186,7 @@ class Pojecie(models.Model):
         blank=True,
         null=True,
         on_delete=models.SET_NULL,
-        verbose_name="Źródło"
+        verbose_name="Źródło",
     )
 
     class Meta:

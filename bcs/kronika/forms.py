@@ -51,11 +51,15 @@ class WydarzenieHistoryczneForm(forms.ModelForm):
         data_value = self.data.get("data") or self.initial.get("data")
 
         if data_value:
-            self.fields["wydarzenie"].queryset = WydarzenieKalendarzowe.objects.filter(
-                data_rozpoczecia=data_value
+            self.fields["wydarzenie"].queryset = (
+                WydarzenieKalendarzowe.objects.filter(
+                    data_rozpoczecia=data_value
+                )
             )
         else:
-            self.fields["wydarzenie"].queryset = WydarzenieKalendarzowe.objects.none()
+            self.fields["wydarzenie"].queryset = (
+                WydarzenieKalendarzowe.objects.none()
+            )
 
 
 class ZadanieChrzcielneForm(forms.ModelForm):

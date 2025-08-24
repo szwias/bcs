@@ -5,7 +5,7 @@ from osoby.models_dict import names as osoby
 
 autocomplete_configs = [
     (KategoriaPiosenki, [], [], []),
-    (Piosenka, [], [], [KategoriaPiosenki.__name__, osoby["Osoba"]])
+    (Piosenka, [], [], [KategoriaPiosenki.__name__, osoby["Osoba"]]),
 ]
 
 autocomplete_urls, autocomplete_widgets = setup_autocompletes(

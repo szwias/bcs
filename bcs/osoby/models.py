@@ -421,6 +421,7 @@ class ImieSzlacheckie(models.Model):
             name += f" {self.imie.nazwisko}"
         return name
 
+
 # OSOBA DEPENDENT
 # ------------------------------------------------------
 
@@ -571,7 +572,9 @@ class Zarzad(Byt):
         ordering = ["kadencja"]
 
     def __str__(self):
-        return f"Zarząd {str(self.kadencja)} - WM {str(self.wielki_mistrz.imie)}"
+        return (
+            f"Zarząd {str(self.kadencja)} - WM {str(self.wielki_mistrz.imie)}"
+        )
 
 
 class DawnyZarzad(Zarzad):

@@ -5,9 +5,7 @@ from core.utils.Consts import MAX_LENGTH
 
 
 class Zrodlo(PolymorphicModel):
-    tytul = models.CharField(
-        max_length=MAX_LENGTH, verbose_name="Tytuł"
-    )
+    tytul = models.CharField(max_length=MAX_LENGTH, verbose_name="Tytuł")
 
     autorzy = models.ManyToManyField(
         "osoby.Osoba",

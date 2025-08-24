@@ -13,7 +13,9 @@ class CustomMiejsceFromWydarzenieKalendarzoweToZdarzenieAutocomplete(
 
         if wydarzenie_id:
             try:
-                wydarzenie = WydarzenieKalendarzowe.objects.get(pk=wydarzenie_id)
+                wydarzenie = WydarzenieKalendarzowe.objects.get(
+                    pk=wydarzenie_id
+                )
                 qs = wydarzenie.miejsca.all()
             except WydarzenieKalendarzowe.DoesNotExist:
                 qs = Miejsce.objects.none()

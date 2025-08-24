@@ -16,8 +16,8 @@ autocomplete_configs = [
             miejsca["Miejsce"],
             osoby["Czlonek"],
             spiewnik["Piosenka"],
-            zrodla["Dokument"]
-        ]
+            zrodla["Dokument"],
+        ],
     ),
     (TypWydarzenia, [], [], []),
     (TypWyjazdu, [], [], []),
@@ -41,7 +41,7 @@ autocomplete_configs = [
         [
             WydarzenieKalendarzowe.__name__,
             multimedia["ObrazZdarzenie"],
-            osoby["Osoba"]
+            osoby["Osoba"],
         ],
     ),
 ]

@@ -4,8 +4,12 @@ from core.utils.automation.BaseAdmin import (
     BaseModelAdmin,
     register_all_models,
 )
-from kalendarz.models import Zdarzenie, WydarzenieKalendarzowe, Wydarzenie, \
-    DepositioBeanorum
+from kalendarz.models import (
+    Zdarzenie,
+    WydarzenieKalendarzowe,
+    Wydarzenie,
+    DepositioBeanorum,
+)
 from .inlines import ZdarzenieInline
 from multimedia.inlines import ObrazWydarzenieInline, ObrazZdarzenieInline
 

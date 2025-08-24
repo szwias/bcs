@@ -2,8 +2,10 @@
 input_file = "wydarzenia_input.txt"
 output_file = "wydarzenia_copy_ready.txt"
 
-with open(input_file, "r", encoding="utf-8") as f_in, open(output_file, "w",
-                                                           encoding="utf-8") as f_out:
+with (
+    open(input_file, "r", encoding="utf-8") as f_in,
+    open(output_file, "w", encoding="utf-8") as f_out,
+):
     for line in f_in:
         line = line.rstrip("\n")
         columns = line.split("\t")
