@@ -1,1 +1,0 @@
-find . -name '*.py' ! -path '*/migrations/*' -exec cat {} + | wc -l
