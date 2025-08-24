@@ -4,7 +4,7 @@ from dal import autocomplete
 from .models import (
     TypWydarzenia,
     TypWyjazdu,
-    WydarzenieDummy,
+    Wydarzenie,
     WydarzenieKalendarzowe,
     Zdarzenie,
 )
@@ -58,11 +58,11 @@ class WydarzenieKalendarzoweForm(forms.ModelForm):
         )
 
 
-class WydarzenieDummyForm(forms.ModelForm):
+class WydarzenieForm(forms.ModelForm):
     class Meta:
-        model = WydarzenieDummy
+        model = Wydarzenie
         fields = "__all__"
-        widgets = build_widgets(autocomplete_widgets[WydarzenieDummy.__name__])
+        widgets = build_widgets(autocomplete_widgets[Wydarzenie.__name__])
 
     def clean(self):
         cd = super().clean()

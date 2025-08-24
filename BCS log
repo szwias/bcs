@@ -53,56 +53,63 @@ Python / SQL / HTML lines of code:
     15 sierpnia:    4830    / 9529  / 26    lines (+57  / +0    / +0)   = +57
     16 sierpnia:    4830    / 9529  / 26    lines (+0   / +0    / +0)   = +0
     VII ------------------------------------:
-    21 sierpnia:    5000    / 10951 / 26    lines (+170 / +1422 / +0)    = +1592
-    22 sierpnia:
+    21 sierpnia:    5000    / 10951 / 26    lines (+170 / +1422 / +0)   = +1592
+    22 sierpnia:    4942    / 10951 / 26    lines (-58  / +0    / +0)   = -58
 
     PREVIOUS PERIODS:
-        START OF PRODUCTION: 1742 lines so far (~1.7K)
+        START OF PRODUCTION: 1742 lines so far (~1.7K), 1742 lines added (~1.7K)
         24 kwietnia - 4 maja (9 / 11 days - 1742 / x lines):
             Average speed of development: 158 lines per day (~160)
             Average lines of code on a coding day: 194 lines per day (~190)
             Average positive lines on a coding day: x lines per day
-            Amplitude: unknown
+            Max day: unknown
+            Min day: unknown
 
-        DEPRESSION AFTER FAILURE TO DELIVER: 2437 lines so far (~2.4K)
+        DEPRESSION AFTER FAILURE TO DELIVER: 2437 lines so far (~2.4K), 695 lines added (~0.7K)
         5 maja - 29 maja (8 / 25 days - 695 / x lines):
             Average speed of development: 28 lines per day (~30)
             Average lines of code on a coding day: 87 lines per day (~90)
             Average positive lines on a coding day: 92 lines per day (~90)
-            Amplitude: 278 lines (per day)
+            Max day: 253
+            Min day: -43
 
-        LEARNING COLEMAK-DH: 2665 lines so far (~2.7K)
+        LEARNING COLEMAK-DH: 2665 lines so far (~2.7K), 228 lines added (~0.2K)
         17 czerwca - 29 czerwca (3 / 13 days - 228 / x lines):
             Average speed of development: 18 lines per day (~20)
             Average lines of code on a coding day: 76 lines per day (~80)
             Average positive lines on a coding day: 76 lines per day (~80)
-            Amplitude: 193 lines (per day)
+            Max day: 194
+            Min day: -1
 
-        DATABASE TWEAKS: 2708 lines so far (~2.7K)
+        DATABASE TWEAKS: 2708 lines so far (~2.7K), 43 lines added (~0.0K)
         1 lipca - 3 lipca (2 / 3 days - 43 / x lines):
             Average speed of development: 14 lines per day (~10)
             Average lines of code on a coding day: 43 lines per day (~40)
             Average positive lines on a coding day: 43 lines per day (~40)
-            Amplitude: 43 lines (per day)
+            Max day: 43
+            Min day: 0
 
-        GREAT COMEBACK: 14255 lines so far (~14.3K)
+        GREAT COMEBACK: 14255 lines so far (~14.3K), 11547 lines added (~11.5K)
         4 lipca - 28 lipca (19 / 25 days - 1996 / 9529 / 26 lines):
             Average speed of development: 269 lines per day (~270)
             Average lines of code on a coding day: 354 lines per day (~350)
             Average positive lines on a coding day: 411 lines per day (~410)
-            Amplitude: 2181 lines (per day)
+            Max day: 1616
+            Min day: -565
 
-        SUMMER BREAK: 14312 lines so far (~14.3K)
+        SUMMER BREAK: 14312 lines so far (~14.3K), 57 lines added (~0.0K)
         15 sierpnia - 16 sierpnia (2 / 2 days - 57 / 0 / 0 lines):
             Average speed of development: 28 lines per day (~30)
             Average lines of code on a coding day: 57 lines per day (~60)
             Average positive lines on a coding day: 57 lines per day (~60)
-            Amplitude: 57 lines (per day)
+            Max day: 57
+            Min day: 0
 
     CURRENT PERIOD:
         PANIK:
-        21 sierpnia - 21 sierpnia (1 / 1 days - 170 / 1422 / 0 lines):
-            Average speed of development: 1592 lines per day (~0)
-            Average lines of code on a coding day: 1592 lines per day (~0)
-            Average positive lines on a coding day: 1592 lines per day (~0)
-            Amplitude: 0 lines (per day)
+        21 sierpnia - 22 sierpnia (2 / 2 days - 112 / 1422 / 0 lines):
+            Average speed of development: 767 lines per day (~770)
+            Average lines of code on a coding day: 767 lines per day (~770)
+            Average positive lines on a coding day: 796 lines per day (~800)
+            Max day: 1592
+            Min day: -58

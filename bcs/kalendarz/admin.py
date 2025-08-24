@@ -4,7 +4,7 @@ from core.utils.automation.BaseAdmin import (
     BaseModelAdmin,
     register_all_models,
 )
-from kalendarz.models import Zdarzenie, WydarzenieKalendarzowe, WydarzenieDummy
+from kalendarz.models import Zdarzenie, WydarzenieKalendarzowe, Wydarzenie
 from .inlines import ZdarzenieInline
 from multimedia.inlines import ObrazWydarzenieInline, ObrazZdarzenieInline
 
@@ -23,8 +23,15 @@ class YearListFilter(admin.SimpleListFilter):
         return queryset
 
 
-@admin.register(WydarzenieDummy)
-class WydarzenieDummyAdmin(BaseModelAdmin):
+@admin.register(WydarzenieKalendarzowe)
+class WydarzenieKalendarzoweAdmin(BaseModelAdmin):
+    save_as = True
+    hide_base_class_from_index = False
+    list_filter = [YearListFilter]
+
+
+@admin.register(Wydarzenie)
+class WydarzenieAdmin(BaseModelAdmin):
     save_as = True
     inlines = [ZdarzenieInline, ObrazWydarzenieInline]
     filter_horizontal = ("miejsca", "uczestnicy")
@@ -69,7 +76,8 @@ class ZdarzenieAdmin(BaseModelAdmin):
 
 register_all_models(
     custom_admins={
-        WydarzenieDummy: WydarzenieDummyAdmin,
+        Wydarzenie: WydarzenieAdmin,
+        WydarzenieKalendarzowe: WydarzenieKalendarzoweAdmin,
         Zdarzenie: ZdarzenieAdmin,
     }
 )

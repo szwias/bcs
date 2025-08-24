@@ -10,7 +10,7 @@ autocomplete_configs = [
     (TypWydarzenia, [], [], []),
     (TypWyjazdu, [], [], []),
     (
-        WydarzenieDummy,
+        Wydarzenie,
         ["typ_wydarzenia", "typ_wyjazdu"],
         [],
         [

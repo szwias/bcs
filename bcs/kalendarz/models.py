@@ -127,7 +127,7 @@ class WydarzenieKalendarzowe(PolymorphicModel):
         return f"{self.data_rozpoczecia} - {self.nazwa}"
 
 
-class WydarzenieDummy(WydarzenieKalendarzowe):
+class Wydarzenie(WydarzenieKalendarzowe):
 
     czy_jednodniowe = models.BooleanField(
         default=True, verbose_name="Jednodniowe"
@@ -170,8 +170,8 @@ class WydarzenieDummy(WydarzenieKalendarzowe):
     )
 
     class Meta:
-        verbose_name = "Wydarzenie dummy"
-        verbose_name_plural = "Wydarzenia dummy"
+        verbose_name = "Wydarzenie"
+        verbose_name_plural = "Wydarzenia"
         ordering = ["-data_rozpoczecia"]
 
     def __str__(self):
