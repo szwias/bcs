@@ -37,7 +37,7 @@ class BeanAdmin(BaseModelAdmin):
 
 @admin.register(Czlonek)
 class CzlonekAdmin(BaseModelAdmin):
-    list_filter_exclude = ["polymorphic_ctype", "osoba_ptr"]
+    list_filter_exclude = ["polymorphic_ctype", "osoba_ptr", "byt_ptr"]
 
 
 @admin.register(InnaOsoba)
