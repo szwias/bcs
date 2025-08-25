@@ -60,10 +60,14 @@ class Piosenka(models.Model):
         """
         Dodaj tekst w formacie .json, przykład:
         [
-          {"tekst": "Tekst wiersza", "chwyty": ["C", "D"]}, 
-          {"tekst": "Tekst wiersza", "chwyty": ["G", "D"]},
-          {"tekst": "", "chwyty": []},
-          {"tekst": "Po ostatniej linii nie dajemy przecinka", "chwyty": ["Am"]}
+          {"tekst": "Tekst wiersza", 
+           "chwyty": ["C", "D"]}, 
+          {"tekst": "Tekst wiersza", 
+           "chwyty": ["G", "D"]},
+          {"tekst": "", 
+           "chwyty": []},
+          {"tekst": "Po ostatniej linii nie dajemy przecinka", 
+           "chwyty": ["Am"]}
         ]
         """,
         verbose_name="Tekst alternatywny (np. tłumaczenie) w formacie .json",
