@@ -52,10 +52,10 @@ Python / SQL / HTML / Bash lines of code:
     VI -------------------------------------: AUGUST; Python, SQL, HTML lines tracking - 57 lines (~0.1K)
     15 sierpnia:    4830    / 9529  / 26    lines (+57  / +0    / +0)   = +57
     16 sierpnia:    4830    / 9529  / 26    lines (+0   / +0    / +0)   = +0
-    VII ------------------------------------: AUGUST; added Bash lines tracking
-    21 sierpnia:    5000    / 10951 / 26    / 0     lines (+170 / +1422 / +0    / +0)   = +1592
-    22 sierpnia:    4942    / 10951 / 26    / 0     lines (-58  / +0    / +0    / +0)   = -58
-    24 sierpnia:    5263    / 11569 / 26    / 32    lines (+321 / +618  / +0    / +32)  = +971
+    VII ------------------------------------: AUGUST; added Bash & JSON lines tracking
+    21 sierpnia:    5000    / 10951 / 26    / 0     / 0     lines (+170 / +1422 / +0    / +0    / +0)   = +1592
+    22 sierpnia:    4942    / 10951 / 26    / 0     / 0     lines (-58  / +0    / +0    / +0    / +0)   = -58
+    24 sierpnia:    5263    / 11569 / 26    / 32    / 0     lines (+321 / +618  / +0    / +32   / +0)   = +971
 
     PREVIOUS PERIODS:
         START OF PRODUCTION: 1742 lines so far (~1.7K), 1742 lines added (~1.7K)
