@@ -6,8 +6,7 @@ from core.utils.Consts import MAX_LENGTH, MEDIUM_LENGTH
 class KategoriaPiosenki(models.Model):
 
     nazwa = models.CharField(
-        max_length=MEDIUM_LENGTH,
-        verbose_name="Nazwa kategorii"
+        max_length=MEDIUM_LENGTH, verbose_name="Nazwa kategorii"
     )
 
     class Meta:
@@ -23,7 +22,9 @@ class Piosenka(models.Model):
 
     tytul = models.CharField(max_length=MAX_LENGTH, verbose_name="Tytuł")
 
-    autor = models.CharField(max_length=MAX_LENGTH, verbose_name="Autor")
+    autor = models.CharField(
+        max_length=MAX_LENGTH, blank=True, verbose_name="Autor"
+    )
 
     znani_czapce_autorzy = models.ManyToManyField(
         "osoby.Osoba",
@@ -40,8 +41,7 @@ class Piosenka(models.Model):
     tekst = models.FileField(
         upload_to="piosenki/",
         blank=True,
-        help_text=
-        """
+        help_text="""
         Dodaj tekst w formacie .json, przykład:
         [
           {"tekst": "Tekst wiersza", "chwyty": ["C", "D"]}, 
@@ -56,8 +56,7 @@ class Piosenka(models.Model):
     tekst_alternatywny = models.FileField(
         upload_to="piosenki/",
         blank=True,
-        help_text=
-        """
+        help_text="""
         Dodaj tekst w formacie .json, przykład:
         [
           {"tekst": "Tekst wiersza", 
