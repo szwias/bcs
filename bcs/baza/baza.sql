@@ -4098,6 +4098,7 @@ COPY public.django_admin_log (id, action_time, object_id, object_repr, action_fl
 2572	2025-07-27 18:03:42.236307+02	5	Zarząd 2012/2013 - WM Magdalena "Kasztanka" Brilha - Tadeusz II	1	[{"added": {}}]	59	1
 2573	2025-07-27 18:04:15.329906+02	6	Zarząd 2013/2014 - WM Magdalena "Kasztanka" Brilha - Tadeusz II	1	[{"added": {}}]	59	1
 2574	2025-07-27 18:05:01.856854+02	7	Zarząd 2014/2015 - WM Grażyna "Malina" Malinowska - Tadeusz III	1	[{"added": {}}]	59	1
+2931	2025-08-25 23:03:10.210529+02	2	Breve regnum erigitur	2	[]	109	1
 2575	2025-07-27 18:05:59.152015+02	8	Zarząd 2015/2016 - WM Paweł "Synek" Mucha - Tadeusz IV, Jaśnie Oświecony Paweł Synek Tadeusz IV Mucha, Wielki Mistrz BCS, członek Zarządu KU AZS UJ, kierownik sekcji narciarsko-sportowej UJ i student 	1	[{"added": {}}]	59	1
 2576	2025-07-27 18:06:47.597015+02	9	Zarząd 2016/2017 - WM Maciej "Dzidzia" Małecki - Tadeusz V	1	[{"added": {}}]	59	1
 2577	2025-07-27 18:07:23.57431+02	10	Zarząd 2017/2018 - WM Damian "Bandera/Buch" Zych - Tadeusz V, Wielki Antymistrz Bandera Łże-Tadeusz VI, czerwono-czarny ognień tańczący na wioskach wrogów	1	[{"added": {}}]	59	1
@@ -4241,6 +4242,7 @@ COPY public.django_admin_log (id, action_time, object_id, object_repr, action_fl
 2714	2025-07-28 19:30:58.578067+02	3	Konsul BCS za granicami RP	1	[{"added": {}}]	41	1
 2715	2025-07-28 19:51:40.477012+02	7	Mateusz "Skorpion/Szczur" Sokół	2	[{"changed": {"fields": ["przezwiska"]}}]	61	1
 2716	2025-07-28 20:04:13.15105+02	3	Konsul BCS za granicami RP	2	[{"changed": {"fields": ["Autor poj\\u0119cia"]}}]	41	1
+2930	2025-08-25 23:02:57.808091+02	4	A teraz	2	[]	109	1
 2718	2025-07-28 20:04:49.274005+02	6	"Estetyka jest tą wartością, która przyciąga swym naturalnym i niewymuszonym pięknem, a kultura postę..." - Zarząd 2015/2016 - WM Paweł "Synek" Mucha - Tadeusz IV, Jaśnie Oświecony Paweł Synek Tadeusz	2	[{"changed": {"fields": ["Autor"]}}]	98	1
 2719	2025-07-28 20:05:10.248053+02	5	"Połączenie elegancji z prostotą stanowi o szlachectwie każdej rzeczy i persony." - Zarząd 2015/2016 - WM Paweł "Synek" Mucha - Tadeusz IV, Jaśnie Oświecony Paweł Synek Tadeusz IV Mucha, Wielki Mistrz	2	[{"changed": {"fields": ["Autor"]}}]	98	1
 2720	2025-07-28 20:05:22.369201+02	7	"Wielu mistrzów zakon mieć musi." - Zarząd 2015/2016 - WM Paweł "Synek" Mucha - Tadeusz IV, Jaśnie Oświecony Paweł Synek Tadeusz IV Mucha, Wielki Mistrz BCS, członek Zarządu KU AZS UJ, kierownik sekcj	2	[{"changed": {"fields": ["Autor"]}}]	98	1
@@ -4419,6 +4421,68 @@ COPY public.django_admin_log (id, action_time, object_id, object_repr, action_fl
 2893	2025-08-24 23:43:38.198845+02	221	2018-04-04:  "Depositio Beanorum"	3		75	1
 2894	2025-08-24 23:46:15.414255+02	5	2018-04-15 "Karczma Wiosenna BCS UJ" - Artur Czajkowski	1	[{"added": {}}]	110	1
 2895	2025-08-24 23:46:24.023739+02	223	2018-04-14:  "Karczma Wiosenna BCS UJ"	3		75	1
+2896	2025-08-24 23:57:40.108682+02	80	Cafe Piast - Kawiarnia, Piastowska 47, 30-067 Kraków, Polska	2	[{"changed": {"fields": ["Nazwa"]}}]	48	1
+2897	2025-08-25 21:56:18.964483+02	28	Harcerska	1	[{"added": {}}]	108	1
+2898	2025-08-25 21:56:51.322887+02	3	Anioł i Diabeł	1	[{"added": {}}]	109	1
+2899	2025-08-25 21:57:04.505338+02	28	Harcerskie	2	[{"changed": {"fields": ["Nazwa kategorii"]}}]	108	1
+2900	2025-08-25 21:57:34.893216+02	3	Anioł i Diabeł	2	[{"changed": {"fields": ["Kategoria piosenki"]}}]	109	1
+2901	2025-08-25 22:01:12.490186+02	4	A teraz	1	[{"added": {}}]	109	1
+2902	2025-08-25 22:02:54.569974+02	29	O licencjacie	1	[{"added": {}}]	108	1
+2903	2025-08-25 22:03:20.10199+02	30	O życiu	1	[{"added": {}}]	108	1
+2904	2025-08-25 22:03:34.065274+02	4	A teraz	2	[{"changed": {"fields": ["Znani BCS autorzy", "Kategoria piosenki", "Tekst w formacie .json"]}}]	109	1
+2905	2025-08-25 22:03:51.807309+02	4	A teraz	2	[{"changed": {"fields": ["Kategoria piosenki"]}}]	109	1
+2906	2025-08-25 22:05:36.091237+02	4	A teraz	2	[{"changed": {"fields": ["Tekst w formacie .json"]}}]	109	1
+2907	2025-08-25 22:07:07.550072+02	5	Autoportret	1	[{"added": {}}]	109	1
+2908	2025-08-25 22:08:16.029374+02	31	O górach	1	[{"added": {}}]	108	1
+2909	2025-08-25 22:09:07.969387+02	6	Azymut	1	[{"added": {}}]	109	1
+2910	2025-08-25 22:10:22.989826+02	32	Szanty	1	[{"added": {}}]	108	1
+2911	2025-08-25 22:11:05.17602+02	7	Bitwa	1	[{"added": {}}]	109	1
+2912	2025-08-25 22:12:54.238869+02	8	Chłopiec moich marzeń	1	[{"added": {}}]	109	1
+2913	2025-08-25 22:19:48.756854+02	9	Chodź na wycieczkę	1	[{"added": {}}]	109	1
+2914	2025-08-25 22:21:28.393679+02	10	Chyba że akurat	1	[{"added": {}}]	109	1
+2915	2025-08-25 22:22:27.683463+02	11	Cisza na jeziorze	1	[{"added": {}}]	109	1
+2916	2025-08-25 22:24:33.954633+02	33	O sesji	1	[{"added": {}}]	108	1
+2917	2025-08-25 22:24:57.921342+02	12	Cywil	1	[{"added": {}}]	109	1
+2918	2025-08-25 22:26:32.196031+02	34	Religijna	1	[{"added": {}}]	108	1
+2919	2025-08-25 22:27:12.523429+02	13	Hava nagila	1	[{"added": {}}]	109	1
+2920	2025-08-25 22:30:52.189523+02	14	Jasnowłosa	1	[{"added": {}}]	109	1
+2921	2025-08-25 22:32:22.633564+02	35	Poezja	1	[{"added": {}}]	108	1
+2922	2025-08-25 22:32:28.884698+02	15	Kapcie	1	[{"added": {}}]	109	1
+2923	2025-08-25 22:33:25.028363+02	5	Autoportret	2	[{"changed": {"fields": ["Kategoria piosenki"]}}]	109	1
+2924	2025-08-25 22:37:02.443218+02	16	Karne	1	[{"added": {}}]	109	1
+2925	2025-08-25 22:39:00.998471+02	36	Dis	1	[{"added": {}}]	108	1
+2926	2025-08-25 22:40:03.370382+02	17	Kawa	1	[{"added": {}}]	109	1
+2927	2025-08-25 22:40:21.523105+02	12	Cywil	2	[{"changed": {"fields": ["Kategoria piosenki"]}}]	109	1
+2928	2025-08-25 23:02:20.479561+02	18	Konsta	1	[{"added": {}}]	109	1
+2929	2025-08-25 23:02:38.233934+02	15	Studenckie	2	[{"changed": {"fields": ["Nazwa kategorii"]}}]	108	1
+2932	2025-08-25 23:03:35.266955+02	12	Cywil	2	[{"changed": {"fields": ["Kategoria piosenki"]}}]	109	1
+2933	2025-08-25 23:03:51.248386+02	16	Karne	2	[{"changed": {"fields": ["Kategoria piosenki"]}}]	109	1
+2934	2025-08-25 23:04:59.096686+02	19	Licencjat	1	[{"added": {}}]	109	1
+2935	2025-08-25 23:07:11.174766+02	20	Lubię mówić z Tobą	1	[{"added": {}}]	109	1
+2936	2025-08-25 23:08:14.922354+02	21	Mój świat	1	[{"added": {}}]	109	1
+2937	2025-08-25 23:10:10.137883+02	22	Morskie Opowieści	1	[{"added": {}}]	109	1
+2938	2025-08-25 23:10:53.603011+02	37	Ballady	1	[{"added": {}}]	108	1
+2939	2025-08-25 23:11:26.29632+02	23	Mury	1	[{"added": {}}]	109	1
+2940	2025-08-25 23:12:44.814777+02	24	Nie mam weny	1	[{"added": {}}]	109	1
+2941	2025-08-25 23:13:36.667532+02	25	OK	1	[{"added": {}}]	109	1
+2942	2025-08-25 23:15:03.600119+02	26	Ponury Kraków	1	[{"added": {}}]	109	1
+2943	2025-08-25 23:16:06.978876+02	27	Poranek	1	[{"added": {}}]	109	1
+2944	2025-08-25 23:17:56.433136+02	28	Przechyły	1	[{"added": {}}]	109	1
+2945	2025-08-25 23:19:08.864309+02	29	Słowny Punk	1	[{"added": {}}]	109	1
+2946	2025-08-25 23:21:42.2573+02	30	Świat jest niesprawiedliwy	1	[{"added": {}}]	109	1
+2947	2025-08-25 23:22:42.741507+02	38	O chłopakach	1	[{"added": {}}]	108	1
+2948	2025-08-25 23:23:00.448403+02	31	Swój chłop	1	[{"added": {}}]	109	1
+2949	2025-08-25 23:23:12.387499+02	8	Chłopiec moich marzeń	2	[{"changed": {"fields": ["Kategoria piosenki"]}}]	109	1
+2950	2025-08-25 23:24:01.923042+02	32	Szynka	1	[{"added": {}}]	109	1
+2951	2025-08-25 23:25:11.31542+02	33	Teraz jeszcze nie	1	[{"added": {}}]	109	1
+2952	2025-08-25 23:26:00.140174+02	39	Nostalgiczne	1	[{"added": {}}]	108	1
+2953	2025-08-25 23:27:16.508427+02	34	Wehikuł czasu	1	[{"added": {}}]	109	1
+2954	2025-08-25 23:28:40.250155+02	6	Azymut	2	[{"changed": {"fields": ["Kategoria piosenki"]}}]	109	1
+2955	2025-08-25 23:28:50.432533+02	14	Jasnowłosa	2	[{"changed": {"fields": ["Kategoria piosenki"]}}]	109	1
+2956	2025-08-25 23:29:52.820477+02	25	OK	2	[{"changed": {"fields": ["Kategoria piosenki"]}}]	109	1
+2957	2025-08-25 23:31:20.594111+02	35	Wszystkie byłe Damiana	1	[{"added": {}}]	109	1
+2958	2025-08-25 23:32:31.583279+02	36	Wyznanie	1	[{"added": {}}]	109	1
+2959	2025-08-25 23:33:41.958665+02	37	Znowu wyszło słońce	1	[{"added": {}}]	109	1
 \.
 
 
@@ -4852,6 +4916,7 @@ COPY public.django_migrations (id, app, name, applied) FROM stdin;
 377	kalendarz	0008_depositiobeanorum	2025-08-24 19:18:53.25813+02
 378	kalendarz	0009_alter_depositiobeanorum_chrzczeni	2025-08-24 20:34:41.401941+02
 379	kalendarz	0010_depositiobeanorum_dokument	2025-08-24 23:36:48.72204+02
+380	spiewnik	0003_alter_piosenka_autor_alter_piosenka_tekst_and_more	2025-08-25 22:00:55.536467+02
 \.
 
 
@@ -6510,7 +6575,6 @@ COPY public.miejsca_miejsce (id, nazwa, adres, typ_id, zamkniete_na_stale) FROM 
 74	Multikino	Dobrego Pasterza 128, 31-416 Kraków, Polska	17	f
 76	Zielona Góra	Zielona Góra, Polska	5	f
 78	SST "Lasek"	Pewel Wielka 4, 34-340 Pewel Wielka, Polska	18	f
-80	Kawiarnia Piast	Piastowska 47, 30-067 Kraków, Polska	28	f
 82	Wydział Chemii UJ	Gronostajowa 2, 30-387 Kraków, Polska	2	f
 84	Entropia	Warszauera 1, 31-057 Kraków, Polska	11	f
 86	Kasinka Mała	Kasinka Mała, Polska	5	f
@@ -6528,6 +6592,7 @@ COPY public.miejsca_miejsce (id, nazwa, adres, typ_id, zamkniete_na_stale) FROM 
 110	Kamieniołom Libana	Za Torem 22, 33-332 Kraków, Polska	30	f
 44	Castel Gajdolfo	Zabierzów, Polska	25	f
 68	New York Pizza Department (NYPD)	al. 29 Listopada 57, 31-425 Kraków, Polska	8	f
+80	Cafe Piast	Piastowska 47, 30-067 Kraków, Polska	28	f
 \.
 
 
@@ -7654,7 +7719,6 @@ COPY public.spiewnik_kategoriapiosenki (id, nazwa) FROM stdin;
 12	Miłosne
 13	Patriotyczne
 14	Żołnierskie
-15	O studiach
 16	O Krakowie
 17	O seksie
 18	Prawnicze
@@ -7669,6 +7733,19 @@ COPY public.spiewnik_kategoriapiosenki (id, nazwa) FROM stdin;
 1	Hymny BCS UJ
 26	Hymny innych bractw
 27	Żakowskie
+28	Harcerskie
+29	O licencjacie
+30	O życiu
+31	O górach
+32	Szanty
+33	O sesji
+34	Religijna
+35	Poezja
+36	Dis
+15	Studenckie
+37	Ballady
+38	O chłopakach
+39	Nostalgiczne
 \.
 
 
@@ -7678,7 +7755,42 @@ COPY public.spiewnik_kategoriapiosenki (id, nazwa) FROM stdin;
 
 COPY public.spiewnik_piosenka (id, tytul, autor, tekst, tekst_alternatywny) FROM stdin;
 1	Gaudeamus Igitur	Nieznany	piosenki/Gaudeamus_Igitur_1_Vd3O8fR.json	
+3	Anioł i Diabeł	Agnieszka Osiecka	piosenki/Anioł_i_Diabeł_1.json	
+7	Bitwa	Nieznany	piosenki/Bitwa.json	
+9	Chodź na wycieczkę		piosenki/Chodz_na_wycieczke_1.json	
+10	Chyba że akurat		piosenki/Chyba_ze_akurat_1.json	
+11	Cisza na jeziorze		piosenki/Cisza_na_jeziorze_1.json	
+13	Hava nagila	Abraham Zvi Idelson	piosenki/Hava_Nagila_1.json	
+15	Kapcie		piosenki/Kapcie_1.json	
+5	Autoportret		piosenki/Autoportret_1.json	
+17	Kawa		piosenki/Kawa_1.json	
+18	Konsta		piosenki/Konsta_1.json	
+4	A teraz		piosenki/A_teraz_1_Uy7yaWh.json	
 2	Breve regnum erigitur	Nieznany	piosenki/Breve_Regnum_Erigitur_1.json	
+12	Cywil		piosenki/Cywil_1.json	
+16	Karne		piosenki/Karne_1.json	
+19	Licencjat		piosenki/Licencjat_1.json	
+20	Lubię mówić z Tobą	AKURAT	piosenki/Lubie_Mowic_z_Toba_1.json	
+21	Mój świat		piosenki/Moj_swiat_1.json	
+22	Morskie Opowieści	Brytyjska Marynarka Wojenna	piosenki/Morskie_Opowiesci_1.json	
+23	Mury	Jacek Kaczmarski	piosenki/Mury_1.json	
+24	Nie mam weny		piosenki/Nie_mam_weny_1.json	
+26	Ponury Kraków		piosenki/Ponury_Krakow_1.json	
+27	Poranek		piosenki/Poranek_1.json	
+28	Przechyły	Paweł Orkisz	piosenki/Przechyly_1.json	
+29	Słowny Punk		piosenki/Slowny_Punk_1.json	
+30	Świat jest niesprawiedliwy	SMKKPMzO	piosenki/Swiat_jest_niesprawiedliwy_1.json	
+31	Swój chłop		piosenki/Swoj_chlop_1.json	
+8	Chłopiec moich marzeń		piosenki/Chlopiec_moich_marzen_1.json	
+32	Szynka		piosenki/Szynka_1.json	
+33	Teraz jeszcze nie		piosenki/Teraz_jeszcze_nie_1.json	
+34	Wehikuł czasu	Dżem	piosenki/Wehikul_Czasu_1.json	
+6	Azymut		piosenki/Azymut_1.json	
+14	Jasnowłosa	Roman Roczeń	piosenki/Jasnowlosa_1.json	
+25	OK		piosenki/OK_1.json	
+35	Wszystkie byłe Damiana		piosenki/Wszystkie_byle_Damiana_1.json	
+36	Wyznanie		piosenki/Wyznanie_1.json	
+37	Znowu wyszło słońce		piosenki/Znowu_wyszlo_slonce_1.json	
 \.
 
 
@@ -7693,6 +7805,125 @@ COPY public.spiewnik_piosenka_kategorie (id, piosenka_id, kategoriapiosenki_id) 
 4	2	1
 5	2	27
 6	2	4
+7	3	28
+8	3	22
+9	3	6
+10	4	7
+11	4	15
+12	4	20
+13	4	29
+14	4	30
+15	4	16
+16	5	30
+17	5	7
+18	6	12
+19	6	31
+20	6	22
+21	6	7
+22	7	32
+23	8	12
+24	8	7
+25	9	20
+26	9	22
+27	9	30
+28	9	7
+29	10	30
+30	10	7
+31	11	32
+32	11	20
+33	11	6
+34	11	7
+35	12	33
+36	12	9
+37	12	17
+38	12	18
+39	12	20
+40	13	34
+41	13	5
+42	14	32
+43	14	12
+44	15	35
+45	15	12
+46	15	30
+47	15	7
+48	5	35
+49	16	17
+50	16	18
+51	16	20
+52	16	33
+53	17	9
+54	17	36
+55	17	20
+56	17	7
+57	12	36
+58	18	33
+59	18	36
+60	18	9
+61	18	18
+62	18	20
+63	12	15
+64	16	15
+65	19	36
+66	19	7
+67	19	9
+68	19	15
+69	19	20
+70	19	29
+71	20	11
+72	20	12
+73	21	35
+74	21	30
+75	21	7
+76	22	32
+77	22	6
+78	22	9
+79	22	17
+80	22	20
+81	22	23
+82	23	24
+83	23	13
+84	23	35
+85	23	37
+86	24	35
+87	24	20
+88	24	30
+89	24	7
+90	25	35
+91	25	7
+92	26	16
+93	26	35
+94	26	7
+95	27	35
+96	27	7
+97	28	32
+98	28	20
+99	29	35
+100	29	20
+101	29	30
+102	29	7
+103	30	20
+104	31	20
+105	31	38
+106	31	7
+107	8	38
+108	32	20
+109	32	7
+110	33	15
+111	33	30
+112	33	7
+113	34	11
+114	34	30
+115	34	39
+116	6	39
+117	14	39
+118	25	39
+119	35	36
+120	35	20
+121	35	7
+122	36	20
+123	37	15
+124	37	30
+125	37	7
 \.
 
 
@@ -7701,6 +7932,27 @@ COPY public.spiewnik_piosenka_kategorie (id, piosenka_id, kategoriapiosenki_id) 
 --
 
 COPY public.spiewnik_piosenka_znani_czapce_autorzy (id, piosenka_id, osoba_id) FROM stdin;
+1	4	120
+2	5	120
+3	6	120
+4	8	120
+5	9	120
+6	10	120
+7	11	120
+8	15	120
+9	17	120
+10	19	120
+11	21	120
+12	24	120
+13	25	120
+14	26	120
+15	27	120
+16	29	120
+17	31	120
+18	32	120
+19	33	120
+20	35	120
+21	37	120
 \.
 
 
@@ -7940,7 +8192,7 @@ SELECT pg_catalog.setval('public.czlonkowie_zwierzeczapkowe_id_seq', 13, true);
 -- Name: django_admin_log_id_seq; Type: SEQUENCE SET; Schema: public; Owner: projectuser
 --
 
-SELECT pg_catalog.setval('public.django_admin_log_id_seq', 2895, true);
+SELECT pg_catalog.setval('public.django_admin_log_id_seq', 2959, true);
 
 
 --
@@ -7954,7 +8206,7 @@ SELECT pg_catalog.setval('public.django_content_type_id_seq', 110, true);
 -- Name: django_migrations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: projectuser
 --
 
-SELECT pg_catalog.setval('public.django_migrations_id_seq', 379, true);
+SELECT pg_catalog.setval('public.django_migrations_id_seq', 380, true);
 
 
 --
@@ -8234,28 +8486,28 @@ SELECT pg_catalog.setval('public.slowniczek_lacinski_zwrot_id_seq', 31, true);
 -- Name: spiewnik_kategoriapiosenki_id_seq; Type: SEQUENCE SET; Schema: public; Owner: projectuser
 --
 
-SELECT pg_catalog.setval('public.spiewnik_kategoriapiosenki_id_seq', 27, true);
+SELECT pg_catalog.setval('public.spiewnik_kategoriapiosenki_id_seq', 39, true);
 
 
 --
 -- Name: spiewnik_piosenka_id_seq; Type: SEQUENCE SET; Schema: public; Owner: projectuser
 --
 
-SELECT pg_catalog.setval('public.spiewnik_piosenka_id_seq', 2, true);
+SELECT pg_catalog.setval('public.spiewnik_piosenka_id_seq', 37, true);
 
 
 --
 -- Name: spiewnik_piosenka_kategorie_id_seq; Type: SEQUENCE SET; Schema: public; Owner: projectuser
 --
 
-SELECT pg_catalog.setval('public.spiewnik_piosenka_kategorie_id_seq', 6, true);
+SELECT pg_catalog.setval('public.spiewnik_piosenka_kategorie_id_seq', 125, true);
 
 
 --
 -- Name: spiewnik_piosenka_znani_czapce_autorzy_id_seq; Type: SEQUENCE SET; Schema: public; Owner: projectuser
 --
 
-SELECT pg_catalog.setval('public.spiewnik_piosenka_znani_czapce_autorzy_id_seq', 1, false);
+SELECT pg_catalog.setval('public.spiewnik_piosenka_znani_czapce_autorzy_id_seq', 21, true);
 
 
 --
