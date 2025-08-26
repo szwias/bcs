@@ -572,7 +572,7 @@ class Zarzad(Byt):
         null=True,
         on_delete=models.SET_NULL,
         verbose_name="Wybory",
-        related_name="zarzad_wybrany_na_wydarzeniu"
+        related_name="zarzad_wybrany_na_wydarzeniu",
     )
 
     koniec_urzedu = models.ForeignKey(
@@ -589,9 +589,14 @@ class Zarzad(Byt):
         ordering = ["kadencja"]
 
     def __str__(self):
-        return (
-            f"Zarząd {str(self.kadencja)} - WM {str(self.wielki_mistrz.imie)}"
+        data_rozp = str(self.wybory.get_data) if self.wybory else "początek"
+        data_zak = (
+            str(self.koniec_urzedu.get_data)
+            if self.koniec_urzedu
+            else "koniec"
         )
+        wm = str(self.wielki_mistrz.imie)
+        return f"Zarząd {str(self.kadencja)} {data_rozp}-{data_zak} - WM {wm}"
 
 
 class DawnyZarzad(Zarzad):
