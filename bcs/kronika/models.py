@@ -133,12 +133,26 @@ class WydarzenieHistoryczne(models.Model):
         if str(self.typ).lower() in self.nazwa.lower():
             typ = ""
         else:
-            typ = self.typ
+            typ = str(self.typ)
 
         if self.wydarzenie:
             data = self.wydarzenie.data_rozpoczecia
         else:
             data = self.data_przyblizona
+
+        nazwa = str(self.nazwa)
+        words = typ.lower().split()
+        nazwa_lower = nazwa.lower()
+
+        # check every contiguous subsequence of words
+        for i in range(len(words)):
+            for j in range(i + 1, len(words) + 1):
+                seq = " ".join(words[i:j])
+                if seq and seq in nazwa_lower:
+                    typ = ""
+                    break
+            if typ == "":
+                break
 
         return f'{data}: {typ} "{self.nazwa}"'
 
