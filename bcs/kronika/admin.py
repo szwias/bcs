@@ -14,6 +14,19 @@ class KadencjaAdmin(BaseModelAdmin):
 @admin.register(WydarzenieHistoryczne)
 class WydarzenieHistoryczneAdmin(BaseModelAdmin):
     list_filter = ["typ"]
+    list_display = [
+        "get_data",
+        "get_typ",
+        "nazwa"
+    ]
+
+    def get_data(self, obj):
+        return obj.get_data
+    get_data.short_description = "Data"
+
+    def get_typ(self, obj):
+        return obj.typ
+    get_typ.short_description = "Typ wydarzenia"
 
 
 register_all_models(
