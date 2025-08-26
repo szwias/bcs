@@ -39,7 +39,7 @@ Notes:
 
 parser = argparse.ArgumentParser(
     description=description_text,
-    formatter_class=argparse.RawTextHelpFormatter  # preserve line breaks
+    formatter_class=argparse.RawTextHelpFormatter,  # preserve line breaks
 )
 
 # Required positional arguments
@@ -49,7 +49,7 @@ parser.add_argument(
     help="""
 What to process:
 - "file" : process a single file
-- "dir"  : process all files in a directory"""
+- "dir"  : process all files in a directory""",
 )
 parser.add_argument(
     "mode",
@@ -58,28 +58,30 @@ parser.add_argument(
 How to interpret the input file(s):
 - "dull"   : first line = number of chord rows, next N lines = chords, remaining lines = lyrics
 - "cols"   : first half of lines are chords, second half are lyrics
-- "points" : first line contains comma-separated point indices for sections"""
+- "points" : first line contains comma-separated point indices for sections""",
 )
 parser.add_argument(
-    "input",
+    "--input",
+    "-i",
+    default=INPUT_PATH,
     help=f"""
 Path to the input file or input directory depending on scope
 - For "file" scope, provide the filename relative to {INPUT_PATH}
-- For "dir" scope, provide the path to a directory containing text files"""
+- For "dir" scope, provide the path to a directory containing text files""",
 )
 parser.add_argument(
-    "output",
+    "--output",
+    "-o",
+    default=OUTPUT_PATH,
     help=f"""
 Path to the output file or output directory depending on scope
 - For "file" scope, the output JSON filename (without "_1.json") relative to {OUTPUT_PATH}
-- For "dir" scope, the directory where converted JSON files will be written"""
+- For "dir" scope, the directory where converted JSON files will be written""",
 )
 
 # Optional argument
 parser.add_argument(
-    "--encoding", "-e",
-    default="utf-8",
-    help="File encoding (default utf-8)"
+    "--encoding", "-e", default="utf-8", help="File encoding (default utf-8)"
 )
 
 args = parser.parse_args()
@@ -96,13 +98,12 @@ def parse_chords(line: str):
 
 def build_object(text, chords):
     new_line = ""
-    new_line += "  {\"tekst\": \""
-    new_line += text.replace("\"", "\\\"")
-    new_line += "\",\n"
-    new_line += "   \"chwyty\": ["
+    new_line += '  {"tekst": "'
+    new_line += text.replace('"', '\\"')
+    new_line += '",\n'
+    new_line += '   "chwyty": ['
     f_chords = parse_chords(chords)
-    new_line += ", ".join(
-        [f"\"{ch}\"" for ch in f_chords if ch != " "])
+    new_line += ", ".join([f'"{ch}"' for ch in f_chords if ch != " "])
     new_line += "]},\n"
     return new_line
 
@@ -112,15 +113,17 @@ def logic(in_file, out_file):
     with open(in_file, "r", encoding=args.encoding) as f:
         lines = [l.strip() for l in f.readlines()]
 
-        if      mode == "dull":
+        if mode == "dull":
             rows = int(lines[0])
-            chords = lines[1:rows + 1]
+            chords = lines[1 : rows + 1]
             inside = False
             start = 0
             for i in range(rows + 1, len(lines)):
                 line = lines[i]
                 if not (
-                        line.strip() == "" or line[:3].upper() == "REF"
+                    line.strip() == ""
+                    or line[:3].upper() == "REF"
+                    or line[0] == "("
                 ):
                     if not inside:
                         inside = True
@@ -130,15 +133,20 @@ def logic(in_file, out_file):
                     inside = False
                     result.append(build_object(line, ""))
 
-        elif    mode == "cols":
+        elif mode == "cols":
             if len(lines) % 2:
-                result.append("  {\"tekst\": \"" + lines[0] + "\",\n  \"chords\": []},\n")
+                result.append(
+                    '  {"tekst": "' + lines[0] + '",\n  "chords": []},\n'
+                )
                 lines = lines[1:]
 
             half = len(lines) // 2
-            [result.append(build_object(lines[half + i], lines[i])) for i in range(half)]
+            [
+                result.append(build_object(lines[half + i], lines[i]))
+                for i in range(half)
+            ]
 
-        elif    mode == "points":
+        elif mode == "points":
             points = [int(num) for num in lines[0].split(",")]
             point = 0
             inside = False
