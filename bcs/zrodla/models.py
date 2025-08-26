@@ -55,9 +55,6 @@ class Dokument(Zrodlo):
         data = self.data or ""
         return f"{self.tytul} - {data}"
 
-    def short_description(self):
-        return str(self.streszczenie) or ""
-
 
 class Edykt(Dokument):
     numer = models.IntegerField(blank=True, null=True, verbose_name="Numer")

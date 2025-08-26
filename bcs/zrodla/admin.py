@@ -16,11 +16,6 @@ class DokumentAdmin(ZrodloAdmin):
     list_filter_exclude = ["polymorphic_ctype"]
     list_display = ["tytul", "streszczenie"]
 
-    def streszczenie(self, obj):
-        return obj.streszczenie()
-
-    streszczenie.short_description = "Streszczenie"
-
 
 @admin.register(ZrodloOgolne)
 class ZrodloOgolneAdmin(ZrodloAdmin):
