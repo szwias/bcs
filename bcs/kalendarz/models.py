@@ -230,8 +230,18 @@ class Wydarzenie(WydarzenieKalendarzowe):
         else:
             typ = ""
 
-        if typ.lower() in self.nazwa.lower():
-            typ = ""
+        words = typ.lower().split()
+        nazwa_lower = self.nazwa.lower()
+
+        # check every contiguous subsequence of words
+        for i in range(len(words)):
+            for j in range(i + 1, len(words) + 1):
+                seq = " ".join(words[i:j])
+                if seq and seq in nazwa_lower:
+                    typ = ""
+                    break
+            if typ == "":
+                break
 
         name += f': {typ} "{self.nazwa}"'
         return name
