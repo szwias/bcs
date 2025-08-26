@@ -82,11 +82,9 @@ class TypWydarzeniaHistorycznego(models.Model):
 class WydarzenieHistoryczne(models.Model):
     nazwa = models.CharField(max_length=MEDIUM_LENGTH, verbose_name="Nazwa")
 
-    typ = models.ForeignKey(
+    typy = models.ManyToManyField(
         TypWydarzeniaHistorycznego,
         blank=True,
-        null=True,
-        on_delete=models.SET_NULL,
         verbose_name="Typ wydarzenia historycznego",
     )
 
@@ -137,11 +135,15 @@ class WydarzenieHistoryczne(models.Model):
             else self.data_przyblizona
         )
 
+    @property
+    def get_types(self):
+        return ", ".join([str(t) for t in self.typy.all()])
+
     def __str__(self):
-        if str(self.typ).lower() in self.nazwa.lower():
+        if str(self.get_types).lower() in self.nazwa.lower():
             typ = ""
         else:
-            typ = str(self.typ)
+            typ = str(self.get_types)
 
         nazwa = str(self.nazwa)
         words = typ.lower().split()

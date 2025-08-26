@@ -13,7 +13,8 @@ class KadencjaAdmin(BaseModelAdmin):
 
 @admin.register(WydarzenieHistoryczne)
 class WydarzenieHistoryczneAdmin(BaseModelAdmin):
-    list_filter = ["typ"]
+    list_filter = ["typy"]
+    filter_horizontal = ["typy"]
     list_display = [
         "get_data",
         "get_typ",
@@ -25,7 +26,7 @@ class WydarzenieHistoryczneAdmin(BaseModelAdmin):
     get_data.short_description = "Data"
 
     def get_typ(self, obj):
-        return obj.typ
+        return ", ".join([str(t) for t in obj.typy.all()])
     get_typ.short_description = "Typ wydarzenia"
 
 
