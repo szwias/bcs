@@ -586,7 +586,7 @@ class Zarzad(Byt):
     class Meta:
         verbose_name = "Zarząd"
         verbose_name_plural = "Zarządy"
-        ordering = ["kadencja"]
+        ordering = ["-wybory__wydarzenie__data_rozpoczecia"]
 
     def __str__(self):
         data_rozp = str(self.wybory.get_data) if self.wybory else "początek"
@@ -596,7 +596,8 @@ class Zarzad(Byt):
             else "koniec"
         )
         wm = str(self.wielki_mistrz.imie)
-        return f"Zarząd {str(self.kadencja)} {data_rozp}-{data_zak} - WM {wm}"
+        return \
+            f"Zarząd {str(self.kadencja)} - WM {wm}: {data_rozp} - {data_zak}"
 
 
 class DawnyZarzad(Zarzad):
