@@ -127,7 +127,7 @@ class WydarzenieHistoryczne(models.Model):
     class Meta:
         verbose_name = "Wydarzenie historyczne"
         verbose_name_plural = "Wydarzenia historyczne"
-        ordering = ["nazwa"]
+        ordering = ["-wydarzenie__data_rozpoczecia", "-data_przyblizona"]
 
     @property
     def get_data(self):
