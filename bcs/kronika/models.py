@@ -129,16 +129,19 @@ class WydarzenieHistoryczne(models.Model):
         verbose_name_plural = "Wydarzenia historyczne"
         ordering = ["nazwa"]
 
+    @property
+    def get_data(self):
+        return (
+            self.wydarzenie.data_rozpoczecia
+            if self.wydarzenie
+            else self.data_przyblizona
+        )
+
     def __str__(self):
         if str(self.typ).lower() in self.nazwa.lower():
             typ = ""
         else:
             typ = str(self.typ)
-
-        if self.wydarzenie:
-            data = self.wydarzenie.data_rozpoczecia
-        else:
-            data = self.data_przyblizona
 
         nazwa = str(self.nazwa)
         words = typ.lower().split()
@@ -154,7 +157,7 @@ class WydarzenieHistoryczne(models.Model):
             if typ == "":
                 break
 
-        return f'{data}: {typ} "{self.nazwa}"'
+        return f'{self.get_data}: {typ} "{self.nazwa}"'
 
 
 class ZadanieChrzcielne(models.Model):
