@@ -53,14 +53,7 @@ class KomisjaRewizyjnaForm(forms.ModelForm):
 class NowyZarzadForm(forms.ModelForm):
     class Meta:
         model = NowyZarzad
-        fields = [
-            "kadencja",
-            "wielki_mistrz",
-            "kasztelan",
-            "skarbnik",
-            "sekretarz",
-            "cantandi",
-        ]
+        fields = "__all__"
         widgets = build_widgets(autocomplete_widgets[NowyZarzad.__name__])
 
 
