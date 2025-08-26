@@ -7,7 +7,10 @@ from .models import (
 )
 from core.utils.autocompletion.AutocompletesGeneration import *
 
+from encyklopedia.models_dict import names as encyklopedia
+from kalendarz.models_dict import names as kalendarz
 from osoby.models_dict import names as osoby
+from zrodla.models_dict import names as zrodla
 
 autocomplete_configs = [
     (
@@ -23,7 +26,16 @@ autocomplete_configs = [
         [Kadencja.__name__, WydarzenieHistoryczne.__name__, osoby["Zarzad"]],
     ),
     (TypWydarzeniaHistorycznego, [], [], []),
-    (WydarzenieHistoryczne, [], [], [TypWydarzeniaHistorycznego.__name__]),
+    (
+        WydarzenieHistoryczne,
+        [],
+        [],
+        [
+            TypWydarzeniaHistorycznego.__name__,
+            encyklopedia["Pojecie"],
+            kalendarz["WydarzenieKalendarzowe"],
+            zrodla["Dokument"],
+        ]),
     (ZadanieChrzcielne, [], [], [osoby["Czlonek"]]),
 ]
 

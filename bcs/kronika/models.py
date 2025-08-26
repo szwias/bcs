@@ -103,6 +103,22 @@ class WydarzenieHistoryczne(models.Model):
         related_name="powiazane_wydarzenie_historyczne",
     )
 
+    dokument = models.ForeignKey(
+        "zrodla.Dokument",
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+        verbose_name="Powiązany dokument",
+    )
+
+    pojecie = models.ForeignKey(
+        "encyklopedia.Pojecie",
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+        verbose_name="Link do pojęcia ze słownika",
+    )
+
     class Meta:
         verbose_name = "Wydarzenie historyczne"
         verbose_name_plural = "Wydarzenia historyczne"
