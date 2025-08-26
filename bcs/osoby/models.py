@@ -566,6 +566,23 @@ class Zarzad(Byt):
         related_name="kadencje_jako_cantandi_dawnego_zarzadu",
     )
 
+    wybory = models.ForeignKey(
+        "kronika.WydarzenieHistoryczne",
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+        verbose_name="Wybory",
+        related_name="zarzad_wybrany_na_wydarzeniu"
+    )
+
+    koniec_urzedu = models.ForeignKey(
+        "kronika.WydarzenieHistoryczne",
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+        verbose_name="Wydarzenie kończące urząd w tym składzie",
+    )
+
     class Meta:
         verbose_name = "Zarząd"
         verbose_name_plural = "Zarządy"

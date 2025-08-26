@@ -37,8 +37,9 @@ autocomplete_configs = [
         [
             Czlonek.__name__,
             WielkiMistrz.__name__,
-            kronika["PodsumowanieKadencji"],
             kronika["Kadencja"],
+            kronika["PodsumowanieKadencji"],
+            kronika["WydarzenieHistoryczne"],
         ],
     ),
     (HallOfFame, [], [], [Osoba.__name__]),
@@ -52,8 +53,9 @@ autocomplete_configs = [
         [
             Czlonek.__name__,
             WielkiMistrz.__name__,
-            kronika["PodsumowanieKadencji"],
             kronika["Kadencja"],
+            kronika["PodsumowanieKadencji"],
+            kronika["WydarzenieHistoryczne"],
         ],
     ),
     (Osoba, [], [], []),
