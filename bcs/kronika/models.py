@@ -90,6 +90,13 @@ class WydarzenieHistoryczne(models.Model):
         verbose_name="Typ wydarzenia historycznego",
     )
 
+    data_przyblizona = models.CharField(
+        max_length=MEDIUM_LENGTH,
+        blank=True,
+        null=True,
+        verbose_name="Data przybliżona",
+    )
+
     opis = models.TextField(blank=True, null=True, verbose_name="Opis")
 
     wydarzenie = models.ForeignKey(
@@ -131,7 +138,7 @@ class WydarzenieHistoryczne(models.Model):
         if self.wydarzenie:
             data = self.wydarzenie.data_rozpoczecia
         else:
-            data = "Data nieznana"
+            data = self.data_przyblizona
 
         return f'{data}: {typ} "{self.nazwa}"'
 
