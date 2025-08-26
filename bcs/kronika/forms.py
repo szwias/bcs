@@ -45,22 +45,6 @@ class WydarzenieHistoryczneForm(forms.ModelForm):
             autocomplete_widgets[WydarzenieHistoryczne.__name__]
         )
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-
-        data_value = self.data.get("data") or self.initial.get("data")
-
-        if data_value:
-            self.fields["wydarzenie"].queryset = (
-                WydarzenieKalendarzowe.objects.filter(
-                    data_rozpoczecia=data_value
-                )
-            )
-        else:
-            self.fields["wydarzenie"].queryset = (
-                WydarzenieKalendarzowe.objects.none()
-            )
-
 
 class ZadanieChrzcielneForm(forms.ModelForm):
     class Meta:

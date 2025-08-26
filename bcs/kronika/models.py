@@ -90,8 +90,6 @@ class WydarzenieHistoryczne(models.Model):
         verbose_name="Typ wydarzenia historycznego",
     )
 
-    data = models.DateField(blank=True, null=True, verbose_name="Data")
-
     opis = models.TextField(blank=True, null=True, verbose_name="Opis")
 
     wydarzenie = models.ForeignKey(
@@ -129,7 +127,13 @@ class WydarzenieHistoryczne(models.Model):
             typ = ""
         else:
             typ = self.typ
-        return f'{self.data}: {typ} "{self.nazwa}"'
+
+        if self.wydarzenie:
+            data = self.wydarzenie.data_rozpoczecia
+        else:
+            data = "Data nieznana"
+
+        return f'{data}: {typ} "{self.nazwa}"'
 
 
 class ZadanieChrzcielne(models.Model):
