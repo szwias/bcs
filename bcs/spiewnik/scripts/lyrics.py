@@ -1,61 +1,91 @@
 #!/usr/bin/env python
-import sys
 import os
 import re
+import argparse
 
-if len(sys.argv) < 5:
-    print(f"Usage: {sys.argv[0]} <scope> <mode> <input> <output>")
-    sys.exit(0)
-elif "--help" in sys.argv or "-h" in sys.argv:
-    print(
-        """
-        Song Lyrics to JSON Converter
+INPUT_PATH = "/home/szymon/Desktop/BCS/Piosenki/Pre/"
+OUTPUT_PATH = "/home/szymon/Desktop/BCS/Piosenki/"
 
-        Usage:
-            python lyrics_converter.py <scope> <mode> <input> <output>
+description_text = """
+Song Lyrics to JSON Converter
 
-        Arguments:
-            scope          What to process:
-                              - "file" : process a single file
-                              - "dir"  : process all files in a directory
+This script reads song lyrics text files, optionally with chords, and converts them
+into JSON format suitable for use in a songbook application. Each line becomes a JSON
+object with the "tekst" (lyrics) field and an array of chords ("chwyty").
 
-            mode           How to interpret the input file(s):
-                              - "cols"   : first half of lines are chords, second half are lyrics
-                              - "points" : first line contains comma-separated point indices for sections
+Chords are parsed to respect parentheses, e.g.:
+    ea(A7)  -> ["e", "a", "(A7)"]
 
-            input          Path to the input file or input directory depending on scope
-                              - For "file" scope, provide the filename relative to /home/szymon/Downloads/Śpiewnik/
-                              - For "dir" scope, provide the path to a directory containing text files
+The "dull" mode is for files where the first line gives the number of chord rows,
+the next N lines contain chords, and the remaining lines are lyrics.
+Lines starting with "REF" or blank lines are treated as separators and have no chords.
 
-            output         Path to the output file or output directory depending on scope
-                              - For "file" scope, the output JSON filename (without "_1.json")
-                              - For "dir" scope, the directory where converted JSON files will be written
+Examples:
+  Convert a single file in "dull" mode:
+    python lyrics_converter.py file dull "song.txt" "song_output"
 
-        Description:
-            This script reads song lyrics text files, optionally with chords, and converts them
-            into JSON format suitable for use in a songbook application. Each line becomes a JSON
-            object with the "tekst" (lyrics) field and an array of chords ("chwyty").
+  Convert a single file in "cols" mode:
+    python lyrics_converter.py file cols "Gaudeamus.txt" "gaudeamus"
 
-            Chords are parsed to respect parentheses, e.g.:
-                ea(A7)  -> ["e", "a", "(A7)"]
+  Convert all files in a directory using "points" mode:
+    python lyrics_converter.py dir points "/home/user/input_songs" "/home/user/output_json"
 
-        Examples:
-            # Convert a single file
-            python lyrics_converter.py file cols "Gaudeamus.txt" "gaudeamus"
+Notes:
+  - Ensure that input files are UTF-8 encoded.
+  - The script automatically creates output directories if they do not exist.
+  - Parentheses in chords are preserved in the JSON output.
+  - Double quotes are used for chords and text in JSON for proper formatting.
+"""
 
-            # Convert all files in a directory
-            python lyrics_converter.py dir points "/home/user/input_songs" "/home/user/output_json"
+parser = argparse.ArgumentParser(
+    description=description_text,
+    formatter_class=argparse.RawTextHelpFormatter  # preserve line breaks
+)
 
-        Notes:
-            - Ensure that input files are UTF-8 encoded.
-            - The script automatically creates output directories if they do not exist.
-            - Parentheses in chords are preserved.
-        """
-    )
-    sys.exit(1)
+# Required positional arguments
+parser.add_argument(
+    "scope",
+    choices=["file", "dir"],
+    help="""
+What to process:
+- "file" : process a single file
+- "dir"  : process all files in a directory"""
+)
+parser.add_argument(
+    "mode",
+    choices=["dull", "cols", "points"],
+    help="""
+How to interpret the input file(s):
+- "dull"   : first line = number of chord rows, next N lines = chords, remaining lines = lyrics
+- "cols"   : first half of lines are chords, second half are lyrics
+- "points" : first line contains comma-separated point indices for sections"""
+)
+parser.add_argument(
+    "input",
+    help=f"""
+Path to the input file or input directory depending on scope
+- For "file" scope, provide the filename relative to {INPUT_PATH}
+- For "dir" scope, provide the path to a directory containing text files"""
+)
+parser.add_argument(
+    "output",
+    help=f"""
+Path to the output file or output directory depending on scope
+- For "file" scope, the output JSON filename (without "_1.json") relative to {OUTPUT_PATH}
+- For "dir" scope, the directory where converted JSON files will be written"""
+)
 
-scope = sys.argv[1]
-mode = sys.argv[2]
+# Optional argument
+parser.add_argument(
+    "--encoding", "-e",
+    default="utf-8",
+    help="File encoding (default utf-8)"
+)
+
+args = parser.parse_args()
+
+scope = args.scope
+mode = args.mode
 
 
 def parse_chords(line: str):
@@ -66,36 +96,49 @@ def parse_chords(line: str):
 
 def build_object(text, chords):
     new_line = ""
-    new_line += '  {"tekst": "'
-    new_line += text.replace('"', '\\"')
-    new_line += '",\n'
-    new_line += '   "chwyty": ['
+    new_line += "  {\"tekst\": \""
+    new_line += text.replace("\"", "\\\"")
+    new_line += "\",\n"
+    new_line += "   \"chwyty\": ["
     f_chords = parse_chords(chords)
-    new_line += ", ".join([f'"{ch}"' for ch in f_chords if ch != " "])
+    new_line += ", ".join(
+        [f"\"{ch}\"" for ch in f_chords if ch != " "])
     new_line += "]},\n"
     return new_line
 
 
 def logic(in_file, out_file):
     result = []
-    with open(in_file, "r", encoding="utf-8") as f:
+    with open(in_file, "r", encoding=args.encoding) as f:
         lines = [l.strip() for l in f.readlines()]
 
-        if mode == "cols":
+        if      mode == "dull":
+            rows = int(lines[0])
+            chords = lines[1:rows + 1]
+            inside = False
+            start = 0
+            for i in range(rows + 1, len(lines)):
+                line = lines[i]
+                if not (
+                        line.strip() == "" or line[:3].upper() == "REF"
+                ):
+                    if not inside:
+                        inside = True
+                        start = i
+                    result.append(build_object(line, chords[i - start]))
+                else:
+                    inside = False
+                    result.append(build_object(line, ""))
+
+        elif    mode == "cols":
             if len(lines) % 2:
-                result.append(
-                    '  {"tekst": "' + lines[0] + '",\n  "chords": []},\n'
-                )
+                result.append("  {\"tekst\": \"" + lines[0] + "\",\n  \"chords\": []},\n")
                 lines = lines[1:]
 
             half = len(lines) // 2
-            [
-                result.append(build_object(lines[half + i], lines[i]))
-                for i in range(half)
-            ]
-            result[-1] = result[-1][:-2] + "\n"
+            [result.append(build_object(lines[half + i], lines[i])) for i in range(half)]
 
-        elif mode == "points":
+        elif    mode == "points":
             points = [int(num) for num in lines[0].split(",")]
             point = 0
             inside = False
@@ -117,9 +160,9 @@ def logic(in_file, out_file):
                 else:
                     result.append(build_object(lines[i], ""))
 
-            result[-1] = result[-1][:-2] + "\n"
+    result[-1] = result[-1][:-2] + "\n"
 
-    with open(out_file, "w", encoding="utf-8") as out:
+    with open(out_file, "w", encoding=args.encoding) as out:
         out.write("[\n")
         out.writelines(result)
         out.write("]")
@@ -127,8 +170,8 @@ def logic(in_file, out_file):
 
 if scope == "dir":
 
-    input_dir = sys.argv[3]
-    output_dir = sys.argv[4]
+    input_dir = args.input
+    output_dir = args.output
 
     # Ensure output directory exists
     os.makedirs(output_dir, exist_ok=True)
@@ -149,9 +192,7 @@ if scope == "dir":
 
 elif scope == "file":
 
-    input_file = "/home/szymon/Downloads/Śpiewnik/" + sys.argv[3]
-    output_file = (
-        "/home/szymon/Desktop/BCS/Piosenki/" + sys.argv[4] + "_1.json"
-    )
+    input_file = INPUT_PATH + args.input
+    output_file = OUTPUT_PATH + args.output + "_1.json"
 
     logic(input_file, output_file)
