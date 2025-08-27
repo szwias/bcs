@@ -1,4 +1,4 @@
-from core.utils.autocomplete import *
+from core.utils.autocompletion.autocomplete import *
 from django.apps import apps
 from django.urls import path
 from dal import autocomplete
