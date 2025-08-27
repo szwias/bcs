@@ -35,7 +35,7 @@ autocomplete_configs = [
         [
             GrupaBractw.__name__,
             kalendarz["WydarzenieKalendarzowe"],
-            osoby["Osoba"],
+            osoby["Byt"],
         ],
     ),
     (TradycjaInnegoBractwa, [], [], [GrupaBractw.__name__]),

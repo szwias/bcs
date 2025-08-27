@@ -218,7 +218,7 @@ class TradycjaBCS(models.Model):
     )
 
     autor = models.ForeignKey(
-        "osoby.Osoba",
+        "osoby.Byt",
         blank=True,
         null=True,
         on_delete=models.SET_NULL,
@@ -271,22 +271,23 @@ class TradycjaBCS(models.Model):
         ordering = ("nazwa",)
 
     def __str__(self):
-        autorska = (
-            " - Autorska"
-            if self.zapozyczona_czy_autorska == TradycjaBCS.Origins.AUTORSKA
-            else ""
-        )
-        kontekst = ", "
-        if (
-            self.okolicznosci_powstania == Okolicznosci.WYDARZENIE
-            and self.wydarzenie
-        ):
-            kontekst += str(self.wydarzenie)
-        elif self.okolicznosci_powstania == Okolicznosci.INNE and self.inne:
-            kontekst += str(self.inne)
-        else:
-            kontekst = ""
-        return f"{self.nazwa}{autorska}{kontekst}"
+        # autorska = (
+        #     " - Autorska"
+        #     if self.zapozyczona_czy_autorska == TradycjaBCS.Origins.AUTORSKA
+        #     else ""
+        # )
+        # kontekst = ", "
+        # if (
+        #     self.okolicznosci_powstania == Okolicznosci.WYDARZENIE
+        #     and self.wydarzenie
+        # ):
+        #     kontekst += str(self.wydarzenie)
+        # elif self.okolicznosci_powstania == Okolicznosci.INNE and self.inne:
+        #     kontekst += str(self.inne)
+        # else:
+        #     kontekst = ""
+        # return f"{self.nazwa}{autorska}{kontekst}"
+        return self.nazwa
 
 
 class TradycjaInnegoBractwa(models.Model):
