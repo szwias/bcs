@@ -36,8 +36,14 @@ autocomplete_configs = [
             encyklopedia["Pojecie"],
             kalendarz["WydarzenieKalendarzowe"],
             zrodla["Dokument"],
-        ]),
-    (ZadanieChrzcielne, [], [], [osoby["Czlonek"]]),
+        ]
+    ),
+    (
+        ZadanieChrzcielne,
+        [],
+        [],
+        [KategoriaZadaniaChrzcielnego.__name__, osoby["Czlonek"]]
+    ),
 ]
 
 autocomplete_urls, autocomplete_widgets = setup_autocompletes(

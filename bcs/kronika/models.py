@@ -188,6 +188,14 @@ class ZadanieChrzcielne(models.Model):
         related_name="zadanie_chrzcielne",
     )
 
+    kategoria = models.ForeignKey(
+        KategoriaZadaniaChrzcielnego,
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+        verbose_name="Kategoria",
+    )
+
     opis = models.TextField(blank=True, null=True, verbose_name="Opis")
 
     zalacznik = models.FileField(
@@ -209,4 +217,4 @@ class ZadanieChrzcielne(models.Model):
         ordering = ["-autor__depositio_beanorum__data_rozpoczecia"]
 
     def __str__(self):
-        return f"{self.autor} - {self.nazwa}"
+        return f"{self.autor} - {self.nazwa} - {self.kategoria}"
