@@ -9,7 +9,7 @@ from .models import (
     Osoba,
     WielkiMistrz,
     NowyZarzad,
-    ZwierzeCzapkowe,
+    ZwierzeCzapkowe, Zespol, KoordynatorZespolu,
 )
 from core.utils.autocompletion.AutocompletesGeneration import *
 
@@ -17,6 +17,7 @@ from czapki.models_dict import names as czapki
 from encyklopedia.models_dict import names as encyklopedia
 from kalendarz.models_dict import names as kalendarz
 from kronika.models_dict import names as kronika
+from zrodla.models_dict import names as zrodla
 
 autocomplete_configs = [
     (Bean, ["staz"], [], [Czlonek.__name__, czapki["Czapka"]]),
@@ -58,8 +59,10 @@ autocomplete_configs = [
             kronika["WydarzenieHistoryczne"],
         ],
     ),
+    (KoordynatorZespolu, [], [], [Osoba.__name__, Zespol.__name__]),
     (Osoba, [], [], []),
     (WielkiMistrz, [], [], [Czlonek.__name__]),
+    (Zespol, [], [], [Osoba.__name__, zrodla["Dokument"]]),
     (ZwierzeCzapkowe, [], [], [Czlonek.__name__]),
 ]
 

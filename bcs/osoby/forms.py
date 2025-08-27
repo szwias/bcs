@@ -57,6 +57,22 @@ class NowyZarzadForm(forms.ModelForm):
         widgets = build_widgets(autocomplete_widgets[NowyZarzad.__name__])
 
 
+class ZespolForm(forms.ModelForm):
+    class Meta:
+        model = Zespol
+        fields = "__all__"
+        widgets = build_widgets(autocomplete_widgets[Zespol.__name__])
+
+
+class KoordynatorZespoluForm(forms.ModelForm):
+    class Meta:
+        model = KoordynatorZespolu
+        fields = "__all__"
+        widgets = build_widgets(
+            autocomplete_widgets[KoordynatorZespolu.__name__]
+        )
+
+
 # OsobaForm Family
 # ----------------------------------------------
 class OsobaForm(forms.ModelForm):

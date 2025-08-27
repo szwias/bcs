@@ -9,10 +9,12 @@ from .models import (
     ImieSzlacheckie,
     InnaOsoba,
     KomisjaRewizyjna,
+    KoordynatorZespolu,
     NowyZarzad,
     Osoba,
     WielkiMistrz,
     Zarzad,
+    Zespol,
     ZwierzeCzapkowe,
 )
 
@@ -28,6 +30,9 @@ add_model_name(InnaOsoba, names, "InnaOsoba")
 
 add_model_name(DawnyZarzad, names, "DawnyZarzad")
 add_model_name(NowyZarzad, names, "NowyZarzad")
+
+add_model_name(KoordynatorZespolu, names, "KoordynatorZespolu")
+add_model_name(Zespol, names, "Zespol")
 
 add_model_name(ImieSzlacheckie, names, "ImieSzlacheckie")
 add_model_name(KomisjaRewizyjna, names, "KomisjaRewizyjna")

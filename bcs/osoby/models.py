@@ -488,6 +488,82 @@ class WielkiMistrz(models.Model):
         super().save(*args, **kwargs)
 
 
+class Zespol(models.Model):
+    nazwa = models.CharField(
+        max_length=MEDIUM_LENGTH,
+        verbose_name="Nazwa",
+    )
+
+    cel = models.TextField(
+        blank=True,
+        verbose_name="Cele",
+    )
+
+    czlonkowie = models.ManyToManyField(
+        Osoba,
+        blank=True,
+        verbose_name="Członkowie"
+    )
+
+    dokument = models.ForeignKey(
+        "zrodla.Dokument",
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+        verbose_name="Dokument powołujący",
+    )
+
+    class Meta:
+        verbose_name = "Zespół"
+        verbose_name_plural = "Zespoły"
+        ordering = ["-dokument__data", "nazwa"]
+
+    @property
+    def get_data(self):
+        return "Data nieznana" if not self.dokument else self.dokument.data
+
+    def __str__(self):
+        return self.nazwa
+
+
+class KoordynatorZespolu(models.Model):
+    osoba = models.ForeignKey(
+        Osoba,
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+        verbose_name="Osoba",
+    )
+
+    zespol = models.ForeignKey(
+        Zespol,
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+        verbose_name="Zespół",
+    )
+
+    rozpoczecie_urzedu = models.DateField(
+        blank=True,
+        null=True,
+        verbose_name="Rozpoczęcie urzędu",
+    )
+
+    koniec_urzedu = models.DateField(
+        blank=True,
+        null=True,
+        verbose_name="Koniec urzędu",
+    )
+
+    class Meta:
+        verbose_name = "Koordynator Zespołu"
+        verbose_name_plural = "Koordynatorzy zespołów"
+        ordering = ["zespol", "-rozpoczecie_urzedu"]
+
+    def __str__(self):
+        return f"{str(self.osoba)} - {str(self.zespol)}"
+
+
 class ZwierzeCzapkowe(models.Model):
     czlonek = models.ForeignKey(
         Czlonek, on_delete=models.SET_NULL, null=True, verbose_name="Członek"
