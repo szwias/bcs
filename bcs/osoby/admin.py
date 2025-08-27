@@ -16,7 +16,7 @@ from .models import (
     NowyZarzad,
     Osoba,
     WielkiMistrz,
-    ZwierzeCzapkowe, Zespol,
+    ZwierzeCzapkowe, Zespol, KoordynatorZespolu,
 )
 from kronika.inlines import PodsumowanieKadencjiInline
 
@@ -89,6 +89,10 @@ class ZespolAdmin(BaseModelAdmin):
     inlines = [KoordynatorZespoluInline]
     filter_horizontal = ["czlonkowie"]
 
+@admin.register(KoordynatorZespolu)
+class KoordynatorZespoluAdmin(BaseModelAdmin):
+    list_display = ["zespol", "osoba"]
+
 
 register_all_models(
     custom_admins={
@@ -100,6 +104,7 @@ register_all_models(
         ImieSzlacheckie: ImieSzlacheckieAdmin,
         InnaOsoba: InnaOsobaAdmin,
         KomisjaRewizyjna: KomisjaRewizyjnaAdmin,
+        KoordynatorZespolu: KoordynatorZespoluAdmin,
         Osoba: OsobaAdmin,
         WielkiMistrz: WielkiMistrzAdmin,
         Zespol: ZespolAdmin,
