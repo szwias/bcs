@@ -194,7 +194,7 @@ class ZadanieChrzcielne(models.Model):
     class Meta:
         verbose_name = "Zadanie chrzcielne"
         verbose_name_plural = "Zadania chrzcielne"
-        ordering = ["nazwa"]
+        ordering = ["-autor__depositio_beanorum__data_rozpoczecia"]
 
     def __str__(self):
         return f"{self.autor} - {self.nazwa}"
