@@ -500,9 +500,7 @@ class Zespol(models.Model):
     )
 
     czlonkowie = models.ManyToManyField(
-        Osoba,
-        blank=True,
-        verbose_name="Członkowie"
+        Osoba, blank=True, verbose_name="Członkowie"
     )
 
     dokument = models.ForeignKey(
@@ -672,8 +670,9 @@ class Zarzad(Byt):
             else "koniec"
         )
         wm = str(self.wielki_mistrz.imie)
-        return \
+        return (
             f"Zarząd {str(self.kadencja)} - WM {wm}: {data_rozp} - {data_zak}"
+        )
 
 
 class DawnyZarzad(Zarzad):

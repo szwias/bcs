@@ -18,18 +18,16 @@ class KadencjaAdmin(BaseModelAdmin):
 class WydarzenieHistoryczneAdmin(BaseModelAdmin):
     list_filter = [YearFilter, "typy"]
     filter_horizontal = ["typy"]
-    list_display = [
-        "get_data",
-        "get_typ",
-        "nazwa"
-    ]
+    list_display = ["get_data", "get_typ", "nazwa"]
 
     def get_data(self, obj):
         return obj.get_data
+
     get_data.short_description = "Data"
 
     def get_typ(self, obj):
         return ", ".join([str(t) for t in obj.typy.all()])
+
     get_typ.short_description = "Typ wydarzenia"
 
 
@@ -48,12 +46,13 @@ class ZadanieChrzcielneAdmin(BaseModelAdmin):
 
     def first_author_date(self, obj):
         return obj.first_author_date
+
     first_author_date.admin_order_field = "first_author_date"
 
     def get_authors(self, obj):
         return ", ".join([str(a) for a in obj.autorzy.all()])
-    get_authors.short_description = "Autorzy"
 
+    get_authors.short_description = "Autorzy"
 
 
 register_all_models(

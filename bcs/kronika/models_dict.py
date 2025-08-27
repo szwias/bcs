@@ -1,9 +1,12 @@
 from collections import defaultdict
 from core.utils.autocompletion.AutocompletesGeneration import add_model_name
 from .models import (
-    Kadencja, PodsumowanieKadencji,
-    TypWydarzeniaHistorycznego, WydarzenieHistoryczne,
-    ZadanieChrzcielne, KategoriaZadaniaChrzcielnego,
+    Kadencja,
+    PodsumowanieKadencji,
+    TypWydarzeniaHistorycznego,
+    WydarzenieHistoryczne,
+    ZadanieChrzcielne,
+    KategoriaZadaniaChrzcielnego,
 )
 
 names = defaultdict(str)
@@ -14,5 +17,7 @@ add_model_name(PodsumowanieKadencji, names, "PodsumowanieKadencji")
 add_model_name(TypWydarzeniaHistorycznego, names, "TypWydarzenieHistorycznego")
 add_model_name(WydarzenieHistoryczne, names, "WydarzenieHistoryczne")
 
-add_model_name(KategoriaZadaniaChrzcielnego, names, "KategoriaZadaniaChrzcielnego")
+add_model_name(
+    KategoriaZadaniaChrzcielnego, names, "KategoriaZadaniaChrzcielnego"
+)
 add_model_name(ZadanieChrzcielne, names, "ZadanieChrzcielne")

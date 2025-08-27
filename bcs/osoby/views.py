@@ -9,7 +9,9 @@ from .models import (
     Osoba,
     WielkiMistrz,
     NowyZarzad,
-    ZwierzeCzapkowe, Zespol, KoordynatorZespolu,
+    ZwierzeCzapkowe,
+    Zespol,
+    KoordynatorZespolu,
 )
 from core.utils.autocompletion.AutocompletesGeneration import *
 

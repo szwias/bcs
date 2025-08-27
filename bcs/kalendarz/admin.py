@@ -15,9 +15,6 @@ from .filters import YearListFilter
 from multimedia.inlines import ObrazWydarzenieInline, ObrazZdarzenieInline
 
 
-
-
-
 @admin.register(DepositioBeanorum)
 class DepositioBeanorumAdmin(BaseModelAdmin):
     save_as = True

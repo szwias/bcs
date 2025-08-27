@@ -3,7 +3,8 @@ from .models import (
     PodsumowanieKadencji,
     TypWydarzeniaHistorycznego,
     WydarzenieHistoryczne,
-    ZadanieChrzcielne, KategoriaZadaniaChrzcielnego,
+    ZadanieChrzcielne,
+    KategoriaZadaniaChrzcielnego,
 )
 from core.utils.autocompletion.AutocompletesGeneration import *
 
@@ -36,13 +37,13 @@ autocomplete_configs = [
             encyklopedia["Pojecie"],
             kalendarz["WydarzenieKalendarzowe"],
             zrodla["Dokument"],
-        ]
+        ],
     ),
     (
         ZadanieChrzcielne,
         [],
         [],
-        [KategoriaZadaniaChrzcielnego.__name__, osoby["Czlonek"]]
+        [KategoriaZadaniaChrzcielnego.__name__, osoby["Czlonek"]],
     ),
 ]
 

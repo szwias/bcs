@@ -23,7 +23,7 @@ class EdyktForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['autorzy'].queryset = Byt.objects.instance_of(
+        self.fields["autorzy"].queryset = Byt.objects.instance_of(
             apps.get_model(osoby["Czlonek"]), apps.get_model(osoby["Zarzad"])
         )
 
@@ -36,9 +36,10 @@ class UkazForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['autorzy'].queryset = Byt.objects.instance_of(
+        self.fields["autorzy"].queryset = Byt.objects.instance_of(
             apps.get_model(osoby["Czlonek"]), apps.get_model(osoby["Zarzad"])
         )
+
 
 class ZrodloForm(forms.ModelForm):
     class Meta:
