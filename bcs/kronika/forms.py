@@ -6,7 +6,7 @@ from .models import (
     PodsumowanieKadencji,
     TypWydarzeniaHistorycznego,
     WydarzenieHistoryczne,
-    ZadanieChrzcielne,
+    ZadanieChrzcielne, KategoriaZadaniaChrzcielnego,
 )
 from .views import autocomplete_widgets
 from core.utils.autocompletion.AutocompletesGeneration import build_widgets
@@ -17,6 +17,15 @@ class KadencjaForm(forms.ModelForm):
         model = Kadencja
         fields = "__all__"
         widgets = build_widgets(autocomplete_widgets[Kadencja.__name__])
+
+
+class KategoriaZadaniaChrzcielnegoForm(forms.ModelForm):
+    class Meta:
+        model = KategoriaZadaniaChrzcielnego
+        fields = "__all__"
+        widgets = build_widgets(
+            autocomplete_widgets[KategoriaZadaniaChrzcielnego.__name__]
+        )
 
 
 class PodsumowanieKadencjiForm(forms.ModelForm):

@@ -162,6 +162,18 @@ class WydarzenieHistoryczne(models.Model):
         return f'{self.get_data}: {typ} "{self.nazwa}"'
 
 
+class KategoriaZadaniaChrzcielnego(models.Model):
+    nazwa = models.CharField(max_length=MEDIUM_LENGTH, verbose_name="Nazwa")
+
+    class Meta:
+        verbose_name = "Kategoria zadania chrzcielnego"
+        verbose_name_plural = "Kategorie zadań chrzcielnych"
+        ordering = ["nazwa"]
+
+    def __str__(self):
+        return self.nazwa
+
+
 class ZadanieChrzcielne(models.Model):
     nazwa = models.CharField(
         max_length=NAME_LENGTH, verbose_name="Nazwa krótka"

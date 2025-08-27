@@ -3,7 +3,7 @@ from .models import (
     PodsumowanieKadencji,
     TypWydarzeniaHistorycznego,
     WydarzenieHistoryczne,
-    ZadanieChrzcielne,
+    ZadanieChrzcielne, KategoriaZadaniaChrzcielnego,
 )
 from core.utils.autocompletion.AutocompletesGeneration import *
 
@@ -25,6 +25,7 @@ autocomplete_configs = [
         [],
         [Kadencja.__name__, WydarzenieHistoryczne.__name__, osoby["Zarzad"]],
     ),
+    (KategoriaZadaniaChrzcielnego, [], [], []),
     (TypWydarzeniaHistorycznego, [], [], []),
     (
         WydarzenieHistoryczne,
