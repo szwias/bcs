@@ -228,7 +228,7 @@ class Czlonek(Osoba, OsobaBCS):
     )
 
     depositio_beanorum = models.ForeignKey(
-        "kalendarz.WydarzenieKalendarzowe",
+        "kalendarz.DepositioBeanorum",
         blank=True,
         null=True,
         on_delete=models.SET_NULL,
