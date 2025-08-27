@@ -4,6 +4,7 @@ from core.utils.automation.BaseAdmin import (
     register_all_models,
 )
 from kronika.models import Kadencja, WydarzenieHistoryczne
+from .filters import YearFilter
 
 
 @admin.register(Kadencja)
@@ -13,7 +14,7 @@ class KadencjaAdmin(BaseModelAdmin):
 
 @admin.register(WydarzenieHistoryczne)
 class WydarzenieHistoryczneAdmin(BaseModelAdmin):
-    list_filter = ["typy"]
+    list_filter = [YearFilter, "typy"]
     filter_horizontal = ["typy"]
     list_display = [
         "get_data",
