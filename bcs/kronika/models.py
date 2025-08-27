@@ -179,13 +179,10 @@ class ZadanieChrzcielne(models.Model):
         max_length=NAME_LENGTH, verbose_name="Nazwa krótka"
     )
 
-    autor = models.ForeignKey(
+    autorzy = models.ManyToManyField(
         "osoby.Czlonek",
         blank=True,
-        null=True,
-        on_delete=models.SET_NULL,
-        verbose_name="Autor",
-        related_name="zadanie_chrzcielne",
+        verbose_name="Autorzy",
     )
 
     kategoria = models.ForeignKey(
@@ -214,7 +211,7 @@ class ZadanieChrzcielne(models.Model):
     class Meta:
         verbose_name = "Zadanie chrzcielne"
         verbose_name_plural = "Zadania chrzcielne"
-        ordering = ["-autor__depositio_beanorum__data_rozpoczecia"]
 
     def __str__(self):
-        return f"{self.autor} - {self.nazwa} - {self.kategoria}"
+        autorzy = ", ".join([str(a) for a in list(self.autorzy.all())])
+        return f"{autorzy} - {self.nazwa} - {self.kategoria}"
