@@ -1,8 +1,11 @@
 from django import forms
+from django.apps import apps
+
 from .models import Dokument, Edykt, Ukaz, Zrodlo, ZrodloOgolne
-from osoby.models import Czlonek
 from .views import autocomplete_widgets
 from core.utils.autocompletion.AutocompletesGeneration import build_widgets
+from osoby.models_dict import names as osoby
+from osoby.models import Byt
 
 
 class DokumentForm(forms.ModelForm):
@@ -20,7 +23,9 @@ class EdyktForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields["autorzy"].queryset = Czlonek.objects.all()
+        self.fields['autorzy'].queryset = Byt.objects.instance_of(
+            apps.get_model(osoby["Czlonek"]), apps.get_model(osoby["Zarzad"])
+        )
 
 
 class UkazForm(forms.ModelForm):
@@ -31,8 +36,9 @@ class UkazForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields["autorzy"].queryset = Czlonek.objects.all()
-
+        self.fields['autorzy'].queryset = Byt.objects.instance_of(
+            apps.get_model(osoby["Czlonek"]), apps.get_model(osoby["Zarzad"])
+        )
 
 class ZrodloForm(forms.ModelForm):
     class Meta:

@@ -8,7 +8,7 @@ class Zrodlo(PolymorphicModel):
     tytul = models.CharField(max_length=MAX_LENGTH, verbose_name="Tytuł")
 
     autorzy = models.ManyToManyField(
-        "osoby.Osoba",
+        "osoby.Byt",
         blank=True,
         verbose_name="Autorzy",
         related_name="%(class)s_ktorych_jest_autorem",
