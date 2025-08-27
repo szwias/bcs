@@ -1,3 +1,4 @@
+from polymorphic.models import PolymorphicModel
 from django.http import JsonResponse
 from dal import autocomplete
 
@@ -58,6 +59,13 @@ class StrMatchingAutocomplete(autocomplete.Select2QuerySetView):
 
     def get_queryset(self):
         qs = self.model.objects.all()
+
+        has_custom_str = type(self.model()).__str__ is not object.__str__
+        if not has_custom_str and issubclass(self.model, PolymorphicModel):
+            qs = qs.select_subclasses()
+
         if self.q:
+            # filter by string representation of actual objects
             qs = [obj for obj in qs if self.q.lower() in str(obj).lower()]
+
         return qs
