@@ -4,6 +4,7 @@ from core.utils.automation.BaseAdmin import (
     register_all_models,
 )
 from core.utils.filters import UsedContentTypeFilter
+from .inlines import KoordynatorZespoluInline
 from .models import (
     Bean,
     Czlonek,
@@ -15,7 +16,7 @@ from .models import (
     NowyZarzad,
     Osoba,
     WielkiMistrz,
-    ZwierzeCzapkowe,
+    ZwierzeCzapkowe, Zespol,
 )
 from kronika.inlines import PodsumowanieKadencjiInline
 
@@ -83,6 +84,12 @@ class KomisjaRewizyjnaAdmin(BaseModelAdmin):
     filter_horizontal = ["sklad"]
 
 
+@admin.register(Zespol)
+class ZespolAdmin(BaseModelAdmin):
+    inlines = [KoordynatorZespoluInline]
+    filter_horizontal = ["czlonkowie"]
+
+
 register_all_models(
     custom_admins={
         Bean: BeanAdmin,
@@ -95,6 +102,7 @@ register_all_models(
         KomisjaRewizyjna: KomisjaRewizyjnaAdmin,
         Osoba: OsobaAdmin,
         WielkiMistrz: WielkiMistrzAdmin,
+        Zespol: ZespolAdmin,
         ZwierzeCzapkowe: ZwierzeCzapkoweAdmin,
     }
 )
