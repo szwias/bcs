@@ -13,6 +13,13 @@ class DawnyZarzadForm(forms.ModelForm):
         widgets = build_widgets(autocomplete_widgets[DawnyZarzad.__name__])
 
 
+class EgzekutorForm(forms.ModelForm):
+    class Meta:
+        model = Egzekutor
+        fields = "__all__"
+        widgets = build_widgets(autocomplete_widgets[Egzekutor.__name__])
+
+
 class HallOfFameForm(forms.ModelForm):
     class Meta:
         model = HallOfFame

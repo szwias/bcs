@@ -5,6 +5,7 @@ from .models import (
     Byt,
     Czlonek,
     DawnyZarzad,
+    Egzekutor,
     HallOfFame,
     ImieSzlacheckie,
     InnaOsoba,
@@ -31,6 +32,7 @@ add_model_name(InnaOsoba, names, "InnaOsoba")
 add_model_name(DawnyZarzad, names, "DawnyZarzad")
 add_model_name(NowyZarzad, names, "NowyZarzad")
 
+add_model_name(Egzekutor, names, "Egzekutor")
 add_model_name(KoordynatorZespolu, names, "KoordynatorZespolu")
 add_model_name(Zespol, names, "Zespol")
 

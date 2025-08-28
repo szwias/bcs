@@ -4,7 +4,7 @@ from core.utils.automation.BaseAdmin import (
     register_all_models,
 )
 from core.utils.filters import UsedContentTypeFilter
-from .inlines import KoordynatorZespoluInline
+from .inlines import KoordynatorZespoluInline, EgzekutorInline
 from .models import (
     Bean,
     Czlonek,
@@ -88,7 +88,7 @@ class KomisjaRewizyjnaAdmin(BaseModelAdmin):
 
 @admin.register(Zespol)
 class ZespolAdmin(BaseModelAdmin):
-    inlines = [KoordynatorZespoluInline]
+    inlines = [KoordynatorZespoluInline, EgzekutorInline]
     filter_horizontal = ["czlonkowie"]
 
 

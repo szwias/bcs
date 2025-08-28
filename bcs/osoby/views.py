@@ -11,7 +11,7 @@ from .models import (
     NowyZarzad,
     ZwierzeCzapkowe,
     Zespol,
-    KoordynatorZespolu,
+    KoordynatorZespolu, Egzekutor,
 )
 from core.utils.autocompletion.AutocompletesGeneration import *
 
@@ -45,10 +45,12 @@ autocomplete_configs = [
             kronika["WydarzenieHistoryczne"],
         ],
     ),
+    (Egzekutor, [], [], [Osoba.__name__, Zespol.__name__]),
     (HallOfFame, [], [], [Osoba.__name__]),
     (ImieSzlacheckie, [], [], [Czlonek.__name__]),
     (InnaOsoba, ["kategoria"], [], [encyklopedia["Bractwo"]]),
     (KomisjaRewizyjna, [], [], [Osoba.__name__, kronika["Kadencja"]]),
+    (KoordynatorZespolu, [], [], [Osoba.__name__, Zespol.__name__]),
     (
         NowyZarzad,
         [],
@@ -61,7 +63,6 @@ autocomplete_configs = [
             kronika["WydarzenieHistoryczne"],
         ],
     ),
-    (KoordynatorZespolu, [], [], [Osoba.__name__, Zespol.__name__]),
     (Osoba, [], [], []),
     (WielkiMistrz, [], [], [Czlonek.__name__]),
     (Zespol, [], [], [Osoba.__name__, zrodla["Dokument"]]),

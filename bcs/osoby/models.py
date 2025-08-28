@@ -562,6 +562,14 @@ class KoordynatorZespolu(models.Model):
         return f"{str(self.osoba)} - {str(self.zespol)}"
 
 
+class Egzekutor(KoordynatorZespolu):
+
+    class Meta:
+        verbose_name = "Egzekutor"
+        verbose_name_plural = "Egzekutorzy"
+        ordering = ["zespol", "-rozpoczecie_urzedu"]
+
+
 class ZwierzeCzapkowe(models.Model):
     czlonek = models.ForeignKey(
         Czlonek, on_delete=models.SET_NULL, null=True, verbose_name="Członek"
