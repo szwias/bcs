@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     "multimedia",
     "osoby",
     "prawo",
+    "skarbiec",
     "slowniczek_lacinski",
     "spiewnik",
     "zrodla",
