@@ -52,7 +52,7 @@ class Dokument(Zrodlo):
         ordering = ["-data"]
 
     def __str__(self):
-        data = self.data or ""
+        data = self.data or "Data nieznana"
         return f"{self.tytul} - {data}"
 
 

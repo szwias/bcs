@@ -1,4 +1,4 @@
-Python / SQL / HTML / Bash lines of code:
+Python / SQL / HTML / Bash / JSON lines written:
     I ------------------------------: APRIL/MAY; no tracking whatsoever - 1724 lines (~1.7K)
     23 kwietnia:    0       / 0 lines
     24 kwietnia:    x       / y lines
@@ -53,12 +53,12 @@ Python / SQL / HTML / Bash lines of code:
     15 sierpnia:    4830    / 9529  / 26    lines (+57  / +0    / +0)   = +57
     16 sierpnia:    4830    / 9529  / 26    lines (+0   / +0    / +0)   = +0
     VII ------------------------------------: AUGUST; added Bash & JSON lines tracking
-    21 sierpnia:    5000    / 10951 / 26    / 0     / 0     lines (+170 / +1422 / +0    / +0    / +0)   = +1592
-    22 sierpnia:    4942    / 10951 / 26    / 0     / 0     lines (-58  / +0    / +0    / +0    / +0)   = -58
-    24 sierpnia:    5263    / 11569 / 26    / 32    / 0     lines (+321 / +618  / +0    / +32   / +0)   = +971
-    25 sierpnia:    5423    / 11821 / 26    / 45    / 4593  lines (+160 / +252  / +0    / +13   / +4593 = +5018
-    26 sierpnia:    5555    / 12383 / 26    / 45    / 5020  lines (+132 / +562  / +0    / +0    / +427  = +1121
-    27 sierpnia:    5779    / 13299 / 26    / 45    / 5020  lines (+224 / +916  / +0    / +0    / +0    = +1140
+    21 sierpnia:    5000    / 10951 / 26    / 0     / 0     lines (+170 / +1422 / +0    / +0    / +0)       = +1592
+    22 sierpnia:    4942    / 10951 / 26    / 0     / 0     lines (-58  / +0    / +0    / +0    / +0)       = -58
+    24 sierpnia:    5263    / 11569 / 26    / 32    / 0     lines (+321 / +618  / +0    / +32   / +0)       = +971
+    25 sierpnia:    5423    / 11821 / 26    / 45    / 4593  lines (+160 / +252  / +0    / +13   / +4593)    = +5018
+    26 sierpnia:    5555    / 12383 / 26    / 45    / 5020  lines (+132 / +562  / +0    / +0    / +427)     = +1121
+    27 sierpnia:    5779    / 13299 / 26    / 45    / 5020  lines (+224 / +916  / +0    / +0    / +0)       = +1140
 
     PREVIOUS PERIODS:
         START OF PRODUCTION: 1742 lines so far (~1.7K), 1742 lines added (~1.7K)
