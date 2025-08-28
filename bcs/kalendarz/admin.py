@@ -1,4 +1,4 @@
-from core.utils.Czas import ROK_ZALOZENIA, BIEZACY_ROK
+from nested_admin.nested import NestedModelAdmin
 from core.utils.automation.BaseAdmin import (
     admin,
     BaseModelAdmin,
@@ -30,7 +30,7 @@ class WydarzenieKalendarzoweAdmin(BaseModelAdmin):
 
 
 @admin.register(Wydarzenie)
-class WydarzenieAdmin(BaseModelAdmin):
+class WydarzenieAdmin(NestedModelAdmin, BaseModelAdmin):
     save_as = True
     inlines = [ZdarzenieInline, ObrazWydarzenieInline]
     filter_horizontal = ("miejsca", "uczestnicy")
@@ -67,7 +67,7 @@ class WydarzenieAdmin(BaseModelAdmin):
 
 
 @admin.register(Zdarzenie)
-class ZdarzenieAdmin(BaseModelAdmin):
+class ZdarzenieAdmin(NestedModelAdmin, BaseModelAdmin):
     inlines = [ObrazZdarzenieInline]
     filter_horizontal = ["powiazane_osoby"]
     save_as = True

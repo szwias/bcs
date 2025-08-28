@@ -1,8 +1,8 @@
-from django.contrib import admin
+from nested_admin.nested import NestedStackedInline
 from .models import ObrazWydarzenie, ObrazZdarzenie
 
 
-class ObrazInline(admin.StackedInline):
+class ObrazInline(NestedStackedInline):
     extra = 0
     fields = ["tytul", "obraz"]
     show_change_link = True
@@ -16,3 +16,5 @@ class ObrazWydarzenieInline(ObrazInline):
 class ObrazZdarzenieInline(ObrazInline):
     model = ObrazZdarzenie
     filter_horizontal = ["widoczne_osoby"]
+    extra = 1  # ensures a form is available for new ZdarzenieInline
+    min_num = 0  # optional, if you don’t want validation
