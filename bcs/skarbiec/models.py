@@ -3,10 +3,12 @@ from django.db import models
 from django.core.exceptions import ValidationError
 from djmoney.models.fields import MoneyField
 from stdnum import iban  # biblioteka do walidacji IBAN
+import datetime
 
 from core.utils.Consts import IBAN_LENGTH, MAX_LENGTH
 
 User = get_user_model()
+
 
 class Konto(models.Model):
     wlasciciel = models.ForeignKey(
@@ -16,6 +18,13 @@ class Konto(models.Model):
         on_delete=models.SET_NULL,
         verbose_name="Właściciel"
     )
+
+    nazwa_alternatywna = models.CharField(
+        max_length=MAX_LENGTH,
+        blank=True,
+        verbose_name="Nazwa alternatywna"
+    )
+
     numer_konta = models.CharField(
         max_length=IBAN_LENGTH,
         blank=True,
@@ -26,13 +35,19 @@ class Konto(models.Model):
 
     opis = models.TextField(blank=True, verbose_name="Opis")
 
+    @property
+    def get_name(self):
+        if self.wlasciciel:
+            return str(self.wlasciciel)
+        return self.nazwa_alternatywna
+
     class Meta:
         verbose_name = "Konto"
         verbose_name_plural = "Konta"
-        ordering = ["wlasciciel"]
+        ordering = ["wlasciciel", "nazwa_alternatywna"]
 
     def __str__(self):
-        return str(self.wlasciciel)
+        return self.get_name
 
     def clean(self):
         """Walidacja numeru konta: IBAN jeśli możliwe, albo zwykły numer."""
@@ -68,10 +83,14 @@ class Transakcja(models.Model):
         max_digits=14,
         blank=True,
         decimal_places=2,
-        default_currency="PLN"
+        default_currency="PLN",
+        verbose_name="Kwota (z kropką zamiast przecinka)"
     )
 
-    data = models.DateField(auto_now=True, verbose_name="Data zaksięgowania")
+    data = models.DateField(
+        default=datetime.date.today,
+        verbose_name="Data zaksięgowania"
+    )
 
     opis = models.TextField(blank=True, verbose_name="Opis")
 

@@ -11,7 +11,8 @@ from .inlines import TransakcjaInline
 
 @admin.register(Konto)
 class KontoAdmin(BaseModelAdmin):
-    list_display = ["wlasciciel", "opis"]
+    list_display = ["get_name", "opis"]
+    list_filter_exclude = "__all__"
     inlines = [TransakcjaInline]
 
 

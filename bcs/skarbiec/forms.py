@@ -6,16 +6,18 @@ from .models import (
     Konto,
     Transakcja,
 )
+from djmoney.forms.fields import MoneyField
+
 
 class KontoForm(forms.ModelForm):
     class Meta:
         model = Konto
-        fields = '__all__'
+        fields = "__all__"
         widgets = build_widgets(autocomplete_widgets[Konto.__name__])
 
 
 class TransakcjaForm(forms.ModelForm):
     class Meta:
         model = Transakcja
-        fields = '__all__'
+        fields = "__all__"
         widgets = build_widgets(autocomplete_widgets[Transakcja.__name__])
