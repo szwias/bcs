@@ -3,5 +3,16 @@ from core.utils.automation.BaseAdmin import (
     BaseModelAdmin,
     register_all_models,
 )
+from .models import Zwrot
 
-register_all_models()
+
+@admin.register(Zwrot)
+class ZwrotAdmin(BaseModelAdmin):
+    list_display = ["zwrot", "tlumaczenie", "uzywany_na_karczmie"]
+
+
+register_all_models(
+    custom_admins={
+        Zwrot: ZwrotAdmin,
+    }
+)
