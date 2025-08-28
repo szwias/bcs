@@ -1,6 +1,7 @@
 from collections import defaultdict
 from core.utils.autocompletion.AutocompletesGeneration import add_model_name
 from .models import (
+    Chrzest,
     DepositioBeanorum,
     TypWydarzenia,
     TypWyjazdu,
@@ -11,6 +12,7 @@ from .models import (
 
 names = defaultdict(str)
 
+add_model_name(Chrzest, names, "Chrzest")
 add_model_name(DepositioBeanorum, names, "DepositioBeanorum")
 add_model_name(Wydarzenie, names, "Wydarzenie")
 add_model_name(WydarzenieKalendarzowe, names, "WydarzenieKalendarzowe")

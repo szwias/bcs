@@ -5,21 +5,27 @@ from core.utils.automation.BaseAdmin import (
     register_all_models,
 )
 from kalendarz.models import (
-    Zdarzenie,
+    Chrzest,
+    DepositioBeanorum,
     WydarzenieKalendarzowe,
     Wydarzenie,
-    DepositioBeanorum,
+    Zdarzenie,
 )
 from .inlines import ZdarzenieInline
 from .filters import YearListFilter
 from multimedia.inlines import ObrazWydarzenieInline, ObrazZdarzenieInline
 
 
-@admin.register(DepositioBeanorum)
-class DepositioBeanorumAdmin(BaseModelAdmin):
+@admin.register(Chrzest)
+class ChrzestAdmin(BaseModelAdmin):
     save_as = True
     filter_horizontal = ["chrzczeni"]
     list_filter_exclude = ["polymorphic_ctype", "wydarzeniekalendarzowe_ptr"]
+
+
+@admin.register(DepositioBeanorum)
+class DepositioBeanorumAdmin(ChrzestAdmin):
+    pass
 
 
 @admin.register(WydarzenieKalendarzowe)
@@ -76,6 +82,7 @@ class ZdarzenieAdmin(NestedModelAdmin, BaseModelAdmin):
 
 register_all_models(
     custom_admins={
+        Chrzest: ChrzestAdmin,
         DepositioBeanorum: DepositioBeanorumAdmin,
         Wydarzenie: WydarzenieAdmin,
         WydarzenieKalendarzowe: WydarzenieKalendarzoweAdmin,

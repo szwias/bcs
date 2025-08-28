@@ -114,6 +114,33 @@ class WydarzenieKalendarzowe(PolymorphicModel):
         return f"{self.data_rozpoczecia} - {self.nazwa}"
 
 
+class Chrzest(WydarzenieKalendarzowe):
+    miejsce = models.ForeignKey(
+        "miejsca.Miejsce",
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+        verbose_name="Miejsce",
+    )
+
+    chrzczeni = models.ManyToManyField(
+        "osoby.Czlonek",
+        blank=True,
+        verbose_name="Chrzczeni",
+    )
+
+    class Meta:
+        verbose_name = "Chrzest"
+        verbose_name_plural = "Chrzty"
+        ordering = ["-data_rozpoczecia"]
+
+    def __str__(self):
+        chrzczeni = ", ".join(
+            [f"{c.imie} {c.nazwisko}" for c in self.chrzczeni.all()]
+        )
+        return f'{self.data_rozpoczecia} "{self.nazwa}" - {chrzczeni}'
+
+
 class DepositioBeanorum(WydarzenieKalendarzowe):
 
     miejsce = models.ForeignKey(

@@ -2,15 +2,23 @@ from django import forms
 from dal import autocomplete
 
 from .models import (
+    Chrzest,
+    DepositioBeanorum,
     TypWydarzenia,
     TypWyjazdu,
     Wydarzenie,
     WydarzenieKalendarzowe,
     Zdarzenie,
-    DepositioBeanorum,
 )
 from .views import autocomplete_widgets
 from core.utils.autocompletion.AutocompletesGeneration import build_widgets
+
+
+class ChrzestForm(forms.ModelForm):
+    class Meta:
+        model = Chrzest
+        fields = "__all__"
+        widgets = build_widgets(autocomplete_widgets[Chrzest.__name__])
 
 
 class DepositioBeanorumForm(forms.ModelForm):
