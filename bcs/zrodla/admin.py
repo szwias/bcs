@@ -3,7 +3,8 @@ from core.utils.automation.BaseAdmin import (
     BaseModelAdmin,
     register_all_models,
 )
-from .models import Dokument, Edykt, Ukaz, Zrodlo, ZrodloOgolne, Oswiadczenie
+from .models import Dokument, Edykt, Ukaz, Zrodlo, ZrodloOgolne, Oswiadczenie, \
+    Rozliczenie
 
 
 @admin.register(Zrodlo)
@@ -15,6 +16,11 @@ class ZrodloAdmin(BaseModelAdmin):
 class DokumentAdmin(ZrodloAdmin):
     list_filter_exclude = ["polymorphic_ctype"]
     list_display = ["tytul", "streszczenie"]
+
+
+@admin.register(Rozliczenie)
+class RozliczenieAdmin(DokumentAdmin):
+    pass
 
 
 @admin.register(ZrodloOgolne)
@@ -43,6 +49,7 @@ register_all_models(
         Dokument: DokumentAdmin,
         Edykt: EdyktAdmin,
         Oswiadczenie: OswiadczenieAdmin,
+        Rozliczenie: RozliczenieAdmin,
         Ukaz: UkazAdmin,
         Zrodlo: ZrodloAdmin,
         ZrodloOgolne: ZrodloAdmin,
