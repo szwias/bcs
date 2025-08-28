@@ -4,7 +4,10 @@ from core.utils.automation.BaseAdmin import (
     BaseModelAdmin,
     register_all_models,
 )
-from prawo.models import RelacjaPrawna
+from prawo.models import (
+    RelacjaPrawna,
+    Rola,
+)
 
 
 @admin.register(RelacjaPrawna)
@@ -28,8 +31,15 @@ class RelacjaPrawnaAdmin(BaseModelAdmin):
         return ", ".join([str(p) for p in obj.podmiot.all()])
     get_podmiot.short_description = "Podmiot"
 
+
+@admin.register(Rola)
+class RolaAdmin(BaseModelAdmin):
+    list_display = ["nazwa", "aktualne"]
+
+
 register_all_models(
     custom_admins={
+        Rola: RolaAdmin,
         RelacjaPrawna: RelacjaPrawnaAdmin,
     }
 )
