@@ -71,6 +71,7 @@ class ZdarzenieAdmin(BaseModelAdmin):
     inlines = [ObrazZdarzenieInline]
     filter_horizontal = ["powiazane_osoby"]
     save_as = True
+    hide_from_index = True
 
 
 register_all_models(
