@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     "dal",  # django-autocomplete-light app
     "dal_select2",  # for the Select2 widget
     "django_cleanup.apps.CleanupConfig",  # cleans up files
+    "nested_admin", # for nested inlines
 ]
 
 MIDDLEWARE = [
