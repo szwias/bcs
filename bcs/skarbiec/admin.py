@@ -7,7 +7,9 @@ from core.utils.automation.BaseAdmin import (
 )
 from skarbiec.models import (
     Konto,
+    Transakcja,
 )
+from zrodla.inlines import RozliczenieInline
 from .inlines import TransakcjaInline
 
 
@@ -16,11 +18,14 @@ class KontoAdmin(NestedModelAdmin, BaseModelAdmin):
     list_display = ["wlasciciel", "opis"]
     inlines = [TransakcjaInline]
 
+@admin.register(Transakcja)
+class TransakcjaAdmin(BaseModelAdmin):
+    inlines = [RozliczenieInline]
 
 
 register_all_models(
-    custom_admins={}
     custom_admins={
         Konto: KontoAdmin,
+        Transakcja: TransakcjaAdmin,
     }
 )
