@@ -1,7 +1,7 @@
 from django import forms
 from django.apps import apps
 
-from .models import Dokument, Edykt, Ukaz, Zrodlo, ZrodloOgolne
+from .models import Dokument, Edykt, Ukaz, Zrodlo, ZrodloOgolne, Oswiadczenie
 from .views import autocomplete_widgets
 from core.utils.autocompletion.AutocompletesGeneration import build_widgets
 from osoby.models_dict import names as osoby
@@ -26,6 +26,13 @@ class EdyktForm(forms.ModelForm):
         self.fields["autorzy"].queryset = Byt.objects.instance_of(
             apps.get_model(osoby["Czlonek"]), apps.get_model(osoby["Zarzad"])
         )
+
+
+class OswiadczenieForm(forms.ModelForm):
+    class Meta:
+        model = Oswiadczenie
+        fields = "__all__"
+        widgets = build_widgets(autocomplete_widgets[Oswiadczenie.__name__])
 
 
 class UkazForm(forms.ModelForm):

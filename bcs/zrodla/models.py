@@ -56,6 +56,17 @@ class Dokument(Zrodlo):
         return f"{self.tytul} - {data}"
 
 
+class Oswiadczenie(Dokument):
+    class Meta:
+        verbose_name = "Oświadczenie"
+        verbose_name_plural = "Oświadczenia"
+        ordering = ["-data"]
+
+    def __str__(self):
+        data = self.data or "Data nieznana"
+        return f"{self.tytul} - {data}"
+
+
 class Edykt(Dokument):
     numer = models.IntegerField(blank=True, null=True, verbose_name="Numer")
 

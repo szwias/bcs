@@ -1,4 +1,4 @@
-from .models import Dokument, Edykt, Ukaz, Zrodlo, ZrodloOgolne
+from .models import Dokument, Edykt, Oswiadczenie, Ukaz, Zrodlo, ZrodloOgolne
 from core.utils.autocompletion.AutocompletesGeneration import *
 
 from osoby.models_dict import names as osoby
@@ -6,6 +6,7 @@ from osoby.models_dict import names as osoby
 autocomplete_configs = [
     (Dokument, [], [], [osoby["Byt"]]),
     (Edykt, [], [], [osoby["Byt"]]),
+    (Oswiadczenie, [], [], [osoby["Byt"]]),
     (Ukaz, [], [], [osoby["Byt"]]),
     (Zrodlo, [], [], [osoby["Byt"]]),
     (ZrodloOgolne, [], [], [osoby["Byt"]]),
