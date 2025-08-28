@@ -26,5 +26,4 @@ class Zwrot(models.Model):
         ordering = ["zwrot"]
 
     def __str__(self):
-        karczma = " (KARCZMA)" if self.uzywany_na_karczmie else ""
-        return f"{self.zwrot} - {self.tlumaczenie}{karczma}"
+        return f"{self.zwrot} - {self.tlumaczenie}"
