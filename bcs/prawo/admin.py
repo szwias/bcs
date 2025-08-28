@@ -10,8 +10,13 @@ from prawo.models import RelacjaPrawna
 @admin.register(RelacjaPrawna)
 class RelacjaPrawnaAdmin(BaseModelAdmin):
     filter_horizontal = ["podmiot"]
-    list_filter = ["prawo_czy_obowiazek", "podmiot", "przedawnione"]
     list_filter = ["prawo_czy_obowiazek", "podmiot", "aktualne"]
+    list_display = [
+        "get_podmiot",
+        "prawo_czy_obowiazek",
+        "tresc",
+        "aktualne"
+    ]
 
     def get_queryset(self, request):
         qs = super().get_queryset(request)
@@ -19,6 +24,9 @@ class RelacjaPrawnaAdmin(BaseModelAdmin):
             podmiot_list=StringAgg("podmiot__nazwa", delimiter=", ")
         ).order_by("podmiot_list")
 
+    def get_podmiot(self, obj):
+        return ", ".join([str(p) for p in obj.podmiot.all()])
+    get_podmiot.short_description = "Podmiot"
 
 register_all_models(
     custom_admins={
