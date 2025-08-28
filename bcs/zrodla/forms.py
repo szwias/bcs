@@ -1,7 +1,15 @@
 from django import forms
 from django.apps import apps
 
-from .models import Dokument, Edykt, Ukaz, Zrodlo, ZrodloOgolne, Oswiadczenie
+from .models import (
+    Dokument,
+    Edykt,
+    Oswiadczenie,
+    Rozliczenie,
+    Ukaz,
+    Zrodlo,
+    ZrodloOgolne,
+)
 from .views import autocomplete_widgets
 from core.utils.autocompletion.AutocompletesGeneration import build_widgets
 from osoby.models_dict import names as osoby
@@ -33,6 +41,13 @@ class OswiadczenieForm(forms.ModelForm):
         model = Oswiadczenie
         fields = "__all__"
         widgets = build_widgets(autocomplete_widgets[Oswiadczenie.__name__])
+
+
+class RozliczenieForm(forms.ModelForm):
+    class Meta:
+        model = Rozliczenie
+        fields = "__all__"
+        widgets = build_widgets(autocomplete_widgets[Rozliczenie.__name__])
 
 
 class UkazForm(forms.ModelForm):
