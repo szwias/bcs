@@ -57,7 +57,7 @@ class Transakcja(models.Model):
         null=True,
         on_delete=models.SET_NULL,
         verbose_name="Konto",
-        related_name="transakcje",
+        related_name="transakcje_z_tego_konta",
     )
 
     tytul = models.TextField(verbose_name="Tytuł")
@@ -75,6 +75,15 @@ class Transakcja(models.Model):
 
     opis = models.TextField(blank=True, verbose_name="Opis")
 
+    rozliczenie = models.ForeignKey(
+        "zrodla.Rozliczenie",
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+        verbose_name="Rozliczenie",
+        related_name="rozliczane_transakcje",
+    )
+
     dodal = models.ForeignKey(
         User,
         null=True,
@@ -89,4 +98,6 @@ class Transakcja(models.Model):
 
     def __str__(self):
         znak = "+" if self.typ == self.PRZYCHOD else "-"
-        return f"{self.data} | {self.get_typ_display()} | {znak}{self.kwota}"
+        typ = self.get_typ_display()
+        kwota = f"{self.kwota.amount} {self.kwota.currency}"
+        return f"{self.data} {self.konto}: {typ} {znak}{kwota}"
