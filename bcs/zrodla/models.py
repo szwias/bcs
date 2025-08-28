@@ -68,22 +68,11 @@ class Oswiadczenie(Dokument):
 
 
 class Rozliczenie(Dokument):
-    transakcja = models.ForeignKey(
-        "skarbiec.Transakcja",
-        blank=True,
-        null=True,
-        on_delete=models.SET_NULL,
-        verbose_name="Transakcja",
-    )
 
     class Meta:
         verbose_name = "Rozliczenie"
         verbose_name_plural = "Rozliczenia"
         ordering = ["-data"]
-
-    def __str__(self):
-        konto = str(self.transakcja.konto)
-        return f"{konto}: {self.tytul}"
 
 
 class Edykt(Dokument):
