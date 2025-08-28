@@ -1,5 +1,4 @@
 from django.contrib.postgres.aggregates import StringAgg
-
 from core.utils.automation.BaseAdmin import (
     admin,
     BaseModelAdmin,
@@ -12,6 +11,7 @@ from prawo.models import RelacjaPrawna
 class RelacjaPrawnaAdmin(BaseModelAdmin):
     filter_horizontal = ["podmiot"]
     list_filter = ["prawo_czy_obowiazek", "podmiot", "przedawnione"]
+    list_filter = ["prawo_czy_obowiazek", "podmiot", "aktualne"]
 
     def get_queryset(self, request):
         qs = super().get_queryset(request)

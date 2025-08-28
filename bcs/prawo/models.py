@@ -48,8 +48,8 @@ class RelacjaPrawna(models.Model):
         max_length=1, choices=Wybory.choices, verbose_name="Rodzaj relacji"
     )
 
-    przedawnione = models.BooleanField(
-        default=False, verbose_name="Przedawnione"
+    aktualne = models.BooleanField(
+        default=True, verbose_name="Aktualne"
     )
 
     dokument = models.ForeignKey(
