@@ -80,6 +80,7 @@ class BaseModelAdmin(admin.ModelAdmin):
 
     actions = ["save_selected"]
     list_filter_exclude = set()
+    hide_from_index = False
     hide_base_class_from_index = True
     save_as = True
 
@@ -151,7 +152,7 @@ class BaseModelAdmin(admin.ModelAdmin):
         if (
             is_polymorphic_parent(self.model)
             and self.hide_base_class_from_index
-        ):
+        ) or self.hide_from_index:
             return {}  # Hide from admin index
         return super().get_model_perms(request)
 
