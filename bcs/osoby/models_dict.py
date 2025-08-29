@@ -2,6 +2,7 @@ from collections import defaultdict
 from core.utils.autocompletion.AutocompletesGeneration import add_model_name
 from .models import (
     Bean,
+    Bractwo,
     Byt,
     Czlonek,
     DawnyZarzad,
@@ -12,6 +13,8 @@ from .models import (
     KomisjaRewizyjna,
     KoordynatorZespolu,
     NowyZarzad,
+    Organizacja,
+    OrganizacjaStudencka,
     Osoba,
     WielkiMistrz,
     Zarzad,
@@ -22,8 +25,12 @@ from .models import (
 names = defaultdict(str)
 
 add_model_name(Byt, names, "Byt")
+add_model_name(Organizacja, names, "Organizacja")
 add_model_name(Osoba, names, "Osoba")
 add_model_name(Zarzad, names, "Zarzad")
+
+add_model_name(OrganizacjaStudencka, names, "OrganizacjaStudencka")
+add_model_name(Bractwo, names, "Bractwo")
 
 add_model_name(Bean, names, "Bean")
 add_model_name(Czlonek, names, "Czlonek")

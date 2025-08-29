@@ -229,3 +229,26 @@ class ZwierzeCzapkoweForm(forms.ModelForm):
         if self.instance and self.instance.czlonek:
             czlonek = self.instance.czlonek
             self.fields["imie_display"].initial = f'"{czlonek.imie_piwne_1}"'
+
+
+class OrganizacjaForm(forms.ModelForm):
+    class Meta:
+        model = Organizacja
+        fields = "__all__"
+        widgets = build_widgets(autocomplete_widgets[Organizacja.__name__])
+
+
+class OrganizacjaStudenckaForm(forms.ModelForm):
+    class Meta:
+        model = OrganizacjaStudencka
+        fields = "__all__"
+        widgets = build_widgets(
+            autocomplete_widgets[OrganizacjaStudencka.__name__]
+        )
+
+
+class BractwoForm(forms.ModelForm):
+    class Meta:
+        model = Bractwo
+        fields = "__all__"
+        widgets = build_widgets(autocomplete_widgets[Bractwo.__name__])

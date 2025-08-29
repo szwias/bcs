@@ -18,7 +18,7 @@ from .models import (
     WielkiMistrz,
     ZwierzeCzapkowe,
     Zespol,
-    KoordynatorZespolu,
+    KoordynatorZespolu, Organizacja, OrganizacjaStudencka, Bractwo,
 )
 from kronika.inlines import PodsumowanieKadencjiInline
 
@@ -26,6 +26,11 @@ from kronika.inlines import PodsumowanieKadencjiInline
 class OsobyUsedContentTypeFilter(UsedContentTypeFilter):
     title = "Typ osoby"
     parameter_name = "typ_osoby"
+
+
+class OrganizacjeUsedContentTypeFilter(UsedContentTypeFilter):
+    title = "Typ organizacji"
+    parameter_name = "typ_organizacji"
 
 
 @admin.register(Osoba)
@@ -97,9 +102,29 @@ class KoordynatorZespoluAdmin(BaseModelAdmin):
     list_display = ["zespol", "osoba"]
 
 
+@admin.register(Organizacja)
+class OrganizacjaAdmin(BaseModelAdmin):
+    filter_horizontal = ["zalozyciele"]
+    list_filter = [OrganizacjeUsedContentTypeFilter]
+    hide_base_class_from_index = False
+
+
+@admin.register(OrganizacjaStudencka)
+class OrganizacjaStudenckaAdmin(BaseModelAdmin):
+    list_filter = ["kraj", "uczelnia"]
+    filter_horizontal = ["zalozyciele"]
+    hide_base_class_from_index = False
+
+
+@admin.register(Bractwo)
+class BractwoAdmin(OrganizacjaStudenckaAdmin):
+    list_filter = ["grupa_bractw", "kraj"]
+
+
 register_all_models(
     custom_admins={
         Bean: BeanAdmin,
+        Bractwo: BractwoAdmin,
         Czlonek: CzlonekAdmin,
         DawnyZarzad: DawnyZarzadAdmin,
         NowyZarzad: ZarzadAdmin,
@@ -108,6 +133,8 @@ register_all_models(
         InnaOsoba: InnaOsobaAdmin,
         KomisjaRewizyjna: KomisjaRewizyjnaAdmin,
         KoordynatorZespolu: KoordynatorZespoluAdmin,
+        Organizacja: OrganizacjaAdmin,
+        OrganizacjaStudencka: OrganizacjaStudenckaAdmin,
         Osoba: OsobaAdmin,
         WielkiMistrz: WielkiMistrzAdmin,
         Zespol: ZespolAdmin,

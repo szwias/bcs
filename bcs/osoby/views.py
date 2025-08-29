@@ -1,17 +1,22 @@
 from .models import (
     Bean,
+    Bractwo,
+    Byt,
     Czlonek,
     DawnyZarzad,
+    Egzekutor,
     HallOfFame,
     ImieSzlacheckie,
     InnaOsoba,
     KomisjaRewizyjna,
+    KoordynatorZespolu,
+    NowyZarzad,
+    Organizacja,
+    OrganizacjaStudencka,
     Osoba,
     WielkiMistrz,
-    NowyZarzad,
-    ZwierzeCzapkowe,
     Zespol,
-    KoordynatorZespolu, Egzekutor,
+    ZwierzeCzapkowe,
 )
 from core.utils.autocompletion.AutocompletesGeneration import *
 
@@ -19,10 +24,23 @@ from czapki.models_dict import names as czapki
 from encyklopedia.models_dict import names as encyklopedia
 from kalendarz.models_dict import names as kalendarz
 from kronika.models_dict import names as kronika
+from miejsca.models_dict import names as miejsca
 from zrodla.models_dict import names as zrodla
 
 autocomplete_configs = [
     (Bean, ["staz"], [], [Czlonek.__name__, czapki["Czapka"]]),
+    (
+        Bractwo,
+        ["rok_zalozenia"],
+        [],
+        [
+            Byt.__name__,
+            encyklopedia["GrupaBractw"],
+            miejsca["Kraj"],
+            miejsca["Miejsce"],
+            miejsca["Uczelnia"]
+        ]
+    ),
     (
         Czlonek,
         ["rok_chrztu", "miesiac_chrztu", "dzien_chrztu", "status", "staz"],
@@ -62,6 +80,27 @@ autocomplete_configs = [
             kronika["PodsumowanieKadencji"],
             kronika["WydarzenieHistoryczne"],
         ],
+    ),
+    (
+        Organizacja,
+        ["rok_zalozenia"],
+        [],
+        [
+            Byt.__name__,
+            miejsca["Kraj"],
+            miejsca["Miejsce"],
+        ]
+    ),
+    (
+        OrganizacjaStudencka,
+        ["rok_zalozenia"],
+        [],
+        [
+            Byt.__name__,
+            miejsca["Kraj"],
+            miejsca["Miejsce"],
+            miejsca["Uczelnia"]
+        ]
     ),
     (Osoba, [], [], []),
     (WielkiMistrz, [], [], [Czlonek.__name__]),

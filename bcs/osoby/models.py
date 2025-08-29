@@ -1,4 +1,5 @@
 from django.contrib.postgres.fields import ArrayField
+from django.utils import timezone
 from django.db import models
 from polymorphic.models import PolymorphicModel
 from roman import fromRoman
@@ -60,6 +61,83 @@ class Byt(PolymorphicModel):
     pass
 
 
+# ORGANIZACJA FAMILY
+# --------------------------------------
+class Organizacja(Byt):
+    nazwa = models.CharField(
+        max_length=MAX_LENGTH, verbose_name="Nazwa organizacji"
+    )
+
+    kraj = models.ForeignKey(
+        "miejsca.Kraj",
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+        verbose_name="Kraj",
+    )
+
+    siedziba = models.ForeignKey(
+        "miejsca.Miejsce",
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+        verbose_name="Siedziba",
+    )
+
+    zalozyciele = models.ManyToManyField(
+        Byt,
+        blank=True,
+        verbose_name="Założyciele",
+        related_name="zalozone_organizacje"
+    )
+
+    rok_zalozenia = models.IntegerField(
+        choices=Czas.LATA_BRACTW + [IntAlt.DONT_KNOW],
+        default=IntAlt.DONT_KNOW,
+        verbose_name="Rok założenia",
+    )
+
+    opis = models.TextField(blank=True, verbose_name="Opis działalności")
+
+    class Meta:
+        verbose_name = "Organizacja"
+        verbose_name_plural = "Organizacje"
+        ordering = ["nazwa"]
+
+    def __str__(self):
+        return self.nazwa
+
+
+class OrganizacjaStudencka(Organizacja):
+    uczelnia = models.ForeignKey(
+        "miejsca.Uczelnia",
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+        verbose_name="Uczelnia",
+    )
+
+    class Meta:
+        verbose_name = "Organizacja studencka"
+        verbose_name_plural = "Organizacje studenckie"
+        ordering = ["nazwa"]
+
+
+class Bractwo(OrganizacjaStudencka):
+    grupa_bractw = models.ForeignKey(
+        "encyklopedia.GrupaBractw",
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+        verbose_name="Grupa Bractw",
+    )
+
+    class Meta:
+        verbose_name = "Bractwo"
+        verbose_name_plural = "Bractwa"
+        ordering = ["nazwa"]
+
+
 # OSOBA FAMILY
 # ---------------------------------------
 class Osoba(Byt):
@@ -109,7 +187,7 @@ class InnaOsoba(Osoba):
     )
 
     bractwo_do_ktorego_nalezy = models.ForeignKey(
-        "encyklopedia.Bractwo",
+        Bractwo,
         blank=True,
         null=True,
         on_delete=models.SET_NULL,
