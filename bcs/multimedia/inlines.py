@@ -16,5 +16,4 @@ class ObrazWydarzenieInline(ObrazInline):
 class ObrazZdarzenieInline(ObrazInline):
     model = ObrazZdarzenie
     filter_horizontal = ["widoczne_osoby"]
-    extra = 1  # ensures a form is available for new ZdarzenieInline
-    min_num = 0  # optional, if you don’t want validation
+    extra = 0  # ensures a form is available for new ZdarzenieInline
