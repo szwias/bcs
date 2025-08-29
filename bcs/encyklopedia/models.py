@@ -36,6 +36,14 @@ class Bractwo(models.Model):
         verbose_name="Grupa bractw",
     )
 
+    uczelnia = models.ForeignKey(
+        "miejsca.Uczelnia",
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+        verbose_name="Uczelnia",
+    )
+
     zalozyciele = models.ManyToManyField(
         "osoby.Osoba", blank=True, verbose_name="Założyciele"
     )
