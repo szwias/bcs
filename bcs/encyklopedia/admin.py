@@ -3,6 +3,7 @@ from core.utils.automation.BaseAdmin import (
     BaseModelAdmin,
     register_all_models,
 )
+from osoby.inlines import InnaOsobaInline
 from .models import (
     Aforyzm,
     Bractwo,
@@ -22,6 +23,7 @@ class AforyzmAdmin(BaseModelAdmin):
 class BractwoAdmin(BaseModelAdmin):
     list_filter_exclude = ["rok_zalozenia"]
     filter_horizontal = ["zalozyciele"]
+    inlines = [InnaOsobaInline]
 
 
 @admin.register(Cytat)
