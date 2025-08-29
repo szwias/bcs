@@ -5,6 +5,7 @@ from core.utils.automation.BaseAdmin import (
 )
 from skarbiec.models import (
     Konto,
+    Transakcja,
 )
 from .inlines import TransakcjaInline
 
@@ -16,8 +17,18 @@ class KontoAdmin(BaseModelAdmin):
     inlines = [TransakcjaInline]
 
 
+@admin.register(Transakcja)
+class TransakcjaAdmin(BaseModelAdmin):
+    list_display = ["data", "konto", "typ", "get_kwota"]
+
+    def get_kwota(self, obj):
+        return obj.get_kwota
+    get_kwota.short_description = "Kwota"
+
+
 register_all_models(
     custom_admins={
         Konto: KontoAdmin,
+        Transakcja: TransakcjaAdmin,
     }
 )

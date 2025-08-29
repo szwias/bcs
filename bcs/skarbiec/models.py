@@ -110,13 +110,18 @@ class Transakcja(models.Model):
         verbose_name="Dodał/dodała"
     )
 
+    @property
+    def get_kwota(self):
+        znak = "+" if self.typ == self.PRZYCHOD else "-"
+        kwota = f"{self.kwota.amount} {self.kwota.currency}"
+        return f"{znak}{kwota}"
+
+
     class Meta:
         verbose_name = "Transakcja"
         verbose_name_plural = "Transakcje"
         ordering = ["-data"]
 
     def __str__(self):
-        znak = "+" if self.typ == self.PRZYCHOD else "-"
         typ = self.get_typ_display()
-        kwota = f"{self.kwota.amount} {self.kwota.currency}"
-        return f"{self.data} {self.konto}: {typ} {znak}{kwota}"
+        return f"{self.data} {self.konto}: {typ} {self.get_kwota}"
