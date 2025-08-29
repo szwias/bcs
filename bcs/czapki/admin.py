@@ -3,7 +3,11 @@ from core.utils.automation.BaseAdmin import (
     BaseModelAdmin,
     register_all_models,
 )
-from .models import RodzajCzapki, Czapka
+from .models import (
+    Czapka,
+    CzapkaHonorisCausa,
+    RodzajCzapki,
+)
 
 from django.contrib import admin
 from django.apps import apps
@@ -40,9 +44,15 @@ class RodzajCzapkiAdmin(BaseModelAdmin):
     filter_horizontal = ["kraje"]
 
 
+@admin.register(CzapkaHonorisCausa)
+class CzapkaHonorisCausaAdmin(BaseModelAdmin):
+    list_display = ["wlasciciel", "zaslugi"]
+
+
 register_all_models(
     custom_admins={
         Czapka: CzapkaAdmin,
+        CzapkaHonorisCausa: CzapkaHonorisCausaAdmin,
         RodzajCzapki: RodzajCzapkiAdmin,
     }
 )

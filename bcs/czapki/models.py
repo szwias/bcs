@@ -75,3 +75,34 @@ class RodzajCzapki(models.Model):
 
     def __str__(self):
         return self.nazwa
+
+
+class CzapkaHonorisCausa(models.Model):
+    wlasciciel = models.ForeignKey(
+        "osoby.Osoba",
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+        verbose_name="Właściciel",
+    )
+
+    zaslugi = models.TextField(
+        blank=True,
+        verbose_name="Zasługi",
+    )
+
+    dokument = models.ForeignKey(
+        "zrodla.Dokument",
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+        verbose_name="Dokument nadający",
+    )
+
+    class Meta:
+        verbose_name = "Posiadacz czapki Honoris Causa"
+        verbose_name_plural = "Posiadacze czapek Honoris Causa"
+        ordering = ["wlasciciel"]
+
+    def __str__(self):
+        return str(self.wlasciciel)
