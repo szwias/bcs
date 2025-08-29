@@ -16,6 +16,10 @@ class Zrodlo(PolymorphicModel):
 
     plik = models.FileField(upload_to="pdfs/", blank=True, verbose_name="Plik")
 
+    @property
+    def get_autor(self):
+        return ", ".join([str(a) for a in self.autorzy.all()])
+
     class Meta:
         verbose_name = "Źródło"
         verbose_name_plural = "Źródła"

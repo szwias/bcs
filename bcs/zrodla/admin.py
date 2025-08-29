@@ -32,6 +32,11 @@ class ZrodloOgolneAdmin(ZrodloAdmin):
 class OswiadczenieAdmin(DokumentAdmin):
     fields = ["tytul", "data", "autorzy", "streszczenie", "plik"]
     list_filter_exclude = ["dokument_ptr", "polymorphic_ctype", "zrodlo_ptr"]
+    list_display = ["tytul", "get_autor", "streszczenie"]
+
+    def get_autor(self, obj):
+        return obj.get_autor
+    get_autor.short_description = "Autorzy"
 
 
 @admin.register(Korespondencja)
