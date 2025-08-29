@@ -23,7 +23,9 @@ class Miejsce(models.Model):
     nazwa = models.CharField(max_length=MAX_LENGTH, verbose_name="Nazwa")
 
     adres = models.CharField(
-        max_length=MAX_LENGTH, blank=True, verbose_name="Adres"
+        max_length=MAX_LENGTH,
+        blank=True,
+        verbose_name="Adres (wystarczy skopiować z Googla)",
     )
 
     typ = models.ForeignKey(
