@@ -8,9 +8,8 @@ from spiewnik.models_dict import names as spiewnik
 from zrodla.models_dict import names as zrodla
 
 autocomplete_configs = [
-    (Chrzest, [], [], [miejsca["Miejsce"], osoby["Czlonek"]]),
     (
-        DepositioBeanorum,
+        Chrzest,
         [],
         [],
         [

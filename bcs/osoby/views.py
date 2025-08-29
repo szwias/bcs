@@ -30,7 +30,7 @@ autocomplete_configs = [
         [
             Czlonek.__name__,
             czapki["Czapka"],
-            kalendarz["DepositioBeanorum"],
+            kalendarz["Chrzest"],
         ],
     ),
     (

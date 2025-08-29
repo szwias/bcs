@@ -3,7 +3,6 @@ from dal import autocomplete
 
 from .models import (
     Chrzest,
-    DepositioBeanorum,
     TypWydarzenia,
     TypWyjazdu,
     Wydarzenie,
@@ -18,15 +17,8 @@ class ChrzestForm(forms.ModelForm):
     class Meta:
         model = Chrzest
         fields = "__all__"
-        widgets = build_widgets(autocomplete_widgets[Chrzest.__name__])
-
-
-class DepositioBeanorumForm(forms.ModelForm):
-    class Meta:
-        model = DepositioBeanorum
-        fields = "__all__"
         widgets = build_widgets(
-            autocomplete_widgets[DepositioBeanorum.__name__]
+            autocomplete_widgets[Chrzest.__name__]
         )
 
 

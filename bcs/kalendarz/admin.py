@@ -6,7 +6,6 @@ from core.utils.automation.BaseAdmin import (
 )
 from kalendarz.models import (
     Chrzest,
-    DepositioBeanorum,
     WydarzenieKalendarzowe,
     Wydarzenie,
     Zdarzenie,
@@ -21,11 +20,6 @@ class ChrzestAdmin(BaseModelAdmin):
     save_as = True
     filter_horizontal = ["chrzczeni"]
     list_filter_exclude = ["polymorphic_ctype", "wydarzeniekalendarzowe_ptr"]
-
-
-@admin.register(DepositioBeanorum)
-class DepositioBeanorumAdmin(ChrzestAdmin):
-    pass
 
 
 @admin.register(WydarzenieKalendarzowe)
@@ -83,7 +77,6 @@ class ZdarzenieAdmin(NestedModelAdmin, BaseModelAdmin):
 register_all_models(
     custom_admins={
         Chrzest: ChrzestAdmin,
-        DepositioBeanorum: DepositioBeanorumAdmin,
         Wydarzenie: WydarzenieAdmin,
         WydarzenieKalendarzowe: WydarzenieKalendarzoweAdmin,
         Zdarzenie: ZdarzenieAdmin,
