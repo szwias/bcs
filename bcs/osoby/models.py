@@ -1,5 +1,4 @@
 from django.contrib.postgres.fields import ArrayField
-from django.utils import timezone
 from django.db import models
 from polymorphic.models import PolymorphicModel
 from roman import fromRoman
@@ -60,6 +59,40 @@ class HallOfFame(models.Model):
 class Byt(PolymorphicModel):
     pass
 
+
+class KomisjaRewizyjna(Byt):
+    kadencja = models.ForeignKey(
+        "kronika.Kadencja",
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+        verbose_name="Kadencja",
+    )
+
+    przewodniczacy = models.ForeignKey(
+        "osoby.Osoba",
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+        verbose_name="Przewodniczący",
+        related_name="przewodzi_komisjom",
+    )
+
+    sklad = models.ManyToManyField(
+        "osoby.Osoba", blank=True, verbose_name="Skład"
+    )
+
+    dzialalnosc = models.TextField(
+        blank=True, null=True, verbose_name="Działalność"
+    )
+
+    class Meta:
+        verbose_name = "Komisja rewizyjna"
+        verbose_name_plural = "Komisja rewizyjna"
+        ordering = ["-kadencja"]
+
+    def __str__(self):
+        return f"Komisja rewizyjna {self.kadencja}"
 
 # ORGANIZACJA FAMILY
 # --------------------------------------
@@ -502,41 +535,6 @@ class ImieSzlacheckie(models.Model):
 
 # OSOBA DEPENDENT
 # ------------------------------------------------------
-
-
-class KomisjaRewizyjna(models.Model):
-    kadencja = models.ForeignKey(
-        "kronika.Kadencja",
-        blank=True,
-        null=True,
-        on_delete=models.SET_NULL,
-        verbose_name="Kadencja",
-    )
-
-    przewodniczacy = models.ForeignKey(
-        Osoba,
-        blank=True,
-        null=True,
-        on_delete=models.SET_NULL,
-        verbose_name="Przewodniczący",
-        related_name="przewodzi_komisjom",
-    )
-
-    sklad = models.ManyToManyField(Osoba, blank=True, verbose_name="Skład")
-
-    dzialalnosc = models.TextField(
-        blank=True, null=True, verbose_name="Działalność"
-    )
-
-    class Meta:
-        verbose_name = "Komisja rewizyjna"
-        verbose_name_plural = "Komisja rewizyjna"
-        ordering = ["-kadencja"]
-
-    def __str__(self):
-        return f"Komisja rewizyjna {self.kadencja}"
-
-
 class WielkiMistrz(models.Model):
     imie = models.ForeignKey(
         Czlonek,
