@@ -513,6 +513,15 @@ class KomisjaRewizyjna(models.Model):
         verbose_name="Kadencja",
     )
 
+    przewodniczacy = models.ForeignKey(
+        Osoba,
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+        verbose_name="Przewodniczący",
+        related_name="przewodzi_komisjom",
+    )
+
     sklad = models.ManyToManyField(Osoba, blank=True, verbose_name="Skład")
 
     dzialalnosc = models.TextField(
@@ -522,7 +531,7 @@ class KomisjaRewizyjna(models.Model):
     class Meta:
         verbose_name = "Komisja rewizyjna"
         verbose_name_plural = "Komisja rewizyjna"
-        ordering = ["kadencja"]
+        ordering = ["-kadencja"]
 
     def __str__(self):
         return f"Komisja rewizyjna {self.kadencja}"
