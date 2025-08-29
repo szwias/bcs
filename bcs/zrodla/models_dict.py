@@ -6,6 +6,7 @@ from .models import (
     Korespondencja,
     Oswiadczenie,
     Rozliczenie,
+    Uchwala,
     Ukaz,
     Zrodlo,
     ZrodloOgolne,
@@ -17,6 +18,7 @@ add_model_name(Dokument, names, "Dokument")
 add_model_name(Edykt, names, "Edykt")
 add_model_name(Korespondencja, names, "Korespondencja")
 add_model_name(Oswiadczenie, names, "Oswiadczenie")
+add_model_name(Uchwala, names, "Uchwala")
 add_model_name(Ukaz, names, "Ukaz")
 
 add_model_name(Rozliczenie, names, "Rozliczenie")

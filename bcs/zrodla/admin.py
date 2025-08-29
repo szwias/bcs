@@ -3,8 +3,17 @@ from core.utils.automation.BaseAdmin import (
     BaseModelAdmin,
     register_all_models,
 )
-from .models import Dokument, Edykt, Ukaz, Zrodlo, ZrodloOgolne, Oswiadczenie, \
-    Rozliczenie, Korespondencja
+from .models import (
+    Dokument,
+    Edykt,
+    Korespondencja,
+    Oswiadczenie,
+    Rozliczenie,
+    Uchwala,
+    Ukaz,
+    Zrodlo,
+    ZrodloOgolne,
+)
 
 
 @admin.register(Zrodlo)
@@ -39,6 +48,12 @@ class OswiadczenieAdmin(DokumentAdmin):
     get_autor.short_description = "Autorzy"
 
 
+@admin.register(Uchwala)
+class UchwalaAdmin(OswiadczenieAdmin):
+    fields = ["tytul", "data", "walne", "autorzy", "streszczenie", "plik"]
+    list_filter_exclude = "__all__"
+
+
 @admin.register(Korespondencja)
 class KorespondencjaAdmin(BaseModelAdmin):
     fields = ["tytul", "data", "autorzy", "adresaci", "streszczenie", "plik"]
@@ -64,6 +79,7 @@ register_all_models(
         Korespondencja: KorespondencjaAdmin,
         Oswiadczenie: OswiadczenieAdmin,
         Rozliczenie: RozliczenieAdmin,
+        Uchwala: UchwalaAdmin,
         Ukaz: UkazAdmin,
         Zrodlo: ZrodloAdmin,
         ZrodloOgolne: ZrodloAdmin,

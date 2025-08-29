@@ -4,12 +4,14 @@ from .models import (
     Korespondencja,
     Oswiadczenie,
     Rozliczenie,
+    Uchwala,
     Ukaz,
     Zrodlo,
     ZrodloOgolne,
 )
 from core.utils.autocompletion.AutocompletesGeneration import *
 
+from kronika.models_dict import names as kronika
 from osoby.models_dict import names as osoby
 from skarbiec.models_dict import names as skarbiec
 
@@ -19,6 +21,7 @@ autocomplete_configs = [
     (Korespondencja, [], [], [osoby["Byt"]]),
     (Oswiadczenie, [], [], [osoby["Byt"]]),
     (Rozliczenie, [], [], [osoby["Byt"], skarbiec["Transakcja"]]),
+    (Uchwala, [], [], [kronika["WydarzenieHistoryczne"], osoby["Byt"]]),
     (Ukaz, [], [], [osoby["Byt"]]),
     (Zrodlo, [], [], [osoby["Byt"]]),
     (ZrodloOgolne, [], [], [osoby["Byt"]]),

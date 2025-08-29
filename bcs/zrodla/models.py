@@ -80,9 +80,21 @@ class Oswiadczenie(Dokument):
         verbose_name_plural = "Oświadczenia"
         ordering = ["-data"]
 
-    def __str__(self):
-        data = self.data or "Data nieznana"
-        return f"{self.tytul} - {data}"
+
+class Uchwala(Dokument):
+
+    walne = models.ForeignKey(
+        "kronika.WydarzenieHistoryczne",
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+        verbose_name="Walne",
+    )
+
+    class Meta:
+        verbose_name = "Uchwała"
+        verbose_name_plural = "Uchwały"
+        ordering = ["-data"]
 
 
 class Rozliczenie(Dokument):

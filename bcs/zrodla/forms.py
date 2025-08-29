@@ -7,6 +7,7 @@ from .models import (
     Korespondencja,
     Oswiadczenie,
     Rozliczenie,
+    Uchwala,
     Ukaz,
     Zrodlo,
     ZrodloOgolne,
@@ -56,6 +57,13 @@ class RozliczenieForm(forms.ModelForm):
         model = Rozliczenie
         fields = "__all__"
         widgets = build_widgets(autocomplete_widgets[Rozliczenie.__name__])
+
+
+class UchwalaForm(forms.ModelForm):
+    class Meta:
+        model = Uchwala
+        fields = "__all__"
+        widgets = build_widgets(autocomplete_widgets[Uchwala.__name__])
 
 
 class UkazForm(forms.ModelForm):
