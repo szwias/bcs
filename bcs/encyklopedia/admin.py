@@ -22,7 +22,7 @@ class AforyzmAdmin(BaseModelAdmin):
 @admin.register(Bractwo)
 class BractwoAdmin(BaseModelAdmin):
     list_filter_exclude = ["rok_zalozenia"]
-    filter_horizontal = ["zalozyciele"]
+    filter_horizontal = ["zalozyciele", "wydarzenia"]
     inlines = [InnaOsobaInline]
 
 

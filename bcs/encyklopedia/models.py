@@ -52,6 +52,12 @@ class Bractwo(models.Model):
         verbose_name="Tradycje sięgają którego wieku",
     )
 
+    wydarzenia = models.ManyToManyField(
+        "kalendarz.WydarzenieKalendarzowe",
+        blank=True,
+        verbose_name="Udział w wydarzeniach",
+    )
+
     class Meta:
         verbose_name = "Bractwo"
         verbose_name_plural = "Bractwa"

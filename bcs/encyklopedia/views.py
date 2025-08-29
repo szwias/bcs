@@ -15,6 +15,7 @@ autocomplete_configs = [
         [],
         [GrupaBractw.__name__, miejsca["Kraj"], osoby["Osoba"]],
     ),
+    (Bractwo, [], [], [kalendarz["WydarzenieKalendarzowe"]]),
     (Cytat, [], [], [osoby["Byt"], osoby["Osoba"], zrodla["Zrodlo"]]),
     (GrupaBractw, [], [], [czapki["RodzajCzapki"], miejsca["Kraj"]]),
     (
