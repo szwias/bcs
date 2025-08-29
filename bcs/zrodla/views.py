@@ -1,11 +1,12 @@
 from .models import (
     Dokument,
     Edykt,
+    Korespondencja,
     Oswiadczenie,
     Rozliczenie,
     Ukaz,
     Zrodlo,
-    ZrodloOgolne
+    ZrodloOgolne,
 )
 from core.utils.autocompletion.AutocompletesGeneration import *
 
@@ -15,6 +16,7 @@ from skarbiec.models_dict import names as skarbiec
 autocomplete_configs = [
     (Dokument, [], [], [osoby["Byt"]]),
     (Edykt, [], [], [osoby["Byt"]]),
+    (Korespondencja, [], [], [osoby["Byt"]]),
     (Oswiadczenie, [], [], [osoby["Byt"]]),
     (Rozliczenie, [], [], [osoby["Byt"], skarbiec["Transakcja"]]),
     (Ukaz, [], [], [osoby["Byt"]]),

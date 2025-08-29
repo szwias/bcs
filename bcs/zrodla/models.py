@@ -56,6 +56,20 @@ class Dokument(Zrodlo):
         return f"{self.tytul} - {data}"
 
 
+class Korespondencja(Dokument):
+
+    adresaci = models.ManyToManyField(
+        "osoby.Byt",
+        blank=True,
+        verbose_name="Adresaci",
+    )
+
+    class Meta:
+        verbose_name = "Korespondencja"
+        verbose_name_plural = "Korespondencja"
+        ordering = ["data"]
+
+
 class Oswiadczenie(Dokument):
     class Meta:
         verbose_name = "Oświadczenie"

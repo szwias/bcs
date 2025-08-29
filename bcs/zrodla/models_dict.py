@@ -3,6 +3,7 @@ from core.utils.autocompletion.AutocompletesGeneration import add_model_name
 from .models import (
     Dokument,
     Edykt,
+    Korespondencja,
     Oswiadczenie,
     Rozliczenie,
     Ukaz,
@@ -14,6 +15,7 @@ names = defaultdict(str)
 
 add_model_name(Dokument, names, "Dokument")
 add_model_name(Edykt, names, "Edykt")
+add_model_name(Korespondencja, names, "Korespondencja")
 add_model_name(Oswiadczenie, names, "Oswiadczenie")
 add_model_name(Ukaz, names, "Ukaz")
 

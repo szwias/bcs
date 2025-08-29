@@ -4,6 +4,7 @@ from django.apps import apps
 from .models import (
     Dokument,
     Edykt,
+    Korespondencja,
     Oswiadczenie,
     Rozliczenie,
     Ukaz,
@@ -34,6 +35,13 @@ class EdyktForm(forms.ModelForm):
         self.fields["autorzy"].queryset = Byt.objects.instance_of(
             apps.get_model(osoby["Czlonek"]), apps.get_model(osoby["Zarzad"])
         )
+
+
+class KorespondencjaForm(forms.ModelForm):
+    class Meta:
+        model = Korespondencja
+        fields = "__all__"
+        widgets = build_widgets(autocomplete_widgets[Korespondencja.__name__])
 
 
 class OswiadczenieForm(forms.ModelForm):

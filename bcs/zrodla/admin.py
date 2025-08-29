@@ -4,7 +4,7 @@ from core.utils.automation.BaseAdmin import (
     register_all_models,
 )
 from .models import Dokument, Edykt, Ukaz, Zrodlo, ZrodloOgolne, Oswiadczenie, \
-    Rozliczenie
+    Rozliczenie, Korespondencja
 
 
 @admin.register(Zrodlo)
@@ -34,6 +34,14 @@ class OswiadczenieAdmin(DokumentAdmin):
     list_filter_exclude = ["dokument_ptr", "polymorphic_ctype", "zrodlo_ptr"]
 
 
+@admin.register(Korespondencja)
+class KorespondencjaAdmin(BaseModelAdmin):
+    fields = ["tytul", "data", "autorzy", "adresaci", "streszczenie", "plik"]
+    list_filter_exclude = ["dokument_ptr", "polymorphic_ctype", "zrodlo_ptr"]
+    filter_horizontal = ["autorzy", "adresaci"]
+    list_display = ["tytul", "data", "streszczenie"]
+
+
 @admin.register(Ukaz)
 class UkazAdmin(DokumentAdmin):
     fields = ["tytul", "numer", "data", "autorzy", "streszczenie", "plik"]
@@ -48,6 +56,7 @@ register_all_models(
     custom_admins={
         Dokument: DokumentAdmin,
         Edykt: EdyktAdmin,
+        Korespondencja: KorespondencjaAdmin,
         Oswiadczenie: OswiadczenieAdmin,
         Rozliczenie: RozliczenieAdmin,
         Ukaz: UkazAdmin,
