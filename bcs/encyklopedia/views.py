@@ -9,18 +9,6 @@ from zrodla.models_dict import names as zrodla
 
 autocomplete_configs = [
     (Aforyzm, [], [], [osoby["Byt"], osoby["Osoba"], zrodla["Zrodlo"]]),
-    (
-        Bractwo,
-        ["wiek_tradycje", "rok_zalozenia"],
-        [],
-        [
-            GrupaBractw.__name__,
-            kalendarz["WydarzenieKalendarzowe"],
-            miejsca["Kraj"],
-            miejsca["Uczelnia"],
-            osoby["Osoba"]
-        ],
-    ),
     (Cytat, [], [], [osoby["Byt"], osoby["Osoba"], zrodla["Zrodlo"]]),
     (GrupaBractw, [], [], [czapki["RodzajCzapki"], miejsca["Kraj"]]),
     (
@@ -44,7 +32,7 @@ autocomplete_configs = [
             osoby["Byt"],
         ],
     ),
-    (TradycjaInnegoBractwa, [], [], [GrupaBractw.__name__]),
+    (TradycjaInnegoBractwa, [], [], [GrupaBractw.__name__, osoby["Bractwo"]]),
     (Zwyczaj, [], [], [osoby["Osoba"]]),
 ]
 

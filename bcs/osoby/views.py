@@ -66,7 +66,7 @@ autocomplete_configs = [
     (Egzekutor, [], [], [Osoba.__name__, Zespol.__name__]),
     (HallOfFame, [], [], [Osoba.__name__]),
     (ImieSzlacheckie, [], [], [Czlonek.__name__]),
-    (InnaOsoba, ["kategoria"], [], [encyklopedia["Bractwo"]]),
+    (InnaOsoba, ["kategoria"], [], [Bractwo.__name__]),
     (KomisjaRewizyjna, [], [], [Osoba.__name__, kronika["Kadencja"]]),
     (KoordynatorZespolu, [], [], [Osoba.__name__, Zespol.__name__]),
     (

@@ -1,7 +1,6 @@
 from django import forms
 from .models import (
     Aforyzm,
-    Bractwo,
     Cytat,
     GrupaBractw,
     Pojecie,
@@ -19,13 +18,6 @@ class AforyzmForm(forms.ModelForm):
         model = Aforyzm
         fields = "__all__"
         widgets = build_widgets(autocomplete_widgets[Aforyzm.__name__])
-
-
-class BractwoForm(forms.ModelForm):
-    class Meta:
-        model = Bractwo
-        fields = "__all__"
-        widgets = build_widgets(autocomplete_widgets[Bractwo.__name__])
 
 
 class CytatForm(forms.ModelForm):

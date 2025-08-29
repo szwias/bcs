@@ -1,9 +1,7 @@
 from django.db import models
 from polymorphic.models import PolymorphicModel
 
-from core.utils.Choices import IntAlt
 from core.utils.Consts import *
-from core.utils import Czas
 
 
 class Lengths:
@@ -14,65 +12,6 @@ class Okolicznosci(models.TextChoices):
     DOKUMENT = "Dok", "W dokumencie"
     INNE = "I", "Inne okoliczności"
     WYDARZENIE = "Wyd", "Na wydarzeniu czapkowym"
-
-
-class Bractwo(models.Model):
-
-    nazwa = models.CharField(max_length=MAX_LENGTH, verbose_name="Nazwa")
-
-    panstwo = models.ForeignKey(
-        "miejsca.Kraj",
-        blank=True,
-        null=True,
-        on_delete=models.SET_NULL,
-        verbose_name="Kraj pochodzenia",
-    )
-
-    grupa_bractw = models.ForeignKey(
-        "encyklopedia.GrupaBractw",
-        blank=True,
-        null=True,
-        on_delete=models.SET_NULL,
-        verbose_name="Grupa bractw",
-    )
-
-    uczelnia = models.ForeignKey(
-        "miejsca.Uczelnia",
-        blank=True,
-        null=True,
-        on_delete=models.SET_NULL,
-        verbose_name="Uczelnia",
-    )
-
-    zalozyciele = models.ManyToManyField(
-        "osoby.Osoba", blank=True, verbose_name="Założyciele"
-    )
-
-    rok_zalozenia = models.IntegerField(
-        choices=Czas.LATA_BRACTW + [IntAlt.DONT_KNOW],
-        default=IntAlt.DONT_KNOW,
-        verbose_name="Rok założenia",
-    )
-
-    wiek_tradycje = models.IntegerField(
-        choices=Czas.WIEKI + [IntAlt.DONT_KNOW],
-        default=IntAlt.DONT_KNOW,
-        verbose_name="Tradycje sięgają którego wieku",
-    )
-
-    wydarzenia = models.ManyToManyField(
-        "kalendarz.WydarzenieKalendarzowe",
-        blank=True,
-        verbose_name="Udział w wydarzeniach",
-    )
-
-    class Meta:
-        verbose_name = "Bractwo"
-        verbose_name_plural = "Bractwa"
-        ordering = ["panstwo", "nazwa"]
-
-    def __str__(self):
-        return self.nazwa
 
 
 class Cytat(PolymorphicModel):
@@ -296,7 +235,7 @@ class TradycjaInnegoBractwa(models.Model):
     nazwa = models.CharField(max_length=MEDIUM_LENGTH, verbose_name="Tradycja")
 
     bractwo = models.ForeignKey(
-        Bractwo,
+        "osoby.Bractwo",
         blank=True,
         null=True,
         on_delete=models.SET_NULL,

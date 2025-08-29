@@ -2,7 +2,6 @@ from collections import defaultdict
 from core.utils.autocompletion.AutocompletesGeneration import add_model_name
 from .models import (
     Aforyzm,
-    Bractwo,
     Cytat,
     GrupaBractw,
     Pojecie,
@@ -14,7 +13,6 @@ from .models import (
 
 names = defaultdict(str)
 
-add_model_name(Bractwo, names, "Bractwo")
 add_model_name(GrupaBractw, names, "GrupaBractw")
 
 add_model_name(TradycjaBCS, names, "TradycjaBCS")
