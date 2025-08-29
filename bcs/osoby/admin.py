@@ -7,6 +7,7 @@ from core.utils.filters import UsedContentTypeFilter
 from .inlines import KoordynatorZespoluInline, EgzekutorInline
 from .models import (
     Bean,
+    Byt,
     Czlonek,
     DawnyZarzad,
     HallOfFame,
@@ -33,9 +34,16 @@ class OrganizacjeUsedContentTypeFilter(UsedContentTypeFilter):
     parameter_name = "typ_organizacji"
 
 
+@admin.register(Byt)
+class BytAdmin(BaseModelAdmin):
+    # hide_base_class_from_index = False
+    pass
+
+
 @admin.register(Osoba)
 class OsobaAdmin(BaseModelAdmin):
     list_filter = [OsobyUsedContentTypeFilter]
+    # hide_base_class_from_index = False
 
 
 @admin.register(Bean)
@@ -49,8 +57,8 @@ class CzlonekAdmin(BaseModelAdmin):
 
 
 @admin.register(InnaOsoba)
-class InnaOsobaAdmin(BaseModelAdmin):
-    list_filter_exclude = ["polymorphic_ctype", "osoba_ptr"]
+class InnaOsobaAdmin(CzlonekAdmin):
+    pass
 
 
 @admin.register(DawnyZarzad)
@@ -124,6 +132,7 @@ class BractwoAdmin(OrganizacjaStudenckaAdmin):
 register_all_models(
     custom_admins={
         Bean: BeanAdmin,
+        Byt: BytAdmin,
         Bractwo: BractwoAdmin,
         Czlonek: CzlonekAdmin,
         DawnyZarzad: DawnyZarzadAdmin,
