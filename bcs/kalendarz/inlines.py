@@ -9,7 +9,7 @@ class ZdarzenieInline(NestedStackedInline, ParentAwareInline):
     model = Zdarzenie
     form = ZdarzenieInlineForm
     inlines = [ObrazZdarzenieInline]
-    extra = 1
+    extra = 0
     show_change_link = True
     ordering = ["data", "godzina"]
     filter_horizontal = ["powiazane_osoby"]
