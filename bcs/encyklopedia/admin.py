@@ -24,6 +24,7 @@ class BractwoAdmin(BaseModelAdmin):
     list_filter_exclude = ["rok_zalozenia"]
     filter_horizontal = ["zalozyciele", "wydarzenia"]
     inlines = [InnaOsobaInline]
+    list_display = ["nazwa", "grupa_bractw"]
 
 
 @admin.register(Cytat)
@@ -34,6 +35,11 @@ class CytatAdmin(BaseModelAdmin):
 @admin.register(GrupaBractw)
 class GrupaBractwAdmin(BaseModelAdmin):
     filter_horizontal = ["kraje"]
+    list_display = ["nazwa", "panstwa"]
+
+    def panstwa(self, obj):
+        return obj.get_kraje
+    panstwa.short_description = "Państwa"
 
 
 @admin.register(Powiedzenie)

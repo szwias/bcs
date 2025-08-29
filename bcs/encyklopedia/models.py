@@ -64,7 +64,7 @@ class Bractwo(models.Model):
         ordering = ["panstwo", "nazwa"]
 
     def __str__(self):
-        return f"{str(self.panstwo)}: {self.nazwa}"
+        return self.nazwa
 
 
 class Cytat(PolymorphicModel):
@@ -145,14 +145,17 @@ class GrupaBractw(models.Model):
         verbose_name="Rodzaj czapki",
     )
 
+    @property
+    def get_kraje(self):
+        return ", ".join(str(k) for k in self.kraje.all())
+
     class Meta:
         verbose_name = "Grupa bractw"
         verbose_name_plural = "Grupy bractw"
         ordering = ["nazwa"]
 
     def __str__(self):
-        kraje = ", ".join(str(k) for k in self.kraje.all())
-        return f"{self.nazwa}: {kraje}"
+        return self.nazwa
 
 
 class Pojecie(models.Model):
@@ -277,22 +280,6 @@ class TradycjaBCS(models.Model):
         ordering = ("nazwa",)
 
     def __str__(self):
-        # autorska = (
-        #     " - Autorska"
-        #     if self.zapozyczona_czy_autorska == TradycjaBCS.Origins.AUTORSKA
-        #     else ""
-        # )
-        # kontekst = ", "
-        # if (
-        #     self.okolicznosci_powstania == Okolicznosci.WYDARZENIE
-        #     and self.wydarzenie
-        # ):
-        #     kontekst += str(self.wydarzenie)
-        # elif self.okolicznosci_powstania == Okolicznosci.INNE and self.inne:
-        #     kontekst += str(self.inne)
-        # else:
-        #     kontekst = ""
-        # return f"{self.nazwa}{autorska}{kontekst}"
         return self.nazwa
 
 
