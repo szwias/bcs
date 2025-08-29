@@ -15,8 +15,7 @@ class Podmiot(PolymorphicModel):
         ordering = ["nazwa"]
 
     def __str__(self):
-        aktualnosc = "" if self.aktualne else " - NIEAKTUALNE"
-        return f"{self.nazwa}{aktualnosc}"
+        return self.nazwa
 
 
 class Rola(Podmiot):
@@ -65,6 +64,5 @@ class RelacjaPrawna(models.Model):
         verbose_name_plural = "Prawa i obowiązki"
 
     def __str__(self):
-        przedawnione = " - PRZEDAWNIONE" if self.przedawnione else ""
         podmiot = ", ".join(str(p) for p in self.podmiot.all())
-        return f"{podmiot}: {self.tresc}{przedawnione}"
+        return f"{podmiot}: {self.tresc}"
