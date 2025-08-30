@@ -8,6 +8,6 @@ psql -U postgres -c "DROP DATABASE IF EXISTS bcs_db"
 psql -U postgres -c "CREATE DATABASE bcs_db"
 
 # Restoring the database
-psql -U postgres -d bcs_db -f baza/baza.sql 2>&1
+psql -U postgres -d bcs_db -f baza/baza.sql > /dev/null 2>&1
 
 echo "Database restored successfully"
