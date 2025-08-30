@@ -39,12 +39,34 @@ class RelacjaPrawna(models.Model):
 
     tresc = models.TextField(max_length=MAX_LENGTH, verbose_name="Treść")
 
-    podmiot = models.ManyToManyField(
-        Podmiot, blank=True, verbose_name="Podmiot"
-    )
-
     prawo_czy_obowiazek = models.CharField(
         max_length=1, choices=Wybory.choices, verbose_name="Rodzaj relacji"
+    )
+
+    class Meta:
+        verbose_name = "Relacja prawna"
+        verbose_name_plural = "Prawa i obowiązki"
+        ordering = ["tresc"]
+
+    def __str__(self):
+        return self.tresc
+
+
+class PrawoObowiazek(models.Model):
+    podmiot = models.ForeignKey(
+        Podmiot,
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+        verbose_name="Podmiot",
+    )
+
+    relacja = models.ForeignKey(
+        RelacjaPrawna,
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+        verbose_name="Prawo/Obowiązek",
     )
 
     aktualne = models.BooleanField(
@@ -55,14 +77,15 @@ class RelacjaPrawna(models.Model):
         "zrodla.Dokument",
         blank=True,
         null=True,
-        on_delete=models.PROTECT,
+        on_delete=models.SET_NULL,
         verbose_name="Dokument",
     )
 
     class Meta:
-        verbose_name = "Relacja prawna"
+        verbose_name = "Prawo/Obowiązek"
         verbose_name_plural = "Prawa i obowiązki"
+        ordering = ["podmiot", "relacja"]
 
     def __str__(self):
-        podmiot = ", ".join(str(p) for p in self.podmiot.all())
-        return f"{podmiot}: {self.tresc}"
+        aktualne = "" if self.aktualne else " - NIEAKTUALNE"
+        return f"{self.podmiot}: {self.relacja}{aktualne}"
