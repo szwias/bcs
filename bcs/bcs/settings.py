@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     "czapki",
     "drzewo",
     "encyklopedia",
+    "honory",
     "kalendarz",
     "kronika",
     "miejsca",
