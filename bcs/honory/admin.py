@@ -4,8 +4,14 @@ from core.utils.automation.BaseAdmin import (
     register_all_models
 )
 from .models import (
+    Nagrodzeni,
     Odznaczenie,
 )
+
+
+@admin.register(Nagrodzeni)
+class NagrodzeniAdmin(BaseModelAdmin):
+    list_display = ["osoba", "odznaczenie", "zaslugi"]
 
 
 @admin.register(Odznaczenie)
@@ -17,6 +23,7 @@ class OdznaczenieAdmin(BaseModelAdmin):
 
 register_all_models(
     custom_admins={
+        Nagrodzeni: NagrodzeniAdmin,
         Odznaczenie: OdznaczenieAdmin,
     }
 )
