@@ -52,6 +52,7 @@ class OswiadczenieAdmin(DokumentAdmin):
 class UchwalaAdmin(OswiadczenieAdmin):
     fields = ["tytul", "data", "walne", "autorzy", "streszczenie", "plik"]
     list_filter_exclude = "__all__"
+    list_display = ["tytul", "data", "get_autor", "streszczenie"]
 
 
 @admin.register(Korespondencja)
