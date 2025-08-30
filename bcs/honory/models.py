@@ -25,6 +25,11 @@ class Odznaczenie(models.Model):
         verbose_name="Dokument",
     )
 
+    zarzad_funduje = models.BooleanField(
+        default=False,
+        verbose_name="Zarząd funduje",
+    )
+
     fundatorzy = models.ManyToManyField(
         "osoby.Byt",
         blank=True,
