@@ -61,6 +61,7 @@ Python / SQL / HTML / Bash / JSON lines written:
     27 sierpnia:    5779    / 13299 / 26    / 45    / 5020  lines (+224 / +916  / +0    / +0    / +0)       = +1140
     28 sierpnia:    6174    / 13997 / 26    / 45    / 5020  lines (+395 / +698  / +0    / +0    / +0)       = +1093
     29 sierpnia:    6405    / 14591 / 26    / 45    / 5020  lines (+231 / +594  / +0    / +0    / +0)       = +825
+    30 sierpnia:    6641    / 15044 / 26    / 58    / 5020  lines (+236 / +453  / +0    / +13   / +0)       = +702
 
     PREVIOUS PERIODS:
         START OF PRODUCTION: 1742 lines so far (~1.7K), 1742 lines added (~1.7K)
@@ -113,9 +114,9 @@ Python / SQL / HTML / Bash / JSON lines written:
 
     CURRENT PERIOD:
         PANIK:
-        21 sierpnia - 27 sierpnia (8 / 9 days - 1575 / 5062 / 0 / 45 / 5555 lines):
-            Average speed of development: 1360 lines per day (~1360)
-            Average lines of code on a coding day: 1530 lines per day (~1530)
-            Average positive lines on a coding day: 1549 lines per day (~1550)
+        21 sierpnia - 27 sierpnia (9 / 10 days - 1811 / 5515 / 0 / 58 / 5555 lines):
+            Average speed of development: 1294 lines per day (~1290)
+            Average lines of code on a coding day: 1438 lines per day (~1440)
+            Average positive lines on a coding day: 1444 lines per day (~1440)
             Max day: 5018
             Min day: -58

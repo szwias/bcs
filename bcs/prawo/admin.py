@@ -3,6 +3,7 @@ from core.utils.automation.BaseAdmin import (
     BaseModelAdmin,
     register_all_models,
 )
+from prawo.inlines import PrawoObowiazekInline
 from prawo.models import (
     PrawoObowiazek,
     RelacjaPrawna,
@@ -20,6 +21,7 @@ class RelacjaPrawnaAdmin(BaseModelAdmin):
 @admin.register(Rola)
 class RolaAdmin(BaseModelAdmin):
     list_display = ["nazwa", "aktualne"]
+    inlines = [PrawoObowiazekInline]
 
 
 @admin.register(Struktura)

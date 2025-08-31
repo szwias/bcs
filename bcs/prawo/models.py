@@ -83,7 +83,7 @@ class PrawoObowiazek(models.Model):
 
     class Meta:
         verbose_name = "Prawo/Obowiązek"
-        verbose_name_plural = "Prawa i obowiązki"
+        verbose_name_plural = "Kodeks"
         ordering = ["podmiot", "relacja"]
 
     def __str__(self):
