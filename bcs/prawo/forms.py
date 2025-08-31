@@ -1,5 +1,6 @@
 from django import forms
 from .models import (
+    DlugoscKadencji,
     Podmiot,
     PrawoObowiazek,
     RelacjaPrawna,
@@ -8,6 +9,13 @@ from .models import (
 )
 from .views import autocomplete_widgets
 from core.utils.autocompletion.AutocompletesGeneration import build_widgets
+
+
+class DlugoscKadencjiForm(forms.ModelForm):
+    class Meta:
+        model = DlugoscKadencji
+        fields = "__all__"
+        widgets = build_widgets(autocomplete_widgets[DlugoscKadencji.__name__])
 
 
 class PodmiotForm(forms.ModelForm):

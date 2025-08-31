@@ -1,4 +1,5 @@
 from .models import (
+    DlugoscKadencji,
     Podmiot,
     PrawoObowiazek,
     RelacjaPrawna,
@@ -11,6 +12,7 @@ from zrodla.models_dict import names as zrodla
 
 autocomplete_configs = [
     (Podmiot, [], [], []),
+    (DlugoscKadencji, [], [], []),
     (
         PrawoObowiazek,
         [],

@@ -1,6 +1,7 @@
 from collections import defaultdict
 from core.utils.autocompletion.AutocompletesGeneration import add_model_name
 from .models import (
+    DlugoscKadencji,
     Podmiot,
     PrawoObowiazek,
     RelacjaPrawna,
@@ -17,3 +18,5 @@ add_model_name(Struktura, names, "Struktura")
 add_model_name(RelacjaPrawna, names, "RelacjaPrawna")
 
 add_model_name(PrawoObowiazek, names, "PrawoObowiazek")
+
+add_model_name(DlugoscKadencji, names, "DlugoscKadencji")

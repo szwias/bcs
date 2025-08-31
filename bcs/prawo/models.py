@@ -4,6 +4,19 @@ from polymorphic.models import PolymorphicModel
 from core.utils.Consts import MAX_LENGTH, NAME_LENGTH
 
 
+class DlugoscKadencji(models.Model):
+    okres = models.CharField(
+        max_length=MAX_LENGTH, verbose_name="Długość kadencji"
+    )
+
+    class Meta:
+        verbose_name = "Długość kadencji"
+        verbose_name_plural = "Długości kadencji"
+        ordering = ["okres"]
+
+    def __str__(self):
+        return self.okres
+
 class Podmiot(PolymorphicModel):
     nazwa = models.CharField(max_length=NAME_LENGTH, verbose_name="Nazwa")
 
