@@ -11,15 +11,6 @@ class CzapkaForm(forms.ModelForm):
         widgets = build_widgets(autocomplete_widgets[Czapka.__name__])
 
 
-class CzapkaHonorisCausaForm(forms.ModelForm):
-    class Meta:
-        model = CzapkaHonorisCausa
-        fields = "__all__"
-        widgets = build_widgets(
-            autocomplete_widgets[CzapkaHonorisCausa.__name__]
-        )
-
-
 class RodzajCzapkiForm(forms.ModelForm):
     class Meta:
         model = RodzajCzapki

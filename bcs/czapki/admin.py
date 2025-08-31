@@ -5,7 +5,6 @@ from core.utils.automation.BaseAdmin import (
 )
 from .models import (
     Czapka,
-    CzapkaHonorisCausa,
     RodzajCzapki,
 )
 
@@ -44,15 +43,9 @@ class RodzajCzapkiAdmin(BaseModelAdmin):
     filter_horizontal = ["kraje"]
 
 
-@admin.register(CzapkaHonorisCausa)
-class CzapkaHonorisCausaAdmin(BaseModelAdmin):
-    list_display = ["wlasciciel", "zaslugi"]
-
-
 register_all_models(
     custom_admins={
         Czapka: CzapkaAdmin,
-        CzapkaHonorisCausa: CzapkaHonorisCausaAdmin,
         RodzajCzapki: RodzajCzapkiAdmin,
     }
 )
