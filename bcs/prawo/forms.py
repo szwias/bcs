@@ -6,6 +6,7 @@ from .models import (
     RelacjaPrawna,
     Rola,
     Struktura,
+    WielkoscStruktury,
 )
 from .views import autocomplete_widgets
 from core.utils.autocompletion.AutocompletesGeneration import build_widgets
@@ -51,3 +52,12 @@ class StrukturaForm(forms.ModelForm):
         model = Struktura
         fields = "__all__"
         widgets = build_widgets(autocomplete_widgets[Struktura.__name__])
+
+
+class WielkoscStrukturyForm(forms.ModelForm):
+    class Meta:
+        model = WielkoscStruktury
+        fields = "__all__"
+        widgets = build_widgets(
+            autocomplete_widgets[WielkoscStruktury.__name__]
+        )

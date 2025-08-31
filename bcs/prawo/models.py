@@ -17,6 +17,21 @@ class DlugoscKadencji(models.Model):
     def __str__(self):
         return self.okres
 
+
+class WielkoscStruktury(models.Model):
+    wielkosc = models.CharField(
+        max_length=MAX_LENGTH, verbose_name="Wielkość"
+    )
+
+    class Meta:
+        verbose_name = "Wielkosc"
+        verbose_name_plural = "Wielkosc"
+        ordering = ["wielkosc"]
+
+    def __str__(self):
+        return self.wielkosc
+
+
 class Podmiot(PolymorphicModel):
     nazwa = models.CharField(max_length=NAME_LENGTH, verbose_name="Nazwa")
 

@@ -5,6 +5,7 @@ from .models import (
     RelacjaPrawna,
     Rola,
     Struktura,
+    WielkoscStruktury,
 )
 from core.utils.autocompletion.AutocompletesGeneration import *
 
@@ -27,6 +28,7 @@ autocomplete_configs = [
     ),
     (Struktura, [], [], []),
     (Rola, [], [], []),
+    (WielkoscStruktury, [], [], []),
 ]
 
 autocomplete_urls, autocomplete_widgets = setup_autocompletes(
