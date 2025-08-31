@@ -8,8 +8,14 @@ from prawo.models import (
     PrawoObowiazek,
     RelacjaPrawna,
     Rola,
-    Struktura,
+    Struktura, Podmiot,
 )
+
+
+@admin.register(Podmiot)
+class PodmiotAdmin(BaseModelAdmin):
+    # hide_base_class_from_index = False
+    pass
 
 
 @admin.register(RelacjaPrawna)
@@ -38,6 +44,7 @@ class PrawoObowiazekAdmin(BaseModelAdmin):
 
 register_all_models(
     custom_admins={
+        Podmiot: PodmiotAdmin,
         PrawoObowiazek: PrawoObowiazekAdmin,
         Rola: RolaAdmin,
         Struktura: StrukturaAdmin,
