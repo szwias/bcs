@@ -20,8 +20,9 @@ class RelacjaPrawnaAdmin(BaseModelAdmin):
 
 @admin.register(Rola)
 class RolaAdmin(BaseModelAdmin):
-    list_display = ["nazwa", "aktualne"]
+    list_display = ["nazwa", "aktualne", "dlugosc_kadencji"]
     inlines = [PrawoObowiazekInline]
+    list_filter_exclude = ["polymorphic_ctype", "podmiot_ptr"]
 
 
 @admin.register(Struktura)

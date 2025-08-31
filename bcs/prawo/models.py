@@ -35,6 +35,14 @@ class WielkoscStruktury(models.Model):
 class Podmiot(PolymorphicModel):
     nazwa = models.CharField(max_length=NAME_LENGTH, verbose_name="Nazwa")
 
+    dlugosc_kadencji = models.ForeignKey(
+        DlugoscKadencji,
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+        verbose_name="Długość kadencji",
+    )
+
     aktualne = models.BooleanField(default=True, verbose_name="Aktualne")
 
     class Meta:

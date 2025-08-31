@@ -12,8 +12,8 @@ from core.utils.autocompletion.AutocompletesGeneration import *
 from zrodla.models_dict import names as zrodla
 
 autocomplete_configs = [
-    (Podmiot, [], [], []),
     (DlugoscKadencji, [], [], []),
+    (Podmiot, [], [], [DlugoscKadencji.__name__]),
     (
         PrawoObowiazek,
         [],
@@ -26,8 +26,16 @@ autocomplete_configs = [
         ["prawo_czy_obowiazek"],
         [],
     ),
-    (Struktura, [], [], []),
-    (Rola, [], [], []),
+    (
+        Struktura,
+        [],
+        [],
+        [
+            DlugoscKadencji.__name__,
+            WielkoscStruktury.__name__
+        ]
+    ),
+    (Rola, [], [], [DlugoscKadencji.__name__]),
     (WielkoscStruktury, [], [], []),
 ]
 
