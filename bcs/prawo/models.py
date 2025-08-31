@@ -45,6 +45,8 @@ class Podmiot(PolymorphicModel):
 
     aktualne = models.BooleanField(default=True, verbose_name="Aktualne")
 
+    opis = models.TextField(blank=True, verbose_name="Opis")
+
     class Meta:
         verbose_name = "Podmiot"
         verbose_name_plural = "Podmioty"
