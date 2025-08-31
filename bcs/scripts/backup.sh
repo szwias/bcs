@@ -1,24 +1,29 @@
 #!/bin/bash
 # Script to backup current database with per-day directories
+# Usage: backup [label]
 
-# Navigate to the 'baza' directory
 cd baza || { echo "Directory 'baza' not found"; exit 1; }
 
-# Create today's date and timestamp
+# Create date components
 day=$(date +"%Y-%m-%d")
 timestamp=$(date +"%Y%m%d_%H%M%S")
-new_dump="baza_${timestamp}.sql"
+
+# Optional argument (label) for the dump name
+label=$1
+if [[ -n "$label" ]]; then
+    new_dump="baza_${timestamp}_${label}.sql"
+else
+    new_dump="baza_${timestamp}.sql"
+fi
 
 # Ensure today's backup directory exists
 mkdir -p "./backups/$day"
 
-# Move any existing timestamped dump(s) into their respective day's folder
+# Move any existing timestamped dump(s) to their day's folder
 for file in baza_*.sql; do
     if [[ -f "$file" ]]; then
-        # Extract YYYYMMDD from filename
         yyyymmdd=$(echo "$file" | grep -oP '\d{8}' | head -1)
         if [[ -n "$yyyymmdd" ]]; then
-            # Convert YYYYMMDD -> YYYY-MM-DD
             file_day="${yyyymmdd:0:4}-${yyyymmdd:4:2}-${yyyymmdd:6:2}"
             mkdir -p "./backups/$file_day"
             mv "$file" "./backups/$file_day/"
@@ -26,8 +31,12 @@ for file in baza_*.sql; do
     fi
 done
 
-# Create a fresh dump in the main 'baza' folder
-pg_dump -b -U postgres -f "$new_dump" bcs_db
+# Create a fresh dump
+pg_dump -b -U postgres -f "$new_dump" bcs_db || {
+    echo "❌ Backup failed"
+    exit 1
+}
 
-# Return to the original directory
+echo "✅ Backup created: $new_dump"
+
 cd ..
