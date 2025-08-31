@@ -40,7 +40,7 @@ class ZadanieChrzcielneAdmin(BaseModelAdmin):
         qs = super().get_queryset(request)
         return qs.annotate(
             first_author_date=Min(
-                "autorzy__depositio_beanorum__data_rozpoczecia"
+                "autorzy__chrzest__data_rozpoczecia"
             )
         )
 

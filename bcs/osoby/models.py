@@ -338,12 +338,12 @@ class Czlonek(Osoba, OsobaBCS):
         verbose_name="Czy ochrzczony",
     )
 
-    depositio_beanorum = models.ForeignKey(
+    chrzest = models.ForeignKey(
         "kalendarz.Chrzest",
         blank=True,
         null=True,
         on_delete=models.SET_NULL,
-        verbose_name="Depositio beanorum",
+        verbose_name="Chrzest",
     )
 
     # TODO: add kalendarz.Wydarzenie records past 2023 so that you can fill
