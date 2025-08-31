@@ -27,7 +27,7 @@ class RolaAdmin(BaseModelAdmin):
 
 @admin.register(Struktura)
 class StrukturaAdmin(RolaAdmin):
-    pass
+    list_display = ["nazwa", "aktualne", "wielkosc", "dlugosc_kadencji"]
 
 
 @admin.register(PrawoObowiazek)

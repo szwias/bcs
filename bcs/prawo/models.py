@@ -62,6 +62,14 @@ class Rola(Podmiot):
 
 
 class Struktura(Podmiot):
+    wielkosc = models.ForeignKey(
+        WielkoscStruktury,
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+        verbose_name="Wielkość",
+    )
+
     class Meta:
         verbose_name = "Struktura w Bractwie"
         verbose_name_plural = "Struktury w Bractwie"
