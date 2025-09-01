@@ -24,7 +24,7 @@ def search(request):
             qs = (
                 model.objects.annotate(rank=SearchRank(vector, search_query))
                 .filter(rank__gt=0)
-                .order_by("-rank")[:10]
+                .order_by("-rank")
             )
 
             for obj in qs:
