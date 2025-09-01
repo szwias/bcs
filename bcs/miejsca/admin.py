@@ -1,7 +1,4 @@
-from core.utils.automation.BaseAdmin import (
-    admin,
-    BaseModelAdmin,
-    register_all_models,
-)
+from core.utils.automation.admin_imports import *
+
 
 register_all_models()

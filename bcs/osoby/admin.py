@@ -1,8 +1,4 @@
-from core.utils.automation.BaseAdmin import (
-    admin,
-    BaseModelAdmin,
-    register_all_models,
-)
+from core.utils.automation.admin_imports import *
 from core.utils.filters import UsedContentTypeFilter
 from .inlines import KoordynatorZespoluInline, EgzekutorInline
 from .model_imports import *
