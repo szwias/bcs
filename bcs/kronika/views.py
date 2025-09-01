@@ -1,11 +1,4 @@
-from .models import (
-    Kadencja,
-    PodsumowanieKadencji,
-    TypWydarzeniaHistorycznego,
-    WydarzenieHistoryczne,
-    ZadanieChrzcielne,
-    KategoriaZadaniaChrzcielnego,
-)
+from .model_imports import *
 from core.utils.autocompletion.AutocompletesGeneration import *
 
 from encyklopedia.models_dict import names as encyklopedia

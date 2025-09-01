@@ -1,14 +1,4 @@
-from .models import (
-    Dokument,
-    Edykt,
-    Korespondencja,
-    Oswiadczenie,
-    Rozliczenie,
-    Uchwala,
-    Ukaz,
-    Zrodlo,
-    ZrodloOgolne,
-)
+from .model_imports import *
 from core.utils.autocompletion.AutocompletesGeneration import *
 
 from kronika.models_dict import names as kronika

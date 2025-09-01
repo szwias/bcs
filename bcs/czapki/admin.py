@@ -3,10 +3,7 @@ from core.utils.automation.BaseAdmin import (
     BaseModelAdmin,
     register_all_models,
 )
-from .models import (
-    Czapka,
-    RodzajCzapki,
-)
+from .model_imports import *
 
 from django.contrib import admin
 from django.apps import apps

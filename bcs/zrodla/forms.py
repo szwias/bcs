@@ -1,17 +1,7 @@
 from django import forms
 from django.apps import apps
 
-from .models import (
-    Dokument,
-    Edykt,
-    Korespondencja,
-    Oswiadczenie,
-    Rozliczenie,
-    Uchwala,
-    Ukaz,
-    Zrodlo,
-    ZrodloOgolne,
-)
+from .model_imports import *
 from .views import autocomplete_widgets
 from core.utils.autocompletion.AutocompletesGeneration import build_widgets
 from osoby.models_dict import names as osoby

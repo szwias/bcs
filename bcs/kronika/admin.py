@@ -5,7 +5,7 @@ from core.utils.automation.BaseAdmin import (
     BaseModelAdmin,
     register_all_models,
 )
-from kronika.models import Kadencja, WydarzenieHistoryczne, ZadanieChrzcielne
+from .model_imports import *
 from .filters import YearFilter
 
 

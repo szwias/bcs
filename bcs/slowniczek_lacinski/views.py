@@ -1,5 +1,5 @@
 from core.utils.autocompletion.AutocompletesGeneration import *
-from .models import Zwrot
+from .model_imports import *
 
 autocomplete_configs = [(Zwrot, [], [], [])]
 

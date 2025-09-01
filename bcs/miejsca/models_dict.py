@@ -1,12 +1,6 @@
 from collections import defaultdict
 from core.utils.autocompletion.AutocompletesGeneration import add_model_name
-from .models import (
-    Kraj,
-    Miejsce,
-    TypMiejsca,
-    Uczelnia,
-    Wydzial,
-)
+from .model_imports import *
 
 names = defaultdict(str)
 

@@ -3,7 +3,7 @@ from core.utils.automation.BaseAdmin import (
     BaseModelAdmin,
     register_all_models,
 )
-from .models import ObrazWydarzenie, ObrazZdarzenie
+from .model_imports import *
 
 
 @admin.register(ObrazWydarzenie)

@@ -1,26 +1,6 @@
 from collections import defaultdict
 from core.utils.autocompletion.AutocompletesGeneration import add_model_name
-from .models import (
-    Bean,
-    Bractwo,
-    Byt,
-    Czlonek,
-    DawnyZarzad,
-    Egzekutor,
-    HallOfFame,
-    ImieSzlacheckie,
-    InnaOsoba,
-    KomisjaRewizyjna,
-    KoordynatorZespolu,
-    NowyZarzad,
-    Organizacja,
-    OrganizacjaStudencka,
-    Osoba,
-    WielkiMistrz,
-    Zarzad,
-    Zespol,
-    ZwierzeCzapkowe,
-)
+from .model_imports import *
 
 names = defaultdict(str)
 

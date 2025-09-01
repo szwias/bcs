@@ -4,12 +4,7 @@ from core.utils.automation.BaseAdmin import (
     BaseModelAdmin,
     register_all_models,
 )
-from kalendarz.models import (
-    Chrzest,
-    WydarzenieKalendarzowe,
-    Wydarzenie,
-    Zdarzenie,
-)
+from .model_imports import *
 from .inlines import ZdarzenieInline
 from .filters import YearListFilter
 from multimedia.inlines import ObrazWydarzenieInline, ObrazZdarzenieInline

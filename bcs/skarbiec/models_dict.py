@@ -1,9 +1,6 @@
 from collections import defaultdict
 from core.utils.autocompletion.AutocompletesGeneration import add_model_name
-from .models import (
-    Konto,
-    Transakcja,
-)
+from .model_imports import *
 
 names = defaultdict(str)
 

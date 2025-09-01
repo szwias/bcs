@@ -3,7 +3,7 @@ from core.utils.automation.BaseAdmin import (
     BaseModelAdmin,
     register_all_models,
 )
-from .models import Zwrot
+from .model_imports import *
 
 
 @admin.register(Zwrot)

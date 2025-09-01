@@ -1,12 +1,4 @@
-from .models import (
-    DlugoscKadencji,
-    Podmiot,
-    PrawoObowiazek,
-    RelacjaPrawna,
-    Rola,
-    Struktura,
-    WielkoscStruktury,
-)
+from .models_imports import *
 from core.utils.autocompletion.AutocompletesGeneration import *
 
 from zrodla.models_dict import names as zrodla

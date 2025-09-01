@@ -3,10 +3,7 @@ from core.utils.automation.BaseAdmin import (
     BaseModelAdmin,
     register_all_models
 )
-from skarbiec.models import (
-    Konto,
-    Transakcja,
-)
+from .model_imports import *
 from .inlines import TransakcjaInline
 
 

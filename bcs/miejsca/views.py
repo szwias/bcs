@@ -1,5 +1,5 @@
 from core.utils.autocompletion.AutocompletesGeneration import *
-from .models import Kraj, Miejsce, TypMiejsca, Uczelnia, Wydzial
+from .model_imports import *
 
 autocomplete_configs = [
     (Miejsce, [], [], [TypMiejsca.__name__]),

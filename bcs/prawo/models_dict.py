@@ -1,14 +1,6 @@
 from collections import defaultdict
 from core.utils.autocompletion.AutocompletesGeneration import add_model_name
-from .models import (
-    DlugoscKadencji,
-    Podmiot,
-    PrawoObowiazek,
-    RelacjaPrawna,
-    Rola,
-    Struktura,
-    WielkoscStruktury,
-)
+from .models_imports import *
 
 names = defaultdict(str)
 

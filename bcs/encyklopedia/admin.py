@@ -3,13 +3,7 @@ from core.utils.automation.BaseAdmin import (
     BaseModelAdmin,
     register_all_models,
 )
-from .models import (
-    Aforyzm,
-    Cytat,
-    GrupaBractw,
-    Powiedzenie,
-    TradycjaBCS,
-)
+from .model_imports import *
 
 
 @admin.register(Aforyzm)

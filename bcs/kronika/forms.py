@@ -1,16 +1,7 @@
-from django import forms
-
-from kalendarz.models import WydarzenieKalendarzowe
-from .models import (
-    Kadencja,
-    PodsumowanieKadencji,
-    TypWydarzeniaHistorycznego,
-    WydarzenieHistoryczne,
-    ZadanieChrzcielne,
-    KategoriaZadaniaChrzcielnego,
-)
-from .views import autocomplete_widgets
 from core.utils.autocompletion.AutocompletesGeneration import build_widgets
+from django import forms
+from .model_imports import *
+from .views import autocomplete_widgets
 
 
 class KadencjaForm(forms.ModelForm):

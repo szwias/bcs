@@ -1,5 +1,6 @@
 """
 from core.utils.autocompletion.AutocompletesGeneration import *
+from .model_imports import *
 
 autocomplete_configs = [
 ]

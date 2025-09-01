@@ -4,12 +4,7 @@ from core.utils.automation.BaseAdmin import (
     register_all_models,
 )
 from prawo.inlines import PrawoObowiazekInline
-from prawo.models import (
-    PrawoObowiazek,
-    RelacjaPrawna,
-    Rola,
-    Struktura, Podmiot,
-)
+from .models_imports import *
 
 
 @admin.register(Podmiot)

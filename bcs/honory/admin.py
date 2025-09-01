@@ -3,10 +3,7 @@ from core.utils.automation.BaseAdmin import (
     BaseModelAdmin,
     register_all_models
 )
-from .models import (
-    Nagrodzeni,
-    Odznaczenie,
-)
+from .model_imports import *
 
 
 @admin.register(Nagrodzeni)

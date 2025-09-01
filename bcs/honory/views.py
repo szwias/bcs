@@ -1,8 +1,5 @@
 from core.utils.autocompletion.AutocompletesGeneration import *
-from .models import (
-    Nagrodzeni,
-    Odznaczenie,
-)
+from .model_imports import *
 
 from osoby.models_dict import names as osoby
 from zrodla.models_dict import names as zrodla

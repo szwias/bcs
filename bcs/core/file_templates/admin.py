@@ -4,6 +4,7 @@ from core.utils.automation.BaseAdmin import (
     BaseModelAdmin,
     register_all_models
 )
+from .model_imports import *
 
 register_all_models(
     custom_admins={}

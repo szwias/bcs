@@ -1,4 +1,4 @@
-from .models import *
+from .model_imports import *
 from core.utils.autocompletion.AutocompletesGeneration import *
 
 from czapki.models_dict import names as czapki

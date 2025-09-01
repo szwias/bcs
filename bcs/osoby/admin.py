@@ -5,22 +5,7 @@ from core.utils.automation.BaseAdmin import (
 )
 from core.utils.filters import UsedContentTypeFilter
 from .inlines import KoordynatorZespoluInline, EgzekutorInline
-from .models import (
-    Bean,
-    Byt,
-    Czlonek,
-    DawnyZarzad,
-    HallOfFame,
-    ImieSzlacheckie,
-    InnaOsoba,
-    KomisjaRewizyjna,
-    NowyZarzad,
-    Osoba,
-    WielkiMistrz,
-    ZwierzeCzapkowe,
-    Zespol,
-    KoordynatorZespolu, Organizacja, OrganizacjaStudencka, Bractwo,
-)
+from .model_imports import *
 from kronika.inlines import PodsumowanieKadencjiInline
 
 

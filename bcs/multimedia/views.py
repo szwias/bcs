@@ -1,5 +1,5 @@
 from core.utils.autocompletion.AutocompletesGeneration import *
-from .models import ObrazWydarzenie, ObrazZdarzenie
+from .model_imports import *
 
 from kalendarz.models_dict import names as kalendarz
 from miejsca.models_dict import names as miejsca

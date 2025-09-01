@@ -3,17 +3,7 @@ from core.utils.automation.BaseAdmin import (
     BaseModelAdmin,
     register_all_models,
 )
-from .models import (
-    Dokument,
-    Edykt,
-    Korespondencja,
-    Oswiadczenie,
-    Rozliczenie,
-    Uchwala,
-    Ukaz,
-    Zrodlo,
-    ZrodloOgolne,
-)
+from .model_imports import *
 
 
 @admin.register(Zrodlo)
