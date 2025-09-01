@@ -31,8 +31,12 @@ class PodsumowanieKadencji(models.Model):
         verbose_name_plural = "Podsumowania kadencji"
         ordering = ["-zarzad"]
 
+    def snippet(self):
+        return snip(self.podsumowanie)
+
     def __str__(self):
-        return f"{self.autor}: {self.zarzad.kadencja} ({self.zarzad.wielki_mistrz.imie})"
+        wm = self.zarzad.wielki_mistrz.imie
+        return f"{self.autor}: {self.zarzad.kadencja} ({wm})"
 
 
 class Kadencja(models.Model):
@@ -65,6 +69,12 @@ class Kadencja(models.Model):
     def __str__(self):
         return self.get_lata_display()
 
+    def snippet(self):
+        width = SNIPPET_LENGTH // 2 - 1
+        start = shorten(str(self.rozpoczecie), width, placeholder="...")
+        end = shorten(str(self.zakonczenie), width, placeholder="...")
+        return snip(f"{start} - {end}")
+
 
 class TypWydarzeniaHistorycznego(models.Model):
     typ = models.CharField(
@@ -78,6 +88,9 @@ class TypWydarzeniaHistorycznego(models.Model):
 
     def __str__(self):
         return self.typ
+
+    def snippet(self):
+        return snip(self.typ)
 
 
 class WydarzenieHistoryczne(models.Model):
@@ -162,6 +175,9 @@ class WydarzenieHistoryczne(models.Model):
 
         return f'{self.get_data}: {typ} "{self.nazwa}"'
 
+    def snippet(self):
+        return snip(self.opis)
+
 
 class KategoriaZadaniaChrzcielnego(models.Model):
     nazwa = models.CharField(max_length=MEDIUM_LENGTH, verbose_name="Nazwa")
@@ -173,6 +189,9 @@ class KategoriaZadaniaChrzcielnego(models.Model):
 
     def __str__(self):
         return self.nazwa
+
+    def snippet(self):
+        return snip(self.nazwa)
 
 
 class ZadanieChrzcielne(models.Model):
@@ -216,3 +235,6 @@ class ZadanieChrzcielne(models.Model):
     def __str__(self):
         autorzy = ", ".join([str(a) for a in list(self.autorzy.all())])
         return f"{autorzy} - {self.nazwa} - {self.kategoria}"
+
+    def snippet(self):
+        return snip(self.opis)

@@ -9,5 +9,5 @@ class WyszukiwarkaConfig(AppConfig):
     name = "wyszukiwarka"
 
     def ready(self):
-        apps_to_index = []
+        apps_to_index = ["kronika"]
         register_search(apps_to_index)
