@@ -1,20 +1,14 @@
-<form method="get">
-  <input type="text" name="q" value="{{ query }}" placeholder="Search...">
-  <button type="submit">Search</button>
-</form>
+<h1>Search Results for "{{ query }}"</h1>
 
-{% if query %}
-  <h2>Results for "{{ query }}":</h2>
-  {% if results %}
-    <ul>
-      {% for obj in results %}
-        <li>
-          <strong>{{ obj }}</strong><br>
-          {{ obj.podsumowanie|truncatewords:30 }}
-        </li>
-      {% endfor %}
-    </ul>
-  {% else %}
-    <p>No results found.</p>
-  {% endif %}
+{% if results %}
+<ul>
+    {% for r in results %}
+    <li>
+        <a href="{{ r.admin_url }}">{{ r.title }}</a><br>
+        <small>{{ r.snippet }}{% if r.snippet|length == 150 %}...{% endif %}</small>
+    </li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>No results found.</p>
 {% endif %}
