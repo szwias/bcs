@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     "skarbiec",
     "slowniczek_lacinski",
     "spiewnik",
+    "wyszukiwarka",
     "zrodla",
     "dal",  # django-autocomplete-light app
     "dal_select2",  # for the Select2 widget
