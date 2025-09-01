@@ -19,6 +19,7 @@ class GrupaBractwAdmin(BaseModelAdmin):
 
     def panstwa(self, obj):
         return obj.get_kraje
+
     panstwa.short_description = "Państwa"
 
 

@@ -23,7 +23,10 @@ class Migration(migrations.Migration):
                         verbose_name="ID",
                     ),
                 ),
-                ("nazwa", models.CharField(max_length=100, verbose_name="Nazwa")),
+                (
+                    "nazwa",
+                    models.CharField(max_length=100, verbose_name="Nazwa"),
+                ),
             ],
             options={
                 "verbose_name": "Kategoria zadania chrzcielnego",

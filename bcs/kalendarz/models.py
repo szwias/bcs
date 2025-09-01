@@ -128,7 +128,7 @@ class Chrzest(WydarzenieKalendarzowe):
         "osoby.Czlonek",
         blank=True,
         verbose_name="Chrzczeni",
-        related_name="chrzest_osoby"
+        related_name="chrzest_osoby",
     )
 
     hymn = models.ForeignKey(

@@ -13,6 +13,8 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name="odznaczenie",
             name="zarzad_funduje",
-            field=models.BooleanField(default=False, verbose_name="Zarząd funduje"),
+            field=models.BooleanField(
+                default=False, verbose_name="Zarząd funduje"
+            ),
         ),
     ]

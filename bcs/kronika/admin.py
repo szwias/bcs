@@ -34,9 +34,7 @@ class ZadanieChrzcielneAdmin(BaseModelAdmin):
     def get_queryset(self, request):
         qs = super().get_queryset(request)
         return qs.annotate(
-            first_author_date=Min(
-                "autorzy__chrzest__data_rozpoczecia"
-            )
+            first_author_date=Min("autorzy__chrzest__data_rozpoczecia")
         )
 
     def first_author_date(self, obj):

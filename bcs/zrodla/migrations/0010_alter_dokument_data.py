@@ -13,6 +13,8 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name="dokument",
             name="data",
-            field=models.DateField(blank=True, null=True, verbose_name="Data wydania"),
+            field=models.DateField(
+                blank=True, null=True, verbose_name="Data wydania"
+            ),
         ),
     ]

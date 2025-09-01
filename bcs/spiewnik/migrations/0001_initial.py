@@ -26,7 +26,9 @@ class Migration(migrations.Migration):
                 ),
                 (
                     "nazwa",
-                    models.CharField(max_length=100, verbose_name="Nazwa kategorii"),
+                    models.CharField(
+                        max_length=100, verbose_name="Nazwa kategorii"
+                    ),
                 ),
             ],
             options={
@@ -47,8 +49,14 @@ class Migration(migrations.Migration):
                         verbose_name="ID",
                     ),
                 ),
-                ("tytul", models.CharField(max_length=255, verbose_name="Tytuł")),
-                ("autor", models.CharField(max_length=255, verbose_name="Autor")),
+                (
+                    "tytul",
+                    models.CharField(max_length=255, verbose_name="Tytuł"),
+                ),
+                (
+                    "autor",
+                    models.CharField(max_length=255, verbose_name="Autor"),
+                ),
                 (
                     "tekst",
                     models.FileField(
@@ -69,7 +77,9 @@ class Migration(migrations.Migration):
                 (
                     "znani_czapce_autorzy",
                     models.ManyToManyField(
-                        blank=True, to="osoby.osoba", verbose_name="Znani BCS autorzy"
+                        blank=True,
+                        to="osoby.osoba",
+                        verbose_name="Znani BCS autorzy",
                     ),
                 ),
             ],

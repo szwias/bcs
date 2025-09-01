@@ -13,7 +13,9 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name="pojecie",
             name="complete",
-            field=models.BooleanField(default=False, verbose_name="Notatka kompletna"),
+            field=models.BooleanField(
+                default=False, verbose_name="Notatka kompletna"
+            ),
         ),
         migrations.AlterField(
             model_name="pojecie",

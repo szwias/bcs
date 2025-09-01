@@ -28,7 +28,9 @@ class Migration(migrations.Migration):
                 ),
                 (
                     "dzialalnosc",
-                    models.TextField(blank=True, null=True, verbose_name="Działalność"),
+                    models.TextField(
+                        blank=True, null=True, verbose_name="Działalność"
+                    ),
                 ),
                 (
                     "kadencja",

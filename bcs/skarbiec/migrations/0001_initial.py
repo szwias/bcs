@@ -29,7 +29,9 @@ class Migration(migrations.Migration):
                 ),
                 (
                     "kraj",
-                    models.CharField(blank=True, max_length=2, verbose_name="Kraj"),
+                    models.CharField(
+                        blank=True, max_length=2, verbose_name="Kraj"
+                    ),
                 ),
                 (
                     "numer_konta",
@@ -39,7 +41,9 @@ class Migration(migrations.Migration):
                 ),
                 (
                     "adres",
-                    models.TextField(blank=True, verbose_name="Adres właściciela"),
+                    models.TextField(
+                        blank=True, verbose_name="Adres właściciela"
+                    ),
                 ),
                 ("opis", models.TextField(blank=True, verbose_name="Opis")),
                 (
@@ -74,14 +78,22 @@ class Migration(migrations.Migration):
                 (
                     "typ",
                     models.CharField(
-                        choices=[("przychod", "Przychód"), ("wydatek", "Wydatek")],
+                        choices=[
+                            ("przychod", "Przychód"),
+                            ("wydatek", "Wydatek"),
+                        ],
                         max_length=10,
                     ),
                 ),
-                ("kwota", models.DecimalField(decimal_places=2, max_digits=10)),
+                (
+                    "kwota",
+                    models.DecimalField(decimal_places=2, max_digits=10),
+                ),
                 (
                     "data",
-                    models.DateField(auto_now=True, verbose_name="Data zaksięgowania"),
+                    models.DateField(
+                        auto_now=True, verbose_name="Data zaksięgowania"
+                    ),
                 ),
                 ("opis", models.TextField(blank=True, verbose_name="Opis")),
                 (

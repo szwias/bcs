@@ -14,7 +14,10 @@ class Migration(migrations.Migration):
             model_name="wydarzeniehistoryczne",
             name="data_przyblizona",
             field=models.CharField(
-                blank=True, max_length=100, null=True, verbose_name="Data przybliżona"
+                blank=True,
+                max_length=100,
+                null=True,
+                verbose_name="Data przybliżona",
             ),
         ),
     ]

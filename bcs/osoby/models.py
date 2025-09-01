@@ -95,6 +95,7 @@ class KomisjaRewizyjna(Byt):
     def __str__(self):
         return f"Komisja rewizyjna {self.kadencja}"
 
+
 # ORGANIZACJA FAMILY
 # --------------------------------------
 class Organizacja(Byt):
@@ -122,7 +123,7 @@ class Organizacja(Byt):
         Byt,
         blank=True,
         verbose_name="Założyciele",
-        related_name="zalozone_organizacje"
+        related_name="zalozone_organizacje",
     )
 
     rok_zalozenia = models.IntegerField(

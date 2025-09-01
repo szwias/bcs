@@ -16,6 +16,7 @@ class TransakcjaAdmin(BaseModelAdmin):
 
     def get_kwota(self, obj):
         return obj.get_kwota
+
     get_kwota.short_description = "Kwota"
 
 

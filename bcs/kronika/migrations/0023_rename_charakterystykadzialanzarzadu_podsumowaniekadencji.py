@@ -6,7 +6,10 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ("kronika", "0022_alter_charakterystykadzialanzarzadu_options_and_more"),
+        (
+            "kronika",
+            "0022_alter_charakterystykadzialanzarzadu_options_and_more",
+        ),
         ("osoby", "0021_remove_halloffame_bean_remove_halloffame_czlonek"),
     ]
 

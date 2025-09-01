@@ -9,9 +9,7 @@ class ChrzestForm(forms.ModelForm):
     class Meta:
         model = Chrzest
         fields = "__all__"
-        widgets = build_widgets(
-            autocomplete_widgets[Chrzest.__name__]
-        )
+        widgets = build_widgets(autocomplete_widgets[Chrzest.__name__])
 
 
 class ZdarzenieForm(forms.ModelForm):

@@ -333,7 +333,10 @@ class Migration(migrations.Migration):
             model_name="transakcja",
             name="kwota",
             field=djmoney.models.fields.MoneyField(
-                blank=True, decimal_places=2, default_currency="PLN", max_digits=14
+                blank=True,
+                decimal_places=2,
+                default_currency="PLN",
+                max_digits=14,
             ),
         ),
     ]

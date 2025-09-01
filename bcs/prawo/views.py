@@ -10,8 +10,8 @@ autocomplete_configs = [
         PrawoObowiazek,
         [],
         [],
-        [Podmiot.__name__, RelacjaPrawna.__name__, zrodla["Dokument"]]
-     ),
+        [Podmiot.__name__, RelacjaPrawna.__name__, zrodla["Dokument"]],
+    ),
     (
         RelacjaPrawna,
         [],
@@ -22,10 +22,7 @@ autocomplete_configs = [
         Struktura,
         [],
         [],
-        [
-            DlugoscKadencji.__name__,
-            WielkoscStruktury.__name__
-        ]
+        [DlugoscKadencji.__name__, WielkoscStruktury.__name__],
     ),
     (Rola, [], [], [DlugoscKadencji.__name__]),
     (WielkoscStruktury, [], [], []),

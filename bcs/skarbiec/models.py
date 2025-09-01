@@ -16,19 +16,15 @@ class Konto(models.Model):
         blank=True,
         null=True,
         on_delete=models.SET_NULL,
-        verbose_name="Właściciel"
+        verbose_name="Właściciel",
     )
 
     nazwa_alternatywna = models.CharField(
-        max_length=MAX_LENGTH,
-        blank=True,
-        verbose_name="Nazwa alternatywna"
+        max_length=MAX_LENGTH, blank=True, verbose_name="Nazwa alternatywna"
     )
 
     numer_konta = models.CharField(
-        max_length=IBAN_LENGTH,
-        blank=True,
-        verbose_name="Numer konta"
+        max_length=IBAN_LENGTH, blank=True, verbose_name="Numer konta"
     )
 
     adres = models.TextField(blank=True, verbose_name="Adres właściciela")
@@ -84,12 +80,11 @@ class Transakcja(models.Model):
         blank=True,
         decimal_places=2,
         default_currency="PLN",
-        verbose_name="Kwota (z kropką zamiast przecinka)"
+        verbose_name="Kwota (z kropką zamiast przecinka)",
     )
 
     data = models.DateField(
-        default=datetime.date.today,
-        verbose_name="Data zaksięgowania"
+        default=datetime.date.today, verbose_name="Data zaksięgowania"
     )
 
     opis = models.TextField(blank=True, verbose_name="Opis")
@@ -104,10 +99,7 @@ class Transakcja(models.Model):
     )
 
     dodal = models.ForeignKey(
-        User,
-        null=True,
-        on_delete=models.SET_NULL,
-        verbose_name="Dodał/dodała"
+        User, null=True, on_delete=models.SET_NULL, verbose_name="Dodał/dodała"
     )
 
     @property
@@ -115,7 +107,6 @@ class Transakcja(models.Model):
         znak = "+" if self.typ == self.PRZYCHOD else "-"
         kwota = f"{self.kwota.amount} {self.kwota.currency}"
         return f"{znak}{kwota}"
-
 
     class Meta:
         verbose_name = "Transakcja"

@@ -22,7 +22,8 @@ class Migration(migrations.Migration):
             model_name="transakcja",
             name="data",
             field=models.DateField(
-                default=datetime.date(2025, 8, 28), verbose_name="Data zaksięgowania"
+                default=datetime.date(2025, 8, 28),
+                verbose_name="Data zaksięgowania",
             ),
         ),
     ]

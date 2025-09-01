@@ -19,8 +19,8 @@ autocomplete_configs = [
             encyklopedia["GrupaBractw"],
             miejsca["Kraj"],
             miejsca["Miejsce"],
-            miejsca["Uczelnia"]
-        ]
+            miejsca["Uczelnia"],
+        ],
     ),
     (
         Czlonek,
@@ -70,7 +70,7 @@ autocomplete_configs = [
             Byt.__name__,
             miejsca["Kraj"],
             miejsca["Miejsce"],
-        ]
+        ],
     ),
     (
         OrganizacjaStudencka,
@@ -80,8 +80,8 @@ autocomplete_configs = [
             Byt.__name__,
             miejsca["Kraj"],
             miejsca["Miejsce"],
-            miejsca["Uczelnia"]
-        ]
+            miejsca["Uczelnia"],
+        ],
     ),
     (Osoba, [], [], []),
     (WielkiMistrz, [], [], [Czlonek.__name__]),

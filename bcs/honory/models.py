@@ -49,7 +49,7 @@ class Nagrodzeni(models.Model):
     data = models.DateField(
         default=timezone.now,
         blank=True,
-        verbose_name="Data wręczenia odznaczenia"
+        verbose_name="Data wręczenia odznaczenia",
     )
 
     odznaczenie = models.ForeignKey(

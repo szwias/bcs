@@ -14,7 +14,10 @@ class Migration(migrations.Migration):
             model_name="zwrot",
             name="cosik",
             field=models.TextField(
-                blank=True, max_length=255, null=True, verbose_name="Tłumaczenie"
+                blank=True,
+                max_length=255,
+                null=True,
+                verbose_name="Tłumaczenie",
             ),
         ),
         migrations.AddField(

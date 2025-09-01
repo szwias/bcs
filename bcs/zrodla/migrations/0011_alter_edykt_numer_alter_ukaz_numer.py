@@ -13,11 +13,15 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name="edykt",
             name="numer",
-            field=models.IntegerField(blank=True, null=True, verbose_name="Numer"),
+            field=models.IntegerField(
+                blank=True, null=True, verbose_name="Numer"
+            ),
         ),
         migrations.AlterField(
             model_name="ukaz",
             name="numer",
-            field=models.IntegerField(blank=True, null=True, verbose_name="Numer"),
+            field=models.IntegerField(
+                blank=True, null=True, verbose_name="Numer"
+            ),
         ),
     ]

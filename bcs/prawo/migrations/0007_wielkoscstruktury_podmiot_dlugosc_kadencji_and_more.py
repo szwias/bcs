@@ -23,7 +23,10 @@ class Migration(migrations.Migration):
                         verbose_name="ID",
                     ),
                 ),
-                ("wielkosc", models.CharField(max_length=255, verbose_name="Wielkość")),
+                (
+                    "wielkosc",
+                    models.CharField(max_length=255, verbose_name="Wielkość"),
+                ),
             ],
             options={
                 "verbose_name": "Wielkosc",
@@ -45,6 +48,8 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name="dlugosckadencji",
             name="okres",
-            field=models.CharField(max_length=255, verbose_name="Długość kadencji"),
+            field=models.CharField(
+                max_length=255, verbose_name="Długość kadencji"
+            ),
         ),
     ]

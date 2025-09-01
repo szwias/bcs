@@ -30,7 +30,9 @@ class Migration(migrations.Migration):
                 (
                     "chrzczeni",
                     models.ManyToManyField(
-                        blank=True, to="osoby.czlonek", verbose_name="Chrzczeni"
+                        blank=True,
+                        to="osoby.czlonek",
+                        verbose_name="Chrzczeni",
                     ),
                 ),
                 (

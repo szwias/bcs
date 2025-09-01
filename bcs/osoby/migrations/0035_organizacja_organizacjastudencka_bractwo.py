@@ -29,7 +29,9 @@ class Migration(migrations.Migration):
                 ),
                 (
                     "nazwa",
-                    models.CharField(max_length=255, verbose_name="Nazwa organizacji"),
+                    models.CharField(
+                        max_length=255, verbose_name="Nazwa organizacji"
+                    ),
                 ),
                 (
                     "rok_zalozenia",
@@ -1068,7 +1070,9 @@ class Migration(migrations.Migration):
                 ),
                 (
                     "opis",
-                    models.TextField(blank=True, verbose_name="Opis działalności"),
+                    models.TextField(
+                        blank=True, verbose_name="Opis działalności"
+                    ),
                 ),
                 (
                     "kraj",

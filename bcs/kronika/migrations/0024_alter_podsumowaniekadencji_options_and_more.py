@@ -7,7 +7,10 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ("kronika", "0023_rename_charakterystykadzialanzarzadu_podsumowaniekadencji"),
+        (
+            "kronika",
+            "0023_rename_charakterystykadzialanzarzadu_podsumowaniekadencji",
+        ),
         ("osoby", "0021_remove_halloffame_bean_remove_halloffame_czlonek"),
     ]
 
@@ -27,7 +30,9 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name="podsumowaniekadencji",
             name="podsumowanie",
-            field=models.TextField(blank=True, verbose_name="Podsumowanie kadencji"),
+            field=models.TextField(
+                blank=True, verbose_name="Podsumowanie kadencji"
+            ),
         ),
         migrations.AlterField(
             model_name="podsumowaniekadencji",

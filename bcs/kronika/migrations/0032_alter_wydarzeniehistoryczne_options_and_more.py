@@ -14,7 +14,10 @@ class Migration(migrations.Migration):
         migrations.AlterModelOptions(
             name="wydarzeniehistoryczne",
             options={
-                "ordering": ["-wydarzenie__data_rozpoczecia", "-data_przyblizona"],
+                "ordering": [
+                    "-wydarzenie__data_rozpoczecia",
+                    "-data_przyblizona",
+                ],
                 "verbose_name": "Wydarzenie historyczne",
                 "verbose_name_plural": "Wydarzenia historyczne",
             },

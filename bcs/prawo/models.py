@@ -19,9 +19,7 @@ class DlugoscKadencji(models.Model):
 
 
 class WielkoscStruktury(models.Model):
-    wielkosc = models.CharField(
-        max_length=MAX_LENGTH, verbose_name="Wielkość"
-    )
+    wielkosc = models.CharField(max_length=MAX_LENGTH, verbose_name="Wielkość")
 
     class Meta:
         verbose_name = "Wielkosc"
@@ -115,9 +113,7 @@ class PrawoObowiazek(models.Model):
         verbose_name="Prawo/Obowiązek",
     )
 
-    aktualne = models.BooleanField(
-        default=True, verbose_name="Aktualne"
-    )
+    aktualne = models.BooleanField(default=True, verbose_name="Aktualne")
 
     dokument = models.ForeignKey(
         "zrodla.Dokument",

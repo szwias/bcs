@@ -14,7 +14,10 @@ class Migration(migrations.Migration):
             model_name="zadaniechrzcielne",
             name="zalacznik",
             field=models.FileField(
-                blank=True, null=True, upload_to="pdfs/", verbose_name="Załącznik (pdf)"
+                blank=True,
+                null=True,
+                upload_to="pdfs/",
+                verbose_name="Załącznik (pdf)",
             ),
         ),
     ]

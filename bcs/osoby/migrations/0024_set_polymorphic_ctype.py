@@ -2,6 +2,7 @@
 from django.core.exceptions import FieldDoesNotExist
 from django.db import migrations
 
+
 def set_polymorphic_ctype_for_all(apps, schema_editor):
     ContentType = apps.get_model("contenttypes", "ContentType")
     Byt = apps.get_model("osoby", "Byt")
@@ -26,14 +27,21 @@ def set_polymorphic_ctype_for_all(apps, schema_editor):
         except FieldDoesNotExist:
             continue
 
-        byt_ids = model.objects.using(db_alias).values_list("byt_ptr_id", flat=True)
-        Byt.objects.using(db_alias).filter(id__in=byt_ids).update(polymorphic_ctype_id=ct.id)
+        byt_ids = model.objects.using(db_alias).values_list(
+            "byt_ptr_id", flat=True
+        )
+        Byt.objects.using(db_alias).filter(id__in=byt_ids).update(
+            polymorphic_ctype_id=ct.id
+        )
 
 
 class Migration(migrations.Migration):
 
     dependencies = [
-        ("osoby", "0023_remove_osoba_id_remove_osoba_polymorphic_ctype_and_more"),
+        (
+            "osoby",
+            "0023_remove_osoba_id_remove_osoba_polymorphic_ctype_and_more",
+        ),
         ("contenttypes", "0002_remove_content_type_name"),
     ]
 

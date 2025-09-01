@@ -24,8 +24,18 @@ class Migration(migrations.Migration):
                         verbose_name="ID",
                     ),
                 ),
-                ("nazwa", models.CharField(max_length=40, verbose_name="Nazwa krótka")),
-                ("opis", models.TextField(blank=True, null=True, verbose_name="Opis")),
+                (
+                    "nazwa",
+                    models.CharField(
+                        max_length=40, verbose_name="Nazwa krótka"
+                    ),
+                ),
+                (
+                    "opis",
+                    models.TextField(
+                        blank=True, null=True, verbose_name="Opis"
+                    ),
+                ),
                 (
                     "zalacznik",
                     models.FileField(
@@ -44,7 +54,12 @@ class Migration(migrations.Migration):
                         verbose_name="Zdjęcia",
                     ),
                 ),
-                ("link", models.URLField(blank=True, null=True, verbose_name="Link")),
+                (
+                    "link",
+                    models.URLField(
+                        blank=True, null=True, verbose_name="Link"
+                    ),
+                ),
                 (
                     "autor",
                     models.ForeignKey(

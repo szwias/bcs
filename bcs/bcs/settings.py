@@ -59,9 +59,9 @@ INSTALLED_APPS = [
     "zrodla",
     "dal",  # django-autocomplete-light app
     "dal_select2",  # for the Select2 widget
-    "django_cleanup.apps.CleanupConfig", # cleans up files
-    "djmoney", # for handling money
-    "nested_admin", # for nested inlines
+    "django_cleanup.apps.CleanupConfig",  # cleans up files
+    "djmoney",  # for handling money
+    "nested_admin",  # for nested inlines
 ]
 
 MIDDLEWARE = [

@@ -28,7 +28,10 @@ class Migration(migrations.Migration):
                         verbose_name="ID",
                     ),
                 ),
-                ("nazwa", models.CharField(max_length=255, verbose_name="Nazwa")),
+                (
+                    "nazwa",
+                    models.CharField(max_length=255, verbose_name="Nazwa"),
+                ),
                 (
                     "data_rozpoczecia",
                     models.DateField(
@@ -85,7 +88,9 @@ class Migration(migrations.Migration):
                 ),
                 (
                     "czy_jednodniowe",
-                    models.BooleanField(default=True, verbose_name="Jednodniowe"),
+                    models.BooleanField(
+                        default=True, verbose_name="Jednodniowe"
+                    ),
                 ),
                 (
                     "data_zakonczenia",
@@ -96,12 +101,16 @@ class Migration(migrations.Migration):
                 ),
                 (
                     "czy_to_wyjazd",
-                    models.BooleanField(default=False, verbose_name="Czy to wyjazd?"),
+                    models.BooleanField(
+                        default=False, verbose_name="Czy to wyjazd?"
+                    ),
                 ),
                 (
                     "miejsca",
                     models.ManyToManyField(
-                        blank=True, to="miejsca.miejsce", verbose_name="Miejsca"
+                        blank=True,
+                        to="miejsca.miejsce",
+                        verbose_name="Miejsca",
                     ),
                 ),
                 (

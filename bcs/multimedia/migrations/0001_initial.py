@@ -28,7 +28,10 @@ class Migration(migrations.Migration):
                         verbose_name="ID",
                     ),
                 ),
-                ("tytul", models.CharField(max_length=100, verbose_name="Tytuł")),
+                (
+                    "tytul",
+                    models.CharField(max_length=100, verbose_name="Tytuł"),
+                ),
                 (
                     "data",
                     models.DateField(
@@ -48,7 +51,9 @@ class Migration(migrations.Migration):
                 (
                     "widoczne_osoby",
                     models.ManyToManyField(
-                        blank=True, to="osoby.osoba", verbose_name="Widoczne osoby"
+                        blank=True,
+                        to="osoby.osoba",
+                        verbose_name="Widoczne osoby",
                     ),
                 ),
                 (
@@ -81,7 +86,10 @@ class Migration(migrations.Migration):
                         verbose_name="ID",
                     ),
                 ),
-                ("tytul", models.CharField(max_length=100, verbose_name="Tytuł")),
+                (
+                    "tytul",
+                    models.CharField(max_length=100, verbose_name="Tytuł"),
+                ),
                 (
                     "data",
                     models.DateField(
@@ -112,7 +120,9 @@ class Migration(migrations.Migration):
                 (
                     "widoczne_osoby",
                     models.ManyToManyField(
-                        blank=True, to="osoby.osoba", verbose_name="Widoczne osoby"
+                        blank=True,
+                        to="osoby.osoba",
+                        verbose_name="Widoczne osoby",
                     ),
                 ),
                 (

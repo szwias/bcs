@@ -42,4 +42,3 @@ def register_search(apps_to_register, snippet_attr="snippet"):
                 title_field=None,  # use __str__() by default
                 snippet_func=snippet_func,
             )
-

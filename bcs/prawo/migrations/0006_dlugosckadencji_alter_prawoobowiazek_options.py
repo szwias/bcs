@@ -25,7 +25,8 @@ class Migration(migrations.Migration):
                 (
                     "okres",
                     models.CharField(
-                        max_length=255, verbose_name="Długość okresu urzędowania"
+                        max_length=255,
+                        verbose_name="Długość okresu urzędowania",
                     ),
                 ),
             ],

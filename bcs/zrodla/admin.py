@@ -31,6 +31,7 @@ class OswiadczenieAdmin(DokumentAdmin):
 
     def get_autor(self, obj):
         return obj.get_autor
+
     get_autor.short_description = "Autorzy"
 
 
@@ -58,6 +59,7 @@ class UkazAdmin(DokumentAdmin):
 @admin.register(Edykt)
 class EdyktAdmin(UkazAdmin):
     pass
+
 
 register_all_models(
     custom_admins={

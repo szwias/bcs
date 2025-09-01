@@ -6,7 +6,10 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ("kalendarz", "0005_alter_wydarzeniekalendarzowe_data_rozpoczecia_and_more"),
+        (
+            "kalendarz",
+            "0005_alter_wydarzeniekalendarzowe_data_rozpoczecia_and_more",
+        ),
     ]
 
     operations = [

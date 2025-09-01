@@ -12,9 +12,11 @@ class KoordynatorZespoluInline(admin.StackedInline):
     show_change_link = True
     ordering = ["rozpoczecie_urzedu"]
 
+
 class EgzekutorInline(KoordynatorZespoluInline):
     model = Egzekutor
     form = EgzekutorForm
+
 
 class InnaOsobaInline(admin.StackedInline):
     model = InnaOsoba

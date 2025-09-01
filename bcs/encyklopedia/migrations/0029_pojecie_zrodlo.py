@@ -7,7 +7,10 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ("encyklopedia", "0028_alter_tradycjabcs_okolicznosci_powstania_and_more"),
+        (
+            "encyklopedia",
+            "0028_alter_tradycjabcs_okolicznosci_powstania_and_more",
+        ),
         ("zrodla", "0011_alter_edykt_numer_alter_ukaz_numer"),
     ]
 

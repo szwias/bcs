@@ -2,6 +2,7 @@ from django.db import models
 from core.utils.Lengths import MAX_LENGTH, SHORT_LENGTH, MEDIUM_LENGTH
 from core.utils.search.search import *
 
+
 class Kraj(models.Model):
     kraj = models.CharField(max_length=MEDIUM_LENGTH, verbose_name="Kraj")
 

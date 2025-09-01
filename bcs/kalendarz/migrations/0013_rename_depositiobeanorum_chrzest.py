@@ -9,7 +9,10 @@ class Migration(migrations.Migration):
         ("kalendarz", "0012_delete_chrzest"),
         ("miejsca", "0004_miejsce_zamkniete_na_stale_alter_miejsce_adres"),
         ("osoby", "0034_egzekutor"),
-        ("spiewnik", "0003_alter_piosenka_autor_alter_piosenka_tekst_and_more"),
+        (
+            "spiewnik",
+            "0003_alter_piosenka_autor_alter_piosenka_tekst_and_more",
+        ),
         ("zrodla", "0015_remove_rozliczenie_transakcja"),
     ]
 

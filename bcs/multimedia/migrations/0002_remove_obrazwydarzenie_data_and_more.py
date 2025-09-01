@@ -57,7 +57,10 @@ class Migration(migrations.Migration):
                         verbose_name="ID",
                     ),
                 ),
-                ("tytul", models.CharField(max_length=100, verbose_name="Tytuł")),
+                (
+                    "tytul",
+                    models.CharField(max_length=100, verbose_name="Tytuł"),
+                ),
                 (
                     "data",
                     models.DateField(

@@ -24,7 +24,10 @@ class Migration(migrations.Migration):
                         verbose_name="ID",
                     ),
                 ),
-                ("nazwa", models.CharField(max_length=100, verbose_name="Nazwa")),
+                (
+                    "nazwa",
+                    models.CharField(max_length=100, verbose_name="Nazwa"),
+                ),
                 ("cel", models.TextField(blank=True, verbose_name="Cele")),
                 (
                     "czlonkowie",
@@ -64,7 +67,9 @@ class Migration(migrations.Migration):
                 (
                     "rozpoczecie_urzedu",
                     models.DateField(
-                        blank=True, null=True, verbose_name="Rozpoczęcie urzędu"
+                        blank=True,
+                        null=True,
+                        verbose_name="Rozpoczęcie urzędu",
                     ),
                 ),
                 (

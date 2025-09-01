@@ -16,7 +16,8 @@ class Migration(migrations.Migration):
             model_name="wydarzeniekalendarzowe",
             name="data_rozpoczecia",
             field=models.DateField(
-                default=django.utils.timezone.now, verbose_name="Data rozpoczecia"
+                default=django.utils.timezone.now,
+                verbose_name="Data rozpoczecia",
             ),
         ),
         migrations.AlterField(

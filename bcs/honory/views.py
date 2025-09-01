@@ -6,7 +6,7 @@ from zrodla.models_dict import names as zrodla
 
 autocomplete_configs = [
     (Nagrodzeni, [], [], [Odznaczenie.__name__, osoby["Byt"]]),
-    (Odznaczenie, ["rok_powstania"], [], [osoby["Byt"], zrodla["Dokument"]])
+    (Odznaczenie, ["rok_powstania"], [], [osoby["Byt"], zrodla["Dokument"]]),
 ]
 
 autocomplete_urls, autocomplete_widgets = setup_autocompletes(

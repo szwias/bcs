@@ -13,7 +13,9 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name="piosenka",
             name="autor",
-            field=models.CharField(blank=True, max_length=255, verbose_name="Autor"),
+            field=models.CharField(
+                blank=True, max_length=255, verbose_name="Autor"
+            ),
         ),
         migrations.AlterField(
             model_name="piosenka",

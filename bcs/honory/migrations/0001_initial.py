@@ -24,11 +24,16 @@ class Migration(migrations.Migration):
                         verbose_name="ID",
                     ),
                 ),
-                ("nazwa", models.CharField(max_length=255, verbose_name="Nazwa")),
+                (
+                    "nazwa",
+                    models.CharField(max_length=255, verbose_name="Nazwa"),
+                ),
                 ("opis", models.TextField(verbose_name="Opis")),
                 (
                     "rok_powstania",
-                    models.IntegerField(blank=True, verbose_name="Rok powstania"),
+                    models.IntegerField(
+                        blank=True, verbose_name="Rok powstania"
+                    ),
                 ),
                 (
                     "fundatorzy",

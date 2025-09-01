@@ -33,7 +33,10 @@ class Migration(migrations.Migration):
                         verbose_name="Data wręczenia odznaczenia",
                     ),
                 ),
-                ("zaslugi", models.TextField(blank=True, verbose_name="Zasługi")),
+                (
+                    "zaslugi",
+                    models.TextField(blank=True, verbose_name="Zasługi"),
+                ),
                 (
                     "odznaczenie",
                     models.ForeignKey(

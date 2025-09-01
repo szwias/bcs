@@ -5,9 +5,9 @@ from django.db import migrations, models
 
 
 def link_existing_osoba_and_zarzad_to_existing_byt(apps, schema_editor):
-    Byt = apps.get_model('osoby', 'Byt')
-    Osoba = apps.get_model('osoby', 'Osoba')
-    Zarzad = apps.get_model('osoby', 'Zarzad')
+    Byt = apps.get_model("osoby", "Byt")
+    Osoba = apps.get_model("osoby", "Osoba")
+    Zarzad = apps.get_model("osoby", "Zarzad")
     db_alias = schema_editor.connection.alias
 
     for osoba in Osoba.objects.using(db_alias).all():
@@ -15,7 +15,7 @@ def link_existing_osoba_and_zarzad_to_existing_byt(apps, schema_editor):
         osoba.save()
 
     for zarzad in Zarzad.objects.using(db_alias).all():
-        zarzad.byt_ptr = Byt.objects.using(db_alias).get(id=zarzad.id+194)
+        zarzad.byt_ptr = Byt.objects.using(db_alias).get(id=zarzad.id + 194)
         zarzad.save()
 
 

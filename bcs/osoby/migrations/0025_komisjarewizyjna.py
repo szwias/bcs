@@ -26,7 +26,9 @@ class Migration(migrations.Migration):
                 ),
                 (
                     "dzialalnosc",
-                    models.TextField(blank=True, null=True, verbose_name="Działalność"),
+                    models.TextField(
+                        blank=True, null=True, verbose_name="Działalność"
+                    ),
                 ),
                 (
                     "kadencja",
@@ -41,7 +43,10 @@ class Migration(migrations.Migration):
                 (
                     "sklad",
                     models.ManyToManyField(
-                        blank=True, null=True, to="osoby.osoba", verbose_name="Skład"
+                        blank=True,
+                        null=True,
+                        to="osoby.osoba",
+                        verbose_name="Skład",
                     ),
                 ),
             ],

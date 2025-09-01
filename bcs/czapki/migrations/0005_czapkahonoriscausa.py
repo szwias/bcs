@@ -25,7 +25,10 @@ class Migration(migrations.Migration):
                         verbose_name="ID",
                     ),
                 ),
-                ("zaslugi", models.TextField(blank=True, verbose_name="Zasługi")),
+                (
+                    "zaslugi",
+                    models.TextField(blank=True, verbose_name="Zasługi"),
+                ),
                 (
                     "dokument",
                     models.ForeignKey(
