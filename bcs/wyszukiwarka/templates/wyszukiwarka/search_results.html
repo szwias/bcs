@@ -1,14 +1,24 @@
-<h1>Search Results for "{{ query }}"</h1>
+<!-- wyszukiwarka/templates/wyszukiwarka/search_results.html -->
 
-{% if results %}
-<ul>
-    {% for r in results %}
-    <li>
-        <a href="{{ r.admin_url }}">{{ r.title }}</a><br>
-        <small>{{ r.snippet }}{% if r.snippet|length == 150 %}...{% endif %}</small>
-    </li>
-    {% endfor %}
-</ul>
-{% else %}
-<p>No results found.</p>
+<h1>Search</h1>
+
+<form method="get" action="{% url 'wyszukiwarka:search' %}">
+  <input type="text" name="q" value="{{ query }}" placeholder="Search...">
+  <button type="submit">Search</button>
+</form>
+
+{% if query %}
+  <h2>Results for "{{ query }}"</h2>
+  {% if results %}
+    <ul>
+      {% for result in results %}
+        <li>
+          <strong><a href="{{ result.admin_url }}">{{ result.title }}</a></strong><br>
+          {{ result.snippet }}
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No results found.</p>
+  {% endif %}
 {% endif %}

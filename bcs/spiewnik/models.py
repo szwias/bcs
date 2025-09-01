@@ -1,5 +1,5 @@
 from django.db import models
-
+from core.utils.search.search import *
 from core.utils.Lengths import MAX_LENGTH, MEDIUM_LENGTH
 
 

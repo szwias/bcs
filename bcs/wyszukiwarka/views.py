@@ -1,23 +1,39 @@
+# wyszukiwarka/views.py
+from django.contrib.contenttypes.models import ContentType
+from django.urls import reverse
+from django.contrib.admin.utils import quote
+from django.contrib.postgres.search import SearchVector, SearchQuery, SearchRank
 from django.shortcuts import render
-from django.contrib.postgres.search import SearchQuery, SearchRank, SearchVector
-from kronika.models import PodsumowanieKadencji as P
+from .registry import SEARCH_REGISTRY
 
 def search(request):
     q = request.GET.get("q", "")
     results = []
+
     if q:
-        query = SearchQuery(q)
-        results_qs = (
-            P.objects.annotate(rank=SearchRank(SearchVector("podsumowanie"), query))
-            .filter(podsumowanie__search=q)
-            .order_by("-rank")
-        )
+        for model, config in SEARCH_REGISTRY.items():
+            vector = SearchVector(*config["search_fields"])
+            query = SearchQuery(q)
+            qs = (
+                model.objects.annotate(rank=SearchRank(vector, query))
+                .filter(rank__gt=0)
+                .order_by("-rank")[:10]
+            )
 
-        for obj in results_qs:
-            results.append({
-                "title": str(obj),
-                "snippet": obj.podsumowanie[:150],
-                "admin_url": f"/admin/{obj._meta.app_label}/{obj._meta.model_name}/{obj.pk}/change/"
-            })
+            for obj in qs:
+                title = getattr(obj, config["title_field"]) if config["title_field"] else str(obj)
+                snippet = config["snippet_func"](obj) if config["snippet_func"] else str(obj)
 
-    return render(request, "wyszukiwarka/search_results.html", {"results": results, "query": q})
+                # build admin URL
+                content_type = ContentType.objects.get_for_model(obj)
+                app_name = content_type.app_label
+                model_name = content_type.model
+                admin_url = reverse(f"admin:{app_name}_{model_name}_change", args=(quote(obj.pk),))
+
+                results.append({
+                    "title": title,
+                    "snippet": snippet,
+                    "admin_url": admin_url,
+                })
+
+    return render(request, "wyszukiwarka/search_results.html", {"query": q, "results": results})
