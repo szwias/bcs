@@ -2,7 +2,7 @@ from django.db import models
 from django.utils import timezone
 from polymorphic.models import PolymorphicModel
 
-from core.utils.Consts import MAX_LENGTH, MEDIUM_LENGTH
+from core.utils.Lengths import MAX_LENGTH, MEDIUM_LENGTH
 
 
 # Create your models here.

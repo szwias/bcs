@@ -1,5 +1,5 @@
 from django.db import models
-from core.utils.Consts import MAX_LENGTH, MEDIUM_LENGTH, NAME_LENGTH
+from core.utils.Lengths import MAX_LENGTH, MEDIUM_LENGTH, NAME_LENGTH
 from miejsca.models import Wydzial
 
 

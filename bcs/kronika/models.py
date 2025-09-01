@@ -1,6 +1,7 @@
 from django.db import models
 
 from core.utils.Consts import MEDIUM_LENGTH, NAME_LENGTH
+from core.utils.Lengths import MEDIUM_LENGTH, NAME_LENGTH
 from core.utils import Czas
 
 

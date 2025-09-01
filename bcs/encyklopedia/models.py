@@ -1,7 +1,7 @@
 from django.db import models
 from polymorphic.models import PolymorphicModel
 
-from core.utils.Consts import *
+from core.utils.Lengths import *
 
 
 class Lengths:

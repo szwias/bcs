@@ -4,7 +4,7 @@ from django.db import models
 from django.utils import timezone
 from polymorphic.models import PolymorphicModel
 
-from core.utils.Consts import MEDIUM_LENGTH
+from core.utils.Lengths import MEDIUM_LENGTH
 
 
 class Obraz(PolymorphicModel):

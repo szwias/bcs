@@ -1,5 +1,5 @@
 from django.db import models
-from core.utils.Consts import MAX_LENGTH, SHORT_LENGTH, MEDIUM_LENGTH
+from core.utils.Lengths import MAX_LENGTH, SHORT_LENGTH, MEDIUM_LENGTH
 
 
 class Kraj(models.Model):

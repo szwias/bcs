@@ -5,7 +5,7 @@ from djmoney.models.fields import MoneyField
 from stdnum import iban  # biblioteka do walidacji IBAN
 import datetime
 
-from core.utils.Consts import IBAN_LENGTH, MAX_LENGTH
+from core.utils.Lengths import IBAN_LENGTH, MAX_LENGTH
 
 User = get_user_model()
 

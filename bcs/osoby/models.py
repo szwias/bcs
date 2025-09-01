@@ -2,7 +2,7 @@ from django.contrib.postgres.fields import ArrayField
 from django.db import models
 from polymorphic.models import PolymorphicModel
 from roman import fromRoman
-from core.utils.Consts import (
+from core.utils.Lengths import (
     MAX_LENGTH,
     MEDIUM_LENGTH,
     SHORT_LENGTH,

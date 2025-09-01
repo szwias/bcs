@@ -1,7 +1,7 @@
 from django.db import models
 from polymorphic.models import PolymorphicModel
 
-from core.utils.Consts import MAX_LENGTH
+from core.utils.Lengths import MAX_LENGTH
 
 
 class Zrodlo(PolymorphicModel):
