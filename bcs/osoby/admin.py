@@ -1,5 +1,5 @@
 from core.utils.automation.admin_imports import *
-from core.utils.filters import UsedContentTypeFilter
+from core.utils.Filters import UsedContentTypeFilter
 from .inlines import KoordynatorZespoluInline, EgzekutorInline
 from .model_imports import *
 from kronika.inlines import PodsumowanieKadencjiInline
