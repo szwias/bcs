@@ -25,10 +25,6 @@ urlpatterns = [
     path("_nested_admin/", include("nested_admin.urls")),
     path("wyszukiwarka/", include("wyszukiwarka.urls")),
     path(
-        "autocomplete/core/",
-        include("core.autocomplete_urls", "core_autocomplete"),
-    ),
-    path(
         "autocomplete/czapki",
         include("czapki.autocomplete_urls", "czapki_autocomplete"),
     ),
