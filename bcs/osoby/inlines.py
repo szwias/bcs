@@ -1,12 +1,12 @@
 from django.contrib import admin
 
-from osoby.forms import KoordynatorZespoluForm, EgzekutorForm, InnaOsobaForm
+from osoby.forms import model_forms
 from osoby.models import KoordynatorZespolu, Egzekutor, InnaOsoba
 
 
 class KoordynatorZespoluInline(admin.StackedInline):
     model = KoordynatorZespolu
-    form = KoordynatorZespoluForm
+    form = model_forms["KoordynatorZespoluForm"]
     extra = 0
     fields = ["osoba", "rozpoczecie_urzedu", "koniec_urzedu"]
     show_change_link = True
@@ -15,12 +15,12 @@ class KoordynatorZespoluInline(admin.StackedInline):
 
 class EgzekutorInline(KoordynatorZespoluInline):
     model = Egzekutor
-    form = EgzekutorForm
+    form = model_forms["EgzekutorForm"]
 
 
 class InnaOsobaInline(admin.StackedInline):
     model = InnaOsoba
-    form = InnaOsobaForm
+    form = model_forms["InnaOsobaForm"]
     extra = 0
     fields = ["imie", "nazwisko", "przezwiska"]
     show_change_link = True

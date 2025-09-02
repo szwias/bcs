@@ -1,5 +1,5 @@
 from django.contrib.admin import StackedInline
-from .forms import PrawoObowiazekForm
+from .forms import model_forms
 from .models import (
     PrawoObowiazek,
 )
@@ -7,5 +7,5 @@ from .models import (
 
 class PrawoObowiazekInline(StackedInline):
     model = PrawoObowiazek
-    form = PrawoObowiazekForm
+    form = model_forms["PrawoObowiazekForm"]
     extra = 0
