@@ -1,5 +1,5 @@
 from nested_admin.nested import NestedStackedInline
-from core.utils.autocompletion.AdvancedInlines import ParentAwareInline
+from core.inlines import ParentAwareInline
 from kalendarz.models import Zdarzenie
 from multimedia.inlines import ObrazZdarzenieInline
 from .forms import ZdarzenieInlineForm
