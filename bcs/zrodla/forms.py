@@ -3,7 +3,7 @@ from django.apps import apps
 
 from .model_imports import *
 from .views import autocomplete_widgets
-from core.utils.autocompletion.AutocompletesGeneration import build_widgets
+from core.autocompletion.registry import build_widgets
 from osoby.models_dict import names as osoby
 from osoby.models import Byt
 
