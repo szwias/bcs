@@ -1,6 +1,6 @@
 from django.db import models
 from core.utils.Lengths import MAX_LENGTH, SHORT_LENGTH, MEDIUM_LENGTH
-from core.utils.search.search import *
+from core.utils.Search import *
 
 
 class Kraj(models.Model):

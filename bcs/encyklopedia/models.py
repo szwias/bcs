@@ -1,6 +1,6 @@
 from django.db import models
 from polymorphic.models import PolymorphicModel
-from core.utils.search.search import *
+from core.utils.Search import *
 from core.utils.Lengths import *
 
 

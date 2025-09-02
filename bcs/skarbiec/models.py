@@ -4,7 +4,7 @@ from django.core.exceptions import ValidationError
 from djmoney.models.fields import MoneyField
 from stdnum import iban  # biblioteka do walidacji IBAN
 import datetime
-from core.utils.search.search import *
+from core.utils.Search import *
 from core.utils.Lengths import IBAN_LENGTH, MAX_LENGTH
 
 User = get_user_model()

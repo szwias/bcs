@@ -1,1 +1,1 @@
-from core.utils.search.search import *
+from core.utils.Search import *

@@ -13,7 +13,7 @@ from core.utils.Czas import ROK_ZALOZENIA
 from kronika.models import Kadencja
 from czapki.models import Czapka
 from core.utils.Choices import TextAlt, TextChoose, IntAlt
-from core.utils.search.search import *
+from core.utils.Search import *
 
 
 class Lengths:
