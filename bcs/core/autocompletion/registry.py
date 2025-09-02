@@ -122,6 +122,7 @@ def register_autocomplete(overrides=None):
             for f in model._meta.fields
             if getattr(f, "related_model", None) is not None
         ]
+        record_models.append(model)
 
         # Label fields
         for field in label_fields:
