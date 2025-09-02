@@ -1,25 +1,2 @@
-from core.utils.autocompletion.AutocompletesGeneration import *
-from .model_imports import *
-
-from kalendarz.models_dict import names as kalendarz
-from miejsca.models_dict import names as miejsca
-from osoby.models_dict import names as osoby
-
-autocomplete_configs = [
-    (
-        ObrazWydarzenie,
-        [],
-        [],
-        [kalendarz["WydarzenieKalendarzowe"], osoby["Osoba"]],
-    ),
-    (
-        ObrazZdarzenie,
-        [],
-        [],
-        [kalendarz["Zdarzenie"], miejsca["Miejsce"], osoby["Osoba"]],
-    ),
-]
-
-autocomplete_urls, autocomplete_widgets = setup_autocompletes(
-    autocomplete_configs, globals()
-)
+from core.utils.autocompletion.AutocompletesGeneration import register_autocomplete
+autocomplete_urls, autocomplete_widgets = register_autocomplete(overrides={})
