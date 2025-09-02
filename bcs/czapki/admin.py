@@ -1,4 +1,4 @@
-from core.utils.automation.admin_imports import *
+from core.admin_imports import *
 from .model_imports import *
 
 from django.contrib import admin

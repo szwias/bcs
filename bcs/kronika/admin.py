@@ -1,5 +1,5 @@
 from django.db.models import Min
-from core.utils.automation.admin_imports import *
+from core.admin_imports import *
 from .model_imports import *
 from .filters import YearFilter
 

@@ -1,4 +1,4 @@
-from core.utils.automation.admin_imports import *
+from core.admin_imports import *
 from prawo.inlines import PrawoObowiazekInline
 from .models_imports import *
 
