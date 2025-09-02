@@ -65,11 +65,4 @@ class ZdarzenieAdmin(NestedModelAdmin, BaseModelAdmin):
     hide_from_index = True
 
 
-register_all_models(
-    custom_admins={
-        Chrzest: ChrzestAdmin,
-        Wydarzenie: WydarzenieAdmin,
-        WydarzenieKalendarzowe: WydarzenieKalendarzoweAdmin,
-        Zdarzenie: ZdarzenieAdmin,
-    }
-)
+register_all_models()

@@ -14,9 +14,4 @@ class ObrazZdarzenieAdmin(BaseModelAdmin):
     filter_horizontal = ["widoczne_osoby"]
 
 
-register_all_models(
-    custom_admins={
-        ObrazWydarzenie: ObrazWydarzenieAdmin,
-        ObrazZdarzenie: ObrazZdarzenieAdmin,
-    }
-)
+register_all_models()

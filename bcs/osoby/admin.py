@@ -110,24 +110,4 @@ class BractwoAdmin(OrganizacjaStudenckaAdmin):
     list_filter = ["grupa_bractw", "kraj"]
 
 
-register_all_models(
-    custom_admins={
-        Bean: BeanAdmin,
-        Byt: BytAdmin,
-        Bractwo: BractwoAdmin,
-        Czlonek: CzlonekAdmin,
-        DawnyZarzad: DawnyZarzadAdmin,
-        NowyZarzad: ZarzadAdmin,
-        HallOfFame: HallOfFameAdmin,
-        ImieSzlacheckie: ImieSzlacheckieAdmin,
-        InnaOsoba: InnaOsobaAdmin,
-        KomisjaRewizyjna: KomisjaRewizyjnaAdmin,
-        KoordynatorZespolu: KoordynatorZespoluAdmin,
-        Organizacja: OrganizacjaAdmin,
-        OrganizacjaStudencka: OrganizacjaStudenckaAdmin,
-        Osoba: OsobaAdmin,
-        WielkiMistrz: WielkiMistrzAdmin,
-        Zespol: ZespolAdmin,
-        ZwierzeCzapkowe: ZwierzeCzapkoweAdmin,
-    }
-)
+register_all_models()

@@ -61,16 +61,4 @@ class EdyktAdmin(UkazAdmin):
     pass
 
 
-register_all_models(
-    custom_admins={
-        Dokument: DokumentAdmin,
-        Edykt: EdyktAdmin,
-        Korespondencja: KorespondencjaAdmin,
-        Oswiadczenie: OswiadczenieAdmin,
-        Rozliczenie: RozliczenieAdmin,
-        Uchwala: UchwalaAdmin,
-        Ukaz: UkazAdmin,
-        Zrodlo: ZrodloAdmin,
-        ZrodloOgolne: ZrodloAdmin,
-    }
-)
+register_all_models()

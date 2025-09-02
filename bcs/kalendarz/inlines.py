@@ -1,8 +1,8 @@
 from nested_admin.nested import NestedStackedInline
 from core.inlines import ParentAwareInline
-from kalendarz.models import Zdarzenie
-from multimedia.inlines import ObrazZdarzenieInline
+from .models import Zdarzenie
 from .forms import ZdarzenieInlineForm
+from multimedia.inlines import ObrazZdarzenieInline
 
 
 class ZdarzenieInline(NestedStackedInline, ParentAwareInline):

@@ -7,8 +7,4 @@ class ZwrotAdmin(BaseModelAdmin):
     list_display = ["zwrot", "tlumaczenie", "uzywany_na_karczmie"]
 
 
-register_all_models(
-    custom_admins={
-        Zwrot: ZwrotAdmin,
-    }
-)
+register_all_models()

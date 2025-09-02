@@ -48,10 +48,4 @@ class ZadanieChrzcielneAdmin(BaseModelAdmin):
     get_authors.short_description = "Autorzy"
 
 
-register_all_models(
-    custom_admins={
-        Kadencja: KadencjaAdmin,
-        WydarzenieHistoryczne: WydarzenieHistoryczneAdmin,
-        ZadanieChrzcielne: ZadanieChrzcielneAdmin,
-    }
-)
+register_all_models()

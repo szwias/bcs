@@ -8,4 +8,4 @@ class PiosenkaAdmin(BaseModelAdmin):
     list_filter = ["kategorie", "znani_czapce_autorzy"]
 
 
-register_all_models(custom_admins={Piosenka: PiosenkaAdmin})
+register_all_models()

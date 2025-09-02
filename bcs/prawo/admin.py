@@ -33,12 +33,4 @@ class PrawoObowiazekAdmin(BaseModelAdmin):
     list_filter_exclude = ["relacja"]
 
 
-register_all_models(
-    custom_admins={
-        Podmiot: PodmiotAdmin,
-        PrawoObowiazek: PrawoObowiazekAdmin,
-        Rola: RolaAdmin,
-        Struktura: StrukturaAdmin,
-        RelacjaPrawna: RelacjaPrawnaAdmin,
-    }
-)
+register_all_models()

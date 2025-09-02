@@ -14,9 +14,4 @@ class OdznaczenieAdmin(BaseModelAdmin):
     list_filter_exclude = "__all__"
 
 
-register_all_models(
-    custom_admins={
-        Nagrodzeni: NagrodzeniAdmin,
-        Odznaczenie: OdznaczenieAdmin,
-    }
-)
+register_all_models()

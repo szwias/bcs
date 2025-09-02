@@ -33,12 +33,4 @@ class TradycjaBCSAdmin(BaseModelAdmin):
     list_filter_exclude = ["wydarzenie"]
 
 
-register_all_models(
-    custom_admins={
-        Aforyzm: AforyzmAdmin,
-        Cytat: CytatAdmin,
-        GrupaBractw: GrupaBractwAdmin,
-        Powiedzenie: PowiedzenieAdmin,
-        TradycjaBCS: TradycjaBCSAdmin,
-    }
-)
+register_all_models()

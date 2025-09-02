@@ -36,9 +36,4 @@ class RodzajCzapkiAdmin(BaseModelAdmin):
     filter_horizontal = ["kraje"]
 
 
-register_all_models(
-    custom_admins={
-        Czapka: CzapkaAdmin,
-        RodzajCzapki: RodzajCzapkiAdmin,
-    }
-)
+register_all_models()

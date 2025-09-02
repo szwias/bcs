@@ -20,9 +20,4 @@ class TransakcjaAdmin(BaseModelAdmin):
     get_kwota.short_description = "Kwota"
 
 
-register_all_models(
-    custom_admins={
-        Konto: KontoAdmin,
-        Transakcja: TransakcjaAdmin,
-    }
-)
+register_all_models()
