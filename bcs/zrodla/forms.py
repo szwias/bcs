@@ -9,6 +9,7 @@ from osoby.models import Byt
 Czlonek = apps.get_model("osoby", "Czlonek")
 Zarzad = apps.get_model("osoby", "Zarzad")
 
+
 class EdyktForm(forms.ModelForm):
     class Meta:
         model = Edykt
@@ -33,5 +34,6 @@ class UkazForm(forms.ModelForm):
         self.fields["autorzy"].queryset = Byt.objects.instance_of(
             Czlonek, Zarzad
         )
+
 
 model_forms = create_model_forms(autocomplete_widgets)

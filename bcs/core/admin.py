@@ -104,10 +104,10 @@ class BaseModelAdmin(admin.ModelAdmin):
         if not list_filter:
             for field in self.model._meta.get_fields():
                 if field.name not in exclude and (
-                        getattr(field, "choices", None)
-                        or isinstance(
-                    field, (models.BooleanField, models.ForeignKey)
-                )
+                    getattr(field, "choices", None)
+                    or isinstance(
+                        field, (models.BooleanField, models.ForeignKey)
+                    )
                 ):
                     list_filter.append(field.name)
 
@@ -137,26 +137,26 @@ class BaseModelAdmin(admin.ModelAdmin):
 
     def has_add_permission(self, request):
         return not (
-                is_polymorphic_parent(self.model)
-                and self.hide_base_class_from_index
+            is_polymorphic_parent(self.model)
+            and self.hide_base_class_from_index
         )
 
     def has_change_permission(self, request, obj=None):
         return not (
-                is_polymorphic_parent(self.model)
-                and self.hide_base_class_from_index
+            is_polymorphic_parent(self.model)
+            and self.hide_base_class_from_index
         )
 
     def has_delete_permission(self, request, obj=None):
         return not (
-                is_polymorphic_parent(self.model)
-                and self.hide_base_class_from_index
+            is_polymorphic_parent(self.model)
+            and self.hide_base_class_from_index
         )
 
     def get_model_perms(self, request):
         if (
-                is_polymorphic_parent(self.model)
-                and self.hide_base_class_from_index
+            is_polymorphic_parent(self.model)
+            and self.hide_base_class_from_index
         ) or self.hide_from_index:
             return {}  # Hide from admin index
         return super().get_model_perms(request)
@@ -198,7 +198,8 @@ class BaseModelAdmin(admin.ModelAdmin):
             forms_module = import_module(f"{app_label}.forms")
             # fetch the form from model_forms dict
             self.form = getattr(forms_module, "model_forms", {}).get(
-                f"{model_name}Form")
+                f"{model_name}Form"
+            )
         except ModuleNotFoundError:
             # fallback if forms.py doesn't exist
             self.form = None
@@ -237,4 +238,3 @@ def register_all_models(*, skip_models=None):
             admin_class = BaseModelAdmin
 
         admin.site.register(model, admin_class)
-

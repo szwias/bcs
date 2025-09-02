@@ -22,5 +22,5 @@ class MiejsceForm(forms.ModelForm):
             }
         )
 
-model_forms = create_model_forms(autocomplete_widgets)
 
+model_forms = create_model_forms(autocomplete_widgets)

@@ -44,7 +44,9 @@ def create_model_forms(autocomplete_widgets=None):
         class Meta:
             model = _model
             fields = "__all__"
-            widgets = build_widgets(autocomplete_widgets.get(model.__name__, {}))
+            widgets = build_widgets(
+                autocomplete_widgets.get(model.__name__, {})
+            )
 
         form_class = type(form_name, (ModelForm,), {"Meta": Meta})
         model_forms[form_name] = form_class
