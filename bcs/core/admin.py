@@ -1,3 +1,5 @@
+from importlib import import_module
+
 from django.contrib import admin
 from django.contrib.admin.filters import RelatedFieldListFilter
 from django.db.models import ForeignKey, ManyToManyField
@@ -194,6 +196,126 @@ class BaseModelAdmin(admin.ModelAdmin):
         except ImportError:
             pass
 
+class BaseModelAdmin1(admin.ModelAdmin):
+    actions = ["save_selected"]
+    list_filter_exclude = set()
+    hide_from_index = False
+    hide_base_class_from_index = True
+    save_as = True
+
+    def save_selected(self, request, queryset):
+        pass
+
+    save_selected.short_description = "Save selected objects"
+
+    def _get_list_filter(self):
+        exclude = getattr(self, "list_filter_exclude", set())
+
+        if exclude == "__all__":
+            return []
+
+        list_filter = list(self.list_filter)
+        if not list_filter:
+            for field in self.model._meta.get_fields():
+                if field.name not in exclude and (
+                        getattr(field, "choices", None)
+                        or isinstance(
+                    field, (models.BooleanField, models.ForeignKey)
+                )
+                ):
+                    list_filter.append(field.name)
+
+        return list_filter
+
+    def smart_wrap_filters(self, list_filter):
+        filters = list_filter
+        smart_filters = []
+
+        for f in filters:
+            if isinstance(f, tuple):
+                # Already a custom filter
+                smart_filters.append(f)
+            elif isinstance(f, str):
+                field = self.model._meta.get_field(f)
+
+                if isinstance(field, ForeignKey):
+                    smart_filters.append((f, UsedOnlyFKFilter))
+                elif isinstance(field, ManyToManyField):
+                    smart_filters.append((f, UsedOnlyM2MFilter))
+                else:
+                    smart_filters.append(f)
+            else:
+                smart_filters.append(f)
+
+        return smart_filters
+
+    def has_add_permission(self, request):
+        return not (
+                is_polymorphic_parent(self.model)
+                and self.hide_base_class_from_index
+        )
+
+    def has_change_permission(self, request, obj=None):
+        return not (
+                is_polymorphic_parent(self.model)
+                and self.hide_base_class_from_index
+        )
+
+    def has_delete_permission(self, request, obj=None):
+        return not (
+                is_polymorphic_parent(self.model)
+                and self.hide_base_class_from_index
+        )
+
+    def get_model_perms(self, request):
+        if (
+                is_polymorphic_parent(self.model)
+                and self.hide_base_class_from_index
+        ) or self.hide_from_index:
+            return {}  # Hide from admin index
+        return super().get_model_perms(request)
+
+    def __init__(self, model, admin_site):
+        super().__init__(model, admin_site)
+        self.list_filter = self.smart_wrap_filters(self._get_list_filter())
+
+        if not self.search_fields:
+            self.search_fields = [
+                f.name
+                for f in model._meta.get_fields()
+                if f.concrete
+                and not f.many_to_many
+                and not f.is_relation
+                and isinstance(
+                    f,
+                    (
+                        models.CharField,
+                        models.DateField,
+                        models.IntegerField,
+                        models.TextField,
+                    ),
+                )
+            ]
+
+        self.formfield_overrides = {
+            models.TextField: {
+                "widget": Textarea(attrs={"spellcheck": "false"})
+            },
+        }
+
+        app_label = model._meta.app_label
+        model_name = model.__name__
+
+        # try to fetch the generated form from the app's model_forms
+        try:
+            # dynamically import the app's forms module
+            forms_module = import_module(f"{app_label}.forms")
+            # fetch the form from model_forms dict
+            self.form = getattr(forms_module, "model_forms", {}).get(
+                f"{model_name}Form")
+        except ModuleNotFoundError:
+            # fallback if forms.py doesn't exist
+            self.form = None
 
 def register_all_models(
     *, skip_models=None, custom_admins=None, base_admin_class=BaseModelAdmin

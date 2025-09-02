@@ -1,19 +1,20 @@
+from core.admin import BaseModelAdmin1
 from core.admin_imports import *
 from .model_imports import *
 
 
 @admin.register(Aforyzm)
-class AforyzmAdmin(BaseModelAdmin):
+class AforyzmAdmin(BaseModelAdmin1):
     filter_horizontal = ["adresaci"]
 
 
 @admin.register(Cytat)
-class CytatAdmin(BaseModelAdmin):
+class CytatAdmin(BaseModelAdmin1):
     filter_horizontal = ["adresaci"]
 
 
 @admin.register(GrupaBractw)
-class GrupaBractwAdmin(BaseModelAdmin):
+class GrupaBractwAdmin(BaseModelAdmin1):
     filter_horizontal = ["kraje"]
     list_display = ["nazwa", "panstwa"]
 
@@ -24,12 +25,12 @@ class GrupaBractwAdmin(BaseModelAdmin):
 
 
 @admin.register(Powiedzenie)
-class PowiedzenieAdmin(BaseModelAdmin):
+class PowiedzenieAdmin(BaseModelAdmin1):
     filter_horizontal = ["adresaci"]
 
 
 @admin.register(TradycjaBCS)
-class TradycjaBCSAdmin(BaseModelAdmin):
+class TradycjaBCSAdmin(BaseModelAdmin1):
     list_filter_exclude = ["wydarzenie"]
 
 
