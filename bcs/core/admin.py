@@ -1,3 +1,4 @@
+import sys
 from importlib import import_module
 
 from django.contrib import admin
@@ -9,6 +10,8 @@ from django.apps import apps
 from django.db import models
 from polymorphic.models import PolymorphicModel
 from django.forms import Textarea
+
+from core.apps import get_calling_app_config
 
 
 def is_polymorphic_parent(model):
@@ -200,25 +203,23 @@ class BaseModelAdmin(admin.ModelAdmin):
             # fallback if forms.py doesn't exist
             self.form = None
 
-def register_all_models(
-    *, skip_models=None, custom_admins=None, base_admin_class=BaseModelAdmin
-):
+
+def register_all_models(*, skip_models=None):
     """
-    Auto-registers all models in the caller's app with BaseModelAdmin,
-    unless overridden in `custom_admins`.
+    Auto-registers all models in the caller's app with BaseModelAdmin
+    or with a custom admin class defined in the app's admin module.
 
     :param skip_models: set of model classes to skip (e.g., {MyModel})
-    :param custom_admins: dict mapping model classes to custom admin classes
-    :param base_admin_class: default admin class to use if no custom one is provided
     """
     skip_models = set(skip_models or [])
-    custom_admins = custom_admins or {}
 
-    # Automatically infer the caller's app label
-    caller_frame = inspect.stack()[1]
-    caller_module = inspect.getmodule(caller_frame.frame)
-    app_label = caller_module.__name__.split(".")[0]
-    app_config = apps.get_app_config(app_label)
+    app_config = get_calling_app_config()
+    if not app_config:
+        raise RuntimeError("Could not determine calling app")
+
+    caller_module = sys.modules.get(f"{app_config.name}.admin")
+    if caller_module is None:
+        raise RuntimeError(f"Admin module not found for app {app_config.name}")
 
     for model in app_config.get_models():
         if model in skip_models:
@@ -229,8 +230,11 @@ def register_all_models(
         except admin.sites.NotRegistered:
             pass
 
-        admin_class = custom_admins.get(
-            model, type(f"{model.__name__}Admin", (base_admin_class,), {})
-        )
+        admin_name = f"{model.__name__}Admin"
+        if hasattr(caller_module, admin_name):
+            admin_class = getattr(caller_module, admin_name)
+        else:
+            admin_class = BaseModelAdmin
 
         admin.site.register(model, admin_class)
+
