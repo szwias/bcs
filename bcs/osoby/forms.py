@@ -1,22 +1,9 @@
 from django import forms
+from core.forms import create_model_forms
 from .models import *
 from .views import autocomplete_widgets
 from core.autocompletion.registry import build_widgets
 from django.contrib.postgres.forms import SimpleArrayField
-
-
-class DawnyZarzadForm(forms.ModelForm):
-    class Meta:
-        model = DawnyZarzad
-        fields = "__all__"
-        widgets = build_widgets(autocomplete_widgets[DawnyZarzad.__name__])
-
-
-class EgzekutorForm(forms.ModelForm):
-    class Meta:
-        model = Egzekutor
-        fields = "__all__"
-        widgets = build_widgets(autocomplete_widgets[Egzekutor.__name__])
 
 
 class HallOfFameForm(forms.ModelForm):
@@ -45,38 +32,6 @@ class ImieSzlacheckieForm(forms.ModelForm):
             self.fields["posiadacz_display"].initial = (
                 f"{imie.imie} {imie.nazwisko}"
             )
-
-
-class KomisjaRewizyjnaForm(forms.ModelForm):
-    class Meta:
-        model = KomisjaRewizyjna
-        fields = "__all__"
-        widgets = build_widgets(
-            autocomplete_widgets[KomisjaRewizyjna.__name__]
-        )
-
-
-class NowyZarzadForm(forms.ModelForm):
-    class Meta:
-        model = NowyZarzad
-        fields = "__all__"
-        widgets = build_widgets(autocomplete_widgets[NowyZarzad.__name__])
-
-
-class ZespolForm(forms.ModelForm):
-    class Meta:
-        model = Zespol
-        fields = "__all__"
-        widgets = build_widgets(autocomplete_widgets[Zespol.__name__])
-
-
-class KoordynatorZespoluForm(forms.ModelForm):
-    class Meta:
-        model = KoordynatorZespolu
-        fields = "__all__"
-        widgets = build_widgets(
-            autocomplete_widgets[KoordynatorZespolu.__name__]
-        )
 
 
 # OsobaForm Family
@@ -201,16 +156,6 @@ class InnaOsobaForm(OsobaForm):
         widgets = build_widgets(autocomplete_widgets[InnaOsoba.__name__])
 
 
-# ---------------------------------------------- END
-
-
-class WielkiMistrzForm(forms.ModelForm):
-    class Meta:
-        model = WielkiMistrz
-        fields = "__all__"
-        widgets = build_widgets(autocomplete_widgets[WielkiMistrz.__name__])
-
-
 class ZwierzeCzapkoweForm(forms.ModelForm):
     imie_display = forms.CharField(
         label="Imię czapkowe",
@@ -230,24 +175,4 @@ class ZwierzeCzapkoweForm(forms.ModelForm):
             self.fields["imie_display"].initial = f'"{czlonek.imie_piwne_1}"'
 
 
-class OrganizacjaForm(forms.ModelForm):
-    class Meta:
-        model = Organizacja
-        fields = "__all__"
-        widgets = build_widgets(autocomplete_widgets[Organizacja.__name__])
-
-
-class OrganizacjaStudenckaForm(forms.ModelForm):
-    class Meta:
-        model = OrganizacjaStudencka
-        fields = "__all__"
-        widgets = build_widgets(
-            autocomplete_widgets[OrganizacjaStudencka.__name__]
-        )
-
-
-class BractwoForm(forms.ModelForm):
-    class Meta:
-        model = Bractwo
-        fields = "__all__"
-        widgets = build_widgets(autocomplete_widgets[Bractwo.__name__])
+model_forms = create_model_forms(autocomplete_widgets)

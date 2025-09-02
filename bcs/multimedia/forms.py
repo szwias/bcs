@@ -1,18 +1,4 @@
-from django import forms
 from .views import autocomplete_widgets
-from core.autocompletion.registry import build_widgets
-from .model_imports import *
+from core.forms import create_model_forms
 
-
-class ObrazWydarzenieForm(forms.ModelForm):
-    class Meta:
-        model = ObrazWydarzenie
-        fields = "__all__"
-        widgets = build_widgets(autocomplete_widgets[ObrazWydarzenie.__name__])
-
-
-class ObrazZdarzenieForm(forms.ModelForm):
-    class Meta:
-        model = ObrazZdarzenie
-        fields = "__all__"
-        widgets = build_widgets(autocomplete_widgets[ObrazZdarzenie.__name__])
+model_forms = create_model_forms(autocomplete_widgets)

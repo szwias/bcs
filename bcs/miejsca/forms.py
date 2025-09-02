@@ -1,15 +1,8 @@
 from django import forms
+from core.forms import create_model_forms
 from .model_imports import *
 from .views import autocomplete_widgets
 from core.autocompletion.registry import build_widgets
-
-
-class KrajForm(forms.ModelForm):
-    class Meta:
-        model = Kraj
-        fields = "__all__"
-
-        # widgets = build_widgets(autocomplete_widgets['Kraj'])
 
 
 class MiejsceForm(forms.ModelForm):
@@ -29,18 +22,5 @@ class MiejsceForm(forms.ModelForm):
             }
         )
 
+model_forms = create_model_forms(autocomplete_widgets)
 
-class UczelniaForm(forms.ModelForm):
-    class Meta:
-        model = Uczelnia
-        fields = "__all__"
-
-        widgets = build_widgets(autocomplete_widgets["Uczelnia"])
-
-
-class WydzialForm(forms.ModelForm):
-    class Meta:
-        model = Wydzial
-        fields = "__all__"
-
-        widgets = build_widgets(autocomplete_widgets["Wydzial"])

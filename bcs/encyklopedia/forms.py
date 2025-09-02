@@ -1,4 +1,4 @@
 from .views import autocomplete_widgets
-from core.forms import create_modelforms
+from core.forms import create_model_forms
 
-model_forms = create_modelforms(autocomplete_widgets)
+model_forms = create_model_forms(autocomplete_widgets)

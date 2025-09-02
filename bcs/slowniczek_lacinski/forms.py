@@ -1,11 +1,4 @@
-from django import forms
 from .views import autocomplete_widgets
-from .model_imports import *
-from core.autocompletion.registry import build_widgets
+from core.forms import create_model_forms
 
-
-class ZwrotForm(forms.ModelForm):
-    class Meta:
-        model = Zwrot
-        fields = "__all__"
-        widgets = build_widgets(autocomplete_widgets[Zwrot.__name__])
+model_forms = create_model_forms(autocomplete_widgets)

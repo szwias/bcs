@@ -1,15 +1,9 @@
 from django import forms
 from dal import autocomplete
+from core.forms import create_model_forms
 from .views import autocomplete_widgets
 from core.autocompletion.registry import build_widgets
 from .model_imports import *
-
-
-class ChrzestForm(forms.ModelForm):
-    class Meta:
-        model = Chrzest
-        fields = "__all__"
-        widgets = build_widgets(autocomplete_widgets[Chrzest.__name__])
 
 
 class ZdarzenieForm(forms.ModelForm):
@@ -49,15 +43,6 @@ class ZdarzenieInlineForm(forms.ModelForm):
             self.initial["data"] = parent_obj.data_rozpoczecia
 
 
-class WydarzenieKalendarzoweForm(forms.ModelForm):
-    class Meta:
-        model = WydarzenieKalendarzowe
-        fields = "__all__"
-        widgets = build_widgets(
-            autocomplete_widgets[WydarzenieKalendarzowe.__name__]
-        )
-
-
 class WydarzenieForm(forms.ModelForm):
     class Meta:
         model = Wydarzenie
@@ -81,15 +66,4 @@ class WydarzenieForm(forms.ModelForm):
         return cd
 
 
-class TypWydarzeniaForm(forms.ModelForm):
-    class Meta:
-        model = TypWydarzenia
-        fields = "__all__"
-        widgets = build_widgets(autocomplete_widgets[TypWydarzenia.__name__])
-
-
-class TypWyjazduForm(forms.ModelForm):
-    class Meta:
-        model = TypWyjazdu
-        fields = "__all__"
-        widgets = build_widgets(autocomplete_widgets[TypWyjazdu.__name__])
+model_forms = create_model_forms(autocomplete_widgets)
