@@ -1,114 +1,189 @@
-from core.utils.autocompletion.autocomplete import *
-from django.apps import apps
+from .autocomplete import (
+    FieldChoicesAutocompleteByLabel,
+    FieldChoicesAutocompleteByValue,
+    StrMatchingAutocomplete,
+)
+from functools import partial
 from django.urls import path
+from django.db.models import CharField, IntegerField
 from dal import autocomplete
 from caseconverter import kebabcase
-from functools import partial
+
+from core.apps import get_calling_app_config
 
 
-def generate_autocomplete_views(
-    model, label_list, value_list, model_list, globals_dict=None
-):
-    if globals_dict is None:
-        raise ValueError(
-            "globals_dict is required to register views (usually pass globals())"
-        )
+def register_autocomplete(overrides=None):
+    """
+    Dynamically registers autocomplete views and widgets for all models in the
+    calling Django app.
 
-    model_name = model.__name__
-    app_label = model._meta.app_label
-    url_patterns = []
-    widgets = {}
+    This function:
+      - Iterates through all models of the app from which it's called.
+      - Dynamically creates DRF-based autocomplete views for:
+          1. **Label fields**: CharFields or IntegerFields with `choices`.
+          2. **Value fields**: Arbitrary fields specified in overrides.
+          3. **Related models**: All ForeignKey or OneToOne related models.
+      - Builds URL patterns for these views.
+      - Prepares `dal.autocomplete` widgets for use in forms and admin.
 
-    model_list.append(model_name)
+    Arguments:
+        overrides (dict, optional):
+            A dictionary for per-model customization of autocomplete behavior.
+            Keys are model class names (str), values are dicts with keys:
+                - "label_fields": list of field names (CharField/IntegerField
+                  with choices) to create "by-label" autocomplete views.
+                - "value_fields": list of field names for "by-value"
+                  autocomplete views.
+                - "record_models": list of related model classes to create
+                  generic search autocomplete views.
 
-    for field in label_list:
-        view_name = f"{field.title().replace('_', '')}Autocomplete"
-        view_class = type(
-            view_name,
-            (FieldChoicesAutocompleteByLabel,),
-            {"model": model, "field_name": field},
-        )
-        globals_dict[view_name] = view_class
+            Example:
+                overrides = {
+                    "Book": {
+                        "label_fields": ["genre"],
+                        "value_fields": ["isbn"],
+                        "record_models": [Author, Publisher],
+                    }
+                }
 
-        url_name = (
-            f"{kebabcase(model_name)}-{kebabcase(field)}-by-label-autocomplete"
-        )
-        url_patterns.append(
-            path(f"{url_name}/", view_class.as_view(), name=url_name)
-        )
+    Returns:
+        tuple:
+            - autocomplete_urls (list):
+                A list of `django.urls.path` instances defining URL patterns
+                for all generated autocomplete views. These should be included
+                in the app's `urls.py`.
+            - autocomplete_widgets (dict):
+                A nested dict of widgets, keyed by model name and field name,
+                for use in forms or admin definitions. Example:
 
-        widgets[field] = partial(
-            autocomplete.ListSelect2,
-            url=f"{app_label}_autocomplete:{url_name}",
-        )
+                    {
+                        "Book": {
+                            "genre": partial(ListSelect2, ...),
+                            "author": partial(ModelSelect2, ...),
+                        },
+                        "Author": {...},
+                    }
 
-    for field in value_list:
-        view_name = f"{field.title().replace('_', '')}Autocomplete"
-        view_class = type(
-            view_name,
-            (FieldChoicesAutocompleteByValue,),
-            {"model": model, "field_name": field},
-        )
-        globals_dict[view_name] = view_class
+    Usage:
+        In your app's `views.py`:
 
-        url_name = (
-            f"{kebabcase(model_name)}-{kebabcase(field)}-by-value-autocomplete"
-        )
-        url_patterns.append(
-            path(f"{url_name}/", view_class.as_view(), name=url_name)
-        )
+            from core.utils.autocompletion.AutocompletesGeneration import register_autocomplete
 
-        widgets[field] = partial(
-            autocomplete.ListSelect2,
-            url=f"{app_label}_autocomplete:{url_name}",
-        )
+            autocomplete_urls, autocomplete_widgets = register_autocomplete(
+                overrides={
+                    "Book": {
+                        "label_fields": ["genre"],
+                        "record_models": [Author],
+                    }
+                }
+            )
 
-    for model_name_str in model_list:
-        if "." in model_name_str:
-            related_model = apps.get_model(model_name_str)
-        else:
-            related_model = apps.get_model(app_label, model_name_str)
+        In your app's `urls.py`:
 
-        view_name = f"{related_model.__name__}Autocomplete"
-        view_class = type(
-            view_name,
-            (StrMatchingAutocomplete,),
-            {"model": related_model, "__module__": __name__},
-        )
-        globals_dict[view_name] = view_class
+            from .views import autocomplete_urls
 
-        url_name = f"{kebabcase(model_name_str)}-records-autocomplete"
-        url_patterns.append(
-            path(f"{url_name}/", view_class.as_view(), name=url_name)
-        )
+            app_name = "myapp_autocomplete"
+            urlpatterns = autocomplete_urls
 
-        for field in model._meta.fields:
-            if getattr(field, "related_model", None) == related_model:
-                widgets[field.name] = partial(
-                    autocomplete.ModelSelect2,
-                    url=f"{app_label}_autocomplete:{url_name}",
-                )
+    Notes:
+        - Dynamically generated view classes are injected into the calling
+          module's namespace via `globals()`.
+        - M2M fields are not handled here (use Django admin's `filter_horizontal` or similar).
+        - If a model has no matching fields, it will simply be skipped.
+    """
 
-    return url_patterns, {model_name: widgets}
+    overrides = overrides or {}
+    app_config = get_calling_app_config()
+    if not app_config:
+        raise RuntimeError("Could not determine calling app")
 
-
-def setup_autocompletes(configs, globals_dict):
     autocomplete_urls = []
     autocomplete_widgets = {}
 
-    for config in configs:
-        model, label_list, value_list, record_list = config
+    for model in app_config.get_models():
+        widgets = {}
+        app_label = app_config.label
+        model_name = model.__name__
 
-        urls, widgets = generate_autocomplete_views(
-            model=model,
-            label_list=label_list,
-            value_list=value_list,
-            model_list=record_list,
-            globals_dict=globals_dict,
-        )
+        config = overrides.get(model_name, {})
 
-        autocomplete_urls += urls
-        autocomplete_widgets.update(widgets)
+        # use overrides if provided, otherwise build defaults
+        label_fields = config.get("label_fields") or [
+            f.name
+            for f in model._meta.fields
+            if isinstance(f, (CharField, IntegerField))
+            and getattr(f, "choices", None)
+        ]
+
+        value_fields = config.get("value_fields") or []
+
+        record_models = config.get("record_models") or [
+            f.related_model
+            for f in model._meta.fields
+            if getattr(f, "related_model", None) is not None
+        ]
+
+        # Label fields
+        for field in label_fields:
+            view_name = f"{field.title().replace('_','')}Autocomplete"
+            view_class = type(
+                view_name,
+                (FieldChoicesAutocompleteByLabel,),
+                {"model": model, "field_name": field},
+            )
+            globals()[view_name] = view_class
+            url_name = f"{kebabcase(model_name)}-{kebabcase(field)}-by-label-autocomplete"
+            autocomplete_urls.append(
+                path(f"{url_name}/", view_class.as_view(), name=url_name)
+            )
+            widgets[field] = partial(
+                autocomplete.ListSelect2,
+                url=f"{app_label}_autocomplete:{url_name}",
+            )
+
+        # Value fields
+        for field in value_fields:
+            view_name = f"{field.title().replace('_','')}Autocomplete"
+            view_class = type(
+                view_name,
+                (FieldChoicesAutocompleteByValue,),
+                {"model": model, "field_name": field},
+            )
+            globals()[view_name] = view_class
+            url_name = f"{kebabcase(model_name)}-{kebabcase(field)}-by-value-autocomplete"
+            autocomplete_urls.append(
+                path(f"{url_name}/", view_class.as_view(), name=url_name)
+            )
+            widgets[field] = partial(
+                autocomplete.ListSelect2,
+                url=f"{app_label}_autocomplete:{url_name}",
+            )
+
+        # Related models
+        for related_model in record_models:
+            view_name = f"{related_model.__name__}Autocomplete"
+            view_class = type(
+                view_name,
+                (StrMatchingAutocomplete,),
+                {"model": related_model, "__module__": __name__},
+            )
+            globals()[view_name] = view_class
+            url_name = (
+                f"{kebabcase(related_model.__name__)}-records-autocomplete"
+            )
+            autocomplete_urls.append(
+                path(f"{url_name}/", view_class.as_view(), name=url_name)
+            )
+
+            # attach ModelSelect2 widgets for FK fields pointing to this model
+            for field in model._meta.fields:
+                if getattr(field, "related_model", None) == related_model:
+                    widgets[field.name] = partial(
+                        autocomplete.ModelSelect2,
+                        url=f"{app_label}_autocomplete:{url_name}",
+                    )
+
+        autocomplete_widgets.update({model_name: widgets})
 
     return autocomplete_urls, autocomplete_widgets
 
