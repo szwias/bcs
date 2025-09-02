@@ -3,7 +3,7 @@ from core.autocompletion.registry import build_widgets
 from core.apps import get_calling_app_config
 
 
-def create_modelforms(autocomplete_widgets=None):
+def create_model_forms(autocomplete_widgets=None, skip_models=None):
     app_config = get_calling_app_config()
     forms = {}
 
