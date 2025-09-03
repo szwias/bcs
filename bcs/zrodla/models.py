@@ -30,7 +30,7 @@ class Zrodlo(PolymorphicModel):
         return f"{self.tytul} | {autorzy}"
 
 
-class ZrodloOgolne(Zrodlo):
+class ZrodloOgolne(Zrodlo, SearchableModel):
 
     zawartosc = models.TextField(blank=True, verbose_name="Zawartość")
 
@@ -42,7 +42,7 @@ class ZrodloOgolne(Zrodlo):
         ordering = ("tytul",)
 
 
-class Dokument(Zrodlo):
+class Dokument(Zrodlo, SearchableModel):
 
     data = models.DateField(blank=True, null=True, verbose_name="Data wydania")
 
