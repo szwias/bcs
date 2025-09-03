@@ -2,5 +2,7 @@ from textwrap import shorten
 from core.utils.Lengths import SNIPPET_LENGTH
 
 
-def snip(text):
-    return shorten(text, width=SNIPPET_LENGTH, placeholder="...")
+def snip(instance, text):
+    title = instance._meta.verbose_name
+    desc = shorten(text, width=SNIPPET_LENGTH, placeholder="...")
+    return f"{title}: [{desc}]"

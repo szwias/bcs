@@ -32,7 +32,7 @@ class PodsumowanieKadencji(models.Model):
         ordering = ["-zarzad"]
 
     def snippet(self):
-        return snip(self.podsumowanie)
+        return snip(self, self.podsumowanie)
 
     def __str__(self):
         wm = self.zarzad.wielki_mistrz.imie
@@ -73,7 +73,7 @@ class Kadencja(models.Model):
         width = SNIPPET_LENGTH // 2 - 1
         start = shorten(str(self.rozpoczecie), width, placeholder="...")
         end = shorten(str(self.zakonczenie), width, placeholder="...")
-        return snip(f"{start} - {end}")
+        return snip(self, f"{start} - {end}")
 
 
 class TypWydarzeniaHistorycznego(models.Model):
@@ -90,7 +90,7 @@ class TypWydarzeniaHistorycznego(models.Model):
         return self.typ
 
     def snippet(self):
-        return snip(self.typ)
+        return snip(self, self.typ)
 
 
 class WydarzenieHistoryczne(models.Model):
@@ -176,7 +176,7 @@ class WydarzenieHistoryczne(models.Model):
         return f'{self.get_data}: {typ} "{self.nazwa}"'
 
     def snippet(self):
-        return snip(self.opis)
+        return snip(self, self.opis)
 
 
 class KategoriaZadaniaChrzcielnego(models.Model):
@@ -191,7 +191,7 @@ class KategoriaZadaniaChrzcielnego(models.Model):
         return self.nazwa
 
     def snippet(self):
-        return snip(self.nazwa)
+        return snip(self, self.nazwa)
 
 
 class ZadanieChrzcielne(models.Model):
@@ -237,4 +237,4 @@ class ZadanieChrzcielne(models.Model):
         return f"{autorzy} - {self.nazwa} - {self.kategoria}"
 
     def snippet(self):
-        return snip(self.opis)
+        return snip(self, self.opis)
