@@ -6,7 +6,7 @@ from core.utils.Lengths import MAX_LENGTH, MEDIUM_LENGTH
 
 
 # Create your models here.
-class Zdarzenie(models.Model):
+class Zdarzenie(SearchableModel):
     nazwa = models.CharField(max_length=MAX_LENGTH, verbose_name="Nazwa")
 
     wydarzenie = models.ForeignKey(
@@ -49,7 +49,7 @@ class Zdarzenie(models.Model):
         return f"{self.data} {godzina}- {self.nazwa}"
 
 
-class TypWydarzenia(models.Model):
+class TypWydarzenia(SearchableModel):
     typ = models.CharField(
         max_length=MEDIUM_LENGTH, blank=True, verbose_name="Typ wydarzenia"
     )
@@ -70,7 +70,7 @@ class TypWydarzenia(models.Model):
         return TypWydarzenia.objects.get(typ="Nie dotyczy")
 
 
-class TypWyjazdu(models.Model):
+class TypWyjazdu(SearchableModel):
     typ = models.CharField(
         max_length=MEDIUM_LENGTH,
         blank=True,
@@ -93,7 +93,7 @@ class TypWyjazdu(models.Model):
         return TypWyjazdu.objects.get(typ="Nie dotyczy")
 
 
-class WydarzenieKalendarzowe(PolymorphicModel):
+class WydarzenieKalendarzowe(PolymorphicModel, SearchableModel):
 
     nazwa = models.CharField(max_length=MAX_LENGTH, verbose_name="Nazwa")
 
