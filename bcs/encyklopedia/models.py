@@ -59,7 +59,7 @@ class Cytat(PolymorphicModel):
         return f"{short_tekst} - {self.autor}{adresat_str}{kontekst}"
 
 
-class Aforyzm(Cytat):
+class Aforyzm(Cytat, SearchableModel):
 
     class Meta:
         verbose_name = "Aforyzm"
@@ -67,7 +67,7 @@ class Aforyzm(Cytat):
         ordering = ["tekst"]
 
 
-class Powiedzenie(Cytat):
+class Powiedzenie(Cytat, SearchableModel):
 
     class Meta:
         verbose_name = "Powiedzenie"
@@ -75,7 +75,7 @@ class Powiedzenie(Cytat):
         ordering = ["tekst"]
 
 
-class GrupaBractw(models.Model):
+class GrupaBractw(SearchableModel):
     nazwa = models.CharField(max_length=NAME_LENGTH, verbose_name="Nazwa")
 
     kraje = models.ManyToManyField(
@@ -105,7 +105,7 @@ class GrupaBractw(models.Model):
         return self.nazwa
 
 
-class Pojecie(models.Model):
+class Pojecie(SearchableModel):
 
     nazwa = models.CharField(max_length=MEDIUM_LENGTH, verbose_name="Nazwa")
 
@@ -154,7 +154,7 @@ class Pojecie(models.Model):
         return self.nazwa
 
 
-class TradycjaBCS(models.Model):
+class TradycjaBCS(SearchableModel):
 
     class Origins(models.TextChoices):
         ZAPOZYCZONA = "Z", "Zapożyczona"
@@ -230,7 +230,7 @@ class TradycjaBCS(models.Model):
         return self.nazwa
 
 
-class TradycjaInnegoBractwa(models.Model):
+class TradycjaInnegoBractwa(SearchableModel):
 
     nazwa = models.CharField(max_length=MEDIUM_LENGTH, verbose_name="Tradycja")
 
@@ -265,7 +265,7 @@ class TradycjaInnegoBractwa(models.Model):
         return self.nazwa
 
 
-class Zwyczaj(models.Model):
+class Zwyczaj(SearchableModel):
     nazwa = models.CharField(max_length=MEDIUM_LENGTH, verbose_name="Nazwa")
 
     autor = models.ForeignKey(
