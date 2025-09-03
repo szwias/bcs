@@ -4,7 +4,7 @@ from miejsca.models import Wydzial
 from core.utils.Search import *
 
 
-class Czapka(models.Model):
+class Czapka(SearchableModel):
 
     wydzial = models.ForeignKey(
         "miejsca.Wydzial",
@@ -53,7 +53,7 @@ class Czapka(models.Model):
         return czapka
 
 
-class RodzajCzapki(models.Model):
+class RodzajCzapki(SearchableModel):
 
     nazwa = models.CharField(
         max_length=NAME_LENGTH, blank=True, verbose_name="Nazwa"
