@@ -6,7 +6,7 @@ from core.utils.Lengths import MAX_LENGTH
 from core.utils.Czas import LATA_BRACTW
 
 
-class Odznaczenie(models.Model):
+class Odznaczenie(SearchableModel):
     nazwa = models.CharField(max_length=MAX_LENGTH, verbose_name="Nazwa")
 
     opis = models.TextField(blank=True, verbose_name="Opis")
@@ -45,7 +45,7 @@ class Odznaczenie(models.Model):
         return self.nazwa
 
 
-class Nagrodzeni(models.Model):
+class Nagrodzeni(SearchableModel):
     data = models.DateField(
         default=timezone.now,
         blank=True,
