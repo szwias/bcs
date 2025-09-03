@@ -1,5 +1,6 @@
 from textwrap import shorten
 from core.utils.Lengths import SNIPPET_LENGTH
+from core.models import SearchableModel
 
 
 def snip(instance, text):
