@@ -5,7 +5,7 @@ from core.utils.Lengths import MEDIUM_LENGTH, NAME_LENGTH
 from core.utils import Czas
 
 
-class PodsumowanieKadencji(models.Model):
+class PodsumowanieKadencji(SearchableModel):
 
     zarzad = models.ForeignKey(
         "osoby.Zarzad",
@@ -39,7 +39,7 @@ class PodsumowanieKadencji(models.Model):
         return f"{self.autor}: {self.zarzad.kadencja} ({wm})"
 
 
-class Kadencja(models.Model):
+class Kadencja(SearchableModel):
 
     lata = models.IntegerField(choices=Czas.KADENCJE, verbose_name="Lata")
 
@@ -76,7 +76,7 @@ class Kadencja(models.Model):
         return snip(self, f"{start} - {end}")
 
 
-class TypWydarzeniaHistorycznego(models.Model):
+class TypWydarzeniaHistorycznego(SearchableModel):
     typ = models.CharField(
         max_length=NAME_LENGTH, verbose_name="Typ wydarzenia historycznego"
     )
@@ -93,7 +93,7 @@ class TypWydarzeniaHistorycznego(models.Model):
         return snip(self, self.typ)
 
 
-class WydarzenieHistoryczne(models.Model):
+class WydarzenieHistoryczne(SearchableModel):
     nazwa = models.CharField(max_length=MEDIUM_LENGTH, verbose_name="Nazwa")
 
     typy = models.ManyToManyField(
@@ -179,7 +179,7 @@ class WydarzenieHistoryczne(models.Model):
         return snip(self, self.opis)
 
 
-class KategoriaZadaniaChrzcielnego(models.Model):
+class KategoriaZadaniaChrzcielnego(SearchableModel):
     nazwa = models.CharField(max_length=MEDIUM_LENGTH, verbose_name="Nazwa")
 
     class Meta:
@@ -194,7 +194,7 @@ class KategoriaZadaniaChrzcielnego(models.Model):
         return snip(self, self.nazwa)
 
 
-class ZadanieChrzcielne(models.Model):
+class ZadanieChrzcielne(SearchableModel):
     nazwa = models.CharField(
         max_length=NAME_LENGTH, verbose_name="Nazwa krótka"
     )
