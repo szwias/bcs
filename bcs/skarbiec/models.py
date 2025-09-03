@@ -10,7 +10,7 @@ from core.utils.Lengths import IBAN_LENGTH, MAX_LENGTH
 User = get_user_model()
 
 
-class Konto(models.Model):
+class Konto(SearchableModel):
     wlasciciel = models.ForeignKey(
         "osoby.Byt",
         blank=True,
@@ -57,7 +57,7 @@ class Konto(models.Model):
             # inaczej traktujemy jako zwykły numer – brak dodatkowej walidacji
 
 
-class Transakcja(models.Model):
+class Transakcja(SearchableModel):
     PRZYCHOD = "przychod"
     WYDATEK = "wydatek"
     TRANSACTION_TYPES = [(PRZYCHOD, "Przychód"), (WYDATEK, "Wydatek")]
