@@ -4,7 +4,7 @@ from core.utils.Search import *
 from core.utils.Lengths import MAX_LENGTH, NAME_LENGTH
 
 
-class DlugoscKadencji(models.Model):
+class DlugoscKadencji(SearchableModel):
     okres = models.CharField(
         max_length=MAX_LENGTH, verbose_name="Długość kadencji"
     )
@@ -18,7 +18,7 @@ class DlugoscKadencji(models.Model):
         return self.okres
 
 
-class WielkoscStruktury(models.Model):
+class WielkoscStruktury(SearchableModel):
     wielkosc = models.CharField(max_length=MAX_LENGTH, verbose_name="Wielkość")
 
     class Meta:
@@ -54,14 +54,14 @@ class Podmiot(PolymorphicModel):
         return self.nazwa
 
 
-class Rola(Podmiot):
+class Rola(Podmiot, SearchableModel):
     class Meta:
         verbose_name = "Rola jednostki w Bractwie"
         verbose_name_plural = "Role jednostki w Bractwie"
         ordering = ["nazwa"]
 
 
-class Struktura(Podmiot):
+class Struktura(Podmiot, SearchableModel):
     wielkosc = models.ForeignKey(
         WielkoscStruktury,
         blank=True,
@@ -76,7 +76,7 @@ class Struktura(Podmiot):
         ordering = ["nazwa"]
 
 
-class RelacjaPrawna(models.Model):
+class RelacjaPrawna(SearchableModel):
     class Wybory(models.TextChoices):
         PRAWO = "P", "Prawo"
         OBOWIAZEK = "O", "Obowiązek"
@@ -96,7 +96,7 @@ class RelacjaPrawna(models.Model):
         return self.tresc
 
 
-class PrawoObowiazek(models.Model):
+class PrawoObowiazek(SearchableModel):
     podmiot = models.ForeignKey(
         Podmiot,
         blank=True,
