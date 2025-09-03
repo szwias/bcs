@@ -3,7 +3,7 @@ from core.utils.Search import *
 from core.utils.Lengths import MAX_LENGTH, MEDIUM_LENGTH
 
 
-class KategoriaPiosenki(models.Model):
+class KategoriaPiosenki(SearchableModel):
 
     nazwa = models.CharField(
         max_length=MEDIUM_LENGTH, verbose_name="Nazwa kategorii"
@@ -18,7 +18,7 @@ class KategoriaPiosenki(models.Model):
         return self.nazwa
 
 
-class Piosenka(models.Model):
+class Piosenka(SearchableModel):
 
     tytul = models.CharField(max_length=MAX_LENGTH, verbose_name="Tytuł")
 
