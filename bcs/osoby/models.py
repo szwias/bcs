@@ -21,7 +21,7 @@ class Lengths:
     STATUS = 2
 
 
-class HallOfFame(models.Model):
+class HallOfFame(SearchableModel):
 
     osoba = models.ForeignKey(
         "osoby.Osoba",
@@ -61,7 +61,7 @@ class Byt(PolymorphicModel):
     pass
 
 
-class KomisjaRewizyjna(Byt):
+class KomisjaRewizyjna(Byt, SearchableModel):
     kadencja = models.ForeignKey(
         "kronika.Kadencja",
         blank=True,
@@ -98,7 +98,7 @@ class KomisjaRewizyjna(Byt):
 
 # ORGANIZACJA FAMILY
 # --------------------------------------
-class Organizacja(Byt):
+class Organizacja(Byt, SearchableModel):
     nazwa = models.CharField(
         max_length=MAX_LENGTH, verbose_name="Nazwa organizacji"
     )
@@ -205,7 +205,7 @@ class Osoba(Byt):
         return name
 
 
-class InnaOsoba(Osoba):
+class InnaOsoba(Osoba, SearchableModel):
     class Kategorie(models.TextChoices):
         INNA = "I", "Inna"
         INNE_BRACTWO_CZAPKOWE = "Inne BCS", "Inne bractwo czapkowe"
@@ -236,7 +236,7 @@ class InnaOsoba(Osoba):
         ordering = ["imie", "nazwisko"]
 
 
-class OsobaBCS(models.Model):
+class OsobaBCS(SearchableModel):
     class PewnoscStazu(models.TextChoices):
         TAK = "T", "Na pewno wcześniej się nie pojawiał"
         NIE = "N", "Ale mógł pojawić się wcześniej"
@@ -511,7 +511,7 @@ class Czlonek(Osoba, OsobaBCS):
 # --------------------------------------- END
 
 
-class ImieSzlacheckie(models.Model):
+class ImieSzlacheckie(SearchableModel):
     imie = models.ForeignKey(
         Czlonek,
         on_delete=models.CASCADE,
@@ -537,7 +537,7 @@ class ImieSzlacheckie(models.Model):
 
 # OSOBA DEPENDENT
 # ------------------------------------------------------
-class WielkiMistrz(models.Model):
+class WielkiMistrz(SearchableModel):
     imie = models.ForeignKey(
         Czlonek,
         on_delete=models.SET_NULL,
@@ -575,7 +575,7 @@ class WielkiMistrz(models.Model):
         super().save(*args, **kwargs)
 
 
-class Zespol(models.Model):
+class Zespol(SearchableModel):
     nazwa = models.CharField(
         max_length=MEDIUM_LENGTH,
         verbose_name="Nazwa",
@@ -611,7 +611,7 @@ class Zespol(models.Model):
         return self.nazwa
 
 
-class KoordynatorZespolu(models.Model):
+class KoordynatorZespolu(SearchableModel):
     osoba = models.ForeignKey(
         Osoba,
         blank=True,
@@ -657,7 +657,7 @@ class Egzekutor(KoordynatorZespolu):
         ordering = ["zespol", "-rozpoczecie_urzedu"]
 
 
-class ZwierzeCzapkowe(models.Model):
+class ZwierzeCzapkowe(SearchableModel):
     czlonek = models.ForeignKey(
         Czlonek, on_delete=models.SET_NULL, null=True, verbose_name="Członek"
     )
@@ -770,7 +770,7 @@ class Zarzad(Byt):
         )
 
 
-class DawnyZarzad(Zarzad):
+class DawnyZarzad(Zarzad, SearchableModel):
 
     bibendi = models.ForeignKey(
         Czlonek,
@@ -814,7 +814,7 @@ class DawnyZarzad(Zarzad):
         ordering = ["-kadencja"]
 
 
-class NowyZarzad(Zarzad):
+class NowyZarzad(Zarzad, SearchableModel):
 
     sekretarz = models.ForeignKey(
         Czlonek,
