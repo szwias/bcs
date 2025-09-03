@@ -3,7 +3,7 @@ from core.utils.Search import *
 from core.utils.Lengths import MAX_LENGTH
 
 
-class Zwrot(models.Model):
+class Zwrot(SearchableModel):
 
     zwrot = models.TextField(
         max_length=MAX_LENGTH, blank=True, null=True, verbose_name="Zwrot"
