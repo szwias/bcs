@@ -3,7 +3,7 @@ from core.utils.Lengths import MAX_LENGTH, SHORT_LENGTH, MEDIUM_LENGTH
 from core.utils.Search import *
 
 
-class Kraj(models.Model):
+class Kraj(SearchableModel):
     kraj = models.CharField(max_length=MEDIUM_LENGTH, verbose_name="Kraj")
 
     class Meta:
@@ -19,7 +19,7 @@ class Kraj(models.Model):
         return Kraj.objects.get(kraj="Polska")
 
 
-class Miejsce(models.Model):
+class Miejsce(SearchableModel):
 
     nazwa = models.CharField(max_length=MAX_LENGTH, verbose_name="Nazwa")
 
@@ -50,7 +50,7 @@ class Miejsce(models.Model):
         return f"{self.nazwa} - {str(self.typ)}, {self.adres}"
 
 
-class TypMiejsca(models.Model):
+class TypMiejsca(SearchableModel):
 
     nazwa = models.CharField(
         max_length=MEDIUM_LENGTH, verbose_name="Typ miejsca"
@@ -65,7 +65,7 @@ class TypMiejsca(models.Model):
         return self.nazwa
 
 
-class Uczelnia(models.Model):
+class Uczelnia(SearchableModel):
 
     nazwa = models.CharField(max_length=MAX_LENGTH, verbose_name="Uczelnia")
 
@@ -106,7 +106,7 @@ class Uczelnia(models.Model):
         return uczelnia
 
 
-class Wydzial(models.Model):
+class Wydzial(SearchableModel):
 
     nazwa = models.CharField(
         max_length=MAX_LENGTH, blank=True, verbose_name="Wydział"
