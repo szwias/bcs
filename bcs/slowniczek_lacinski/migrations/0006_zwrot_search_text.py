@@ -6,7 +6,10 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ("slowniczek_lacinski", "0005_alter_zwrot_options_remove_zwrot_cosik_and_more"),
+        (
+            "slowniczek_lacinski",
+            "0005_alter_zwrot_options_remove_zwrot_cosik_and_more",
+        ),
     ]
 
     operations = [

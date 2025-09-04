@@ -22,9 +22,8 @@ def create_search_text(instance):
             continue
 
         # Skip ignored names or suffixes
-        if (
-            field.name in IGNORED_FIELD_NAMES
-            or field.name.endswith(IGNORED_FIELD_SUFFIXES)
+        if field.name in IGNORED_FIELD_NAMES or field.name.endswith(
+            IGNORED_FIELD_SUFFIXES
         ):
             continue
 

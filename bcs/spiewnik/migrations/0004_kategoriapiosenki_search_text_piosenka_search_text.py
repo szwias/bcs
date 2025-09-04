@@ -6,7 +6,10 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ("spiewnik", "0003_alter_piosenka_autor_alter_piosenka_tekst_and_more"),
+        (
+            "spiewnik",
+            "0003_alter_piosenka_autor_alter_piosenka_tekst_and_more",
+        ),
     ]
 
     operations = [
