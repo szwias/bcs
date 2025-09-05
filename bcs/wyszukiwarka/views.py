@@ -26,12 +26,14 @@ def search(request):
                 )
                 .filter(rank__gt=0)
                 .order_by("-rank")
+                .distinct()  # Prevent DB-level duplicates
             )
+            print(qs)
 
             for obj in qs:
-                key = (model.__name__, obj.pk)
+                key = (obj._meta.label, obj.pk)  # Globally unique key
                 if key in seen:
-                    continue  # skip duplicates
+                    continue
                 seen.add(key)
 
                 # admin URL
