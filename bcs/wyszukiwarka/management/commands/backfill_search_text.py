@@ -11,11 +11,7 @@ class Command(BaseCommand):
         # Get all subclasses dynamically
         for model in apps.get_models():
             if issubclass(model, SearchableModel) and not model._meta.abstract:
-                self.stdout.write(f"Updating {model.__name__}...")
                 for obj in model.objects.all().iterator():
                     obj.save(
                         update_fields=["search_text"]
                     )  # triggers save() logic
-                self.stdout.write(
-                    self.style.SUCCESS(f"Done: {model.__name__}")
-                )
