@@ -612,7 +612,7 @@ class Zespol(SearchableModel):
         return self.nazwa
 
 
-class KoordynatorZespolu(SearchableModel):
+class PrzewoZespolu(SearchableModel):
     osoba = models.ForeignKey(
         Osoba,
         blank=True,
@@ -642,15 +642,21 @@ class KoordynatorZespolu(SearchableModel):
     )
 
     class Meta:
-        verbose_name = "Koordynator Zespołu"
-        verbose_name_plural = "Koordynatorzy zespołów"
-        ordering = ["zespol", "-rozpoczecie_urzedu"]
+        abstract = True
 
     def __str__(self):
         return f"{str(self.osoba)} - {str(self.zespol)}"
 
 
-class Egzekutor(KoordynatorZespolu):
+class KoordynatorZespolu(PrzewoZespolu):
+
+    class Meta:
+        verbose_name = "Koordynator Zespołu"
+        verbose_name_plural = "Koordynatorzy zespołów"
+        ordering = ["zespol", "-rozpoczecie_urzedu"]
+
+
+class Egzekutor(PrzewoZespolu):
 
     class Meta:
         verbose_name = "Egzekutor"
