@@ -1,3 +1,5 @@
+from PyPDF2.errors import PdfReadError
+from django.core.exceptions import ValidationError
 from django.db import models
 from polymorphic.models import PolymorphicModel
 from core.utils.Search import *
@@ -31,6 +33,21 @@ class Zrodlo(PolymorphicModel):
 
 
 class ZrodloOgolne(Zrodlo, SearchableModel):
+class SearchableZrodlo(SearchableModel, Zrodlo):
+    class Meta:
+        abstract = True
+
+
+    def save(self, *args, **kwargs):
+        if self.plik:
+            try:
+                self.search_text = extract_text_from_pdf(self.plik)
+            except (PdfReadError, OSError, IOError) as e:
+                # Raise a proper validation error
+                raise ValidationError(f"Could not extract text from PDF: {e}")
+        super().save(*args, **kwargs)
+
+
 
     zawartosc = models.TextField(blank=True, verbose_name="Zawartość")
 
