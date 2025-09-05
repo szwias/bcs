@@ -9,5 +9,18 @@ class WyszukiwarkaConfig(AppConfig):
     name = "wyszukiwarka"
 
     def ready(self):
-        apps_to_index = ["kronika"]
+        apps_to_index = [
+            "czapki",
+            "encyklopedia",
+            "honory",
+            "kalendarz",
+            "kronika",
+            "miejsca",
+            "multimedia",
+            "osoby",
+            "prawo",
+            "skarbiec",
+            "slowniczek_lacinski",
+            "zrodla",
+        ]
         register_search(apps_to_index)
