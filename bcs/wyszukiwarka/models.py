@@ -19,7 +19,7 @@ class SearchableModel(models.Model):
 
     def snippet(self, query, total_length=100):
         """
-        Returns a snippet of search_text with the query centered and highlighted.
+        Returns a snippet of search_text with the query centered and bolded.
         """
         if not self.search_text:
             return ""
@@ -47,10 +47,10 @@ class SearchableModel(models.Model):
         if end < len(text):
             snippet = snippet + "..."
 
-        # Highlight query
+        # Bold all occurrences of query
         snippet = re.sub(
             query_escaped,
-            lambda m: f"<mark>{escape(m.group(0))}</mark>",
+            lambda m: f"<strong>{escape(m.group(0))}</strong>",
             snippet,
             flags=re.IGNORECASE,
         )

@@ -13,8 +13,8 @@
     <ul>
       {% for result in results %}
         <li>
-          <strong><a href="{{ result.admin_url }}">{{ result.title }}</a></strong><br>
-          {{ result.snippet }}
+          <a href="{{ result.admin_url }}">{{ result.title }}</a><br>
+          {{ result.snippet|safe }}
         </li>
       {% endfor %}
     </ul>
