@@ -1,6 +1,7 @@
 from django.db import models
 from core.utils.Lengths import MAX_LENGTH, SHORT_LENGTH, MEDIUM_LENGTH
 from wyszukiwarka.utils.Search import *
+from wyszukiwarka.models import SearchableModel
 
 
 class Kraj(SearchableModel):

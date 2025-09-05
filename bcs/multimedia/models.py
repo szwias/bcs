@@ -6,6 +6,7 @@ from polymorphic.models import PolymorphicModel
 from wyszukiwarka.utils.Search import *
 
 from core.utils.Lengths import MEDIUM_LENGTH
+from wyszukiwarka.models import SearchableModel
 
 
 class Obraz(PolymorphicModel):

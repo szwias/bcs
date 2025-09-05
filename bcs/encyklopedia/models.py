@@ -2,6 +2,7 @@ from django.db import models
 from polymorphic.models import PolymorphicModel
 from wyszukiwarka.utils.Search import *
 from core.utils.Lengths import *
+from wyszukiwarka.models import SearchableModel
 
 
 class Lengths:

@@ -6,6 +6,7 @@ from stdnum import iban  # biblioteka do walidacji IBAN
 import datetime
 from wyszukiwarka.utils.Search import *
 from core.utils.Lengths import IBAN_LENGTH, MAX_LENGTH
+from wyszukiwarka.models import SearchableModel
 
 User = get_user_model()
 

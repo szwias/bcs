@@ -14,6 +14,7 @@ from kronika.models import Kadencja
 from czapki.models import Czapka
 from core.utils.Choices import TextAlt, TextChoose, IntAlt
 from wyszukiwarka.utils.Search import *
+from wyszukiwarka.models import SearchableModel
 
 
 class Lengths:

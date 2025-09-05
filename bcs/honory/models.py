@@ -4,6 +4,7 @@ from wyszukiwarka.utils.Search import *
 from core.utils.Choices import IntAlt
 from core.utils.Lengths import MAX_LENGTH
 from core.utils.Czas import LATA_BRACTW
+from wyszukiwarka.models import SearchableModel
 
 
 class Odznaczenie(SearchableModel):

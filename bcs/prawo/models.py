@@ -2,6 +2,7 @@ from django.db import models
 from polymorphic.models import PolymorphicModel
 from wyszukiwarka.utils.Search import *
 from core.utils.Lengths import MAX_LENGTH, NAME_LENGTH
+from wyszukiwarka.models import SearchableModel
 
 
 class DlugoscKadencji(SearchableModel):
