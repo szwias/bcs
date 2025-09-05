@@ -1,7 +1,6 @@
 from textwrap import shorten
 import PyPDF2
 from core.utils.Lengths import SNIPPET_LENGTH
-from core.models import SearchableModel
 
 
 def snip(instance, text):
