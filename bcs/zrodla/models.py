@@ -37,14 +37,22 @@ class SearchableZrodlo(SearchableModel, Zrodlo):
     class Meta:
         abstract = True
 
-
     def save(self, *args, **kwargs):
         if self.plik:
             try:
-                self.search_text = extract_text_from_pdf(self.plik)
+                extracted_text = extract_text_from_pdf(self.plik)
+                normalized_text = extracted_text.replace("\n", " ").strip()
+
+                # Append to search_text (with a space separator if needed)
+                if normalized_text:
+                    if self.search_text:
+                        self.search_text += " " + normalized_text
+                    else:
+                        self.search_text = normalized_text
+
             except (PdfReadError, OSError, IOError) as e:
-                # Raise a proper validation error
                 raise ValidationError(f"Could not extract text from PDF: {e}")
+
         super().save(*args, **kwargs)
 
 
