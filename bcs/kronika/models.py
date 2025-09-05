@@ -32,9 +32,6 @@ class PodsumowanieKadencji(SearchableModel):
         verbose_name_plural = "Podsumowania kadencji"
         ordering = ["-zarzad"]
 
-    def snippet(self):
-        return snip(self, self.podsumowanie)
-
     def __str__(self):
         wm = self.zarzad.wielki_mistrz.imie
         return f"{self.autor}: {self.zarzad.kadencja} ({wm})"
@@ -70,12 +67,6 @@ class Kadencja(SearchableModel):
     def __str__(self):
         return self.get_lata_display()
 
-    def snippet(self):
-        width = SNIPPET_LENGTH // 2 - 1
-        start = shorten(str(self.rozpoczecie), width, placeholder="...")
-        end = shorten(str(self.zakonczenie), width, placeholder="...")
-        return snip(self, f"{start} - {end}")
-
 
 class TypWydarzeniaHistorycznego(SearchableModel):
     typ = models.CharField(
@@ -89,9 +80,6 @@ class TypWydarzeniaHistorycznego(SearchableModel):
 
     def __str__(self):
         return self.typ
-
-    def snippet(self):
-        return snip(self, self.typ)
 
 
 class WydarzenieHistoryczne(SearchableModel):
@@ -176,9 +164,6 @@ class WydarzenieHistoryczne(SearchableModel):
 
         return f'{self.get_data}: {typ} "{self.nazwa}"'
 
-    def snippet(self):
-        return snip(self, self.opis)
-
 
 class KategoriaZadaniaChrzcielnego(SearchableModel):
     nazwa = models.CharField(max_length=MEDIUM_LENGTH, verbose_name="Nazwa")
@@ -190,9 +175,6 @@ class KategoriaZadaniaChrzcielnego(SearchableModel):
 
     def __str__(self):
         return self.nazwa
-
-    def snippet(self):
-        return snip(self, self.nazwa)
 
 
 class ZadanieChrzcielne(SearchableModel):
@@ -236,6 +218,3 @@ class ZadanieChrzcielne(SearchableModel):
     def __str__(self):
         autorzy = ", ".join([str(a) for a in list(self.autorzy.all())])
         return f"{autorzy} - {self.nazwa} - {self.kategoria}"
-
-    def snippet(self):
-        return snip(self, self.opis)
