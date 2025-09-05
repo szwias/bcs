@@ -1,6 +1,6 @@
 from django.db import models
 
-from core.utils.Search import *
+from wyszukiwarka.utils.Search import *
 from core.utils.Lengths import MEDIUM_LENGTH, NAME_LENGTH
 from core.utils import Czas
 

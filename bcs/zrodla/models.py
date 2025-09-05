@@ -2,7 +2,7 @@ from PyPDF2.errors import PdfReadError
 from django.core.exceptions import ValidationError
 from django.db import models
 from polymorphic.models import PolymorphicModel
-from core.utils.Search import *
+from wyszukiwarka.utils.Search import *
 from core.utils.Lengths import MAX_LENGTH
 
 

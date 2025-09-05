@@ -1,6 +1,6 @@
 from django.db import models
 from django.utils import timezone
-from core.utils.Search import *
+from wyszukiwarka.utils.Search import *
 from core.utils.Choices import IntAlt
 from core.utils.Lengths import MAX_LENGTH
 from core.utils.Czas import LATA_BRACTW

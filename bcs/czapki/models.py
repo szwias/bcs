@@ -1,7 +1,7 @@
 from django.db import models
 from core.utils.Lengths import MAX_LENGTH, MEDIUM_LENGTH, NAME_LENGTH
 from miejsca.models import Wydzial
-from core.utils.Search import *
+from wyszukiwarka.utils.Search import *
 
 
 class Czapka(SearchableModel):

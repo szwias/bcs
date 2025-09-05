@@ -3,7 +3,7 @@ import os
 from django.db import models
 from django.utils import timezone
 from polymorphic.models import PolymorphicModel
-from core.utils.Search import *
+from wyszukiwarka.utils.Search import *
 
 from core.utils.Lengths import MEDIUM_LENGTH
 
