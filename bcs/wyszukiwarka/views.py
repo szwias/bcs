@@ -19,10 +19,11 @@ def search(request):
     if query_text:
         search_query = SearchQuery(query_text)
 
-        for model, config in SEARCH_REGISTRY.items():
-            vector = SearchVector(*config["search_fields"])
+        for model in SEARCH_REGISTRY:
             qs = (
-                model.objects.annotate(rank=SearchRank(vector, search_query))
+                model.objects.annotate(
+                    rank=SearchRank(SearchVector("search_text"), search_query)
+                )
                 .filter(rank__gt=0)
                 .order_by("-rank")
             )
@@ -33,18 +34,6 @@ def search(request):
                     continue  # skip duplicates
                 seen.add(key)
 
-                # title and snippet
-                title = (
-                    getattr(obj, config["title_field"])
-                    if config.get("title_field")
-                    else str(obj)
-                )
-                snippet = (
-                    config["snippet_func"](obj)
-                    if config.get("snippet_func")
-                    else str(obj)
-                )
-
                 # admin URL
                 content_type = ContentType.objects.get_for_model(obj)
                 admin_url = reverse(
@@ -54,8 +43,8 @@ def search(request):
 
                 results.append(
                     {
-                        "title": title,
-                        "snippet": snippet,
+                        "title": str(obj),
+                        "snippet": obj.snippet(query_text),
                         "admin_url": admin_url,
                     }
                 )
