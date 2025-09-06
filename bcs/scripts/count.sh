@@ -1,6 +1,8 @@
 #!/bin/bash
 # Script to count lines in different file types excluding certain directories
 
+backup
+
 echo
 echo "BACKEND:"
 
