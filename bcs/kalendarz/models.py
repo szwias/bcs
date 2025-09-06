@@ -102,9 +102,11 @@ class WydarzenieKalendarzowe(PolymorphicModel, SearchableModel):
         default=timezone.now, verbose_name="Data rozpoczecia"
     )
 
-    link = models.URLField(blank=True, verbose_name="Link do wydarzenia na FB")
+    link = models.URLField(
+        blank=True, null=True, verbose_name="Link do wydarzenia na FB"
+    )
 
-    opis = models.TextField(blank=True, verbose_name="Opis")
+    opis = models.TextField(blank=True, null=True, verbose_name="Opis")
 
     class Meta:
         verbose_name = "Wydarzenie kalendarzowe"
