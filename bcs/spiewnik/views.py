@@ -14,8 +14,8 @@ def piosenka(request, pk):
             lines = json.load(f)
 
     formatted_lines = []
-    lyrics = [line["tekst"] for line in lines]
-    chords = [' '.join(line["chwyty"]) for line in lines]
+    lyrics = [line.get("tekst", "") for line in lines]
+    chords = [' '.join(line.get("chwyty", [])) for line in lines]
 
     # Determine fixed right alignment
     max_lyrics_len = max((len(l) for l in lyrics), default=0)
