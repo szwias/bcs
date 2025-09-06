@@ -50,23 +50,24 @@ class SearchableModel(models.Model):
         snippet_text = text[start:end]
         offset = start  # positions are relative to snippet
 
-        # --- Step 1: Apply italics for field names ---
-        for pos_start, pos_end in reversed(self.fields_positions or []):
-            if pos_end < start or pos_start > end:
+        # Step 2: Apply italics only to intersecting field names
+        styled_positions = []
+        for field_start, field_end in self.fields_positions or []:
+            # Skip if outside snippet
+            if field_end <= start or field_start >= end:
                 continue
-            rel_start = max(0, pos_start - offset)
-            rel_end = min(len(snippet_text), pos_end - offset)
-            snippet_text = (
-                snippet_text[:rel_end] + "</span>" + snippet_text[rel_end:]
-            )
-            snippet_text = (
-                snippet_text[:rel_start]
-                + '<span class="field-name">'
-                + snippet_text[rel_start:]
-            )
+            # Clip to snippet bounds
+            rel_start = max(0, field_start - offset)
+            rel_end = min(end - start, field_end - offset)
+            styled_positions.append((rel_start, rel_end))
 
-        # --- Step 2: Highlight query after italics ---
-        query_escaped = re.escape(query)
+        # Insert <span class="field-name"> tags in reverse order
+        for s, e in reversed(styled_positions):
+            snippet_text = snippet_text[:e] + "</span>" + snippet_text[e:]
+            snippet_text = snippet_text[
+                           :s] + '<span class="field-name">' + snippet_text[s:]
+
+        # Step 3: Highlight query after field-name spans
         snippet_text = re.sub(
             query_escaped,
             lambda m: f'<span class="query-match">{escape(m.group(0))}</span>',
@@ -74,12 +75,13 @@ class SearchableModel(models.Model):
             flags=re.IGNORECASE,
         )
 
-        # Add ellipses if needed
+        # Step 4: Add ellipses if needed
         if start > 0:
             snippet_text = "..." + snippet_text
         if end < len(text):
             snippet_text += "..."
 
+        print(snippet_text)
         return mark_safe(snippet_text)
 
     def title(self):
