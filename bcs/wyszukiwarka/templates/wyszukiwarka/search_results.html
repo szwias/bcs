@@ -1,24 +1,44 @@
-<!-- wyszukiwarka/templates/wyszukiwarka/search_results.html -->
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Search</title>
+    <link rel="stylesheet" href="{% static 'wyszukiwarka/search.css' %}">
+</head>
+<body>
 
 <h1>Search</h1>
 
 <form method="get" action="{% url 'wyszukiwarka:search' %}">
-  <input type="text" name="q" value="{{ query }}" placeholder="Search...">
-  <button type="submit">Search</button>
+    <label>
+        <input type="text" name="q" value="{{ query }}" placeholder="Search...">
+    </label>
+    <button type="submit">Search</button>
 </form>
 
 {% if query %}
-  <h2>Results for "{{ query }}"</h2>
-  {% if results %}
-    <ul>
-      {% for result in results %}
-        <li>
-          <a href="{{ result.admin_url }}">{{ result.title }}</a><br>
-          {{ result.snippet|safe }}
-        </li>
-      {% endfor %}
-    </ul>
-  {% else %}
-    <p>No results found.</p>
-  {% endif %}
+    <h2>Results for "{{ query }}"</h2>
+
+    {% if results %}
+        <ul class="search-results">
+            {% for result in results %}
+                <li class="search-item">
+                    <!-- Title linking to admin -->
+                    <a href="{{ result.admin_url }}" class="result-title"><strong>{{ result.title }}</strong></a>
+
+                    <!-- Snippet -->
+                    <div class="snippet">
+                        {{ result.snippet|safe }}
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No results found.</p>
+    {% endif %}
 {% endif %}
+
+</body>
+</html>
