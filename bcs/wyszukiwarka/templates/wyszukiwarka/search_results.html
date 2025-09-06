@@ -20,21 +20,26 @@
 
 {% if query %}
     <h2>Results for "{{ query }}"</h2>
-    {% if results_by_type %}
-    {% for type_name, type_results in results_by_type.items %}
-      <h3 class="result-category">{{ type_name|title }}</h3>
-      <ul class="result-list">
-        {% for result in type_results %}
-          <li>
-            <a href="{{ result.admin_url }}"><strong>{{ result.title }}</strong></a><br>
-            {{ result.snippet|safe }}
-          </li>
+    {% if results_by_app %}
+        {% for app_name, categories in results_by_app.items %}
+            <h2 class="app-name">{{ app_name|capfirst }}</h2>
+
+            {% for category_name, items in categories.items %}
+                <h3 class="result-category">{{ category_name }}</h3>
+                <ul class="result-list">
+                    {% for result in items %}
+                        <li class="search-item">
+                            <a href="{{ result.admin_url }}"><strong>{{ result.title }}</strong></a><br>
+                            <span class="snippet">{{ result.snippet|safe }}</span>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% endfor %}
+
         {% endfor %}
-      </ul>
-    {% endfor %}
-  {% else %}
-    <p>No results found.</p>
-  {% endif %}
+    {% else %}
+        <p>No results found.</p>
+    {% endif %}
 {% endif %}
 
 </body>
