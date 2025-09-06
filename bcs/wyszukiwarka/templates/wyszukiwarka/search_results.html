@@ -26,7 +26,7 @@
       <ul class="result-list">
         {% for result in type_results %}
           <li>
-            <a href="{{ result.admin_url }}">{{ result.title }}</a><br>
+            <a href="{{ result.admin_url }}"><strong>{{ result.title }}</strong></a><br>
             {{ result.snippet|safe }}
           </li>
         {% endfor %}
