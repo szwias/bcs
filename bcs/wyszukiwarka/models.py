@@ -31,44 +31,54 @@ class SearchableModel(models.Model):
         super().save(*args, **kwargs)
 
     def snippet(self, query, total_length=200):
-        """
-        Returns a snippet of search_text with the query centered and bolded.
-        """
         if not self.search_text:
             return ""
 
         text = self.search_text
-        query_escaped = re.escape(query)
-        match = re.search(query_escaped, text, flags=re.IGNORECASE)
+        match = re.search(re.escape(query), text, flags=re.IGNORECASE)
 
         if not match:
-            snippet = text[:total_length]
-            if len(text) > total_length:
-                snippet += "..."
-            return escape(snippet)
+            start, end = 0, min(len(text), total_length)
+        else:
+            start_idx, end_idx = match.start(), match.end()
+            half_len = total_length // 2
+            start = max(0, start_idx - half_len)
+            end = min(len(text), start + total_length)
 
-        start_idx, end_idx = match.start(), match.end()
-        half_len = total_length // 2
+        snippet_text = text[start:end]
+        offset = start
 
-        start = max(0, start_idx - half_len)
-        end = min(len(text), start + total_length)
+        # --- Step 1: Apply italics for field names ---
+        for pos_start, pos_end in reversed(self.fields_positions or []):
+            if pos_end < start or pos_start > end:
+                continue
+            rel_start = max(0, pos_start - offset)
+            rel_end = min(len(snippet_text), pos_end - offset)
+            snippet_text = snippet_text[:rel_end] + "</em>" + snippet_text[
+                                                              rel_end:]
+            snippet_text = snippet_text[:rel_start] + "<em>" + snippet_text[
+                                                               rel_start:]
 
-        snippet = text[start:end]
-
-        if start > 0:
-            snippet = "..." + snippet
-        if end < len(text):
-            snippet = snippet + "..."
-
-        # Bold all occurrences of query
-        snippet = re.sub(
+        # --- Step 2: Highlight query after italics ---
+        query_escaped = re.escape(query)
+        snippet_text = re.sub(
             query_escaped,
             lambda m: f"<strong>{escape(m.group(0))}</strong>",
-            snippet,
+            snippet_text,
             flags=re.IGNORECASE,
         )
 
-        return mark_safe(snippet)
+        # Add ellipses if needed
+        if start > 0:
+            snippet_text = "..." + snippet_text
+        if end < len(text):
+            snippet_text += "..."
+
+        return mark_safe(snippet_text)
+
+    def title(self):
+        model_class = ContentType.objects.get_for_model(self).model_class()
+        return f"{model_class.__name__}: {str(self)}"
 
     def _create_search_text(self):
         """
@@ -113,13 +123,9 @@ class SearchableModel(models.Model):
             name_start = current_index
             name_end = current_index + len(
                 field.name) + 1  # +1 for : character
-            positions.append((name_start, name_end))
+            positions.append([name_start, name_end])
 
             # Update index (plus 2 for ", ")
             current_index += len(piece) + 2
 
         return " ".join(properties), positions
-
-    def title(self):
-        model_class = ContentType.objects.get_for_model(self).model_class()
-        return f"{model_class.__name__}: {str(self)}"
