@@ -22,13 +22,9 @@ def search(request):
         for model in SEARCH_REGISTRY:
             qs = (
                 model.objects.annotate(
-                    rank=SearchRank(SearchVector("search_text"), search_query)
-                )
-                .filter(rank__gt=0)
-                .order_by("-rank")
-                .distinct()  # Prevent DB-level duplicates
+                    rank=SearchRank(search_vector,search_query)
+                ).filter(rank__gt=0).order_by("-rank").distinct()
             )
-            print(qs)
 
             for obj in qs:
                 key = (obj._meta.label, obj.pk)  # Globally unique key
@@ -45,7 +41,7 @@ def search(request):
 
                 results.append(
                     {
-                        "title": str(obj),
+                        "title": obj.title,
                         "snippet": obj.snippet(query_text),
                         "admin_url": admin_url,
                     }
