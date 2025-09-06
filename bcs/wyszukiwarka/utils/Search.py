@@ -32,13 +32,17 @@ def create_search_text(instance):
         if isinstance(field, IGNORED_FIELD_TYPES):
             continue
 
-        try:
-            value = getattr(instance, field.name, None)
-        except Exception:
-            # If field is problematic, skip it
-            continue
+        # Get choices field display instead of raw value
+        if getattr(field, "choices", None):
+            method = getattr(instance, f"get_{field.name}_display", None)
+            if method:
+                value = method()  # call the method
+            else:
+                value = ""
+        else:
+            value = getattr(instance, field.name, "")
 
-        if value is None:
+        if value is None or value == "":
             continue
 
         # Handle ManyToMany
