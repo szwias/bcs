@@ -37,6 +37,12 @@ css_lines=$(find . -name '*.css' \
    -exec cat {} + | wc -l)
 echo "CSS lines: $css_lines"
 
+# Count lines in JS files
+js_lines=$(find . -name '*.js' \
+   ! -path "*/staticfiles/*" \
+   -exec cat {} + | wc -l)
+echo "JS lines: $js_lines"
+
 echo
 echo "MEDIA:"
 
