@@ -45,3 +45,15 @@
   padding: 0.4rem 0;
 }
 
+.app-name {
+    cursor: pointer;
+    user-select: none;
+    margin-top: 1.5rem;
+}
+
+.toggle-indicator {
+    font-weight: normal;
+    margin-left: 0.5rem;
+    color: #888;
+}
+
