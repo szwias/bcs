@@ -29,7 +29,7 @@ class Zrodlo(PolymorphicModel):
         ordering = ("tytul",)
 
     def __str__(self):
-        autorzy = ", ".join(a for a in self.autorzy.all())
+        autorzy = ", ".join(str(a) for a in self.autorzy.all())
         return f"{self.tytul} | {autorzy}"
 
 
