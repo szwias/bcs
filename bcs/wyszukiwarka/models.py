@@ -5,8 +5,6 @@ from django.db import models
 from django.utils.html import escape, mark_safe
 
 
-
-
 class SearchableModel(models.Model):
     search_text = models.TextField(editable=False, blank=True)
 
@@ -14,7 +12,7 @@ class SearchableModel(models.Model):
         editable=False, blank=True, default=list
     )
 
-    IGNORED_FIELD_NAMES = {"id", "search_text"}
+    IGNORED_FIELD_NAMES = {"id", "search_text", "fields_positions"}
     IGNORED_FIELD_SUFFIXES = ("_ptr", "_ctype", "_id")
     IGNORED_FIELD_TYPES = (
         models.AutoField,
@@ -25,7 +23,6 @@ class SearchableModel(models.Model):
 
     class Meta:
         abstract = True
-
 
     def save(self, *args, **kwargs):
         text, positions = self._create_search_text()
@@ -67,8 +64,11 @@ class SearchableModel(models.Model):
         # Insert <span class="field-name"> tags in reverse order
         for s, e in reversed(styled_positions):
             snippet_text = snippet_text[:e] + "</span>" + snippet_text[e:]
-            snippet_text = snippet_text[
-                           :s] + '<span class="field-name">' + snippet_text[s:]
+            snippet_text = (
+                snippet_text[:s]
+                + '<span class="field-name">'
+                + snippet_text[s:]
+            )
 
         # Step 3: Highlight query after field-name spans
         snippet_text = re.sub(
