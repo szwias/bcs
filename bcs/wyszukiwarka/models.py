@@ -4,14 +4,7 @@ from django.contrib.contenttypes.models import ContentType
 from django.db import models
 from django.utils.html import escape, mark_safe
 
-IGNORED_FIELD_NAMES = {"id", "search_text"}
-IGNORED_FIELD_SUFFIXES = ("_ptr", "_ctype", "_id")
-IGNORED_FIELD_TYPES = (
-    models.AutoField,
-    models.FileField,
-    models.ImageField,
-    models.BooleanField,
-)
+
 
 
 class SearchableModel(models.Model):
@@ -21,8 +14,18 @@ class SearchableModel(models.Model):
         editable=False, blank=True, default=list
     )
 
+    IGNORED_FIELD_NAMES = {"id", "search_text"}
+    IGNORED_FIELD_SUFFIXES = ("_ptr", "_ctype", "_id")
+    IGNORED_FIELD_TYPES = (
+        models.AutoField,
+        models.FileField,
+        models.ImageField,
+        models.BooleanField,
+    )
+
     class Meta:
         abstract = True
+
 
     def save(self, *args, **kwargs):
         text, positions = self._create_search_text()
@@ -81,7 +84,6 @@ class SearchableModel(models.Model):
         if end < len(text):
             snippet_text += "..."
 
-        print(snippet_text)
         return mark_safe(snippet_text)
 
     def title(self):
@@ -101,12 +103,12 @@ class SearchableModel(models.Model):
             if field.auto_created and not field.concrete:
                 continue
 
-            if field.name in IGNORED_FIELD_NAMES or field.name.endswith(
-                IGNORED_FIELD_SUFFIXES
+            if field.name in self.IGNORED_FIELD_NAMES or field.name.endswith(
+                self.IGNORED_FIELD_SUFFIXES
             ):
                 continue
 
-            if isinstance(field, IGNORED_FIELD_TYPES):
+            if isinstance(field, self.IGNORED_FIELD_TYPES):
                 continue
 
             # Resolve field value
