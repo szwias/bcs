@@ -20,24 +20,21 @@
 
 {% if query %}
     <h2>Results for "{{ query }}"</h2>
-
-    {% if results %}
-        <ul class="search-results">
-            {% for result in results %}
-                <li class="search-item">
-                    <!-- Title linking to admin -->
-                    <a href="{{ result.admin_url }}" class="result-title"><strong>{{ result.title }}</strong></a>
-
-                    <!-- Snippet -->
-                    <div class="snippet">
-                        {{ result.snippet|safe }}
-                    </div>
-                </li>
-            {% endfor %}
-        </ul>
-    {% else %}
-        <p>No results found.</p>
-    {% endif %}
+    {% if results_by_type %}
+    {% for type_name, type_results in results_by_type.items %}
+      <h3 class="result-category">{{ type_name|title }}</h3>
+      <ul class="result-list">
+        {% for result in type_results %}
+          <li>
+            <a href="{{ result.admin_url }}">{{ result.title }}</a><br>
+            {{ result.snippet|safe }}
+          </li>
+        {% endfor %}
+      </ul>
+    {% endfor %}
+  {% else %}
+    <p>No results found.</p>
+  {% endif %}
 {% endif %}
 
 </body>

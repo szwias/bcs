@@ -1,4 +1,6 @@
 # wyszukiwarka/views.py
+from collections import defaultdict
+
 from django.contrib.contenttypes.models import ContentType
 from django.urls import reverse
 from django.contrib.admin.utils import quote
@@ -13,7 +15,7 @@ from .registry import SEARCH_REGISTRY
 
 def search(request):
     query_text = request.GET.get("q", "").strip()
-    results = []
+    results_by_type = defaultdict(list)
     seen = set()  # track already added objects (model + pk)
 
     if query_text:
@@ -43,7 +45,7 @@ def search(request):
                     args=(quote(obj.pk),),
                 )
 
-                results.append(
+                results_by_type[content_type.name].append(
                     {
                         "title": obj.title,
                         "snippet": obj.snippet(query_text),
@@ -54,5 +56,5 @@ def search(request):
     return render(
         request,
         "wyszukiwarka/search_results.html",
-        {"query": query_text, "results": results},
+        {"query": query_text, "results_by_type": dict(results_by_type)},
     )
