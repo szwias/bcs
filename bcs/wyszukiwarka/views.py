@@ -17,13 +17,17 @@ def search(request):
     seen = set()  # track already added objects (model + pk)
 
     if query_text:
-        search_query = SearchQuery(query_text)
+        search_query = SearchQuery(query_text, config="polish")
+        search_vector = SearchVector("search_text", config="polish")
 
         for model in SEARCH_REGISTRY:
             qs = (
                 model.objects.annotate(
-                    rank=SearchRank(search_vector,search_query)
-                ).filter(rank__gt=0).order_by("-rank").distinct()
+                    rank=SearchRank(search_vector, search_query)
+                )
+                .filter(rank__gt=0)
+                .order_by("-rank")
+                .distinct()
             )
 
             for obj in qs:
