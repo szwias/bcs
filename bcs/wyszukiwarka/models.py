@@ -86,10 +86,6 @@ class SearchableModel(models.Model):
 
         return mark_safe(snippet_text)
 
-    def title(self):
-        model_class = ContentType.objects.get_for_model(self).model_class()
-        return f"{model_class.__name__}: {str(self)}"
-
     def _create_search_text(self):
         """
         Build search_text and record positions of field names for styling later.
