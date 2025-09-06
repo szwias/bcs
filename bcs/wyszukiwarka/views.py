@@ -52,7 +52,7 @@ def search(request):
 
                 results_by_type[group_name].append(
                     {
-                        "title": obj.title,
+                        "title": str(obj),
                         "snippet": obj.snippet(query_text),
                         "admin_url": admin_url,
                     }
