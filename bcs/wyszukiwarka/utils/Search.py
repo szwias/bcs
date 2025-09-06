@@ -13,45 +13,53 @@ IGNORED_FIELD_TYPES = (
 
 def create_search_text(instance):
     """
-    Build a search_text string for a model instance by joining all relevant fields.
+    Build a search_text string for a model instance and also record
+    positions of field names for styling later.
     """
-    values = []
+    properties = []
+    positions = []
+    current_index = 0
 
     for field in instance._meta.get_fields():
         # Skip reverse relations
         if field.auto_created and not field.concrete:
             continue
 
-        # Skip ignored names or suffixes
-        if field.name in IGNORED_FIELD_NAMES or field.name.endswith(
-            IGNORED_FIELD_SUFFIXES
-        ):
+        if field.name in IGNORED_FIELD_NAMES or field.name.endswith(IGNORED_FIELD_SUFFIXES):
             continue
 
-        # Skip fields by type
         if isinstance(field, IGNORED_FIELD_TYPES):
             continue
 
-        # Get choices field display instead of raw value
+        # Resolve field value
         if getattr(field, "choices", None):
             method = getattr(instance, f"get_{field.name}_display", None)
-            if method:
-                value = method()  # call the method
-            else:
-                value = ""
+            value = method() if method else ""
         else:
             value = getattr(instance, field.name, "")
 
-        if value is None or value == "":
+        if not value:
             continue
 
-        # Handle ManyToMany
+        # Format "field: value"
         if isinstance(field, models.ManyToManyField):
-            values.extend(str(obj) for obj in value.all())
+            text_value = ", ".join(str(obj) for obj in value.all())
         else:
-            values.append(str(value))
+            text_value = str(value)
 
-    return " ".join(values)
+        piece = f"{field.name}: {text_value}"
+        properties.append(piece)
+
+        # Record the field name position (only the name itself)
+        name_start = current_index
+        name_end = current_index + len(field.name) + 1 # +1 for : character
+        positions.append((name_start, name_end))
+
+        # Update index (plus 2 for ", ")
+        current_index += len(piece) + 2
+
+    return " ".join(properties), positions
+
 
 
 def extract_text_from_pdf(file_obj):
