@@ -45,7 +45,12 @@ def search(request):
                     args=(quote(obj.pk),),
                 )
 
-                results_by_type[content_type.name].append(
+                # Use verbose_name_plural as grouping key
+                group_name = getattr(
+                    obj._meta, "verbose_name_plural", obj._meta.model_name
+                )
+
+                results_by_type[group_name].append(
                     {
                         "title": obj.title,
                         "snippet": obj.snippet(query_text),
