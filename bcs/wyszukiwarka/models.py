@@ -135,7 +135,7 @@ class SearchableModel(models.Model):
             )  # +1 for : character
             positions.append([name_start, name_end])
 
-            # Update index (plus 2 for ", ")
-            current_index += len(piece) + 2
+            # Update index (plus 1 for " ")
+            current_index += len(piece) + 1
 
         return " ".join(properties), positions
