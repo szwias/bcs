@@ -58,8 +58,13 @@ def search(request):
                     }
                 )
 
+    # Sort categories alphabetically
+    sorted_results = dict(
+        sorted(results_by_type.items(), key=lambda x: x[0].lower())
+    )
+
     return render(
         request,
         "wyszukiwarka/search_results.html",
-        {"query": query_text, "results_by_type": dict(results_by_type)},
+        {"query": query_text, "results_by_type": sorted_results},
     )
