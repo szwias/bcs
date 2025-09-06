@@ -1,0 +1,27 @@
+/* wyszukiwarka/static/wyszukiwarka/search.css */
+
+.search-results {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.search-item {
+    margin-bottom: 1em;
+}
+
+.snippet {
+    font-size: 0.95em;
+    line-height: 1.4;
+    color: #333;
+}
+
+.field-name {
+    font-style: italic;
+    font-weight: 500;
+    color: #555;  /* distinct but subtle */
+}
+
+.query-match {
+    background-color: #ffeb3b;  /* yellow highlight */
+    font-weight: bold;
+}
