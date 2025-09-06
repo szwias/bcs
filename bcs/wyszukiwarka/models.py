@@ -1,4 +1,6 @@
 import re
+
+from django.contrib.contenttypes.models import ContentType
 from django.db import models
 from django.utils.html import escape, mark_safe
 from wyszukiwarka.utils.Search import create_search_text
@@ -14,10 +16,7 @@ class SearchableModel(models.Model):
         self.search_text = create_search_text(self)
         super().save(*args, **kwargs)
 
-    import re
-    from django.utils.html import escape, mark_safe
-
-    def snippet(self, query, total_length=100):
+    def snippet(self, query, total_length=200):
         """
         Returns a snippet of search_text with the query centered and bolded.
         """
@@ -56,3 +55,7 @@ class SearchableModel(models.Model):
         )
 
         return mark_safe(snippet)
+
+    def title(self):
+        model_class = ContentType.objects.get_for_model(self).model_class()
+        return f"{model_class.__name__}: {str(self)}"
