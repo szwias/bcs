@@ -13,9 +13,10 @@
     <h2>{{ author }}</h2>
 
     <div class="lyrics">
-        {% for line in text %}
-            {{ line }}
+        {% for line in lines %}
+    {% if line.bold %}<strong>{{ line.text }}</strong>{% else %}{{ line.text }}{% endif %}
         {% endfor %}
     </div>
+
 </body>
 </html>

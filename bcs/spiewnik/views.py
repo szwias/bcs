@@ -1,9 +1,11 @@
 from core.autocompletion.registry import register_autocomplete
+
 autocomplete_urls, autocomplete_widgets = register_autocomplete(overrides={})
 
 import json
 from django.shortcuts import render, get_object_or_404
 from .models import Piosenka
+
 
 def piosenka(request, pk):
     song = get_object_or_404(Piosenka, pk=pk)
@@ -15,19 +17,35 @@ def piosenka(request, pk):
 
     formatted_lines = []
     lyrics = [line.get("tekst", "") for line in lines]
-    chords = [' '.join(line.get("chwyty", [])) for line in lines]
+    chords = [" ".join(line.get("chwyty", [])) for line in lines]
 
     # Determine fixed right alignment
     max_lyrics_len = max((len(l) for l in lyrics), default=0)
     max_chords_len = max((len(c) for c in chords), default=0)
     right_border = max_lyrics_len + 4 + max_chords_len
 
+    is_bold = False
+
     for l, c in zip(lyrics, chords):
         if not l and not c:
             formatted_lines.append("")  # blank line
+            is_bold = False
             continue
         spaces_needed = right_border - len(l) - len(c)
-        formatted_lines.append(l + ' ' * spaces_needed + c)
+        line_text = l + " " * spaces_needed + c
+
+        # Determine if this line should be bold
+        if l.strip() == "":
+            is_bold = False
+        else:
+            if (
+                l.lower().startswith("ref")
+                or l.lower().startswith("[ref]")
+                or is_bold
+            ):
+                is_bold = True
+
+        formatted_lines.append({"text": line_text, "bold": is_bold})
 
     if song.autor:
         author = f"Autor: {song.autor}"
@@ -49,7 +67,7 @@ def piosenka(request, pk):
         request,
         "spiewnik/piosenka.html",
         {
-            "text": formatted_lines,
+            "lines": formatted_lines,
             "title": song.tytul,
             "author": author,
             "category": category,
