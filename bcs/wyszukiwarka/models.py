@@ -12,7 +12,6 @@ class SearchableModel(models.Model):
         editable=False, blank=True, default=list
     )
 
-    IGNORED_FIELD_NAMES = {"id", "search_text", "fields_positions"}
     IGNORED_FIELD_SUFFIXES = ("_ptr", "_ctype", "_id")
     IGNORED_FIELD_TYPES = (
         models.AutoField,
@@ -99,9 +98,10 @@ class SearchableModel(models.Model):
             if field.auto_created and not field.concrete:
                 continue
 
-            if field.name in self.IGNORED_FIELD_NAMES or field.name.endswith(
-                self.IGNORED_FIELD_SUFFIXES
-            ):
+            if field.name.endswith(self.IGNORED_FIELD_SUFFIXES):
+                continue
+
+            if hasattr(field, "editable") and not field.editable:
                 continue
 
             if isinstance(field, self.IGNORED_FIELD_TYPES):
