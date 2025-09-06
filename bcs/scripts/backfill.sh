@@ -1,3 +1,3 @@
 #!/bin/bash
 # Shortcut script
-python manage.py backfill_search_text
+python manage.py backfill_searchable_model

@@ -1,4 +1,4 @@
-# myapp/management/commands/backfill_search_text.py
+# myapp/management/commands/backfill_searchable_model.py
 from django.core.management.base import BaseCommand
 from wyszukiwarka.models import SearchableModel
 from django.apps import apps
