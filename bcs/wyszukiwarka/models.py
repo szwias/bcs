@@ -54,16 +54,20 @@ class SearchableModel(models.Model):
                 continue
             rel_start = max(0, pos_start - offset)
             rel_end = min(len(snippet_text), pos_end - offset)
-            snippet_text = snippet_text[:rel_end] + "</em>" + snippet_text[
-                                                              rel_end:]
-            snippet_text = snippet_text[:rel_start] + "<em>" + snippet_text[
-                                                               rel_start:]
+            snippet_text = (
+                snippet_text[:rel_end] + "</span>" + snippet_text[rel_end:]
+            )
+            snippet_text = (
+                snippet_text[:rel_start]
+                + '<span class="field-name">'
+                + snippet_text[rel_start:]
+            )
 
         # --- Step 2: Highlight query after italics ---
         query_escaped = re.escape(query)
         snippet_text = re.sub(
             query_escaped,
-            lambda m: f"<strong>{escape(m.group(0))}</strong>",
+            lambda m: f'<span class="query-match">{escape(m.group(0))}</span>',
             snippet_text,
             flags=re.IGNORECASE,
         )
@@ -94,7 +98,8 @@ class SearchableModel(models.Model):
                 continue
 
             if field.name in IGNORED_FIELD_NAMES or field.name.endswith(
-                    IGNORED_FIELD_SUFFIXES):
+                IGNORED_FIELD_SUFFIXES
+            ):
                 continue
 
             if isinstance(field, IGNORED_FIELD_TYPES):
@@ -121,8 +126,9 @@ class SearchableModel(models.Model):
 
             # Record the field name position (only the name itself)
             name_start = current_index
-            name_end = current_index + len(
-                field.name) + 1  # +1 for : character
+            name_end = (
+                current_index + len(field.name) + 1
+            )  # +1 for : character
             positions.append([name_start, name_end])
 
             # Update index (plus 2 for ", ")
