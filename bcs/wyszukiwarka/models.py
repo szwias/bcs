@@ -35,18 +35,20 @@ class SearchableModel(models.Model):
             return ""
 
         text = self.search_text
-        match = re.search(re.escape(query), text, flags=re.IGNORECASE)
+        query_escaped = re.escape(query)
+        match = re.search(query_escaped, text, flags=re.IGNORECASE)
 
-        if not match:
-            start, end = 0, min(len(text), total_length)
-        else:
+        # Step 1: Determine snippet boundaries
+        if match:
             start_idx, end_idx = match.start(), match.end()
             half_len = total_length // 2
             start = max(0, start_idx - half_len)
-            end = min(len(text), start + total_length)
+        else:
+            start = 0
+        end = min(len(text), start + total_length)
 
         snippet_text = text[start:end]
-        offset = start
+        offset = start  # positions are relative to snippet
 
         # --- Step 1: Apply italics for field names ---
         for pos_start, pos_end in reversed(self.fields_positions or []):
