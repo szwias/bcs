@@ -1,7 +1,7 @@
 from PyPDF2 import PdfReader
 from django.db import models
 
-IGNORED_FIELD_NAMES = {"id"}
+IGNORED_FIELD_NAMES = {"id", "search_text"}
 IGNORED_FIELD_SUFFIXES = ("_ptr", "_ctype", "_id")
 IGNORED_FIELD_TYPES = (
     models.AutoField,
