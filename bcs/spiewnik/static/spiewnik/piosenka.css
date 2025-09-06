@@ -1,0 +1,26 @@
+.lyrics {
+  max-width: 600px;
+  margin: 0 auto;
+  font-family: monospace; /* helps alignment look neat */
+}
+
+.line {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 0.2rem 0;
+}
+
+.text {
+  flex: 1;
+  text-align: left;
+}
+
+.chords {
+  flex-shrink: 0;
+  text-align: right;
+  white-space: nowrap; /* keep chords in one line */
+  margin-left: 1rem;
+  color: #2c3e50;
+  font-weight: bold;
+}
