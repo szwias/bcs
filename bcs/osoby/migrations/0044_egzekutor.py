@@ -27,7 +27,9 @@ class Migration(migrations.Migration):
                 (
                     "rozpoczecie_urzedu",
                     models.DateField(
-                        blank=True, null=True, verbose_name="Rozpoczęcie urzędu"
+                        blank=True,
+                        null=True,
+                        verbose_name="Rozpoczęcie urzędu",
                     ),
                 ),
                 (

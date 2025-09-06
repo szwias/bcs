@@ -16,7 +16,10 @@ IGNORED_FIELD_TYPES = (
 
 class SearchableModel(models.Model):
     search_text = models.TextField(editable=False, blank=True)
-    fields_positions = None
+
+    fields_positions = models.JSONField(
+        editable=False, blank=True, default=list
+    )
 
     class Meta:
         abstract = True
