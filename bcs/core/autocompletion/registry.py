@@ -80,7 +80,7 @@ def register_autocomplete(overrides=None):
 
         In your app's `urls.py`:
 
-            from .views import autocomplete_urls
+            from .autocomplete_views import autocomplete_urls
 
             app_name = "myapp_autocomplete"
             urlpatterns = autocomplete_urls

@@ -1,3 +1,7 @@
 *.sql linguist-detectable=true
 *.sql linguist-language=sql
 *.sql text
+# Force files to be counted
+*.css linguist-language=CSS
+*.js linguist-language=JavaScript
+*.html linguist-language=HTML

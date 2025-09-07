@@ -1,7 +1,7 @@
 from django import forms
 from core.forms import create_model_forms
 from .models import *
-from .views import autocomplete_widgets
+from .autocomplete_views import autocomplete_widgets
 from core.autocompletion.registry import build_widgets
 from django.contrib.postgres.forms import SimpleArrayField
 

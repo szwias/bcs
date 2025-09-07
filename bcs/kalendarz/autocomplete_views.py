@@ -1,6 +1,10 @@
 from dal import autocomplete
-from .models import WydarzenieKalendarzowe
+
+from core.autocompletion.registry import register_autocomplete
+from kalendarz.models import WydarzenieKalendarzowe
 from miejsca.models import Miejsce
+
+autocomplete_urls, autocomplete_widgets = register_autocomplete(overrides={})
 
 
 class CustomMiejsceFromWydarzenieKalendarzoweToZdarzenieAutocomplete(

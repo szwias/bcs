@@ -1,5 +1,5 @@
 """
-from .views import autocomplete_urls
+from .autocomplete_views import autocomplete_urls
 
 app_name = "czlonkowie_autocomplete"
 

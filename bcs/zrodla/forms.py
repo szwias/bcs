@@ -2,7 +2,7 @@ from django import forms
 from django.apps import apps
 from core.forms import create_model_forms
 from .model_imports import *
-from .views import autocomplete_widgets
+from .autocomplete_views import autocomplete_widgets
 from core.autocompletion.registry import build_widgets
 from osoby.models import Byt
 
