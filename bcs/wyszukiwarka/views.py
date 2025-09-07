@@ -14,7 +14,7 @@ from django.shortcuts import render
 from .registry import SEARCH_REGISTRY
 
 
-def search(request):
+def search(request, models=None):
     query_text = request.GET.get("q", "").strip()
     results_by_app = defaultdict(lambda: defaultdict(list))
     seen = set()
@@ -60,15 +60,19 @@ def search(request):
                         "title": str(obj),
                         "snippet": obj.snippet(query_text),
                         "admin_url": admin_url,
+                        "rank": obj.rank,
                     }
                 )
 
     # Sort apps and categories alphabetically
     sorted_results = {
-        app: dict(sorted(categories.items(), key=lambda x: x[0].lower()))
-        for app, categories in sorted(
-            results_by_app.items(), key=lambda x: x[0].lower()
-        )
+        app: {
+            category: sorted(items, key=lambda x: x["rank"], reverse=True)
+            for category, items in
+            sorted(categories.items(), key=lambda x: x[0].lower())
+        }
+        for app, categories in
+        sorted(results_by_app.items(), key=lambda x: x[0].lower())
     }
 
     return render(
