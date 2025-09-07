@@ -9,6 +9,7 @@ body {
 
 /* Table of Contents wrapper */
 .toc {
+  text-align: center;
 }
 
 /* Title */
@@ -18,17 +19,27 @@ body {
   font-size: 2rem;
 }
 
-/* Category title */
 .toc__category-title {
+  display: inline-block; /* inline element, underline only text */
+  cursor: pointer;
+  transition: color 0.2s, border-bottom-color 0.2s;
+  border-bottom: 2px solid transparent;
+  user-select: none;
   color: #2c3e50;
-  border-bottom: 1px solid #ddd;
-  padding-bottom: 5px;
-  margin-top: 30px;
+  margin: 5px 0;
   font-size: 1.2rem;
+  text-align: center; /* parent should have text-align: center */
+}
+
+.toc__category-title:hover {
+  color: #2980b9;
+  border-bottom-color: #2980b9; /* underline appears on hover */
 }
 
 /* Song list styles */
 .toc__list {
+  text-align: center;
+  display: none;
   list-style: none;
   padding-left: 0;
   margin: 0;
@@ -50,4 +61,10 @@ body {
 /* Uncategorized block */
 .toc__uncategorized {
   margin-top: 40px;
+  text-align: center;
+}
+
+.toggle-indicator {
+  font-weight: normal; /* remove bold */
+  color: #6d7987;
 }
