@@ -1,124 +1,145 @@
+/* ===========================
+   Global Styles
+=========================== */
 body {
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f9f9f9;
-    color: #333;
-    line-height: 1;
-    padding: 20px;
-    max-width: 1000px;
-    margin: auto;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f9f9f9;
+  color: #333;
+  line-height: 1;
+  padding: 20px;
+  max-width: 1000px;
+  margin: auto;
 }
 
 h1, h2 {
-    text-align: center;
-    margin-bottom: 0.5em;
+  text-align: center;
+  margin-bottom: 0.5em;
 }
 
 h1 {
-    font-size: 2.5em;
-    color: #2c3e50;
+  font-size: 2.5em;
+  color: #2c3e50;
 }
 
 h2 {
-    font-size: 1.2em;
-    color: #555;
-    margin-top: 0.2em;
+  font-size: 1.2em;
+  color: #555;
+  margin-top: 0.2em;
 }
 
-.song-container {
-    max-width: 1000px;        /* same width as lyrics box */
-    margin: 0 auto;           /* center container */
-    padding-left: 10px;       /* horizontal padding */
-    padding-right: 10px;
+/* ===========================
+   Song Page Container
+=========================== */
+.song {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 10px;
 }
 
-/* Keep previous styles */
-.song-header { margin-top: 30px; margin-bottom: 20px; }
-.category { font-size: 1em; font-weight: bold; color: #2c3e50; margin-bottom: 12px; }
-.title { font-size: 2.2em; font-weight: bold; color: #1a1a1a; margin: 0 0 8px 0; }
-
-
-.edit-button {
-    background: #3498db;
-    color: #fff;
-    padding: 4px 10px;
-    border-radius: 4px;
-    text-decoration: none;
-    font-size: 0.9em;
+/* ===========================
+   Song Header
+=========================== */
+.song__header {
+  margin-top: 30px;
+  margin-bottom: 20px;
 }
 
-.edit-button:hover { background: #2980b9; }
+.song__category {
+  font-size: 1em;
+  font-weight: bold;
+  color: #2c3e50;
+  margin-bottom: 12px;
+}
 
+.song__title {
+  font-size: 2.2em;
+  font-weight: bold;
+  color: #1a1a1a;
+  margin: 0 0 8px 0;
+}
+
+.song__header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  padding: 0 15px; /* match lyrics box padding */
+}
+
+.song__author {
+  font-size: 1em;
+  font-style: italic;
+  color: #555;
+}
+
+.song__edit-button {
+  background: #3498db;
+  color: #fff;
+  padding: 4px 10px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 0.9em;
+}
+
+.song__edit-button:hover {
+  background: #2980b9;
+}
+
+/* ===========================
+   Lyrics Section
+=========================== */
 .lyrics {
-    display: flex;
-    flex-direction: column;
-    background: #fff;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 10px 15px;
-    font-family: monospace;
-    line-height: 1.2;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px 15px;
+  font-family: monospace;
+  line-height: 1.2;
 }
 
-.line {
-    display: grid;
-    grid-template-columns: 60ch 2ch 10ch 2ch 60ch;
-    align-items: flex-start;
-    min-height: 1.2em;
-    margin-bottom: 2px;
+.lyrics__line {
+  display: grid;
+  grid-template-columns: 60ch 2ch 10ch 2ch 60ch; /* lyrics, spacing, chords, spacing, alt */
+  align-items: flex-start;
+  min-height: 1.2em;
+  margin-bottom: 2px;
 }
 
-.lyrics-text, .lyrics-alt {
-    font-family: monospace;
-
+.lyrics__text,
+.lyrics__alt {
+  font-family: monospace;
 }
 
-.lyrics-chords {
-    font-family: monospace;
-    text-align: right;   /* chords aligned to right edge of column */
+.lyrics__chords {
+  font-family: monospace;
+  text-align: right;
 }
 
-
-
-
-
-.header-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
-    padding-left: 15px;  /* match lyrics left padding */
-    padding-right: 15px; /* match lyrics right padding */
-}
-
-.author {
-    font-size: 1em;
-    font-style: italic;
-    color: #555;
-}
-
-/* Default highlight */
+/* ===========================
+   Inline Styles (Highlight, Comments)
+=========================== */
 mark {
-    background-color: #ffeb3b; /* yellow */
-    color: #000; /* text color */
+  background-color: #ffeb3b;
+  color: #000;
 }
 
-/* Dark mode override */
 @media (prefers-color-scheme: dark) {
-    mark {
-        background-color: #555; /* darker highlight */
-        color: #fff; /* text color for readability */
-    }
+  mark {
+    background-color: #555;
+    color: #fff;
+  }
 }
 
-.comment {
-    font-size: 0.9em;        /* slightly smaller than lyrics */
-    color: #d31515;             /* subtle gray */
-    font-style: italic;      /* makes it feel like a side note */
-    /*margin-left: 2ch;        !* slight indentation from left *!*/
-    line-height: 1.2;
+.lyrics__comment {
+  font-size: 0.9em;
+  color: #d31515;
+  font-style: italic;
+  line-height: 1.2;
 }
 
-/* Optional: align to right if not using flex in h1 */
-.edit-button-right {
-    float: right;
+/* Utility */
+.song__edit-button--right {
+  float: right;
 }
