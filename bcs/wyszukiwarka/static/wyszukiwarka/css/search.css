@@ -1,59 +1,66 @@
-/* wyszukiwarka/static/wyszukiwarka/search.css */
-
+/* Container for all search results */
 .search-results {
     list-style-type: none;
     padding-left: 0;
+    margin: 0;
 }
 
+/* Each individual result */
 .search-item {
     margin-bottom: 1em;
 }
 
+/* Text snippet under a search result */
 .snippet {
     font-size: 0.95em;
     line-height: 1.4;
     color: #333;
 }
 
+/* Field name styling */
 .field-name {
     font-style: italic;
     font-weight: 500;
-    color: #555;  /* distinct but subtle */
+    color: #555;  /* subtle but distinct */
 }
 
+/* Highlighted query matches */
 .query-match {
     background-color: #ffeb3b;  /* yellow highlight */
     font-weight: bold;
 }
 
+/* Category headers inside results */
 .result-category {
-  font-size: 1.3rem;
-  margin-top: 1.5rem;
-  font-weight: bold;
-  color: #82c486;
-  border-bottom: 2px solid #ddd;
-  padding-bottom: 0.2rem;
+    font-size: 1.3rem;
+    margin-top: 1.5rem;
+    font-weight: bold;
+    color: #82c486;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 0.2rem;
 }
 
+/* List of results under a category */
 .result-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
 .result-list li {
-  padding: 0.4rem 0;
+    padding: 0.4rem 0;
 }
 
+/* App section title (clickable toggle) */
 .app-name {
     cursor: pointer;
     user-select: none;
     margin-top: 1.5rem;
 }
 
+/* Small [+] or [-] indicator */
 .toggle-indicator {
     font-weight: normal;
     margin-left: 0.5rem;
     color: #888;
 }
-
