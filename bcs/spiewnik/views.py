@@ -51,8 +51,15 @@ def piosenka(request, pk):
                 is_highlighted = False
                 is_bold = False
 
+        is_comment = f == "komentarz"
+
         formatted_lines.append(
-            {"text": line_text, "bold": is_bold, "highlight": is_highlighted}
+            {
+                "text": line_text,
+                "bold": is_bold,
+                "highlight": is_highlighted,
+                "comment": is_comment
+            }
         )
 
     if song.autor:

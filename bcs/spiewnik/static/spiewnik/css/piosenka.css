@@ -48,3 +48,12 @@ mark {
         color: #fff; /* text color for readability */
     }
 }
+
+.comment {
+    font-size: 0.9em;        /* slightly smaller than lyrics */
+    color: #d31515;             /* subtle gray */
+    font-style: italic;      /* makes it feel like a side note */
+    /*margin-left: 2ch;        !* slight indentation from left *!*/
+    line-height: 1.2;
+}
+
