@@ -1,7 +1,5 @@
-*.sql linguist-detectable=true
-*.sql linguist-language=sql
-*.sql text
-# Force files to be counted
-*.css linguist-language=CSS
-*.js linguist-language=JavaScript
-*.html linguist-language=HTML
+*.sql linguist-language=SQL text
+
+**/static/**/*.js linguist-language=JavaScript text linguist-generated=false
+**/static/**/*.css linguist-language=CSS text linguist-generated=false
+**/templates/**/*.html linguist-language=HTML text linguist-generated=false
