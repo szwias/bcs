@@ -11,6 +11,12 @@
     <h2>{{ category }}</h2>
     <h1>{{ title }}</h1>
     <h2>{{ author }}</h2>
+    
+    {% if request.user.is_staff %}
+    <div class="edit-button-wrapper">
+        <a href="{{ admin_url }}" class="edit-button">✏️ Edytuj</a>
+    </div>
+    {% endif %}
 
     <div class="lyrics">
         {% for line in lines %}

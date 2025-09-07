@@ -1,8 +1,14 @@
 # spiewnik/views.py
 import json
+
+from django.contrib.admin.utils import quote
 from django.shortcuts import render, get_object_or_404
 from collections import defaultdict
+
+from django.urls import reverse
+
 from .models import Piosenka, KategoriaPiosenki
+
 
 def spis_tresci(request):
     categories = KategoriaPiosenki.objects.all().order_by("nazwa")
@@ -12,17 +18,18 @@ def spis_tresci(request):
         songs = Piosenka.objects.filter(kategorie=category).order_by("tytul")
         songs_by_category.append((category, songs))
 
-    uncategorized = Piosenka.objects.filter(kategorie__isnull=True).order_by("tytul")
+    uncategorized = Piosenka.objects.filter(kategorie__isnull=True).order_by(
+        "tytul"
+    )
 
     return render(
         request,
         "spiewnik/spis_tresci.html",
         {
-            "songs_by_category": songs_by_category,  # now it's a list of tuples
+            "songs_by_category": songs_by_category,
             "uncategorized": uncategorized,
         },
     )
-
 
 
 def piosenka(request, pk):
@@ -76,7 +83,7 @@ def piosenka(request, pk):
                 "text": line_text,
                 "bold": is_bold,
                 "highlight": is_highlighted,
-                "comment": is_comment
+                "comment": is_comment,
             }
         )
 
@@ -96,6 +103,11 @@ def piosenka(request, pk):
     else:
         category = "Brak kategorii"
 
+    admin_url = reverse(
+        f"admin:spiewnik_piosenka_change",
+        args=(quote(song.pk),),
+    )
+
     return render(
         request,
         "spiewnik/piosenka.html",
@@ -104,5 +116,6 @@ def piosenka(request, pk):
             "title": song.tytul,
             "author": author,
             "category": category,
+            "admin_url": admin_url,
         },
     )
