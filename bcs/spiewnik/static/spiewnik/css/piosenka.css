@@ -24,15 +24,76 @@ h2 {
     margin-top: 0.2em;
 }
 
+.song-container {
+    max-width: 800px;        /* same width as lyrics box */
+    margin: 0 auto;           /* center container */
+    padding-left: 15px;       /* horizontal padding */
+    padding-right: 15px;
+}
+
+/* Keep previous styles */
+.song-header { margin-top: 30px; margin-bottom: 20px; }
+.category { font-size: 1em; font-weight: bold; color: #2c3e50; margin-bottom: 12px; }
+.title { font-size: 2.2em; font-weight: bold; color: #1a1a1a; margin: 0 0 8px 0; }
+
+
+.edit-button {
+    background: #3498db;
+    color: #fff;
+    padding: 4px 10px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 0.9em;
+}
+
+.edit-button:hover { background: #2980b9; }
+
 .lyrics {
-    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    background: #fff;
     border: 1px solid #ddd;
-    margin-top: 20px;
-    white-space: pre;
-    font-family: monospace;
-    overflow-x: auto;
     border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    padding: 10px 15px;
+    font-family: monospace;
+    line-height: 1.2;
+}
+
+.line {
+    display: flex;
+    align-items: flex-start;
+    min-height: 1.2em;
+    margin-bottom: 2px;
+}
+
+.lyrics-text {
+    font-family: monospace;
+    flex: 0.45; /* take remaining space, grows as needed */
+}
+
+.lyrics-chords {
+    font-family: monospace;
+    flex-shrink: 0;      /* never shrink */
+    text-align: left;   /* chords aligned to right edge of column */
+}
+
+
+
+
+
+.header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    padding-left: 15px;  /* match lyrics left padding */
+    padding-right: 15px; /* match lyrics right padding */
+}
+
+.author {
+    font-size: 1em;
+    font-style: italic;
+    color: #555;
 }
 
 /* Default highlight */
@@ -55,24 +116,6 @@ mark {
     font-style: italic;      /* makes it feel like a side note */
     /*margin-left: 2ch;        !* slight indentation from left *!*/
     line-height: 1.2;
-}
-
-.edit-button-wrapper {
-    text-align: right;  /* aligns button to the right */
-    margin-bottom: 10px; /* space between button and lyrics box */
-}
-
-.edit-button {
-    background: #3498db;
-    color: #fff;
-    padding: 4px 10px;
-    border-radius: 4px;
-    text-decoration: none;
-    font-size: 0.9em;
-}
-
-.edit-button:hover {
-    background: #2980b9;
 }
 
 /* Optional: align to right if not using flex in h1 */

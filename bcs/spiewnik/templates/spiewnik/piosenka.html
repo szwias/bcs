@@ -8,21 +8,41 @@
     <link rel="stylesheet" href="{% static 'spiewnik/css/piosenka.css' %}">
 </head>
 <body>
-    <h2>{{ category }}</h2>
-    <h1>{{ title }}</h1>
-    <h2>{{ author }}</h2>
-    
-    {% if request.user.is_staff %}
-    <div class="edit-button-wrapper">
-        <a href="{{ admin_url }}" class="edit-button">✏️ Edytuj</a>
-    </div>
-    {% endif %}
+    <div class="song-container">
+        <div class="song-header">
+            <div class="category">{{ category }}</div>
+            <h1 class="title">{{ title }}</h1>
 
-    <div class="lyrics">
-        {% for line in lines %}
-    {% if line.bold %}<strong>{% if line.highlight %}<mark>{% endif %}{{ line.text }}{% if line.highlight %}</mark>{% endif %}</strong>{% elif line.comment %}<span class="comment">{{ line.text }}</span>{% else %}{{ line.text }}{% endif %}
-        {% endfor %}
-    </div>
+            <div class="header-row">
+                <div class="author">{{ author }}</div>
+                {% if request.user.is_staff %}
+                <a href="{{ admin_url }}" class="edit-button">✏️ Edytuj</a>
+                {% endif %}
+            </div>
+        </div>
 
+        <div class="lyrics">
+            {% for line in lines %}
+                <div class="line">
+                    <div class="lyrics-text" style="width: {{ text_col_width }}ch;">
+                        {% if line.comment %}
+                            <span class="comment">{{ line.text }}</span>
+                        {% else %}
+                            {% if line.bold %}<strong>{% endif %}
+                            {% if line.highlight %}<mark>{% endif %}
+                            {{ line.text }}
+                            {% if line.highlight %}</mark>{% endif %}
+                            {% if line.bold %}</strong>{% endif %}
+                        {% endif %}
+                    </div>
+                    <div class="lyrics-chords" style="width: {{ chords_col_width }}ch; text-align: right;">
+                        {% if line.chords %}
+                            {{ line.chords|join:" " }}
+                        {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
 </body>
 </html>
