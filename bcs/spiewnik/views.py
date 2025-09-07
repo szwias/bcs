@@ -1,10 +1,28 @@
-from core.autocompletion.registry import register_autocomplete
-
-autocomplete_urls, autocomplete_widgets = register_autocomplete(overrides={})
-
+# spiewnik/views.py
 import json
 from django.shortcuts import render, get_object_or_404
-from .models import Piosenka
+from collections import defaultdict
+from .models import Piosenka, KategoriaPiosenki
+
+def spis_tresci(request):
+    categories = KategoriaPiosenki.objects.all().order_by("nazwa")
+    songs_by_category = []
+
+    for category in categories:
+        songs = Piosenka.objects.filter(kategorie=category).order_by("tytul")
+        songs_by_category.append((category, songs))
+
+    uncategorized = Piosenka.objects.filter(kategorie__isnull=True).order_by("tytul")
+
+    return render(
+        request,
+        "spiewnik/spis_tresci.html",
+        {
+            "songs_by_category": songs_by_category,  # now it's a list of tuples
+            "uncategorized": uncategorized,
+        },
+    )
+
 
 
 def piosenka(request, pk):

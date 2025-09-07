@@ -1,0 +1,37 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Spis treści - Śpiewnik</title>
+    <link rel="stylesheet" href="{% static 'spiewnik/css/spis_tresci.css' %}">
+</head>
+<body>
+
+<h1>Spis treści</h1>
+
+{% for category, songs in songs_by_category %}
+    {% if songs %}
+        <h2>{{ category.nazwa }}</h2>
+        <ul>
+            {% for song in songs %}
+                <li><a href="{% url 'spiewnik:piosenka' song.pk %}">{{ song.tytul }}</a></li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endfor %}
+
+{% if uncategorized %}
+<div class="uncategorized">
+    <h2>Bez kategorii</h2>
+    <ul>
+        {% for song in uncategorized %}
+            <li><a href="{% url 'piosenka' song.pk %}">{{ song.tytul }}</a></li>
+        {% endfor %}
+    </ul>
+</div>
+{% endif %}
+
+</body>
+</html>
