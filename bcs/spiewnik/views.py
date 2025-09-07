@@ -70,13 +70,15 @@ def piosenka(request, pk):
 
         is_comment = flag == "komentarz"
 
-        formatted_lines.append({
-            "text": l,
-            "chords": chords_list,
-            "bold": is_bold,
-            "highlight": is_highlighted,
-            "comment": is_comment,
-        })
+        formatted_lines.append(
+            {
+                "text": l,
+                "chords": chords_list,
+                "bold": is_bold,
+                "highlight": is_highlighted,
+                "comment": is_comment,
+            }
+        )
 
     # Author
     if song.autor:
@@ -98,8 +100,7 @@ def piosenka(request, pk):
 
     # Admin URL
     admin_url = reverse(
-        "admin:spiewnik_piosenka_change",
-        args=(quote(song.pk),)
+        "admin:spiewnik_piosenka_change", args=(quote(song.pk),)
     )
 
     return render(
