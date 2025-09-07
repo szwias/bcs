@@ -14,7 +14,7 @@
 
     <div class="lyrics">
         {% for line in lines %}
-    {% if line.bold %}<strong>{{ line.text }}</strong>{% else %}{{ line.text }}{% endif %}
+    {% if line.bold %}<strong>{% if line.highlight %}<mark>{% endif %}{{ line.text }}{% if line.highlight %}</mark>{% endif %}</strong>{% else %}{{ line.text }}{% endif %}
         {% endfor %}
     </div>
 

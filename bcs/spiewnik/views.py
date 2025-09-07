@@ -25,11 +25,13 @@ def piosenka(request, pk):
     right_border = max_lyrics_len + 4 + max_chords_len
 
     is_bold = False
+    is_highlighted = False
 
     for l, c in zip(lyrics, chords):
         if not l and not c:
             formatted_lines.append("")  # blank line
             is_bold = False
+            is_highlighted = False
             continue
         spaces_needed = right_border - len(l) - len(c)
         line_text = l + " " * spaces_needed + c
@@ -38,14 +40,19 @@ def piosenka(request, pk):
         if l.strip() == "":
             is_bold = False
         else:
-            if (
-                l.lower().startswith("ref")
-                or l.lower().startswith("[ref]")
-                or is_bold
-            ):
+            if l.lower().startswith("ref") or l.lower().startswith("[ref"):
+                is_highlighted = True
                 is_bold = True
+            elif is_bold:
+                is_highlighted = False
+                is_bold = True
+            else:
+                is_highlighted = False
+                is_bold = False
 
-        formatted_lines.append({"text": line_text, "bold": is_bold})
+        formatted_lines.append(
+            {"text": line_text, "bold": is_bold, "highlight": is_highlighted}
+        )
 
     if song.autor:
         author = f"Autor: {song.autor}"

@@ -34,3 +34,17 @@ h2 {
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
+
+/* Default highlight */
+mark {
+    background-color: #ffeb3b; /* yellow */
+    color: #000; /* text color */
+}
+
+/* Dark mode override */
+@media (prefers-color-scheme: dark) {
+    mark {
+        background-color: #555; /* darker highlight */
+        color: #fff; /* text color for readability */
+    }
+}
