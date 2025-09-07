@@ -18,6 +18,7 @@ def piosenka(request, pk):
     formatted_lines = []
     lyrics = [line.get("tekst", "") for line in lines]
     chords = [" ".join(line.get("chwyty", [])) for line in lines]
+    flags = [line.get("flag", "") for line in lines]
 
     # Determine fixed right alignment
     max_lyrics_len = max((len(l) for l in lyrics), default=0)
@@ -27,7 +28,7 @@ def piosenka(request, pk):
     is_bold = False
     is_highlighted = False
 
-    for l, c in zip(lyrics, chords):
+    for l, c, f in zip(lyrics, chords, flags):
         if not l and not c:
             formatted_lines.append("")  # blank line
             is_bold = False
@@ -43,7 +44,7 @@ def piosenka(request, pk):
             if l.lower().startswith("ref") or l.lower().startswith("[ref"):
                 is_highlighted = True
                 is_bold = True
-            elif is_bold:
+            elif is_bold or f == "refren":
                 is_highlighted = False
                 is_bold = True
             else:
