@@ -3,6 +3,7 @@
 
 backup
 
+# Count lines
 sql_lines=$(find . -name '*.sql' \
     ! -path "*/scripts/other_locations*" \
     ! -path '*/backups/*' \
@@ -29,25 +30,24 @@ js_lines=$(find . -name '*.js' \
 
 json_lines=$(find . -name '*.json' -exec cat {} + | wc -l)
 
-# Calculate totals
+# Totals
 backend_lines=$((python_lines + bash_lines))
 database_lines=$((sql_lines))
 frontend_lines=$((html_lines + css_lines + js_lines))
 media_lines=$((json_lines))
 total_lines=$((backend_lines + database_lines + frontend_lines + media_lines))
 
-WHITE="\033[0;97m"
+# Colors
 START="\033[38;5;"
 RESET="\033[0m"
 
-# Map GitHub Linguist hex colors to closest 256-color codes
 declare -A lang_colors=(
     ["SQL"]=172
     ["Python"]=25
     ["Bash"]=113
     ["HTML"]=166
     ["CSS"]=54
-    ["JavaScript"]=221
+    ["JS"]=221
     ["JSON"]=102
     ["Database"]=172
     ["Backend"]=25
@@ -55,39 +55,66 @@ declare -A lang_colors=(
     ["Media"]=102
 )
 
-# Function to calculate percentage
+# Percentage calculation (safe for zero values)
 percentage() {
-    awk "BEGIN { printf \"%.2f\", ($1/$total_lines)*100 }"
+    local value="${1:-0}"
+    awk -v val="$value" -v total="$total_lines" \
+        'BEGIN { printf "%.2f", (total==0 ? 0 : (val/total)*100) }'
 }
 
-# Function to print aligned and colored output
+# Print colored line
 print_colored() {
     local lang=$1
     local lines=$2
-    local percent=$(percentage $lines)
+    local percent=$(percentage "$lines")
     local color="${START}${lang_colors[$lang]}m"
     printf "$color%-10s | %7d | %6s%%${RESET}\n" "$lang" "$lines" "$percent"
 }
 
+# Print uncolored group line
 print_group() {
     local group=$1
     local lines=$2
-    local percent=$(percentage $lines)
+    local percent=$(percentage "$lines")
     printf "%-10s | %7d | %6s%%\n" "$group" "$lines" "$percent"
 }
 
-# Print all lines
+# -----------------------------
+# Sort and print languages
+# -----------------------------
+declare -a lang_list
+for lang in SQL Python Bash HTML CSS JS JSON; do
+    lines_var="${lang,,}_lines"
+    lines="${!lines_var:-0}"
+    percent=$(percentage "$lines")
+    lang_list+=("$percent|$lang|$lines")
+done
+
+IFS=$'\n' sorted_langs=($(sort -t '|' -k1 -nr <<<"${lang_list[*]}"))
+unset IFS
+
 echo
-print_colored "SQL" "$sql_lines"
-print_colored "Python" "$python_lines"
-print_colored "Bash" "$bash_lines"
-print_colored "HTML" "$html_lines"
-print_colored "CSS" "$css_lines"
-print_colored "JavaScript" "$js_lines"
-print_colored "JSON" "$json_lines"
+for entry in "${sorted_langs[@]}"; do
+    IFS='|' read -r percent lang lines <<< "$entry"
+    print_colored "$lang" "$lines"
+done
+
+# -----------------------------
+# Sort and print groups
+# -----------------------------
+declare -a group_list
+for group in Database Backend Frontend Media; do
+    var_name="${group,,}_lines"
+    lines="${!var_name:-0}"
+    percent=$(percentage "$lines")
+    group_list+=("$percent|$group|$lines")
+done
+
+IFS=$'\n' sorted_groups=($(sort -t '|' -k1 -nr <<<"${group_list[*]}"))
+unset IFS
+
 echo
-# Print grouped categories
-print_group "Database" "$database_lines"
-print_group "Backend" "$backend_lines"
-print_group "Frontend" "$frontend_lines"
-print_group "Media" "$media_lines"
+for entry in "${sorted_groups[@]}"; do
+    IFS='|' read -r percent group lines <<< "$entry"
+    print_group "$group" "$lines"
+done
