@@ -1,55 +1,50 @@
 {% load static %}
-
 <!DOCTYPE html>
 <html lang="pl">
-  <head>
-    <meta charset="UTF-8" />
-    <title>{{ title }} - Śpiewnik</title>
-    <link rel="stylesheet" href="{% static 'spiewnik/css/piosenka.css' %}" />
-  </head>
-  <body>
-    <div class="song">
-      <div class="song__header">
-        <div class="song__category">{{ category }}</div>
-        <h1 class="song__title">{{ title }}</h1>
-
-        <div class="song__header-row">
-          <div class="song__author">{{ author }}</div>
-          {% if request.user.is_staff %}
-          <a href="{{ admin_url }}" class="song__edit-button">✏️ Edytuj</a>
-          {% endif %}
+    <head>
+        <meta charset="UTF-8" />
+        <title>{{ title }} - Śpiewnik</title>
+        <link rel="stylesheet" href="{% static 'spiewnik/css/piosenka.css' %}" />
+    </head>
+    <body>
+        <div class="song">
+            <div class="song__header">
+                <div class="song__category">{{ category }}</div>
+                <h1 class="song__title">{{ title }}</h1>
+                <div class="song__header-row">
+                    <div class="song__author">{{ author }}</div>
+                    {% if request.user.is_staff %}<a href="{{ admin_url }}" class="song__edit-button">✏️ Edytuj</a>{% endif %}
+                </div>
+            </div>
+            <div class="lyrics">
+                {% for line in lines %}
+                    <div class="lyrics__line">
+                        <div class="lyrics__text">
+                            {% if line.comment %}
+                                <span class="lyrics__comment">{{ line.text }}</span>
+                            {% else %}
+                                {% if line.bold %}<strong>{% endif %}
+                                    {% if line.highlight %}
+                                        <mark>{{ line.text }}</mark>
+                                    {% else %}
+                                        {{ line.text }}
+                                    {% endif %}
+                                    {% if line.bold %}</strong>{% endif %}
+                            {% endif %}
+                        </div>
+                        <div></div>
+                        <!-- spacer column -->
+                        <div class="lyrics__chords">
+                            {% if line.chords %}{{ line.chords|join:" " }}{% endif %}
+                        </div>
+                        <div></div>
+                        <!-- spacer column -->
+                        <div class="lyrics__alt">
+                            <!-- Future alternative lyrics go here -->
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
         </div>
-      </div>
-
-      <div class="lyrics">
-        {% for line in lines %}
-        <div class="lyrics__line">
-          <div class="lyrics__text">
-            {% if line.comment %}
-            <span class="lyrics__comment">{{ line.text }}</span>
-            {% else %} {% if line.bold %}<strong
-              >{% endif %} {% if line.highlight %}
-              <mark>{{ line.text }}</mark>
-              {% else %} {{ line.text }} {% endif %} {% if line.bold %}</strong
-            >{% endif %} {% endif %}
-          </div>
-
-          <div></div>
-          <!-- spacer column -->
-
-          <div class="lyrics__chords">
-            {% if line.chords %} {{ line.chords|join:" " }} {% endif %}
-          </div>
-
-          <div></div>
-          <!-- spacer column -->
-
-          <div class="lyrics__alt">
-            <!-- Future alternative lyrics go here -->
-          </div>
-        </div>
-        {% endfor %}
-      </div>
-    </div>
-  </body>
+    </body>
 </html>

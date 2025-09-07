@@ -1,41 +1,38 @@
 {% load static %}
-
 <!DOCTYPE html>
 <html lang="pl">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Śpiewnik - Spis treści</title>
-    <link rel="stylesheet" href="{% static 'spiewnik/css/spis_tresci.css' %}" />
-  </head>
-  <body>
-    <div class="toc">
-      <h1 class="toc__title">Spis treści</h1>
-
-      {% for category, songs in songs_by_category %} {% if songs %}
-      <h2 class="toc__category-title">{{ category.nazwa }}</h2>
-      <ul class="toc__list">
-        {% for song in songs %}
-        <li class="toc__item">
-          <a href="{% url 'spiewnik:piosenka' song.pk %}" class="toc__link">
-            {{ song.tytul }}
-          </a>
-        </li>
-        {% endfor %}
-      </ul>
-      {% endif %} {% endfor %} {% if uncategorized %}
-      <div class="toc__uncategorized">
-        <h2 class="toc__category-title">Bez kategorii</h2>
-        <ul class="toc__list">
-          {% for song in uncategorized %}
-          <li class="toc__item">
-            <a href="{% url 'piosenka' song.pk %}" class="toc__link">
-              {{ song.tytul }}
-            </a>
-          </li>
-          {% endfor %}
-        </ul>
-      </div>
-      {% endif %}
-    </div>
-  </body>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Śpiewnik - Spis treści</title>
+        <link rel="stylesheet" href="{% static 'spiewnik/css/spis_tresci.css' %}" />
+    </head>
+    <body>
+        <div class="toc">
+            <h1 class="toc__title">Spis treści</h1>
+            {% for category, songs in songs_by_category %}
+                {% if songs %}
+                    <h2 class="toc__category-title">{{ category.nazwa }}</h2>
+                    <ul class="toc__list">
+                        {% for song in songs %}
+                            <li class="toc__item">
+                                <a href="{% url 'spiewnik:piosenka' song.pk %}" class="toc__link">{{ song.tytul }}</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            {% endfor %}
+            {% if uncategorized %}
+                <div class="toc__uncategorized">
+                    <h2 class="toc__category-title">Bez kategorii</h2>
+                    <ul class="toc__list">
+                        {% for song in uncategorized %}
+                            <li class="toc__item">
+                                <a href="{% url 'piosenka' song.pk %}" class="toc__link">{{ song.tytul }}</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+        </div>
+    </body>
 </html>

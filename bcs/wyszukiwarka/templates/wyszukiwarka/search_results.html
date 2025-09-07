@@ -1,55 +1,48 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Search</title>
-    <link rel="stylesheet" href="{% static 'wyszukiwarka/css/search.css' %}" />
-  </head>
-  <body>
-    <h1>Search</h1>
-
-    <form method="get" action="{% url 'wyszukiwarka:search' %}">
-      <label>
-        <input
-          type="text"
-          name="q"
-          value="{{ query }}"
-          placeholder="Search..."
-        />
-      </label>
-      <button type="submit">Search</button>
-    </form>
-
-    {% if query %}
-    <h2>Results for "{{ query }}"</h2>
-    {% if results_by_app %} {% for app_name, categories in results_by_app.items
-    %}
-    <div class="app-section">
-      <h2 class="app-name" onclick="toggleSection(this)">
-        {{ app_name|capfirst }}
-        <span class="toggle-indicator">[+]</span>
-      </h2>
-      <div class="app-results" style="display: none">
-        {% for category_name, items in categories.items %}
-        <h3 class="result-category">{{ category_name }}</h3>
-        <ul class="result-list">
-          {% for result in items %}
-          <li>
-            <a href="{{ result.admin_url }}"
-              ><strong>{{ result.title }}</strong></a
-            ><br />
-            {{ result.snippet|safe }}
-          </li>
-          {% endfor %}
-        </ul>
-        {% endfor %}
-      </div>
-    </div>
-    {% endfor %} {% else %}
-    <p>No results found.</p>
-    {% endif %} {% endif %}
-
-    <script src="{% static 'wyszukiwarka/js/search.js' %}"></script>
-  </body>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Search</title>
+        <link rel="stylesheet" href="{% static 'wyszukiwarka/css/search.css' %}" />
+    </head>
+    <body>
+        <h1>Search</h1>
+        <form method="get" action="{% url 'wyszukiwarka:search' %}">
+            <label>
+                <input type="text" name="q" value="{{ query }}" placeholder="Search..." />
+            </label>
+            <button type="submit">Search</button>
+        </form>
+        {% if query %}
+            <h2>Results for "{{ query }}"</h2>
+            {% if results_by_app %}
+                {% for app_name, categories in results_by_app.items %}
+                    <div class="app-section">
+                        <h2 class="app-name" onclick="toggleSection(this)">
+                            {{ app_name|capfirst }}
+                            <span class="toggle-indicator">[+]</span>
+                        </h2>
+                        <div class="app-results" style="display: none">
+                            {% for category_name, items in categories.items %}
+                                <h3 class="result-category">{{ category_name }}</h3>
+                                <ul class="result-list">
+                                    {% for result in items %}
+                                        <li>
+                                            <a href="{{ result.admin_url }}"><strong>{{ result.title }}</strong></a>
+                                            <br />
+                                            {{ result.snippet|safe }}
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>No results found.</p>
+            {% endif %}
+        {% endif %}
+        <script src="{% static 'wyszukiwarka/js/search.js' %}"></script>
+    </body>
 </html>
