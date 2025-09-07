@@ -4,7 +4,7 @@ body {
     color: #333;
     line-height: 1;
     padding: 20px;
-    max-width: 800px;
+    max-width: 1000px;
     margin: auto;
 }
 
@@ -25,10 +25,10 @@ h2 {
 }
 
 .song-container {
-    max-width: 800px;        /* same width as lyrics box */
+    max-width: 1000px;        /* same width as lyrics box */
     margin: 0 auto;           /* center container */
-    padding-left: 15px;       /* horizontal padding */
-    padding-right: 15px;
+    padding-left: 10px;       /* horizontal padding */
+    padding-right: 10px;
 }
 
 /* Keep previous styles */
@@ -60,21 +60,21 @@ h2 {
 }
 
 .line {
-    display: flex;
+    display: grid;
+    grid-template-columns: 60ch 2ch 10ch 2ch 60ch;
     align-items: flex-start;
     min-height: 1.2em;
     margin-bottom: 2px;
 }
 
-.lyrics-text {
+.lyrics-text, .lyrics-alt {
     font-family: monospace;
-    flex: 0.45; /* take remaining space, grows as needed */
+
 }
 
 .lyrics-chords {
     font-family: monospace;
-    flex-shrink: 0;      /* never shrink */
-    text-align: left;   /* chords aligned to right edge of column */
+    text-align: right;   /* chords aligned to right edge of column */
 }
 
 

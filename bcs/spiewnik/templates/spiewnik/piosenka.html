@@ -22,26 +22,29 @@
         </div>
 
         <div class="lyrics">
-            {% for line in lines %}
-                <div class="line">
-                    <div class="lyrics-text" style="width: {{ text_col_width }}ch;">
-                        {% if line.comment %}
-                            <span class="comment">{{ line.text }}</span>
-                        {% else %}
-                            {% if line.bold %}<strong>{% endif %}
-                            {% if line.highlight %}<mark>{% endif %}
-                            {{ line.text }}
-                            {% if line.highlight %}</mark>{% endif %}
-                            {% if line.bold %}</strong>{% endif %}
-                        {% endif %}
-                    </div>
-                    <div class="lyrics-chords" style="width: {{ chords_col_width }}ch; text-align: right;">
-                        {% if line.chords %}
-                            {{ line.chords|join:" " }}
-                        {% endif %}
-                    </div>
+        {% for line in lines %}
+            <div class="line">
+                <div class="lyrics-text">
+                    {% if line.comment %}
+                        <span class="comment">{{ line.text }}</span>
+                    {% else %}
+                        {% if line.bold %}<strong>{% endif %}
+                        {% if line.highlight %}<mark>{{ line.text }}</mark>{% else %}{{ line.text }}{% endif %}
+                        {% if line.bold %}</strong>{% endif %}
+                    {% endif %}
                 </div>
-            {% endfor %}
+                <div class="gap"></div>
+                <div class="lyrics-chords">
+                    {% if line.chords %}
+                        {{ line.chords|join:" " }}
+                    {% endif %}
+                </div>
+                <div class="gap"></div> 
+                <div class="lyrics-alt">
+                    <!-- future alternative lyrics here -->
+                </div>
+            </div>
+        {% endfor %}
         </div>
     </div>
 </body>
