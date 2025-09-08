@@ -1,12 +1,16 @@
 import re
 
 from django.contrib.contenttypes.models import ContentType
+from django.contrib.postgres.indexes import GinIndex
+from django.contrib.postgres.search import SearchVectorField, SearchVector
 from django.db import models
 from django.utils.html import escape, mark_safe
 
 
 class SearchableModel(models.Model):
     search_text = models.TextField(editable=False, blank=True)
+
+    tsv = SearchVectorField(null=True, editable=False)
 
     fields_positions = models.JSONField(
         editable=False, blank=True, default=list
@@ -19,14 +23,19 @@ class SearchableModel(models.Model):
         models.ImageField,
         models.BooleanField,
     )
+    LANGUAGE = "polish"
 
     class Meta:
         abstract = True
+        indexes = [
+            GinIndex(fields=["tsv"]),
+        ]
 
     def save(self, *args, **kwargs):
         text, positions = self._create_search_text()
         self.search_text = text
         self.fields_positions = positions
+        self.tsv = SearchVector("search_text", config=self.LANGUAGE)
         super().save(*args, **kwargs)
 
     def snippet(self, query, total_length=200):

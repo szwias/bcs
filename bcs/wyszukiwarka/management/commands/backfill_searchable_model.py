@@ -13,5 +13,9 @@ class Command(BaseCommand):
             if issubclass(model, SearchableModel) and not model._meta.abstract:
                 for obj in model.objects.all().iterator():
                     obj.save(
-                        update_fields=["search_text", "fields_positions"]
+                        update_fields=[
+                            "search_text",
+                            "tsv",
+                            "fields_positions"
+                        ]
                     )  # triggers save() logic
