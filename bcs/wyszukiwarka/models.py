@@ -7,6 +7,7 @@ from django.db import models
 from django.db.models import Value
 from django.utils.html import escape, mark_safe
 
+from wyszukiwarka.managers import SearchableManager
 from wyszukiwarka.utils.Search import find_searchable_fields
 
 
@@ -16,6 +17,8 @@ class SearchableModel(models.Model):
     tsv = SearchVectorField(null=True, editable=False)
 
     LANGUAGE = "polish"
+
+    objects = SearchableManager()
 
     class Meta:
         abstract = True
