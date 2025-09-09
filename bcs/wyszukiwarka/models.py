@@ -14,10 +14,6 @@ class SearchableModel(models.Model):
 
     tsv = SearchVectorField(null=True, editable=False)
 
-    fields_positions = models.JSONField(
-        editable=False, blank=True, default=list
-    )
-
     IGNORED_FIELD_SUFFIXES = ("_ptr", "_ctype", "_id")
     IGNORED_FIELD_TYPES = (
         models.AutoField,
@@ -34,9 +30,6 @@ class SearchableModel(models.Model):
         ]
 
     def save(self, *args, **kwargs):
-        text, positions = self._create_search_text()
-        self.search_text = text
-        self.fields_positions = positions
         self.tsv = SearchVector("search_text", config=self.LANGUAGE)
         super().save(*args, **kwargs)
 
@@ -58,29 +51,8 @@ class SearchableModel(models.Model):
         end = min(len(text), start + total_length)
 
         snippet_text = text[start:end]
-        offset = start  # positions are relative to snippet
 
-        # Step 2: Apply italics only to intersecting field names
-        styled_positions = []
-        for field_start, field_end in self.fields_positions or []:
-            # Skip if outside snippet
-            if field_end <= start or field_start >= end:
-                continue
-            # Clip to snippet bounds
-            rel_start = max(0, field_start - offset)
-            rel_end = min(end - start, field_end - offset)
-            styled_positions.append((rel_start, rel_end))
-
-        # Insert <span class="field-name"> tags in reverse order
-        for s, e in reversed(styled_positions):
-            snippet_text = snippet_text[:e] + "</span>" + snippet_text[e:]
-            snippet_text = (
-                snippet_text[:s]
-                + '<span class="field-name">'
-                + snippet_text[s:]
-            )
-
-        # Step 3: Highlight query after field-name spans
+        # Step 2: Highlight query after field-name spans
         snippet_text = re.sub(
             query_escaped,
             lambda m: f'<span class="query-match">{escape(m.group(0))}</span>',
@@ -88,7 +60,7 @@ class SearchableModel(models.Model):
             flags=re.IGNORECASE,
         )
 
-        # Step 4: Add ellipses if needed
+        # Step 3: Add ellipses if needed
         if start > 0:
             snippet_text = "..." + snippet_text
         if end < len(text):
@@ -101,7 +73,6 @@ class SearchableModel(models.Model):
         Build search_text and record positions of field names for styling later.
         """
         properties = []
-        positions = []
         current_index = 0
 
         for field in find_searchable_fields(self.__class__):
@@ -125,14 +96,7 @@ class SearchableModel(models.Model):
             piece = f"{field.name}: {text_value}"
             properties.append(piece)
 
-            # Record the field name position (only the name itself)
-            name_start = current_index
-            name_end = (
-                current_index + len(field.name) + 1
-            )  # +1 for : character
-            positions.append([name_start, name_end])
-
             # Update index (plus 1 for " ")
             current_index += len(piece) + 1
 
-        return " ".join(properties), positions
+        return " ".join(properties)
