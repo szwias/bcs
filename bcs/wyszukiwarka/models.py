@@ -12,6 +12,8 @@ from wyszukiwarka.utils.Search import find_searchable_fields
 class SearchableModel(models.Model):
     search_text = models.TextField(editable=False, blank=True)
 
+    search_dict = models.JSONField(editable=False, blank=True, default=dict)
+
     tsv = SearchVectorField(null=True, editable=False)
 
     IGNORED_FIELD_SUFFIXES = ("_ptr", "_ctype", "_id")
@@ -69,9 +71,7 @@ class SearchableModel(models.Model):
         return mark_safe(snippet_text)
 
     def _create_search_text(self):
-        """
-        Build search_text and record positions of field names for styling later.
-        """
+        """Builds search_text"""
         properties = []
         current_index = 0
 
