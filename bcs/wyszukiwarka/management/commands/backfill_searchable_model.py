@@ -14,8 +14,7 @@ class Command(BaseCommand):
                 for obj in model.objects.all().iterator():
                     obj.save(
                         update_fields=[
-                            "search_text",
+                            "search_dict",
                             "tsv",
-                            "fields_positions"
                         ]
                     )  # triggers save() logic
