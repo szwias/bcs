@@ -1,6 +1,4 @@
 from PyPDF2 import PdfReader
-from django.db import models
-
 
 def extract_text_from_pdf(file_obj):
     """Extract text from a PDF file object."""
@@ -11,6 +9,9 @@ def extract_text_from_pdf(file_obj):
         page_text = page.extract_text() or ""
         text.append(page_text)
     return "\n".join(text)
+
+
+from django.db import models
 
 
 IGNORED_FIELD_SUFFIXES = ("_ptr", "_ctype", "_id")
