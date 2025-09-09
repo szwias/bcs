@@ -34,6 +34,8 @@ class Zrodlo(PolymorphicModel):
 
 
 class SearchableZrodlo(SearchableModel, Zrodlo):
+    extracted_text = models.TextField(blank=True, verbose_name="Tekst z pdfa")
+
     class Meta:
         abstract = True
 
@@ -42,13 +44,7 @@ class SearchableZrodlo(SearchableModel, Zrodlo):
             try:
                 extracted_text = extract_text_from_pdf(self.plik)
                 normalized_text = extracted_text.replace("\n", " ").strip()
-
-                # Append to search_text (with a space separator if needed)
-                if normalized_text:
-                    if self.search_text:
-                        self.search_text += " " + normalized_text
-                    else:
-                        self.search_text = normalized_text
+                self.extracted_text = normalized_text
 
             except (PdfReadError, OSError, IOError) as e:
                 raise ValidationError(f"Could not extract text from PDF: {e}")
