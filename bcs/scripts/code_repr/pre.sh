@@ -1,11 +1,18 @@
 #!/bin/bash
-# Format staged files safely
+repo_root=$(git rev-parse --show-toplevel)
+cd "$repo_root" || exit 1
 
-# JS/CSS
-git diff --name-only --cached -z | grep -zE '\.(js|css)$' | xargs -0 prettier --write --list-different
+# JS/CSS/JSON
+git diff --name-only -z \
+  | grep -zE '\.(js|css|json)$' \
+  | xargs -0 --no-run-if-empty prettier --write --list-different
 
-# HTML (Jinja/Django templates)
-git diff --name-only --cached -z | grep -zE '\.html$' | xargs -0 djlint --reformat
+# HTML
+git diff --name-only -z \
+  | grep -zE '\.html$' \
+  | xargs -0 --no-run-if-empty djlint --reformat
 
 # Python
-git diff --name-only --cached -z | grep -zE '\.py$' | xargs -0 black -l 79
+git diff --name-only -z \
+  | grep -zE '\.py$' \
+  | xargs -0 --no-run-if-empty black -l 79
