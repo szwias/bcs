@@ -6,6 +6,8 @@ from django.contrib.postgres.search import SearchVectorField, SearchVector
 from django.db import models
 from django.utils.html import escape, mark_safe
 
+from wyszukiwarka.utils.Search import find_searchable_fields
+
 
 class SearchableModel(models.Model):
     search_text = models.TextField(editable=False, blank=True)
@@ -102,19 +104,7 @@ class SearchableModel(models.Model):
         positions = []
         current_index = 0
 
-        for field in self._meta.get_fields():
-            # Skip reverse relations
-            if field.auto_created and not field.concrete:
-                continue
-
-            if field.name.endswith(self.IGNORED_FIELD_SUFFIXES):
-                continue
-
-            if hasattr(field, "editable") and not field.editable:
-                continue
-
-            if isinstance(field, self.IGNORED_FIELD_TYPES):
-                continue
+        for field in find_searchable_fields(self.__class__):
 
             # Resolve field value
             if getattr(field, "choices", None):
