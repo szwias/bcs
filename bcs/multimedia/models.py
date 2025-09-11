@@ -20,7 +20,7 @@ class Obraz(PolymorphicModel):
 
 
 # Create your models here.
-class ObrazZdarzenie(Obraz, SearchableModel):
+class ObrazZdarzenie(Obraz):
     zdarzenie = models.ForeignKey(
         "kalendarz.Zdarzenie",
         blank=True,
@@ -88,7 +88,7 @@ class ObrazZdarzenie(Obraz, SearchableModel):
         super().save(*args, **kwargs)
 
 
-class ObrazWydarzenie(Obraz, SearchableModel):
+class ObrazWydarzenie(Obraz):
     wydarzenie = models.ForeignKey(
         "kalendarz.WydarzenieKalendarzowe",
         blank=True,

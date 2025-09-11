@@ -1,6 +1,4 @@
 from django.contrib.postgres.fields import ArrayField
-from django.db import models
-from polymorphic.models import PolymorphicModel
 from roman import fromRoman
 from core.utils.Lengths import (
     MAX_LENGTH,
@@ -14,7 +12,7 @@ from kronika.models import Kadencja
 from czapki.models import Czapka
 from core.utils.Choices import TextAlt, TextChoose, IntAlt
 from wyszukiwarka.utils.Search import *
-from wyszukiwarka.models import SearchableModel
+from wyszukiwarka.models import SearchableModel, SearchablePolymorphicModel
 
 
 class Lengths:
@@ -58,11 +56,11 @@ class HallOfFame(SearchableModel):
         super().save(*args, **kwargs)
 
 
-class Byt(PolymorphicModel):
+class Byt(SearchablePolymorphicModel):
     pass
 
 
-class KomisjaRewizyjna(Byt, SearchableModel):
+class KomisjaRewizyjna(Byt):
     kadencja = models.ForeignKey(
         "kronika.Kadencja",
         blank=True,
@@ -99,7 +97,7 @@ class KomisjaRewizyjna(Byt, SearchableModel):
 
 # ORGANIZACJA FAMILY
 # --------------------------------------
-class Organizacja(Byt, SearchableModel):
+class Organizacja(Byt):
     nazwa = models.CharField(
         max_length=MAX_LENGTH, verbose_name="Nazwa organizacji"
     )
@@ -206,7 +204,7 @@ class Osoba(Byt):
         return name
 
 
-class InnaOsoba(Osoba, SearchableModel):
+class InnaOsoba(Osoba):
     class Kategorie(models.TextChoices):
         INNA = "I", "Inna"
         INNE_BRACTWO_CZAPKOWE = "Inne BCS", "Inne bractwo czapkowe"
@@ -237,7 +235,7 @@ class InnaOsoba(Osoba, SearchableModel):
         ordering = ["imie", "nazwisko"]
 
 
-class OsobaBCS(SearchableModel):
+class OsobaBCS(models.Model):
     class PewnoscStazu(models.TextChoices):
         TAK = "T", "Na pewno wcześniej się nie pojawiał"
         NIE = "N", "Ale mógł pojawić się wcześniej"
@@ -777,7 +775,7 @@ class Zarzad(Byt):
         )
 
 
-class DawnyZarzad(Zarzad, SearchableModel):
+class DawnyZarzad(Zarzad):
 
     bibendi = models.ForeignKey(
         Czlonek,
@@ -821,7 +819,7 @@ class DawnyZarzad(Zarzad, SearchableModel):
         ordering = ["-kadencja"]
 
 
-class NowyZarzad(Zarzad, SearchableModel):
+class NowyZarzad(Zarzad):
 
     sekretarz = models.ForeignKey(
         Czlonek,

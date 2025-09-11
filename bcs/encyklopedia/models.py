@@ -1,8 +1,8 @@
-from django.db import models
 from polymorphic.models import PolymorphicModel
+
 from wyszukiwarka.utils.Search import *
 from core.utils.Lengths import *
-from wyszukiwarka.models import SearchableModel
+from wyszukiwarka.models import SearchableModel, SearchablePolymorphicModel
 
 
 class Lengths:
@@ -15,7 +15,7 @@ class Okolicznosci(models.TextChoices):
     WYDARZENIE = "Wyd", "Na wydarzeniu czapkowym"
 
 
-class Cytat(PolymorphicModel):
+class Cytat(SearchablePolymorphicModel):
     tekst = models.TextField(verbose_name="Tekst")
 
     kontekst = models.TextField(blank=True, verbose_name="Kontekst")
@@ -60,7 +60,7 @@ class Cytat(PolymorphicModel):
         return f"{short_tekst} - {self.autor}{adresat_str}{kontekst}"
 
 
-class Aforyzm(Cytat, SearchableModel):
+class Aforyzm(Cytat):
 
     class Meta:
         verbose_name = "Aforyzm"
@@ -68,7 +68,7 @@ class Aforyzm(Cytat, SearchableModel):
         ordering = ["tekst"]
 
 
-class Powiedzenie(Cytat, SearchableModel):
+class Powiedzenie(Cytat):
 
     class Meta:
         verbose_name = "Powiedzenie"

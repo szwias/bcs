@@ -2,7 +2,7 @@ from django.db import models
 from polymorphic.models import PolymorphicModel
 from wyszukiwarka.utils.Search import *
 from core.utils.Lengths import MAX_LENGTH, NAME_LENGTH
-from wyszukiwarka.models import SearchableModel
+from wyszukiwarka.models import SearchableModel, SearchablePolymorphicModel
 
 
 class DlugoscKadencji(SearchableModel):
@@ -31,7 +31,7 @@ class WielkoscStruktury(SearchableModel):
         return self.wielkosc
 
 
-class Podmiot(PolymorphicModel):
+class Podmiot(SearchablePolymorphicModel):
     nazwa = models.CharField(max_length=NAME_LENGTH, verbose_name="Nazwa")
 
     dlugosc_kadencji = models.ForeignKey(
@@ -55,14 +55,14 @@ class Podmiot(PolymorphicModel):
         return self.nazwa
 
 
-class Rola(Podmiot, SearchableModel):
+class Rola(Podmiot):
     class Meta:
         verbose_name = "Rola jednostki w Bractwie"
         verbose_name_plural = "Role jednostki w Bractwie"
         ordering = ["nazwa"]
 
 
-class Struktura(Podmiot, SearchableModel):
+class Struktura(Podmiot):
     wielkosc = models.ForeignKey(
         WielkoscStruktury,
         blank=True,

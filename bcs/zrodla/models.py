@@ -1,13 +1,13 @@
 from PyPDF2.errors import PdfReadError
 from django.core.exceptions import ValidationError
-from django.db import models
-from polymorphic.models import PolymorphicModel
+
+from wyszukiwarka.managers import SearchableManager
 from wyszukiwarka.utils.Search import *
 from core.utils.Lengths import MAX_LENGTH
-from wyszukiwarka.models import SearchableModel
+from wyszukiwarka.models import SearchableModel, SearchablePolymorphicModel
 
 
-class Zrodlo(PolymorphicModel):
+class Zrodlo(SearchablePolymorphicModel):
     tytul = models.CharField(max_length=MAX_LENGTH, verbose_name="Tytuł")
 
     autorzy = models.ManyToManyField(
@@ -33,7 +33,7 @@ class Zrodlo(PolymorphicModel):
         return f"{self.tytul} | {autorzy}"
 
 
-class SearchableZrodlo(SearchableModel, Zrodlo):
+class SearchableZrodlo(Zrodlo):
     extracted_text = models.TextField(blank=True, verbose_name="Tekst z pdfa")
 
     class Meta:

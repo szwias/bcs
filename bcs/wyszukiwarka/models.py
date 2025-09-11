@@ -6,25 +6,24 @@ from django.contrib.postgres.search import SearchVectorField, SearchVector
 from django.db import models
 from django.db.models import Value
 from django.utils.html import escape, mark_safe
+from polymorphic.models import PolymorphicModel
 
-from wyszukiwarka.managers import SearchableManager
+from wyszukiwarka.managers import (
+    SearchableManager,
+    SearchablePolymorphicManager,
+)
 from wyszukiwarka.utils.Search import find_searchable_fields
 
 
-class SearchableModel(models.Model):
+class AbstractSearchableModel(models.Model):
     search_dict = models.JSONField(editable=False, blank=True, default=dict)
 
     tsv = SearchVectorField(null=True, editable=False)
 
     LANGUAGE = "polish"
 
-    objects = SearchableManager()
-
     class Meta:
         abstract = True
-        indexes = [
-            GinIndex(fields=["tsv"]),
-        ]
 
     def save(self, *args, **kwargs):
         self.search_dict = self._create_search_dict()
@@ -95,3 +94,17 @@ class SearchableModel(models.Model):
             snippet_text += "..."
 
         return mark_safe(snippet_text)
+
+
+class SearchableModel(AbstractSearchableModel):
+    objects = SearchableManager()
+
+    class Meta:
+        abstract = True
+
+
+class SearchablePolymorphicModel(PolymorphicModel, AbstractSearchableModel):
+    objects = SearchablePolymorphicManager()
+
+    class Meta:
+        abstract = True
