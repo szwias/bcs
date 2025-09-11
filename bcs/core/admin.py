@@ -2,16 +2,26 @@ import sys
 from importlib import import_module
 
 from django.contrib import admin
-from django.contrib.admin.filters import RelatedFieldListFilter
-from django.db.models import ForeignKey, ManyToManyField
-from django.utils.module_loading import import_string
-import inspect
-from django.apps import apps
+from django.contrib.admin.utils import quote
+from django.contrib.contenttypes.models import ContentType
+from django.urls import reverse
 from django.db import models
 from polymorphic.models import PolymorphicModel
 from django.forms import Textarea
 
 from core.apps import get_calling_app_config
+
+
+def get_admin_form_url(instance):
+    content_type = ContentType.objects.get_for_model(instance)
+    app_label = content_type.app_label
+
+    admin_url = reverse(
+        f"admin:{app_label}_{content_type.model}_change",
+        args=(quote(instance.pk),),
+    )
+
+    return admin_url
 
 
 def is_polymorphic_parent(model):
@@ -24,7 +34,7 @@ def is_polymorphic_parent(model):
     return False
 
 
-class UsedOnlyFKFilter(RelatedFieldListFilter):
+class UsedOnlyFKFilter(admin.RelatedFieldListFilter):
     def __init__(self, field, request, params, model, model_admin, field_path):
         # Determine which FK values are actually used
         used_ids = model.objects.values_list(field.name, flat=True).distinct()
@@ -66,7 +76,7 @@ def get_used_m2m_ids(model, m2m_field_name):
     ).distinct()
 
 
-class UsedOnlyM2MFilter(RelatedFieldListFilter):
+class UsedOnlyM2MFilter(admin.RelatedFieldListFilter):
     def __init__(self, field, request, params, model, model_admin, field_path):
         used_ids = get_used_m2m_ids(model, field.name)
         # Limit the choices shown in the filter dropdown
@@ -124,9 +134,9 @@ class BaseModelAdmin(admin.ModelAdmin):
             elif isinstance(f, str):
                 field = self.model._meta.get_field(f)
 
-                if isinstance(field, ForeignKey):
+                if isinstance(field, models.ForeignKey):
                     smart_filters.append((f, UsedOnlyFKFilter))
-                elif isinstance(field, ManyToManyField):
+                elif isinstance(field, models.ManyToManyField):
                     smart_filters.append((f, UsedOnlyM2MFilter))
                 else:
                     smart_filters.append(f)
