@@ -28,9 +28,16 @@ class SearchableModel(models.Model):
 
     def save(self, *args, **kwargs):
         self.search_dict = self._create_search_dict()
-        flattened_text = " ".join(self.search_dict.values())
+        flattened_text = self._flatten_search_dict()
         self.tsv = SearchVector(Value(flattened_text), config=self.LANGUAGE)
         super().save(*args, **kwargs)
+
+    def _flatten_search_dict(self):
+        values = []
+        for value in self.search_dict.values():
+            if value != "":
+                values.append(value)
+        return " ".join(values)
 
     def _create_search_dict(self):
         pairs = {}
@@ -44,9 +51,8 @@ class SearchableModel(models.Model):
                 value = getattr(self, field.name, None)
 
             if not value:
-                continue
-
-            if isinstance(field, models.ManyToManyField):
+                text_value = ""
+            elif isinstance(field, models.ManyToManyField):
                 text_value = ", ".join(str(obj) for obj in value.all())
             else:
                 text_value = str(value)
