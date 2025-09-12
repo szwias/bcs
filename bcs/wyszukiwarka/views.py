@@ -15,12 +15,15 @@ from .utils.Search import (
 
 
 def search(request, models=None):
+    if models is None:
+        models = SEARCH_REGISTRY
+
     query_text = request.GET.get("q", "").strip()
     results_by_app = defaultdict(lambda: defaultdict(list))
     seen = set()
 
     if query_text:
-        for model in SEARCH_REGISTRY:
+        for model in models:
             searchable_fields_names = [
                 f.name for f in find_searchable_fields(model)
             ]
