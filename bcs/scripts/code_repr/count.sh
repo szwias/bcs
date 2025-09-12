@@ -1,21 +1,35 @@
 #!/bin/bash
 # Script to count lines in different file types excluding certain directories
 
+tracked=false
+if [[ "$1" == "--tracked" ]]; then
+    tracked=true
+fi
+
 backup
 
-# Count lines
-sql_lines=$(find . -name '*.sql' \
-    ! -path "*/scripts/other_locations*" \
-    ! -path '*/backups/*' \
-    -exec cat {} + | wc -l)
+if $tracked; then
+    sql_lines=$(find . -name '*.sql' \
+        ! -path '*/backups/*' \
+        ! -path '*/baza/baza*.sql' \
+        -exec cat {} + | wc -l)
+
+    json_lines=$(find . -name '*.json' \
+        ! -path '*/media/*' \
+        -exec cat {} + | wc -l)
+else
+    sql_lines=$(find . -name '*.sql' \
+        ! -path '*/backups/*' \
+        -exec cat {} + | wc -l)
+
+    json_lines=$(find . -name '*.json' -exec cat {} + | wc -l)
+fi;
 
 python_lines=$(find . -name '*.py' \
-    ! -path "*/scripts/other_locations*" \
     ! -path '*/migrations/*' \
     -exec cat {} + | wc -l)
 
 bash_lines=$(find . -name '*.sh' \
-    ! -path "*/scripts/other_locations*" \
     -exec cat {} + | wc -l)
 
 html_lines=$(find . -name '*.html' -exec cat {} + | wc -l)
@@ -27,8 +41,6 @@ css_lines=$(find . -name '*.css' \
 js_lines=$(find . -name '*.js' \
    ! -path "*/staticfiles/*" \
    -exec cat {} + | wc -l)
-
-json_lines=$(find . -name '*.json' -exec cat {} + | wc -l)
 
 # Totals
 backend_lines=$((python_lines))
@@ -83,8 +95,14 @@ print_group() {
 # -----------------------------
 # Sort and print languages
 # -----------------------------
+if $tracked; then
+    langs=(SQL Python Bash HTML CSS JS)
+else
+    langs=(SQL Python Bash HTML CSS JS JSON)
+fi
+
 declare -a lang_list
-for lang in SQL Python Bash HTML CSS JS JSON; do
+for lang in "${langs[@]}"; do
     lines_var="${lang,,}_lines"
     lines="${!lines_var:-0}"
     percent=$(percentage "$lines")
@@ -104,13 +122,22 @@ done
 # Sort and print groups
 # -----------------------------
 declare -a group_list
-declare -A group_langs=(
-    ["Database"]="SQL"
-    ["Backend"]="Python"
-    ["Frontend"]="HTML CSS JS"
-    ["Media"]="JSON"
-    ["Management"]="Bash"
-)
+if $tracked; then
+    declare -A group_langs=(
+        ["Database"]="SQL"
+        ["Backend"]="Python"
+        ["Frontend"]="HTML CSS JS"
+        ["Management"]="Bash"
+    )
+else
+    declare -A group_langs=(
+        ["Database"]="SQL"
+        ["Backend"]="Python"
+        ["Frontend"]="HTML CSS JS"
+        ["Media"]="JSON"
+        ["Management"]="Bash"
+    )
+fi
 
 get_group_color() {
     local group=$1
@@ -127,7 +154,13 @@ get_group_color() {
     echo "${lang_colors[$max_lang]}"
 }
 
-for group in Database Backend Frontend Media Management; do
+if $tracked; then
+    groups=(Database Backend Frontend Management)
+else
+    groups=(Database Backend Frontend Media Management)
+fi
+
+for group in "${groups[@]}"; do
     var_name="${group,,}_lines"
     lines="${!var_name:-0}"
     percent=$(percentage "$lines")
