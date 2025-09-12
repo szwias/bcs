@@ -1,4 +1,5 @@
 import inspect
+
 from django.apps import AppConfig, apps
 
 

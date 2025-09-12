@@ -1,15 +1,16 @@
+from caseconverter import kebabcase
+from dal import autocomplete
+from functools import partial
+
+from django.urls import path
+from django.db.models import CharField, IntegerField
+
+from core.apps import get_calling_app_config
 from .autocomplete import (
     FieldChoicesAutocompleteByLabel,
     FieldChoicesAutocompleteByValue,
     StrMatchingAutocomplete,
 )
-from functools import partial
-from django.urls import path
-from django.db.models import CharField, IntegerField
-from dal import autocomplete
-from caseconverter import kebabcase
-
-from core.apps import get_calling_app_config
 
 
 def register_autocomplete(overrides=None):

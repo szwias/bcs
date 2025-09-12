@@ -1,10 +1,11 @@
 from django import forms
 from django.apps import apps
-from core.forms import create_model_forms
-from .model_imports import *
-from .autocomplete_views import autocomplete_widgets
+
 from core.autocompletion.registry import build_widgets
+from core.forms import create_model_forms
 from osoby.models import Byt
+from .autocomplete_views import autocomplete_widgets
+from .model_imports import *
 
 Czlonek = apps.get_model("osoby", "Czlonek")
 Zarzad = apps.get_model("osoby", "Zarzad")

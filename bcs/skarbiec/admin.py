@@ -1,6 +1,6 @@
 from core.admin_imports import *
-from .model_imports import *
 from .inlines import TransakcjaInline
+from .model_imports import *
 
 
 @admin.register(Konto)

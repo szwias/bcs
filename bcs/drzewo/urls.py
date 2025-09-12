@@ -1,5 +1,6 @@
 # drzewo/urls.py
 from django.urls import path
+
 from .views import serve_full_tree_form_view, serve_scoped_tree_form_view
 
 app_name = "drzewo"

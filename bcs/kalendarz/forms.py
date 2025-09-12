@@ -1,9 +1,11 @@
-from django import forms
 from dal import autocomplete
-from core.forms import create_model_forms
+
+from django import forms
+
 from .autocomplete_views import autocomplete_widgets
-from core.autocompletion.registry import build_widgets
 from .model_imports import *
+from core.autocompletion.registry import build_widgets
+from core.forms import create_model_forms
 
 
 class ZdarzenieForm(forms.ModelForm):

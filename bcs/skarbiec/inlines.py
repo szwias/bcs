@@ -1,7 +1,7 @@
 from django.contrib.admin import StackedInline
 
-from .models import Transakcja
 from .forms import model_forms
+from .models import Transakcja
 
 
 class TransakcjaInline(StackedInline):

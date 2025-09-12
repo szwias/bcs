@@ -1,8 +1,9 @@
 from PyPDF2.errors import PdfReadError
+
 from django.core.exceptions import ValidationError
 
-from wyszukiwarka.utils.Search import *
 from core.utils.Lengths import MAX_LENGTH
+from wyszukiwarka.utils.Search import *
 from wyszukiwarka.models import SearchableModel, SearchablePolymorphicModel
 
 

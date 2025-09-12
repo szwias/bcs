@@ -1,5 +1,7 @@
-from django.contrib.postgres.fields import ArrayField
 from roman import fromRoman
+
+from django.contrib.postgres.fields import ArrayField
+
 from core.utils.Lengths import (
     MAX_LENGTH,
     MEDIUM_LENGTH,
@@ -7,10 +9,10 @@ from core.utils.Lengths import (
     NAME_LENGTH,
 )
 from core.utils import Czas
-from core.utils.Czas import ROK_ZALOZENIA
-from kronika.models import Kadencja
-from czapki.models import Czapka
 from core.utils.Choices import TextAlt, TextChoose, IntAlt
+from core.utils.Czas import ROK_ZALOZENIA
+from czapki.models import Czapka
+from kronika.models import Kadencja
 from wyszukiwarka.utils.Search import *
 from wyszukiwarka.models import SearchableModel, SearchablePolymorphicModel
 

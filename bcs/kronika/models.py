@@ -1,9 +1,7 @@
-from django.db import models
-
-from wyszukiwarka.utils.Search import *
-from core.utils.Lengths import MEDIUM_LENGTH, NAME_LENGTH
 from core.utils import Czas
+from core.utils.Lengths import MEDIUM_LENGTH, NAME_LENGTH
 from wyszukiwarka.models import SearchableModel
+from wyszukiwarka.utils.Search import *
 
 
 class PodsumowanieKadencji(SearchableModel):

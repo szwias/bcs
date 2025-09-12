@@ -1,6 +1,7 @@
-from polymorphic.models import PolymorphicModel
-from django.http import JsonResponse
 from dal import autocomplete
+
+from django.http import JsonResponse
+from polymorphic.models import PolymorphicModel
 
 
 class ChoiceAutocompleteByLabelMixin:

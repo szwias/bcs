@@ -1,13 +1,13 @@
-import sys
 from importlib import import_module
+import sys
 
 from django.contrib import admin
 from django.contrib.admin.utils import quote
 from django.contrib.contenttypes.models import ContentType
 from django.urls import reverse
 from django.db import models
-from polymorphic.models import PolymorphicModel
 from django.forms import Textarea
+from polymorphic.models import PolymorphicModel
 
 from core.apps import get_calling_app_config
 

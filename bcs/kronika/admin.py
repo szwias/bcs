@@ -1,7 +1,8 @@
 from django.db.models import Min
+
 from core.admin_imports import *
-from .model_imports import *
 from .filters import YearFilter
+from .model_imports import *
 
 
 @admin.register(Kadencja)

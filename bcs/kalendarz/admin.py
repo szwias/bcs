@@ -1,9 +1,10 @@
 from nested_admin.nested import NestedModelAdmin
+
 from core.admin_imports import *
-from .model_imports import *
-from .inlines import ZdarzenieInline
-from .filters import YearListFilter
 from multimedia.inlines import ObrazWydarzenieInline, ObrazZdarzenieInline
+from .filters import YearListFilter
+from .inlines import ZdarzenieInline
+from .model_imports import *
 
 
 @admin.register(Chrzest)

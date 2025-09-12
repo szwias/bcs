@@ -1,11 +1,12 @@
 # drzewo/views.py
+import os
+
 from django.http import FileResponse, Http404, HttpResponseBadRequest
 from django.shortcuts import render
 from django.views.decorators.http import require_GET
 
-from .forms import *
-import os
 from drzewo.utils.draw_a_tree import generate_full_tree, generate_scoped_tree
+from .forms import *
 
 
 @require_GET

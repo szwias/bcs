@@ -1,7 +1,7 @@
 from django.contrib import admin
 
-from .models import PodsumowanieKadencji
 from .forms import model_forms
+from .models import PodsumowanieKadencji
 
 
 class PodsumowanieKadencjiInline(admin.StackedInline):

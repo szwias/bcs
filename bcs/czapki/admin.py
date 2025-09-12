@@ -1,9 +1,7 @@
-from core.admin_imports import *
-from .model_imports import *
-
-from django.contrib import admin
 from django.apps import apps
 
+from core.admin_imports import *
+from .model_imports import *
 
 class UczelniaFilter(admin.SimpleListFilter):
     title = "Uczelnia"

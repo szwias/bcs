@@ -1,8 +1,8 @@
 from core.admin_imports import *
 from core.utils.Filters import UsedContentTypeFilter
+from kronika.inlines import PodsumowanieKadencjiInline
 from .inlines import KoordynatorZespoluInline, EgzekutorInline
 from .model_imports import *
-from kronika.inlines import PodsumowanieKadencjiInline
 
 
 class OsobyUsedContentTypeFilter(UsedContentTypeFilter):

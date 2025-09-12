@@ -1,10 +1,10 @@
-from django.db import models
 from django.utils import timezone
-from wyszukiwarka.utils.Search import *
+
 from core.utils.Choices import IntAlt
-from core.utils.Lengths import MAX_LENGTH
 from core.utils.Czas import LATA_BRACTW
+from core.utils.Lengths import MAX_LENGTH
 from wyszukiwarka.models import SearchableModel
+from wyszukiwarka.utils.Search import *
 
 
 class Odznaczenie(SearchableModel):

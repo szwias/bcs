@@ -1,8 +1,9 @@
 from django.urls import path
+
 from .autocomplete_views import (
+    autocomplete_urls,
     CustomMiejsceFromWydarzenieKalendarzoweToZdarzenieAutocomplete,
 )
-from .autocomplete_views import autocomplete_urls
 
 app_name = "kalendarz_autocomplete"
 

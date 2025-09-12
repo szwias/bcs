@@ -1,5 +1,5 @@
-from wyszukiwarka.utils.Search import *
 from core.utils.Lengths import MAX_LENGTH, MEDIUM_LENGTH
+from wyszukiwarka.utils.Search import *
 from wyszukiwarka.models import SearchableModel
 
 

@@ -1,4 +1,5 @@
 from nested_admin.nested import NestedStackedInline
+
 from .models import ObrazWydarzenie, ObrazZdarzenie
 
 

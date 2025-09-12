@@ -6,8 +6,8 @@ from django.core.exceptions import ValidationError
 
 from djmoney.models.fields import MoneyField
 
-from wyszukiwarka.utils.Search import *
 from core.utils.Lengths import IBAN_LENGTH, MAX_LENGTH
+from wyszukiwarka.utils.Search import *
 from wyszukiwarka.models import SearchableModel
 
 User = get_user_model()

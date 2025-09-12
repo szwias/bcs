@@ -1,8 +1,9 @@
 from django import forms
-from core.forms import create_model_forms
-from .model_imports import *
-from .autocomplete_views import autocomplete_widgets
+
 from core.autocompletion.registry import build_widgets
+from core.forms import create_model_forms
+from .autocomplete_views import autocomplete_widgets
+from .model_imports import *
 
 
 class MiejsceForm(forms.ModelForm):

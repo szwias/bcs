@@ -1,9 +1,10 @@
 from django import forms
-from core.forms import create_model_forms
-from .models import *
-from .autocomplete_views import autocomplete_widgets
-from core.autocompletion.registry import build_widgets
 from django.contrib.postgres.forms import SimpleArrayField
+
+from core.autocompletion.registry import build_widgets
+from core.forms import create_model_forms
+from .autocomplete_views import autocomplete_widgets
+from .models import *
 
 
 class HallOfFameForm(forms.ModelForm):

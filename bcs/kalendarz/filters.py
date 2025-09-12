@@ -1,4 +1,5 @@
 from django.contrib import admin
+
 from core.utils.Czas import ROK_ZALOZENIA, BIEZACY_ROK
 
 
