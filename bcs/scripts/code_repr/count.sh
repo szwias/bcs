@@ -5,14 +5,17 @@ backup
 
 # Count lines
 sql_lines=$(find . -name '*.sql' \
+    ! -path "*/scripts/other_locations*" \
     ! -path '*/backups/*' \
     -exec cat {} + | wc -l)
 
 python_lines=$(find . -name '*.py' \
+    ! -path "*/scripts/other_locations*" \
     ! -path '*/migrations/*' \
     -exec cat {} + | wc -l)
 
 bash_lines=$(find . -name '*.sh' \
+    ! -path "*/scripts/other_locations*" \
     -exec cat {} + | wc -l)
 
 html_lines=$(find . -name '*.html' -exec cat {} + | wc -l)
@@ -28,11 +31,12 @@ js_lines=$(find . -name '*.js' \
 json_lines=$(find . -name '*.json' -exec cat {} + | wc -l)
 
 # Totals
-backend_lines=$((python_lines + bash_lines))
+backend_lines=$((python_lines))
 database_lines=$((sql_lines))
+management_lines=$((bash_lines))
 frontend_lines=$((html_lines + css_lines + js_lines))
 media_lines=$((json_lines))
-total_lines=$((backend_lines + database_lines + frontend_lines + media_lines))
+total_lines=$((backend_lines + management_lines + database_lines + frontend_lines + media_lines))
 
 echo
 echo "Total lines: $total_lines"
@@ -49,10 +53,6 @@ declare -A lang_colors=(
     ["CSS"]=54
     ["JS"]=221
     ["JSON"]=102
-    ["Database"]=172
-    ["Backend"]=25
-    ["Frontend"]=166
-    ["Media"]=102
 )
 
 # Percentage calculation (safe for zero values)
@@ -76,7 +76,8 @@ print_group() {
     local group=$1
     local lines=$2
     local percent=$(percentage "$lines")
-    printf "%-10s | %7d | %6s%%\n" "$group" "$lines" "$percent"
+    local color="${START}${lang_colors[$group]}m"
+    printf "$color%-10s | %7d | %6s%%${RESET}\n" "$group" "$lines" "$percent"
 }
 
 # -----------------------------
@@ -103,11 +104,37 @@ done
 # Sort and print groups
 # -----------------------------
 declare -a group_list
-for group in Database Backend Frontend Media; do
+declare -A group_langs=(
+    ["Database"]="SQL"
+    ["Backend"]="Python"
+    ["Frontend"]="HTML CSS JS"
+    ["Media"]="JSON"
+    ["Management"]="Bash"
+)
+
+get_group_color() {
+    local group=$1
+    local max_lang=""
+    local max_lines=0
+    for lang in ${group_langs[$group]}; do
+        local lines_var="${lang,,}_lines"
+        local lines="${!lines_var:-0}"
+        if (( lines > max_lines )); then
+            max_lines=$lines
+            max_lang=$lang
+        fi
+    done
+    echo "${lang_colors[$max_lang]}"
+}
+
+for group in Database Backend Frontend Media Management; do
     var_name="${group,,}_lines"
     lines="${!var_name:-0}"
     percent=$(percentage "$lines")
-    group_list+=("$percent|$group|$lines")
+
+    # Pick color dynamically based on dominant language
+    color_code=$(get_group_color "$group")
+    group_list+=("$percent|$group|$lines|$color_code")
 done
 
 IFS=$'\n' sorted_groups=($(sort -t '|' -k1 -nr <<<"${group_list[*]}"))
@@ -115,6 +142,8 @@ unset IFS
 
 echo
 for entry in "${sorted_groups[@]}"; do
-    IFS='|' read -r percent group lines <<< "$entry"
-    print_group "$group" "$lines"
+    IFS='|' read -r percent group lines color_code <<< "$entry"
+    color="${START}${color_code}m"
+    printf "$color%-10s | %7d | %6s%%${RESET}\n" "$group" "$lines" "$percent"
 done
+
