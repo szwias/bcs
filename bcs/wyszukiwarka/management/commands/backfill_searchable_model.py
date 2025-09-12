@@ -5,8 +5,10 @@ from django.apps import apps
 
 
 class Command(BaseCommand):
-    help = ("Backfill the search_text field for all SearchableModel & "
-            "SearchablePolymorphicModel records.")
+    help = (
+        "Backfill the search_text field for all SearchableModel & "
+        "SearchablePolymorphicModel records."
+    )
 
     def handle(self, *args, **options):
         # Get all subclasses dynamically
@@ -20,6 +22,7 @@ class Command(BaseCommand):
                     obj.save(
                         update_fields=[
                             "search_dict",
+                            "simple_tsv",
                             "tsv",
                         ]
                     )  # triggers save() logic

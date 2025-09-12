@@ -16,7 +16,7 @@ from wyszukiwarka.utils.Search import find_searchable_fields
 
 class AbstractSearchableModel(models.Model):
     search_dict = models.JSONField(editable=False, blank=True, default=dict)
-
+    simple_tsv = SearchVectorField(null=True, editable=False)
     tsv = SearchVectorField(null=True, editable=False)
 
     LANGUAGE = "polish"
@@ -26,8 +26,9 @@ class AbstractSearchableModel(models.Model):
 
     def save(self, *args, **kwargs):
         self.search_dict = self._create_search_dict()
-        flattened_text = self._flatten_search_dict()
-        self.tsv = SearchVector(Value(flattened_text), config=self.LANGUAGE)
+        flat_text = self._flatten_search_dict()
+        self.simple_tsv = SearchVector(Value(flat_text), config="simple")
+        self.tsv = SearchVector(Value(flat_text), config=self.LANGUAGE)
         super().save(*args, **kwargs)
 
     def _flatten_search_dict(self):
