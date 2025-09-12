@@ -1,4 +1,5 @@
 # wyszukiwarka/managers.py
+from django.contrib.contenttypes.models import ContentType
 from django.db import models
 from django.db.models import F
 from django.contrib.postgres.search import (
@@ -72,4 +73,9 @@ class SearchablePolymorphicManager(PolymorphicManager):
     def search(self, query_text, config="polish"):
         # force non-polymorphic query, so annotations don’t break
         qs = self.get_queryset().non_polymorphic()
+
+        # Only include instances of this exact model
+        model_ct = ContentType.objects.get_for_model(self.model)
+        qs = qs.filter(polymorphic_ctype=model_ct)
+
         return qs.search_with_snippets(query_text, config=config)

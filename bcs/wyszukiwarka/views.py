@@ -40,7 +40,6 @@ def search(request, models=None):
                 )
                 for field_name in indexed_fields:
                     field_snippet = getattr(obj, f"{field_name}_snippet")
-                    print(field_snippet)
                     adjusted_snippet = adjust_snippet_classes(
                         field_snippet, query_text
                     )
