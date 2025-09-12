@@ -7,7 +7,10 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ("osoby", "0050_remove_bean_search_text_remove_czlonek_search_text_and_more"),
+        (
+            "osoby",
+            "0050_remove_bean_search_text_remove_czlonek_search_text_and_more",
+        ),
     ]
 
     operations = [

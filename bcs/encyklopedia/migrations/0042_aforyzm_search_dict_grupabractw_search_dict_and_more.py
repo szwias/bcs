@@ -6,7 +6,10 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ("encyklopedia", "0041_aforyzm_tsv_grupabractw_tsv_pojecie_tsv_and_more"),
+        (
+            "encyklopedia",
+            "0041_aforyzm_tsv_grupabractw_tsv_pojecie_tsv_and_more",
+        ),
     ]
 
     operations = [

@@ -1,10 +1,7 @@
-import re
-
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.postgres.search import SearchVectorField, SearchVector
 from django.db import models
 from django.db.models import Value
-from django.utils.html import escape, mark_safe
 from polymorphic.models import PolymorphicModel
 
 from wyszukiwarka.managers import (

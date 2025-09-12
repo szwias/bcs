@@ -48,7 +48,9 @@ def search(request, models=None):
                 for field_name in indexed_fields:
                     field_snippet = getattr(obj, f"{field_name}_snippet")
                     adjusted_snippet = adjust_snippet_classes(
-                        add_ellipses(field_snippet, obj.search_dict[field_name]),
+                        add_ellipses(
+                            field_snippet, obj.search_dict[field_name]
+                        ),
                         query_text,
                     )
                     pair = f"<span class='field-name'>{field_name}:</span> {adjusted_snippet}"

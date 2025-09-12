@@ -6,7 +6,10 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ("osoby", "0048_remove_bean_fields_positions_remove_bean_search_dict_and_more"),
+        (
+            "osoby",
+            "0048_remove_bean_fields_positions_remove_bean_search_dict_and_more",
+        ),
     ]
 
     operations = [

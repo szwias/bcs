@@ -6,7 +6,10 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ("osoby", "0046_bean_tsv_czlonek_tsv_dawnyzarzad_tsv_egzekutor_tsv_and_more"),
+        (
+            "osoby",
+            "0046_bean_tsv_czlonek_tsv_dawnyzarzad_tsv_egzekutor_tsv_and_more",
+        ),
     ]
 
     operations = [

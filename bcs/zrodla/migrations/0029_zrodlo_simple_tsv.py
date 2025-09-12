@@ -7,7 +7,10 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ("zrodla", "0028_remove_dokument_search_dict_remove_dokument_tsv_and_more"),
+        (
+            "zrodla",
+            "0028_remove_dokument_search_dict_remove_dokument_tsv_and_more",
+        ),
     ]
 
     operations = [

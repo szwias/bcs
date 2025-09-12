@@ -6,7 +6,10 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ("multimedia", "0008_remove_obrazwydarzenie_fields_positions_and_more"),
+        (
+            "multimedia",
+            "0008_remove_obrazwydarzenie_fields_positions_and_more",
+        ),
     ]
 
     operations = [

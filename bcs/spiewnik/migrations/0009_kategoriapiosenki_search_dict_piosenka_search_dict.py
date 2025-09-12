@@ -6,7 +6,10 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ("spiewnik", "0008_remove_kategoriapiosenki_fields_positions_and_more"),
+        (
+            "spiewnik",
+            "0008_remove_kategoriapiosenki_fields_positions_and_more",
+        ),
     ]
 
     operations = [

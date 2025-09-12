@@ -7,7 +7,10 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ("skarbiec", "0010_konto_fields_positions_transakcja_fields_positions"),
+        (
+            "skarbiec",
+            "0010_konto_fields_positions_transakcja_fields_positions",
+        ),
     ]
 
     operations = [

@@ -7,7 +7,10 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ("miejsca", "0012_remove_kraj_search_text_remove_miejsce_search_text_and_more"),
+        (
+            "miejsca",
+            "0012_remove_kraj_search_text_remove_miejsce_search_text_and_more",
+        ),
     ]
 
     operations = [

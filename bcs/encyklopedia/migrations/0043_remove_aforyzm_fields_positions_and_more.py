@@ -6,7 +6,10 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ("encyklopedia", "0042_aforyzm_search_dict_grupabractw_search_dict_and_more"),
+        (
+            "encyklopedia",
+            "0042_aforyzm_search_dict_grupabractw_search_dict_and_more",
+        ),
     ]
 
     operations = [

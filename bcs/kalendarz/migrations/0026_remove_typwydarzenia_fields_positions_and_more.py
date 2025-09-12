@@ -6,7 +6,10 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ("kalendarz", "0025_typwydarzenia_search_dict_typwyjazdu_search_dict_and_more"),
+        (
+            "kalendarz",
+            "0025_typwydarzenia_search_dict_typwyjazdu_search_dict_and_more",
+        ),
     ]
 
     operations = [

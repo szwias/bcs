@@ -7,7 +7,10 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ("encyklopedia", "0046_remove_aforyzm_search_dict_remove_aforyzm_tsv_and_more"),
+        (
+            "encyklopedia",
+            "0046_remove_aforyzm_search_dict_remove_aforyzm_tsv_and_more",
+        ),
     ]
 
     operations = [
