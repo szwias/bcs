@@ -37,6 +37,8 @@ class SearchableQuerySet(models.QuerySet):
                     start_sel="<span class='query-match'>",
                     stop_sel="</span>",
                     config=config,
+                    max_words=40,  # total words in snippet
+                    min_words=20,  # words around match
                 )
 
         return qs.annotate(**annotations)

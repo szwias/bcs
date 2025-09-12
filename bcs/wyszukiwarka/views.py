@@ -7,7 +7,11 @@ from django.shortcuts import render
 
 from core.admin import get_admin_form_url
 from .registry import SEARCH_REGISTRY
-from .utils.Search import find_searchable_fields, adjust_snippet_classes
+from .utils.Search import (
+    find_searchable_fields,
+    adjust_snippet_classes,
+    add_ellipses,
+)
 
 
 def search(request, models=None):
@@ -41,7 +45,8 @@ def search(request, models=None):
                 for field_name in indexed_fields:
                     field_snippet = getattr(obj, f"{field_name}_snippet")
                     adjusted_snippet = adjust_snippet_classes(
-                        field_snippet, query_text
+                        add_ellipses(field_snippet, obj.search_dict[field_name]),
+                        query_text,
                     )
                     pair = f"<span class='field-name'>{field_name}:</span> {adjusted_snippet}"
                     snippets.append(pair)
