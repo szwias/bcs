@@ -51,35 +51,18 @@ class SearchableManager(models.Manager):
         )
 
 
-class SearchablePolymorphicQuerySet(PolymorphicQuerySet):
+class SearchablePolymorphicQuerySet(SearchableQuerySet, PolymorphicQuerySet):
     def search_with_snippets(self, query_text, config="polish"):
-        tsquery = SearchQuery(query_text, config=config)
-        annotations = {}
 
-        # Ranking based on precomputed tsvector
-        if hasattr(self.model, "tsv"):
-            annotations["rank"] = SearchRank(F("tsv"), tsquery)
+        if (
+            hasattr(self.model, "polymorphic_base_model")
+            and self.model == self.model.polymorphic_base_model
+        ):
+            return self
 
-        # For each instance, we want per-field snippets
-        # We'll create annotations dynamically for all keys in search_dict
-        if self.model._meta.get_field("search_dict"):
-            # We can only annotate known keys at query time
-            # So collect all possible keys in the model (or a representative set)
-            example_obj = self.first()
-
-            if not example_obj:
-                return self.none()  # empty queryset
-
-            for field_name in example_obj.search_dict.keys():
-                annotations[f"{field_name}_snippet"] = SearchHeadline(
-                    Value(example_obj.search_dict[field_name]),
-                    tsquery,
-                    start_sel="<span class='query-match'>",
-                    stop_sel="</span>",
-                    config=config,
-                )
-
-        return self.annotate(**annotations)
+        return SearchableQuerySet.search_with_snippets(
+            self, query_text, config
+        )
 
 
 class SearchablePolymorphicManager(PolymorphicManager):
