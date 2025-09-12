@@ -11,5 +11,7 @@ def register_search(apps_to_register):
     for app_label in apps_to_register:
         app_config = apps.get_app_config(app_label)
         for model in app_config.get_models():
-            if getattr(model, "snippet", None):
+            if not model._meta.abstract and getattr(
+                model, "search_indexable", False
+            ):
                 SEARCH_REGISTRY.append(model)

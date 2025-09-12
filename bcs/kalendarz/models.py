@@ -1,8 +1,6 @@
-from django.db import models
 from django.utils import timezone
 from polymorphic.models import PolymorphicModel
 
-from wyszukiwarka.managers import SearchableManager
 from wyszukiwarka.utils.Search import *
 from core.utils.Lengths import MAX_LENGTH, MEDIUM_LENGTH
 from wyszukiwarka.models import SearchableModel, SearchablePolymorphicModel
@@ -97,6 +95,7 @@ class TypWyjazdu(SearchableModel):
 
 
 class WydarzenieKalendarzowe(SearchablePolymorphicModel):
+    search_indexable = False
 
     nazwa = models.CharField(max_length=MAX_LENGTH, verbose_name="Nazwa")
 
@@ -120,6 +119,7 @@ class WydarzenieKalendarzowe(SearchablePolymorphicModel):
 
 
 class Chrzest(WydarzenieKalendarzowe):
+    search_indexable = True
 
     miejsce = models.ForeignKey(
         "miejsca.Miejsce",
@@ -165,6 +165,7 @@ class Chrzest(WydarzenieKalendarzowe):
 
 
 class Wydarzenie(WydarzenieKalendarzowe):
+    search_indexable = True
 
     czy_jednodniowe = models.BooleanField(
         default=True, verbose_name="Jednodniowe"

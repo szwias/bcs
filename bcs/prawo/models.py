@@ -56,6 +56,8 @@ class Podmiot(SearchablePolymorphicModel):
 
 
 class Rola(Podmiot):
+    search_indexable = True
+
     class Meta:
         verbose_name = "Rola jednostki w Bractwie"
         verbose_name_plural = "Role jednostki w Bractwie"
@@ -63,6 +65,8 @@ class Rola(Podmiot):
 
 
 class Struktura(Podmiot):
+    search_indexable = True
+
     wielkosc = models.ForeignKey(
         WielkoscStruktury,
         blank=True,

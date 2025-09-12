@@ -1,7 +1,6 @@
 from PyPDF2.errors import PdfReadError
 from django.core.exceptions import ValidationError
 
-from wyszukiwarka.managers import SearchableManager
 from wyszukiwarka.utils.Search import *
 from core.utils.Lengths import MAX_LENGTH
 from wyszukiwarka.models import SearchableModel, SearchablePolymorphicModel
@@ -65,6 +64,7 @@ class ZrodloOgolne(SearchableZrodlo):
 
 
 class Dokument(SearchableZrodlo):
+    search_indexable = True
 
     data = models.DateField(blank=True, null=True, verbose_name="Data wydania")
 

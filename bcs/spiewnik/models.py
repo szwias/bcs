@@ -1,4 +1,3 @@
-from django.db import models
 from wyszukiwarka.utils.Search import *
 from core.utils.Lengths import MAX_LENGTH, MEDIUM_LENGTH
 from wyszukiwarka.models import SearchableModel

@@ -61,6 +61,8 @@ class Byt(SearchablePolymorphicModel):
 
 
 class KomisjaRewizyjna(Byt):
+    search_indexable = True
+
     kadencja = models.ForeignKey(
         "kronika.Kadencja",
         blank=True,
@@ -98,6 +100,8 @@ class KomisjaRewizyjna(Byt):
 # ORGANIZACJA FAMILY
 # --------------------------------------
 class Organizacja(Byt):
+    search_indexable = True
+
     nazwa = models.CharField(
         max_length=MAX_LENGTH, verbose_name="Nazwa organizacji"
     )
@@ -205,6 +209,8 @@ class Osoba(Byt):
 
 
 class InnaOsoba(Osoba):
+    search_indexable = True
+
     class Kategorie(models.TextChoices):
         INNA = "I", "Inna"
         INNE_BRACTWO_CZAPKOWE = "Inne BCS", "Inne bractwo czapkowe"
@@ -275,6 +281,7 @@ class OsobaBCS(models.Model):
 
 
 class Bean(Osoba, OsobaBCS):
+    search_indexable = True
 
     rodzic_1 = models.ForeignKey(
         "osoby.Czlonek",
@@ -324,6 +331,8 @@ class Czlonek(Osoba, OsobaBCS):
         WYKLETY = "X", 'Wydalony (np. "Jezus")'
         WETERAN = "W", "Weteran"
         HONOROWY = "H", "Członek Honoris Causa"
+
+    search_indexable = True
 
     aktywnosc = models.CharField(
         max_length=Lengths.AKTYWNOSC,
@@ -776,6 +785,7 @@ class Zarzad(Byt):
 
 
 class DawnyZarzad(Zarzad):
+    search_indexable = True
 
     bibendi = models.ForeignKey(
         Czlonek,
@@ -820,6 +830,7 @@ class DawnyZarzad(Zarzad):
 
 
 class NowyZarzad(Zarzad):
+    search_indexable = True
 
     sekretarz = models.ForeignKey(
         Czlonek,

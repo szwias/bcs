@@ -1,7 +1,6 @@
 import re
 
 from django.contrib.contenttypes.models import ContentType
-from django.contrib.postgres.indexes import GinIndex
 from django.contrib.postgres.search import SearchVectorField, SearchVector
 from django.db import models
 from django.db.models import Value
@@ -40,7 +39,6 @@ class AbstractSearchableModel(models.Model):
 
     def _create_search_dict(self):
         pairs = {}
-
         for field in find_searchable_fields(self.__class__):
             # Assign choice display to value if field has choices
             if getattr(field, "choices", None):
@@ -97,6 +95,8 @@ class AbstractSearchableModel(models.Model):
 
 
 class SearchableModel(AbstractSearchableModel):
+    search_indexable = True
+
     objects = SearchableManager()
 
     class Meta:
@@ -104,6 +104,8 @@ class SearchableModel(AbstractSearchableModel):
 
 
 class SearchablePolymorphicModel(PolymorphicModel, AbstractSearchableModel):
+    search_indexable = False
+
     objects = SearchablePolymorphicManager()
 
     class Meta:
