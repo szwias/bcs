@@ -49,9 +49,11 @@ class AbstractSearchableModel(models.Model):
                 value = getattr(self, field.name, None)
 
             if not value:
-                text_value = ""
+                continue
             elif isinstance(field, models.ManyToManyField):
                 text_value = ", ".join(str(obj) for obj in value.all())
+                if not text_value:
+                    continue
             else:
                 text_value = str(value)
 
