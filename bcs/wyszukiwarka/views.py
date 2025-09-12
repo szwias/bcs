@@ -17,20 +17,16 @@ def search(request, models=None):
 
     if query_text:
         for model in SEARCH_REGISTRY:
-            qs = (
-                model.objects.annotate(
-                    rank=SearchRank(search_vector, search_query)
-                )
-                .filter(rank__gt=0)
-                .order_by("-rank")
-                .distinct()
-            )
             searchable_fields_names = [
                 f.name for f in find_searchable_fields(model)
             ]
             qs = model.objects.search(
                 query_text=query_text, config=model.LANGUAGE
             )
+            if not qs.exists():
+                qs = model.objects.search(
+                    query_text=query_text, config="simple"
+                )
 
             for obj in qs:
                 key = (obj._meta.label, obj.pk)

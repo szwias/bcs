@@ -18,9 +18,14 @@ class SearchableQuerySet(models.QuerySet):
         tsquery = SearchQuery(query_text, config=config)
         annotations = {}
 
-        # Ranking based on precomputed tsvector
-        if hasattr(self.model, "tsv"):
+        if config != "simple" and hasattr(self.model, "tsv"):
+            qs = self.filter(tsv=tsquery)
             annotations["rank"] = SearchRank(F("tsv"), tsquery)
+        elif config == "simple" and hasattr(self.model, "simple_tsv"):
+            qs = self.filter(simple_tsv=tsquery)
+            annotations["rank"] = SearchRank(F("simple_tsv"), tsquery)
+        else:
+            qs = self
 
         # Field-specific snippets from search_dict
         if self.model._meta.get_field("search_dict"):
@@ -33,7 +38,7 @@ class SearchableQuerySet(models.QuerySet):
                     config=config,
                 )
 
-        return self.annotate(**annotations)
+        return qs.annotate(**annotations)
 
 
 class SearchableManager(models.Manager):
