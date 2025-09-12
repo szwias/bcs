@@ -1,6 +1,6 @@
 # wyszukiwarka/managers.py
 from django.db import models
-from django.db.models import Value, F
+from django.db.models import F
 from django.contrib.postgres.search import (
     SearchQuery,
     SearchHeadline,
@@ -8,6 +8,9 @@ from django.contrib.postgres.search import (
 )
 from polymorphic.managers import PolymorphicManager
 from polymorphic.query import PolymorphicQuerySet
+
+from core.utils.Misc import JsonExtractText
+from wyszukiwarka.utils.Search import find_searchable_fields
 
 
 class SearchableQuerySet(models.QuerySet):
@@ -19,19 +22,11 @@ class SearchableQuerySet(models.QuerySet):
         if hasattr(self.model, "tsv"):
             annotations["rank"] = SearchRank(F("tsv"), tsquery)
 
-        # For each instance, we want per-field snippets
-        # We'll create annotations dynamically for all keys in search_dict
+        # Field-specific snippets from search_dict
         if self.model._meta.get_field("search_dict"):
-            # We can only annotate known keys at query time
-            # So collect all possible keys in the model (or a representative set)
-            example_obj = self.first()
-
-            if not example_obj:
-                return self.none()  # empty queryset
-
-            for field_name in example_obj.search_dict.keys():
-                annotations[f"{field_name}_snippet"] = SearchHeadline(
-                    Value(example_obj.search_dict[field_name]),
+            for field in find_searchable_fields(self.model):
+                annotations[f"{field.name}_snippet"] = SearchHeadline(
+                    JsonExtractText(F("search_dict"), field.name),
                     tsquery,
                     start_sel="<span class='query-match'>",
                     stop_sel="</span>",

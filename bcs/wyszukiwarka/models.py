@@ -56,7 +56,7 @@ class AbstractSearchableModel(models.Model):
             else:
                 text_value = str(value)
 
-            pairs[str(field)] = text_value
+            pairs[field.name] = text_value
 
         return pairs
 
