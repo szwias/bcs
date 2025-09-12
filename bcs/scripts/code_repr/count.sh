@@ -5,17 +5,14 @@ backup
 
 # Count lines
 sql_lines=$(find . -name '*.sql' \
-    ! -path "*/scripts/other_locations*" \
     ! -path '*/backups/*' \
     -exec cat {} + | wc -l)
 
 python_lines=$(find . -name '*.py' \
-    ! -path "*/scripts/other_locations*" \
     ! -path '*/migrations/*' \
     -exec cat {} + | wc -l)
 
 bash_lines=$(find . -name '*.sh' \
-    ! -path "*/scripts/other_locations*" \
     -exec cat {} + | wc -l)
 
 html_lines=$(find . -name '*.html' -exec cat {} + | wc -l)
@@ -36,6 +33,9 @@ database_lines=$((sql_lines))
 frontend_lines=$((html_lines + css_lines + js_lines))
 media_lines=$((json_lines))
 total_lines=$((backend_lines + database_lines + frontend_lines + media_lines))
+
+echo
+echo "Total lines: $total_lines"
 
 # Colors
 START="\033[38;5;"
