@@ -1,4 +1,8 @@
+import re
 from PyPDF2 import PdfReader
+
+from django.db import models
+
 
 def extract_text_from_pdf(file_obj):
     """Extract text from a PDF file object."""
@@ -9,9 +13,6 @@ def extract_text_from_pdf(file_obj):
         page_text = page.extract_text() or ""
         text.append(page_text)
     return "\n".join(text)
-
-
-from django.db import models
 
 
 IGNORED_FIELD_SUFFIXES = ("_ptr", "_ctype", "_id")
@@ -41,3 +42,15 @@ def find_searchable_fields(model):
         searchable_fields.append(field)
 
     return searchable_fields
+
+
+def adjust_snippet_classes(snippet_html, query_text):
+    pattern = r"<span class='query-match'>(.*?)</span>"
+
+    def replacer(match):
+        text = match.group(1)
+        if text.lower() != query_text.lower():
+            return f"<span class='near-match'>{text}</span>"
+        return match.group(0)
+
+    return re.sub(pattern, replacer, snippet_html)
