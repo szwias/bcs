@@ -61,41 +61,6 @@ class AbstractSearchableModel(models.Model):
 
         return pairs
 
-    def snippet(self, query, total_length=200):
-        if not self.search_text:
-            return ""
-
-        text = self.search_text
-        query_escaped = re.escape(query)
-        match = re.search(query_escaped, text, flags=re.IGNORECASE)
-
-        # Step 1: Determine snippet boundaries
-        if match:
-            start_idx, end_idx = match.start(), match.end()
-            half_len = total_length // 2
-            start = max(0, start_idx - half_len)
-        else:
-            start = 0
-        end = min(len(text), start + total_length)
-
-        snippet_text = text[start:end]
-
-        # Step 2: Highlight query after field-name spans
-        snippet_text = re.sub(
-            query_escaped,
-            lambda m: f'<span class="query-match">{escape(m.group(0))}</span>',
-            snippet_text,
-            flags=re.IGNORECASE,
-        )
-
-        # Step 3: Add ellipses if needed
-        if start > 0:
-            snippet_text = "..." + snippet_text
-        if end < len(text):
-            snippet_text += "..."
-
-        return mark_safe(snippet_text)
-
 
 class SearchableModel(AbstractSearchableModel):
     search_indexable = True
