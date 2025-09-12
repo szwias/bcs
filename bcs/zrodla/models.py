@@ -52,6 +52,7 @@ class SearchableZrodlo(Zrodlo):
 
 
 class ZrodloOgolne(SearchableZrodlo):
+    search_indexable = True
 
     zawartosc = models.TextField(blank=True, verbose_name="Zawartość")
 
