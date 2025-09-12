@@ -1,1 +1,0 @@
-/home/szymon/Desktop/bcs/bcs/spiewnik/scripts/lyrics.py
