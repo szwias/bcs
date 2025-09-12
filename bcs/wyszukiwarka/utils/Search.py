@@ -54,3 +54,24 @@ def adjust_snippet_classes(snippet_html, query_text):
         return match.group(0)
 
     return re.sub(pattern, replacer, snippet_html)
+
+
+def add_ellipses(fragment, full_text):
+    """
+    Adds ellipses at the start/end if fragment is truncated from the full text.
+    Handles <span class='query-match'> tags correctly.
+    """
+    # Remove query highlight tags
+    real_fragment = re.sub(r"<span class=['\"]query-match['\"]>", "", fragment)
+    real_fragment = real_fragment.replace("</span>", "")
+
+    start = full_text.find(real_fragment)
+    end = start + len(real_fragment) if start >= 0 else -1
+
+    adjusted_fragment = fragment
+    if start > 0:
+        adjusted_fragment = "… " + adjusted_fragment
+    if end != -1 and end < len(full_text):
+        adjusted_fragment = adjusted_fragment + " …"
+
+    return adjusted_fragment
