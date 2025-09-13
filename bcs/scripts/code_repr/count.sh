@@ -180,3 +180,24 @@ for entry in "${sorted_groups[@]}"; do
     printf "$color%-10s | %7d | %6s%%${RESET}\n" "$group" "$lines" "$percent"
 done
 
+# -----------------------------
+# Write to file if --tracked
+# -----------------------------
+if $tracked; then
+    output_file="../line_counts.txt"
+    : > "$output_file"  # truncate file
+
+    echo "# Languages" >> "$output_file"
+    for entry in "${sorted_langs[@]}"; do
+        IFS='|' read -r percent lang lines <<< "$entry"
+        echo "$lang,$lines" >> "$output_file"
+    done
+
+    echo >> "$output_file"
+
+    echo "# Groups" >> "$output_file"
+    for entry in "${sorted_groups[@]}"; do
+        IFS='|' read -r percent group lines color_code <<< "$entry"
+        echo "$group,$lines" >> "$output_file"
+    done
+fi
