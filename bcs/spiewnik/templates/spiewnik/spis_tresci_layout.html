@@ -1,0 +1,19 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pl">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Śpiewnik - Spis treści</title>
+        <link rel="stylesheet" href="{% static 'spiewnik/css/spis_tresci.css' %}" />
+    </head>
+    <body>
+        <div class="toc">
+            <h1 class="toc__title">Spis treści</h1>
+            {% block categorized_songs %}
+            {% endblock categorized_songs %}
+            {% block uncategorized_songs %}
+            {% endblock uncategorized_songs %}
+        </div>
+        <script src="{% static 'spiewnik/js/spis_tresci.js' %}"></script>
+    </body>
+</html>

@@ -1,41 +1,31 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="pl">
-    <head>
-        <meta charset="UTF-8" />
-        <title>Śpiewnik - Spis treści</title>
-        <link rel="stylesheet" href="{% static 'spiewnik/css/spis_tresci.css' %}" />
-    </head>
-    <body>
-        <div class="toc">
-            <h1 class="toc__title">Spis treści</h1>
-            {% for category, songs in songs_by_category %}
-                {% if songs %}
-                    <div class="category">
-                        <h2 class="toc__category-title" onclick="toggleCategory(this)">{{ category.nazwa }}</h2>
-                        <ul class="toc__list" style="display: none;">
-                            {% for song in songs %}
-                                <li class="toc__item">
-                                    <a href="{% url 'spiewnik:piosenka' song.pk %}" class="toc__link">{{ song.tytul }}</a>
-                                </li>
-                            {% endfor %}
-                        </ul>
-                    </div>
-                {% endif %}
-            {% endfor %}
-            {% if uncategorized %}
-                <div class="toc__uncategorized">
-                    <h2 class="toc__category-title">Bez kategorii</h2>
-                    <ul class="toc__list">
-                        {% for song in uncategorized %}
-                            <li class="toc__item">
-                                <a href="{% url 'piosenka' song.pk %}" class="toc__link">{{ song.tytul }}</a>
-                            </li>
-                        {% endfor %}
-                    </ul>
-                </div>
-            {% endif %}
+{% extends "spiewnik/spis_tresci_layout.html" %}
+{% block categorized_songs %}
+    {% for category, songs in songs_by_category %}
+        {% if songs %}
+            <div class="category">
+                <h2 class="toc__category-title" onclick="toggleCategory(this)">{{ category.nazwa }}</h2>
+                <ul class="toc__list" style="display: none;">
+                    {% for song in songs %}
+                        <li class="toc__item">
+                            <a href="{% url 'spiewnik:piosenka' song.pk %}" class="toc__link">{{ song.tytul }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+    {% endfor %}
+{% endblock categorized_songs %}
+{% block uncategorized_songs %}
+    {% if uncategorized %}
+        <div class="toc__uncategorized">
+            <h2 class="toc__category-title">Bez kategorii</h2>
+            <ul class="toc__list">
+                {% for song in uncategorized %}
+                    <li class="toc__item">
+                        <a href="{% url 'piosenka' song.pk %}" class="toc__link">{{ song.tytul }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
         </div>
-        <script src="{% static 'spiewnik/js/spis_tresci.js' %}"></script>
-    </body>
-</html>
+    {% endif %}
+{% endblock uncategorized_songs %}
