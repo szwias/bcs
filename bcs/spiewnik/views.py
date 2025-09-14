@@ -3,8 +3,6 @@ import json
 
 from django.contrib.admin.utils import quote
 from django.shortcuts import render, get_object_or_404
-from collections import defaultdict
-
 from django.urls import reverse
 
 from .models import Piosenka, KategoriaPiosenki
@@ -16,19 +14,34 @@ def spis_tresci(request):
 
     for category in categories:
         songs = Piosenka.objects.filter(kategorie=category).order_by("tytul")
-        songs_by_category.append((category, songs))
+        if songs:
+            songs_by_category.append((category, songs))
 
     uncategorized = Piosenka.objects.filter(kategorie__isnull=True).order_by(
         "tytul"
     )
 
     return render(
-        request,
-        "spiewnik/spis_tresci.html",
-        {
+        request=request,
+        template_name="spiewnik/spis_tresci.html",
+        context={
             "songs_by_category": songs_by_category,
             "uncategorized": uncategorized,
         },
+    )
+
+
+def spis_tresci_kat(request, category_pk):
+    category = KategoriaPiosenki.objects.get(pk=category_pk)
+    songs = list(
+        Piosenka.objects.filter(kategorie__pk=category_pk).order_by("tytul")
+    )
+    print(songs)
+
+    return render(
+        request=request,
+        template_name="spiewnik/spis_tresci_kat.html",
+        context={"category": category, "songs": songs},
     )
 
 
@@ -93,10 +106,8 @@ def piosenka(request, pk):
     # Category
     if song.kategorie.exists():
         categories = list(song.kategorie.all())
-        start = "Kategorie" if len(categories) > 1 else "Kategoria"
-        category = f'{start}: {", ".join([str(c) for c in categories])}'
     else:
-        category = "Brak kategorii"
+        categories = []
 
     # Admin URL
     admin_url = reverse(
@@ -104,13 +115,13 @@ def piosenka(request, pk):
     )
 
     return render(
-        request,
-        "spiewnik/piosenka.html",
-        {
+        request=request,
+        template_name="spiewnik/piosenka.html",
+        context={
             "lines": formatted_lines,
             "title": song.tytul,
             "author": author,
-            "category": category,
+            "categories": categories,
             "admin_url": admin_url,
             "text_col_width": text_col_width + 4,
             "chords_col_width": chords_col_width,

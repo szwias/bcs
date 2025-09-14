@@ -9,7 +9,18 @@
     <body>
         <div class="song">
             <div class="song__header">
-                <div class="song__category">{{ category }}</div>
+                <div class="song__category">
+                    {% if categories %}
+                        Kategorie:
+                        {% for cat in categories %}
+                            <a href="{% url 'spiewnik:spis_tresci_kat' cat.pk %}"
+                               class="song__category-link">{{ cat }}</a>
+                            {% if not forloop.last %}•{% endif %}
+                        {% endfor %}
+                    {% else %}
+                        Brak kategorii
+                    {% endif %}
+                </div>
                 <h1 class="song__title">{{ title }}</h1>
                 <div class="song__author">{{ author }}</div>
                 <div class="song__header-row">

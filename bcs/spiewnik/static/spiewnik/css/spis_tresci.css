@@ -7,6 +7,11 @@ body {
   padding: 20px;
 }
 
+/* Limited Table of Contents wrapper */
+.ltoc {
+  text-align: center;
+}
+
 /* Table of Contents wrapper */
 .toc {
   text-align: center;
@@ -31,6 +36,14 @@ body {
   text-align: center; /* parent should have text-align: center */
 }
 
+.ltoc__category-title {
+  display: inline-block;
+  color: #2c3e50;
+  margin: 5px 0;
+  font-size: 1.2rem;
+  text-align: center;
+}
+
 .toc__category-title:hover {
   color: #2980b9;
   border-bottom-color: #2980b9; /* underline appears on hover */
@@ -38,6 +51,15 @@ body {
 
 /* Song list styles */
 .toc__list {
+  text-align: center;
+  display: none;
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+/* Song list styles */
+.ltoc__list {
   text-align: center;
   display: none;
   list-style: none;

@@ -11,6 +11,9 @@ label=${1:-}
 # Step 1: Backup the database state before migrations
 backup "$label"
 
+repo_root=$(git rev-parse --show-toplevel)
+cd "$repo_root/bcs/" || exit 1
+
 # Step 2: Create migrations
 python manage.py makemigrations
 

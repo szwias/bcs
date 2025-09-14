@@ -52,6 +52,22 @@ h2 {
   margin-bottom: 20px;
 }
 
+.song__category-link {
+  display: inline-block;
+  cursor: pointer;
+  transition: color 0.2s, border-bottom-color 0.2s;
+  border-bottom: 2px solid transparent;
+  user-select: none;
+  color: #2c3e50;
+  font-size: 1rem;
+  text-decoration: none; /* remove default underline */
+}
+
+.song__category-link:hover {
+  color: #2980b9;
+  border-bottom-color: #2980b9;
+}
+
 .song__title {
   font-size: 2.2em;
   font-weight: bold;

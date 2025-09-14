@@ -2,7 +2,8 @@
 # Script to backup current database with per-day directories
 # Usage: backup [label]
 
-cd baza || { echo "Directory 'baza' not found"; exit 1; }
+repo_root=$(git rev-parse --show-toplevel)
+cd "$repo_root/bcs/baza" || { echo "Directory 'baza' not found"; exit 1; }
 
 # Create date components
 day=$(date +"%Y-%m-%d")

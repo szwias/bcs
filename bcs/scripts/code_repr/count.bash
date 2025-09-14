@@ -8,6 +8,9 @@ fi
 
 backup
 
+repo_root=$(git rev-parse --show-toplevel)
+cd "$repo_root/bcs/" || exit 1
+
 if $tracked; then
     sql_lines=$(find . -name '*.sql' \
         ! -path '*/backups/*' \
@@ -29,7 +32,7 @@ python_lines=$(find . -name '*.py' \
     ! -path '*/migrations/*' \
     -exec cat {} + | wc -l)
 
-bash_lines=$(find . -name '*.sh' \
+bash_lines=$(find . -name '*.bash' \
     -exec cat {} + | wc -l)
 
 html_lines=$(find . -name '*.html' -exec cat {} + | wc -l)

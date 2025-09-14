@@ -11,18 +11,21 @@
 #   add command_name
 # -----------------------------------------------------------------------------
 
-new_name="$1"
-file="code_repr/$1.sh"
+repo_root=$(git rev-parse --show-toplevel)
+cd "$repo_root/bcs/" || exit 1
+
 venv_bin="../.venv/bin"
 symlink_dir="scripts"
 backup_dir="scripts/code_repr"
+new_name="$1"
+file="$backup_dir/$1.bash"
 
 # Check if the command already exists
 if [[ -f "$venv_bin/$new_name" ]]; then
     echo "Command '$new_name' already exists in $venv_bin"
     mkdir -p "$backup_dir"
-    cp "$venv_bin/$new_name" "$backup_dir/$new_name.sh"
-    echo "Backed up existing command to $backup_dir/$new_name.sh"
+    cp "$venv_bin/$new_name" "$backup_dir/$new_name.bash"
+    echo "Backed up existing command to $backup_dir/$new_name.bash"
 else
     # Copy file to venv bin
     cp "$file" "$venv_bin/$new_name"
