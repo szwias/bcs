@@ -1,5 +1,1 @@
-*.sql linguist-language=SQL text
-
-**/static/**/*.js linguist-language=JavaScript text linguist-generated=false
-**/static/**/*.css linguist-language=CSS text linguist-generated=false
-**/templates/**/*.html linguist-language=HTML text linguist-generated=false
+**/migrations/* linguist-generated
