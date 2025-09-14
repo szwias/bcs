@@ -2,7 +2,7 @@
 {% block categorized_songs %}
     <div class="category">
         <h2 class="ltoc__category-title">{{ category.nazwa }}</h2>
-        <ul class="toc__list" style="display: none;">
+        <ul class="toc__list" style="display: block;">
             {% for song in songs %}
                 <li class="toc__item">
                     <a href="{% url 'spiewnik:piosenka' song.pk %}" class="toc__link">{{ song.tytul }}</a>
