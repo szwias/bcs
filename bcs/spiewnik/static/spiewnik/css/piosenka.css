@@ -212,10 +212,11 @@ mark {
 }
 
 .lyrics__comment {
-  font-size: 0.9em;
+  font-size: 0.75rem;
   color: #d31515;
   font-style: italic;
   line-height: 1.2;
+  font-weight: bolder;
 }
 
 /* Utility */
