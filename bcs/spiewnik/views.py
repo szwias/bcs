@@ -119,13 +119,15 @@ def piosenka(request, category_pk, pk):
 
     # Author
     if song.autor:
-        author = f"Autor: {song.autor}"
+        start = "Autor : "
+        authors = str(song.autor)
     elif song.znani_czapce_autorzy.exists():
         autorzy = list(song.znani_czapce_autorzy.all())
-        start = "Autorzy" if len(autorzy) > 1 else "Autor"
-        author = f'{start}: {", ".join([str(a) for a in autorzy])}'
+        start = "Autorzy : " if len(autorzy) > 1 else "Autor : "
+        authors = ", ".join([str(a) for a in autorzy])
     else:
-        author = "Autor nieznany"
+        start = "Autor nieznany"
+        authors = ""
 
     # Category
     if song.kategorie.exists():
@@ -144,7 +146,8 @@ def piosenka(request, category_pk, pk):
         context={
             "lines": formatted_lines,
             "title": song.tytul,
-            "author": author,
+            "authors_label": start,
+            "authors": authors,
             "categories": categories,
             "category": song_category,
             "prev_song": prev_song,

@@ -86,12 +86,25 @@ h2 {
   padding: 0 15px; /* match lyrics box padding */
 }
 
-.song__author {
+.song__authors-label {
+  font-style: italic;
+  font-weight: bold;
+  color: white;
+}
+
+.song__authors {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
   font-size: 1em;
   font-style: italic;
-  color: #555;
   text-align: center;
   margin-bottom: 20px;
+}
+
+.song__authors-people {
+    color: #555;
 }
 
 .song__edit-button {
