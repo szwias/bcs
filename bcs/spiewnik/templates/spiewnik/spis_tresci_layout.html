@@ -8,11 +8,12 @@
     </head>
     <body>
         <div class="toc">
-            <h1 class="toc__title">Spis treści</h1>
+            {% block title %}
+            {% endblock %}
             {% block categorized_songs %}
-            {% endblock categorized_songs %}
+            {% endblock %}
             {% block uncategorized_songs %}
-            {% endblock uncategorized_songs %}
+            {% endblock %}
         </div>
         <script src="{% static 'spiewnik/js/spis_tresci.js' %}"></script>
     </body>

@@ -1,4 +1,7 @@
 {% extends "spiewnik/spis_tresci_layout.html" %}
+{% block title %}
+    <h1 class="toc__title">Spis treści</h1>
+{% endblock %}
 {% block categorized_songs %}
     {% for category, songs in songs_by_category %}
         {% if songs %}
@@ -14,7 +17,7 @@
             </div>
         {% endif %}
     {% endfor %}
-{% endblock categorized_songs %}
+{% endblock %}
 {% block uncategorized_songs %}
     {% if uncategorized %}
         <div class="toc__uncategorized">
@@ -28,4 +31,4 @@
             </ul>
         </div>
     {% endif %}
-{% endblock uncategorized_songs %}
+{% endblock %}
