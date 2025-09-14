@@ -11,5 +11,7 @@ urlpatterns = [
         views.spis_tresci_kat,
         name="spis_tresci_kat",
     ),
-    path("piosenka/<int:pk>/", views.piosenka, name="piosenka"),
+    path(
+        "piosenka/<int:category_pk>/<int:pk>/", views.piosenka, name="piosenka"
+    ),
 ]

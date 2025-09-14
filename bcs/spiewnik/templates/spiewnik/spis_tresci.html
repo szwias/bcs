@@ -1,7 +1,5 @@
 {% extends "spiewnik/spis_tresci_layout.html" %}
-{% block title %}
-    <h1 class="toc__title">Spis treści</h1>
-{% endblock %}
+{% block title %}<h1 class="toc__title">Spis treści</h1>{% endblock %}
 {% block categorized_songs %}
     {% for category, songs in songs_by_category %}
         {% if songs %}
@@ -10,7 +8,8 @@
                 <ul class="toc__list" style="display: none;">
                     {% for song in songs %}
                         <li class="toc__item">
-                            <a href="{% url 'spiewnik:piosenka' song.pk %}" class="toc__link">{{ song.tytul }}</a>
+                            <a href="{% url 'spiewnik:piosenka' category.pk song.pk %}"
+                               class="toc__link">{{ song.tytul }}</a>
                         </li>
                     {% endfor %}
                 </ul>
@@ -25,7 +24,7 @@
             <ul class="toc__list">
                 {% for song in uncategorized %}
                     <li class="toc__item">
-                        <a href="{% url 'piosenka' song.pk %}" class="toc__link">{{ song.tytul }}</a>
+                        <a href="{% url 'piosenka' 0 song.pk %}" class="toc__link">{{ song.tytul }}</a>
                     </li>
                 {% endfor %}
             </ul>

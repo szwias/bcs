@@ -10,7 +10,8 @@
         <ul class="toc__list" style="display: block;">
             {% for song in songs %}
                 <li class="toc__item">
-                    <a href="{% url 'spiewnik:piosenka' song.pk %}" class="toc__link">{{ song.tytul }}</a>
+                    <a href="{% url 'spiewnik:piosenka' category.pk song.pk %}"
+                       class="toc__link">{{ song.tytul }}</a>
                 </li>
             {% endfor %}
         </ul>
