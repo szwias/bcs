@@ -66,7 +66,7 @@ def piosenka(request, pk):
     for line in lines:
         l = line.get("tekst", "")
         chords_list = line.get("chwyty", [])
-        flag = line.get("flag", "")
+        flaga = line.get("flaga", "")
 
         # Determine if bold/highlight
         is_highlighted = False
@@ -74,14 +74,14 @@ def piosenka(request, pk):
             if l.lower().startswith("ref") or l.lower().startswith("[ref"):
                 is_bold = True
                 is_highlighted = True
-            elif is_bold or flag == "refren":
+            elif is_bold or flaga == "refren":
                 is_bold = True
-        elif flag == "refren":
+        elif flaga == "refren":
             is_bold = True
         else:
             is_bold = False
 
-        is_comment = flag == "komentarz"
+        is_comment = flaga == "komentarz"
 
         formatted_lines.append(
             {
