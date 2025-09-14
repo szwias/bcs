@@ -1,5 +1,6 @@
 # spiewnik/views.py
 import json
+from unicodedata import category
 
 from django.contrib.admin.utils import quote
 from django.shortcuts import render, get_object_or_404
@@ -45,8 +46,31 @@ def spis_tresci_kat(request, category_pk):
     )
 
 
-def piosenka(request, pk):
-    song = get_object_or_404(Piosenka, pk=pk)
+def piosenka(request, category_pk, pk):
+    song = Piosenka.objects.get(pk=pk)
+    song_category = None
+    songs_in_category = []
+
+    if category_pk:
+        song_category = get_object_or_404(KategoriaPiosenki, pk=category_pk)
+        songs_in_category = list(
+            Piosenka.objects.filter(kategorie=song_category).order_by("tytul")
+        )
+
+    # get index of the current song in the category
+    try:
+        index = next(
+            i for i, s in enumerate(songs_in_category) if s.pk == song.pk
+        )
+    except StopIteration:
+        index = None
+
+    prev_song = songs_in_category[index - 1] if index and index > 0 else None
+    next_song = (
+        songs_in_category[index + 1]
+        if index is not None and index < len(songs_in_category) - 1
+        else None
+    )
 
     lines = []
     if song.tekst:
@@ -122,6 +146,9 @@ def piosenka(request, pk):
             "title": song.tytul,
             "author": author,
             "categories": categories,
+            "category": song_category,
+            "prev_song": prev_song,
+            "next_song": next_song,
             "admin_url": admin_url,
             "text_col_width": text_col_width + 4,
             "chords_col_width": chords_col_width,
