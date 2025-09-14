@@ -9,6 +9,9 @@
     <body>
         <div class="song">
             <div class="song__header">
+                <div class="song__back-link">
+                    <a href="{% url 'spiewnik:spis_tresci' %}">&larr; Powrót do spisu treści</a>
+                </div>
                 <div class="song__category">
                     {% if categories %}
                         {% for cat in categories %}

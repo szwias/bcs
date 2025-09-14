@@ -120,6 +120,21 @@ h2 {
   background: #2980b9;
 }
 
+.song__back-link {
+  text-align: left;
+  margin-bottom: 10px;
+}
+
+.song__back-link a {
+  text-decoration: none;
+  color: #2980b9;
+  font-size: 0.9rem;
+}
+
+.song__back-link a:hover {
+  text-decoration: underline;
+}
+
 /* ===========================
    Belt Navigation
 =========================== */
