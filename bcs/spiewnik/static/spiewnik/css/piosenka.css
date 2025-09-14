@@ -116,6 +116,10 @@ h2 {
   font-size: 0.9em;
 }
 
+.song__invisible-button {
+  visibility: hidden;
+}
+
 .song__edit-button:hover {
   background: #2980b9;
 }
@@ -139,43 +143,69 @@ h2 {
    Belt Navigation
 =========================== */
 .belt {
-  display: flex;
-  justify-content: space-between; /* prev left, next right */
   margin: 20px 0;
-  padding: 10px 15px;
-  background-color: #f2f2f2;
-  border-radius: 8px;
-  border: 1px solid #ddd;
+  padding: 10px 0;
+}
+
+.belt__category {
+  text-align: center;
+  font-size: 1rem; /* slightly bigger */
+  color: #2c3e50;
+  line-height: 1.5;
+}
+
+.belt__category-label {
+  font-weight: bold;
+}
+
+.belt__sections {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
 }
 
 .belt__prev-section,
 .belt__next-section {
   display: flex;
-  flex-direction: column; /* label on top, link below */
-  max-width: 45%; /* optional: prevent stretching too much */
+  flex-direction: column;
+  max-width: 45%;
 }
 
+/* Labels */
 .belt__label {
-  font-size: 1.2rem; /* larger font for labels */
-  margin: 0 0 5px 0;
+  font-size: 1rem;
+  margin-bottom: 5px;
   color: #2c3e50;
 }
 
+/* Links */
 .belt__link {
-  font-size: 1rem;
+  font-size: 0.95rem;
   color: #2980b9;
   text-decoration: none;
   margin-top: 3px;
 }
-
 .belt__link:hover {
   text-decoration: underline;
 }
 
+/* No song */
 .belt__no-song {
-  font-size: 0.85rem; /* smaller font */
-  color: #888888; /* gray */
+  font-size: 0.85rem;
+  color: #888;
   margin-top: 3px;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .belt__sections {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .belt__prev-section,
+  .belt__next-section {
+    max-width: 100%;
+  }
 }
 
 /* ===========================

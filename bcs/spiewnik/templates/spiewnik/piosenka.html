@@ -32,23 +32,29 @@
                 </div>
                 {% if category %}
                     <div class="belt">
-                        <div class="belt__prev-section">
-                            <h2 class="belt__label">Poprzednia piosenka w kategorii:</h2>
-                            {% if prev_song %}
-                                <a href="{% url 'spiewnik:piosenka' category.pk prev_song.pk %}"
-                                   class="belt__link">{{ prev_song.tytul }}</a>
-                            {% else %}
-                                <p class="belt__no-song">Początek kategorii</p>
-                            {% endif %}
+                        <div class="belt__category">
+                            <span class="belt__category-label">{{ "W kategorii: " }}</span>
+                            <div>{{ category.nazwa }}</div>
                         </div>
-                        <div class="belt__next-section">
-                            <h2 class="belt__label">Następna piosenka w kategorii:</h2>
-                            {% if next_song %}
-                                <a href="{% url 'spiewnik:piosenka' category.pk next_song.pk %}"
-                                   class="belt__link">{{ next_song.tytul }}</a>
-                            {% else %}
-                                <p class="belt__no-song">Koniec kategorii</p>
-                            {% endif %}
+                        <div class="belt__sections">
+                            <div class="belt__prev-section">
+                                <div class="belt__label">Poprzednia piosenka</div>
+                                {% if prev_song %}
+                                    <a href="{% url 'spiewnik:piosenka' category.pk prev_song.pk %}"
+                                       class="belt__link">{{ prev_song.tytul }}</a>
+                                {% else %}
+                                    <p class="belt__no-song">Początek kategorii</p>
+                                {% endif %}
+                            </div>
+                            <div class="belt__next-section">
+                                <div class="belt__label">Następna piosenka</div>
+                                {% if next_song %}
+                                    <a href="{% url 'spiewnik:piosenka' category.pk next_song.pk %}"
+                                       class="belt__link">{{ next_song.tytul }}</a>
+                                {% else %}
+                                    <p class="belt__no-song">Koniec kategorii</p>
+                                {% endif %}
+                            </div>
                         </div>
                     </div>
                 {% endif %}
