@@ -25,36 +25,59 @@
                     {% if request.user.is_staff %}<a href="{{ admin_url }}" class="song__edit-button">✏️ Edytuj</a>{% endif %}
                 </div>
                 <div class="song__author">{{ author }}</div>
-            </div>
-            <div class="lyrics">
-                {% for line in lines %}
-                    <div class="lyrics__line">
-                        <div class="lyrics__text">
-                            {% if line.comment %}
-                                <span class="lyrics__comment">{{ line.text }}</span>
+                {% if category %}
+                    <div class="belt">
+                        <div class="belt__prev-section">
+                            <h2 class="belt__label">Poprzednia piosenka w kategorii:</h2>
+                            {% if prev_song %}
+                                <a href="{% url 'spiewnik:piosenka' category.pk prev_song.pk %}"
+                                   class="belt__link">{{ prev_song.tytul }}</a>
                             {% else %}
-                                {% if line.bold %}<strong>{% endif %}
-                                    {% if line.highlight %}
-                                        <mark>{{ line.text }}</mark>
-                                    {% else %}
-                                        {{ line.text }}
-                                    {% endif %}
-                                    {% if line.bold %}</strong>{% endif %}
+                                <p class="belt__no-song">Początek kategorii</p>
                             {% endif %}
                         </div>
-                        <div></div>
-                        <!-- spacer column -->
-                        <div class="lyrics__chords">
-                            {% if line.chords %}{{ line.chords|join:" " }}{% endif %}
-                        </div>
-                        <div></div>
-                        <!-- spacer column -->
-                        <div class="lyrics__alt">
-                            <!-- Future alternative lyrics go here -->
+                        <div class="belt__next-section">
+                            <h2 class="belt__label">Następna piosenka w kategorii:</h2>
+                            {% if next_song %}
+                                <a href="{% url 'spiewnik:piosenka' category.pk next_song.pk %}"
+                                   class="belt__link">{{ next_song.tytul }}</a>
+                            {% else %}
+                                <p class="belt__no-song">Koniec kategorii</p>
+                            {% endif %}
                         </div>
                     </div>
-                {% endfor %}
+                {% endif %}
             </div>
         </div>
-    </body>
+        <div class="lyrics">
+            {% for line in lines %}
+                <div class="lyrics__line">
+                    <div class="lyrics__text">
+                        {% if line.comment %}
+                            <span class="lyrics__comment">{{ line.text }}</span>
+                        {% else %}
+                            {% if line.bold %}<strong>{% endif %}
+                                {% if line.highlight %}
+                                    <mark>{{ line.text }}</mark>
+                                {% else %}
+                                    {{ line.text }}
+                                {% endif %}
+                                {% if line.bold %}</strong>{% endif %}
+                        {% endif %}
+                    </div>
+                    <div></div>
+                    <!-- spacer column -->
+                    <div class="lyrics__chords">
+                        {% if line.chords %}{{ line.chords|join:" " }}{% endif %}
+                    </div>
+                    <div></div>
+                    <!-- spacer column -->
+                    <div class="lyrics__alt">
+                        <!-- Future alternative lyrics go here -->
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
 </html>
