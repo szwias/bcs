@@ -1,6 +1,6 @@
 #!/bin/bash
 repo_root=$(git rev-parse --show-toplevel)
-cd "$repo_root/bcs/" || exit 1
+cd "$repo_root" || exit 1
 
 # JS/CSS/JSON
 git diff --name-only -z \
