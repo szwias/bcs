@@ -20,11 +20,11 @@
                         Brak kategorii
                     {% endif %}
                 </div>
-                <h1 class="song__title">{{ title }}</h1>
-                <div class="song__author">{{ author }}</div>
                 <div class="song__header-row">
+                    <h1 class="song__title">{{ title }}</h1>
                     {% if request.user.is_staff %}<a href="{{ admin_url }}" class="song__edit-button">✏️ Edytuj</a>{% endif %}
                 </div>
+                <div class="song__author">{{ author }}</div>
             </div>
             <div class="lyrics">
                 {% for line in lines %}
