@@ -12,7 +12,7 @@ repo_root=$(git rev-parse --show-toplevel)
 cd "$repo_root/bcs/" || exit 1
 
 if $tracked; then
-  sql_lines=$(find . -name '*.sql' \
+  plpgsql_lines=$(find . -name '*.sql' \
     ! -path '*/backups/*' \
     ! -path '*/baza/baza*.sql' \
     -exec cat {} + | wc -l)
@@ -21,7 +21,7 @@ if $tracked; then
     ! -path '*/media/*' \
     -exec cat {} + | wc -l)
 else
-  sql_lines=$(find . -name '*.sql' \
+  plpgsql_lines=$(find . -name '*.sql' \
     ! -path '*/backups/*' \
     -exec cat {} + | wc -l)
 
@@ -51,7 +51,7 @@ js_lines=$(find . -name '*.js' \
 
 # Totals
 backend_lines=$((python_lines))
-database_lines=$((sql_lines))
+database_lines=$((plpgsql_lines))
 management_lines=$((bash_lines))
 if $tracked; then
   frontend_lines=$((html_lines + scss_lines + js_lines))
@@ -68,8 +68,19 @@ echo "Total lines: $total_lines"
 START="\033[38;5;"
 RESET="\033[0m"
 
+declare -A hex_lang_colors=(
+  ["PLpgSQL"]="#336790"
+  ["Python"]="#3572A5"
+  ["Bash"]="#89E051"
+  ["HTML"]="#E34C26"
+  ["CSS"]="#563D7C"
+  ["SCSS"]="#C6538C"
+  ["JS"]="#F1E05A"
+  ["JSON"]="#292929"
+)
+
 declare -A lang_colors=(
-  ["SQL"]=172
+  ["PLpgSQL"]=172
   ["Python"]=25
   ["Bash"]=113
   ["HTML"]=166
@@ -108,9 +119,9 @@ print_group() {
 # Sort and print languages
 # -----------------------------
 if $tracked; then
-  langs=(SQL Python Bash HTML SCSS JS)
+  langs=(PLpgSQL Python Bash HTML SCSS JS)
 else
-  langs=(SQL Python Bash HTML SCSS CSS JS JSON)
+  langs=(PLpgSQL Python Bash HTML SCSS CSS JS JSON)
 fi
 
 declare -a lang_list
@@ -136,14 +147,14 @@ done
 declare -a group_list
 if $tracked; then
   declare -A group_langs=(
-    ["Database"]="SQL"
+    ["Database"]="PLpgSQL"
     ["Backend"]="Python"
     ["Frontend"]="HTML SCSS JS"
     ["Management"]="Bash"
   )
 else
   declare -A group_langs=(
-    ["Database"]="SQL"
+    ["Database"]="PLpgSQL"
     ["Backend"]="Python"
     ["Frontend"]="HTML SCSS CSS JS"
     ["Media"]="JSON"
@@ -152,7 +163,8 @@ else
 fi
 
 get_group_color() {
-  local group=$1
+  local type=$1
+  local group=$2
   local max_lang=""
   local max_lines=0
   for lang in ${group_langs[$group]}; do
@@ -163,7 +175,11 @@ get_group_color() {
       max_lang=$lang
     fi
   done
-  echo "${lang_colors[$max_lang]}"
+  if [[ $type == "tput" ]]; then
+    echo "${lang_colors[$max_lang]}"
+  elif [[ $type == "hex" ]]; then
+    echo "${hex_lang_colors[$max_lang]}"
+  fi
 }
 
 if $tracked; then
@@ -178,7 +194,7 @@ for group in "${groups[@]}"; do
   percent=$(percentage "$lines")
 
   # Pick color dynamically based on dominant language
-  color_code=$(get_group_color "$group")
+  color_code=$(get_group_color "tput" "$group")
   group_list+=("$percent|$group|$lines|$color_code")
 done
 
@@ -196,20 +212,22 @@ done
 # Write to file if --tracked
 # -----------------------------
 if $tracked; then
-  output_file="../line_counts.txt"
-  : >"$output_file" # truncate file
-
-  echo "# Languages" >>"$output_file"
-  for entry in "${sorted_langs[@]}"; do
-    IFS='|' read -r percent lang lines <<<"$entry"
-    echo "$lang,$lines" >>"$output_file"
-  done
-
-  echo >>"$output_file"
-
-  echo "# Groups" >>"$output_file"
-  for entry in "${sorted_groups[@]}"; do
-    IFS='|' read -r percent group lines color_code <<<"$entry"
-    echo "$group,$lines" >>"$output_file"
-  done
+  output_file="../stats/tcount/tdata.txt"
+else
+  output_file="../stats/count/data.txt"
 fi
+: >"$output_file" # truncate file
+
+echo "# Languages" >>"$output_file"
+for entry in "${sorted_langs[@]}"; do
+  IFS='|' read -r percent lang lines <<<"$entry"
+  echo "$lang,$lines,${hex_lang_colors[$lang]}" >>"$output_file"
+done
+
+echo >>"$output_file"
+
+echo "# Groups" >>"$output_file"
+for entry in "${sorted_groups[@]}"; do
+  IFS='|' read -r percent group lines color_code <<<"$entry"
+  echo "$group,$lines,$(get_group_color "hex" "$group")" >>"$output_file"
+done
