@@ -24,6 +24,12 @@ def get_admin_form_url(instance):
     return admin_url
 
 
+def get_pk_from_admin_url(url):
+    """Takes admin change form URL and extracts object's pk"""
+    words = url.split("/")
+    return int(words[-3])
+
+
 def is_polymorphic_parent(model):
     if not issubclass(model, PolymorphicModel):
         return False
