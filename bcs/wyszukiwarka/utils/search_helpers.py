@@ -48,7 +48,7 @@ def search_models(query_text, models):
                     query_text,
                 )
                 snippets.append(
-                    f"<span class='field-name'>{field_name}:</span> {adjusted_snippet}"
+                    f"<span class='search__field'>{field_name}:</span> {adjusted_snippet}"
                 )
             snippet = " ".join(snippets)
 

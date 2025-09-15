@@ -34,7 +34,7 @@ class SearchableQuerySet(models.QuerySet):
                 annotations[f"{field.name}_snippet"] = SearchHeadline(
                     JsonExtractText(F("search_dict"), field.name),
                     tsquery,
-                    start_sel="<span class='query-match'>",
+                    start_sel="<span class='search__query-match'>",
                     stop_sel="</span>",
                     config=config,
                     max_words=40,  # total words in snippet

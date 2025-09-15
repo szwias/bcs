@@ -45,12 +45,12 @@ def find_searchable_fields(model):
 
 
 def adjust_snippet_classes(snippet_html, query_text):
-    pattern = r"<span class='query-match'>(.*?)</span>"
+    pattern = r"<span class='search__query-match'>(.*?)</span>"
 
     def replacer(match):
         text = match.group(1)
         if text.lower() != query_text.lower():
-            return f"<span class='near-match'>{text}</span>"
+            return f"<span class='search__near-match'>{text}</span>"
         return match.group(0)
 
     return re.sub(pattern, replacer, snippet_html)
@@ -62,7 +62,9 @@ def add_ellipses(fragment, full_text):
     Handles <span class='query-match'> tags correctly.
     """
     # Remove query highlight tags
-    real_fragment = re.sub(r"<span class=['\"]query-match['\"]>", "", fragment)
+    real_fragment = re.sub(
+        r"<span class=['\"]search__query-match['\"]>", "", fragment
+    )
     real_fragment = real_fragment.replace("</span>", "")
 
     start = full_text.find(real_fragment)

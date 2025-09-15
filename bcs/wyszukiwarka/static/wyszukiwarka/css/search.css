@@ -1,72 +1,62 @@
-/* Container for all search results */
-.search-results {
-  list-style-type: none;
-  padding-left: 0;
-  margin: 0;
-}
-
-/* Each individual result */
-.search-item {
-  margin-bottom: 1em;
-}
-
-/* Text snippet under a search result */
-.snippet {
-  font-size: 0.95em;
-  line-height: 1.4;
-  color: #ccc; /* softer for dark mode */
-}
-
-/* Field name styling */
-.field-name {
-  font-style: italic;
-  font-weight: 500;
-  color: #aaa; /* toned down for dark mode */
-}
-
-.query-match {
-  font-weight: bold;
-  color: #6fcf97; /* muted green */
-  text-shadow: 0 0 4px rgba(111, 207, 151, 0.5); /* soft green glow */
-}
-
-.near-match {
-  color: #e0c75e; /* soft gold */
-  text-shadow: 0 0 4px rgba(224, 199, 94, 0.5); /* soft yellow glow */
-}
-
-/* Category headers inside results */
-.result-category {
-  font-size: 1.3rem;
-  margin-top: 1.5rem;
-  font-weight: bold;
-  color: #75ce7a; /* gentle green for dark mode */
-  border-bottom: 2px solid #555; /* darker border for dark mode */
-  padding-bottom: 0.2rem;
-}
-
-/* List of results under a category */
-.result-list {
+.search__results {
   list-style: none;
   margin: 0;
   padding: 0;
 }
-
-.result-list li {
+.search__item {
+  margin-bottom: 1em;
+}
+.search__item .search__snippet {
+  font-size: 0.95em;
+  line-height: 1.4;
+  color: #ccc;
+}
+.search__item .search__field {
+  font-style: italic;
+  font-weight: 500;
+  color: #aaa;
+}
+.search__item .search__query-match {
+  font-weight: bold;
+  color: #6fcf97;
+  text-shadow: 0 0 4px rgba(111, 207, 151, 0.5);
+}
+.search__item .search__near-match {
+  color: #e0c75e;
+  text-shadow: 0 0 4px rgba(224, 199, 94, 0.5);
+}
+.search__category {
+  font-size: 1.3rem;
+  margin-top: 1.5rem;
+  font-weight: bold;
+  color: #75ce7a;
+  border-bottom: 2px solid #555;
+  padding-bottom: 0.2rem;
+}
+.search__category-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.search__category-list li {
   padding: 0.4rem 0;
 }
-
-/* App section title (clickable toggle) */
-.app-name {
+.search__app-name {
   cursor: pointer;
   user-select: none;
   margin-top: 1.5rem;
-  color: #ccc; /* easier on dark background */
+  color: #ccc;
 }
-
-/* Small [+] or [-] indicator */
-.toggle-indicator {
+.search__app-indicator {
   font-weight: normal;
   margin-left: 0.5rem;
   color: #888;
 }
+.search__app-results {
+  display: none;
+}
+.search__app--open > .search__app-results {
+  display: block;
+}
+
+/*# sourceMappingURL=search.css.map */

@@ -1,0 +1,101 @@
+// =====================
+// Variables
+// =====================
+$color-text-muted: #ccc;
+$color-field: #aaa;
+$color-green: #6fcf97;
+$color-gold: #e0c75e;
+$color-category: #75ce7a;
+$color-border: #555;
+$color-toggle: #888;
+
+// =====================
+// Mixins
+// =====================
+@mixin reset-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+// =====================
+// Search Component
+// =====================
+.search {
+  // ===== Results Container =====
+  &__results {
+    @include reset-list;
+  }
+
+  // ===== Each Result Item =====
+  &__item {
+    margin-bottom: 1em;
+
+    .search__snippet {
+      font-size: 0.95em;
+      line-height: 1.4;
+      color: $color-text-muted;
+    }
+
+    .search__field {
+      font-style: italic;
+      font-weight: 500;
+      color: $color-field;
+    }
+
+    .search__query-match {
+      font-weight: bold;
+      color: $color-green;
+      text-shadow: 0 0 4px rgba($color-green, 0.5);
+    }
+
+    .search__near-match {
+      color: $color-gold;
+      text-shadow: 0 0 4px rgba($color-gold, 0.5);
+    }
+  }
+
+  // ===== Category Section =====
+  &__category {
+    font-size: 1.3rem;
+    margin-top: 1.5rem;
+    font-weight: bold;
+    color: $color-category;
+    border-bottom: 2px solid $color-border;
+    padding-bottom: 0.2rem;
+  }
+
+  &__category-list {
+    @include reset-list;
+
+    li {
+      padding: 0.4rem 0;
+    }
+  }
+
+  // ===== App Section =====
+  &__app {
+    &-name {
+      cursor: pointer;
+      user-select: none;
+      margin-top: 1.5rem;
+      color: $color-text-muted;
+    }
+
+    &-indicator {
+      font-weight: normal;
+      margin-left: 0.5rem;
+      color: $color-toggle;
+    }
+
+    &-results {
+      display: none; // collapsible
+    }
+
+    &--open {
+      & > .search__app-results {
+        display: block;
+      }
+    }
+  }
+}
