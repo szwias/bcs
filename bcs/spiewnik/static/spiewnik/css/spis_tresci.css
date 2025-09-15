@@ -40,6 +40,10 @@ body {
   font-size: 2rem;
 }
 
+.toc__search {
+  margin: 20px;
+}
+
 .toc__category-title {
   display: inline-block; /* inline element, underline only text */
   cursor: pointer;

@@ -1,31 +1,51 @@
 # spiewnik/views.py
 import json
-from unicodedata import category
+from collections import defaultdict
 
 from django.contrib.admin.utils import quote
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
 
+from core.admin import get_pk_from_admin_url
+from wyszukiwarka.utils.search_helpers import search_models
 from .models import Piosenka, KategoriaPiosenki
 
 
 def spis_tresci(request):
-    categories = KategoriaPiosenki.objects.all().order_by("nazwa")
-    songs_by_category = []
+    query = request.GET.get("q", "").strip()
 
-    for category in categories:
-        songs = Piosenka.objects.filter(kategorie=category).order_by("tytul")
-        if songs:
-            songs_by_category.append((category, songs))
+    if query:
+        results_by_app = search_models(query, [Piosenka])
+        songs = results_by_app.get("Śpiewnik", {}).get("Piosenki", [])
 
-    uncategorized = Piosenka.objects.filter(kategorie__isnull=True).order_by(
-        "tytul"
-    )
+        temp_dict = defaultdict(list)
+        for s in songs:
+            song = Piosenka.objects.get(
+                pk=get_pk_from_admin_url(s["admin_url"])
+            )
+            for c in song.kategorie.all():
+                temp_dict[c].append(song)
+
+        # Convert to list of tuples
+        songs_by_category = [(c, temp_dict[c]) for c in temp_dict]
+        uncategorized = temp_dict.get("Bez kategorii", [])
+
+    else:
+        categories = KategoriaPiosenki.objects.all().order_by("nazwa")
+        songs_by_category = [
+            (c, Piosenka.objects.filter(kategorie=c).order_by("tytul"))
+            for c in categories
+            if Piosenka.objects.filter(kategorie=c).exists()
+        ]
+        uncategorized = Piosenka.objects.filter(
+            kategorie__isnull=True
+        ).order_by("tytul")
 
     return render(
-        request=request,
-        template_name="spiewnik/spis_tresci.html",
-        context={
+        request,
+        "spiewnik/spis_tresci.html",
+        {
+            "query": query,
             "songs_by_category": songs_by_category,
             "uncategorized": uncategorized,
         },
