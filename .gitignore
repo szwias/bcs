@@ -1,0 +1,28 @@
+.venv/
+.env
+.gitignore
+# project files
+__pycache__/
+*.pyc
+*.log
+.DS_Store
+*.swp
+.idea/
+# text
+bcs/sources_to_models.py
+bcs/test_file.py
+bcs/test_file
+*.txt
+# stats
+stats/
+# assets
+bcs/media/
+bcs/staticfiles/
+bcs/drzewo/trees/
+*.png
+# sql
+bcs/baza/baza_*.sql
+bcs/baza/backups/
+# scss
+*.map
+
