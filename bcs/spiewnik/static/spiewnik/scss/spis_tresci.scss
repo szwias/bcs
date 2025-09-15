@@ -1,0 +1,129 @@
+// =====================
+// Variables
+// =====================
+$color-primary: #2c3e50;
+$color-accent: #2980b9;
+$color-bg: #f9f9f9;
+$color-text: #333;
+$color-muted: #6d7987;
+
+// =====================
+// Mixins
+// =====================
+@mixin title-styles($size: 2rem) {
+  font-size: $size;
+  text-align: center;
+  user-select: none;
+}
+
+@mixin link-hover {
+  &:hover {
+    color: $color-accent;
+    border-bottom-color: $color-accent;
+  }
+}
+
+@mixin category-title-styles {
+  display: inline-block;
+  cursor: pointer;
+  color: $color-primary;
+  margin: 5px 0;
+  font-size: 1.2rem;
+  text-align: center;
+  border-bottom: 2px solid transparent;
+  transition: color 0.2s, border-bottom-color 0.2s;
+  user-select: none;
+}
+
+@mixin list-styles {
+  text-align: center;
+  display: none;
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+// =====================
+// Base Styles
+// =====================
+body {
+  font-family: "Segoe UI", Tahoma, sans-serif;
+  background: $color-bg;
+  color: $color-text;
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+}
+
+// =====================
+// Table of Contents Block
+// =====================
+.toc {
+  text-align: center;
+
+  &__title {
+    @include title-styles();
+    margin-bottom: 30px;
+  }
+
+  &__search {
+    margin: 20px;
+  }
+
+  &__category-title {
+    @include category-title-styles;
+    @include link-hover;
+  }
+
+  &__list {
+    @include list-styles;
+  }
+
+  &__item {
+    margin: 4px 0;
+  }
+
+  &__link {
+    color: $color-accent;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  &__uncategorized {
+    margin-top: 40px;
+    text-align: center;
+  }
+
+  // Modifier for limited TOC
+  &--limited {
+    &__title-link {
+      @include title-styles();
+      display: inline-block;
+      cursor: pointer;
+      color: $color-primary;
+      text-decoration: none;
+      border-bottom: 2px solid transparent;
+      transition: color 0.2s, border-bottom-color 0.2s;
+      @include link-hover;
+    }
+
+    &__category-title {
+      @include category-title-styles;
+    }
+
+    &__list {
+      @include list-styles;
+    }
+  }
+}
+
+// =====================
+// Toggle / Indicator
+// =====================
+.toggle-indicator {
+  font-weight: bold;
+  color: $color-muted;
+}

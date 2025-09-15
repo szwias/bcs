@@ -1,4 +1,48 @@
 /* ===========================
+   Variables
+=========================== */
+/* ===========================
+   Mixins / Utilities
+=========================== */
+.u-hover-blue,
+.belt__link,
+.song__category-link {
+  transition: color 0.2s, border-bottom-color 0.2s, background 0.2s;
+  cursor: pointer;
+}
+.u-hover-blue:hover,
+.belt__link:hover,
+.song__category-link:hover {
+  color: #2980b9;
+  border-bottom-color: #2980b9;
+}
+
+.u-hover-blue-button,
+.song__edit-button {
+  transition: color 0.2s, border-bottom-color 0.2s, background 0.2s;
+  cursor: pointer;
+}
+.u-hover-blue-button:hover,
+.song__edit-button:hover {
+  color: #2980b9;
+  border-bottom-color: #2980b9;
+  background-color: #2980b9;
+}
+
+.u-no-underline,
+.belt__link,
+.song__edit-button,
+.song__category-link,
+.song__back-link a {
+  text-decoration: none;
+}
+
+.u-float-right,
+.song__edit-button--right {
+  float: right;
+}
+
+/* ===========================
    Global Styles
 =========================== */
 body {
@@ -10,41 +54,53 @@ body {
   max-width: 1000px;
   margin: auto;
 }
-
-h1,
-h2 {
+body h1,
+body h2 {
   text-align: center;
   margin-bottom: 0.5em;
 }
-
-h1 {
+body h1 {
   font-size: 2.5em;
   color: #2c3e50;
 }
-
-h2 {
+body h2 {
   font-size: 1.2em;
   color: #555;
   margin-top: 0.2em;
 }
 
 /* ===========================
-   Song Page Container
+   Song Container
 =========================== */
 .song {
   max-width: 1000px;
   margin: 0 auto;
   padding: 0 10px;
 }
-
-/* ===========================
-   Song Header
-=========================== */
 .song__header {
   margin-top: 40px;
   margin-bottom: 20px;
+  text-align: center;
 }
-
+.song__header-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 10px;
+  padding: 0 15px;
+}
+.song__back-link {
+  text-align: left;
+  margin-bottom: 10px;
+}
+.song__back-link a {
+  color: #2980b9;
+  font-size: 0.9rem;
+}
+.song__back-link a:hover {
+  text-decoration: underline;
+}
 .song__category {
   font-size: 1em;
   font-weight: bold;
@@ -53,45 +109,19 @@ h2 {
   line-height: 1.5;
   text-align: center;
 }
-
 .song__category-link {
   display: inline-block;
-  cursor: pointer;
-  transition: color 0.2s, border-bottom-color 0.2s;
+  font-size: 1rem;
+  color: #2c3e50;
   border-bottom: 2px solid transparent;
   user-select: none;
-  color: #2c3e50;
-  font-size: 1rem;
-  text-decoration: none; /* remove default underline */
 }
-
-.song__category-link:hover {
-  color: #2980b9;
-  border-bottom-color: #2980b9;
-}
-
 .song__title {
   font-size: 2.2em;
   font-weight: bold;
   color: #1a1a1a;
   margin: 0 0 8px 0;
 }
-
-.song__header-row {
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-  align-items: center;
-  margin-bottom: 10px;
-  padding: 0 15px; /* match lyrics box padding */
-}
-
-.song__authors-label {
-  font-style: italic;
-  font-weight: bold;
-  color: white;
-}
-
 .song__authors {
   display: flex;
   justify-content: center;
@@ -102,41 +132,23 @@ h2 {
   text-align: center;
   margin-bottom: 20px;
 }
-
+.song__authors-label {
+  font-style: italic;
+  font-weight: bold;
+  color: #fff;
+}
 .song__authors-people {
   color: #555;
 }
-
 .song__edit-button {
-  background: #3498db;
+  background: #2980b9;
   color: #fff;
   padding: 4px 10px;
   border-radius: 4px;
-  text-decoration: none;
   font-size: 0.9em;
 }
-
 .song__invisible-button {
   visibility: hidden;
-}
-
-.song__edit-button:hover {
-  background: #2980b9;
-}
-
-.song__back-link {
-  text-align: left;
-  margin-bottom: 10px;
-}
-
-.song__back-link a {
-  text-decoration: none;
-  color: #2980b9;
-  font-size: 0.9rem;
-}
-
-.song__back-link a:hover {
-  text-decoration: underline;
 }
 
 /* ===========================
@@ -146,64 +158,46 @@ h2 {
   margin: 20px 0;
   padding: 10px 0;
 }
-
 .belt__category {
   text-align: center;
-  font-size: 1rem; /* slightly bigger */
+  font-size: 1rem;
   color: #2c3e50;
   line-height: 1.5;
 }
-
 .belt__category-label {
   font-weight: bold;
 }
-
 .belt__sections {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
 }
-
-.belt__prev-section,
-.belt__next-section {
+.belt__sections > div {
   display: flex;
   flex-direction: column;
   max-width: 45%;
 }
-
-/* Labels */
 .belt__label {
   font-size: 1rem;
   margin-bottom: 5px;
   color: #2c3e50;
 }
-
-/* Links */
 .belt__link {
   font-size: 0.95rem;
   color: #2980b9;
-  text-decoration: none;
   margin-top: 3px;
 }
-.belt__link:hover {
-  text-decoration: underline;
-}
-
-/* No song */
 .belt__no-song {
   font-size: 0.85rem;
   color: #888;
   margin-top: 3px;
 }
-
-/* Responsive */
 @media (max-width: 600px) {
   .belt__sections {
     flex-direction: column;
     gap: 10px;
   }
-  .belt__prev-section,
-  .belt__next-section {
+  .belt__sections > div {
     max-width: 100%;
   }
 }
@@ -221,33 +215,36 @@ h2 {
   font-family: monospace;
   line-height: 1.2;
 }
-
 .lyrics__line {
   display: grid;
-  grid-template-columns: 60ch 2ch 10ch 2ch 60ch; /* lyrics, spacing, chords, spacing, alt lyrics*/
+  grid-template-columns: 60ch 2ch 10ch 2ch 60ch;
   align-items: flex-start;
   min-height: 1.2em;
   margin-bottom: 2px;
 }
-
-.lyrics__text,
-.lyrics__alt {
+.lyrics__line > .lyrics__text,
+.lyrics__line > .lyrics__alt {
   font-family: monospace;
 }
-
-.lyrics__chords {
+.lyrics__line > .lyrics__chords {
   font-family: monospace;
   text-align: right;
 }
+.lyrics__comment {
+  font-size: 0.75rem;
+  color: #d31515;
+  font-style: italic;
+  font-weight: bolder;
+  line-height: 1.2;
+}
 
 /* ===========================
-   Inline Styles (Highlight, Comments)
+   Inline Highlights
 =========================== */
 mark {
   background-color: #ffeb3b;
   color: #000;
 }
-
 @media (prefers-color-scheme: dark) {
   mark {
     background-color: #555;
@@ -255,15 +252,4 @@ mark {
   }
 }
 
-.lyrics__comment {
-  font-size: 0.75rem;
-  color: #d31515;
-  font-style: italic;
-  line-height: 1.2;
-  font-weight: bolder;
-}
-
-/* Utility */
-.song__edit-button--right {
-  float: right;
-}
+/*# sourceMappingURL=piosenka.css.map */

@@ -18,20 +18,20 @@
             <h2>Results for "{{ query }}"</h2>
             {% if results_by_app %}
                 {% for app_name, categories in results_by_app.items %}
-                    <div class="app-section">
-                        <h2 class="app-name" onclick="toggleSection(this)">
+                    <div class="search__app">
+                        <h2 class="search__app-name" onclick="toggleSection(this)">
                             {{ app_name|capfirst }}
-                            <span class="toggle-indicator">[+]</span>
+                            <span class="search__app-indicator">[+]</span>
                         </h2>
-                        <div class="app-results" style="display: none">
+                        <div class="search__app-results">
                             {% for category_name, items in categories.items %}
-                                <h3 class="result-category">{{ category_name }}</h3>
-                                <ul class="result-list">
+                                <h3 class="search__category">{{ category_name }}</h3>
+                                <ul class="search__category-list">
                                     {% for result in items %}
-                                        <li>
+                                        <li class="search__item">
                                             <a href="{{ result.admin_url }}"><strong>{{ result.title }}</strong></a>
                                             <br />
-                                            {{ result.snippet|safe }}
+                                            <span class="search__snippet">{{ result.snippet|safe }}</span>
                                         </li>
                                     {% endfor %}
                                 </ul>
@@ -43,6 +43,6 @@
                 <p>No results found.</p>
             {% endif %}
         {% endif %}
-        <script src="{% static 'js/base.js' %}"></script>
+        <script src="{% static 'wyszukiwarka/js/search.js' %}"></script>
     </body>
 </html>

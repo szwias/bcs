@@ -1,12 +1,13 @@
 {% extends "spiewnik/spis_tresci_layout.html" %}
 {% block title %}
     <h1>
-        <a href="{% url 'spiewnik:spis_tresci' %}" class="ltoc__title-link">Spis treści</a>
+        <a href="{% url 'spiewnik:spis_tresci' %}"
+           class="toc--limited__title-link">Spis treści</a>
     </h1>
 {% endblock %}
 {% block categorized_songs %}
     <div class="category">
-        <h2 class="ltoc__category-title">{{ category.nazwa }}</h2>
+        <h2 class="toc--limited__category-title">{{ category.nazwa }}</h2>
         <ul class="toc__list" style="display: block;">
             {% for song in songs %}
                 <li class="toc__item">

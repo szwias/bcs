@@ -7,69 +7,33 @@ body {
   padding: 20px;
 }
 
-/* Limited Table of Contents wrapper */
-.ltoc {
-  text-align: center;
-}
-
-/* Table of Contents wrapper */
 .toc {
   text-align: center;
 }
-
-.ltoc__title-link {
-  display: inline-block;
-  cursor: pointer;
-  transition: color 0.2s, border-bottom-color 0.2s;
-  border-bottom: 2px solid transparent;
-  user-select: none;
-  color: #2c3e50;
-  font-size: 2rem;
-  text-decoration: none; /* remove default underline */
-}
-
-.ltoc__title-link:hover {
-  color: #2980b9;
-  border-bottom-color: #2980b9;
-}
-
-/* Title */
 .toc__title {
-  text-align: center;
-  margin-bottom: 30px;
   font-size: 2rem;
+  text-align: center;
+  user-select: none;
+  margin-bottom: 30px;
 }
-
 .toc__search {
   margin: 20px;
 }
-
 .toc__category-title {
-  display: inline-block; /* inline element, underline only text */
-  cursor: pointer;
-  transition: color 0.2s, border-bottom-color 0.2s;
-  border-bottom: 2px solid transparent;
-  user-select: none;
-  color: #2c3e50;
-  margin: 5px 0;
-  font-size: 1.2rem;
-  text-align: center; /* parent should have text-align: center */
-}
-
-.ltoc__category-title {
   display: inline-block;
+  cursor: pointer;
   color: #2c3e50;
   margin: 5px 0;
   font-size: 1.2rem;
   text-align: center;
+  border-bottom: 2px solid transparent;
+  transition: color 0.2s, border-bottom-color 0.2s;
+  user-select: none;
 }
-
 .toc__category-title:hover {
   color: #2980b9;
-  border-bottom-color: #2980b9; /* underline appears on hover */
+  border-bottom-color: #2980b9;
 }
-
-/* Song list styles */
 .toc__list {
   text-align: center;
   display: none;
@@ -77,9 +41,47 @@ body {
   padding-left: 0;
   margin: 0;
 }
-
-/* Song list styles */
-.ltoc__list {
+.toc__item {
+  margin: 4px 0;
+}
+.toc__link {
+  color: #2980b9;
+  text-decoration: none;
+}
+.toc__link:hover {
+  text-decoration: underline;
+}
+.toc__uncategorized {
+  margin-top: 40px;
+  text-align: center;
+}
+.toc--limited__title-link {
+  font-size: 2rem;
+  text-align: center;
+  user-select: none;
+  display: inline-block;
+  cursor: pointer;
+  color: #2c3e50;
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  transition: color 0.2s, border-bottom-color 0.2s;
+}
+.toc--limited__title-link:hover {
+  color: #2980b9;
+  border-bottom-color: #2980b9;
+}
+.toc--limited__category-title {
+  display: inline-block;
+  cursor: pointer;
+  color: #2c3e50;
+  margin: 5px 0;
+  font-size: 1.2rem;
+  text-align: center;
+  border-bottom: 2px solid transparent;
+  transition: color 0.2s, border-bottom-color 0.2s;
+  user-select: none;
+}
+.toc--limited__list {
   text-align: center;
   display: none;
   list-style: none;
@@ -87,26 +89,9 @@ body {
   margin: 0;
 }
 
-.toc__item {
-  margin: 4px 0;
-}
-
-.toc__link {
-  text-decoration: none;
-  color: #2980b9;
-}
-
-.toc__link:hover {
-  text-decoration: underline;
-}
-
-/* Uncategorized block */
-.toc__uncategorized {
-  margin-top: 40px;
-  text-align: center;
-}
-
 .toggle-indicator {
-  font-weight: normal; /* remove bold */
+  font-weight: bold;
   color: #6d7987;
 }
+
+/*# sourceMappingURL=spis_tresci.css.map */
