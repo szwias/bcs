@@ -1,0 +1,1 @@
+/home/szymon/Desktop/bcs/bcs/wyszukiwarka/management/commands/backfill_searchable_models.py
