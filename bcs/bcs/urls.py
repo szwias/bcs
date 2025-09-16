@@ -23,8 +23,9 @@ from django.conf import settings
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("_nested_admin/", include("nested_admin.urls")),
-    path("wyszukiwarka/", include("wyszukiwarka.urls")),
     path("spiewnik/", include("spiewnik.urls")),
+    path("miejsca/", include("miejsca.urls")),
+    path("wyszukiwarka/", include("wyszukiwarka.urls")),
     path(
         "autocomplete/czapki",
         include("czapki.autocomplete_urls", "czapki_autocomplete"),
