@@ -74,4 +74,18 @@ class MiejsceForm(forms.ModelForm):
         return instance
 
 
+class TypMiejscaForm(forms.ModelForm):
+    class Meta:
+        model = TypMiejsca
+        fields = "__all__"
+        widgets = build_widgets(autocomplete_widgets[TypMiejsca.__name__])
+        widgets.update(
+            {
+                "emoji": forms.TextInput(
+                    attrs={"placeholder": "🏔️, 🍽️, 🎓 etc."}
+                ),
+            }
+        )
+
+
 model_forms = create_model_forms(autocomplete_widgets)
