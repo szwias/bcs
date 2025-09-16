@@ -1,6 +1,11 @@
 import requests
 
-from core.utils.Lengths import MAX_LENGTH, SHORT_LENGTH, MEDIUM_LENGTH
+from core.utils.Lengths import (
+    MAX_LENGTH,
+    SHORT_LENGTH,
+    MEDIUM_LENGTH,
+    EMOJI_LENGTH,
+)
 from wyszukiwarka.models import SearchableModel
 from wyszukiwarka.utils.Search import *
 
@@ -89,13 +94,21 @@ class TypMiejsca(SearchableModel):
         max_length=MEDIUM_LENGTH, verbose_name="Typ miejsca"
     )
 
+    emoji = models.CharField(
+        max_length=EMOJI_LENGTH,
+        blank=True,
+        null=True,
+        verbose_name="Emoji",
+    )
+
     class Meta:
         verbose_name = "Typ miejsca"
         verbose_name_plural = "Typy miejsc"
         ordering = ["nazwa"]
 
     def __str__(self):
-        return self.nazwa
+        emoji = f"{self.emoji} " if self.emoji else ""
+        return emoji + self.nazwa
 
 
 class Uczelnia(SearchableModel):
