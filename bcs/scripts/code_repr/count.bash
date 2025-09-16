@@ -69,7 +69,7 @@ START="\033[38;5;"
 RESET="\033[0m"
 
 declare -A hex_lang_colors=(
-  ["PLpgSQL"]="#336790"
+  ["PLpgSQL"]="#E38C00"
   ["Python"]="#3572A5"
   ["Bash"]="#89E051"
   ["HTML"]="#E34C26"
