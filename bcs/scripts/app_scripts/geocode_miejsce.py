@@ -1,0 +1,1 @@
+/home/szymon/Desktop/bcs/bcs/miejsca/management/commands/geocode_miejsce.py
