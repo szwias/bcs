@@ -1,3 +1,5 @@
+import requests
+
 from core.utils.Lengths import MAX_LENGTH, SHORT_LENGTH, MEDIUM_LENGTH
 from wyszukiwarka.models import SearchableModel
 from wyszukiwarka.utils.Search import *
@@ -26,7 +28,15 @@ class Miejsce(SearchableModel):
     adres = models.CharField(
         max_length=MAX_LENGTH,
         blank=True,
+        null=True,
         verbose_name="Adres (wystarczy skopiować z Googla)",
+    )
+
+    niestandardowy_adres = models.CharField(
+        max_length=MAX_LENGTH,
+        blank=True,
+        null=True,
+        verbose_name="Adres niestandardowy (niezrozumiały dla map)",
     )
 
     typ = models.ForeignKey(
@@ -41,6 +51,9 @@ class Miejsce(SearchableModel):
         default=False, verbose_name="Zamknięte na stałe"
     )
 
+    latitude = models.FloatField(blank=True, null=True, editable=False)
+    longitude = models.FloatField(blank=True, null=True, editable=False)
+
     class Meta:
         verbose_name = "Miejsce"
         verbose_name_plural = "Miejsca"
@@ -48,6 +61,26 @@ class Miejsce(SearchableModel):
 
     def __str__(self):
         return f"{self.nazwa} - {str(self.typ)}, {self.adres}"
+
+    def geocode_address(self):
+        """
+        Fill latitude and longitude from self.adres using Nominatim.
+        """
+        if not self.adres:
+            return None
+
+        url = "https://nominatim.openstreetmap.org/search"
+        params = {"q": self.adres, "format": "json", "limit": 1}
+        response = requests.get(
+            url, params=params, headers={"User-Agent": "django-miejsca-app"}
+        )
+        if response.status_code == 200 and response.json():
+            result = response.json()[0]
+            self.latitude = float(result["lat"])
+            self.longitude = float(result["lon"])
+            self.save()
+            return self.latitude, self.longitude
+        return None
 
 
 class TypMiejsca(SearchableModel):
