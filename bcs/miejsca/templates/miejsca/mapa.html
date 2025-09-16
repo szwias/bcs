@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pl">
+    <head>
+        <meta charset="utf-8">
+        <title>Miejsca Map</title>
+        <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+        <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    </head>
+    <body>
+        <h1>Miejsca</h1>
+        <div id="map" style="height: 600px;"></div>
+        <script>
+    let map = L.map('map').setView([52.0, 19.0], 6); // Poland center
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    fetch("{% url 'miejsca:miejsca_map_data' %}")
+      .then(response => response.json())
+      .then(data => {
+        data.forEach(function(m) {
+          if (m.latitude && m.longitude) {
+              if (m.closed)
+            L.marker([m.latitude, m.longitude])
+              .addTo(map)
+              .bindPopup("<b>" + m.nazwa + "</b><br />" + m.adres + "<br />" + m.typ);
+          }
+        });
+      });
+        </script>
+    </body>
+</html>
