@@ -21,7 +21,6 @@
       .then(data => {
         data.forEach(function(m) {
           if (m.latitude && m.longitude) {
-              if (m.closed)
             L.marker([m.latitude, m.longitude])
               .addTo(map)
               .bindPopup("<b>" + m.nazwa + "</b><br />" + m.adres + "<br />" + m.typ);
