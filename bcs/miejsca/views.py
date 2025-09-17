@@ -1,15 +1,21 @@
+# miejsca/views.py
 from django.shortcuts import render
 from django.http import JsonResponse
 
+from bcs import settings
 from .models import Miejsce
 
 
-def miejsca_map(request):
+def mapa(request):
     # Just renders the HTML template with the map
-    return render(request, "miejsca/mapa.html")
+    return render(
+        request,
+        "miejsca/mapa.html",
+        {"google_maps_api_key": settings.GOOGLE_MAPS_API_KEY},
+    )
 
 
-def miejsca_map_data(request):
+def mapa_dane(request):
     miejsca_qs = Miejsce.objects.filter(
         latitude__isnull=False, longitude__isnull=False
     ).select_related(
@@ -23,7 +29,8 @@ def miejsca_map_data(request):
                 "id": m.id,
                 "nazwa": m.nazwa,
                 "adres": m.adres,
-                "typ": str(m.typ) if m.typ else None,  # <-- str(typ) here
+                "typ": str(m.typ) if m.typ else None,
+                "emoji": m.typ.emoji if m.typ else "📍",
                 "closed": m.zamkniete_na_stale,
                 "latitude": m.latitude,
                 "longitude": m.longitude,

@@ -5,6 +5,6 @@ from . import views
 app_name = "miejsca"
 
 urlpatterns = [
-    path("map/", views.miejsca_map, name="miejsca_map"),
-    path("map/data/", views.miejsca_map_data, name="miejsca_map_data"),
+    path("mapa/", views.mapa, name="mapa"),
+    path("mapa/dane/", views.mapa_dane, name="mapa_dane"),
 ]

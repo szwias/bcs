@@ -2,7 +2,7 @@
 # -----------------------------------------------------------------------------
 # Script: add
 # Description:
-#   Format all shell scripts from bcs/scripts/code_repr, copy them to .venv/bin/
+#   Format all shell scripts from bcs/scripts/commands, copy them to .venv/bin/
 #   and make them executable
 #
 # Usage: add
@@ -15,7 +15,7 @@ cd "$repo_root/" || exit 1
 
 venv_bin=".venv/bin"
 symlink_dir="bcs/scripts"
-scripts_dir="bcs/scripts/code_repr"
+scripts_dir="bcs/scripts/commands"
 
 mkdir -p "$venv_bin" "$symlink_dir"
 
