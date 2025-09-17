@@ -71,7 +71,8 @@ START="\033[38;5;"
 RESET="\033[0m"
 
 declare -A hex_lang_colors=(
-  ["PLpgSQL"]="#E38C00"
+  ["PLpgSQL"]="#336790"
+  ["SQL"]="#E38C00"
   ["Python"]="#3572A5"
   ["Bash"]="#89E051"
   ["HTML"]="#E34C26"
@@ -82,7 +83,8 @@ declare -A hex_lang_colors=(
 )
 
 declare -A lang_colors=(
-  ["PLpgSQL"]=172
+  ["PLpgSQL"]=24
+  ["SQL"]=172
   ["Python"]=25
   ["Bash"]=113
   ["HTML"]=166
