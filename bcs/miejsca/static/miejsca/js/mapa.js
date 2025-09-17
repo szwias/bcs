@@ -6,7 +6,7 @@ async function initMap() {
 
   map = new Map(document.getElementById("map"), {
     center: { lat: -34.397, lng: 150.644 },
-    zoom: 6,
+    zoom: 6, // default zoom for initial view
   });
 
   infoWindow = new InfoWindow();
@@ -27,10 +27,18 @@ async function initMap() {
           infoWindow.setPosition(pos);
           infoWindow.setContent("Location found.");
           infoWindow.open(map);
+
+          // Pan and zoom into street level
           map.setCenter(pos);
+          map.setZoom(17); // street-level zoom
         },
         () => {
           handleLocationError(true, infoWindow, map.getCenter());
+        },
+        {
+          enableHighAccuracy: true, // optional, gets better GPS on mobile
+          timeout: 10000,
+          maximumAge: 0,
         }
       );
     } else {
