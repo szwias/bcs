@@ -19,6 +19,7 @@ stats/
 bcs/media/
 bcs/staticfiles/
 bcs/drzewo/trees/
+bcs/node_modules/
 *.png
 # sql
 bcs/baza/baza_*.sql
