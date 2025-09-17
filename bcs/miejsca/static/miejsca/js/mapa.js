@@ -2,11 +2,12 @@ let map, infoWindow;
 
 async function initMap() {
   // Import the needed library
-  const { Map, InfoWindow } = await google.maps.importLibrary("maps");
+  const { Map, InfoWindow, Marker } = await google.maps.importLibrary("maps");
 
   map = new Map(document.getElementById("map"), {
-    center: { lat: -34.397, lng: 150.644 },
-    zoom: 6, // default zoom for initial view
+    center: { lat: -34.397, lng: 150.644 }, // default center
+    zoom: 6,
+    gestureHandling: "greedy",
   });
 
   infoWindow = new InfoWindow();
