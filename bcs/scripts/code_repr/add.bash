@@ -3,7 +3,7 @@
 # Script: add
 # Description:
 #   Format all shell scripts from bcs/scripts/code_repr, copy them to .venv/bin/
-#   and make executable; create symlinks to those executables in bcs/scripts/
+#   and make them executable
 #
 # Usage: add
 # -----------------------------------------------------------------------------
@@ -37,8 +37,5 @@ for file in "$scripts_dir"/*; do
   chmod +x "$venv_bin/$name"
   echo "✅ Created CLI command: $name"
 
-  # Create symlink
-  ln -sf "$(realpath "$venv_bin/$name")" "$symlink_dir/$name"
-  echo "🔗 Created symlink: $symlink_dir/$name"
 done
 shopt -u nullglob
