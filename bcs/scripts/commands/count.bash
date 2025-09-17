@@ -12,21 +12,23 @@ repo_root=$(git rev-parse --show-toplevel)
 cd "$repo_root/bcs/" || exit 1
 
 if $tracked; then
-  plpgsql_lines=$(find . -name '*.sql' \
-    ! -path '*/backups/*' \
-    ! -path '*/baza/baza*.sql' \
-    -exec cat {} + | wc -l)
-
   json_lines=$(find . -name '*.json' \
     ! -path '*/media/*' \
     -exec cat {} + | wc -l)
+
+  sql_lines=0
 else
-  plpgsql_lines=$(find . -name '*.sql' \
+  json_lines=$(find . -name '*.json' -exec cat {} + | wc -l)
+
+  sql_lines=$(find ./baza -type f -name 'baza_*_*.sql' \
     ! -path '*/backups/*' \
     -exec cat {} + | wc -l)
-
-  json_lines=$(find . -name '*.json' -exec cat {} + | wc -l)
 fi
+
+plpgsql_lines=$(find . -name '*.sql' \
+  ! -path '*/backups/*' \
+  ! -path '*/baza/baza*.sql' \
+  -exec cat {} + | wc -l)
 
 python_lines=$(find . -name '*.py' \
   ! -path '*/migrations/*' \
@@ -51,8 +53,8 @@ js_lines=$(find . -name '*.js' \
 
 # Totals
 backend_lines=$((python_lines))
-database_lines=$((plpgsql_lines))
-management_lines=$((bash_lines))
+database_lines=$((sql_lines))
+management_lines=$((bash_lines + plpgsql_lines))
 if $tracked; then
   frontend_lines=$((html_lines + scss_lines + js_lines))
 else
@@ -121,7 +123,7 @@ print_group() {
 if $tracked; then
   langs=(PLpgSQL Python Bash HTML SCSS JS)
 else
-  langs=(PLpgSQL Python Bash HTML SCSS CSS JS JSON)
+  langs=(PLpgSQL SQL Python Bash HTML SCSS CSS JS JSON)
 fi
 
 declare -a lang_list
@@ -147,18 +149,17 @@ done
 declare -a group_list
 if $tracked; then
   declare -A group_langs=(
-    ["Database"]="PLpgSQL"
     ["Backend"]="Python"
     ["Frontend"]="HTML SCSS JS"
-    ["Management"]="Bash"
+    ["Management"]="Bash PLpgSQL"
   )
 else
   declare -A group_langs=(
-    ["Database"]="PLpgSQL"
+    ["Database"]="SQL"
     ["Backend"]="Python"
     ["Frontend"]="HTML SCSS CSS JS"
     ["Media"]="JSON"
-    ["Management"]="Bash"
+    ["Management"]="Bash PLpgSQL"
   )
 fi
 
@@ -168,6 +169,7 @@ get_group_color() {
   local max_lang=""
   local max_lines=0
   for lang in ${group_langs[$group]}; do
+    #    echo lang
     local lines_var="${lang,,}_lines"
     local lines="${!lines_var:-0}"
     if ((lines > max_lines)); then
@@ -183,7 +185,7 @@ get_group_color() {
 }
 
 if $tracked; then
-  groups=(Database Backend Frontend Management)
+  groups=(Backend Frontend Management)
 else
   groups=(Database Backend Frontend Media Management)
 fi
