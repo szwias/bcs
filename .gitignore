@@ -26,4 +26,5 @@ bcs/baza/baza_*.sql
 bcs/baza/backups/
 # scss
 *.map
-
+# ngrok
+*/.ngrok_*
