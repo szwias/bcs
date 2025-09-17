@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/5.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
-
+import requests
 from decouple import config, Csv
 from pathlib import Path
 
@@ -29,6 +29,20 @@ DEBUG = config("DEBUG", default=False, cast=bool)
 
 ALLOWED_HOSTS = config("ALLOWED_HOSTS", cast=Csv(), default=[])
 
+# 👇 Automatically add ngrok host in DEBUG mode
+if DEBUG:
+    try:
+        # ngrok's local API runs on 4040
+        resp = requests.get("http://127.0.0.1:4040/api/tunnels").json()
+        tunnels = resp.get("tunnels", [])
+        for tunnel in tunnels:
+            public_url = tunnel.get("public_url", "")
+            if public_url.startswith("https://"):
+                hostname = public_url.replace("https://", "").split("/")[0]
+                ALLOWED_HOSTS.append(hostname)
+    except Exception as e:
+        # ignore if ngrok isn't running
+        print(f"⚠️ Could not fetch ngrok tunnel: {e}")
 
 # Application definition
 
