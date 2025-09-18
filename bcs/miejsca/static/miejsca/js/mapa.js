@@ -18,6 +18,24 @@ async function initMap() {
   locationButton.classList.add("custom-map-control-button");
   map.controls[google.maps.ControlPosition.TOP_CENTER].push(locationButton);
 
+  // Function to animate zoom incrementally
+  function animateMapZoomTo(map, targetZoom, currentZoom) {
+    currentZoom = currentZoom || map.getZoom();
+    if (currentZoom != targetZoom) {
+      google.maps.event.addListenerOnce(map, "zoom_changed", function () {
+        animateMapZoomTo(
+          map,
+          targetZoom,
+          currentZoom + (targetZoom > currentZoom ? 1 : -1)
+        );
+      });
+      setTimeout(function () {
+        map.setZoom(currentZoom);
+      }, 80); // adjust delay for speed/smoothness
+    }
+  }
+
+  // Your location button handler
   locationButton.addEventListener("click", () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
@@ -26,13 +44,17 @@ async function initMap() {
             lat: position.coords.latitude,
             lng: position.coords.longitude,
           };
+
+          // Show info window
           infoWindow.setPosition(pos);
-          infoWindow.setContent("Jesteś tu");
+          infoWindow.setContent("Location found.");
           infoWindow.open(map);
 
-          // Pan and zoom into street level
-          map.setCenter(pos);
-          map.setZoom(17); // street-level zoom
+          // Smoothly pan to user location
+          map.panTo(pos);
+
+          // Animate zoom to target
+          animateMapZoomTo(map, 14); // desired zoom level
         },
         () => handleLocationError(true, infoWindow, map.getCenter())
       );
@@ -71,14 +93,12 @@ async function loadMarkers() {
         title: m.nazwa,
         icon: {
           url: `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(`
-        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="60" viewBox="0 0 24 24">
-          <!-- red pin -->
-          <path d="M12 2C8.1 2 5 5.1 5 9c0 5.3 7 13 7 13s7-7.7 7-13c0-3.9-3.1-7-7-7z" fill="#d00"/>
-          <!-- emoji centered and scaled smaller -->
-          <text x="12" y="10" font-size="8" text-anchor="middle" dominant-baseline="middle">${m.emoji}</text>
-        </svg>
-      `)}`,
-          scaledSize: new google.maps.Size(50, 60),
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+      <path d="M12 2C8.1 2 5 5.1 5 9c0 5.3 7 13 7 13s7-7.7 7-13c0-3.9-3.1-7-7-7z" fill="#d00"/>
+      <text x="12" y="10" font-size="8" text-anchor="middle" dominant-baseline="middle">${m.emoji}</text>
+    </svg>
+  `)}`,
+          scaledSize: new google.maps.Size(50, 60), // final display size
         },
       });
 
