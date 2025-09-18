@@ -45,16 +45,69 @@ async function initMap() {
             lng: position.coords.longitude,
           };
 
-          // Show info window
-          infoWindow.setPosition(pos);
-          infoWindow.setContent("Location found.");
-          infoWindow.open(map);
+          // Remove previous blue dot if it exists
+          if (window.userMarker) window.userMarker.setMap(null);
 
-          // Smoothly pan to user location
+          // Base blue dot marker
+          window.userMarker = new google.maps.Marker({
+            position: pos,
+            map: map,
+            clickable: false,
+            icon: {
+              path: google.maps.SymbolPath.CIRCLE,
+              fillColor: "#4285F4",
+              fillOpacity: 1,
+              strokeColor: "white",
+              strokeWeight: 2,
+              scale: 8,
+            },
+          });
+
+          // Smoothly pan and zoom
           map.panTo(pos);
+          animateMapZoomTo(map, 14);
 
-          // Animate zoom to target
-          animateMapZoomTo(map, 14); // desired zoom level
+          // DeviceOrientationEvent for mobile heading
+          function setupDeviceOrientation() {
+            if (!window.DeviceOrientationEvent) return;
+
+            // iOS 13+ requires permission
+            if (
+              typeof DeviceOrientationEvent.requestPermission === "function"
+            ) {
+              DeviceOrientationEvent.requestPermission()
+                .then((state) => {
+                  if (state === "granted") {
+                    window.addEventListener("deviceorientation", updateHeading);
+                  }
+                })
+                .catch(console.error);
+            } else {
+              // Other devices
+              window.addEventListener("deviceorientation", updateHeading);
+            }
+          }
+
+          function updateHeading(event) {
+            const alpha = event.alpha; // 0–360 degrees
+            if (alpha !== null && window.userMarker) {
+              // Convert to Google Maps rotation:
+              // invert the angle and wrap around 0–360
+              const rotation = (360 - alpha) % 360;
+
+              window.userMarker.setIcon({
+                path: "M 0,-1 L 0.5,1 L -0.5,1 Z", // small triangle
+                fillColor: "#4285F4",
+                fillOpacity: 1,
+                strokeColor: "white",
+                strokeWeight: 1,
+                scale: 12,
+                rotation: rotation,
+              });
+            }
+          }
+
+          setupDeviceOrientation();
         },
         () => handleLocationError(true, infoWindow, map.getCenter())
       );

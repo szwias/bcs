@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/5.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
+
 import os
 
 import requests
@@ -39,7 +40,7 @@ if os.path.exists(ADDR_FILE):
         if ngrok_url:
             hostname = ngrok_url.replace("https://", "").split("/")[0]
             ALLOWED_HOSTS.append(hostname)
-            print(hostname)
+            print("DUPA", hostname)
 
 # Application definition
 
