@@ -54,4 +54,6 @@
 })({
   key: GOOGLE_MAPS_API_KEY, // injected from template
   v: "weekly",
+  language: "pl",
+  region: "PL",
 });

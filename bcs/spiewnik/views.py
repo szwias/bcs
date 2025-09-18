@@ -67,6 +67,7 @@ def spis_tresci_kat(request, category_pk):
 
 
 def piosenka(request, category_pk, pk):
+    # TODO: add link to author if it's a member
     song = Piosenka.objects.get(pk=pk)
     song_category = None
     songs_in_category = []

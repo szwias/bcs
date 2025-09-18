@@ -7,6 +7,10 @@ from .models import Miejsce
 
 
 def mapa(request):
+    # TODO: close info windows by clicking anywhere outside a window
+    # TODO: fix country NULL issue
+    # TODO: add a sidebar with filters
+    # TODO: change starting location to Poland
     # Just renders the HTML template with the map
     return render(
         request,
