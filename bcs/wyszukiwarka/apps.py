@@ -9,6 +9,8 @@ class WyszukiwarkaConfig(AppConfig):
     name = "wyszukiwarka"
 
     def ready(self):
+        import wyszukiwarka.signals
+
         apps_to_index = [
             "czapki",
             "encyklopedia",
@@ -21,6 +23,7 @@ class WyszukiwarkaConfig(AppConfig):
             "prawo",
             "skarbiec",
             "slowniczek_lacinski",
+            "spiewnik",
             "zrodla",
         ]
         register_search(apps_to_index)
