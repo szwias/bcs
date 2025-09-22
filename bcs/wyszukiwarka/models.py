@@ -1,8 +1,9 @@
 from django.contrib.contenttypes.models import ContentType
-from django.contrib.postgres.search import SearchVectorField, SearchVector
+from django.contrib.postgres.fields import ArrayField
+from django.contrib.postgres.search import SearchVectorField
 from django.db import models
-from django.db.models import Value
 from polymorphic.models import PolymorphicModel
+
 
 from wyszukiwarka.managers import (
     SearchableManager,
@@ -12,7 +13,9 @@ from wyszukiwarka.utils.Search import find_searchable_fields
 
 
 class AbstractSearchableModel(models.Model):
-    search_dict = models.JSONField(editable=False, blank=True, default=dict)
+    search_dict = models.JSONField(
+        editable=False, blank=True, null=True, default=dict
+    )
     simple_tsv = SearchVectorField(null=True, editable=False)
     tsv = SearchVectorField(null=True, editable=False)
 
@@ -20,13 +23,6 @@ class AbstractSearchableModel(models.Model):
 
     class Meta:
         abstract = True
-
-    def save(self, *args, **kwargs):
-        self.search_dict = self._create_search_dict()
-        flat_text = self._flatten_search_dict()
-        self.simple_tsv = SearchVector(Value(flat_text), config="simple")
-        self.tsv = SearchVector(Value(flat_text), config=self.LANGUAGE)
-        super().save(*args, **kwargs)
 
     def _flatten_search_dict(self):
         values = []
@@ -49,6 +45,10 @@ class AbstractSearchableModel(models.Model):
                 continue
             elif isinstance(field, models.ManyToManyField):
                 text_value = ", ".join(str(obj) for obj in value.all())
+                if not text_value:
+                    continue
+            elif isinstance(field, ArrayField):
+                text_value = ", ".join(str(el) for el in value)
                 if not text_value:
                     continue
             else:

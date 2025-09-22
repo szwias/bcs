@@ -34,6 +34,7 @@ def serve_full_tree_form_view(request):
 
 @require_GET
 def serve_scoped_tree_form_view(request):
+    # TODO: add option of not showing first parent if there's a second one
     form = ScopedTreeRenderForm(request.GET)
 
     if form.is_valid():
