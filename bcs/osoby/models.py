@@ -200,13 +200,13 @@ class Osoba(Byt):
         ordering = ("imie", "przezwiska", "nazwisko")
 
     def __str__(self):
-        name = f"{self.imie} "
+        name = f"{self.imie}"
         if len(self.przezwiska) > 0:
-            name += f'"{self.przezwiska[0]}'
+            name += f' "{self.przezwiska[0]}'
             if len(self.przezwiska) > 1:
-                name += f"/{self.przezwiska[1]}"
-            name += '" '
-        name += f"{self.nazwisko}"
+                name += f" / {self.przezwiska[1]}"
+            name += '"'
+        name += f" {self.nazwisko}"
         return name
 
 
