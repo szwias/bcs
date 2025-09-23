@@ -1,5 +1,3 @@
-"""
-app_name = "core"
+# app_name = "core"
 
 urlpatterns = []
-"""

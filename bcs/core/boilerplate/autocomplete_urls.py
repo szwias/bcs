@@ -1,7 +1,5 @@
-"""
 from .autocomplete_views import autocomplete_urls
 
-app_name = "czlonkowie_autocomplete"
+# app_name = "czlonkowie_autocomplete"
 
 urlpatterns = autocomplete_urls
-"""
