@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     "django.contrib.postgres",
     "core",
     "czapki",
+    "dashboard",
     "drzewo",
     "encyklopedia",
     "honory",
