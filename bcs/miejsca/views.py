@@ -8,9 +8,7 @@ from .models import Miejsce
 
 def mapa(request):
     # TODO: close info windows by clicking anywhere outside a window
-    # TODO: fix country NULL issue
     # TODO: add a sidebar with filters
-    # TODO: change starting location to Poland
     # Just renders the HTML template with the map
     return render(
         request,
@@ -28,6 +26,8 @@ def mapa_dane(request):
 
     miejsca_list = []
     for m in miejsca_qs:
+        if "Kraj" in str(m.typ):
+            continue
         miejsca_list.append(
             {
                 "id": m.id,
