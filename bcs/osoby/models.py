@@ -1,3 +1,5 @@
+from django.contrib.contenttypes.models import ContentType
+from django.db import transaction, connection
 from roman import fromRoman
 
 from django.contrib.postgres.fields import ArrayField
@@ -133,7 +135,7 @@ class Organizacja(Byt):
 
     rok_zalozenia = models.IntegerField(
         choices=Czas.LATA_BRACTW + [IntAlt.DONT_KNOW],
-        default=IntAlt.DONT_KNOW,
+        default=IntAlt.DONT_KNOW[0],
         verbose_name="Rok założenia",
     )
 
@@ -303,6 +305,34 @@ class Bean(Osoba, OsobaBCS):
         related_name="beani_drugi_wybor",
     )
 
+    def baptize(self):
+        with transaction.atomic():
+            osoba_id = self.pk
+
+            with connection.cursor() as cursor:
+                cursor.execute(
+                    f"DELETE FROM {Bean._meta.db_table} WHERE osoba_ptr_id = %s",
+                    [osoba_id],
+                )
+
+            czlonek = Czlonek.objects.create(
+                osoba_ptr_id=self.pk,
+                imie=self.imie,
+                nazwisko=self.nazwisko,
+                przezwiska=self.przezwiska,
+                staz=self.staz,
+                status=Czlonek.Status.CZLONEK[0],
+                pewnosc_stazu=self.pewnosc_stazu,
+                czapka_1=self.czapka_1,
+                czapka_2=self.czapka_2,
+                aktywnosc=Czlonek.Aktywnosc.AKTYWNY[0],
+                ochrzczony=TextChoose.YES[0],
+                rodzic_1=self.rodzic_1,
+                rodzic_2=self.rodzic_2,
+            )
+
+            return czlonek
+
     class Meta:
         verbose_name = "Bean"
         verbose_name_plural = "Beani"
@@ -346,7 +376,7 @@ class Czlonek(Osoba, OsobaBCS):
     ochrzczony = models.CharField(
         max_length=max(TextAlt.LENGTH, TextChoose.LENGTH),
         choices=[*TextChoose.choices(), TextAlt.DONT_KNOW],
-        default=TextAlt.DONT_KNOW,
+        default=TextAlt.DONT_KNOW[0],
         verbose_name="Czy ochrzczony",
     )
 
@@ -363,33 +393,33 @@ class Czlonek(Osoba, OsobaBCS):
 
     rok_chrztu = models.IntegerField(
         choices=Czas.LATA_BCS + [IntAlt.DONT_KNOW] + [IntAlt.NOT_APPLICABLE],
-        default=IntAlt.DONT_KNOW,
+        default=IntAlt.DONT_KNOW[0],
         verbose_name="Rok chrztu",
     )
 
     miesiac_chrztu = models.IntegerField(
         choices=Czas.MIESIACE + [IntAlt.DONT_KNOW] + [IntAlt.NOT_APPLICABLE],
-        default=IntAlt.DONT_KNOW,
+        default=IntAlt.DONT_KNOW[0],
         verbose_name="Miesiąc chrztu",
     )
 
     dzien_chrztu = models.IntegerField(
         choices=Czas.DNI + [IntAlt.DONT_KNOW] + [IntAlt.NOT_APPLICABLE],
-        default=IntAlt.DONT_KNOW,
+        default=IntAlt.DONT_KNOW[0],
         verbose_name="Dzień chrztu",
     )
 
     status = models.CharField(
         max_length=max(Lengths.STATUS, TextAlt.LENGTH),
         choices=Status.choices + [TextAlt.DONT_KNOW],
-        default=TextAlt.DONT_KNOW,
+        default=TextAlt.DONT_KNOW[0],
         verbose_name="Status",
     )
 
     imie_piwne_1_wybor = models.CharField(
         max_length=TextAlt.LENGTH,
         choices=TextAlt.choices(),
-        default=TextAlt.DONT_KNOW,
+        default=TextAlt.DONT_KNOW[0],
         verbose_name="Czy posiada imię czapkowe",
     )
 
@@ -403,7 +433,7 @@ class Czlonek(Osoba, OsobaBCS):
     imie_piwne_2_wybor = models.CharField(
         max_length=TextAlt.LENGTH,
         choices=TextAlt.choices(),
-        default=TextAlt.NOT_APPLICABLE,
+        default=TextAlt.NOT_APPLICABLE[0],
         verbose_name="Czy posiada inne imię czapkowe",
     )
 

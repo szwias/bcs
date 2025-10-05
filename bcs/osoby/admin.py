@@ -27,9 +27,16 @@ class OsobaAdmin(BaseModelAdmin):
     # hide_base_class_from_index = False
 
 
+@admin.action(description="Ochrzcij beana")
+def baptize(modeladmin, request, queryset):
+    for bean in queryset:
+        bean.baptize()
+
+
 @admin.register(Bean)
 class BeanAdmin(BaseModelAdmin):
     list_filter = ["staz", "pewnosc_stazu"]
+    actions = [baptize]
 
 
 @admin.register(Czlonek)
