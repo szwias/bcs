@@ -23,10 +23,13 @@ from django.conf import settings
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("_nested_admin/", include("nested_admin.urls")),
-    path("apps/", include("dashboard.urls")),
-    path("spiewnik/", include("spiewnik.urls")),
-    path("miejsca/", include("miejsca.urls")),
-    path("wyszukiwarka/", include("wyszukiwarka.urls")),
+    path("apps/", include("dashboard.urls", namespace="dashboard")),
+    path("drzewo/", include("drzewo.urls", namespace="drzewo")),
+    path("spiewnik/", include("spiewnik.urls", namespace="spiewnik")),
+    path("miejsca/", include("miejsca.urls", namespace="miejsca")),
+    path(
+        "wyszukiwarka/", include("wyszukiwarka.urls", namespace="wyszukiwarka")
+    ),
     path(
         "autocomplete/czapki",
         include("czapki.autocomplete_urls", "czapki_autocomplete"),
@@ -85,7 +88,6 @@ urlpatterns = [
         "autocomplete/zrodla/",
         include("zrodla.autocomplete_urls", "zrodla_autocomplete"),
     ),
-    path("drzewo/", include("drzewo.urls")),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

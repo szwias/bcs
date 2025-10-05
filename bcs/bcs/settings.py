@@ -40,7 +40,6 @@ if os.path.exists(ADDR_FILE):
         if ngrok_url:
             hostname = ngrok_url.replace("https://", "").split("/")[0]
             ALLOWED_HOSTS.append(hostname)
-            print("DUPA", hostname)
 
 # Application definition
 
@@ -161,7 +160,7 @@ STATIC_URL = "/static/"
 STATIC_ROOT = BASE_DIR / "staticfiles"
 STATICFILES_DIRS = [BASE_DIR / "static"]
 
-MEDIA_URL = "media/"
+MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
 
 # Default primary key field type
