@@ -15,7 +15,7 @@ User = get_user_model()
 
 class Konto(SearchableModel):
     wlasciciel = models.ForeignKey(
-        "osoby.Byt",
+        to="osoby.Byt",
         blank=True,
         null=True,
         on_delete=models.SET_NULL,
@@ -66,7 +66,7 @@ class Transakcja(SearchableModel):
     TRANSACTION_TYPES = [(PRZYCHOD, "Przychód"), (WYDATEK, "Wydatek")]
 
     konto = models.ForeignKey(
-        Konto,
+        to=Konto,
         blank=True,
         null=True,
         on_delete=models.SET_NULL,
@@ -93,7 +93,7 @@ class Transakcja(SearchableModel):
     opis = models.TextField(blank=True, verbose_name="Opis")
 
     rozliczenie = models.ForeignKey(
-        "zrodla.Rozliczenie",
+        to="zrodla.Rozliczenie",
         blank=True,
         null=True,
         on_delete=models.SET_NULL,
@@ -102,7 +102,10 @@ class Transakcja(SearchableModel):
     )
 
     dodal = models.ForeignKey(
-        User, null=True, on_delete=models.SET_NULL, verbose_name="Dodał/dodała"
+        to=User,
+        null=True,
+        on_delete=models.SET_NULL,
+        verbose_name="Dodał/dodała",
     )
 
     @property

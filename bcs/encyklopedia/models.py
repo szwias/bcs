@@ -21,7 +21,7 @@ class Cytat(SearchablePolymorphicModel):
     kontekst = models.TextField(blank=True, verbose_name="Kontekst")
 
     zrodlo = models.ForeignKey(
-        "zrodla.Zrodlo",
+        to="zrodla.Zrodlo",
         blank=True,
         null=True,
         on_delete=models.SET_NULL,
@@ -29,7 +29,7 @@ class Cytat(SearchablePolymorphicModel):
     )
 
     autor = models.ForeignKey(
-        "osoby.Byt",
+        to="osoby.Byt",
         blank=True,
         null=True,
         on_delete=models.SET_NULL,
@@ -86,7 +86,7 @@ class GrupaBractw(SearchableModel):
     opis = models.TextField(blank=True, verbose_name="Opis")
 
     rodzaj_czapki = models.ForeignKey(
-        "czapki.RodzajCzapki",
+        to="czapki.RodzajCzapki",
         blank=True,
         null=True,
         on_delete=models.SET_NULL,
@@ -115,7 +115,7 @@ class Pojecie(SearchableModel):
     )
 
     autor = models.ForeignKey(
-        "osoby.Byt",
+        to="osoby.Byt",
         blank=True,
         null=True,
         on_delete=models.SET_NULL,
@@ -131,7 +131,7 @@ class Pojecie(SearchableModel):
     )
 
     wydarzenie = models.ForeignKey(
-        "kalendarz.WydarzenieKalendarzowe",
+        to="kalendarz.WydarzenieKalendarzowe",
         blank=True,
         null=True,
         on_delete=models.SET_NULL,
@@ -139,7 +139,7 @@ class Pojecie(SearchableModel):
     )
 
     zrodlo = models.ForeignKey(
-        "zrodla.Zrodlo",
+        to="zrodla.Zrodlo",
         blank=True,
         null=True,
         on_delete=models.SET_NULL,
@@ -175,7 +175,7 @@ class TradycjaBCS(SearchableModel):
     )
 
     autor = models.ForeignKey(
-        "osoby.Byt",
+        to="osoby.Byt",
         blank=True,
         null=True,
         on_delete=models.SET_NULL,
@@ -183,7 +183,7 @@ class TradycjaBCS(SearchableModel):
     )
 
     od_kogo = models.ForeignKey(
-        "encyklopedia.GrupaBractw",
+        to="encyklopedia.GrupaBractw",
         blank=True,
         null=True,
         on_delete=models.SET_NULL,
@@ -199,7 +199,7 @@ class TradycjaBCS(SearchableModel):
     )
 
     wydarzenie = models.ForeignKey(
-        "kalendarz.WydarzenieKalendarzowe",
+        to="kalendarz.WydarzenieKalendarzowe",
         blank=True,
         null=True,
         on_delete=models.SET_NULL,
@@ -236,7 +236,7 @@ class TradycjaInnegoBractwa(SearchableModel):
     nazwa = models.CharField(max_length=MEDIUM_LENGTH, verbose_name="Tradycja")
 
     bractwo = models.ForeignKey(
-        "osoby.Bractwo",
+        to="osoby.Bractwo",
         blank=True,
         null=True,
         on_delete=models.SET_NULL,
@@ -248,7 +248,7 @@ class TradycjaInnegoBractwa(SearchableModel):
     )
 
     od_kogo = models.ForeignKey(
-        "encyklopedia.GrupaBractw",
+        to="encyklopedia.GrupaBractw",
         blank=True,
         null=True,
         on_delete=models.SET_NULL,
@@ -270,7 +270,7 @@ class Zwyczaj(SearchableModel):
     nazwa = models.CharField(max_length=MEDIUM_LENGTH, verbose_name="Nazwa")
 
     autor = models.ForeignKey(
-        "osoby.Osoba",
+        to="osoby.Osoba",
         blank=True,
         null=True,
         on_delete=models.SET_NULL,

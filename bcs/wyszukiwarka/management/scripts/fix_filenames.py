@@ -12,13 +12,15 @@ def replace_spaces_in_filenames(directory):
 
         # Create new filename with spaces replaced by underscores
         new_filename = (
-            filename.replace(" ", "_").replace("–", "").replace(",", "")
+            filename.replace(" ", "_")
+            .replace("–", "")
+            .replace(",", "")
         )
         new_path = os.path.join(directory, new_filename)
 
         # Rename the file if needed
         if old_path != new_path:
-            os.rename(old_path, new_path)
+            os.rename(src=old_path, dst=new_path)
             print(f'Renamed: "{filename}" -> "{new_filename}"')
 
 

@@ -11,9 +11,9 @@ def mapa(request):
     # TODO: add a sidebar with filters
     # Just renders the HTML template with the map
     return render(
-        request,
-        "miejsca/mapa.html",
-        {"google_maps_api_key": settings.GOOGLE_MAPS_API_KEY},
+        request=request,
+        template_name="miejsca/mapa.html",
+        context={"google_maps_api_key": settings.GOOGLE_MAPS_API_KEY},
     )
 
 
@@ -41,4 +41,4 @@ def mapa_dane(request):
             }
         )
 
-    return JsonResponse(miejsca_list, safe=False)
+    return JsonResponse(data=miejsca_list, safe=False)

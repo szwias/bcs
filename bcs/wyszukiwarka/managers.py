@@ -16,15 +16,17 @@ from wyszukiwarka.utils.Search import find_searchable_fields
 
 class SearchableQuerySet(models.QuerySet):
     def search_with_snippets(self, query_text, config="polish"):
-        tsquery = SearchQuery(query_text, config=config)
+        tsquery = SearchQuery(value=query_text, config=config)
         annotations = {}
 
         if config != "simple" and hasattr(self.model, "tsv"):
             qs = self.filter(tsv=tsquery)
-            annotations["rank"] = SearchRank(F("tsv"), tsquery)
+            annotations["rank"] = SearchRank(vector=F("tsv"), query=tsquery)
         elif config == "simple" and hasattr(self.model, "simple_tsv"):
             qs = self.filter(simple_tsv=tsquery)
-            annotations["rank"] = SearchRank(F("simple_tsv"), tsquery)
+            annotations["rank"] = SearchRank(
+                vector=F("simple_tsv"), query=tsquery
+            )
         else:
             qs = self
 
@@ -32,8 +34,10 @@ class SearchableQuerySet(models.QuerySet):
         if self.model._meta.get_field("search_dict"):
             for field in find_searchable_fields(self.model):
                 annotations[f"{field.name}_snippet"] = SearchHeadline(
-                    JsonExtractText(F("search_dict"), field.name),
-                    tsquery,
+                    expression=JsonExtractText(
+                        expression=F("search_dict"), key=field.name
+                    ),
+                    query=tsquery,
                     start_sel="<span class='search__query-match'>",
                     stop_sel="</span>",
                     config=config,
@@ -46,11 +50,11 @@ class SearchableQuerySet(models.QuerySet):
 
 class SearchableManager(models.Manager):
     def get_queryset(self):
-        return SearchableQuerySet(self.model, using=self._db)
+        return SearchableQuerySet(model=self.model, using=self._db)
 
     def search(self, query_text, config="polish"):
         return self.get_queryset().search_with_snippets(
-            query_text, config=config
+            query_text=query_text, config=config
         )
 
 
@@ -64,7 +68,7 @@ class SearchablePolymorphicQuerySet(SearchableQuerySet, PolymorphicQuerySet):
             return self
 
         return SearchableQuerySet.search_with_snippets(
-            self, query_text, config
+            self=self, query_text=query_text, config=config
         )
 
 

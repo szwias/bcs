@@ -7,7 +7,7 @@ from wyszukiwarka.utils.Search import *
 class PodsumowanieKadencji(SearchableModel):
 
     zarzad = models.ForeignKey(
-        "osoby.Zarzad",
+        to="osoby.Zarzad",
         null=True,
         on_delete=models.SET_NULL,
         verbose_name="Zarząd",
@@ -15,7 +15,7 @@ class PodsumowanieKadencji(SearchableModel):
     )
 
     autor = models.ForeignKey(
-        "osoby.Czlonek",
+        to="osoby.Czlonek",
         null=True,
         on_delete=models.SET_NULL,
         verbose_name="Autor",
@@ -40,7 +40,7 @@ class Kadencja(SearchableModel):
     lata = models.IntegerField(choices=Czas.KADENCJE, verbose_name="Lata")
 
     rozpoczecie = models.ForeignKey(
-        "kronika.WydarzenieHistoryczne",
+        to="kronika.WydarzenieHistoryczne",
         blank=True,
         null=True,
         on_delete=models.SET_NULL,
@@ -49,7 +49,7 @@ class Kadencja(SearchableModel):
     )
 
     zakonczenie = models.ForeignKey(
-        "kronika.WydarzenieHistoryczne",
+        to="kronika.WydarzenieHistoryczne",
         blank=True,
         null=True,
         on_delete=models.SET_NULL,
@@ -99,7 +99,7 @@ class WydarzenieHistoryczne(SearchableModel):
     opis = models.TextField(blank=True, null=True, verbose_name="Opis")
 
     wydarzenie = models.ForeignKey(
-        "kalendarz.WydarzenieKalendarzowe",
+        to="kalendarz.WydarzenieKalendarzowe",
         blank=True,
         null=True,
         on_delete=models.SET_NULL,
@@ -108,7 +108,7 @@ class WydarzenieHistoryczne(SearchableModel):
     )
 
     dokument = models.ForeignKey(
-        "zrodla.Dokument",
+        to="zrodla.Dokument",
         blank=True,
         null=True,
         on_delete=models.SET_NULL,
@@ -116,7 +116,7 @@ class WydarzenieHistoryczne(SearchableModel):
     )
 
     pojecie = models.ForeignKey(
-        "encyklopedia.Pojecie",
+        to="encyklopedia.Pojecie",
         blank=True,
         null=True,
         on_delete=models.SET_NULL,
@@ -187,7 +187,7 @@ class ZadanieChrzcielne(SearchableModel):
     )
 
     kategoria = models.ForeignKey(
-        KategoriaZadaniaChrzcielnego,
+        to=KategoriaZadaniaChrzcielnego,
         blank=True,
         null=True,
         on_delete=models.SET_NULL,

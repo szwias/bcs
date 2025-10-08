@@ -19,7 +19,7 @@ class Odznaczenie(SearchableModel):
     )
 
     dokument = models.ForeignKey(
-        "zrodla.Dokument",
+        to="zrodla.Dokument",
         blank=True,
         null=True,
         on_delete=models.SET_NULL,
@@ -54,7 +54,7 @@ class Nagrodzeni(SearchableModel):
     )
 
     odznaczenie = models.ForeignKey(
-        Odznaczenie,
+        to=Odznaczenie,
         blank=True,
         null=True,
         on_delete=models.SET_NULL,
@@ -62,7 +62,7 @@ class Nagrodzeni(SearchableModel):
     )
 
     osoba = models.ForeignKey(
-        "osoby.Byt",
+        to="osoby.Byt",
         blank=True,
         null=True,
         on_delete=models.SET_NULL,

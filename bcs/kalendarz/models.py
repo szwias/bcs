@@ -11,7 +11,7 @@ class Zdarzenie(SearchableModel):
     nazwa = models.CharField(max_length=MAX_LENGTH, verbose_name="Nazwa")
 
     wydarzenie = models.ForeignKey(
-        "WydarzenieKalendarzowe",
+        to="WydarzenieKalendarzowe",
         blank=True,
         null=True,
         on_delete=models.SET_NULL,
@@ -24,7 +24,7 @@ class Zdarzenie(SearchableModel):
     godzina = models.TimeField(null=True, blank=True, verbose_name="Godzina")
 
     miejsce = models.ForeignKey(
-        "miejsca.Miejsce",
+        to="miejsca.Miejsce",
         blank=True,
         null=True,
         on_delete=models.SET_NULL,
@@ -122,7 +122,7 @@ class Chrzest(WydarzenieKalendarzowe):
     search_indexable = True
 
     miejsce = models.ForeignKey(
-        "miejsca.Miejsce",
+        to="miejsca.Miejsce",
         blank=True,
         null=True,
         on_delete=models.SET_NULL,
@@ -137,7 +137,7 @@ class Chrzest(WydarzenieKalendarzowe):
     )
 
     hymn = models.ForeignKey(
-        "spiewnik.Piosenka",
+        to="spiewnik.Piosenka",
         blank=True,
         null=True,
         on_delete=models.SET_NULL,
@@ -145,7 +145,7 @@ class Chrzest(WydarzenieKalendarzowe):
     )
 
     dokument = models.ForeignKey(
-        "zrodla.Dokument",
+        to="zrodla.Dokument",
         blank=True,
         null=True,
         on_delete=models.SET_NULL,
@@ -186,7 +186,7 @@ class Wydarzenie(WydarzenieKalendarzowe):
     )
 
     typ_wydarzenia = models.ForeignKey(
-        TypWydarzenia,
+        to=TypWydarzenia,
         blank=True,
         null=True,
         on_delete=models.SET_NULL,
@@ -194,7 +194,7 @@ class Wydarzenie(WydarzenieKalendarzowe):
     )
 
     typ_wyjazdu = models.ForeignKey(
-        TypWyjazdu,
+        to=TypWyjazdu,
         blank=True,
         null=True,
         on_delete=models.SET_NULL,

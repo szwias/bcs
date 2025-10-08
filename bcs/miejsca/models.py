@@ -77,7 +77,9 @@ class Miejsce(SearchableModel):
         url = "https://nominatim.openstreetmap.org/search"
         params = {"q": self.adres, "format": "json", "limit": 1}
         response = requests.get(
-            url, params=params, headers={"User-Agent": "django-miejsca-app"}
+            url=url,
+            params=params,
+            headers={"User-Agent": "django-miejsca-app"},
         )
         if response.status_code == 200 and response.json():
             result = response.json()[0]
@@ -118,7 +120,7 @@ class Uczelnia(SearchableModel):
     akronim = models.CharField(max_length=SHORT_LENGTH, verbose_name="Akronim")
 
     kraj = models.ForeignKey(
-        Kraj,
+        to=Kraj,
         blank=True,
         null=True,
         on_delete=models.SET_NULL,
@@ -163,7 +165,10 @@ class Wydzial(SearchableModel):
     )
 
     uczelnia = models.ForeignKey(
-        Uczelnia, null=True, on_delete=models.SET_NULL, verbose_name="Uczelnia"
+        to=Uczelnia,
+        null=True,
+        on_delete=models.SET_NULL,
+        verbose_name="Uczelnia",
     )
 
     class Meta:

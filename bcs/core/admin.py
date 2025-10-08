@@ -17,7 +17,7 @@ def get_admin_form_url(instance):
     app_label = content_type.app_label
 
     admin_url = reverse(
-        f"admin:{app_label}_{content_type.model}_change",
+        viewname=f"admin:{app_label}_{content_type.model}_change",
         args=(quote(instance.pk),),
     )
 
@@ -50,7 +50,12 @@ class UsedOnlyFKFilter(admin.RelatedFieldListFilter):
         field.remote_field.limit_choices_to = {"pk__in": used_ids}
 
         super().__init__(
-            field, request, params, model, model_admin, field_path
+            field=field,
+            request=request,
+            params=params,
+            model=model,
+            model_admin=model_admin,
+            field_path=field_path,
         )
 
         # Restore original limit_choices_to in case it's reused elsewhere
@@ -84,13 +89,18 @@ def get_used_m2m_ids(model, m2m_field_name):
 
 class UsedOnlyM2MFilter(admin.RelatedFieldListFilter):
     def __init__(self, field, request, params, model, model_admin, field_path):
-        used_ids = get_used_m2m_ids(model, field.name)
+        used_ids = get_used_m2m_ids(model=model, m2m_field_name=field.name)
         # Limit the choices shown in the filter dropdown
         self._original_limit_choices_to = field.remote_field.limit_choices_to
         field.remote_field.limit_choices_to = {"pk__in": used_ids}
 
         super().__init__(
-            field, request, params, model, model_admin, field_path
+            field=field,
+            request=request,
+            params=params,
+            model=model,
+            model_admin=model_admin,
+            field_path=field_path,
         )
 
         # Restore original
@@ -178,7 +188,7 @@ class BaseModelAdmin(admin.ModelAdmin):
         return super().get_model_perms(request)
 
     def __init__(self, model, admin_site):
-        super().__init__(model, admin_site)
+        super().__init__(model=model, admin_site=admin_site)
         self.list_filter = self.smart_wrap_filters(self._get_list_filter())
 
         if not self.search_fields:

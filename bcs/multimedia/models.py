@@ -21,7 +21,7 @@ class Obraz(PolymorphicModel):
 # Create your models here.
 class ObrazZdarzenie(Obraz):
     zdarzenie = models.ForeignKey(
-        "kalendarz.Zdarzenie",
+        to="kalendarz.Zdarzenie",
         blank=True,
         null=True,
         on_delete=models.SET_NULL,
@@ -30,7 +30,7 @@ class ObrazZdarzenie(Obraz):
     )
 
     miejsce = models.ForeignKey(
-        "miejsca.Miejsce",
+        to="miejsca.Miejsce",
         blank=True,
         null=True,
         on_delete=models.SET_NULL,
@@ -43,7 +43,7 @@ class ObrazZdarzenie(Obraz):
     )
 
     widoczne_osoby = models.ManyToManyField(
-        "osoby.Osoba",
+        to="osoby.Osoba",
         blank=True,
         verbose_name="Widoczne osoby",
     )
@@ -89,7 +89,7 @@ class ObrazZdarzenie(Obraz):
 
 class ObrazWydarzenie(Obraz):
     wydarzenie = models.ForeignKey(
-        "kalendarz.WydarzenieKalendarzowe",
+        to="kalendarz.WydarzenieKalendarzowe",
         blank=True,
         null=True,
         on_delete=models.SET_NULL,
@@ -102,7 +102,7 @@ class ObrazWydarzenie(Obraz):
     )
 
     widoczne_osoby = models.ManyToManyField(
-        "osoby.Osoba",
+        to="osoby.Osoba",
         blank=True,
         verbose_name="Widoczne osoby",
     )

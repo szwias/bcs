@@ -7,7 +7,7 @@ from wyszukiwarka.utils.Search import *
 class Czapka(SearchableModel):
 
     wydzial = models.ForeignKey(
-        "miejsca.Wydzial",
+        to="miejsca.Wydzial",
         blank=True,
         null=True,
         on_delete=models.SET_NULL,

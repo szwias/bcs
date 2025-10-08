@@ -27,13 +27,13 @@ class Piosenka(SearchableModel):
     )
 
     znani_czapce_autorzy = models.ManyToManyField(
-        "osoby.Osoba",
+        to="osoby.Osoba",
         blank=True,
         verbose_name="Znani BCS autorzy",
     )
 
     kategorie = models.ManyToManyField(
-        "spiewnik.KategoriaPiosenki",
+        to="spiewnik.KategoriaPiosenki",
         blank=True,
         verbose_name="Kategoria piosenki",
     )

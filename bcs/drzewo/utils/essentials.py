@@ -31,11 +31,15 @@ class TreeNode:
         if year == IntAlt.DONT_KNOW[0]:
             if self.member.rodzic_2 == Czlonek.get_not_applicable_czlonek():
                 year = TreeNode(
-                    self.member.rodzic_1, self.depth - 1, self.parent_layer
+                    member=self.member.rodzic_1,
+                    depth=self.depth - 1,
+                    parent_layer=self.parent_layer,
                 ).get_year()
             else:
                 year = TreeNode(
-                    self.member.rodzic_2, self.depth - 1, self.parent_layer
+                    member=self.member.rodzic_2,
+                    depth=self.depth - 1,
+                    parent_layer=self.parent_layer,
                 ).get_year()
         return year
 
@@ -54,7 +58,9 @@ class TreeNode:
             self.depth == 1
             or self.year
             == TreeNode(
-                self.youngest_parent, self.depth - 1, self.parent_layer
+                member=self.youngest_parent,
+                depth=self.depth - 1,
+                parent_layer=self.parent_layer,
             ).get_year()
         ):
             return self.parent_layer + 1

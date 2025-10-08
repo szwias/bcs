@@ -85,11 +85,16 @@ def build_layers_and_edges_from_db(onp):
         if go == 1:
             stack.append(
                 TreeNode(
-                    Czlonek.objects.get(imie="Zdzisław", nazwisko="Gajda"), 0
+                    member=Czlonek.objects.get(
+                        imie="Zdzisław", nazwisko="Gajda"
+                    ),
+                    depth=0,
                 )
             )
         elif go == 2 and not onp:
-            stack.append(TreeNode(Czlonek.get_dont_know_czlonek(), 0))
+            stack.append(
+                TreeNode(member=Czlonek.get_dont_know_czlonek(), depth=0)
+            )
         else:
             member = members.pop(0)
             if onp and member.rodzic_1.is_unknown():
@@ -98,7 +103,7 @@ def build_layers_and_edges_from_db(onp):
                 members.append(member)
                 continue
             else:
-                stack.append(TreeNode(member, 2, 2))
+                stack.append(TreeNode(member=member, depth=2, parent_layer=2))
 
         while stack:
             node = stack.pop()
@@ -132,7 +137,13 @@ def build_layers_and_edges_from_db(onp):
                 if paczek:
                     if child == member:
                         continue
-                stack.append((TreeNode(child, depth + 1, layer)))
+                stack.append(
+                    (
+                        TreeNode(
+                            member=child, depth=depth + 1, parent_layer=layer
+                        )
+                    )
+                )
                 edges.setdefault(str(member), []).append(str(child))
                 helper_dict[str(member)][1].append(str(child))
 

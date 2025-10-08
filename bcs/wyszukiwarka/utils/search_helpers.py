@@ -44,8 +44,11 @@ def search_models(query_text, models):
             for field_name in indexed_fields:
                 field_snippet = getattr(obj, f"{field_name}_snippet")
                 adjusted_snippet = adjust_snippet_classes(
-                    add_ellipses(field_snippet, obj.search_dict[field_name]),
-                    query_text,
+                    snippet_html=add_ellipses(
+                        fragment=field_snippet,
+                        full_text=obj.search_dict[field_name],
+                    ),
+                    query_text=query_text,
                 )
                 snippets.append(
                     f"<span class='search__field'>{field_name}:</span> {adjusted_snippet}"

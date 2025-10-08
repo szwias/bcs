@@ -157,7 +157,7 @@ def register_autocomplete(overrides=None):
                 path(f"{url_name}/", view_class.as_view(), name=url_name)
             )
             widgets[field] = partial(
-                autocomplete.ListSelect2,
+                func=autocomplete.ListSelect2,
                 url=f"{app_label}_autocomplete:{url_name}",
             )
 

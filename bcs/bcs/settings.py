@@ -38,7 +38,9 @@ if os.path.exists(ADDR_FILE):
     with open(ADDR_FILE) as f:
         ngrok_url = f.read().strip()
         if ngrok_url:
-            hostname = ngrok_url.replace("https://", "").split("/")[0]
+            hostname = ngrok_url.replace("https://", "").split(
+                "/"
+            )[0]
             ALLOWED_HOSTS.append(hostname)
 
 # Application definition

@@ -27,67 +27,95 @@ urlpatterns = [
     path("drzewo/", include("drzewo.urls", namespace="drzewo")),
     path("spiewnik/", include("spiewnik.urls", namespace="spiewnik")),
     path("miejsca/", include("miejsca.urls", namespace="miejsca")),
+    path("apps/", include(arg="dashboard.urls", namespace="dashboard")),
+    path("drzewo/", include(arg="drzewo.urls", namespace="drzewo")),
+    path("spiewnik/", include(arg="spiewnik.urls", namespace="spiewnik")),
+    path("miejsca/", include(arg="miejsca.urls", namespace="miejsca")),
     path(
-        "wyszukiwarka/", include("wyszukiwarka.urls", namespace="wyszukiwarka")
+        "wyszukiwarka/",
+        include(arg="wyszukiwarka.urls", namespace="wyszukiwarka"),
     ),
     path(
         "autocomplete/czapki",
-        include("czapki.autocomplete_urls", "czapki_autocomplete"),
+        include(
+            arg="czapki.autocomplete_urls", namespace="czapki_autocomplete"
+        ),
     ),
     path(
         "autocomplete/encyklopedia/",
-        include("encyklopedia.autocomplete_urls", "encyklopedia_autocomplete"),
+        include(
+            arg="encyklopedia.autocomplete_urls",
+            namespace="encyklopedia_autocomplete",
+        ),
     ),
     path(
         "autocomplete/honory/",
-        include("honory.autocomplete_urls", "honory_autocomplete"),
+        include(
+            arg="honory.autocomplete_urls", namespace="honory_autocomplete"
+        ),
     ),
     path(
         "autocomplete/kalendarz/",
-        include("kalendarz.autocomplete_urls", "kalendarz_autocomplete"),
+        include(
+            arg="kalendarz.autocomplete_urls",
+            namespace="kalendarz_autocomplete",
+        ),
     ),
     path(
         "autocomplete/kronika/",
-        include("kronika.autocomplete_urls", "kronika_autocomplete"),
+        include(
+            arg="kronika.autocomplete_urls", namespace="kronika_autocomplete"
+        ),
     ),
     path(
         "autocomplete/miejsca/",
-        include("miejsca.autocomplete_urls", "miejsca_autocomplete"),
+        include(
+            arg="miejsca.autocomplete_urls", namespace="miejsca_autocomplete"
+        ),
     ),
     path(
         "autocomplete/multimedia/",
-        include("multimedia.autocomplete_urls", "multimedia_autocomplete"),
+        include(
+            arg="multimedia.autocomplete_urls",
+            namespace="multimedia_autocomplete",
+        ),
     ),
     path(
         "autocomplete/osoby/",
-        include("osoby.autocomplete_urls", "osoby_autocomplete"),
+        include(arg="osoby.autocomplete_urls", namespace="osoby_autocomplete"),
     ),
     path(
         "autocomplete/prawo/",
-        include("prawo.autocomplete_urls", "prawo_autocomplete"),
+        include(arg="prawo.autocomplete_urls", namespace="prawo_autocomplete"),
     ),
     path(
         "autocomplete/skarbiec/",
-        include("skarbiec.autocomplete_urls", "skarbiec_autocomplete"),
+        include(
+            arg="skarbiec.autocomplete_urls", namespace="skarbiec_autocomplete"
+        ),
     ),
     path(
         "autocomplete/slowniczek_lacinski/",
         include(
-            "slowniczek_lacinski.autocomplete_urls",
-            "slowniczek_lacinski_autocomplete",
+            arg="slowniczek_lacinski.autocomplete_urls",
+            namespace="slowniczek_lacinski_autocomplete",
         ),
     ),
     path(
         "autocomplete/spiewnik/",
         include(
-            "spiewnik.autocomplete_urls",
-            "spiewnik_autocomplete",
+            arg="spiewnik.autocomplete_urls",
+            namespace="spiewnik_autocomplete",
         ),
     ),
     path(
         "autocomplete/zrodla/",
-        include("zrodla.autocomplete_urls", "zrodla_autocomplete"),
+        include(
+            arg="zrodla.autocomplete_urls", namespace="zrodla_autocomplete"
+        ),
     ),
 ]
 
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+urlpatterns += static(
+    prefix=settings.MEDIA_URL, document_root=settings.MEDIA_ROOT
+)

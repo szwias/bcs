@@ -35,7 +35,7 @@ class Podmiot(SearchablePolymorphicModel):
     nazwa = models.CharField(max_length=NAME_LENGTH, verbose_name="Nazwa")
 
     dlugosc_kadencji = models.ForeignKey(
-        DlugoscKadencji,
+        to=DlugoscKadencji,
         blank=True,
         null=True,
         on_delete=models.SET_NULL,
@@ -68,7 +68,7 @@ class Struktura(Podmiot):
     search_indexable = True
 
     wielkosc = models.ForeignKey(
-        WielkoscStruktury,
+        to=WielkoscStruktury,
         blank=True,
         null=True,
         on_delete=models.SET_NULL,
@@ -103,7 +103,7 @@ class RelacjaPrawna(SearchableModel):
 
 class PrawoObowiazek(SearchableModel):
     podmiot = models.ForeignKey(
-        Podmiot,
+        to=Podmiot,
         blank=True,
         null=True,
         on_delete=models.SET_NULL,
@@ -111,7 +111,7 @@ class PrawoObowiazek(SearchableModel):
     )
 
     relacja = models.ForeignKey(
-        RelacjaPrawna,
+        to=RelacjaPrawna,
         blank=True,
         null=True,
         on_delete=models.SET_NULL,
@@ -121,7 +121,7 @@ class PrawoObowiazek(SearchableModel):
     aktualne = models.BooleanField(default=True, verbose_name="Aktualne")
 
     dokument = models.ForeignKey(
-        "zrodla.Dokument",
+        to="zrodla.Dokument",
         blank=True,
         null=True,
         on_delete=models.SET_NULL,

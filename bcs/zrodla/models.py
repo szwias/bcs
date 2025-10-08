@@ -11,7 +11,7 @@ class Zrodlo(SearchablePolymorphicModel):
     tytul = models.CharField(max_length=MAX_LENGTH, verbose_name="Tytuł")
 
     autorzy = models.ManyToManyField(
-        "osoby.Byt",
+        to="osoby.Byt",
         blank=True,
         verbose_name="Autorzy",
         related_name="%(class)s_ktorych_jest_autorem",
@@ -87,7 +87,7 @@ class Dokument(SearchableZrodlo):
 class Korespondencja(Dokument):
 
     adresaci = models.ManyToManyField(
-        "osoby.Byt",
+        to="osoby.Byt",
         blank=True,
         verbose_name="Adresaci",
     )
@@ -108,7 +108,7 @@ class Oswiadczenie(Dokument):
 class Uchwala(Dokument):
 
     walne = models.ForeignKey(
-        "kronika.WydarzenieHistoryczne",
+        to="kronika.WydarzenieHistoryczne",
         blank=True,
         null=True,
         on_delete=models.SET_NULL,

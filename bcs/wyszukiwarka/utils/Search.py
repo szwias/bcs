@@ -54,7 +54,7 @@ def adjust_snippet_classes(snippet_html, query_text):
             return f"<span class='search__near-match'>{text}</span>"
         return match.group(0)
 
-    return re.sub(pattern, replacer, snippet_html)
+    return re.sub(pattern=pattern, repl=replacer, string=snippet_html)
 
 
 def add_ellipses(fragment, full_text):
@@ -64,7 +64,9 @@ def add_ellipses(fragment, full_text):
     """
     # Remove query highlight tags
     real_fragment = re.sub(
-        r"<span class=['\"]search__query-match['\"]>", "", fragment
+        pattern=r"<span class=['\"]search__query-match['\"]>",
+        repl="",
+        string=fragment,
     )
     real_fragment = real_fragment.replace("</span>", "")
 

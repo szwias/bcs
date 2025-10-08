@@ -20,7 +20,7 @@ def serve_full_tree_form_view(request):
         path = f"/home/szymon/Desktop/bcs/bcs/drzewo/trees/{title}.png"
 
         if not os.path.exists(path):
-            generate_full_tree(path, onp)
+            generate_full_tree(path=path, onp=onp)
 
         if os.path.exists(
             path
@@ -29,7 +29,11 @@ def serve_full_tree_form_view(request):
 
         raise Http404("Image not found after generation")
 
-    return render(request, "drzewo/full_tree_generation.html", {"form": form})
+    return render(
+        request=request,
+        template_name="drzewo/full_tree_generation.html",
+        context={"form": form},
+    )
 
 
 @require_GET
@@ -49,7 +53,9 @@ def serve_scoped_tree_form_view(request):
         path = f"/home/szymon/Desktop/bcs/bcs/drzewo//trees/{title}.png"
 
         if not os.path.exists(path):
-            generate_scoped_tree(path, member, depth, gen, onp)
+            generate_scoped_tree(
+                path=path, member=member, depth=depth, gen=gen, onp=onp
+            )
 
         if os.path.exists(
             path
@@ -59,5 +65,7 @@ def serve_scoped_tree_form_view(request):
         raise Http404("Image not found after generation")
 
     return render(
-        request, "drzewo/scoped_tree_generation.html", {"form": form}
+        request=request,
+        template_name="drzewo/scoped_tree_generation.html",
+        context={"form": form},
     )

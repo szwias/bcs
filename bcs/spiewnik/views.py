@@ -15,7 +15,7 @@ def spis_tresci(request):
     query = request.GET.get("q", "").strip()
 
     if query:
-        results_by_app = search_models(query, [Piosenka])
+        results_by_app = search_models(query_text=query, models=[Piosenka])
         songs = results_by_app.get("Śpiewnik", {}).get("Piosenki", [])
 
         temp_dict = defaultdict(list)
@@ -42,9 +42,9 @@ def spis_tresci(request):
         ).order_by("tytul")
 
     return render(
-        request,
-        "spiewnik/spis_tresci.html",
-        {
+        request=request,
+        template_name="spiewnik/spis_tresci.html",
+        context={
             "query": query,
             "songs_by_category": songs_by_category,
             "uncategorized": uncategorized,
@@ -73,7 +73,9 @@ def piosenka(request, category_pk, pk):
     songs_in_category = []
 
     if category_pk:
-        song_category = get_object_or_404(KategoriaPiosenki, pk=category_pk)
+        song_category = get_object_or_404(
+            klass=KategoriaPiosenki, pk=category_pk
+        )
         songs_in_category = list(
             Piosenka.objects.filter(kategorie=song_category).order_by("tytul")
         )
@@ -158,7 +160,7 @@ def piosenka(request, category_pk, pk):
 
     # Admin URL
     admin_url = reverse(
-        "admin:spiewnik_piosenka_change", args=(quote(song.pk),)
+        viewname="admin:spiewnik_piosenka_change", args=(quote(song.pk),)
     )
 
     return render(

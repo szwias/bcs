@@ -27,7 +27,7 @@ class Lengths:
 class HallOfFame(SearchableModel):
 
     osoba = models.ForeignKey(
-        "osoby.Osoba",
+        to="osoby.Osoba",
         blank=True,
         null=True,
         on_delete=models.SET_NULL,
@@ -68,7 +68,7 @@ class KomisjaRewizyjna(Byt):
     search_indexable = True
 
     kadencja = models.ForeignKey(
-        "kronika.Kadencja",
+        to="kronika.Kadencja",
         blank=True,
         null=True,
         on_delete=models.SET_NULL,
@@ -76,7 +76,7 @@ class KomisjaRewizyjna(Byt):
     )
 
     przewodniczacy = models.ForeignKey(
-        "osoby.Osoba",
+        to="osoby.Osoba",
         blank=True,
         null=True,
         on_delete=models.SET_NULL,
@@ -85,7 +85,7 @@ class KomisjaRewizyjna(Byt):
     )
 
     sklad = models.ManyToManyField(
-        "osoby.Osoba", blank=True, verbose_name="Skład"
+        to="osoby.Osoba", blank=True, verbose_name="Skład"
     )
 
     dzialalnosc = models.TextField(
@@ -111,7 +111,7 @@ class Organizacja(Byt):
     )
 
     kraj = models.ForeignKey(
-        "miejsca.Kraj",
+        to="miejsca.Kraj",
         blank=True,
         null=True,
         on_delete=models.SET_NULL,
@@ -119,7 +119,7 @@ class Organizacja(Byt):
     )
 
     siedziba = models.ForeignKey(
-        "miejsca.Miejsce",
+        to="miejsca.Miejsce",
         blank=True,
         null=True,
         on_delete=models.SET_NULL,
@@ -127,7 +127,7 @@ class Organizacja(Byt):
     )
 
     zalozyciele = models.ManyToManyField(
-        Byt,
+        to=Byt,
         blank=True,
         verbose_name="Założyciele",
         related_name="zalozone_organizacje",
@@ -152,7 +152,7 @@ class Organizacja(Byt):
 
 class OrganizacjaStudencka(Organizacja):
     uczelnia = models.ForeignKey(
-        "miejsca.Uczelnia",
+        to="miejsca.Uczelnia",
         blank=True,
         null=True,
         on_delete=models.SET_NULL,
@@ -167,7 +167,7 @@ class OrganizacjaStudencka(Organizacja):
 
 class Bractwo(OrganizacjaStudencka):
     grupa_bractw = models.ForeignKey(
-        "encyklopedia.GrupaBractw",
+        to="encyklopedia.GrupaBractw",
         blank=True,
         null=True,
         on_delete=models.SET_NULL,
@@ -190,7 +190,7 @@ class Osoba(Byt):
     )
 
     przezwiska = ArrayField(
-        models.CharField(max_length=MAX_LENGTH),
+        base_field=models.CharField(max_length=MAX_LENGTH),
         blank=True,
         default=list,
         verbose_name="Przezwiska",
@@ -231,7 +231,7 @@ class InnaOsoba(Osoba):
     )
 
     bractwo_do_ktorego_nalezy = models.ForeignKey(
-        Bractwo,
+        to=Bractwo,
         blank=True,
         null=True,
         on_delete=models.SET_NULL,
@@ -251,7 +251,7 @@ class OsobaBCS(models.Model):
         NIE = "N", "Ale mógł pojawić się wcześniej"
 
     czapka_1 = models.ForeignKey(
-        "czapki.Czapka",
+        to="czapki.Czapka",
         on_delete=models.SET_NULL,
         null=True,
         default=Czapka.get_dont_know_czapka,
@@ -260,7 +260,7 @@ class OsobaBCS(models.Model):
     )
 
     czapka_2 = models.ForeignKey(
-        "czapki.Czapka",
+        to="czapki.Czapka",
         on_delete=models.SET_NULL,
         null=True,
         default=Czapka.get_not_applicable_czapka,
@@ -269,7 +269,7 @@ class OsobaBCS(models.Model):
     )
 
     pierwsze_wydarzenie = models.ForeignKey(
-        "kalendarz.Wydarzenie",
+        to="kalendarz.Wydarzenie",
         on_delete=models.SET_NULL,
         null=True,
         blank=True,
@@ -297,7 +297,7 @@ class Bean(Osoba, OsobaBCS):
     search_indexable = True
 
     rodzic_1 = models.ForeignKey(
-        "osoby.Czlonek",
+        to="osoby.Czlonek",
         on_delete=models.SET_NULL,
         null=True,
         blank=True,
@@ -306,7 +306,7 @@ class Bean(Osoba, OsobaBCS):
     )
 
     rodzic_2 = models.ForeignKey(
-        "osoby.Czlonek",
+        to="osoby.Czlonek",
         on_delete=models.SET_NULL,
         null=True,
         blank=True,
@@ -320,7 +320,8 @@ class Bean(Osoba, OsobaBCS):
 
             with connection.cursor() as cursor:
                 cursor.execute(
-                    f"DELETE FROM {Bean._meta.db_table} WHERE osoba_ptr_id = %s",
+                    f"DELETE FROM {Bean._meta.db_table} "
+                    f"WHERE osoba_ptr_id = %s",
                     [osoba_id],
                 )
 
@@ -390,7 +391,7 @@ class Czlonek(Osoba, OsobaBCS):
     )
 
     chrzest = models.ForeignKey(
-        "kalendarz.Chrzest",
+        to="kalendarz.Chrzest",
         blank=True,
         null=True,
         on_delete=models.SET_NULL,
@@ -454,7 +455,7 @@ class Czlonek(Osoba, OsobaBCS):
     )
 
     rodzic_1 = models.ForeignKey(
-        "self",
+        to="self",
         on_delete=models.SET_NULL,
         null=True,
         blank=True,
@@ -463,7 +464,7 @@ class Czlonek(Osoba, OsobaBCS):
     )
 
     rodzic_2 = models.ForeignKey(
-        "self",
+        to="self",
         on_delete=models.SET_NULL,
         null=True,
         blank=True,
@@ -562,7 +563,7 @@ class Czlonek(Osoba, OsobaBCS):
 
 class ImieSzlacheckie(SearchableModel):
     imie = models.ForeignKey(
-        Czlonek,
+        to=Czlonek,
         on_delete=models.CASCADE,
         null=True,
         verbose_name="Imię szlacheckie",
@@ -588,7 +589,7 @@ class ImieSzlacheckie(SearchableModel):
 # ------------------------------------------------------
 class WielkiMistrz(SearchableModel):
     imie = models.ForeignKey(
-        Czlonek,
+        to=Czlonek,
         on_delete=models.SET_NULL,
         null=True,
         verbose_name="Imię",
@@ -636,11 +637,11 @@ class Zespol(SearchableModel):
     )
 
     czlonkowie = models.ManyToManyField(
-        Osoba, blank=True, verbose_name="Członkowie"
+        to=Osoba, blank=True, verbose_name="Członkowie"
     )
 
     dokument = models.ForeignKey(
-        "zrodla.Dokument",
+        to="zrodla.Dokument",
         blank=True,
         null=True,
         on_delete=models.SET_NULL,
@@ -662,7 +663,7 @@ class Zespol(SearchableModel):
 
 class PrzewoZespolu(SearchableModel):
     osoba = models.ForeignKey(
-        Osoba,
+        to=Osoba,
         blank=True,
         null=True,
         on_delete=models.SET_NULL,
@@ -670,7 +671,7 @@ class PrzewoZespolu(SearchableModel):
     )
 
     zespol = models.ForeignKey(
-        Zespol,
+        to=Zespol,
         blank=True,
         null=True,
         on_delete=models.SET_NULL,
@@ -714,7 +715,10 @@ class Egzekutor(PrzewoZespolu):
 
 class ZwierzeCzapkowe(SearchableModel):
     czlonek = models.ForeignKey(
-        Czlonek, on_delete=models.SET_NULL, null=True, verbose_name="Członek"
+        to=Czlonek,
+        on_delete=models.SET_NULL,
+        null=True,
+        verbose_name="Członek",
     )
 
     zwierze = models.CharField(
@@ -747,7 +751,7 @@ class ZwierzeCzapkowe(SearchableModel):
 # ---------------------------------------
 class Zarzad(Byt):
     kadencja = models.ForeignKey(
-        Kadencja,
+        to=Kadencja,
         blank=True,
         null=True,
         on_delete=models.SET_NULL,
@@ -755,7 +759,7 @@ class Zarzad(Byt):
     )
 
     wielki_mistrz = models.ForeignKey(
-        "WielkiMistrz",
+        to="WielkiMistrz",
         blank=True,
         null=True,
         on_delete=models.SET_NULL,
@@ -764,7 +768,7 @@ class Zarzad(Byt):
     )
 
     kasztelan = models.ForeignKey(
-        Czlonek,
+        to=Czlonek,
         null=True,
         blank=True,
         on_delete=models.SET_NULL,
@@ -773,7 +777,7 @@ class Zarzad(Byt):
     )
 
     skarbnik = models.ForeignKey(
-        Czlonek,
+        to=Czlonek,
         null=True,
         blank=True,
         on_delete=models.SET_NULL,
@@ -782,7 +786,7 @@ class Zarzad(Byt):
     )
 
     cantandi = models.ForeignKey(
-        Czlonek,
+        to=Czlonek,
         blank=True,
         null=True,
         on_delete=models.SET_NULL,
@@ -791,7 +795,7 @@ class Zarzad(Byt):
     )
 
     wybory = models.ForeignKey(
-        "kronika.WydarzenieHistoryczne",
+        to="kronika.WydarzenieHistoryczne",
         blank=True,
         null=True,
         on_delete=models.SET_NULL,
@@ -800,7 +804,7 @@ class Zarzad(Byt):
     )
 
     koniec_urzedu = models.ForeignKey(
-        "kronika.WydarzenieHistoryczne",
+        to="kronika.WydarzenieHistoryczne",
         blank=True,
         null=True,
         on_delete=models.SET_NULL,
@@ -829,7 +833,7 @@ class DawnyZarzad(Zarzad):
     search_indexable = True
 
     bibendi = models.ForeignKey(
-        Czlonek,
+        to=Czlonek,
         blank=True,
         null=True,
         on_delete=models.SET_NULL,
@@ -838,7 +842,7 @@ class DawnyZarzad(Zarzad):
     )
 
     magister_disciplinae = models.ForeignKey(
-        Czlonek,
+        to=Czlonek,
         blank=True,
         null=True,
         on_delete=models.SET_NULL,
@@ -847,7 +851,7 @@ class DawnyZarzad(Zarzad):
     )
 
     kontakt_z_SSUJ = models.ForeignKey(
-        Czlonek,
+        to=Czlonek,
         blank=True,
         null=True,
         on_delete=models.SET_NULL,
@@ -856,7 +860,7 @@ class DawnyZarzad(Zarzad):
     )
 
     kontakt_z_SKNHI = models.ForeignKey(
-        Czlonek,
+        to=Czlonek,
         blank=True,
         null=True,
         on_delete=models.SET_NULL,
@@ -874,7 +878,7 @@ class NowyZarzad(Zarzad):
     search_indexable = True
 
     sekretarz = models.ForeignKey(
-        Czlonek,
+        to=Czlonek,
         blank=True,
         null=True,
         on_delete=models.SET_NULL,

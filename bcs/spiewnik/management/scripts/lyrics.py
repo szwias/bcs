@@ -92,7 +92,7 @@ mode = args.mode
 
 def parse_chords(line: str):
     # Capture either parenthesized chunks (...) or single chord symbols
-    tokens = re.findall(r"\([^)]*\)|[A-Ga-g][#b]?[0-9]*", line)
+    tokens = re.findall(pattern=r"\([^)]*\)|[A-Ga-g][#b]?[0-9]*", string=line)
     return tokens
 
 
@@ -128,10 +128,12 @@ def logic(in_file, out_file):
                     if not inside:
                         inside = True
                         start = i
-                    result.append(build_object(line, chords[i - start]))
+                    result.append(
+                        build_object(text=line, chords=chords[i - start])
+                    )
                 else:
                     inside = False
-                    result.append(build_object(line, ""))
+                    result.append(build_object(text=line, chords=""))
 
         elif mode == "cols":
             if len(lines) % 2:
@@ -142,7 +144,9 @@ def logic(in_file, out_file):
 
             half = len(lines) // 2
             [
-                result.append(build_object(lines[half + i], lines[i]))
+                result.append(
+                    build_object(text=lines[half + i], chords=lines[i])
+                )
                 for i in range(half)
             ]
 
@@ -161,12 +165,16 @@ def logic(in_file, out_file):
                 if inside:
                     if lines[i].strip() == "":
                         inside = False
-                        result.append(build_object(lines[i], lines[i]))
+                        result.append(
+                            build_object(text=lines[i], chords=lines[i])
+                        )
                     elif (i - point) % 2 == 0:
-                        result.append(build_object(lines[i + 1], lines[i]))
+                        result.append(
+                            build_object(text=lines[i + 1], chords=lines[i])
+                        )
                     continue
                 else:
-                    result.append(build_object(lines[i], ""))
+                    result.append(build_object(text=lines[i], chords=""))
 
     result[-1] = result[-1][:-2] + "\n"
 
@@ -182,7 +190,7 @@ if scope == "dir":
     output_dir = args.output
 
     # Ensure output directory exists
-    os.makedirs(output_dir, exist_ok=True)
+    os.makedirs(name=output_dir, exist_ok=True)
 
     # Iterate over all files in the input directory
     for filename in os.listdir(input_dir):
@@ -196,11 +204,11 @@ if scope == "dir":
         base, _ = os.path.splitext(filename)
         output_file = os.path.join(output_dir, base + "_1.json")
 
-        logic(input_file, output_file)
+        logic(in_file=input_file, out_file=output_file)
 
 elif scope == "file":
 
     input_file = INPUT_PATH + args.input
     output_file = OUTPUT_PATH + args.output + "_1.json"
 
-    logic(input_file, output_file)
+    logic(in_file=input_file, out_file=output_file)
