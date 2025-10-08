@@ -1,11 +1,15 @@
-Obecne MVP (deadline do końca lipca): 
-1. Zbudować bazę danych łączącą w sobie wszystkie informacje na temat BCS UJ
-2. Pozwolić użytkownikom wyszukiwać informacje przez kategorie lub search bar
-3. Dodać aplikacje użytkowe: śpiewnik, drzewo genealogiczne, mapa, kompas nawojkowy
-4. Zapewnić prosty sposób na administrację i dodawanie danych o nowych wydarzeniach, tradycjach, członkach, etc.
+# ⭐ In varietate unitas! ⭐
 
-Dalsze plany (brak deadline-u):
-1. Podzielić bazę danych na część A - dane personalne, bądź nienadające się do pokazania na zewnątrz bractwa oraz część B - reszta danych
-2. Zabezpieczyć dane A na fizycznym serwerze, a dane B zmigrować na serwer w chmurze
-3. Na podstawie danych B utworzyć stronę czapkuj.pl reklamującą ideę folkloru studenckiego (wykraczającego poza BCS UJ)
-4. Dane A hostować członkom bractwa za pośrednictwem prywatnych kont na czapkuj.pl
+Projekt stony internetowej "czapkuj.pl" mającej za zadanie:
+1. Promować polskie i zagraniczne tradycje studenckie, w szczególności zwyczaj noszenia czapki studenckiej
+2. Przybliżyć szerszej publice działalność Bractwa Czapki Studenckiej, głównego polskiego kultywatora i strażnika wspomnianych tradycji
+3. Udostępniać aplikacje użytkowe zalogowanym członkom, takie jak wyszukiwarka danych, śpiewnik, generator drzew genealogicznych, interfejsy ułatwiające pracę poszczególnym organom Zarządu Bractwa...
+
+Projekt realizowany jest etapami:
+1. Zebranie reprezentatywnej ilości danych i stworzenie dla nich dedykowanych struktur (maj-sierpień)
+2. Stworzenie generatora drzew genealogicznych (czerwiec-lipiec)
+3. Zaprojektowanie aplikacji użytkowych: śpiewnik, wyszukiwarka, mapa (sierpień-wrzesień)
+4. Dodanie możliwości tworzenia kont użytkowników (obecnie)
+5. Rozpoczęcie hostowania strony (do końca 2025 roku)
+6. Uzupełnienie i weryfikacja danych (2026 rok)
+7. Dalszy rozwój i utrzymanie strony, poprawa UX (2026 - ?)
