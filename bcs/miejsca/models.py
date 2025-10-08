@@ -34,7 +34,7 @@ class Miejsce(SearchableModel):
         max_length=MAX_LENGTH,
         blank=True,
         null=True,
-        verbose_name="Adres (wystarczy skopiować z Googla)",
+        verbose_name="Adres (wystarczy skopiować z Googla i dodać kraj)",
     )
 
     niestandardowy_adres = models.CharField(
