@@ -21,6 +21,7 @@ IGNORED_FIELD_TYPES = (
     models.FileField,
     models.ImageField,
     models.BooleanField,
+    models.URLField,
 )
 
 
