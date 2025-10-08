@@ -28,7 +28,7 @@ class AbstractSearchableModel(models.Model):
         values = []
         for value in self.search_dict.values():
             if value != "":
-                values.append(value)
+                values.append(value.replace("/", " "))
         return " ".join(values)
 
     def _create_search_dict(self):
