@@ -268,6 +268,15 @@ class OsobaBCS(models.Model):
         related_name="%(class)s_posiadacze_drugi_wybor",
     )
 
+    pierwsze_wydarzenie = models.ForeignKey(
+        "kalendarz.Wydarzenie",
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        verbose_name="Pierwsze wydarzenie",
+        related_name="%(class)s_nowi_beani",
+    )
+
     staz = models.IntegerField(
         choices=Czas.LATA_BCS + [IntAlt.DONT_KNOW],
         default=2024,  # TODO: bieżący rok
@@ -483,7 +492,7 @@ class Czlonek(Osoba, OsobaBCS):
                 nicknames.append(self.przezwiska[1])
 
         if nicknames:
-            name += f"\"{'/'.join(nicknames)}\" "
+            name += f"\"{' / '.join(nicknames)}\" "
 
         name += self.nazwisko
         return name
@@ -880,3 +889,5 @@ class NowyZarzad(Zarzad):
 
 
 # --------------------------------------- END
+
+# TODO: add ZakonBractwowy model
