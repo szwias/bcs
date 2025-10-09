@@ -1,14 +1,14 @@
 /* ===========================
-   Variables
+   Variables — Dark Theme
 =========================== */
-$primary-color: #2980b9;
-$dark-color: #2c3e50;
-$light-bg: #f9f9f9;
-$text-color: #333;
-$white: #fff;
-$error-color: #d31515;
-$border-color: #ddd;
-$highlight-color: #ffeb3b;
+$primary-color: #58a6ff;      // Vibrant accent blue
+$dark-color: #c9d1d9;         // Light gray for primary text/headings
+$light-bg: #1e1e1e;           // Main dark background
+$text-color: #e0e0e0;         // Regular readable text
+$white: #2b2b2b;              // Dark card background, subtle contrast
+$error-color: #ff6b6b;        // Softer red that pops on dark
+$border-color: #333;          // Muted border for separation
+$highlight-color: #8f7f02;    // Warm highlight for marks
 $font-main: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 $font-mono: monospace;
 
@@ -129,7 +129,7 @@ body {
   &__title {
     font-size: 2.2em;
     font-weight: bold;
-    color: #1a1a1a;
+    color: $text-color;
     margin: 0 0 8px 0;
   }
 
@@ -146,7 +146,7 @@ body {
     &-label {
       font-style: italic;
       font-weight: bold;
-      color: $white;
+      color: $text-color;
     }
 
     &-people {
@@ -156,7 +156,7 @@ body {
 
   &__edit-button {
     background: $primary-color;
-    color: $white;
+    color: $text-color;
     padding: 4px 10px;
     border-radius: 4px;
     font-size: 0.9em;
@@ -280,10 +280,5 @@ body {
 =========================== */
 mark {
   background-color: $highlight-color;
-  color: #000;
-
-  @media (prefers-color-scheme: dark) {
-    background-color: #555;
-    color: #fff;
-  }
+  color: $text-color;
 }

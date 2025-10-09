@@ -1,44 +1,34 @@
+@charset "UTF-8";
 /* ===========================
-   Variables
+   Variables — Dark Theme
 =========================== */
 /* ===========================
    Mixins / Utilities
 =========================== */
-.u-hover-blue,
-.belt__link,
-.song__category-link {
+.u-hover-blue, .belt__link, .song__category-link {
   transition: color 0.2s, border-bottom-color 0.2s, background 0.2s;
   cursor: pointer;
 }
-.u-hover-blue:hover,
-.belt__link:hover,
-.song__category-link:hover {
-  color: #2980b9;
-  border-bottom-color: #2980b9;
+.u-hover-blue:hover, .belt__link:hover, .song__category-link:hover {
+  color: #58a6ff;
+  border-bottom-color: #58a6ff;
 }
 
-.u-hover-blue-button,
-.song__edit-button {
+.u-hover-blue-button, .song__edit-button {
   transition: color 0.2s, border-bottom-color 0.2s, background 0.2s;
   cursor: pointer;
 }
-.u-hover-blue-button:hover,
-.song__edit-button:hover {
-  color: #2980b9;
-  border-bottom-color: #2980b9;
-  background-color: #2980b9;
+.u-hover-blue-button:hover, .song__edit-button:hover {
+  color: #58a6ff;
+  border-bottom-color: #58a6ff;
+  background-color: #58a6ff;
 }
 
-.u-no-underline,
-.belt__link,
-.song__edit-button,
-.song__category-link,
-.song__back-link a {
+.u-no-underline, .belt__link, .song__edit-button, .song__category-link, .song__back-link a {
   text-decoration: none;
 }
 
-.u-float-right,
-.song__edit-button--right {
+.u-float-right, .song__edit-button--right {
   float: right;
 }
 
@@ -47,8 +37,8 @@
 =========================== */
 body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f9f9f9;
-  color: #333;
+  background-color: #1e1e1e;
+  color: #e0e0e0;
   line-height: 1;
   padding: 20px;
   max-width: 1000px;
@@ -61,7 +51,7 @@ body h2 {
 }
 body h1 {
   font-size: 2.5em;
-  color: #2c3e50;
+  color: #c9d1d9;
 }
 body h2 {
   font-size: 1.2em;
@@ -95,7 +85,7 @@ body h2 {
   margin-bottom: 10px;
 }
 .song__back-link a {
-  color: #2980b9;
+  color: #58a6ff;
   font-size: 0.9rem;
 }
 .song__back-link a:hover {
@@ -104,7 +94,7 @@ body h2 {
 .song__category {
   font-size: 1em;
   font-weight: bold;
-  color: #2c3e50;
+  color: #c9d1d9;
   margin-bottom: 20px;
   line-height: 1.5;
   text-align: center;
@@ -112,14 +102,14 @@ body h2 {
 .song__category-link {
   display: inline-block;
   font-size: 1rem;
-  color: #2c3e50;
+  color: #c9d1d9;
   border-bottom: 2px solid transparent;
   user-select: none;
 }
 .song__title {
   font-size: 2.2em;
   font-weight: bold;
-  color: #1a1a1a;
+  color: #e0e0e0;
   margin: 0 0 8px 0;
 }
 .song__authors {
@@ -135,14 +125,14 @@ body h2 {
 .song__authors-label {
   font-style: italic;
   font-weight: bold;
-  color: #fff;
+  color: #e0e0e0;
 }
 .song__authors-people {
   color: #555;
 }
 .song__edit-button {
-  background: #2980b9;
-  color: #fff;
+  background: #58a6ff;
+  color: #e0e0e0;
   padding: 4px 10px;
   border-radius: 4px;
   font-size: 0.9em;
@@ -161,7 +151,7 @@ body h2 {
 .belt__category {
   text-align: center;
   font-size: 1rem;
-  color: #2c3e50;
+  color: #c9d1d9;
   line-height: 1.5;
 }
 .belt__category-label {
@@ -180,11 +170,11 @@ body h2 {
 .belt__label {
   font-size: 1rem;
   margin-bottom: 5px;
-  color: #2c3e50;
+  color: #c9d1d9;
 }
 .belt__link {
   font-size: 0.95rem;
-  color: #2980b9;
+  color: #58a6ff;
   margin-top: 3px;
 }
 .belt__no-song {
@@ -208,8 +198,8 @@ body h2 {
 .lyrics {
   display: flex;
   flex-direction: column;
-  background: #fff;
-  border: 1px solid #ddd;
+  background: #2b2b2b;
+  border: 1px solid #333;
   border-radius: 8px;
   padding: 10px 15px;
   font-family: monospace;
@@ -222,8 +212,7 @@ body h2 {
   min-height: 1.2em;
   margin-bottom: 2px;
 }
-.lyrics__line > .lyrics__text,
-.lyrics__line > .lyrics__alt {
+.lyrics__line > .lyrics__text, .lyrics__line > .lyrics__alt {
   font-family: monospace;
 }
 .lyrics__line > .lyrics__chords {
@@ -232,7 +221,7 @@ body h2 {
 }
 .lyrics__comment {
   font-size: 0.75rem;
-  color: #d31515;
+  color: #ff6b6b;
   font-style: italic;
   font-weight: bolder;
   line-height: 1.2;
@@ -242,14 +231,8 @@ body h2 {
    Inline Highlights
 =========================== */
 mark {
-  background-color: #ffeb3b;
-  color: #000;
-}
-@media (prefers-color-scheme: dark) {
-  mark {
-    background-color: #555;
-    color: #fff;
-  }
+  background-color: #8f7f02;
+  color: #e0e0e0;
 }
 
 /*# sourceMappingURL=piosenka.css.map */

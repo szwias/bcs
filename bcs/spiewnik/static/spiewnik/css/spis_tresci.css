@@ -1,7 +1,7 @@
 body {
   font-family: "Segoe UI", Tahoma, sans-serif;
-  background: #f9f9f9;
-  color: #333;
+  background: #1e1e1e;
+  color: #e0e0e0;
   max-width: 800px;
   margin: auto;
   padding: 20px;
@@ -22,7 +22,7 @@ body {
 .toc__category-title {
   display: inline-block;
   cursor: pointer;
-  color: #2c3e50;
+  color: #d0d6e0;
   margin: 5px 0;
   font-size: 1.2rem;
   text-align: center;
@@ -31,8 +31,8 @@ body {
   user-select: none;
 }
 .toc__category-title:hover {
-  color: #2980b9;
-  border-bottom-color: #2980b9;
+  color: #58a6ff;
+  border-bottom-color: #58a6ff;
 }
 .toc__list {
   text-align: center;
@@ -45,7 +45,7 @@ body {
   margin: 4px 0;
 }
 .toc__link {
-  color: #2980b9;
+  color: #58a6ff;
   text-decoration: none;
 }
 .toc__link:hover {
@@ -61,19 +61,19 @@ body {
   user-select: none;
   display: inline-block;
   cursor: pointer;
-  color: #2c3e50;
+  color: #d0d6e0;
   text-decoration: none;
   border-bottom: 2px solid transparent;
   transition: color 0.2s, border-bottom-color 0.2s;
 }
 .toc--limited__title-link:hover {
-  color: #2980b9;
-  border-bottom-color: #2980b9;
+  color: #58a6ff;
+  border-bottom-color: #58a6ff;
 }
 .toc--limited__category-title {
   display: inline-block;
   cursor: pointer;
-  color: #2c3e50;
+  color: #d0d6e0;
   margin: 5px 0;
   font-size: 1.2rem;
   text-align: center;
@@ -91,7 +91,7 @@ body {
 
 .toggle-indicator {
   font-weight: bold;
-  color: #6d7987;
+  color: #888;
 }
 
 /*# sourceMappingURL=spis_tresci.css.map */
