@@ -23,11 +23,7 @@ from django.conf import settings
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("_nested_admin/", include("nested_admin.urls")),
-    path("apps/", include("dashboard.urls", namespace="dashboard")),
-    path("drzewo/", include("drzewo.urls", namespace="drzewo")),
-    path("spiewnik/", include("spiewnik.urls", namespace="spiewnik")),
-    path("miejsca/", include("miejsca.urls", namespace="miejsca")),
-    path("apps/", include(arg="dashboard.urls", namespace="dashboard")),
+    path("dashboard/", include(arg="dashboard.urls", namespace="dashboard")),
     path("drzewo/", include(arg="drzewo.urls", namespace="drzewo")),
     path("spiewnik/", include(arg="spiewnik.urls", namespace="spiewnik")),
     path("miejsca/", include(arg="miejsca.urls", namespace="miejsca")),
@@ -39,6 +35,13 @@ urlpatterns = [
         "autocomplete/czapki",
         include(
             arg="czapki.autocomplete_urls", namespace="czapki_autocomplete"
+        ),
+    ),
+    path(
+        "autocomplete/dashboard",
+        include(
+            arg="dashboard.autocomplete_urls",
+            namespace="dashboard_autocomplete",
         ),
     ),
     path(
