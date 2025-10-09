@@ -8,6 +8,8 @@ from django.views.decorators.http import require_GET
 from drzewo.utils.draw_a_tree import generate_full_tree, generate_scoped_tree
 from .forms import *
 
+# TODO: add a view for choosing from full and scoped
+
 
 @require_GET
 def serve_full_tree_form_view(request):
