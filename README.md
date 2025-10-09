@@ -1,15 +1,69 @@
 # ⭐ In varietate unitas! ⭐
 
-Projekt stony internetowej "czapkuj.pl" mającej za zadanie:
-1. Promować polskie i zagraniczne tradycje studenckie, w szczególności zwyczaj noszenia czapki studenckiej
-2. Przybliżyć szerszej publice działalność Bractwa Czapki Studenckiej, głównego polskiego kultywatora i strażnika wspomnianych tradycji
-3. Udostępniać aplikacje użytkowe zalogowanym członkom, takie jak wyszukiwarka danych, śpiewnik, generator drzew genealogicznych, interfejsy ułatwiające pracę poszczególnym organom Zarządu Bractwa...
+[![Website](https://img.shields.io/badge/website-live-brightgreen)](https://czapkuj.pl) 
+[![License](https://img.shields.io/badge/license-MIT-blue)](LICENSE) 
+[![Status](https://img.shields.io/badge/status-in%20progress-orange)]  
 
-Projekt realizowany jest etapami:
-1. Zebranie reprezentatywnej ilości danych i stworzenie dla nich dedykowanych struktur (maj-sierpień)
-2. Stworzenie generatora drzew genealogicznych (czerwiec-lipiec)
-3. Zaprojektowanie aplikacji użytkowych: śpiewnik, wyszukiwarka, mapa (sierpień-wrzesień)
-4. Dodanie możliwości tworzenia kont użytkowników (obecnie)
-5. Rozpoczęcie hostowania strony (do końca 2025 roku)
-6. Uzupełnienie i weryfikacja danych (2026 rok)
-7. Dalszy rozwój i utrzymanie strony, poprawa UX (2026 - ?)
+**Czapkuj.pl** is a web project aimed at:  
+
+1. **Promoting student traditions**  
+   - Both Polish and international, with a focus on the custom of wearing the student cap (*czapka studencka*).  
+
+2. **Introducing the Bractwo Czapki Studenckiej**  
+   - The main Polish organization preserving these traditions.  
+
+3. **Providing useful applications for registered members**, such as:  
+   - Data search tools  
+   - Songbooks  
+   - Genealogical tree generators  
+   - Interfaces to assist the Bractwo’s administrative work  
+
+---
+
+## 📋 Table of Contents
+
+1. [Project Goals](#project-goals)  
+2. [Project Stages](#project-stages)  
+3. [Contact & Contribution](#contact--contribution)  
+
+---
+
+## 🎯 Project Goals
+
+- Promote student traditions in Poland and abroad.  
+- Introduce the activities of the Bractwo Czapki Studenckiej.  
+- Provide tools and applications for members to facilitate their work and enjoy the traditions.  
+
+---
+
+## 🚀 Project Stages
+
+The project is being developed in several phases:  
+
+1. **Data Collection & Structuring** (May–August)  
+   - Gather a representative dataset and create dedicated data structures.  
+
+2. **Genealogical Tree Generator** (June–July)  
+   - Develop a tool to visualize family or student lineages.  
+
+3. **User Applications Design** (August–September)  
+   - Design utilities such as a songbook, data search, and maps.  
+
+4. **User Account System** (Current)  
+   - Enable account creation for registered members.  
+
+5. **Website Hosting** (By end of 2025)  
+   - Launch the website publicly.  
+
+6. **Data Verification & Completion** (2026)  
+   - Ensure accuracy and completeness of the database.  
+
+7. **Ongoing Development & UX Improvement** (2026–?)  
+   - Maintain the site and continuously enhance user experience.  
+
+---
+
+## 📬 Contact & Contribution
+
+- Contributions are welcome! Please submit issues or pull requests.  
+- Contact: [zwiasszymon@gmail.com](mailto:zwiasszymon@gmail.com)  
