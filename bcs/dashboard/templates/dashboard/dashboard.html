@@ -1,0 +1,73 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              bgDark: '#1e1e1e',
+              surface: '#2b2b2b',
+              border: '#3a3a3a',
+              textPrimary: '#e0e0e0',
+              textMuted: '#aaa',
+              accent: '#58a6ff',
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+
+  <body class="bg-bgDark text-textPrimary min-h-screen">
+    <!-- Sticky top bar -->
+    <header
+      class="sticky top-0 bg-[#252526] border-b border-border shadow z-50 flex items-center justify-between px-4 py-2"
+    >
+      <!-- Left: favicon -->
+      <img
+        src="{% static 'images/favicon.png' %}"
+        alt="Logo"
+        class="h-8 w-8 rounded-full"
+      />
+
+      <!-- Right: profile picture (optional) -->
+      {# <img
+        src="{% static 'images/profile.jpg' %}"
+        alt="Profile"
+        class="h-9 w-9 rounded-full border-2 border-border hover:border-accent transition"
+      /> #}
+    </header>
+
+    <!-- Page title -->
+    <div class="px-6 py-6">
+      <h1 class="text-3xl font-bold text-[#d0d6e0]">Aplikacje</h1>
+    </div>
+
+    <!-- Apps grid -->
+    <main class="px-6 pb-10">
+      <div class="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+        {% for app in apps %}
+        <a
+          href="{{ app.get_absolute_url }}"
+          class="bg-surface border border-border rounded-2xl shadow-sm hover:shadow-md hover:border-accent p-6 flex flex-col items-center text-center transition"
+        >
+          <h2 class="text-lg font-semibold text-[#d0d6e0]">
+            {{ app.nazwa }}
+          </h2>
+          <img
+            src="{% static app.get_icon_static_path %}"
+            alt="{{ app.tytul }}"
+            class="h-16 w-16 mb-4"
+          />
+          <p class="text-sm text-textMuted mt-2">{{ app.opis }}</p>
+        </a>
+        {% endfor %}
+      </div>
+    </main>
+  </body>
+</html>
