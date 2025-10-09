@@ -23,16 +23,12 @@
    - Genealogical tree generators  
    - Interfaces to assist the Bractwo’s administrative work  
 
-
----
-
+   
 ## 🎯 Project Goals
 
 - Promote student traditions in Poland and abroad.  
 - Introduce the activities of the Bractwo Czapki Studenckiej.  
 - Provide tools and applications for members to facilitate their work and enjoy the traditions.  
-
----
 
 ## 🚀 Project Stages
 
@@ -58,8 +54,6 @@ The project is being developed in several phases:
 
 7. **Ongoing Development & UX Improvement** (2026–?)  
    - Maintain the site and continuously enhance user experience.  
-
----
 
 ## 📬 Contact & Contribution
 
