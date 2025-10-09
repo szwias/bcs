@@ -1,8 +1,13 @@
 # ⭐ In varietate unitas! ⭐
 
-[![Website](https://img.shields.io/badge/website-live-brightgreen)](https://czapkuj.pl) 
-[![License](https://img.shields.io/badge/license-MIT-blue)](LICENSE) 
-[![Status](https://img.shields.io/badge/status-in%20progress-orange)]  
+![Website](https://img.shields.io/badge/website-under%20construction-green) 
+![Status](https://img.shields.io/badge/status-in%20progress-orange) 
+![Stage](https://img.shields.io/badge/stage-user%20accounts%20creation-blue)
+
+![Django](https://img.shields.io/badge/framework-Django-ligthgreen)
+![PostgreSQL](https://img.shields.io/badge/database-PostgreSQL-blue)
+![Style](https://img.shields.io/badge/styling-SCSS-purple)
+
 
 **Czapkuj.pl** is a web project aimed at:  
 
@@ -18,13 +23,6 @@
    - Genealogical tree generators  
    - Interfaces to assist the Bractwo’s administrative work  
 
----
-
-## 📋 Table of Contents
-
-1. [Project Goals](#project-goals)  
-2. [Project Stages](#project-stages)  
-3. [Contact & Contribution](#contact--contribution)  
 
 ---
 
