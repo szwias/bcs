@@ -53,7 +53,6 @@ stats/
 bcs/media/
 bcs/staticfiles/
 bcs/drzewo/trees/
-*.png
 *.map
 
 # ------------------------
