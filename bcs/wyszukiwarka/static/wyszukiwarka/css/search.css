@@ -1,3 +1,7 @@
+.search {
+  background: #1e1e1e;
+  color: #d0d6e0;
+}
 .search__results {
   list-style: none;
   margin: 0;
@@ -5,33 +9,36 @@
 }
 .search__item {
   margin-bottom: 1em;
+  padding-bottom: 0.8em;
+  border-bottom: 1px solid rgba(68, 68, 68, 0.6);
 }
 .search__item .search__snippet {
   font-size: 0.95em;
   line-height: 1.4;
-  color: #ccc;
+  color: #d0d6e0;
 }
 .search__item .search__field {
   font-style: italic;
   font-weight: 500;
-  color: #aaa;
+  color: #9fb4cc;
 }
 .search__item .search__query-match {
   font-weight: bold;
   color: #6fcf97;
-  text-shadow: 0 0 4px rgba(111, 207, 151, 0.5);
+  text-shadow: 0 0 4px rgba(111, 207, 151, 0.4);
 }
 .search__item .search__near-match {
   color: #e0c75e;
-  text-shadow: 0 0 4px rgba(224, 199, 94, 0.5);
+  text-shadow: 0 0 4px rgba(224, 199, 94, 0.3);
 }
 .search__category {
   font-size: 1.3rem;
   margin-top: 1.5rem;
   font-weight: bold;
-  color: #75ce7a;
-  border-bottom: 2px solid #555;
+  color: #f5dd5d;
+  border-bottom: 2px solid #444;
   padding-bottom: 0.2rem;
+  text-shadow: 0 0 6px rgba(245, 221, 93, 0.3);
 }
 .search__category-list {
   list-style: none;
@@ -45,18 +52,34 @@
   cursor: pointer;
   user-select: none;
   margin-top: 1.5rem;
-  color: #ccc;
+  color: #d0d6e0;
+  transition: color 0.2s ease;
+}
+.search__app-name:hover {
+  color: rgb(139, 193.1796407186, 255);
 }
 .search__app-indicator {
   font-weight: normal;
   margin-left: 0.5rem;
-  color: #888;
+  color: #999;
 }
 .search__app-results {
   display: none;
 }
 .search__app--open > .search__app-results {
   display: block;
+}
+
+a {
+  color: #58a6ff;
+  text-decoration: none;
+}
+a:visited {
+  color: #58a6ff;
+}
+a:hover {
+  color: rgb(139, 193.1796407186, 255);
+  text-decoration: underline;
 }
 
 /*# sourceMappingURL=search.css.map */

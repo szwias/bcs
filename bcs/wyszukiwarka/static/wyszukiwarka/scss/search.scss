@@ -1,13 +1,16 @@
 // =====================
-// Variables
+// Variables — Unified Dark Palette
 // =====================
-$color-text-muted: #ccc;
-$color-field: #aaa;
-$color-green: #6fcf97;
-$color-gold: #e0c75e;
-$color-category: #75ce7a;
-$color-border: #555;
-$color-toggle: #888;
+$color-bg: #1e1e1e;            // shared dark background
+$color-text-muted: #d0d6e0;    // light-muted text
+$color-field: #9fb4cc;         // soft blue-gray accent for field names
+$color-green: #6fcf97;         // match highlight (success)
+$color-gold: #e0c75e;          // warm near-match
+$color-accent: #58a6ff;      // accent blue (consistent with previous)
+$color-category: #f5dd5d;
+$color-border: #444;           // subtle border tone
+$color-toggle: #999;           // secondary gray for indicators
+
 
 // =====================
 // Mixins
@@ -22,6 +25,9 @@ $color-toggle: #888;
 // Search Component
 // =====================
 .search {
+  background: $color-bg;
+  color: $color-text-muted;
+
   // ===== Results Container =====
   &__results {
     @include reset-list;
@@ -30,6 +36,8 @@ $color-toggle: #888;
   // ===== Each Result Item =====
   &__item {
     margin-bottom: 1em;
+    padding-bottom: 0.8em;
+    border-bottom: 1px solid rgba($color-border, 0.6);
 
     .search__snippet {
       font-size: 0.95em;
@@ -46,12 +54,12 @@ $color-toggle: #888;
     .search__query-match {
       font-weight: bold;
       color: $color-green;
-      text-shadow: 0 0 4px rgba($color-green, 0.5);
+      text-shadow: 0 0 4px rgba($color-green, 0.4);
     }
 
     .search__near-match {
       color: $color-gold;
-      text-shadow: 0 0 4px rgba($color-gold, 0.5);
+      text-shadow: 0 0 4px rgba($color-gold, 0.3);
     }
   }
 
@@ -63,6 +71,7 @@ $color-toggle: #888;
     color: $color-category;
     border-bottom: 2px solid $color-border;
     padding-bottom: 0.2rem;
+    text-shadow: 0 0 6px rgba($color-category, 0.3);
   }
 
   &__category-list {
@@ -80,6 +89,11 @@ $color-toggle: #888;
       user-select: none;
       margin-top: 1.5rem;
       color: $color-text-muted;
+      transition: color 0.2s ease;
+
+      &:hover {
+        color: lighten($color-accent, 10%);
+      }
     }
 
     &-indicator {
@@ -99,3 +113,18 @@ $color-toggle: #888;
     }
   }
 }
+
+a {
+  color: $color-accent;
+  text-decoration: none;
+
+  &:visited {
+    color: $color-accent; // same as normal links
+  }
+
+  &:hover {
+    color: lighten($color-accent, 10%);
+    text-decoration: underline;
+  }
+}
+
