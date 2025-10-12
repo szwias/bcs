@@ -1,0 +1,20 @@
+1. Dodaj edykt chrzcielny (EC) (Źródła -> Edykty):
+- w streszczeniu dodaj "edykt chrzcielny: <tu wymień chrzczonych>"
+
+2. Dodaj chrzest (CC) (Kalendarz -> Chrzty):
+- opis opcjonalny
+- Odśpiewany przez beanów hymn: Gaudeamus Igitur lub Breve Regnum
+- dokument chrzcielny: EC
+
+3. Ochrzcij beanów (Osoby -> Bean):
+- zaznacz beanów i wybierz akcję "Ochrzcij beana"
+
+4. Uzupełnij dane nowych członków (Osoby -> Członkowie):
+- aktywność (domyślnie aktywny)
+- chrzest: CC
+- status (domyślnie członek)
+- imiona czapkowe
+
+5. Dodaj zadania chrzcielne (Kronika -> Zadania chrzcielne):
+- opis z edyktu chrzcielnego
+- zalacznik/zdjecia/link - dowolność w reprezentacji zadania
