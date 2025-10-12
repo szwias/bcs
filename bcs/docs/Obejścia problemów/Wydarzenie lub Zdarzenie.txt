@@ -1,0 +1,3 @@
+Czasem w polu wielokrotnego wyboru "uczestnicy" tylko niektórzy zostają dodane.
+Należy wtedy dodać wszystkie osoby z bazy naraz, a następnie usunąć wszystkich naraz.
+Przyczyna problemu nieznana
