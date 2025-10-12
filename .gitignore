@@ -41,6 +41,8 @@ bcs/sources_to_models.py
 bcs/test_file.py
 bcs/test_file
 *.txt
+!bcs/docs/
+!bcs/docs/**/*.txt
 
 # ------------------------
 # Generated data & stats
