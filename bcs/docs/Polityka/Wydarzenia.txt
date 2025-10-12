@@ -1,0 +1,2 @@
+1. Dodajemy uczestników. W starych wydarzeniach ich nie ma, bo mnie na nich nie było
+ lub bazy jeszcze nie było, ale staramy się dodawać, by śledzić trendy
