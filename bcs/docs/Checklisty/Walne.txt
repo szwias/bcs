@@ -1,0 +1,37 @@
+1. Dodaj wydarzenie kalendarzowe (Kalendarz -> Wydarzenia):
+- nazwa z FB
+- link z FB
+- opis z FB
+- typ wydarzenia: Walne
+- uczestnicy: tak, wypadałoby
+
+2. Dodaj wydarzenie historyczne (WH) (Kronika -> Wydarzenia historyczne):
+- typ: Walne Zgromadzenie
+- opis do rzeczy, np. "Zarząd otrzymał akredytację i został wybrany kolejny"
+- powiązane wydarzenie z kalendarza: to które właśnie dodaliśmy
+- powiązany dokument: protokół
+
+3.1 Uzupełnij zarząd poprzedniej kadencji (Osoby -> Zarządy w obecnej formule)
+- wydarzenie kończące urząd w tym składzie: WH
+- podsumowanie kadencji: jak ktoś napisał jakieś ładne można dodać,
+  albo z protokołu, albo sam(a) napisz
+
+3.2 Dodaj nowy zarząd
+- kadencja: dodaj nową
+-- lata: wiadomo
+-- rozpoczęcie kadencji: WH
+-- zakończenie kadencji: zostaw puste
+- wielki mistrz: dodaj nowego
+-- imie: wiadomo
+-- tadeusz: poczekaj do pierwszego edyktu, na początek możesz dać "L",
+   bo 50-ty na pewno z niczym nie koliduje
+-- tytuly: jak wyżej
+- wybory: WH
+- wydarzenie kończące urząd w tym składzie: puste
+- reszta wiadomo, podsumowanie kadencji puste
+
+4. Dodaj uchwałę WZ BCS UJ (jak już będzie) (Źródła -> Uchwały)
+
+4.1 Dodaj uchwałę do WH
+
+Chwała Zarządowi!
