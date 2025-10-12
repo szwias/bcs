@@ -133,7 +133,7 @@ class CzlonekForm(OsobaForm):
             cd["imie_piwne_2"] = TextAlt.NOT_APPLICABLE[1]
 
         staz = cd.get("staz")
-        if staz == Czas.ROK_ZALOZENIA:
+        if staz == ROK_ZALOZENIA:
             cd["pewnosc_stazu"] = "T"
 
         rodzic_1 = cd.get("rodzic_1")

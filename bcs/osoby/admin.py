@@ -56,7 +56,7 @@ class DawnyZarzadAdmin(BaseModelAdmin):
 
 
 @admin.register(NowyZarzad)
-class ZarzadAdmin(BaseModelAdmin):
+class NowyZarzadAdmin(BaseModelAdmin):
     list_filter_exclude = "__all__"
     inlines = [PodsumowanieKadencjiInline]
 

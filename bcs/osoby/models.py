@@ -10,9 +10,9 @@ from core.utils.Lengths import (
     SHORT_LENGTH,
     NAME_LENGTH,
 )
-from core.utils import Czas
 from core.utils.Choices import TextAlt, TextChoose, IntAlt
-from core.utils.Czas import ROK_ZALOZENIA
+from core.utils.Czas import ROK_ZALOZENIA, BIEZACY_ROK, LATA_BRACTW, LATA_BCS, \
+    MIESIACE, DNI
 from czapki.models import Czapka
 from kronika.models import Kadencja
 from wyszukiwarka.utils.Search import *
@@ -134,7 +134,7 @@ class Organizacja(Byt):
     )
 
     rok_zalozenia = models.IntegerField(
-        choices=Czas.LATA_BRACTW + [IntAlt.DONT_KNOW],
+        choices=LATA_BRACTW + [IntAlt.DONT_KNOW],
         default=IntAlt.DONT_KNOW[0],
         verbose_name="Rok założenia",
     )
@@ -254,7 +254,7 @@ class OsobaBCS(models.Model):
         to="czapki.Czapka",
         on_delete=models.SET_NULL,
         null=True,
-        default=Czapka.get_dont_know_czapka,
+        default=Czapka.get_not_applicable_czapka,
         verbose_name="Czapka",
         related_name="%(class)s_posiadacze_pierwszy_wybor",
     )
@@ -278,8 +278,8 @@ class OsobaBCS(models.Model):
     )
 
     staz = models.IntegerField(
-        choices=Czas.LATA_BCS + [IntAlt.DONT_KNOW],
-        default=2024,  # TODO: bieżący rok
+        choices=LATA_BCS + [IntAlt.DONT_KNOW],
+        default=BIEZACY_ROK,
         verbose_name="Rok pojawienia się",
     )
 
@@ -402,19 +402,19 @@ class Czlonek(Osoba, OsobaBCS):
     #  column above and then remove following three fields
 
     rok_chrztu = models.IntegerField(
-        choices=Czas.LATA_BCS + [IntAlt.DONT_KNOW] + [IntAlt.NOT_APPLICABLE],
+        choices=LATA_BCS + [IntAlt.DONT_KNOW] + [IntAlt.NOT_APPLICABLE],
         default=IntAlt.DONT_KNOW[0],
         verbose_name="Rok chrztu",
     )
 
     miesiac_chrztu = models.IntegerField(
-        choices=Czas.MIESIACE + [IntAlt.DONT_KNOW] + [IntAlt.NOT_APPLICABLE],
+        choices=MIESIACE + [IntAlt.DONT_KNOW] + [IntAlt.NOT_APPLICABLE],
         default=IntAlt.DONT_KNOW[0],
         verbose_name="Miesiąc chrztu",
     )
 
     dzien_chrztu = models.IntegerField(
-        choices=Czas.DNI + [IntAlt.DONT_KNOW] + [IntAlt.NOT_APPLICABLE],
+        choices=DNI + [IntAlt.DONT_KNOW] + [IntAlt.NOT_APPLICABLE],
         default=IntAlt.DONT_KNOW[0],
         verbose_name="Dzień chrztu",
     )
