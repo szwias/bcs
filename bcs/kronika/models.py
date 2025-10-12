@@ -93,7 +93,7 @@ class WydarzenieHistoryczne(SearchableModel):
         max_length=MEDIUM_LENGTH,
         blank=True,
         null=True,
-        verbose_name="Data przybliżona",
+        verbose_name="Data przybliżona (jeśli znana, zostaw puste)",
     )
 
     opis = models.TextField(blank=True, null=True, verbose_name="Opis")
@@ -113,14 +113,6 @@ class WydarzenieHistoryczne(SearchableModel):
         null=True,
         on_delete=models.SET_NULL,
         verbose_name="Powiązany dokument",
-    )
-
-    pojecie = models.ForeignKey(
-        to="encyklopedia.Pojecie",
-        blank=True,
-        null=True,
-        on_delete=models.SET_NULL,
-        verbose_name="Link do pojęcia ze słownika",
     )
 
     class Meta:
