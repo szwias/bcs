@@ -74,6 +74,7 @@ class ImieSzlacheckieAdmin(BaseModelAdmin):
 @admin.register(WielkiMistrz)
 class WielkiMistrzAdmin(BaseModelAdmin):
     list_filter_exclude = "__all__"
+    list_display = ["imie", "tadeusz", "tytuly"]
 
 
 @admin.register(ZwierzeCzapkowe)
