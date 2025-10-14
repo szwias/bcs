@@ -2,7 +2,7 @@ from PyPDF2.errors import PdfReadError
 
 from django.core.exceptions import ValidationError
 
-from core.utils.Lengths import MAX_LENGTH
+from core.utils.Lengths import MAX_LENGTH, MEDIUM_LENGTH
 from wyszukiwarka.utils.Search import *
 from wyszukiwarka.models import SearchableModel, SearchablePolymorphicModel
 
@@ -129,8 +129,31 @@ class Rozliczenie(Dokument):
         ordering = ["-data"]
 
 
+class KategoriaUkazuLubEdyktu(models.Model):
+    kategoria = models.CharField(
+        max_length=MEDIUM_LENGTH,
+        blank=True,
+        null=True,
+        verbose_name="Kategoria ukazu/edyktu",
+    )
+
+    class Meta:
+        verbose_name = "Kategoria ukazu/edyktu"
+        verbose_name_plural = "Kategorie ukazów/edyktów"
+        ordering = ["kategoria"]
+
+    def __str__(self):
+        return self.kategoria
+
+
 class Edykt(Dokument):
     numer = models.IntegerField(blank=True, null=True, verbose_name="Numer")
+
+    kategorie = models.ManyToManyField(
+        to=KategoriaUkazuLubEdyktu,
+        blank=True,
+        verbose_name="Kategoria",
+    )
 
     class Meta:
         verbose_name = "Edykt"
@@ -140,6 +163,12 @@ class Edykt(Dokument):
 
 class Ukaz(Dokument):
     numer = models.IntegerField(blank=True, null=True, verbose_name="Numer")
+
+    kategorie = models.ManyToManyField(
+        to=KategoriaUkazuLubEdyktu,
+        blank=True,
+        verbose_name="Kategoria",
+    )
 
     class Meta:
         verbose_name = "Ukaz"
