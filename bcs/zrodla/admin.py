@@ -52,8 +52,18 @@ class KorespondencjaAdmin(BaseModelAdmin):
 
 @admin.register(Ukaz)
 class UkazAdmin(DokumentAdmin):
-    fields = ["tytul", "numer", "data", "autorzy", "streszczenie", "plik"]
+    fields = [
+        "tytul",
+        "numer",
+        "data",
+        "kategorie",
+        "autorzy",
+        "streszczenie",
+        "plik",
+    ]
+    filter_horizontal = ["autorzy", "kategorie"]
     list_filter_exclude = ["dokument_ptr", "polymorphic_ctype", "zrodlo_ptr"]
+    list_filter = ["kategorie"]
 
 
 @admin.register(Edykt)
