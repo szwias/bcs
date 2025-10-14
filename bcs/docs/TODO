@@ -1,0 +1,7 @@
+1.  Dodaj możliwość otwierania checklist w czapkuj (dla edytorów) -
+    Np. chrzest - wybór beana/członka i odhaczanie. Przydatne,
+    gdy chcemy dodać np. Chrzest, ale nie ma jeszcze edyktu. Można
+    stworzyć Chrzest, odznaczyć i jak będą sprawdzane checklisty
+    i akurat będzie już edykt, to można dodać. Powinny mieć linki,
+    które automatycznie przechodzą do edycji obiektu z FK ustawionym
+    na członka / chrzczenie beana z poziomu formsa a nie listy Beanów
