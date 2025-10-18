@@ -36,3 +36,15 @@ class JsonExtractText(Func):
 
     def __init__(self, expression, key, **extra):
         super().__init__(expression, Value(key), **extra)
+
+
+def optimal_type_in_name(type_str, name):
+    if type_str == "":
+        return ""
+    words = type_str.lower().split()
+    name_lower = name.lower()
+    for i in range(len(words)):
+        for j in range(i + 1, len(words) + 1):
+            seq = " ".join(words[i:j])
+            if seq and seq in name_lower:
+                return ""
