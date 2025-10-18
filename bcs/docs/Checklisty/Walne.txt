@@ -30,6 +30,8 @@
 - wydarzenie kończące urząd w tym składzie: puste
 - reszta wiadomo, podsumowanie kadencji puste
 
+3.3 Dodaj komisję rewizyjną (Osoby -> Komisje rewizyjne)
+
 4. Dodaj uchwałę WZ BCS UJ (jak już będzie) (Źródła -> Uchwały)
 
 4.1 Dodaj uchwałę do WH
