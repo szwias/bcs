@@ -202,6 +202,11 @@ class Wydarzenie(WydarzenieKalendarzowe):
         verbose_name="Typ wyjazdu",
     )
 
+    uczestnicy = models.ManyToManyField(
+        "osoby.Osoba",
+        blank=True,
+        verbose_name="Uczestnicy wydarzenia",
+    )
 
     class Meta:
         verbose_name = "Wydarzenie"
