@@ -2,6 +2,7 @@ from django.utils import timezone
 from polymorphic.models import PolymorphicModel
 
 from core.utils.Lengths import MAX_LENGTH, MEDIUM_LENGTH
+from core.utils.Misc import optimal_type_in_name
 from wyszukiwarka.models import SearchableModel, SearchablePolymorphicModel
 from wyszukiwarka.utils.Search import *
 
@@ -201,11 +202,6 @@ class Wydarzenie(WydarzenieKalendarzowe):
         verbose_name="Typ wyjazdu",
     )
 
-    uczestnicy = models.ManyToManyField(
-        "osoby.Osoba",
-        blank=True,
-        verbose_name="Uczestnicy wydarzenia",
-    )
 
     class Meta:
         verbose_name = "Wydarzenie"
@@ -224,18 +220,8 @@ class Wydarzenie(WydarzenieKalendarzowe):
         else:
             typ = ""
 
-        words = typ.lower().split()
-        nazwa_lower = self.nazwa.lower()
-
         # check every contiguous subsequence of words
-        for i in range(len(words)):
-            for j in range(i + 1, len(words) + 1):
-                seq = " ".join(words[i:j])
-                if seq and seq in nazwa_lower:
-                    typ = ""
-                    break
-            if typ == "":
-                break
+        typ = optimal_type_in_name(type_str=typ, name=self.nazwa)
 
         name += f': {typ} "{self.nazwa}"'
         return name
