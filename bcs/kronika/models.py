@@ -1,5 +1,6 @@
 from core.utils import Czas
 from core.utils.Lengths import MEDIUM_LENGTH, NAME_LENGTH
+from core.utils.Misc import optimal_type_in_name
 from wyszukiwarka.models import SearchableModel
 from wyszukiwarka.utils.Search import *
 
@@ -65,6 +66,9 @@ class Kadencja(SearchableModel):
     def __str__(self):
         return self.get_lata_display()
 
+# TODO: add model Kandydatura for inline in future
+#  WalneZgromadzenie(WydarzenieHistoryczne) model
+
 
 class TypWydarzeniaHistorycznego(SearchableModel):
     typ = models.CharField(
@@ -79,7 +83,14 @@ class TypWydarzeniaHistorycznego(SearchableModel):
     def __str__(self):
         return self.typ
 
-
+# TODO: add subclass WalneZgromadzenie with fields:
+#  - liczba_uczestnikow
+#  - liczba_glosujacych
+#  - przewodniczacy_posiedzenia
+#  - protokolant_posiedzenia
+#  - komisja skrutacyjna
+#  - przewo_komisji_skrutacyjnej
+#  and inline Kandydatura
 class WydarzenieHistoryczne(SearchableModel):
     nazwa = models.CharField(max_length=MEDIUM_LENGTH, verbose_name="Nazwa")
 
@@ -138,19 +149,8 @@ class WydarzenieHistoryczne(SearchableModel):
         else:
             typ = str(self.get_types)
 
-        nazwa = str(self.nazwa)
-        words = typ.lower().split()
-        nazwa_lower = nazwa.lower()
-
         # check every contiguous subsequence of words
-        for i in range(len(words)):
-            for j in range(i + 1, len(words) + 1):
-                seq = " ".join(words[i:j])
-                if seq and seq in nazwa_lower:
-                    typ = ""
-                    break
-            if typ == "":
-                break
+        typ = optimal_type_in_name(type_str=typ, name=str(self.nazwa))
 
         return f'{self.get_data}: {typ} "{self.nazwa}"'
 
