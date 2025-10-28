@@ -80,7 +80,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    "django.middleware.security.SecurityMiddleware",
+    # "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -172,16 +172,21 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # Security
 
-CSRF_COOKIE_SECURE = True
-SESSION_COOKIE_SECURE = True
-X_FRAME_OPTIONS = 'DENY'
-SECURE_BROWSER_XSS_FILTER = True
-SECURE_CONTENT_TYPE_NOSNIFF = True
+# CSRF_COOKIE_SECURE = True
+# SESSION_COOKIE_SECURE = True
+# X_FRAME_OPTIONS = "DENY"
+# SECURE_BROWSER_XSS_FILTER = True
+# SECURE_CONTENT_TYPE_NOSNIFF = True
 
-SECURE_SSL_REDIRECT = True               # Redirect all HTTP → HTTPS
-SECURE_HSTS_SECONDS = 31536000           # Enforce HTTPS in browser
-SECURE_HSTS_INCLUDE_SUBDOMAINS = True
-SECURE_HSTS_PRELOAD = True
-CSRF_COOKIE_HTTPONLY = True              # Prevent JS from reading cookie
-SESSION_COOKIE_HTTPONLY = True
+SECURE_SSL_REDIRECT = not DEBUG
+# SECURE_HSTS_SECONDS = 31536000  # Enforce HTTPS in browser
+# SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+# SECURE_HSTS_PRELOAD = True
 
+
+# CSRF_COOKIE_HTTPONLY = True  # Prevent JS from reading cookie
+# SESSION_COOKIE_HTTPONLY = True
+# SESSION_COOKIE_SAMESITE = "Lax"  # albo 'Strict' jeśli pasuje UX
+# CSRF_COOKIE_SAMESITE = "Lax"
+
+# SECURE_REFERRER_POLICY = "no-referrer-when-downgrade"
