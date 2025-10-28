@@ -369,7 +369,8 @@ class Czlonek(Osoba, OsobaBCS):
         )
 
     class Status(models.TextChoices):
-        CZLONEK = "C", "Członek"
+        CZLONEK_ZWYCZAJNY = "CZ", "Członek zwyczajny"
+        CZLONEK_WSPIERAJACY = "CW", "Członek wspierający"
         WYKLETY = "X", 'Wydalony (np. "Jezus")'
         WETERAN = "W", "Weteran"
         HONOROWY = "H", "Członek Honoris Causa"
