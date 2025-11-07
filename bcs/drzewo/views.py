@@ -13,9 +13,9 @@ from .forms import *
 
 @require_GET
 def serve_full_tree_form_view(request):
-    form = FullTreeRenderForm(request.GET)
+    form = FullTreeRenderForm(request.GET or None)
 
-    if form.is_valid():
+    if request.GET and form.is_valid():
         onp = form.cleaned_data["only_known_parents"]
 
         title = "full_tree" + ("_onp" if onp else "")
@@ -24,18 +24,18 @@ def serve_full_tree_form_view(request):
         if not os.path.exists(path):
             generate_full_tree(path=path, onp=onp)
 
-        if os.path.exists(
-            path
-        ):  # TODO: generate anyway if related models' records changed
+        if os.path.exists(path):
             return FileResponse(open(path, "rb"), content_type="image/png")
 
         raise Http404("Image not found after generation")
 
+    # Initial GET — show the form
     return render(
         request=request,
         template_name="drzewo/full_tree_generation.html",
         context={"form": form},
     )
+
 
 
 @require_GET
