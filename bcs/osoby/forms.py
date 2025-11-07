@@ -97,7 +97,11 @@ class CzlonekForm(OsobaForm):
 
         status = cd.get("status")
 
-        if status in [Czlonek.Status.CZLONEK, Czlonek.Status.WETERAN]:
+        if status in [
+            Czlonek.Status.CZLONEK_ZWYCZAJNY,
+            Czlonek.Status.CZLONEK_WSPIERAJACY,
+            Czlonek.Status.WETERAN,
+        ]:
             cd["ochrzczony"] = TextChoose.YES[0]
 
         ochrzczony = cd.get("ochrzczony")
