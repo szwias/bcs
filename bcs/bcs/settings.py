@@ -28,8 +28,8 @@ SECRET_KEY = config("SECRET_KEY")
 GOOGLE_MAPS_API_KEY = config("GOOGLE_MAPS_API_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config("DEBUG", default=False, cast=bool)
-
+# DEBUG = config("DEBUG", default=False, cast=bool)
+DEBUG = True
 ALLOWED_HOSTS = config("ALLOWED_HOSTS", cast=Csv(), default=[])
 
 # Add ngrok host if present in .ngrok_addr
