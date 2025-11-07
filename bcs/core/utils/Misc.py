@@ -48,3 +48,4 @@ def optimal_type_in_name(type_str, name):
             seq = " ".join(words[i:j])
             if seq and seq in name_lower:
                 return ""
+            return type_str
