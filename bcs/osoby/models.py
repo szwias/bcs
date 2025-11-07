@@ -353,19 +353,19 @@ class Czlonek(Osoba, OsobaBCS):
     class Aktywnosc(models.TextChoices):
         AKTYWNY = (
             "A",
-            "Aktywny",
+            "Częsta",
         )
         AKTYWNY_MEDIALNIE = (
             "M",
-            "Aktywny tylko w mediach",
+            "Tylko w mediach/rzadka",
         )
         NIEAKTYWNY = (
             "N",
-            "Nieaktywny",
+            "Brak",
         )
         ODSZEDL = (
             "O",
-            "Odszedł z grupy",
+            "Negatywna",
         )
 
     class Status(models.TextChoices):
