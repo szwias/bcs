@@ -7,6 +7,7 @@
     <body>
         <form method="get">
             {{ form.as_p }}
+            <input type="hidden" name="submitted" value="1">
             <button type="submit">Generate</button>
         </form>
     </body>
