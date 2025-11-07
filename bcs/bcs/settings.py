@@ -38,7 +38,7 @@ if os.path.exists(ADDR_FILE):
     with open(ADDR_FILE) as f:
         ngrok_url = f.read().strip()
         if ngrok_url:
-            hostname = ngrok_url.replace("https://", "").split(
+            hostname = ngrok_url.replace(__old="https://", __new="").split(
                 "/"
             )[0]
             ALLOWED_HOSTS.append(hostname)
@@ -80,7 +80,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    # "django.middleware.security.SecurityMiddleware",
+    "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -127,19 +127,12 @@ DATABASES = {
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
 
+psv = "django.contrib.auth.password_validation"
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
-    },
-    {
-        "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
-    },
-    {
-        "NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",
-    },
-    {
-        "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
-    },
+    {"NAME": psv + ".UserAttributeSimilarityValidator"},
+    {"NAME": psv + ".MinimumLengthValidator"},
+    {"NAME": psv + ".CommonPasswordValidator"},
+    {"NAME": psv + ".NumericPasswordValidator"},
 ]
 
 
@@ -172,21 +165,21 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # Security
 
-# CSRF_COOKIE_SECURE = True
-# SESSION_COOKIE_SECURE = True
-# X_FRAME_OPTIONS = "DENY"
-# SECURE_BROWSER_XSS_FILTER = True
-# SECURE_CONTENT_TYPE_NOSNIFF = True
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
+X_FRAME_OPTIONS = "DENY"
+SECURE_BROWSER_XSS_FILTER = True
+SECURE_CONTENT_TYPE_NOSNIFF = True
 
 SECURE_SSL_REDIRECT = not DEBUG
-# SECURE_HSTS_SECONDS = 31536000  # Enforce HTTPS in browser
-# SECURE_HSTS_INCLUDE_SUBDOMAINS = True
-# SECURE_HSTS_PRELOAD = True
+SECURE_HSTS_SECONDS = 31536000  # Enforce HTTPS in browser
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+SECURE_HSTS_PRELOAD = True
 
 
-# CSRF_COOKIE_HTTPONLY = True  # Prevent JS from reading cookie
-# SESSION_COOKIE_HTTPONLY = True
-# SESSION_COOKIE_SAMESITE = "Lax"  # albo 'Strict' jeśli pasuje UX
-# CSRF_COOKIE_SAMESITE = "Lax"
+CSRF_COOKIE_HTTPONLY = True  # Prevent JS from reading cookie
+SESSION_COOKIE_HTTPONLY = True
+SESSION_COOKIE_SAMESITE = "Lax"  # albo 'Strict' jeśli pasuje UX
+CSRF_COOKIE_SAMESITE = "Lax"
 
-# SECURE_REFERRER_POLICY = "no-referrer-when-downgrade"
+SECURE_REFERRER_POLICY = "no-referrer-when-downgrade"
