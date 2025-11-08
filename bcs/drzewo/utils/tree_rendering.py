@@ -17,15 +17,11 @@ def render_layered_graph(layers, edges, path, rankdir="TB", node_attrs=None):
             attrs = node_attrs.get(node, {})
             G.add_node(n=node, **attrs)
 
-        G.add_subgraph(nbunch=nodes + [dummy], rank="same")
+        G.add_subgraph(nbunch=list(nodes) + [dummy], rank="same")
 
     # Edges
-    if isinstance(edges, dict):
-        for src, targets in edges.items():
-            for dst in targets:
-                G.add_edge(u=src, v=dst)
-    else:
-        for src, dst in edges:
+    for src, targets in edges.items():
+        for dst in targets:
             G.add_edge(u=src, v=dst)
 
     # Enforce vertical ordering with invisible anchors

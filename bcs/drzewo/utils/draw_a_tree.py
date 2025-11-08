@@ -9,18 +9,18 @@ from drzewo.utils.essentials import modify_layers_structure, TreeNode
 
 def generate_full_tree(path, onp):
     layers, edges, helper_dict = build_layers_and_edges_from_db(onp)
-    render_layered_graph(layers, edges, path)
+    render_layered_graph(layers=layers, edges=edges, path=path)
 
 
 def generate_scoped_tree(path, member, depth, gen, onp):
     _, _, helper_dict = build_layers_and_edges_from_db(onp)
     layers, edges = build_scoped_layers_and_edges(
-        member, depth, gen, onp, helper_dict
+        member=member, depth=depth, gen=gen, onp=onp, helper_dict=helper_dict
     )
     render_layered_graph(
-        layers,
-        edges,
-        path,
+        layers=layers,
+        edges=edges,
+        path=path,
         node_attrs={
             str(member): {
                 "fillcolor": "green",
