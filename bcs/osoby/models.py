@@ -246,9 +246,6 @@ class InnaOsoba(Osoba):
 
 
 class OsobaBCS(models.Model):
-    class PewnoscStazu(models.TextChoices):
-        TAK = "T", "Na pewno wcześniej się nie pojawiał"
-        NIE = "N", "Ale mógł pojawić się wcześniej"
 
     czapka_1 = models.ForeignKey(
         to="czapki.Czapka",
@@ -283,10 +280,9 @@ class OsobaBCS(models.Model):
         verbose_name="Rok pojawienia się",
     )
 
-    pewnosc_stazu = models.CharField(
-        choices=PewnoscStazu.choices,
-        default=PewnoscStazu.TAK,
-        verbose_name="Pewność roku pojawienia się",
+    pewnosc_stazu = models.BooleanField(
+        default=True,
+        verbose_name="Pewność roku pojawienia się"
     )
 
     class Meta:
@@ -331,7 +327,7 @@ class Bean(Osoba, OsobaBCS):
                 nazwisko=self.nazwisko,
                 przezwiska=self.przezwiska,
                 staz=self.staz,
-                status=Czlonek.Status.CZLONEK[0],
+                status=Czlonek.Status.CZLONEK_ZWYCZAJNY[0],
                 pewnosc_stazu=self.pewnosc_stazu,
                 czapka_1=self.czapka_1,
                 czapka_2=self.czapka_2,
@@ -507,7 +503,7 @@ class Czlonek(Osoba, OsobaBCS):
             czapka_1=Czapka.get_dont_know_czapka(),
             czapka_2=Czapka.get_not_applicable_czapka(),
             staz=IntAlt.DONT_KNOW[0],
-            pewnosc_stazu=OsobaBCS.PewnoscStazu.NIE,
+            pewnosc_stazu=False,
             aktywnosc=Czlonek.Aktywnosc.NIEAKTYWNY,
             ochrzczony=TextChoose.YES[0],
             status=TextAlt.DONT_KNOW[0],
@@ -529,7 +525,7 @@ class Czlonek(Osoba, OsobaBCS):
             czapka_1=Czapka.get_dont_know_czapka(),
             czapka_2=Czapka.get_not_applicable_czapka(),
             staz=IntAlt.DONT_KNOW[0],
-            pewnosc_stazu=OsobaBCS.PewnoscStazu.TAK,
+            pewnosc_stazu=True,
             aktywnosc=Czlonek.Aktywnosc.NIEAKTYWNY,
             ochrzczony=TextChoose.NO[0],
             status=TextAlt.DONT_KNOW[0],
