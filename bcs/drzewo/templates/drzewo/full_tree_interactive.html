@@ -20,6 +20,13 @@
     </head>
     <body>
         <div id="sidebar">
+            <h3>Filtry</h3>
+            <form method="get">
+                {{ form.as_p }}
+                <input type="hidden" name="submitted" value="1">
+                <button type="submit">Odśwież</button>
+            </form>
+            <hr>
             <h3>Kolorowanie</h3>
             <select id="color-mode">
                 <option value="none">Brak</option>
