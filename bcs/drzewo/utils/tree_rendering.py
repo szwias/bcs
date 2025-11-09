@@ -2,10 +2,13 @@ import pygraphviz as pgv
 from django.http import JsonResponse
 
 DUMMY_PREFIX = "__layer_anchor__"
+DEFAULT_NODE_WIDTH = 0.5
+
 
 def render_layered_graph(layers, edges, rankdir="TB", node_attrs=None):
     G = pgv.AGraph(strict=True, directed=True)
     G.graph_attr.update(rankdir=rankdir)
+    G.graph_attr.update(ranksep="1.6")
 
     node_attrs = node_attrs or {}
     sorted_layers = sorted(layers.items())
@@ -35,8 +38,11 @@ def render_layered_graph(layers, edges, rankdir="TB", node_attrs=None):
     G.layout(prog="dot")
     return G
 
-def build_d3_coords(graph):
+
+def build_d3_coords(graph, node_size=0.5):
+    POINTS_IN_AN_INCH = 72
     G = graph.copy()
+
     # Extract positions and build JSON objects for real nodes only
     node_positions = {}
     min_x = min_y = float("inf")
@@ -48,16 +54,11 @@ def build_d3_coords(graph):
             continue
         pos = n.attr.get("pos")
         if not pos:
-            # fallback: skip or set to (0,0)
             continue
-        # pos is "x,y" (strings), sometimes with extra formatting; parse
-        try:
-            x_str, y_str = pos.split(",")
-            x = float(x_str)
-            y = float(y_str)
-        except Exception:
-            # try other patterns or skip
-            continue
+
+        x, y = map(float, pos.split(","))
+        width = float(n.attr.get("width", node_size)) * POINTS_IN_AN_INCH
+        height = float(n.attr.get("height", node_size)) * POINTS_IN_AN_INCH
 
         # track bounds for normalization later
         min_x = min(min_x, x)
@@ -70,9 +71,10 @@ def build_d3_coords(graph):
             "name": name,
             "x": x,
             "y": y,
-            "color": "#88c",
+            "width": width,
+            "height": height,
+            "color": n.attr.get("fillcolor", "#66aaff"),
         }
-
     # Build links (keep only links whose endpoints are real nodes)
     links_out = []
     for e in G.edges():
@@ -86,23 +88,12 @@ def build_d3_coords(graph):
         if src in node_positions and dst in node_positions:
             links_out.append({"source": str(src), "target": str(dst)})
 
-    # Normalize coordinates to a reasonable viewport (optional)
-    # Create a padding and scale so everything fits in e.g. 2000x2000 coordinate space
-    PAD = 50
-    width_target = 2000
-    height_target = 2000
-    bbox_w = max_x - min_x if max_x > min_x else 1
-    bbox_h = max_y - min_y if max_y > min_y else 1
-    sx = (width_target - 2 * PAD) / bbox_w
-    sy = (height_target - 2 * PAD) / bbox_h
-    s = min(sx, sy)
-
     # Flip Y (Graphviz y=0 is bottom?) — Graphviz coords usually have origin bottom-left,
     # while browser SVG has origin top-left. We'll flip to match visual expectation.
     for ndata in node_positions.values():
-        ndata["x_norm"] = (ndata["x"] - min_x) * s + PAD
+        ndata["x_norm"] = ndata["x"] - min_x
         # flip y
-        ndata["y_norm"] = (max_y - ndata["y"]) * s + PAD
+        ndata["y_norm"] = max_y - ndata["y"]
 
     nodes_out = list(node_positions.values())
 
