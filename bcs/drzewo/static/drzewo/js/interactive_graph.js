@@ -99,13 +99,13 @@ function fitToView() {
     maxX = Math.max(...xs);
   const minY = Math.min(...ys),
     maxY = Math.max(...ys);
-  const pad = 100;
+  const pad = 300;
   const contentW = maxX - minX + pad * 2;
   const contentH = maxY - minY + pad * 2;
   const svgW = document.getElementById("stage").clientWidth;
   const svgH = document.getElementById("stage").clientHeight;
   const scale = Math.min(svgW / contentW, svgH / contentH);
-  const tx = -minX + pad;
+  const tx = -minX;
   const ty = -minY + pad;
   const transform = d3.zoomIdentity
     .translate((svgW - contentW * scale) / 2, (svgH - contentH * scale) / 2)
