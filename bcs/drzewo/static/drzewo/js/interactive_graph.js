@@ -26,4 +26,47 @@ fetch(dataUrl)
 
 function renderGraph() {
     g.selectAll("*").remove();
+  g.selectAll("*").remove();
+  const nodeById = new Map(nodesData.map((d) => [d.id, d]));
+
+  // Links
+  g.selectAll("line.link")
+    .data(linksData)
+    .enter()
+    .append("line")
+    .attr("class", "link")
+    .attr("stroke", "#666")
+    .attr("stroke-width", 1)
+    .attr("x1", (d) => nodeById.get(d.source).x_norm)
+    .attr("y1", (d) => nodeById.get(d.source).y_norm)
+    .attr("x2", (d) => nodeById.get(d.target).x_norm)
+    .attr("y2", (d) => nodeById.get(d.target).y_norm);
+
+  // Nodes
+  const node = g
+    .selectAll("g.node")
+    .data(nodesData)
+    .enter()
+    .append("g")
+    .attr("class", "node")
+    .attr("transform", (d) => `translate(${d.x_norm},${d.y_norm})`)
+  const node_radius = 25;
+  // Elliptical node with centered label
+  node
+    .append("circle")
+    .attr("x", (d) => -d.width / 2)
+    .attr("y", (d) => -d.height / 2)
+    .attr("r", node_radius)
+    .attr("fill", (d) => d.color || "#66aaff")
+    .attr("stroke", "#222")
+    .attr("stroke-width", 1.2);
+
+  node
+    .append("text")
+    .attr("y", node_radius + 30)
+    .attr("text-anchor", "middle")
+    .attr("dominant-baseline", "middle")
+    .text((d) => d.name)
+    .style("font-size", "15px")
+    .style("pointer-events", "none");
 }
