@@ -5,10 +5,22 @@ from django.http import FileResponse, Http404, HttpResponseBadRequest
 from django.shortcuts import render
 from django.views.decorators.http import require_GET
 
-from drzewo.utils.draw_a_tree import generate_full_tree, generate_scoped_tree
+from drzewo.utils.draw_a_tree import (
+    generate_full_tree,
+    generate_scoped_tree,
+    build_layers_and_edges_from_db,
+)
 from .forms import *
+from .utils.tree_rendering import build_d3_coords, render_layered_graph
+
 
 # TODO: add a view for choosing from full and scoped
+
+accepting_strings = ("1", "true", "on", "True")
+
+
+def parse_onp(request):
+    return request.GET.get("only_known_parents") in accepting_strings
 
 
 @require_GET
@@ -35,6 +47,27 @@ def serve_full_tree_form_view(request):
         template_name="drzewo/full_tree_generation.html",
         context={"form": form},
     )
+
+
+@require_GET
+def full_tree_interactive_view(request):
+    form = FullTreeRenderForm(request.GET or None)
+    onp = parse_onp(request)
+    print(onp)
+    return render(
+        request=request,
+        template_name="drzewo/full_tree_interactive.html",
+        context={"form": form, "onp": onp},
+    )
+
+
+@require_GET
+def full_tree_data_graphviz(request):
+    onp = parse_onp(request)
+    print(onp)
+    layers, edges, _ = build_layers_and_edges_from_db(onp)
+    G = render_layered_graph(layers=layers, edges=edges)
+    return build_d3_coords(graph=G)
 
 
 @require_GET

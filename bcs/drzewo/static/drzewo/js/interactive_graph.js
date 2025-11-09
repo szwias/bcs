@@ -1,0 +1,138 @@
+const svg = d3.select("#svg");
+const g = svg.append("g");
+const tooltip = d3.select("#tooltip");
+
+const zoom = d3
+  .zoom()
+  .scaleExtent([0.1, 10])
+  .on("zoom", (event) => g.attr("transform", event.transform));
+svg.call(zoom);
+
+// Use Django-provided 'onp' value from the view
+const onp = window.TREE_CONFIG.onp;
+const dataUrl = `/drzewo/full-tree-data/?only_known_parents=${onp}`;
+
+let nodesData = [],
+  linksData = [];
+console.log("Fetching:", dataUrl);
+
+fetch(dataUrl)
+  .then((res) => res.json())
+  .then((data) => {
+    nodesData = data.nodes;
+    linksData = data.links;
+    renderGraph();
+  });
+
+function renderGraph() {
+  g.selectAll("*").remove();
+  const nodeById = new Map(nodesData.map((d) => [d.id, d]));
+
+  // Links
+  g.selectAll("line.link")
+    .data(linksData)
+    .enter()
+    .append("line")
+    .attr("class", "link")
+    .attr("stroke", "#666")
+    .attr("stroke-width", 1)
+    .attr("x1", (d) => nodeById.get(d.source).x_norm)
+    .attr("y1", (d) => nodeById.get(d.source).y_norm)
+    .attr("x2", (d) => nodeById.get(d.target).x_norm)
+    .attr("y2", (d) => nodeById.get(d.target).y_norm);
+
+  // Nodes
+  const node = g
+    .selectAll("g.node")
+    .data(nodesData)
+    .enter()
+    .append("g")
+    .attr("class", "node")
+    .attr("transform", (d) => `translate(${d.x_norm},${d.y_norm})`)
+    .on("click", (_, d) => {
+      if (d.url) window.open(d.url, "_blank");
+    })
+    .on("mouseover", (event, d) => {
+      tooltip.style("display", "block").text(d.name);
+      d3.select(event.currentTarget).classed("hover", true);
+    })
+    .on("mousemove", (event) => {
+      const svgRect = svg.node().getBoundingClientRect();
+
+      tooltip
+        .style("left", event.clientX - svgRect.left + 10 + "px")
+        .style("top", event.clientY - svgRect.top + 10 + "px");
+    })
+
+    .on("mouseout", (event) => {
+      tooltip.style("display", "none");
+      d3.select(event.currentTarget).classed("hover", false);
+    });
+  const node_radius = 25;
+  // Elliptical node with centered label
+  node
+    .append("circle")
+    .attr("x", (d) => -d.width / 2)
+    .attr("y", (d) => -d.height / 2)
+    .attr("r", node_radius)
+    .attr("fill", (d) => d.color || "#66aaff")
+    .attr("stroke", "#222")
+    .attr("stroke-width", 1.2);
+
+  node
+    .append("text")
+    .attr("y", node_radius + 30)
+    .attr("text-anchor", "middle")
+    .attr("dominant-baseline", "middle")
+    .text((d) => d.name)
+    .style("font-size", "15px")
+    .style("pointer-events", "none");
+
+  fitToView();
+}
+
+function fitToView() {
+  if (!nodesData.length) return;
+  const xs = nodesData.map((d) => d.x_norm);
+  const ys = nodesData.map((d) => d.y_norm);
+  const minX = Math.min(...xs),
+    maxX = Math.max(...xs);
+  const minY = Math.min(...ys),
+    maxY = Math.max(...ys);
+  const pad = 100;
+  const contentW = maxX - minX + pad * 2;
+  const contentH = maxY - minY + pad * 2;
+  const svgW = document.getElementById("stage").clientWidth;
+  const svgH = document.getElementById("stage").clientHeight;
+  const scale = Math.min(svgW / contentW, svgH / contentH);
+  const tx = -minX + pad;
+  const ty = -minY + pad;
+  const transform = d3.zoomIdentity
+    .translate((svgW - contentW * scale) / 2, (svgH - contentH * scale) / 2)
+    .scale(scale)
+    .translate(tx, ty);
+  svg.transition().duration(600).call(zoom.transform, transform);
+}
+
+// Sidebar color-mode
+document.getElementById("color-mode").addEventListener("change", (e) => {
+  const mode = e.target.value;
+  if (mode === "none") nodesData.forEach((n) => (n.color = "#66aaff"));
+  else if (mode === "generation") {
+    const ys = [...new Set(nodesData.map((n) => Math.round(n.y_norm)))].sort(
+      (a, b) => a - b
+    );
+    nodesData.forEach((n) => {
+      const idx = ys.indexOf(n.y_norm);
+      const hue = Math.round((360 * idx) / Math.max(1, ys.length - 1));
+      n.color = `hsl(${hue} 70% 50%)`;
+    });
+  } else if (mode === "gender") {
+    nodesData.forEach((n) => {
+      if (n.gender === "M") n.color = "#6aa";
+      else if (n.gender === "F") n.color = "#a66";
+      else n.color = "#888";
+    });
+  }
+  renderGraph();
+});
