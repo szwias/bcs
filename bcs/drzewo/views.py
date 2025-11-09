@@ -10,6 +10,12 @@ from .forms import *
 
 # TODO: add a view for choosing from full and scoped
 
+accepting_strings = ("1", "true", "on", "True")
+
+
+def parse_onp(request):
+    return request.GET.get("only_known_parents") in accepting_strings
+
 
 @require_GET
 def serve_full_tree_form_view(request):
