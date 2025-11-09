@@ -25,7 +25,6 @@ fetch(dataUrl)
   });
 
 function renderGraph() {
-    g.selectAll("*").remove();
   g.selectAll("*").remove();
   const nodeById = new Map(nodesData.map((d) => [d.id, d]));
 
@@ -50,6 +49,25 @@ function renderGraph() {
     .append("g")
     .attr("class", "node")
     .attr("transform", (d) => `translate(${d.x_norm},${d.y_norm})`)
+    .on("click", (_, d) => {
+      if (d.url) window.open(d.url, "_blank");
+    })
+    .on("mouseover", (event, d) => {
+      tooltip.style("display", "block").text(d.name);
+      d3.select(event.currentTarget).classed("hover", true);
+    })
+    .on("mousemove", (event) => {
+      const svgRect = svg.node().getBoundingClientRect();
+
+      tooltip
+        .style("left", event.clientX - svgRect.left + 10 + "px")
+        .style("top", event.clientY - svgRect.top + 10 + "px");
+    })
+
+    .on("mouseout", (event) => {
+      tooltip.style("display", "none");
+      d3.select(event.currentTarget).classed("hover", false);
+    });
   const node_radius = 25;
   // Elliptical node with centered label
   node
