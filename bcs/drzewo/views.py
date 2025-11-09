@@ -44,6 +44,17 @@ def serve_full_tree_form_view(request):
 
 
 @require_GET
+def full_tree_interactive_view(request):
+    form = FullTreeRenderForm(request.GET or None)
+    onp = parse_onp(request)
+    print(onp)
+    return render(
+        request=request,
+        template_name="drzewo/full_tree_interactive.html",
+        context={"form": form, "onp": onp},
+    )
+
+@require_GET
 def serve_scoped_tree_form_view(request):
     # TODO: add option of not showing first parent if there's a second one
     form = ScopedTreeRenderForm(request.GET)
