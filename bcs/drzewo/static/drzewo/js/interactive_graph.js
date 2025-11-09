@@ -113,3 +113,26 @@ function fitToView() {
     .translate(tx, ty);
   svg.transition().duration(600).call(zoom.transform, transform);
 }
+
+// Sidebar color-mode
+document.getElementById("color-mode").addEventListener("change", (e) => {
+  const mode = e.target.value;
+  if (mode === "none") nodesData.forEach((n) => (n.color = "#66aaff"));
+  else if (mode === "generation") {
+    const ys = [...new Set(nodesData.map((n) => Math.round(n.y_norm)))].sort(
+      (a, b) => a - b
+    );
+    nodesData.forEach((n) => {
+      const idx = ys.indexOf(n.y_norm);
+      const hue = Math.round((360 * idx) / Math.max(1, ys.length - 1));
+      n.color = `hsl(${hue} 70% 50%)`;
+    });
+  } else if (mode === "gender") {
+    nodesData.forEach((n) => {
+      if (n.gender === "M") n.color = "#6aa";
+      else if (n.gender === "F") n.color = "#a66";
+      else n.color = "#888";
+    });
+  }
+  renderGraph();
+});
