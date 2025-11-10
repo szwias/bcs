@@ -11,6 +11,7 @@ def render_layered_graph(layers, edges, rankdir="TB", node_attrs=None):
     G.graph_attr.update(rankdir=rankdir)
     G.graph_attr.update(ranksep="1.6")
 
+    node_attrs = node_attrs or {}
     sorted_layers = sorted(layers.items())
 
     for layer_num, members in sorted_layers:
