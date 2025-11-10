@@ -24,8 +24,21 @@ fetch(dataUrl)
     renderGraph();
   });
 
+// Unified dark palette (matches your SCSS)
+const palette = {
+  background: "#1e1e1e",
+  textMuted: "#d0d6e0",
+  field: "#9fb4cc",
+  accent: "#58a6ff",
+  category: "#f5dd5d",
+  border: "#888",
+  toggle: "#999",
+};
+
 function renderGraph() {
   g.selectAll("*").remove();
+  svg.style("background-color", palette.background);
+
   const nodeById = new Map(nodesData.map((d) => [d.id, d]));
 
   // Links
@@ -34,8 +47,8 @@ function renderGraph() {
     .enter()
     .append("line")
     .attr("class", "link")
-    .attr("stroke", "#666")
-    .attr("stroke-width", 1)
+    .attr("stroke", palette.border)
+    .attr("stroke-width", 2)
     .attr("x1", (d) => nodeById.get(d.source).x_norm)
     .attr("y1", (d) => nodeById.get(d.source).y_norm)
     .attr("x2", (d) => nodeById.get(d.target).x_norm)
@@ -53,30 +66,31 @@ function renderGraph() {
       if (d.url) window.open(d.url, "_blank");
     })
     .on("mouseover", (event, d) => {
-      tooltip.style("display", "block").text(d.name);
+      tooltip
+        .style("display", "block")
+        .style("background", "#2b2b2b")
+        .style("color", palette.textMuted)
+        .text(d.name);
       d3.select(event.currentTarget).classed("hover", true);
     })
     .on("mousemove", (event) => {
       const svgRect = svg.node().getBoundingClientRect();
-
       tooltip
         .style("left", event.clientX - svgRect.left + 10 + "px")
         .style("top", event.clientY - svgRect.top + 10 + "px");
     })
-
     .on("mouseout", (event) => {
       tooltip.style("display", "none");
       d3.select(event.currentTarget).classed("hover", false);
     });
+
   const node_radius = 25;
-  // Elliptical node with centered label
+
   node
     .append("circle")
-    .attr("x", (d) => -d.width / 2)
-    .attr("y", (d) => -d.height / 2)
     .attr("r", node_radius)
-    .attr("fill", (d) => d.color || "#66aaff")
-    .attr("stroke", "#222")
+    .attr("fill", (d) => d.color || palette.accent)
+    .attr("stroke", palette.border)
     .attr("stroke-width", 1.2);
 
   node
@@ -85,6 +99,7 @@ function renderGraph() {
     .attr("text-anchor", "middle")
     .attr("dominant-baseline", "middle")
     .text((d) => d.name)
+    .style("fill", palette.textMuted)
     .style("font-size", "15px")
     .style("pointer-events", "none");
 
@@ -114,10 +129,10 @@ function fitToView() {
   svg.transition().duration(600).call(zoom.transform, transform);
 }
 
-// Sidebar color-mode
+// Sidebar color-mode (unchanged)
 document.getElementById("color-mode").addEventListener("change", (e) => {
   const mode = e.target.value;
-  if (mode === "none") nodesData.forEach((n) => (n.color = "#66aaff"));
+  if (mode === "none") nodesData.forEach((n) => (n.color = palette.accent));
   else if (mode === "generation") {
     const ys = [...new Set(nodesData.map((n) => Math.round(n.y_norm)))].sort(
       (a, b) => a - b
@@ -125,16 +140,16 @@ document.getElementById("color-mode").addEventListener("change", (e) => {
     nodesData.forEach((n) => {
       const idx = ys.indexOf(n.y_norm);
       const hue = Math.round((360 * idx) / Math.max(1, ys.length - 1));
-      n.color = `hsl(${hue} 70% 50%)`;
+      n.color = `hsl(${hue} 70% 55%)`;
     });
   } else if (mode === "status") {
     nodesData.forEach((n) => {
-      if (n.status === "CZ") n.color = "#82c486";
-      else if (n.status === "CW") n.color = "#daf10e";
-      else if (n.status === "X") n.color = "#430202";
+      if (n.status === "CZ") n.color = "#04ff00";
+      else if (n.status === "CW") n.color = "#ffea00";
+      else if (n.status === "X") n.color = "rgba(255,255,255,0)";
       else if (n.status === "W") n.color = "#668daa";
-      else if (n.status === "H") n.color = "#ffd301";
-      else n.color = "#888";
+      else if (n.status === "H") n.color = "#ff9e01";
+      else n.color = palette.toggle;
     });
   }
   renderGraph();
