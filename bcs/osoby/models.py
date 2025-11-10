@@ -347,22 +347,10 @@ class Bean(Osoba, OsobaBCS):
 
 class Czlonek(Osoba, OsobaBCS):
     class Aktywnosc(models.TextChoices):
-        AKTYWNY = (
-            "A",
-            "Częsta",
-        )
-        AKTYWNY_MEDIALNIE = (
-            "M",
-            "Tylko w mediach/rzadka",
-        )
-        NIEAKTYWNY = (
-            "N",
-            "Brak",
-        )
-        ODSZEDL = (
-            "O",
-            "Negatywna",
-        )
+        AKTYWNY = ("A", "Częsta")
+        AKTYWNY_MEDIALNIE = ("M", "Tylko w mediach/rzadka")
+        NIEAKTYWNY = ("N", "Brak")
+        ODSZEDL = ("O", "Negatywna")
 
     class Status(models.TextChoices):
         CZLONEK_ZWYCZAJNY = "CZ", "Członek zwyczajny"
