@@ -154,18 +154,30 @@ document.getElementById("color-mode").addEventListener("change", (e) => {
       W: ["Weterani", "#668daa"],
       H: ["Członkowie honorowi", "#ff9e01"],
     };
+    applyMode(legend, mapping, mode)
+  } else if (mode === "aktywnosc") {
+    mapping = {
+      "A": ["Członkowie aktywni", "#04ff00"],
+      "M": ["Członkowie mało aktywni", "#ffea00"],
+      "N": ["Członkowie nieaktywni", "#668daa"],
+      "O": ["Członkowie utraceni", "#ff0303"],
+    }
+    applyMode(legend, mapping, mode)
+  }
+  renderGraph();
+});
 
-    Object.entries(mapping).forEach(([_, [desc, color]]) => {
+function applyMode(legend, mapping, attribute) {
+  Object.entries(mapping).forEach(([_, [desc, color]]) => {
       appendLegend(legend, desc, color);
     });
 
     nodesData.forEach((n) => {
-      const colorInfo = mapping[n.status];
+      const key = n[attribute]
+      const colorInfo = mapping[key];
       n.color = colorInfo ? colorInfo[1] : palette.toggle;
     });
-  }
-  renderGraph();
-});
+}
 
 function appendLegend(legend, entry = "", color = null) {
   const background_string = color ? `background: ${color};` : "";
