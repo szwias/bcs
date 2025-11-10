@@ -147,22 +147,22 @@ document.getElementById("color-mode").addEventListener("change", (e) => {
     });
     appendLegend(legend, "Jak sama nazwa wskazuje");
   } else if (mode === "status") {
-    mapping = {
+    const statusMapping = {
       CZ: ["Członkowie zwyczajni", "#04ff00"],
       CW: ["Członkowie wspierający", "#ffea00"],
       X: ["Członkowie wydaleni", "rgba(255,255,255,0)"],
       W: ["Weterani", "#668daa"],
       H: ["Członkowie honorowi", "#ff9e01"],
     };
-    applyMode(legend, mapping, mode)
+    applyMode(legend, statusMapping, mode)
   } else if (mode === "aktywnosc") {
-    mapping = {
+    const aktywnoscMapping = {
       "A": ["Członkowie aktywni", "#04ff00"],
       "M": ["Członkowie mało aktywni", "#ffea00"],
       "N": ["Członkowie nieaktywni", "#668daa"],
       "O": ["Członkowie utraceni", "#ff0303"],
     }
-    applyMode(legend, mapping, mode)
+    applyMode(legend, aktywnoscMapping, mode)
   }
   renderGraph();
 });
