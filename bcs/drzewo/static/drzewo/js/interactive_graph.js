@@ -129,10 +129,10 @@ function fitToView() {
   svg.transition().duration(600).call(zoom.transform, transform);
 }
 
-// Sidebar color-mode
+// Sidebar color-mode (unchanged)
 document.getElementById("color-mode").addEventListener("change", (e) => {
   const mode = e.target.value;
-  if (mode === "none") nodesData.forEach((n) => (n.color = "#66aaff"));
+  if (mode === "none") nodesData.forEach((n) => (n.color = palette.accent));
   else if (mode === "generation") {
     const ys = [...new Set(nodesData.map((n) => Math.round(n.y_norm)))].sort(
       (a, b) => a - b
@@ -140,16 +140,16 @@ document.getElementById("color-mode").addEventListener("change", (e) => {
     nodesData.forEach((n) => {
       const idx = ys.indexOf(n.y_norm);
       const hue = Math.round((360 * idx) / Math.max(1, ys.length - 1));
-      n.color = `hsl(${hue} 70% 50%)`;
+      n.color = `hsl(${hue} 70% 55%)`;
     });
   } else if (mode === "status") {
     nodesData.forEach((n) => {
-      if (n.status === "CZ") n.color = "#82c486";
-      else if (n.status === "CW") n.color = "#daf10e";
-      else if (n.status === "X") n.color = "#430202";
+      if (n.status === "CZ") n.color = "#04ff00";
+      else if (n.status === "CW") n.color = "#ffea00";
+      else if (n.status === "X") n.color = "rgba(255,255,255,0)";
       else if (n.status === "W") n.color = "#668daa";
-      else if (n.status === "H") n.color = "#ffd301";
-      else n.color = "#888";
+      else if (n.status === "H") n.color = "#ff9e01";
+      else n.color = palette.toggle;
     });
   }
   renderGraph();
