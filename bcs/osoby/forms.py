@@ -138,7 +138,7 @@ class CzlonekForm(OsobaForm):
 
         staz = cd.get("staz")
         if staz == ROK_ZALOZENIA:
-            cd["pewnosc_stazu"] = "T"
+            cd["pewnosc_stazu"] = True
 
         rodzic_1 = cd.get("rodzic_1")
         rodzic_2 = cd.get("rodzic_2")

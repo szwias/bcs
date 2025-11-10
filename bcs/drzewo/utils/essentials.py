@@ -8,7 +8,6 @@ def modify_layers_structure(layers):
     for year in layers:
         for layer, contents in enumerate(layers[year]):
             new_layers[f"{year}_{layer}"].extend(contents)
-
     return new_layers
 
 
