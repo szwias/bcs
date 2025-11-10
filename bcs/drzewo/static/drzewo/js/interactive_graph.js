@@ -47,8 +47,8 @@ function renderGraph() {
     .enter()
     .append("line")
     .attr("class", "link")
-    .attr("stroke", "#666")
-    .attr("stroke-width", 1)
+    .attr("stroke", palette.border)
+    .attr("stroke-width", 2)
     .attr("x1", (d) => nodeById.get(d.source).x_norm)
     .attr("y1", (d) => nodeById.get(d.source).y_norm)
     .attr("x2", (d) => nodeById.get(d.target).x_norm)
@@ -82,14 +82,12 @@ function renderGraph() {
       d3.select(event.currentTarget).classed("hover", false);
     });
   const node_radius = 25;
-  // Elliptical node with centered label
+
   node
     .append("circle")
-    .attr("x", (d) => -d.width / 2)
-    .attr("y", (d) => -d.height / 2)
     .attr("r", node_radius)
-    .attr("fill", (d) => d.color || "#66aaff")
-    .attr("stroke", "#222")
+    .attr("fill", (d) => d.color || palette.accent)
+    .attr("stroke", palette.border)
     .attr("stroke-width", 1.2);
 
   node
@@ -98,6 +96,7 @@ function renderGraph() {
     .attr("text-anchor", "middle")
     .attr("dominant-baseline", "middle")
     .text((d) => d.name)
+    .style("fill", palette.textMuted)
     .style("font-size", "15px")
     .style("pointer-events", "none");
 
