@@ -24,8 +24,21 @@ fetch(dataUrl)
     renderGraph();
   });
 
+// Unified dark palette (matches your SCSS)
+const palette = {
+  background: "#1e1e1e",
+  textMuted: "#d0d6e0",
+  field: "#9fb4cc",
+  accent: "#58a6ff",
+  category: "#f5dd5d",
+  border: "#888",
+  toggle: "#999",
+};
+
 function renderGraph() {
   g.selectAll("*").remove();
+  svg.style("background-color", palette.background);
+
   const nodeById = new Map(nodesData.map((d) => [d.id, d]));
 
   // Links
