@@ -1,4 +1,5 @@
 import pygraphviz as pgv
+from django.forms import model_to_dict
 from django.http import JsonResponse
 
 DUMMY_PREFIX = "__layer_anchor__"
@@ -10,18 +11,19 @@ def render_layered_graph(layers, edges, rankdir="TB", node_attrs=None):
     G.graph_attr.update(rankdir=rankdir)
     G.graph_attr.update(ranksep="1.6")
 
-    node_attrs = node_attrs or {}
     sorted_layers = sorted(layers.items())
 
-    for layer_num, nodes in sorted_layers:
+    for layer_num, members in sorted_layers:
         dummy = f"{DUMMY_PREFIX}{layer_num}"
         G.add_node(n=dummy, style="invis", width=0, height=0)
 
-        for node in nodes:
-            attrs = node_attrs.get(node, {})
-            G.add_node(n=node, **attrs)
+        for m in members:
+            passed_attrs = node_attrs.get(str(m), {})
+            attrs = model_to_dict(m)
+            attrs.update(**passed_attrs)
+            G.add_node(n=str(m), **attrs)
 
-        G.add_subgraph(nbunch=list(nodes) + [dummy], rank="same")
+        G.add_subgraph(nbunch=list(members) + [dummy], rank="same")
 
     # Edges
     for src, targets in edges.items():
@@ -33,18 +35,19 @@ def render_layered_graph(layers, edges, rankdir="TB", node_attrs=None):
         current_nodes = sorted_layers[i][1]
         next_dummy = f"{DUMMY_PREFIX}{sorted_layers[i + 1][0]}"
         if current_nodes:
-            G.add_edge(u=current_nodes[0], v=next_dummy, style="invis")
+            G.add_edge(u=str(current_nodes[0]), v=next_dummy, style="invis")
 
     G.layout(prog="dot")
     return G
 
 
-def build_d3_coords(graph, node_size=0.5):
+def build_d3_nodes(graph, node_size=0.5):
     POINTS_IN_AN_INCH = 72
     G = graph.copy()
 
     # Extract positions and build JSON objects for real nodes only
     node_positions = {}
+    node_attrs = {}
     min_x = min_y = float("inf")
     max_x = max_y = float("-inf")
 
@@ -59,6 +62,7 @@ def build_d3_coords(graph, node_size=0.5):
         x, y = map(float, pos.split(","))
         width = float(n.attr.get("width", node_size)) * POINTS_IN_AN_INCH
         height = float(n.attr.get("height", node_size)) * POINTS_IN_AN_INCH
+        node_attrs[name] = n.attr
 
         # track bounds for normalization later
         min_x = min(min_x, x)
@@ -67,6 +71,7 @@ def build_d3_coords(graph, node_size=0.5):
         max_y = max(max_y, y)
 
         node_positions[name] = {
+            **n.attr,
             "id": name,
             "name": name,
             "x": x,
@@ -75,6 +80,7 @@ def build_d3_coords(graph, node_size=0.5):
             "height": height,
             "color": n.attr.get("fillcolor", "#66aaff"),
         }
+
     # Build links (keep only links whose endpoints are real nodes)
     links_out = []
     for e in G.edges():

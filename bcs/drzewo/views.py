@@ -11,7 +11,7 @@ from drzewo.utils.draw_a_tree import (
     build_layers_and_edges_from_db,
 )
 from .forms import *
-from .utils.tree_rendering import build_d3_coords, render_layered_graph
+from .utils.tree_rendering import build_d3_nodes, render_layered_graph
 
 
 # TODO: add a view for choosing from full and scoped
@@ -53,7 +53,6 @@ def serve_full_tree_form_view(request):
 def full_tree_interactive_view(request):
     form = FullTreeRenderForm(request.GET or None)
     onp = parse_onp(request)
-    print(onp)
     return render(
         request=request,
         template_name="drzewo/full_tree_interactive.html",
@@ -64,10 +63,9 @@ def full_tree_interactive_view(request):
 @require_GET
 def full_tree_data_graphviz(request):
     onp = parse_onp(request)
-    print(onp)
     layers, edges, _ = build_layers_and_edges_from_db(onp)
     G = render_layered_graph(layers=layers, edges=edges)
-    return build_d3_coords(graph=G)
+    return build_d3_nodes(graph=G)
 
 
 @require_GET
