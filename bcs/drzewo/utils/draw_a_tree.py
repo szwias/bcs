@@ -1,5 +1,6 @@
 # osoby/management/commands/draw_a_tree.py
 from collections import defaultdict
+
 from core.utils.Choices import TextChoose
 from core.utils.Czas import ROK_ZALOZENIA, BIEZACY_ROK
 from osoby.models import Czlonek
@@ -40,13 +41,14 @@ def build_scoped_layers_and_edges(member, depth, gen, onp, helper_dict):
 
     while stack:
         c_member, c_depth, c_gen = stack.pop()
+        member_pk = c_member.pk
         str_member = str(c_member)
 
-        if onp and str_member not in helper_dict.keys():
+        if onp and member_pk not in helper_dict.keys():
             layer = f"{ROK_ZALOZENIA}_1"
         else:
-            layer = helper_dict[str_member][0]
-        layers.setdefault(layer, []).append(str_member)
+            layer = helper_dict[member_pk][0]
+        layers.setdefault(layer, []).append(c_member)
 
         if c_gen < gen and not c_depth:
             parents = c_member.get_parents()
@@ -57,10 +59,13 @@ def build_scoped_layers_and_edges(member, depth, gen, onp, helper_dict):
                     edges.setdefault(parent, []).append(str_member)
                     stack.append((parent, c_depth, c_gen + 1))
 
-        if onp and str_member not in helper_dict.keys():
+        if onp and member_pk not in helper_dict.keys():
             children = c_member.get_children() + c_member.get_step_children()
         else:
-            children = helper_dict[str_member][1]
+            children = {
+                Czlonek.objects.get(pk=_pk)
+                for _pk in helper_dict[member_pk][1]
+            }
         for ch in children:
             if c_depth < depth:
                 edges.setdefault(str_member, []).append(str(ch))
@@ -118,8 +123,8 @@ def build_layers_and_edges_from_db(onp):
 
             while len(layers[year]) <= layer:
                 layers[year].append(set())
-            layers[year][layer].add(str(member))
-            helper_dict[str(member)][0] = f"{year}_{layer}"
+            layers[year][layer].add(member)
+            helper_dict[member.pk][0] = f"{year}_{layer}"
 
             children = member.get_children()
             baptised_children = [
@@ -146,11 +151,11 @@ def build_layers_and_edges_from_db(onp):
                     )
                 )
                 edges.setdefault(str(member), []).append(str(child))
-                helper_dict[str(member)][1].append(str(child))
+                helper_dict[member.pk][1].append(child.pk)
 
             for step_child in baptised_step_children:
                 edges.setdefault(str(member), []).append(str(step_child))
-                helper_dict[str(member)][1].append(str(step_child))
+                helper_dict[member.pk][1].append(step_child.pk)
 
         members.sort(key=lambda x: x.staz)
         go += 1
