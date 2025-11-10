@@ -127,10 +127,13 @@ document.getElementById("color-mode").addEventListener("change", (e) => {
       const hue = Math.round((360 * idx) / Math.max(1, ys.length - 1));
       n.color = `hsl(${hue} 70% 50%)`;
     });
-  } else if (mode === "gender") {
+  } else if (mode === "status") {
     nodesData.forEach((n) => {
-      if (n.gender === "M") n.color = "#6aa";
-      else if (n.gender === "F") n.color = "#a66";
+      if (n.status === "CZ") n.color = "#82c486";
+      else if (n.status === "CW") n.color = "#daf10e";
+      else if (n.status === "X") n.color = "#430202";
+      else if (n.status === "W") n.color = "#668daa";
+      else if (n.status === "H") n.color = "#ffd301";
       else n.color = "#888";
     });
   }
