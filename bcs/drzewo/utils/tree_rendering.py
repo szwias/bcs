@@ -41,7 +41,7 @@ def render_layered_graph(layers, edges, rankdir="TB", node_attrs=None):
     return G
 
 
-def build_d3_coords(graph, node_size=0.5):
+def build_d3_nodes(graph, node_size=0.5):
     POINTS_IN_AN_INCH = 72
     G = graph.copy()
 
