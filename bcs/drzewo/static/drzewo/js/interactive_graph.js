@@ -120,7 +120,7 @@ function fitToView() {
   const svgW = document.getElementById("stage").clientWidth;
   const svgH = document.getElementById("stage").clientHeight;
   const scale = Math.min(svgW / contentW, svgH / contentH);
-  const tx = -minX;
+  const tx = -minX + pad;
   const ty = -minY + pad;
   const transform = d3.zoomIdentity
     .translate((svgW - contentW * scale) / 2, (svgH - contentH * scale) / 2)
@@ -131,6 +131,9 @@ function fitToView() {
 
 // Sidebar color-mode (unchanged)
 document.getElementById("color-mode").addEventListener("change", (e) => {
+  const legend = d3.select("#legend");
+  legend.selectAll("*").remove();
+
   const mode = e.target.value;
   if (mode === "none") nodesData.forEach((n) => (n.color = palette.accent));
   else if (mode === "generation") {
@@ -142,15 +145,36 @@ document.getElementById("color-mode").addEventListener("change", (e) => {
       const hue = Math.round((360 * idx) / Math.max(1, ys.length - 1));
       n.color = `hsl(${hue} 70% 55%)`;
     });
+    appendLegend(legend, "Jak sama nazwa wskazuje");
   } else if (mode === "status") {
+    mapping = {
+      CZ: ["Członkowie zwyczajni", "#04ff00"],
+      CW: ["Członkowie wspierający", "#ffea00"],
+      X: ["Członkowie wydaleni", "rgba(255,255,255,0)"],
+      W: ["Weterani", "#668daa"],
+      H: ["Członkowie honorowi", "#ff9e01"],
+    };
+
+    Object.entries(mapping).forEach(([_, [desc, color]]) => {
+      appendLegend(legend, desc, color);
+    });
+
     nodesData.forEach((n) => {
-      if (n.status === "CZ") n.color = "#04ff00";
-      else if (n.status === "CW") n.color = "#ffea00";
-      else if (n.status === "X") n.color = "rgba(255,255,255,0)";
-      else if (n.status === "W") n.color = "#668daa";
-      else if (n.status === "H") n.color = "#ff9e01";
-      else n.color = palette.toggle;
+      const colorInfo = mapping[n.status];
+      n.color = colorInfo ? colorInfo[1] : palette.toggle;
     });
   }
   renderGraph();
 });
+
+function appendLegend(legend, entry = "", color = null) {
+  const background_string = color ? `background: ${color};` : "";
+  legend
+    .append("div")
+    .style("display", "flex")
+    .style("align-items", "center")
+    .style("margin-bottom", "4px").html(`
+      <div style="width:20px;height:20px;${background_string} margin-right:6px;border:1px solid #222;"></div>
+      ${entry}
+    `);
+}
