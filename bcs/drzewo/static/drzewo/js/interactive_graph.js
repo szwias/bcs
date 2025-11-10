@@ -147,25 +147,37 @@ document.getElementById("color-mode").addEventListener("change", (e) => {
     });
     appendLegend(legend, "Jak sama nazwa wskazuje");
   } else if (mode === "status") {
-    mapping = {
+    const statusMapping = {
       CZ: ["Członkowie zwyczajni", "#04ff00"],
       CW: ["Członkowie wspierający", "#ffea00"],
       X: ["Członkowie wydaleni", "rgba(255,255,255,0)"],
       W: ["Weterani", "#668daa"],
       H: ["Członkowie honorowi", "#ff9e01"],
     };
+    applyMode(legend, statusMapping, mode)
+  } else if (mode === "aktywnosc") {
+    const aktywnoscMapping = {
+      "A": ["Członkowie aktywni", "#04ff00"],
+      "M": ["Członkowie mało aktywni", "#ffea00"],
+      "N": ["Członkowie nieaktywni", "#668daa"],
+      "O": ["Członkowie utraceni", "#ff0303"],
+    }
+    applyMode(legend, aktywnoscMapping, mode)
+  }
+  renderGraph();
+});
 
-    Object.entries(mapping).forEach(([_, [desc, color]]) => {
+function applyMode(legend, mapping, attribute) {
+  Object.entries(mapping).forEach(([_, [desc, color]]) => {
       appendLegend(legend, desc, color);
     });
 
     nodesData.forEach((n) => {
-      const colorInfo = mapping[n.status];
+      const key = n[attribute]
+      const colorInfo = mapping[key];
       n.color = colorInfo ? colorInfo[1] : palette.toggle;
     });
-  }
-  renderGraph();
-});
+}
 
 function appendLegend(legend, entry = "", color = null) {
   const background_string = color ? `background: ${color};` : "";
