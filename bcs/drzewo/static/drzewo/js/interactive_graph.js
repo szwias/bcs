@@ -66,21 +66,24 @@ function renderGraph() {
       if (d.url) window.open(d.url, "_blank");
     })
     .on("mouseover", (event, d) => {
-      tooltip.style("display", "block").text(d.name);
+      tooltip
+        .style("display", "block")
+        .style("background", "#2b2b2b")
+        .style("color", palette.textMuted)
+        .text(d.name);
       d3.select(event.currentTarget).classed("hover", true);
     })
     .on("mousemove", (event) => {
       const svgRect = svg.node().getBoundingClientRect();
-
       tooltip
         .style("left", event.clientX - svgRect.left + 10 + "px")
         .style("top", event.clientY - svgRect.top + 10 + "px");
     })
-
     .on("mouseout", (event) => {
       tooltip.style("display", "none");
       d3.select(event.currentTarget).classed("hover", false);
     });
+
   const node_radius = 25;
 
   node
