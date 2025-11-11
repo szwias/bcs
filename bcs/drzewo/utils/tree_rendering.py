@@ -22,6 +22,7 @@ def render_layered_graph(layers, edges, rankdir="TB", node_attrs=None):
             passed_attrs = node_attrs.get(str(m), {})
             attrs = model_to_dict(m)
             attrs.update(**passed_attrs)
+            attrs["pk"] = m.pk
             G.add_node(n=str(m), **attrs)
 
         G.add_subgraph(nbunch=list(members) + [dummy], rank="same")
@@ -42,7 +43,7 @@ def render_layered_graph(layers, edges, rankdir="TB", node_attrs=None):
     return G
 
 
-def build_d3_nodes(graph, year_reprs, node_size=0.5):
+def build_d3_nodes(graph, year_reprs, helper_dict, node_size=0.5):
     POINTS_IN_AN_INCH = 72
     G = graph.copy()
     ranksep = G.graph_attr["ranksep"]
@@ -109,6 +110,7 @@ def build_d3_nodes(graph, year_reprs, node_size=0.5):
             "nodes": nodes_out,
             "links": links_out,
             "years": year_reprs,
+            "helper_dict": helper_dict,
             "layer_distance": float(ranksep) * POINTS_IN_AN_INCH,
         }
     )

@@ -47,10 +47,14 @@
             <hr>
             <div class="sidebar__section">
                 <h3>Widoki</h3>
-                <select id="view-mode">
-                    <option value="none">Brak</option>
-                    <option value="years">Lata</option>
-                </select>
+                <label>
+                    <input type="checkbox" class="view-mode" value="years">
+                    Lata
+                </label>
+                <label>
+                    <input type="checkbox" class="view-mode" value="descendants">
+                    Potomkowie
+                </label>
             </div>
             <hr>
             <p>Kliknij w węzeł → otwiera szczegóły. Najedź → podgląd.</p>
@@ -65,6 +69,7 @@
                 onp: {{ onp|yesno:'true,false' }}
             };
         </script>
-        <script src="{% static 'drzewo/js/interactive_graph.js' %}"></script>
+        <script type="module"
+                src="{% static 'drzewo/js/interactive_graph/main.js' %}"></script>
     </body>
 </html>
