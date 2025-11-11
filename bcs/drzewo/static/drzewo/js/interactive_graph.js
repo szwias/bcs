@@ -13,7 +13,8 @@ const onp = window.TREE_CONFIG.onp;
 const dataUrl = `/drzewo/full-tree-data/?only_known_parents=${onp}`;
 
 let nodesData = [],
-  linksData = [];
+  linksData = [],
+  yearsData = {};
 console.log("Fetching:", dataUrl);
 
 fetch(dataUrl)
@@ -21,6 +22,7 @@ fetch(dataUrl)
   .then((data) => {
     nodesData = data.nodes;
     linksData = data.links;
+    yearsData = data.years;
     renderGraph();
   });
 
@@ -103,6 +105,32 @@ function renderGraph() {
     .style("font-size", "15px")
     .style("pointer-events", "none");
 
+  // Year lines
+  Object.entries(yearsData).forEach(([year, reprNodeName]) => {
+    const reprNode = nodesData.find((n) => n.name === reprNodeName);
+    if (!reprNode) return; // safety
+    const padding = 60
+    const y = reprNode.y_norm - padding;
+    // Draw horizontal line across the graph at this y
+    g.append("line")
+      .attr("x1", d3.min(nodesData, (d) => d.x_norm) - 100)
+      .attr("x2", d3.max(nodesData, (d) => d.x_norm) + 100)
+      .attr("y1", y)
+      .attr("y2", y)
+      .attr("stroke", "#555")
+      .attr("stroke-dasharray", "4 2")
+      .attr("stroke-width", 1.2);
+
+    // Add year label on the left
+    g.append("text")
+      .attr("x", d3.min(nodesData, (d) => d.x_norm) - 150)
+      .attr("y", y + 4)
+      .attr("text-anchor", "end")
+      .style("fill", palette.textMuted)
+      .style("font-size", "70px")
+      .text(year);
+  });
+
   fitToView();
 }
 
@@ -154,29 +182,29 @@ document.getElementById("color-mode").addEventListener("change", (e) => {
       W: ["Weterani", "#668daa"],
       H: ["Członkowie honorowi", "#ff9e01"],
     };
-    applyMode(legend, statusMapping, mode)
+    applyMode(legend, statusMapping, mode);
   } else if (mode === "aktywnosc") {
     const aktywnoscMapping = {
-      "A": ["Członkowie aktywni", "#04ff00"],
-      "M": ["Członkowie mało aktywni", "#ffea00"],
-      "N": ["Członkowie nieaktywni", "#668daa"],
-      "O": ["Członkowie utraceni", "#ff0303"],
-    }
-    applyMode(legend, aktywnoscMapping, mode)
+      A: ["Członkowie aktywni", "#04ff00"],
+      M: ["Członkowie mało aktywni", "#ffea00"],
+      N: ["Członkowie nieaktywni", "#668daa"],
+      O: ["Członkowie utraceni", "#ff0303"],
+    };
+    applyMode(legend, aktywnoscMapping, mode);
   }
   renderGraph();
 });
 
 function applyMode(legend, mapping, attribute) {
   Object.entries(mapping).forEach(([_, [desc, color]]) => {
-      appendLegend(legend, desc, color);
-    });
+    appendLegend(legend, desc, color);
+  });
 
-    nodesData.forEach((n) => {
-      const key = n[attribute]
-      const colorInfo = mapping[key];
-      n.color = colorInfo ? colorInfo[1] : palette.toggle;
-    });
+  nodesData.forEach((n) => {
+    const key = n[attribute];
+    const colorInfo = mapping[key];
+    n.color = colorInfo ? colorInfo[1] : palette.toggle;
+  });
 }
 
 function appendLegend(legend, entry = "", color = null) {
