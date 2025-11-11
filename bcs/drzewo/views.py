@@ -1,7 +1,7 @@
 # drzewo/views.py
 import os
 
-from django.http import FileResponse, Http404, HttpResponseBadRequest
+from django.http import FileResponse, Http404
 from django.shortcuts import render
 from django.views.decorators.http import require_GET
 
@@ -63,9 +63,9 @@ def full_tree_interactive_view(request):
 @require_GET
 def full_tree_data_graphviz(request):
     onp = parse_onp(request)
-    layers, edges, _ = build_layers_and_edges_from_db(onp)
+    layers, edges, _, year_reprs = build_layers_and_edges_from_db(onp)
     G = render_layered_graph(layers=layers, edges=edges)
-    return build_d3_nodes(graph=G)
+    return build_d3_nodes(graph=G, year_reprs=year_reprs)
 
 
 @require_GET
