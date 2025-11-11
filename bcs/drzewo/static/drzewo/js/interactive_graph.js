@@ -1,6 +1,9 @@
+const tooltip = d3.select("#tooltip");
 const svg = d3.select("#svg");
 const g = svg.append("g");
-const tooltip = d3.select("#tooltip");
+const linkLayer = g.append("g").attr("id", "links-layer");
+const nodeLayer = g.append("g").attr("id", "nodes-layer");
+const overlayLayer = g.append("g").attr("id", "overlay-layer"); // for year lines, guides, etc.
 
 const zoom = d3
   .zoom()
@@ -38,13 +41,15 @@ const palette = {
 };
 
 function renderGraph() {
-  g.selectAll("*").remove();
+  linkLayer.selectAll("*").remove();
+  nodeLayer.selectAll("*").remove();
   svg.style("background-color", palette.background);
 
   const nodeById = new Map(nodesData.map((d) => [d.id, d]));
 
   // Links
-  g.selectAll("line.link")
+  linkLayer
+    .selectAll("line.link")
     .data(linksData)
     .enter()
     .append("line")
@@ -57,7 +62,7 @@ function renderGraph() {
     .attr("y2", (d) => nodeById.get(d.target).y_norm);
 
   // Nodes
-  const node = g
+  const node = nodeLayer
     .selectAll("g.node")
     .data(nodesData)
     .enter()
