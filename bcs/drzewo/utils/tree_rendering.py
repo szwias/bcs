@@ -42,7 +42,7 @@ def render_layered_graph(layers, edges, rankdir="TB", node_attrs=None):
     return G
 
 
-def build_d3_nodes(graph, node_size=0.5):
+def build_d3_nodes(graph, year_reprs, node_size=0.5):
     POINTS_IN_AN_INCH = 72
     G = graph.copy()
 
@@ -103,8 +103,9 @@ def build_d3_nodes(graph, node_size=0.5):
         ndata["y_norm"] = max_y - ndata["y"]
 
     nodes_out = list(node_positions.values())
-
-    return JsonResponse({"nodes": nodes_out, "links": links_out})
+    return JsonResponse(
+        {"nodes": nodes_out, "links": links_out, "years": year_reprs}
+    )
 
 
 def build_node_attrs_from_colors(color_groups):
