@@ -9,13 +9,13 @@ from drzewo.utils.essentials import modify_layers_structure, TreeNode
 
 
 def generate_full_tree(path, onp):
-    layers, edges, helper_dict = build_layers_and_edges_from_db(onp)
+    layers, edges, helper_dict, _ = build_layers_and_edges_from_db(onp)
     G = render_layered_graph(layers=layers, edges=edges)
     G.draw(path=path)
 
 
 def generate_scoped_tree(path, member, depth, gen, onp):
-    _, _, helper_dict = build_layers_and_edges_from_db(onp)
+    _, _, helper_dict, _ = build_layers_and_edges_from_db(onp)
     layers, edges = build_scoped_layers_and_edges(
         member=member, depth=depth, gen=gen, onp=onp, helper_dict=helper_dict
     )
@@ -164,5 +164,16 @@ def build_layers_and_edges_from_db(onp):
     sorted_keys = sorted(helper_dict.keys())
     for key in sorted_keys:
         new_dict[key] = helper_dict[key]
-
-    return modify_layers_structure(layers), edges, new_dict
+    year_reprs = {}
+    last_year_label = str(ROK_ZALOZENIA)
+    for year, sub_layers in layers.items():
+        label = str(year)
+        if sub_layers[0] == set():
+            new_label = last_year_label + ", " + label
+            year_reprs[new_label] = year_reprs[last_year_label]
+            del year_reprs[last_year_label]
+            last_year_label = new_label
+        else:
+            year_reprs[label] = str(list(sub_layers[0])[0])
+            last_year_label = label
+    return modify_layers_structure(layers), edges, new_dict, year_reprs
