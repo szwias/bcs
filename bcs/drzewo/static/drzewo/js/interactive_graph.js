@@ -1,3 +1,5 @@
+console.log("✅ Graph script loaded");
+
 const tooltip = d3.select("#tooltip");
 const svg = d3.select("#svg");
 const g = svg.append("g");
@@ -28,8 +30,19 @@ fetch(dataUrl)
     linksData = data.links;
     yearsData = data.years;
     layerDistance = data.layer_distance;
+
     renderGraph();
+
+    // Apply modes AFTER data has been rendered
+    const colorMode = document.getElementById("color-mode")?.value;
+    const viewMode = document.getElementById("view-mode")?.value;
+    console.log("Applying saved modes:", colorMode, viewMode);
+    if (colorMode)
+      document.getElementById("color-mode").dispatchEvent(new Event("change"));
+    if (viewMode)
+      document.getElementById("view-mode").dispatchEvent(new Event("change"));
   });
+
 
 function getCssColor(varName) {
   return getComputedStyle(document.documentElement)
@@ -241,3 +254,16 @@ function appendLegend(legend, entry = "", color = null) {
       ${entry}
     `);
 }
+
+// window.addEventListener("load", () => {
+//   // this fires even later than DOMContentLoaded, guaranteed
+//   const colorMode = document.getElementById("color-mode")?.value;
+//   const viewMode = document.getElementById("view-mode")?.value;
+//   console.log("Color:", colorMode, "View:", viewMode);
+//   if (colorMode)
+//     document.getElementById("color-mode").dispatchEvent(new Event("change"));
+//   if (viewMode)
+//     document.getElementById("view-mode").dispatchEvent(new Event("change"));
+// });
+
+
