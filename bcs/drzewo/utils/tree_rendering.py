@@ -45,6 +45,7 @@ def render_layered_graph(layers, edges, rankdir="TB", node_attrs=None):
 def build_d3_nodes(graph, year_reprs, node_size=0.5):
     POINTS_IN_AN_INCH = 72
     G = graph.copy()
+    ranksep = G.graph_attr["ranksep"]
 
     # Extract positions and build JSON objects for real nodes only
     node_positions = {}
@@ -104,7 +105,12 @@ def build_d3_nodes(graph, year_reprs, node_size=0.5):
 
     nodes_out = list(node_positions.values())
     return JsonResponse(
-        {"nodes": nodes_out, "links": links_out, "years": year_reprs}
+        {
+            "nodes": nodes_out,
+            "links": links_out,
+            "years": year_reprs,
+            "layer_distance": float(ranksep) * POINTS_IN_AN_INCH,
+        }
     )
 
 
