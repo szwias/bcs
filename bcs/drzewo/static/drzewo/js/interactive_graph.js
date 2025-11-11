@@ -1,42 +1,20 @@
+// ====== State ======
+const state = {
+  nodes: [],
+  links: [],
+  years: {},
+  layerDistance: 0,
+};
+
+// ====== Layers ======
 const tooltip = d3.select("#tooltip");
 const svg = d3.select("#svg");
 const g = svg.append("g");
 const linkLayer = g.append("g").attr("id", "links-layer");
 const nodeLayer = g.append("g").attr("id", "nodes-layer");
-const overlayLayer = g.append("g").attr("id", "overlay-layer"); // for year lines, guides, etc.
+const overlayLayer = g.append("g").attr("id", "overlay-layer"); // year lines, guides
 
-const zoom = d3
-  .zoom()
-  .scaleExtent([0.1, 10])
-  .on("zoom", (event) => g.attr("transform", event.transform));
-svg.call(zoom);
-
-// Use Django-provided 'onp' value from the view
-const onp = window.TREE_CONFIG.onp;
-const dataUrl = `/drzewo/full-tree-data/?only_known_parents=${onp}`;
-
-let nodesData = [],
-  linksData = [],
-  yearsData = {},
-  layerDistance = 0;
-console.log("Fetching:", dataUrl);
-
-fetch(dataUrl)
-  .then((res) => res.json())
-  .then((data) => {
-    nodesData = data.nodes;
-    linksData = data.links;
-    yearsData = data.years;
-    layerDistance = data.layer_distance;
-    renderGraph();
-  });
-
-function getCssColor(varName) {
-  return getComputedStyle(document.documentElement)
-    .getPropertyValue(varName)
-    .trim();
-}
-
+// ====== Palette from SCSS ======
 const palette = {
   background: getCssColor("--js-color-bg"),
   panel: getCssColor("--js-color-panel"),
@@ -49,17 +27,63 @@ const palette = {
   link: getCssColor("--js-color-link"),
 };
 
+function getCssColor(varName) {
+  return getComputedStyle(document.documentElement)
+    .getPropertyValue(varName)
+    .trim();
+}
+
+// ====== Zoom ======
+const zoom = d3
+  .zoom()
+  .scaleExtent([0.1, 10])
+  .on("zoom", (event) => g.attr("transform", event.transform));
+svg.call(zoom);
+
+// ====== Data Fetch ======
+function fetchTreeData() {
+  const onp = window.TREE_CONFIG.onp;
+  const dataUrl = `/drzewo/full-tree-data/?only_known_parents=${onp}`;
+  fetch(dataUrl)
+    .then((res) => res.json())
+    .then((data) => {
+      state.nodes = data.nodes;
+      state.links = data.links;
+      state.years = data.years;
+      state.layerDistance = data.layer_distance;
+
+      renderGraph();
+
+      // Apply modes AFTER data has been rendered
+        const colorMode = document.getElementById("color-mode")?.value;
+        const viewMode = document.getElementById("view-mode")?.value;
+        console.log("Applying saved modes:", colorMode, viewMode);
+        if (colorMode)
+          document.getElementById("color-mode").dispatchEvent(new Event("change"));
+        if (viewMode)
+          document.getElementById("view-mode").dispatchEvent(new Event("change"));
+        });
+}
+
+// ====== Graph Rendering ======
 function renderGraph() {
+  clearGraph();
+  const nodeById = new Map(state.nodes.map((d) => [d.id, d]));
+  drawLinks(nodeById);
+  drawNodes();
+  fitToView();
+}
+
+function clearGraph() {
   linkLayer.selectAll("*").remove();
   nodeLayer.selectAll("*").remove();
-  svg.style("background-color", palette.background);
+  svg.style("background-color", palette.bg);
+}
 
-  const nodeById = new Map(nodesData.map((d) => [d.id, d]));
-
-  // Links
+function drawLinks(nodeById) {
   linkLayer
     .selectAll("line.link")
-    .data(linksData)
+    .data(state.links)
     .enter()
     .append("line")
     .attr("class", "link")
@@ -69,11 +93,12 @@ function renderGraph() {
     .attr("y1", (d) => nodeById.get(d.source).y_norm)
     .attr("x2", (d) => nodeById.get(d.target).x_norm)
     .attr("y2", (d) => nodeById.get(d.target).y_norm);
+}
 
-  // Nodes
+function drawNodes() {
   const node = nodeLayer
     .selectAll("g.node")
-    .data(nodesData)
+    .data(state.nodes)
     .enter()
     .append("g")
     .attr("class", "node")
@@ -81,24 +106,9 @@ function renderGraph() {
     .on("click", (_, d) => {
       if (d.url) window.open(d.url, "_blank");
     })
-    .on("mouseover", (event, d) => {
-      tooltip
-        .style("display", "block")
-        .style("background", "#2b2b2b")
-        .style("color", palette.textMuted)
-        .text(d.name);
-      d3.select(event.currentTarget).classed("hover", true);
-    })
-    .on("mousemove", (event) => {
-      const svgRect = svg.node().getBoundingClientRect();
-      tooltip
-        .style("left", event.clientX - svgRect.left + 10 + "px")
-        .style("top", event.clientY - svgRect.top + 10 + "px");
-    })
-    .on("mouseout", (event) => {
-      tooltip.style("display", "none");
-      d3.select(event.currentTarget).classed("hover", false);
-    });
+    .on("mouseover", handleMouseOver)
+    .on("mousemove", handleMouseMove)
+    .on("mouseout", handleMouseOut);
 
   const node_radius = 25;
 
@@ -115,17 +125,38 @@ function renderGraph() {
     .attr("text-anchor", "middle")
     .attr("dominant-baseline", "middle")
     .text((d) => d.name)
-    .style("fill", palette.textMuted)
+    .style("fill", palette.text)
     .style("font-size", "15px")
     .style("pointer-events", "none");
-
-  fitToView();
 }
 
+// ====== Tooltip Handlers ======
+function handleMouseOver(event, d) {
+  tooltip
+    .style("display", "block")
+    .style("background", palette["tooltip-bg"])
+    .style("color", palette.text)
+    .text(d.name);
+  d3.select(event.currentTarget).classed("hover", true);
+}
+
+function handleMouseMove(event) {
+  const svgRect = svg.node().getBoundingClientRect();
+  tooltip
+    .style("left", event.clientX - svgRect.left + 10 + "px")
+    .style("top", event.clientY - svgRect.top + 10 + "px");
+}
+
+function handleMouseOut(event) {
+  tooltip.style("display", "none");
+  d3.select(event.currentTarget).classed("hover", false);
+}
+
+// ====== Fit to View ======
 function fitToView() {
-  if (!nodesData.length) return;
-  const xs = nodesData.map((d) => d.x_norm);
-  const ys = nodesData.map((d) => d.y_norm);
+  if (!state.nodes.length) return;
+  const xs = state.nodes.map((d) => d.x_norm);
+  const ys = state.nodes.map((d) => d.y_norm);
   const minX = Math.min(...xs),
     maxX = Math.max(...xs);
   const minY = Math.min(...ys),
@@ -145,85 +176,12 @@ function fitToView() {
   svg.transition().duration(600).call(zoom.transform, transform);
 }
 
-// Sidebar color-mode (unchanged)
-document.getElementById("color-mode").addEventListener("change", (e) => {
-  const legend = d3.select("#legend");
-  legend.selectAll("*").remove();
-
-  const mode = e.target.value;
-  if (mode === "none") nodesData.forEach((n) => (n.color = palette.accent));
-  else if (mode === "generation") {
-    const ys = [...new Set(nodesData.map((n) => Math.round(n.y_norm)))].sort(
-      (a, b) => a - b
-    );
-    nodesData.forEach((n) => {
-      const idx = ys.indexOf(n.y_norm);
-      const hue = Math.round((360 * idx) / Math.max(1, ys.length - 1));
-      n.color = `hsl(${hue} 70% 55%)`;
-    });
-    appendLegend(legend, "Jak sama nazwa wskazuje");
-  } else if (mode === "status") {
-    const statusMapping = {
-      CZ: ["Członkowie zwyczajni", "#04ff00"],
-      CW: ["Członkowie wspierający", "#ffea00"],
-      X: ["Członkowie wydaleni", "rgb(255,3,3)"],
-      W: ["Weterani", "#668daa"],
-      H: ["Członkowie honorowi", "#ff9e01"],
-    };
-    applyMode(legend, statusMapping, mode);
-  } else if (mode === "aktywnosc") {
-    const aktywnoscMapping = {
-      A: ["Członkowie aktywni", "#04ff00"],
-      M: ["Członkowie mało aktywni", "#ffea00"],
-      N: ["Członkowie nieaktywni", "#668daa"],
-      O: ["Członkowie utraceni", "#ff0303"],
-    };
-    applyMode(legend, aktywnoscMapping, mode);
-  }
-  renderGraph();
-});
-
-document.getElementById("view-mode").addEventListener("change", (e) => {
-  const mode = e.target.value;
-  if (mode === "none") {
-    overlayLayer.selectAll("*").remove();
-  } else if (mode === "years") {
-    // Year lines
-    Object.entries(yearsData).forEach(([year, reprNodeName]) => {
-      const reprNode = nodesData.find((n) => n.name === reprNodeName);
-      if (!reprNode) return; // safety
-      const padding = layerDistance / 2;
-      const y = reprNode.y_norm - padding;
-      // Draw horizontal line across the graph at this y
-      overlayLayer
-        .append("line")
-        .attr("x1", d3.min(nodesData, (d) => d.x_norm) - 100)
-        .attr("x2", d3.max(nodesData, (d) => d.x_norm) + 100)
-        .attr("y1", y)
-        .attr("y2", y)
-        .attr("stroke", "#555")
-        .attr("stroke-dasharray", "4 2")
-        .attr("stroke-width", 3);
-
-      // Add year label on the left
-      overlayLayer
-        .append("text")
-        .attr("x", d3.min(nodesData, (d) => d.x_norm) - 150)
-        .attr("y", y + 4)
-        .attr("text-anchor", "end")
-        .style("fill", palette.textMuted)
-        .style("font-size", "70px")
-        .text(year);
-    });
-  }
-});
-
+// ====== Color Modes ======
 function applyMode(legend, mapping, attribute) {
-  Object.entries(mapping).forEach(([_, [desc, color]]) => {
-    appendLegend(legend, desc, color);
-  });
-
-  nodesData.forEach((n) => {
+  Object.entries(mapping).forEach(([_, [desc, color]]) =>
+    appendLegend(legend, desc, color)
+  );
+  state.nodes.forEach((n) => {
     const key = n[attribute];
     const colorInfo = mapping[key];
     n.color = colorInfo ? colorInfo[1] : palette.toggle;
@@ -236,8 +194,99 @@ function appendLegend(legend, entry = "", color = null) {
     .append("div")
     .style("display", "flex")
     .style("align-items", "center")
-    .style("margin-bottom", "4px").html(`
-      <div style="width:20px;height:20px;${background_string} margin-right:6px;border:1px solid #222;"></div>
-      ${entry}
-    `);
+    .style("margin-bottom", "4px")
+    .html(
+      `<div style="width:20px;height:20px;${background_string} margin-right:6px;border:1px solid #222;"></div>${entry}`
+    );
 }
+
+// ====== View Modes ======
+function drawYearLines() {
+  overlayLayer.selectAll("*").remove();
+  Object.entries(state.years).forEach(([year, reprNodeName]) => {
+    const reprNode = state.nodes.find((n) => n.name === reprNodeName);
+    if (!reprNode) return;
+    const padding = state.layerDistance / 2;
+    const y = reprNode.y_norm - padding;
+
+    overlayLayer
+      .append("line")
+      .attr("x1", d3.min(state.nodes, (d) => d.x_norm) - 100)
+      .attr("x2", d3.max(state.nodes, (d) => d.x_norm) + 100)
+      .attr("y1", y)
+      .attr("y2", y)
+      .attr("stroke", "#555")
+      .attr("stroke-dasharray", "4 2")
+      .attr("stroke-width", 3);
+
+    overlayLayer
+      .append("text")
+      .attr("x", d3.min(state.nodes, (d) => d.x_norm) - 150)
+      .attr("y", y + 4)
+      .attr("text-anchor", "end")
+      .style("fill", palette.textMuted)
+      .style("font-size", "70px")
+      .text(year);
+  });
+}
+
+// ====== Event Listeners ======
+function initEventListeners() {
+  document.getElementById("color-mode").addEventListener("change", (e) => {
+    const legend = d3.select("#legend");
+    legend.selectAll("*").remove();
+    const mode = e.target.value;
+
+    if (mode === "none") state.nodes.forEach((n) => (n.color = palette.accent));
+    else if (mode === "generation") {
+      const ys = [
+        ...new Set(state.nodes.map((n) => Math.round(n.y_norm))),
+      ].sort((a, b) => a - b);
+      state.nodes.forEach((n) => {
+        const idx = ys.indexOf(n.y_norm);
+        const hue = Math.round((360 * idx) / Math.max(1, ys.length - 1));
+        n.color = `hsl(${hue} 70% 55%)`;
+      });
+      appendLegend(legend, "Jak sama nazwa wskazuje");
+    } else if (mode === "status") {
+      applyMode(
+        legend,
+        {
+          CZ: ["Członkowie zwyczajni", "#04ff00"],
+          CW: ["Członkowie wspierający", "#ffea00"],
+          X: ["Członkowie wydaleni", "rgb(255,3,3)"],
+          W: ["Weterani", "#668daa"],
+          H: ["Członkowie honorowi", "#ff9e01"],
+        },
+        "status"
+      );
+    } else if (mode === "aktywnosc") {
+      applyMode(
+        legend,
+        {
+          A: ["Członkowie aktywni", "#04ff00"],
+          M: ["Członkowie mało aktywni", "#ffea00"],
+          N: ["Członkowie nieaktywni", "#668daa"],
+          O: ["Członkowie utraceni", "#ff0303"],
+        },
+        "aktywnosc"
+      );
+    }
+
+    renderGraph();
+  });
+
+  document.getElementById("view-mode").addEventListener("change", (e) => {
+    const mode = e.target.value;
+    overlayLayer.selectAll("*").remove();
+    if (mode === "years") drawYearLines();
+  });
+}
+
+// ====== Init ======
+function init() {
+  fetchTreeData();
+  initEventListeners();
+}
+
+init();
