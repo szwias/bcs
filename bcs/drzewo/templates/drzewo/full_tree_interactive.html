@@ -6,6 +6,8 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Interaktywny Rodowód</title>
+        <link rel="stylesheet"
+              href="{% static 'drzewo/css/interactive_tree.css' %}">
         <script src="https://d3js.org/d3.v7.min.js"></script>
         <style>
             body { margin:0; display:flex; height:100vh; background: #ffffff; color:#eee; }
@@ -23,34 +25,40 @@
     </head>
     <body>
         <div id="sidebar">
-            <h2>Filtry</h2>
-            <form method="get">
-                {{ form.as_p }}
-                <input type="hidden" name="submitted" value="1">
-                <button type="submit">Odśwież</button>
-            </form>
+            <div class="sidebar__section">
+                <h2>Filtry</h2>
+                <form method="get">
+                    {{ form.as_p }}
+                    <input type="hidden" name="submitted" value="1">
+                    <button type="submit">Odśwież</button>
+                </form>
+            </div>
             <hr>
-            <h3>Kolorowanie</h3>
-            <select id="color-mode">
-                <option value="none">Brak</option>
-                <option value="generation">Pokolenie</option>
-                <option value="status">Status</option>
-                <option value="aktywnosc">Aktywność</option>
-            </select>
-            <div id="legend" style="margin-top:16px;"></div>
+            <div class="sidebar__section">
+                <h3>Kolorowanie</h3>
+                <select id="color-mode">
+                    <option value="none">Brak</option>
+                    <option value="generation">Pokolenie</option>
+                    <option value="status">Status</option>
+                    <option value="aktywnosc">Aktywność</option>
+                </select>
+                <div id="legend" class="sidebar__legend"></div>
+            </div>
             <hr>
-            <h3>Widoki</h3>
-            <select id="view-mode">
-                <option value="none">Brak</option>
-                <option value="years">Lata</option>
-            </select>
+            <div class="sidebar__section">
+                <h3>Widoki</h3>
+                <select id="view-mode">
+                    <option value="none">Brak</option>
+                    <option value="years">Lata</option>
+                </select>
+            </div>
             <hr>
             <p>Kliknij w węzeł → otwiera szczegóły. Najedź → podgląd.</p>
         </div>
-        <div id="stage">
-            <svg id="svg">
+        <div class="tree" id="stage">
+            <svg id="svg" class="tree__svg">
             </svg>
-            <div id="tooltip" class="tooltip"></div>
+            <div id="tooltip" class="tree__tooltip"></div>
         </div>
         <script>
             window.TREE_CONFIG = {

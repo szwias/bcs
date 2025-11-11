@@ -1,6 +1,9 @@
+const tooltip = d3.select("#tooltip");
 const svg = d3.select("#svg");
 const g = svg.append("g");
-const tooltip = d3.select("#tooltip");
+const linkLayer = g.append("g").attr("id", "links-layer");
+const nodeLayer = g.append("g").attr("id", "nodes-layer");
+const overlayLayer = g.append("g").attr("id", "overlay-layer"); // for year lines, guides, etc.
 
 const zoom = d3
   .zoom()
@@ -14,7 +17,8 @@ const dataUrl = `/drzewo/full-tree-data/?only_known_parents=${onp}`;
 
 let nodesData = [],
   linksData = [],
-  yearsData = {};
+  yearsData = {},
+  layerDistance = 0;
 console.log("Fetching:", dataUrl);
 
 fetch(dataUrl)
@@ -23,28 +27,38 @@ fetch(dataUrl)
     nodesData = data.nodes;
     linksData = data.links;
     yearsData = data.years;
+    layerDistance = data.layer_distance;
     renderGraph();
   });
 
-// Unified dark palette (matches your SCSS)
+function getCssColor(varName) {
+  return getComputedStyle(document.documentElement)
+    .getPropertyValue(varName)
+    .trim();
+}
+
 const palette = {
-  background: "#1e1e1e",
-  textMuted: "#d0d6e0",
-  field: "#9fb4cc",
-  accent: "#58a6ff",
-  category: "#f5dd5d",
-  border: "#888",
-  toggle: "#999",
+  background: getCssColor("--js-color-bg"),
+  panel: getCssColor("--js-color-panel"),
+  border: getCssColor("--js-color-border"),
+  textMuted: getCssColor("--js-color-text"),
+  accent: getCssColor("--js-color-accent"),
+  field: getCssColor("--js-color-field"),
+  toggle: getCssColor("--js-color-toggle"),
+  tooltipBg: getCssColor("--js-color-tooltip-bg"),
+  link: getCssColor("--js-color-link"),
 };
 
 function renderGraph() {
-  g.selectAll("*").remove();
+  linkLayer.selectAll("*").remove();
+  nodeLayer.selectAll("*").remove();
   svg.style("background-color", palette.background);
 
   const nodeById = new Map(nodesData.map((d) => [d.id, d]));
 
   // Links
-  g.selectAll("line.link")
+  linkLayer
+    .selectAll("line.link")
     .data(linksData)
     .enter()
     .append("line")
@@ -57,7 +71,7 @@ function renderGraph() {
     .attr("y2", (d) => nodeById.get(d.target).y_norm);
 
   // Nodes
-  const node = g
+  const node = nodeLayer
     .selectAll("g.node")
     .data(nodesData)
     .enter()
@@ -104,32 +118,6 @@ function renderGraph() {
     .style("fill", palette.textMuted)
     .style("font-size", "15px")
     .style("pointer-events", "none");
-
-  // Year lines
-  Object.entries(yearsData).forEach(([year, reprNodeName]) => {
-    const reprNode = nodesData.find((n) => n.name === reprNodeName);
-    if (!reprNode) return; // safety
-    const padding = 60
-    const y = reprNode.y_norm - padding;
-    // Draw horizontal line across the graph at this y
-    g.append("line")
-      .attr("x1", d3.min(nodesData, (d) => d.x_norm) - 100)
-      .attr("x2", d3.max(nodesData, (d) => d.x_norm) + 100)
-      .attr("y1", y)
-      .attr("y2", y)
-      .attr("stroke", "#555")
-      .attr("stroke-dasharray", "4 2")
-      .attr("stroke-width", 1.2);
-
-    // Add year label on the left
-    g.append("text")
-      .attr("x", d3.min(nodesData, (d) => d.x_norm) - 150)
-      .attr("y", y + 4)
-      .attr("text-anchor", "end")
-      .style("fill", palette.textMuted)
-      .style("font-size", "70px")
-      .text(year);
-  });
 
   fitToView();
 }
@@ -178,7 +166,7 @@ document.getElementById("color-mode").addEventListener("change", (e) => {
     const statusMapping = {
       CZ: ["Członkowie zwyczajni", "#04ff00"],
       CW: ["Członkowie wspierający", "#ffea00"],
-      X: ["Członkowie wydaleni", "rgba(255,255,255,0)"],
+      X: ["Członkowie wydaleni", "rgb(255,3,3)"],
       W: ["Weterani", "#668daa"],
       H: ["Członkowie honorowi", "#ff9e01"],
     };
@@ -193,6 +181,41 @@ document.getElementById("color-mode").addEventListener("change", (e) => {
     applyMode(legend, aktywnoscMapping, mode);
   }
   renderGraph();
+});
+
+document.getElementById("view-mode").addEventListener("change", (e) => {
+  const mode = e.target.value;
+  if (mode === "none") {
+    overlayLayer.selectAll("*").remove();
+  } else if (mode === "years") {
+    // Year lines
+    Object.entries(yearsData).forEach(([year, reprNodeName]) => {
+      const reprNode = nodesData.find((n) => n.name === reprNodeName);
+      if (!reprNode) return; // safety
+      const padding = layerDistance / 2;
+      const y = reprNode.y_norm - padding;
+      // Draw horizontal line across the graph at this y
+      overlayLayer
+        .append("line")
+        .attr("x1", d3.min(nodesData, (d) => d.x_norm) - 100)
+        .attr("x2", d3.max(nodesData, (d) => d.x_norm) + 100)
+        .attr("y1", y)
+        .attr("y2", y)
+        .attr("stroke", "#555")
+        .attr("stroke-dasharray", "4 2")
+        .attr("stroke-width", 3);
+
+      // Add year label on the left
+      overlayLayer
+        .append("text")
+        .attr("x", d3.min(nodesData, (d) => d.x_norm) - 150)
+        .attr("y", y + 4)
+        .attr("text-anchor", "end")
+        .style("fill", palette.textMuted)
+        .style("font-size", "70px")
+        .text(year);
+    });
+  }
 });
 
 function applyMode(legend, mapping, attribute) {

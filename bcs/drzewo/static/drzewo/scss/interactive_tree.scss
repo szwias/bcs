@@ -1,0 +1,183 @@
+// ====== Variables ======
+$color-bg: #1e1e1e;
+$color-panel: #222;
+$color-border: #888;
+$color-text: #d0d6e0;
+$color-accent: #58a6ff;
+$color-field: #9fb4cc;
+$color-toggle: #999;
+$color-tooltip-bg: #2b2b2b;
+$color-link: #555;
+
+:root {
+  --js-color-bg: #{$color-bg};
+  --js-color-panel: #{$color-panel};
+  --js-color-border: #{$color-border};
+  --js-color-text: #{$color-text};
+  --js-color-accent: #{$color-accent};
+  --js-color-field: #{$color-field};
+  --js-color-toggle: #{$color-toggle};
+  --js-color-tooltip-bg: #{$color-tooltip-bg};
+  --js-color-link: #{$color-link};
+}
+
+
+// ====== Layout ======
+body {
+  margin: 0;
+  display: flex;
+  height: 100vh;
+  background: $color-bg;
+  color: $color-text;
+  font-family: "Inter", sans-serif;
+  overflow: hidden;
+}
+
+// ====== Sidebar Block ======
+.sidebar {
+  width: 260px;
+  background: $color-panel;
+  padding: 12px;
+  box-sizing: border-box;
+  border-right: 1px solid $color-border;
+
+  &__section {
+    margin-bottom: 16px;
+
+    h2,
+    h3 {
+      color: $color-text;
+      font-size: 1rem;
+      margin-bottom: 6px;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid $color-border;
+      margin: 12px 0;
+    }
+  }
+
+  &__form {
+    input,
+    select,
+    button {
+      width: 100%;
+      margin-top: 4px;
+      padding: 6px;
+      border: 1px solid $color-border;
+      border-radius: 4px;
+      background: $color-bg;
+      color: $color-text;
+      font-size: 0.9rem;
+    }
+
+    button {
+      background: $color-accent;
+      color: #fff;
+      font-weight: 500;
+      cursor: pointer;
+      transition: 0.2s;
+
+      &:hover {
+        background: lighten($color-accent, 8%);
+      }
+    }
+  }
+
+  &__legend {
+    margin-top: 12px;
+
+    &-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 4px;
+
+      &-color {
+        width: 20px;
+        height: 20px;
+        border: 1px solid #222;
+        margin-right: 6px;
+        flex-shrink: 0;
+      }
+
+      &-text {
+        font-size: 0.9rem;
+        color: $color-text;
+      }
+    }
+  }
+}
+
+// ====== Tree Visualization Block ======
+.tree {
+  flex: 1;
+  position: relative;
+  background: $color-bg;
+
+  &__svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+    background: $color-bg;
+  }
+
+  // Tooltip
+  &__tooltip {
+    position: absolute;
+    pointer-events: none;
+    display: none;
+    background: $color-tooltip-bg;
+    color: $color-text;
+    padding: 6px 8px;
+    border-radius: 6px;
+    font-size: 13px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    z-index: 10;
+  }
+
+  // Nodes
+  &__node {
+    cursor: pointer;
+
+    &-circle {
+      stroke: $color-border;
+      stroke-width: 1.2px;
+      transition: stroke 0.2s, r 0.2s;
+    }
+
+    &-text {
+      fill: $color-text;
+      font-size: 15px;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    &--hover {
+      .tree__node-circle {
+        stroke: $color-accent;
+        stroke-width: 2px;
+      }
+    }
+  }
+
+  // Links
+  &__link {
+    stroke: $color-border;
+    stroke-width: 2px;
+  }
+
+  // Overlay (e.g., year lines)
+  &__overlay-line {
+    stroke: $color-link;
+    stroke-width: 3px;
+    stroke-dasharray: 4 2;
+  }
+
+  &__overlay-text {
+    fill: $color-text;
+    font-size: 70px;
+    text-anchor: end;
+    user-select: none;
+  }
+}
