@@ -17,7 +17,11 @@ def generate_full_tree(path, onp):
 def generate_scoped_tree(path, member, depth, gen, onp):
     _, _, children_dict, _ = build_layers_and_edges_from_db(onp)
     layers, edges = build_scoped_layers_and_edges(
-        member=member, depth=depth, gen=gen, onp=onp, children_dict=children_dict
+        member=member,
+        depth=depth,
+        gen=gen,
+        onp=onp,
+        children_dict=children_dict,
     )
     G = render_layered_graph(
         layers=layers,
@@ -80,6 +84,7 @@ def build_layers_and_edges_from_db(onp):
     }
     edges = {}
     children_dict = defaultdict(lambda: [None, []])
+    abandons = {}
     go = 1
 
     members = list(Czlonek.objects.filter(ochrzczony=TextChoose.YES[0]))
@@ -121,6 +126,9 @@ def build_layers_and_edges_from_db(onp):
             member = node.member
             paczek = node.paczek  # support dla ludzi, którzy "wypączkowali"
 
+            if member.rodzic_2 != Czlonek.get_not_applicable_czlonek():
+                abandons[member.pk] = member.rodzic_1.pk
+
             while len(layers[year]) <= layer:
                 layers[year].append(set())
             layers[year][layer].add(member)
@@ -150,15 +158,18 @@ def build_layers_and_edges_from_db(onp):
                         )
                     )
                 )
-                edges.setdefault(str(member), []).append(str(child))
+                edges.setdefault((member.pk, child.pk), "final_parent")
                 children_dict[member.pk][1].append(child.pk)
 
             for step_child in baptised_step_children:
-                edges.setdefault(str(member), []).append(str(step_child))
+                edges.setdefault((member.pk, step_child.pk), "final_parent")
                 children_dict[member.pk][1].append(step_child.pk)
 
         members.sort(key=lambda x: x.staz)
         go += 1
+
+    for abandoned, parent1 in abandons.items():
+        edges[(parent1, abandoned)] = "non_final_parent"
 
     new_dict = defaultdict(list)
     sorted_keys = sorted(children_dict.keys())
