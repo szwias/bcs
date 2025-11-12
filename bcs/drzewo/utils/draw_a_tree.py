@@ -9,15 +9,15 @@ from drzewo.utils.essentials import modify_layers_structure, TreeNode
 
 
 def generate_full_tree(path, onp):
-    layers, edges, helper_dict, _ = build_layers_and_edges_from_db(onp)
+    layers, edges, children_dict, _ = build_layers_and_edges_from_db(onp)
     G = render_layered_graph(layers=layers, edges=edges)
     G.draw(path=path)
 
 
 def generate_scoped_tree(path, member, depth, gen, onp):
-    _, _, helper_dict, _ = build_layers_and_edges_from_db(onp)
+    _, _, children_dict, _ = build_layers_and_edges_from_db(onp)
     layers, edges = build_scoped_layers_and_edges(
-        member=member, depth=depth, gen=gen, onp=onp, helper_dict=helper_dict
+        member=member, depth=depth, gen=gen, onp=onp, children_dict=children_dict
     )
     G = render_layered_graph(
         layers=layers,
@@ -33,7 +33,7 @@ def generate_scoped_tree(path, member, depth, gen, onp):
     G.draw(path=path)
 
 
-def build_scoped_layers_and_edges(member, depth, gen, onp, helper_dict):
+def build_scoped_layers_and_edges(member, depth, gen, onp, children_dict):
     layers = {}
     edges = {}
 
@@ -44,10 +44,10 @@ def build_scoped_layers_and_edges(member, depth, gen, onp, helper_dict):
         member_pk = c_member.pk
         str_member = str(c_member)
 
-        if onp and member_pk not in helper_dict.keys():
+        if onp and member_pk not in children_dict.keys():
             layer = f"{ROK_ZALOZENIA}_1"
         else:
-            layer = helper_dict[member_pk][0]
+            layer = children_dict[member_pk][0]
         layers.setdefault(layer, []).append(c_member)
 
         if c_gen < gen and not c_depth:
@@ -59,12 +59,12 @@ def build_scoped_layers_and_edges(member, depth, gen, onp, helper_dict):
                     edges.setdefault(parent, []).append(str_member)
                     stack.append((parent, c_depth, c_gen + 1))
 
-        if onp and member_pk not in helper_dict.keys():
+        if onp and member_pk not in children_dict.keys():
             children = c_member.get_children() + c_member.get_step_children()
         else:
             children = {
                 Czlonek.objects.get(pk=_pk)
-                for _pk in helper_dict[member_pk][1]
+                for _pk in children_dict[member_pk][1]
             }
         for ch in children:
             if c_depth < depth:
@@ -79,7 +79,7 @@ def build_layers_and_edges_from_db(onp):
         rocznik: [set()] for rocznik in range(ROK_ZALOZENIA, BIEZACY_ROK + 1)
     }
     edges = {}
-    helper_dict = defaultdict(lambda: [None, []])
+    children_dict = defaultdict(lambda: [None, []])
     go = 1
 
     members = list(Czlonek.objects.filter(ochrzczony=TextChoose.YES[0]))
@@ -124,7 +124,7 @@ def build_layers_and_edges_from_db(onp):
             while len(layers[year]) <= layer:
                 layers[year].append(set())
             layers[year][layer].add(member)
-            helper_dict[member.pk][0] = f"{year}_{layer}"
+            children_dict[member.pk][0] = f"{year}_{layer}"
 
             children = member.get_children()
             baptised_children = [
@@ -151,19 +151,19 @@ def build_layers_and_edges_from_db(onp):
                     )
                 )
                 edges.setdefault(str(member), []).append(str(child))
-                helper_dict[member.pk][1].append(child.pk)
+                children_dict[member.pk][1].append(child.pk)
 
             for step_child in baptised_step_children:
                 edges.setdefault(str(member), []).append(str(step_child))
-                helper_dict[member.pk][1].append(step_child.pk)
+                children_dict[member.pk][1].append(step_child.pk)
 
         members.sort(key=lambda x: x.staz)
         go += 1
 
     new_dict = defaultdict(list)
-    sorted_keys = sorted(helper_dict.keys())
+    sorted_keys = sorted(children_dict.keys())
     for key in sorted_keys:
-        new_dict[key] = helper_dict[key]
+        new_dict[key] = children_dict[key]
     year_reprs = {}
     last_year_label = str(ROK_ZALOZENIA)
     for year, sub_layers in layers.items():

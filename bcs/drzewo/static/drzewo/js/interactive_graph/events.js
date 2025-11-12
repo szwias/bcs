@@ -68,7 +68,7 @@ export class EventListener {
 
     // Extra: descendants highlighting
     if (this.activeViewModes.has("descendants")) {
-      const descendants = ViewModes.getDescendants(d.pk, this.state.helperDict);
+      const descendants = ViewModes.getDescendants(d.pk, this.state.childrenDict);
       descendants.add(d.pk); // include self
 
       this.nodeLayer.selectAll("g.node").each(function (n) {

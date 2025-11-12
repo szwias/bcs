@@ -63,12 +63,12 @@ def full_tree_interactive_view(request):
 @require_GET
 def full_tree_data_graphviz(request):
     onp = parse_onp(request)
-    layers, edges, helper_dict, year_reprs = build_layers_and_edges_from_db(
+    layers, edges, children_dict, year_reprs = build_layers_and_edges_from_db(
         onp
     )
     G = render_layered_graph(layers=layers, edges=edges)
     return build_d3_nodes(
-        graph=G, year_reprs=year_reprs, helper_dict=helper_dict
+        graph=G, year_reprs=year_reprs, children_dict=children_dict
     )
 
 
