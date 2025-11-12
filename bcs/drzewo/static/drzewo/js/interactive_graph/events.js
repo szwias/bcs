@@ -20,6 +20,12 @@ export class EventListener {
     this.graph = graph;
     this.activeViewModes = activeViewModes;
 
+    this.viewModes = new ViewModes(
+      this.state,
+      this.nodeLayer,
+      this.overlayLayer
+    );
+
     this.graph.setEventHandlers({
       mouseOver: this.handleMouseOver.bind(this),
       mouseMove: this.handleMouseMove.bind(this),
@@ -35,19 +41,15 @@ export class EventListener {
       let colorModes = new ColorModes(this.state, legend);
       colorModes.applyMode(mode);
       this.graph.renderGraph();
+      this.viewModes.applyViewModes(this.activeViewModes);
     });
 
-    let viewModes = new ViewModes(
-      this.state,
-      this.nodeLayer,
-      this.overlayLayer
-    );
     document.querySelectorAll(".view-mode").forEach((checkbox) => {
       checkbox.addEventListener("change", (e) => {
         const mode = e.target.value;
         if (e.target.checked) this.activeViewModes.add(mode);
         else this.activeViewModes.delete(mode);
-        viewModes.applyViewModes(this.activeViewModes);
+        this.viewModes.applyViewModes(this.activeViewModes);
       });
     });
 
