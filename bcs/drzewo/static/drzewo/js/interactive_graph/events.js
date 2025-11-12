@@ -30,6 +30,7 @@ export class EventListener {
       mouseOver: this.handleMouseOver.bind(this),
       mouseMove: this.handleMouseMove.bind(this),
       mouseOut: this.handleMouseOut.bind(this),
+      click: this.handleClick.bind(this),
     });
   }
 
@@ -57,8 +58,21 @@ export class EventListener {
       .selectAll("g.node")
       .on("mouseover", (event, d) => this.handleMouseOver(event, d))
       .on("mousemove", (event, d) => this.handleMouseMove(event, d))
-      .on("mouseout", (event, d) => this.handleMouseOut(event, d));
+      .on("mouseout", (event, d) => this.handleMouseOut(event, d))
+      .on("click", (event, d) => this.handleClick(event, d));
+
+    this.graph.renderGraph();
   }
+
+  handleClick = (event, d) => {
+    if (this.activeViewModes.has("color-nodes")) {
+      d.color = this.viewModes.customColor;
+      d3.select(event.currentTarget).select("circle").attr("fill", d.color);
+      this.graph.renderGraph(false);
+    } else {
+      if (d.url) window.open(d.url, "_blank");
+    }
+  };
 
   handleMouseOver = (event, d) => {
     this.tooltip
@@ -70,7 +84,10 @@ export class EventListener {
 
     // Extra: descendants highlighting
     if (this.activeViewModes.has("descendants")) {
-      const descendants = ViewModes.getDescendants(d.pk, this.state.childrenDict);
+      const descendants = ViewModes.getDescendants(
+        d.pk,
+        this.state.childrenDict
+      );
       descendants.add(d.pk); // include self
 
       this.nodeLayer.selectAll("g.node").each(function (n) {

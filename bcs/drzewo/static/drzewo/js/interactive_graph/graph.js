@@ -12,22 +12,24 @@ export class Graph {
     this.onMouseOver = null;
     this.onMouseMove = null;
     this.onMouseOut = null;
+    this.onClick = null;
 
     this.nodeRadius = 30;
     this.nodeById = new Map(this.state.nodes.map((d) => [d.id, d]));
   }
 
-  setEventHandlers({ mouseOver, mouseMove, mouseOut }) {
+  setEventHandlers({ mouseOver, mouseMove, mouseOut, click }) {
     this.onMouseOver = mouseOver;
     this.onMouseMove = mouseMove;
     this.onMouseOut = mouseOut;
+    this.onClick = click;
   }
 
-  renderGraph() {
+  renderGraph(fitToView = true) {
     this.clearGraph();
     this.drawLinks();
     this.drawNodes();
-    this.fitToView();
+    if (fitToView) this.fitToView();
   }
 
   clearGraph() {
@@ -59,15 +61,13 @@ export class Graph {
       .enter()
       .append("g")
       .attr("class", "node")
-      .attr("transform", (d) => `translate(${d.x_norm},${d.y_norm})`)
-      .on("click", (_, d) => {
-        if (d.url) window.open(d.url, "_blank");
-      });
+      .attr("transform", (d) => `translate(${d.x_norm},${d.y_norm})`);
 
     // attach event handlers if they exist
     if (this.onMouseOver) node.on("mouseover", this.onMouseOver);
     if (this.onMouseMove) node.on("mousemove", this.onMouseMove);
     if (this.onMouseOut) node.on("mouseout", this.onMouseOut);
+    if (this.onClick) node.on("click", this.onClick);
 
     node
       .append("circle")

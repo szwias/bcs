@@ -63,6 +63,37 @@ body {
 .sidebar__form button:hover {
   background: rgb(128.8, 187.7437125749, 255);
 }
+.sidebar__color-picker {
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.sidebar__color-picker input[type=color] {
+  appearance: none;
+  -webkit-appearance: none;
+  border: 1px solid #888;
+  border-radius: 4px;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  background: none;
+  cursor: pointer;
+}
+.sidebar__color-picker input[type=color]::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+.sidebar__color-picker input[type=color]::-webkit-color-swatch {
+  border: none;
+  border-radius: 4px;
+}
+.sidebar__color-picker input[type=color]:hover {
+  border-color: rgb(174.25, 174.25, 174.25);
+}
+.sidebar__color-picker span {
+  color: #d0d6e0;
+  font-size: 0.9rem;
+}
 .sidebar__legend {
   margin-top: 12px;
 }
