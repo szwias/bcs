@@ -51,14 +51,14 @@ export class ViewModes {
     });
   }
 
-  static getDescendants(pk, helperDict, acc = new Set()) {
-    const entry = helperDict[pk];
+  static getDescendants(pk, childrenDict, acc = new Set()) {
+    const entry = childrenDict[pk];
     if (!entry) return acc;
     const children = entry[1] || [];
     for (const childPk of children) {
       if (!acc.has(childPk)) {
         acc.add(childPk.toString());
-        this.getDescendants(childPk, helperDict, acc);
+        this.getDescendants(childPk, childrenDict, acc);
       }
     }
     return acc;

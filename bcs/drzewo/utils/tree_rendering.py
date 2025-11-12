@@ -13,24 +13,30 @@ def render_layered_graph(layers, edges, rankdir="TB", node_attrs=None):
 
     node_attrs = node_attrs or {}
     sorted_layers = sorted(layers.items())
+    pk_to_name_dict = {}
 
     for layer_num, members in sorted_layers:
         dummy = f"{DUMMY_PREFIX}{layer_num}"
         G.add_node(n=dummy, style="invis", width=0, height=0)
 
         for m in members:
-            passed_attrs = node_attrs.get(str(m), {})
+            name = str(m)
+            passed_attrs = node_attrs.get(name, {})
             attrs = model_to_dict(m)
             attrs.update(**passed_attrs)
-            attrs["pk"] = m.pk
-            G.add_node(n=str(m), **attrs)
+            pk = m.pk
+            attrs["pk"] = pk
+            pk_to_name_dict[pk] = name
+            G.add_node(n=name, **attrs)
 
         G.add_subgraph(nbunch=list(members) + [dummy], rank="same")
 
     # Edges
-    for src, targets in edges.items():
-        for dst in targets:
-            G.add_edge(u=src, v=dst)
+    for (src, target), parent_type in edges.items():
+        src = pk_to_name_dict[src]
+        dest = pk_to_name_dict[target]
+        edge_type = "full" if parent_type == "final_parent" else "dashed"
+        G.add_edge(u=src, v=dest, type=edge_type)
 
     # Enforce vertical ordering with invisible anchors
     for i in range(len(sorted_layers) - 1):
@@ -43,7 +49,7 @@ def render_layered_graph(layers, edges, rankdir="TB", node_attrs=None):
     return G
 
 
-def build_d3_nodes(graph, year_reprs, helper_dict, node_size=0.5):
+def build_d3_nodes(graph, year_reprs, children_dict, node_size=0.5):
     POINTS_IN_AN_INCH = 72
     G = graph.copy()
     ranksep = G.graph_attr["ranksep"]
@@ -89,13 +95,16 @@ def build_d3_nodes(graph, year_reprs, helper_dict, node_size=0.5):
     for e in G.edges():
         src = e[0]
         dst = e[1]
+        edge_type = e.attr.get("type", "full")
         # skip edges involving dummy anchors
         if str(src).startswith(DUMMY_PREFIX) or str(dst).startswith(
             DUMMY_PREFIX
         ):
             continue
         if src in node_positions and dst in node_positions:
-            links_out.append({"source": str(src), "target": str(dst)})
+            links_out.append(
+                {"source": str(src), "target": str(dst), "type": edge_type}
+            )
 
     # Flip Y (Graphviz y=0 is bottom?) — Graphviz coords usually have origin bottom-left,
     # while browser SVG has origin top-left. We'll flip to match visual expectation.
@@ -110,8 +119,8 @@ def build_d3_nodes(graph, year_reprs, helper_dict, node_size=0.5):
             "nodes": nodes_out,
             "links": links_out,
             "years": year_reprs,
-            "helper_dict": helper_dict,
-            "layer_distance": float(ranksep) * POINTS_IN_AN_INCH,
+            "childrenDict": children_dict,
+            "layerDistance": float(ranksep) * POINTS_IN_AN_INCH,
         }
     )
 

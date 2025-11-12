@@ -6,7 +6,7 @@ const state = {
   nodes: [],
   links: [],
   years: {},
-  helperDict: {},
+  childrenDict: {},
   layerDistance: 0,
 };
 
@@ -37,8 +37,8 @@ async function fetchTreeData() {
   state.nodes = data.nodes;
   state.links = data.links;
   state.years = data.years;
-  state.helperDict = data.helper_dict;
-  state.layerDistance = data.layer_distance;
+  state.childrenDict = data.childrenDict;
+  state.layerDistance = data.layerDistance;
 }
 
 function reapplyModes() {
