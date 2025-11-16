@@ -26,6 +26,8 @@ export class EventListener {
       this.overlayLayer
     );
 
+    this.colorModes = new ColorModes(this.state);
+
     this.graph.setEventHandlers({
       mouseOver: this.handleMouseOver.bind(this),
       mouseMove: this.handleMouseMove.bind(this),
@@ -36,11 +38,9 @@ export class EventListener {
 
   listen() {
     document.getElementById("color-mode").addEventListener("change", (e) => {
-      const legend = d3.select("#legend");
-      legend.selectAll("*").remove();
+      this.colorModes.clearModes();
       const mode = e.target.value;
-      let colorModes = new ColorModes(this.state, legend);
-      colorModes.applyMode(mode);
+      this.colorModes.applyMode(mode);
       this.graph.renderGraph();
       this.viewModes.applyViewModes(this.activeViewModes);
     });
