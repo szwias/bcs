@@ -19,7 +19,6 @@ export class ColorModes {
         const hue = Math.round((360 * idx) / Math.max(1, ys.length - 1));
         n.color = `hsl(${hue} 70% 55%)`;
       });
-      this.appendLegend("Jak sama nazwa wskazuje");
     } else if (mode === "status") {
       this.createLegend(
         {
