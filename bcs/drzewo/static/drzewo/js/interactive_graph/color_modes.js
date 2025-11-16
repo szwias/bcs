@@ -40,6 +40,19 @@ export class ColorModes {
         },
         "aktywnosc"
       );
+    } else if (mode === "lineages") {
+      const lineages_options = d3.select("#lineages-options");
+      this.divs_changed.add("#lineages-options")
+      if (lineages_options.select("input[type=checkbox").empty()) {
+        lineages_options
+            .html(
+                `<br>
+                <label>
+                    <input type="checkbox" class="view-mode" value="active-predecessors">
+                    Aktywni założyciele rodów
+                </label>`
+            )
+      }
     }
   }
 
