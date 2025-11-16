@@ -8,7 +8,7 @@
         <title>Interaktywny Rodowód</title>
         <link rel="stylesheet"
               href="{% static 'drzewo/css/interactive_tree.css' %}">
-        <script src="https://d3js.org/d3.v7.min.js"></script>
+        <script src="/static/vendor/d3.v7.min.js"></script>
         <style>
             body { margin:0; display:flex; height:100vh; background: #ffffff; color:#eee; }
             #sidebar { width:260px; background:#222; padding:12px; box-sizing:border-box; }
@@ -64,7 +64,7 @@
                 <div id="color-picker" class="sidebar__color-picker"></div>
             </div>
             <hr>
-            <p>Kliknij w węzeł → otwiera szczegóły. Najedź → podgląd.</p>
+            <p>Kliknij węzeł, by otworzyć szczegóły. Najedź → podgląd.</p>
         </div>
         <div class="tree" id="stage">
             <svg id="svg" class="tree__svg">
