@@ -1,9 +1,10 @@
 import { palette } from "./colors.js";
 
 export class ColorModes {
-  constructor(state, legend) {
+  constructor(state) {
     this.state = state;
-    this.legend = legend;
+    this.legend = d3.select("#legend");
+    this.divs_changed = new Set();
   }
 
   applyMode(mode) {
@@ -54,15 +55,35 @@ export class ColorModes {
     });
   }
 
-  appendLegend(entry = "", color = null) {
-    const background_string = color ? `background: ${color};` : "";
-    this.legend
+  appendLegend(entry = null, color = null) {
+    const container = this.legend
       .append("div")
       .style("display", "flex")
       .style("align-items", "center")
-      .style("margin-bottom", "4px")
-      .html(
-        `<div style="width:20px;height:20px;${background_string} margin-right:6px;border:1px solid #222;"></div>${entry}`
-      );
+      .style("margin-bottom", "4px");
+
+    // Append the color box only if a color is provided
+    if (color) {
+        container
+          .append("div")
+          .style("width", "20px")
+          .style("height", "20px")
+          .style("background", color)
+          .style("margin-right", "6px")
+          .style("border", "1px solid #222");
+    }
+
+    if (entry) container.append("span").text(entry);
+
+    this.divs_changed.add("#legend");
+  }
+
+
+
+  clearModes() {
+    this.divs_changed.forEach(d => {
+      let div = d3.select(d);
+      div.selectAll("*").remove();
+    })
   }
 }
