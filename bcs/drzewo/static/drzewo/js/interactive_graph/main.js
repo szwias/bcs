@@ -65,6 +65,7 @@ async function init() {
   const eventListener = new EventListener(
     state,
     svg,
+    defs,
     nodeLayer,
     overlayLayer,
     tooltip,

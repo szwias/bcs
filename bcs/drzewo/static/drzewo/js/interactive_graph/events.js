@@ -7,6 +7,7 @@ export class EventListener {
   constructor(
     state,
     svg,
+    defs,
     nodeLayer,
     overlayLayer,
     tooltip,
@@ -15,6 +16,7 @@ export class EventListener {
   ) {
     this.state = state;
     this.svg = svg;
+    this.defs = defs;
     this.nodeLayer = nodeLayer;
     this.overlayLayer = overlayLayer;
     this.tooltip = tooltip;
