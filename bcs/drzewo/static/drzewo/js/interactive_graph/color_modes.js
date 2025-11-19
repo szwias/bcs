@@ -81,13 +81,13 @@ export class ColorModes {
 
     // Append the color box only if a color is provided
     if (color) {
-        container
-          .append("div")
-          .style("width", "20px")
-          .style("height", "20px")
-          .style("background", color)
-          .style("margin-right", "6px")
-          .style("border", "1px solid #222");
+      container
+        .append("div")
+        .style("width", "20px")
+        .style("height", "20px")
+        .style("background", color)
+        .style("margin-right", "6px")
+        .style("border", "1px solid #222");
     }
 
     if (entry) container.append("span").text(entry);
@@ -100,5 +100,12 @@ export class ColorModes {
       let div = d3.select(d);
       div.selectAll("*").remove();
     })
+    const div = document.getElementById("lineages-options");
+    div.style.display = "none";
+    this.state.nodes.forEach((node) => {
+      node.gradient = "";
+      node.color = palette.accent;
+    });
+    this.graph.renderGraph();
   }
 }
