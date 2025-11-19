@@ -36,16 +36,16 @@
                     <option value="aktywnosc">Aktywność</option>
                     <option value="lineages">Rody</option>
                 </select>
-                <div id="lineages-options" style="display:none">
-                    <br>
+                <template id="color-mode-options-checkbox-template">
                     <label>
-                        <input id="lineages-active-predecessors"
-                               type="checkbox"
-                               class="color-mode"
-                               value="active-predecessors">
-                        Aktywni założyciele rodów
+                        <input type="checkbox" class="color-mode">
+                        <span class="checkbox-text"></span>
                     </label>
-                </div>
+                    <br>
+                </template>
+                <br>
+                <br>
+                <div id="color-mode-options"></div>
                 <template id="legend-item-template">
                     <div class="sidebar__legend-item">
                         <div class="sidebar__legend-item-color"></div>

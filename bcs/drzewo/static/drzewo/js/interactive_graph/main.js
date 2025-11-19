@@ -53,9 +53,6 @@ function reapplyModes() {
   const colorMode = document.getElementById("color-mode")?.value;
   if (colorMode)
     document.getElementById("color-mode").dispatchEvent(new Event("change"));
-  document.querySelectorAll(".color-mode:checked").forEach((checkbox) => {
-    checkbox.dispatchEvent(new Event("change"));
-  });
   // Reapply all view modes that are currently checked
   document.querySelectorAll(".view-mode:checked").forEach((checkbox) => {
     checkbox.dispatchEvent(new Event("change"));

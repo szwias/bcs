@@ -8,8 +8,8 @@ export class ColorModes {
     this.defs = defs;
     this.graph = graph;
 
+    this.options = {};
     this.divs_changed = new Set();
-    this.isActive = false;
   }
 
   applyMode(mode) {
@@ -47,10 +47,20 @@ export class ColorModes {
         "aktywnosc"
       );
     } else if (mode === "lineages") {
-      const container = d3.select("#lineages-options");
-      container.style("display", "block");
+      this.divs_changed.add("#color-mode-options");
+      const options = [
+        {
+          id: "active-predecessors",
+          text: "Aktywni założyciele rodów",
+        }
+      ];
+      this.renderColorModeOptions(mode, options);
 
-      const predecessors = getPredecessors(this.state, this.isActive, 5);
+      const predecessors = getPredecessors(
+        this.state,
+        this.options[mode]["active-predecessors"],
+        5
+      );
 
       const pred_colors = new Map();
       predecessors.forEach((p, i) => {
@@ -115,6 +125,31 @@ export class ColorModes {
     this.graph.renderGraph();
   }
 
+  renderColorModeOptions(mode, options) {
+    const container = document.getElementById("color-mode-options");
+    container.innerHTML = "";
+    const template = document.getElementById(
+      "color-mode-options-checkbox-template"
+    );
+
+    const modeOptions = this.options[mode] || {};
+    this.options[mode] = modeOptions;
+    options.forEach((option) => {
+      const node = template.content.cloneNode(true);
+      const input = node.querySelector("input");
+      input.id = option.id;
+      input.checked = modeOptions[option.id] || false;
+      node.querySelector(".checkbox-text").textContent = option.text;
+
+      input.addEventListener("change", () => {
+        modeOptions[option.id] = input.checked;
+        this.applyMode(mode);
+      });
+
+      container.appendChild(node);
+    });
+  }
+
   createLegend(mapping, attribute) {
     Object.entries(mapping).forEach(([_, [desc, color]]) =>
       this.appendLegend(desc, color)
@@ -131,7 +166,8 @@ export class ColorModes {
     const item = template.content.firstElementChild.cloneNode(true);
     item.style.display = "flex";
     if (color) {
-      item.querySelector(".sidebar__legend-item-color").style.background = color;
+      item.querySelector(".sidebar__legend-item-color").style.background =
+        color;
     }
     if (entry) {
       item.querySelector(".sidebar__legend-item-text").textContent = entry;
@@ -145,8 +181,6 @@ export class ColorModes {
       let div = d3.select(d);
       div.selectAll("*").remove();
     });
-    const div = document.getElementById("lineages-options");
-    div.style.display = "none";
     this.state.nodes.forEach((node) => {
       node.gradient = "";
       node.color = palette.accent;

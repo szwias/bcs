@@ -51,14 +51,6 @@ export class EventListener {
       this.viewModes.applyViewModes(this.activeViewModes);
     });
 
-    document
-      .getElementById("lineages-active-predecessors")
-      .addEventListener("change", (e) => {
-        this.colorModes.isActive = e.target.checked;
-        console.log(this.colorModes.isActive);
-        this.colorModes.applyMode("lineages");
-      });
-
     document.querySelectorAll(".view-mode").forEach((checkbox) => {
       checkbox.addEventListener("change", (e) => {
         const mode = e.target.value;
@@ -103,9 +95,9 @@ export class EventListener {
       descendants.add(d.pk); // include self
 
       changeOpacity(
-          this.nodeLayer,
-          (n) => !descendants.has(n.pk),
-          this.state.lowerOpacity
+        this.nodeLayer,
+        (n) => !descendants.has(n.pk),
+        this.state.lowerOpacity
       );
     }
   };
@@ -123,8 +115,12 @@ export class EventListener {
 
     // Restore normal opacity if descendants view-mode was active
     if (this.activeViewModes.has("descendants")) {
-      this.nodeLayer.selectAll("circle").style("opacity", this.state.lowerOpacity);
-      this.nodeLayer.selectAll("text").style("opacity", this.state.lowerOpacity);
+      this.nodeLayer
+        .selectAll("circle")
+        .style("opacity", this.state.lowerOpacity);
+      this.nodeLayer
+        .selectAll("text")
+        .style("opacity", this.state.lowerOpacity);
     }
   };
 }
