@@ -9,6 +9,7 @@ export class ColorModes {
 
     this.legend = d3.select("#legend");
     this.divs_injected = new Set();
+    this.isActive = false;
   }
 
   applyMode(mode) {
