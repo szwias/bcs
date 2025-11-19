@@ -1,5 +1,3 @@
-import {ViewModes} from "./view_modes";
-
 export function getPredecessors(state, ACTIVE_PREDECESSORS, YEARS_BACK) {
   const years = Object.keys(state.years).map((y) => parseInt(y, 10));
   const currentYear = Math.max(...years);
