@@ -1,6 +1,7 @@
 import { palette } from "./colors.js";
 import { ColorModes } from "./color_modes.js";
 import { ViewModes } from "./view_modes.js";
+import { getDescendants } from "./utils.js";
 
 export class EventListener {
   constructor(
@@ -84,10 +85,7 @@ export class EventListener {
 
     // Extra: descendants highlighting
     if (this.activeViewModes.has("descendants")) {
-      const descendants = ViewModes.getDescendants(
-        d.pk,
-        this.state.childrenDict
-      );
+      const descendants = getDescendants(d.pk, this.state.childrenDict);
       descendants.add(d.pk); // include self
 
       this.nodeLayer.selectAll("g.node").each(function (n) {
