@@ -1,8 +1,12 @@
 import { palette } from "./colors.js";
 
 export class ColorModes {
-  constructor(state) {
+  constructor(state, svg, defs, graph) {
     this.state = state;
+    this.svg = svg;
+    this.defs = defs;
+    this.graph = graph;
+
     this.legend = d3.select("#legend");
     this.divs_changed = new Set();
   }

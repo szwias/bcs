@@ -29,7 +29,12 @@ export class EventListener {
       this.overlayLayer
     );
 
-    this.colorModes = new ColorModes(this.state);
+    this.colorModes = new ColorModes(
+      this.state,
+      this.svg,
+      this.defs,
+      this.graph
+    );
 
     this.graph.setEventHandlers({
       mouseOver: this.handleMouseOver.bind(this),
