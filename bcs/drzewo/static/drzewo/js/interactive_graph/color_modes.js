@@ -8,7 +8,7 @@ export class ColorModes {
     this.graph = graph;
 
     this.legend = d3.select("#legend");
-    this.divs_changed = new Set();
+    this.divs_injected = new Set();
   }
 
   applyMode(mode) {
@@ -91,13 +91,11 @@ export class ColorModes {
 
     if (entry) container.append("span").text(entry);
 
-    this.divs_changed.add("#legend");
+    this.divs_injected.add("#legend");
   }
 
-
-
   clearModes() {
-    this.divs_changed.forEach(d => {
+    this.divs_injected.forEach(d => {
       let div = d3.select(d);
       div.selectAll("*").remove();
     })
