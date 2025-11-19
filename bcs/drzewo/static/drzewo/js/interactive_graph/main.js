@@ -4,6 +4,8 @@ import { EventListener } from "./events.js";
 // ====== State ======
 const state = {
   nodes: [],
+  nodesByName: {},
+  nodesByPK: {},
   links: [],
   years: {},
   childrenDict: {},
@@ -13,6 +15,7 @@ const state = {
 // ====== Layers ======
 const tooltip = d3.select("#tooltip");
 const svg = d3.select("#svg");
+const defs = svg.append("defs");
 const g = svg.append("g");
 const linkLayer = g.append("g").attr("id", "links-layer");
 const nodeLayer = g.append("g").attr("id", "nodes-layer");
@@ -35,6 +38,8 @@ async function fetchTreeData() {
   const res = await fetch(dataUrl);
   const data = await res.json();
   state.nodes = data.nodes;
+  state.nodesByName = new Map(state.nodes.map((n) => [n.name, n]));
+  state.nodesByPK = new Map(state.nodes.map((n) => [n.pk, n]));
   state.links = data.links;
   state.years = data.years;
   state.childrenDict = data.childrenDict;
