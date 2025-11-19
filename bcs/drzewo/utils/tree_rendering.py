@@ -96,6 +96,7 @@ def build_d3_nodes(graph, year_reprs, children_dict, node_size=0.5):
             "width": width,
             "height": height,
             "color": n.attr.get("fillcolor", "#66aaff"),
+            "gradient": "",
         }
 
     # Build links (keep only links whose endpoints are real nodes)
