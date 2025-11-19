@@ -13,7 +13,7 @@ export class ViewModes {
     // Reset all effects first
     this.nodeLayer
       .selectAll("circle")
-      .style("fill", (d) => d.color || palette.accent)
+      .style("fill", (d) => d.gradient || d.color || palette.accent)
       .style("opacity", 1);
     this.nodeLayer.selectAll("text").style("opacity", 1);
     this.overlayLayer.selectAll("*").remove();

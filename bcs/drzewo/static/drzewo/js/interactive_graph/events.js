@@ -74,6 +74,7 @@ export class EventListener {
 
   handleClick = (event, d) => {
     if (this.activeViewModes.has("color-nodes")) {
+      d.gradient = "";
       d.color = this.viewModes.customColor;
       d3.select(event.currentTarget).select("circle").attr("fill", d.color);
       this.graph.renderGraph(false);
