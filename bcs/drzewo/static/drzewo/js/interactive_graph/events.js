@@ -96,15 +96,16 @@ export class EventListener {
       const descendants = getDescendants(d.pk, this.state.childrenDict);
       descendants.add(d.pk); // include self
 
-      this.nodeLayer.selectAll("g.node").each(function (n) {
-        const highlight = descendants.has(n.pk);
-        d3.select(this)
-          .select("circle")
-          .style("opacity", highlight ? 1 : ViewModes.lowerOpacity);
-        d3.select(this)
-          .select("text")
-          .style("opacity", highlight ? 1 : ViewModes.lowerOpacity);
-      });
+      this.nodeLayer
+        .selectAll("g.node circle")
+        .style("opacity", (d) =>
+          descendants.has(d.pk) ? 1 : ViewModes.lowerOpacity
+        );
+      this.nodeLayer
+        .selectAll("g.node text")
+        .style("opacity", (d) =>
+          descendants.has(d.pk) ? 1 : ViewModes.lowerOpacity
+        );
     }
   };
 
