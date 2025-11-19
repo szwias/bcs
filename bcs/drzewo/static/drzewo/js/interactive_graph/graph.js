@@ -72,7 +72,7 @@ export class Graph {
     node
       .append("circle")
       .attr("r", this.nodeRadius)
-      .attr("fill", (d) => d.color || palette.accent)
+      .attr("fill", (d) => d.gradient || d.color || palette.accent)
       .attr("stroke", palette.border)
       .attr("stroke-width", 1.2);
 
