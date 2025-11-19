@@ -1,4 +1,5 @@
 import { palette } from "./colors.js";
+import { getDescendants, getPredecessors } from "./utils.js";
 
 export class ColorModes {
   constructor(state, svg, defs, graph) {
@@ -47,18 +48,70 @@ export class ColorModes {
         "aktywnosc"
       );
     } else if (mode === "lineages") {
-      const lineages_options = d3.select("#lineages-options");
-      this.divs_changed.add("#lineages-options")
-      if (lineages_options.select("input[type=checkbox").empty()) {
-        lineages_options
-            .html(
-                `<br>
-                <label>
-                    <input type="checkbox" class="view-mode" value="active-predecessors">
-                    Aktywni założyciele rodów
-                </label>`
-            )
+      const container = d3.select("#lineages-options");
+      container.style("display", "block");
+
+      const predecessors = getPredecessors(this.state, this.isActive, 5);
+
+      const pred_colors = new Map();
+      predecessors.forEach((p, i) => {
+        pred_colors.set(p, [(360 * i) / Math.max(1, predecessors.length)]);
+      });
+
+      const desc_colors = new Map();
+      for (const p of predecessors) {
+        const color = pred_colors.get(p)[0];
+        const descendants = getDescendants(p.pk, this.state.childrenDict);
+        for (const d of descendants) {
+          if (!desc_colors.has(d)) {
+            desc_colors.set(d, []);
+          }
+          desc_colors.get(d).push(color);
+        }
       }
+
+      const transformedPredColors = Array.from(pred_colors, ([node, color]) => [
+        node.pk,
+        color,
+      ]);
+      const allColors = new Map([...transformedPredColors, ...desc_colors]);
+
+      allColors.forEach((colors, nodeId) => {
+        const gradId = `grad-${nodeId}`;
+        this.defs.select(`#${gradId}`).remove();
+
+        const gradient = this.defs
+          .append("linearGradient")
+          .attr("id", gradId)
+          .attr("x1", "0%") // horizontal slices
+          .attr("y1", "0%")
+          .attr("x2", "100%")
+          .attr("y2", "0%");
+
+        colors.forEach((color, i) => {
+          const start = (i / colors.length) * 100;
+          const end = ((i + 1) / colors.length) * 100;
+
+          gradient
+            .append("stop")
+            .attr("offset", `${start}%`)
+            .attr("stop-color", `hsl(${color}, 70%, 55%)`);
+
+          gradient
+            .append("stop")
+            .attr("offset", `${end}%`)
+            .attr("stop-color", `hsl(${color}, 70%, 55%)`);
+        });
+      });
+
+      // Assign to node
+      this.state.nodes.forEach((node) => {
+        if (allColors.has(node.pk)) {
+          node.gradient = `url(#grad-${node.pk})`;
+        } else {
+          node.color = "#000000";
+        }
+      });
     }
     this.graph.renderGraph();
   }
