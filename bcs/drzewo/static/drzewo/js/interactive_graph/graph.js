@@ -95,14 +95,14 @@ export class Graph {
       maxX = Math.max(...xs);
     const minY = Math.min(...ys),
       maxY = Math.max(...ys);
-    const pad = 300;
-    const contentW = maxX - minX + pad * 2;
-    const contentH = maxY - minY + pad * 2;
+    const padX = 1000, padY = 300;
+    const contentW = maxX - minX + padX;
+    const contentH = maxY - minY + padY;
     const svgW = document.getElementById("stage").clientWidth;
     const svgH = document.getElementById("stage").clientHeight;
     const scale = Math.min(svgW / contentW, svgH / contentH);
-    const tx = -minX + pad;
-    const ty = -minY + pad;
+    const tx = -minX + 0.7 * padX;
+    const ty = -minY + 0.5 * padY;
 
     const transform = d3.zoomIdentity
       .translate((svgW - contentW * scale) / 2, (svgH - contentH * scale) / 2)
