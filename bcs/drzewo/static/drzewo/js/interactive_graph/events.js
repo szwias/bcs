@@ -1,7 +1,7 @@
 import { palette } from "./colors.js";
 import { ColorModes } from "./color_modes.js";
 import { ViewModes } from "./view_modes.js";
-import { getDescendants } from "./utils.js";
+import { getDescendants, changeOpacity } from "./utils.js";
 
 export class EventListener {
   constructor(
@@ -102,16 +102,11 @@ export class EventListener {
       const descendants = getDescendants(d.pk, this.state.childrenDict);
       descendants.add(d.pk); // include self
 
-      this.nodeLayer
-        .selectAll("g.node circle")
-        .style("opacity", (d) =>
-          descendants.has(d.pk) ? 1 : ViewModes.lowerOpacity
-        );
-      this.nodeLayer
-        .selectAll("g.node text")
-        .style("opacity", (d) =>
-          descendants.has(d.pk) ? 1 : ViewModes.lowerOpacity
-        );
+      changeOpacity(
+          this.nodeLayer,
+          (d) => !descendants.has(d.pk),
+          ViewModes.lowerOpacity
+      );
     }
   };
 

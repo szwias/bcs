@@ -1,3 +1,5 @@
+import {ViewModes} from "./view_modes";
+
 export function getPredecessors(state, ACTIVE_PREDECESSORS, YEARS_BACK) {
   const years = Object.keys(state.years).map((y) => parseInt(y, 10));
   const currentYear = Math.max(...years);
@@ -70,4 +72,17 @@ export function getDescendants(pk, childrenDict, acc = new Set()) {
     }
   }
   return acc;
+}
+
+export function changeOpacity(nodeLayer, conditionFunc, opacity) {
+  nodeLayer
+    .selectAll("g.node circle")
+    .style("opacity", (d) =>
+      conditionFunc(d) ? opacity : 1
+    );
+  nodeLayer
+    .selectAll("g.node text")
+    .style("opacity", (d) =>
+      conditionFunc(d) ? opacity : 1
+    );
 }
