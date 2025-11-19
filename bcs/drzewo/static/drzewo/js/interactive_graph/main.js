@@ -10,6 +10,7 @@ const state = {
   years: {},
   childrenDict: {},
   layerDistance: 0,
+  lowerOpacity: 0,
 };
 
 // ====== Layers ======
@@ -44,6 +45,7 @@ async function fetchTreeData() {
   state.years = data.years;
   state.childrenDict = data.childrenDict;
   state.layerDistance = data.layerDistance;
+  state.lowerOpacity = 0.2;
 }
 
 function reapplyModes() {

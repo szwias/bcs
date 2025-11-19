@@ -104,8 +104,8 @@ export class EventListener {
 
       changeOpacity(
           this.nodeLayer,
-          (d) => !descendants.has(d.pk),
-          ViewModes.lowerOpacity
+          (n) => !descendants.has(n.pk),
+          this.state.lowerOpacity
       );
     }
   };
@@ -123,10 +123,8 @@ export class EventListener {
 
     // Restore normal opacity if descendants view-mode was active
     if (this.activeViewModes.has("descendants")) {
-      this.nodeLayer
-        .selectAll("circle")
-        .style("opacity", ViewModes.lowerOpacity);
-      this.nodeLayer.selectAll("text").style("opacity", ViewModes.lowerOpacity);
+      this.nodeLayer.selectAll("circle").style("opacity", this.state.lowerOpacity);
+      this.nodeLayer.selectAll("text").style("opacity", this.state.lowerOpacity);
     }
   };
 }

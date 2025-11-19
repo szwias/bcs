@@ -7,7 +7,6 @@ export class ViewModes {
     this.overlayLayer = overlayLayer;
     this.customColor = "#ff0000";
   }
-  static lowerOpacity = 0.2;
 
   applyViewModes(activeViewModes) {
     // Reset all effects first
@@ -20,10 +19,8 @@ export class ViewModes {
 
     if (activeViewModes.has("years")) this.drawYearLines();
     if (activeViewModes.has("descendants")) {
-      this.nodeLayer
-        .selectAll("circle")
-        .style("opacity", ViewModes.lowerOpacity);
-      this.nodeLayer.selectAll("text").style("opacity", ViewModes.lowerOpacity);
+      this.nodeLayer.selectAll("circle").style("opacity", this.state.lowerOpacity);
+      this.nodeLayer.selectAll("text").style("opacity", this.state.lowerOpacity);
     }
     if (activeViewModes.has("color-nodes")) {
       const colorPicker = d3.select("#color-picker");
