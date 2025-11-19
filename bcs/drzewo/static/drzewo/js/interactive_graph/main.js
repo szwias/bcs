@@ -28,8 +28,8 @@ const zoom = d3
   .on("zoom", (event) => g.attr("transform", event.transform));
 svg.call(zoom);
 
-// ====== Miscellanous ======
-let activeViewModes = new Set();
+// ====== Miscellaneous ======
+const activeViewModes = new Set();
 
 // ====== Data Fetch ======
 async function fetchTreeData() {
@@ -51,6 +51,9 @@ function reapplyModes() {
   const colorMode = document.getElementById("color-mode")?.value;
   if (colorMode)
     document.getElementById("color-mode").dispatchEvent(new Event("change"));
+  document.querySelectorAll(".color-mode:checked").forEach((checkbox) => {
+    checkbox.dispatchEvent(new Event("change"));
+  });
   // Reapply all view modes that are currently checked
   document.querySelectorAll(".view-mode:checked").forEach((checkbox) => {
     checkbox.dispatchEvent(new Event("change"));
