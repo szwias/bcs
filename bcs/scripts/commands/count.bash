@@ -14,41 +14,53 @@ cd "$repo_root/bcs/" || exit 1
 if $tracked; then
   json_lines=$(find . -name '*.json' \
     ! -path '*/media/*' \
+    ! -path '*/node_modules/*' \
     -exec cat {} + | wc -l)
 
   sql_lines=0
 else
-  json_lines=$(find . -name '*.json' -exec cat {} + | wc -l)
+  json_lines=$(find . -name '*.json' \
+    ! -path '*/node_modules/*' \
+    -exec cat {} + | wc -l)
 
   sql_lines=$(find ./baza -type f -name 'baza_*_*.sql' \
     ! -path '*/backups/*' \
+    ! -path '*/node_modules/*' \
     -exec cat {} + | wc -l)
 fi
 
 plpgsql_lines=$(find . -name '*.sql' \
   ! -path '*/backups/*' \
   ! -path '*/baza/baza*.sql' \
+  ! -path '*/node_modules/*' \
   -exec cat {} + | wc -l)
 
 python_lines=$(find . -name '*.py' \
   ! -path '*/migrations/*' \
+  ! -path '*/node_modules/*' \
   -exec cat {} + | wc -l)
 
 bash_lines=$(find . -name '*.bash' \
+  ! -path '*/node_modules/*' \
   -exec cat {} + | wc -l)
 
-html_lines=$(find . -name '*.html' -exec cat {} + | wc -l)
+html_lines=$(find . -name '*.html' \
+  ! -path '*/node_modules/*' \
+  -exec cat {} + | wc -l)
 
 css_lines=$(find . -name '*.css' \
   ! -path "*/staticfiles/*" \
+  ! -path '*/node_modules/*' \
   -exec cat {} + | wc -l)
 
 scss_lines=$(find . -name '*.scss' \
   ! -path "*/staticfiles/*" \
+  ! -path '*/node_modules/*' \
   -exec cat {} + | wc -l)
 
 js_lines=$(find . -name '*.js' \
   ! -path "*/staticfiles/*" \
+  ! -path "*/node_modules/*" \
   -exec cat {} + | wc -l)
 
 # Totals
