@@ -175,6 +175,7 @@ def build_layers_and_edges_from_db(onp):
     sorted_keys = sorted(children_dict.keys())
     for key in sorted_keys:
         new_dict[key] = children_dict[key]
+
     year_reprs = {}
     last_year_label = str(ROK_ZALOZENIA)
     for year, sub_layers in layers.items():
@@ -187,4 +188,5 @@ def build_layers_and_edges_from_db(onp):
         else:
             year_reprs[label] = str(list(sub_layers[0])[0])
             last_year_label = label
+
     return modify_layers_structure(layers), edges, new_dict, year_reprs
