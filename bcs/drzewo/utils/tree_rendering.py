@@ -24,9 +24,17 @@ def render_layered_graph(layers, edges, rankdir="TB", node_attrs=None):
             passed_attrs = node_attrs.get(name, {})
             attrs = model_to_dict(m)
             attrs.update(**passed_attrs)
+
             pk = m.pk
             attrs["pk"] = pk
             pk_to_name_dict[pk] = name
+
+            attrs["layer"] = layer_num
+            attrs["year"] = layer_num[:4]
+
+            attrs["parent1"] = str(m.rodzic_1)
+            attrs["parent2"] = str(m.rodzic_2)
+
             G.add_node(n=name, **attrs)
 
         G.add_subgraph(nbunch=list(members) + [dummy], rank="same")
