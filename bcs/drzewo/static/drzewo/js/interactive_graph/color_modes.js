@@ -8,8 +8,7 @@ export class ColorModes {
     this.defs = defs;
     this.graph = graph;
 
-    this.legend = d3.select("#legend");
-    this.divs_injected = new Set();
+    this.divs_changed = new Set();
     this.isActive = false;
   }
 
@@ -128,33 +127,24 @@ export class ColorModes {
   }
 
   appendLegend(entry = null, color = null) {
-    const container = this.legend
-      .append("div")
-      .style("display", "flex")
-      .style("align-items", "center")
-      .style("margin-bottom", "4px");
-
-    // Append the color box only if a color is provided
+    const template = document.getElementById("legend-item-template");
+    const item = template.content.firstElementChild.cloneNode(true);
+    item.style.display = "flex";
     if (color) {
-      container
-        .append("div")
-        .style("width", "20px")
-        .style("height", "20px")
-        .style("background", color)
-        .style("margin-right", "6px")
-        .style("border", "1px solid #222");
+      item.querySelector(".sidebar__legend-item-color").style.background = color;
     }
-
-    if (entry) container.append("span").text(entry);
-
-    this.divs_injected.add("#legend");
+    if (entry) {
+      item.querySelector(".sidebar__legend-item-text").textContent = entry;
+    }
+    document.getElementById("legend").appendChild(item);
+    this.divs_changed.add("#legend");
   }
 
   clearModes() {
-    this.divs_injected.forEach(d => {
+    this.divs_changed.forEach((d) => {
       let div = d3.select(d);
       div.selectAll("*").remove();
-    })
+    });
     const div = document.getElementById("lineages-options");
     div.style.display = "none";
     this.state.nodes.forEach((node) => {
