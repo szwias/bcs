@@ -46,10 +46,8 @@ export class EventListener {
 
   listen() {
     document.getElementById("color-mode").addEventListener("change", (e) => {
-      this.colorModes.clearModes();
       const mode = e.target.value;
       this.colorModes.applyMode(mode);
-      this.graph.renderGraph();
       this.viewModes.applyViewModes(this.activeViewModes);
     });
 
