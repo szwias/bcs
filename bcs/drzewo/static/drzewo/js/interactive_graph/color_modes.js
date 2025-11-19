@@ -13,6 +13,7 @@ export class ColorModes {
   }
 
   applyMode(mode) {
+    this.clearModes();
     if (mode === "none")
       this.state.nodes.forEach((n) => (n.color = palette.accent));
     else if (mode === "generation") {
@@ -59,6 +60,7 @@ export class ColorModes {
             )
       }
     }
+    this.graph.renderGraph();
   }
 
   createLegend(mapping, attribute) {
