@@ -53,6 +53,14 @@ export class EventListener {
       this.viewModes.applyViewModes(this.activeViewModes);
     });
 
+    document
+      .getElementById("lineages-active-predecessors")
+      .addEventListener("change", (e) => {
+        this.colorModes.isActive = e.target.checked;
+        console.log(this.colorModes.isActive);
+        this.colorModes.applyMode("lineages");
+      });
+
     document.querySelectorAll(".view-mode").forEach((checkbox) => {
       checkbox.addEventListener("change", (e) => {
         const mode = e.target.value;
