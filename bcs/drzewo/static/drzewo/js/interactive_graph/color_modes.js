@@ -1,12 +1,20 @@
 import { palette } from "./colors.js";
+import { getDescendants, getPredecessors } from "./utils.js";
 
 export class ColorModes {
-  constructor(state, legend) {
+  constructor(state, svg, defs, graph) {
     this.state = state;
-    this.legend = legend;
+    this.svg = svg;
+    this.defs = defs;
+    this.graph = graph;
+
+    this.legend = d3.select("#legend");
+    this.divs_injected = new Set();
+    this.isActive = false;
   }
 
   applyMode(mode) {
+    this.clearModes();
     if (mode === "none")
       this.state.nodes.forEach((n) => (n.color = palette.accent));
     else if (mode === "generation") {
@@ -18,7 +26,6 @@ export class ColorModes {
         const hue = Math.round((360 * idx) / Math.max(1, ys.length - 1));
         n.color = `hsl(${hue} 70% 55%)`;
       });
-      this.appendLegend("Jak sama nazwa wskazuje");
     } else if (mode === "status") {
       this.createLegend(
         {
@@ -40,7 +47,73 @@ export class ColorModes {
         },
         "aktywnosc"
       );
+    } else if (mode === "lineages") {
+      const container = d3.select("#lineages-options");
+      container.style("display", "block");
+
+      const predecessors = getPredecessors(this.state, this.isActive, 5);
+
+      const pred_colors = new Map();
+      predecessors.forEach((p, i) => {
+        pred_colors.set(p, [(360 * i) / Math.max(1, predecessors.length)]);
+      });
+
+      const desc_colors = new Map();
+      for (const p of predecessors) {
+        const color = pred_colors.get(p)[0];
+        const descendants = getDescendants(p.pk, this.state.childrenDict);
+        for (const d of descendants) {
+          if (!desc_colors.has(d)) {
+            desc_colors.set(d, []);
+          }
+          desc_colors.get(d).push(color);
+        }
+      }
+
+      const transformedPredColors = Array.from(pred_colors, ([node, color]) => [
+        node.pk,
+        color,
+      ]);
+      const allColors = new Map([...transformedPredColors, ...desc_colors]);
+
+      allColors.forEach((colors, nodeId) => {
+        const gradId = `grad-${nodeId}`;
+        this.defs.select(`#${gradId}`).remove();
+
+        const gradient = this.defs
+          .append("linearGradient")
+          .attr("id", gradId)
+          .attr("x1", "0%") // horizontal slices
+          .attr("y1", "0%")
+          .attr("x2", "100%")
+          .attr("y2", "0%");
+
+        colors.forEach((color, i) => {
+          const start = (i / colors.length) * 100;
+          const end = ((i + 1) / colors.length) * 100;
+
+          gradient
+            .append("stop")
+            .attr("offset", `${start}%`)
+            .attr("stop-color", `hsl(${color}, 70%, 55%)`);
+
+          gradient
+            .append("stop")
+            .attr("offset", `${end}%`)
+            .attr("stop-color", `hsl(${color}, 70%, 55%)`);
+        });
+      });
+
+      // Assign to node
+      this.state.nodes.forEach((node) => {
+        if (allColors.has(node.pk)) {
+          node.gradient = `url(#grad-${node.pk})`;
+        } else {
+          node.color = "#000000";
+        }
+      });
     }
+    this.graph.renderGraph();
   }
 
   createLegend(mapping, attribute) {
@@ -54,15 +127,40 @@ export class ColorModes {
     });
   }
 
-  appendLegend(entry = "", color = null) {
-    const background_string = color ? `background: ${color};` : "";
-    this.legend
+  appendLegend(entry = null, color = null) {
+    const container = this.legend
       .append("div")
       .style("display", "flex")
       .style("align-items", "center")
-      .style("margin-bottom", "4px")
-      .html(
-        `<div style="width:20px;height:20px;${background_string} margin-right:6px;border:1px solid #222;"></div>${entry}`
-      );
+      .style("margin-bottom", "4px");
+
+    // Append the color box only if a color is provided
+    if (color) {
+      container
+        .append("div")
+        .style("width", "20px")
+        .style("height", "20px")
+        .style("background", color)
+        .style("margin-right", "6px")
+        .style("border", "1px solid #222");
+    }
+
+    if (entry) container.append("span").text(entry);
+
+    this.divs_injected.add("#legend");
+  }
+
+  clearModes() {
+    this.divs_injected.forEach(d => {
+      let div = d3.select(d);
+      div.selectAll("*").remove();
+    })
+    const div = document.getElementById("lineages-options");
+    div.style.display = "none";
+    this.state.nodes.forEach((node) => {
+      node.gradient = "";
+      node.color = palette.accent;
+    });
+    this.graph.renderGraph();
   }
 }

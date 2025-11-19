@@ -4,6 +4,8 @@ import { EventListener } from "./events.js";
 // ====== State ======
 const state = {
   nodes: [],
+  nodesByName: {},
+  nodesByPK: {},
   links: [],
   years: {},
   childrenDict: {},
@@ -13,6 +15,7 @@ const state = {
 // ====== Layers ======
 const tooltip = d3.select("#tooltip");
 const svg = d3.select("#svg");
+const defs = svg.append("defs");
 const g = svg.append("g");
 const linkLayer = g.append("g").attr("id", "links-layer");
 const nodeLayer = g.append("g").attr("id", "nodes-layer");
@@ -25,8 +28,8 @@ const zoom = d3
   .on("zoom", (event) => g.attr("transform", event.transform));
 svg.call(zoom);
 
-// ====== Miscellanous ======
-let activeViewModes = new Set();
+// ====== Miscellaneous ======
+const activeViewModes = new Set();
 
 // ====== Data Fetch ======
 async function fetchTreeData() {
@@ -35,6 +38,8 @@ async function fetchTreeData() {
   const res = await fetch(dataUrl);
   const data = await res.json();
   state.nodes = data.nodes;
+  state.nodesByName = new Map(state.nodes.map((n) => [n.name, n]));
+  state.nodesByPK = new Map(state.nodes.map((n) => [n.pk, n]));
   state.links = data.links;
   state.years = data.years;
   state.childrenDict = data.childrenDict;
@@ -46,6 +51,9 @@ function reapplyModes() {
   const colorMode = document.getElementById("color-mode")?.value;
   if (colorMode)
     document.getElementById("color-mode").dispatchEvent(new Event("change"));
+  document.querySelectorAll(".color-mode:checked").forEach((checkbox) => {
+    checkbox.dispatchEvent(new Event("change"));
+  });
   // Reapply all view modes that are currently checked
   document.querySelectorAll(".view-mode:checked").forEach((checkbox) => {
     checkbox.dispatchEvent(new Event("change"));
@@ -60,6 +68,7 @@ async function init() {
   const eventListener = new EventListener(
     state,
     svg,
+    defs,
     nodeLayer,
     overlayLayer,
     tooltip,

@@ -24,9 +24,17 @@ def render_layered_graph(layers, edges, rankdir="TB", node_attrs=None):
             passed_attrs = node_attrs.get(name, {})
             attrs = model_to_dict(m)
             attrs.update(**passed_attrs)
+
             pk = m.pk
             attrs["pk"] = pk
             pk_to_name_dict[pk] = name
+
+            attrs["layer"] = layer_num
+            attrs["year"] = layer_num[:4]
+
+            attrs["parent1"] = str(m.rodzic_1)
+            attrs["parent2"] = str(m.rodzic_2)
+
             G.add_node(n=name, **attrs)
 
         G.add_subgraph(nbunch=list(members) + [dummy], rank="same")
@@ -88,6 +96,7 @@ def build_d3_nodes(graph, year_reprs, children_dict, node_size=0.5):
             "width": width,
             "height": height,
             "color": n.attr.get("fillcolor", "#66aaff"),
+            "gradient": "",
         }
 
     # Build links (keep only links whose endpoints are real nodes)

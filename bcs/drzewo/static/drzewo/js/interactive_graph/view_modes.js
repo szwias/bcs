@@ -5,12 +5,16 @@ export class ViewModes {
     this.state = state;
     this.nodeLayer = nodeLayer;
     this.overlayLayer = overlayLayer;
+    this.customColor = "#ff0000";
   }
   static lowerOpacity = 0.2;
 
   applyViewModes(activeViewModes) {
     // Reset all effects first
-    this.nodeLayer.selectAll("circle").style("opacity", 1);
+    this.nodeLayer
+      .selectAll("circle")
+      .style("fill", (d) => d.gradient || d.color || palette.accent)
+      .style("opacity", 1);
     this.nodeLayer.selectAll("text").style("opacity", 1);
     this.overlayLayer.selectAll("*").remove();
 
@@ -20,6 +24,33 @@ export class ViewModes {
         .selectAll("circle")
         .style("opacity", ViewModes.lowerOpacity);
       this.nodeLayer.selectAll("text").style("opacity", ViewModes.lowerOpacity);
+    }
+    if (activeViewModes.has("color-nodes")) {
+      const colorPicker = d3.select("#color-picker");
+
+      // Only create if it doesn't already exist
+      if (colorPicker.select("input[type=color]").empty()) {
+        colorPicker
+          .append("input")
+          .attr("type", "color")
+          .attr("id", "node-color-input")
+          .attr("value", this.customColor) // default color
+          .on("input", (event) => {
+            this.customColor = event.target.value; // store current color
+          });
+
+        colorPicker
+          .append("span")
+          .attr("id", "node-color-label")
+          .text(" Wybierz kolor");
+      }
+
+      colorPicker.style("display", "block");
+    } else {
+      // If mode is not active, remove or hide the color picker
+      const colorPicker = d3.select("#color-picker");
+      colorPicker.selectAll("*").remove();
+      colorPicker.style("display", "none");
     }
   }
 
@@ -49,18 +80,5 @@ export class ViewModes {
         .style("font-size", "70px")
         .text(year);
     });
-  }
-
-  static getDescendants(pk, childrenDict, acc = new Set()) {
-    const entry = childrenDict[pk];
-    if (!entry) return acc;
-    const children = entry[1] || [];
-    for (const childPk of children) {
-      if (!acc.has(childPk)) {
-        acc.add(childPk.toString());
-        this.getDescendants(childPk, childrenDict, acc);
-      }
-    }
-    return acc;
   }
 }

@@ -19,9 +19,18 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
+from django.views.generic import RedirectView
+
+from bcs.settings import STATIC_URL
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+    path(
+        "favicon.ico",
+        RedirectView.as_view(
+            url=STATIC_URL + "images/favicon.ico", permanent=True
+        ),
+    ),
     path("_nested_admin/", include("nested_admin.urls")),
     path("dashboard/", include(arg="dashboard.urls", namespace="dashboard")),
     path("drzewo/", include(arg="drzewo.urls", namespace="drzewo")),

@@ -1,11 +1,13 @@
 import { palette } from "./colors.js";
 import { ColorModes } from "./color_modes.js";
 import { ViewModes } from "./view_modes.js";
+import { getDescendants } from "./utils.js";
 
 export class EventListener {
   constructor(
     state,
     svg,
+    defs,
     nodeLayer,
     overlayLayer,
     tooltip,
@@ -14,6 +16,7 @@ export class EventListener {
   ) {
     this.state = state;
     this.svg = svg;
+    this.defs = defs;
     this.nodeLayer = nodeLayer;
     this.overlayLayer = overlayLayer;
     this.tooltip = tooltip;
@@ -26,23 +29,35 @@ export class EventListener {
       this.overlayLayer
     );
 
+    this.colorModes = new ColorModes(
+      this.state,
+      this.svg,
+      this.defs,
+      this.graph
+    );
+
     this.graph.setEventHandlers({
       mouseOver: this.handleMouseOver.bind(this),
       mouseMove: this.handleMouseMove.bind(this),
       mouseOut: this.handleMouseOut.bind(this),
+      click: this.handleClick.bind(this),
     });
   }
 
   listen() {
     document.getElementById("color-mode").addEventListener("change", (e) => {
-      const legend = d3.select("#legend");
-      legend.selectAll("*").remove();
       const mode = e.target.value;
-      let colorModes = new ColorModes(this.state, legend);
-      colorModes.applyMode(mode);
-      this.graph.renderGraph();
+      this.colorModes.applyMode(mode);
       this.viewModes.applyViewModes(this.activeViewModes);
     });
+
+    document
+      .getElementById("lineages-active-predecessors")
+      .addEventListener("change", (e) => {
+        this.colorModes.isActive = e.target.checked;
+        console.log(this.colorModes.isActive);
+        this.colorModes.applyMode("lineages");
+      });
 
     document.querySelectorAll(".view-mode").forEach((checkbox) => {
       checkbox.addEventListener("change", (e) => {
@@ -57,8 +72,22 @@ export class EventListener {
       .selectAll("g.node")
       .on("mouseover", (event, d) => this.handleMouseOver(event, d))
       .on("mousemove", (event, d) => this.handleMouseMove(event, d))
-      .on("mouseout", (event, d) => this.handleMouseOut(event, d));
+      .on("mouseout", (event, d) => this.handleMouseOut(event, d))
+      .on("click", (event, d) => this.handleClick(event, d));
+
+    this.graph.renderGraph();
   }
+
+  handleClick = (event, d) => {
+    if (this.activeViewModes.has("color-nodes")) {
+      d.gradient = "";
+      d.color = this.viewModes.customColor;
+      d3.select(event.currentTarget).select("circle").attr("fill", d.color);
+      this.graph.renderGraph(false);
+    } else {
+      if (d.url) window.open(d.url, "_blank");
+    }
+  };
 
   handleMouseOver = (event, d) => {
     this.tooltip
@@ -70,18 +99,19 @@ export class EventListener {
 
     // Extra: descendants highlighting
     if (this.activeViewModes.has("descendants")) {
-      const descendants = ViewModes.getDescendants(d.pk, this.state.childrenDict);
+      const descendants = getDescendants(d.pk, this.state.childrenDict);
       descendants.add(d.pk); // include self
 
-      this.nodeLayer.selectAll("g.node").each(function (n) {
-        const highlight = descendants.has(n.pk);
-        d3.select(this)
-          .select("circle")
-          .style("opacity", highlight ? 1 : ViewModes.lowerOpacity);
-        d3.select(this)
-          .select("text")
-          .style("opacity", highlight ? 1 : ViewModes.lowerOpacity);
-      });
+      this.nodeLayer
+        .selectAll("g.node circle")
+        .style("opacity", (d) =>
+          descendants.has(d.pk) ? 1 : ViewModes.lowerOpacity
+        );
+      this.nodeLayer
+        .selectAll("g.node text")
+        .style("opacity", (d) =>
+          descendants.has(d.pk) ? 1 : ViewModes.lowerOpacity
+        );
     }
   };
 

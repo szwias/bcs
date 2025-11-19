@@ -85,6 +85,46 @@ body {
     }
   }
 
+  // ====== Color Picker ======
+  &__color-picker {
+    margin-top: 8px;
+    display: flex; // hidden by default, shown when active
+    align-items: center;
+    gap: 8px;
+
+    input[type="color"] {
+      appearance: none;
+      -webkit-appearance: none;
+      border: 1px solid $color-border;
+      border-radius: 4px;
+      width: 20px;
+      height: 20px;
+      padding: 0;
+      background: none;
+      cursor: pointer;
+
+      // Remove the default inner padding / outline in WebKit
+      &::-webkit-color-swatch-wrapper {
+        padding: 0;
+      }
+
+      &::-webkit-color-swatch {
+        border: none;
+        border-radius: 4px;
+      }
+
+      &:hover {
+        border-color: lighten($color-border, 15%);
+      }
+    }
+
+    span {
+      color: $color-text;
+      font-size: 0.9rem;
+    }
+  }
+
+
   &__legend {
     margin-top: 12px;
 
