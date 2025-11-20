@@ -28,7 +28,8 @@ export class EventListener {
         this.defs,
         this.graph,
         this.nodeLayer,
-        this.overlayLayer
+        this.overlayLayer,
+        this.activeViewModes,
     );
 
     this.graph.setEventHandlers({
@@ -43,7 +44,7 @@ export class EventListener {
     document.getElementById("color-mode").addEventListener("change", (e) => {
       const mode = e.target.value;
       this.modes.applyColorMode(mode);
-      this.modes.applyViewModes(this.activeViewModes);
+      this.modes.applyViewModes();
     });
 
     document.querySelectorAll(".view-mode").forEach((checkbox) => {
@@ -51,7 +52,7 @@ export class EventListener {
         const mode = e.target.value;
         if (e.target.checked) this.activeViewModes.add(mode);
         else this.activeViewModes.delete(mode);
-        this.modes.applyViewModes(this.activeViewModes);
+        this.modes.applyViewModes();
       });
     });
 

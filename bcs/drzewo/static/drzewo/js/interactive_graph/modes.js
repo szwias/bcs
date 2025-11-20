@@ -2,13 +2,14 @@ import { palette } from "./colors.js";
 import {applyGradient, getDescendants, getPredecessors} from "./utils.js";
 
 export class Modes {
-  constructor(state, svg, defs, graph, nodeLayer, overlayLayer) {
+  constructor(state, svg, defs, graph, nodeLayer, overlayLayer, activeViewModes) {
     this.state = state;
     this.svg = svg;
     this.defs = defs;
     this.graph = graph;
     this.nodeLayer = nodeLayer;
     this.overlayLayer = overlayLayer;
+    this.activeViewModes = activeViewModes;
 
     // Color modes
     this.options = {};
@@ -100,7 +101,7 @@ export class Modes {
     this.graph.renderGraph();
   }
 
-  applyViewModes(activeViewModes) {
+  applyViewModes() {
     // Reset all effects first
     this.nodeLayer
       .selectAll("circle")
@@ -109,13 +110,13 @@ export class Modes {
     this.nodeLayer.selectAll("text").style("opacity", 1);
     this.overlayLayer.selectAll("*").remove();
 
-    if (activeViewModes.has("years")) this.drawYearLines();
-    if (activeViewModes.has("descendants")) {
+    if (this.activeViewModes.has("years")) this.drawYearLines();
+    if (this.activeViewModes.has("descendants")) {
       this.nodeLayer.selectAll("circle").style("opacity", this.state.lowerOpacity);
       this.nodeLayer.selectAll("text").style("opacity", this.state.lowerOpacity);
     }
     const colorPicker = d3.select("#color-picker");
-    if (activeViewModes.has("color-nodes")) {
+    if (this.activeViewModes.has("color-nodes")) {
       colorPicker.style("display", "block");
       d3.select("#node-color-input").on("input", event => {
         this.customColor = event.target.value;
@@ -160,6 +161,7 @@ export class Modes {
 // ==================== //
 //   COLOR MODES UTILS  //
 // ==================== //
+
   renderColorModeOptions(mode, options) {
     const container = document.getElementById("color-mode-options");
     container.innerHTML = "";
@@ -179,6 +181,7 @@ export class Modes {
       input.addEventListener("change", () => {
         modeOptions[option.id] = input.checked;
         this.applyColorMode(mode);
+        this.applyViewModes();
       });
 
       container.appendChild(node);
