@@ -1,7 +1,7 @@
-import { palette } from "./colors.js";
-import { ColorModes } from "./color_modes.js";
-import { ViewModes } from "./view_modes.js";
-import { getDescendants } from "./utils.js";
+import {palette} from "./colors.js";
+import {getDescendants} from "./traversal_utils.js";
+import {changeOpacity} from "./style_utils.js";
+import {Modes} from "./modes.js";
 
 export class EventListener {
   constructor(
@@ -23,17 +23,14 @@ export class EventListener {
     this.graph = graph;
     this.activeViewModes = activeViewModes;
 
-    this.viewModes = new ViewModes(
-      this.state,
-      this.nodeLayer,
-      this.overlayLayer
-    );
-
-    this.colorModes = new ColorModes(
-      this.state,
-      this.svg,
-      this.defs,
-      this.graph
+    this.modes = new Modes(
+        this.state,
+        this.svg,
+        this.defs,
+        this.graph,
+        this.nodeLayer,
+        this.overlayLayer,
+        this.activeViewModes,
     );
 
     this.graph.setEventHandlers({
@@ -47,24 +44,16 @@ export class EventListener {
   listen() {
     document.getElementById("color-mode").addEventListener("change", (e) => {
       const mode = e.target.value;
-      this.colorModes.applyMode(mode);
-      this.viewModes.applyViewModes(this.activeViewModes);
+      this.modes.applyColorMode(mode);
+      this.modes.applyViewModes();
     });
-
-    document
-      .getElementById("lineages-active-predecessors")
-      .addEventListener("change", (e) => {
-        this.colorModes.isActive = e.target.checked;
-        console.log(this.colorModes.isActive);
-        this.colorModes.applyMode("lineages");
-      });
 
     document.querySelectorAll(".view-mode").forEach((checkbox) => {
       checkbox.addEventListener("change", (e) => {
         const mode = e.target.value;
         if (e.target.checked) this.activeViewModes.add(mode);
         else this.activeViewModes.delete(mode);
-        this.viewModes.applyViewModes(this.activeViewModes);
+        this.modes.applyViewModes();
       });
     });
 
@@ -81,7 +70,7 @@ export class EventListener {
   handleClick = (event, d) => {
     if (this.activeViewModes.has("color-nodes")) {
       d.gradient = "";
-      d.color = this.viewModes.customColor;
+      d.color = this.modes.customColor;
       d3.select(event.currentTarget).select("circle").attr("fill", d.color);
       this.graph.renderGraph(false);
     } else {
@@ -102,16 +91,11 @@ export class EventListener {
       const descendants = getDescendants(d.pk, this.state.childrenDict);
       descendants.add(d.pk); // include self
 
-      this.nodeLayer
-        .selectAll("g.node circle")
-        .style("opacity", (d) =>
-          descendants.has(d.pk) ? 1 : ViewModes.lowerOpacity
-        );
-      this.nodeLayer
-        .selectAll("g.node text")
-        .style("opacity", (d) =>
-          descendants.has(d.pk) ? 1 : ViewModes.lowerOpacity
-        );
+      changeOpacity(
+        this.nodeLayer,
+        (n) => !descendants.has(n.pk),
+        this.state.lowerOpacity
+      );
     }
   };
 
@@ -130,8 +114,10 @@ export class EventListener {
     if (this.activeViewModes.has("descendants")) {
       this.nodeLayer
         .selectAll("circle")
-        .style("opacity", ViewModes.lowerOpacity);
-      this.nodeLayer.selectAll("text").style("opacity", ViewModes.lowerOpacity);
+        .style("opacity", this.state.lowerOpacity);
+      this.nodeLayer
+        .selectAll("text")
+        .style("opacity", this.state.lowerOpacity);
     }
   };
 }

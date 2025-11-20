@@ -36,16 +36,22 @@
                     <option value="aktywnosc">Aktywność</option>
                     <option value="lineages">Rody</option>
                 </select>
-                <div id="lineages-options" style="display:none">
-                    <br>
+                <template id="color-mode-options-checkbox-template">
                     <label>
-                        <input id="lineages-active-predecessors"
-                               type="checkbox"
-                               class="color-mode"
-                               value="active-predecessors">
-                        Aktywni założyciele rodów
+                        <input type="checkbox" class="color-mode">
+                        <span class="checkbox-text"></span>
                     </label>
-                </div>
+                    <br>
+                </template>
+                <br>
+                <br>
+                <div id="color-mode-options"></div>
+                <template id="legend-item-template">
+                    <div class="sidebar__legend-item">
+                        <div class="sidebar__legend-item-color"></div>
+                        <span class="sidebar__legend-item-text"></span>
+                    </div>
+                </template>
                 <div id="legend" class="sidebar__legend"></div>
             </div>
             <hr>
@@ -65,7 +71,10 @@
                     <input type="checkbox" class="view-mode" value="color-nodes">
                     Koloruj węzły
                 </label>
-                <div id="color-picker" class="sidebar__color-picker"></div>
+                <div id="color-picker" class="sidebar__color-picker" style="display: none;">
+                    <input type="color" id="node-color-input" value="#ff0000">
+                    <span id="node-color-label"> Wybierz kolor</span>
+                </div>
             </div>
             <hr>
             <p>Kliknij węzeł, by otworzyć szczegóły. Najedź → podgląd.</p>
