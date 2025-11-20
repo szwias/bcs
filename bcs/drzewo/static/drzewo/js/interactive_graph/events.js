@@ -1,7 +1,6 @@
 import { palette } from "./colors.js";
-import { ColorModes } from "./color_modes.js";
-import { ViewModes } from "./view_modes.js";
 import { getDescendants, changeOpacity } from "./utils.js";
+import {Modes} from "./modes.js";
 
 export class EventListener {
   constructor(
@@ -23,17 +22,13 @@ export class EventListener {
     this.graph = graph;
     this.activeViewModes = activeViewModes;
 
-    this.viewModes = new ViewModes(
-      this.state,
-      this.nodeLayer,
-      this.overlayLayer
-    );
-
-    this.colorModes = new ColorModes(
-      this.state,
-      this.svg,
-      this.defs,
-      this.graph
+    this.modes = new Modes(
+        this.state,
+        this.svg,
+        this.defs,
+        this.graph,
+        this.nodeLayer,
+        this.overlayLayer
     );
 
     this.graph.setEventHandlers({
@@ -47,8 +42,8 @@ export class EventListener {
   listen() {
     document.getElementById("color-mode").addEventListener("change", (e) => {
       const mode = e.target.value;
-      this.colorModes.applyMode(mode);
-      this.viewModes.applyViewModes(this.activeViewModes);
+      this.modes.applyColorMode(mode);
+      this.modes.applyViewModes(this.activeViewModes);
     });
 
     document.querySelectorAll(".view-mode").forEach((checkbox) => {
@@ -56,7 +51,7 @@ export class EventListener {
         const mode = e.target.value;
         if (e.target.checked) this.activeViewModes.add(mode);
         else this.activeViewModes.delete(mode);
-        this.viewModes.applyViewModes(this.activeViewModes);
+        this.modes.applyViewModes(this.activeViewModes);
       });
     });
 
@@ -73,7 +68,7 @@ export class EventListener {
   handleClick = (event, d) => {
     if (this.activeViewModes.has("color-nodes")) {
       d.gradient = "";
-      d.color = this.viewModes.customColor;
+      d.color = this.modes.customColor;
       d3.select(event.currentTarget).select("circle").attr("fill", d.color);
       this.graph.renderGraph(false);
     } else {

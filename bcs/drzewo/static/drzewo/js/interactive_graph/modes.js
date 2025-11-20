@@ -1,18 +1,24 @@
 import { palette } from "./colors.js";
-import { getDescendants, getPredecessors, applyGradient } from "./utils.js";
+import {applyGradient, getDescendants, getPredecessors} from "./utils.js";
 
-export class ColorModes {
-  constructor(state, svg, defs, graph) {
+export class Modes {
+  constructor(state, svg, defs, graph, nodeLayer, overlayLayer) {
     this.state = state;
     this.svg = svg;
     this.defs = defs;
     this.graph = graph;
+    this.nodeLayer = nodeLayer;
+    this.overlayLayer = overlayLayer;
 
+    // Color modes
     this.options = {};
     this.divs_changed = new Set();
+
+    // View modes
+    this.customColor = "#ff0000";
   }
 
-  applyMode(mode) {
+  applyColorMode(mode) {
     this.clearModes();
     if (mode === "none") {
       this.state.nodes.forEach((n) => (n.color = palette.accent));
@@ -94,6 +100,66 @@ export class ColorModes {
     this.graph.renderGraph();
   }
 
+  applyViewModes(activeViewModes) {
+    // Reset all effects first
+    this.nodeLayer
+      .selectAll("circle")
+      .style("fill", (d) => d.gradient || d.color || palette.accent)
+      .style("opacity", 1);
+    this.nodeLayer.selectAll("text").style("opacity", 1);
+    this.overlayLayer.selectAll("*").remove();
+
+    if (activeViewModes.has("years")) this.drawYearLines();
+    if (activeViewModes.has("descendants")) {
+      this.nodeLayer.selectAll("circle").style("opacity", this.state.lowerOpacity);
+      this.nodeLayer.selectAll("text").style("opacity", this.state.lowerOpacity);
+    }
+    const colorPicker = d3.select("#color-picker");
+    if (activeViewModes.has("color-nodes")) {
+      colorPicker.style("display", "block");
+      d3.select("#node-color-input").on("input", event => {
+        this.customColor = event.target.value;
+      });
+    } else {
+      colorPicker.style("display", "none");
+    }
+  }
+
+// =================== //
+//   VIEW MODES UTILS  //
+// =================== //
+
+  drawYearLines() {
+    Object.entries(this.state.years).forEach(([year, reprNodeName]) => {
+      const reprNode = this.state.nodes.find((n) => n.name === reprNodeName);
+      if (!reprNode) return;
+      const padding = this.state.layerDistance / 2;
+      const y = reprNode.y_norm - padding;
+
+      this.overlayLayer
+        .append("line")
+        .attr("x1", d3.min(this.state.nodes, (d) => d.x_norm) - 100)
+        .attr("x2", d3.max(this.state.nodes, (d) => d.x_norm) + 100)
+        .attr("y1", y)
+        .attr("y2", y)
+        .attr("stroke", "#555")
+        .attr("stroke-dasharray", "4 2")
+        .attr("stroke-width", 3);
+
+      this.overlayLayer
+        .append("text")
+        .attr("x", d3.min(this.state.nodes, (d) => d.x_norm) - 150)
+        .attr("y", y + 4)
+        .attr("text-anchor", "end")
+        .style("fill", palette.textMuted)
+        .style("font-size", "70px")
+        .text(year);
+    });
+  }
+
+// ==================== //
+//   COLOR MODES UTILS  //
+// ==================== //
   renderColorModeOptions(mode, options) {
     const container = document.getElementById("color-mode-options");
     container.innerHTML = "";
@@ -112,7 +178,7 @@ export class ColorModes {
 
       input.addEventListener("change", () => {
         modeOptions[option.id] = input.checked;
-        this.applyMode(mode);
+        this.applyColorMode(mode);
       });
 
       container.appendChild(node);
