@@ -1,5 +1,6 @@
-import { palette } from "./colors.js";
-import { getDescendants, changeOpacity } from "./utils.js";
+import {palette} from "./colors.js";
+import {getDescendants} from "./traversal_utils.js";
+import {changeOpacity} from "./style_utils.js";
 import {Modes} from "./modes.js";
 
 export class EventListener {

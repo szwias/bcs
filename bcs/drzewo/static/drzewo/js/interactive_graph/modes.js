@@ -1,5 +1,6 @@
 import { palette } from "./colors.js";
-import {applyGradient, getDescendants, getPredecessors} from "./utils.js";
+import {getDescendants, getPredecessors} from "./traversal_utils.js";
+import {applyGradient} from "./style_utils.js";
 
 export class Modes {
   constructor(state, svg, defs, graph, nodeLayer, overlayLayer, activeViewModes) {
