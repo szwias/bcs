@@ -71,7 +71,10 @@
                     <input type="checkbox" class="view-mode" value="color-nodes">
                     Koloruj węzły
                 </label>
-                <div id="color-picker" class="sidebar__color-picker"></div>
+                <div id="color-picker" class="sidebar__color-picker" style="display: none;">
+                    <input type="color" id="node-color-input" value="#ff0000">
+                    <span id="node-color-label"> Wybierz kolor</span>
+                </div>
             </div>
             <hr>
             <p>Kliknij węzeł, by otworzyć szczegóły. Najedź → podgląd.</p>

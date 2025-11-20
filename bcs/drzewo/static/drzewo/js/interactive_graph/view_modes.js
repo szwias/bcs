@@ -22,31 +22,13 @@ export class ViewModes {
       this.nodeLayer.selectAll("circle").style("opacity", this.state.lowerOpacity);
       this.nodeLayer.selectAll("text").style("opacity", this.state.lowerOpacity);
     }
+    const colorPicker = d3.select("#color-picker");
     if (activeViewModes.has("color-nodes")) {
-      const colorPicker = d3.select("#color-picker");
-
-      // Only create if it doesn't already exist
-      if (colorPicker.select("input[type=color]").empty()) {
-        colorPicker
-          .append("input")
-          .attr("type", "color")
-          .attr("id", "node-color-input")
-          .attr("value", this.customColor) // default color
-          .on("input", (event) => {
-            this.customColor = event.target.value; // store current color
-          });
-
-        colorPicker
-          .append("span")
-          .attr("id", "node-color-label")
-          .text(" Wybierz kolor");
-      }
-
       colorPicker.style("display", "block");
+      d3.select("#node-color-input").on("input", event => {
+        this.customColor = event.target.value;
+      });
     } else {
-      // If mode is not active, remove or hide the color picker
-      const colorPicker = d3.select("#color-picker");
-      colorPicker.selectAll("*").remove();
       colorPicker.style("display", "none");
     }
   }
