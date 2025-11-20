@@ -1,5 +1,5 @@
 import { palette } from "./colors.js";
-import { getDescendants, getPredecessors } from "./utils.js";
+import { getDescendants, getPredecessors, applyGradient } from "./utils.js";
 
 export class ColorModes {
   constructor(state, svg, defs, graph) {
@@ -14,9 +14,9 @@ export class ColorModes {
 
   applyMode(mode) {
     this.clearModes();
-    if (mode === "none")
+    if (mode === "none") {
       this.state.nodes.forEach((n) => (n.color = palette.accent));
-    else if (mode === "generation") {
+    } else if (mode === "generation") {
       const ys = [
         ...new Set(this.state.nodes.map((n) => Math.round(n.y_norm))),
       ].sort((a, b) => a - b);
@@ -52,7 +52,7 @@ export class ColorModes {
         {
           id: "active-predecessors",
           text: "Aktywni założyciele rodów",
-        }
+        },
       ];
       this.renderColorModeOptions(mode, options);
 
@@ -81,53 +81,17 @@ export class ColorModes {
         color,
       ]);
       const allColors = new Map([...transformedPredColors, ...desc_colors]);
-      this.applyGradient(
-          allColors,
-          "pk",
-          (node) => {node.color = "#000000"},
-          this.defs
+      applyGradient(
+        allColors,
+        "pk",
+        (node) => {
+          node.color = "#000000";
+        },
+        this.defs,
+        this.state
       );
     }
     this.graph.renderGraph();
-  }
-
-  applyGradient(colorMap, nodeAttribute, fallbackProc, defs) {
-    colorMap.forEach((colors, nodeId) => {
-      const gradId = `grad-${nodeId}`;
-      this.defs.select(`#${gradId}`).remove();
-
-      const gradient = defs
-          .append("linearGradient")
-          .attr("id", gradId)
-          .attr("x1", "0%")
-          .attr("y1", "0%")
-          .attr("x2", "100%")
-          .attr("y2", "0%");
-
-      colors.forEach((color, i) => {
-        const start = (i / colors.length) * 100;
-        const end = ((i + 1) / colors.length) * 100;
-
-        gradient
-            .append("stop")
-            .attr("offset", `${start}%`)
-            .attr("stop-color", `hsl(${color}, 70%, 55%)`);
-
-        gradient
-            .append("stop")
-            .attr("offset", `${end}%`)
-            .attr("stop-color", `hsl(${color}, 70%, 55%)`);
-      });
-    });
-
-    // Assign to node
-    this.state.nodes.forEach((node) => {
-      if (colorMap.has(node[nodeAttribute])) {
-        node.gradient = `url(#grad-${node[nodeAttribute]})`;
-      } else {
-        fallbackProc(node);
-      }
-    });
   }
 
   renderColorModeOptions(mode, options) {
