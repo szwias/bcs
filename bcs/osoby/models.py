@@ -543,11 +543,31 @@ class Czlonek(Osoba, OsobaBCS):
     def get_parents(self):
         return [p for p in [self.rodzic_1, self.rodzic_2] if p.exists()]
 
-    def get_children(self):
+    def get_member_children(self):
         return list(self.dzieci_pierwszy_wybor.all())
 
-    def get_step_children(self):
+    def get_member_step_children(self):
         return list(self.dzieci_drugi_wybor.all())
+
+    def get_all_member_children(self):
+        return self.get_member_children() + self.get_member_step_children()
+
+    def get_bean_children(self):
+        return list(self.beani_pierwszy_wybor.all())
+
+    def get_bean_step_children(self):
+        return list(self.beani_drugi_wybor.all())
+
+    def get_all_bean_children(self):
+        return self.get_bean_children() + self.get_bean_step_children()
+
+    def get_all_children(self):
+        return (
+            self.get_member_children()
+            + self.get_member_step_children()
+            + self.get_bean_children()
+            + self.get_bean_step_children()
+        )
 
     def is_unknown(self):
         return self.imie == "Nie" and self.nazwisko == "wiem"
