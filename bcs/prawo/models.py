@@ -23,8 +23,8 @@ class WielkoscStruktury(SearchableModel):
     wielkosc = models.CharField(max_length=MAX_LENGTH, verbose_name="Wielkość")
 
     class Meta:
-        verbose_name = "Wielkosc"
-        verbose_name_plural = "Wielkosc"
+        verbose_name = "Wielkość"
+        verbose_name_plural = "Wielkości"
         ordering = ["wielkosc"]
 
     def __str__(self):
