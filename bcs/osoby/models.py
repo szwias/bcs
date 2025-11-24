@@ -11,8 +11,14 @@ from core.utils.Lengths import (
     NAME_LENGTH,
 )
 from core.utils.Choices import TextAlt, TextChoose, IntAlt
-from core.utils.Czas import ROK_ZALOZENIA, BIEZACY_ROK, LATA_BRACTW, LATA_BCS, \
-    MIESIACE, DNI
+from core.utils.Czas import (
+    ROK_ZALOZENIA,
+    BIEZACY_ROK,
+    LATA_BRACTW,
+    LATA_BCS,
+    MIESIACE,
+    DNI,
+)
 from czapki.models import Czapka
 from kronika.models import Kadencja
 from wyszukiwarka.utils.Search import *
@@ -247,6 +253,12 @@ class InnaOsoba(Osoba):
 
 class OsobaBCS(models.Model):
 
+    class Aktywnosc(models.TextChoices):
+        AKTYWNY = ("A", "Częsta")
+        AKTYWNY_MEDIALNIE = ("M", "Tylko w mediach/rzadka")
+        NIEAKTYWNY = ("N", "Brak")
+        ODSZEDL = ("O", "Negatywna")
+
     czapka_1 = models.ForeignKey(
         to="czapki.Czapka",
         on_delete=models.SET_NULL,
@@ -281,8 +293,7 @@ class OsobaBCS(models.Model):
     )
 
     pewnosc_stazu = models.BooleanField(
-        default=True,
-        verbose_name="Pewność roku pojawienia się"
+        default=True, verbose_name="Pewność roku pojawienia się"
     )
 
     class Meta:
@@ -291,6 +302,13 @@ class OsobaBCS(models.Model):
 
 class Bean(Osoba, OsobaBCS):
     search_indexable = True
+
+    aktywnosc = models.CharField(
+        max_length=Lengths.AKTYWNOSC,
+        choices=OsobaBCS.Aktywnosc.choices,
+        default=OsobaBCS.Aktywnosc.AKTYWNY,
+        verbose_name="Aktywność",
+    )
 
     rodzic_1 = models.ForeignKey(
         to="osoby.Czlonek",
@@ -346,11 +364,6 @@ class Bean(Osoba, OsobaBCS):
 
 
 class Czlonek(Osoba, OsobaBCS):
-    class Aktywnosc(models.TextChoices):
-        AKTYWNY = ("A", "Częsta")
-        AKTYWNY_MEDIALNIE = ("M", "Tylko w mediach/rzadka")
-        NIEAKTYWNY = ("N", "Brak")
-        ODSZEDL = ("O", "Negatywna")
 
     class Status(models.TextChoices):
         CZLONEK_ZWYCZAJNY = "CZ", "Członek zwyczajny"
@@ -363,8 +376,8 @@ class Czlonek(Osoba, OsobaBCS):
 
     aktywnosc = models.CharField(
         max_length=Lengths.AKTYWNOSC,
-        choices=Aktywnosc.choices,
-        default=Aktywnosc.NIEAKTYWNY,
+        choices=OsobaBCS.Aktywnosc.choices,
+        default=OsobaBCS.Aktywnosc.NIEAKTYWNY,
         verbose_name="Aktywność",
     )
 
@@ -530,11 +543,31 @@ class Czlonek(Osoba, OsobaBCS):
     def get_parents(self):
         return [p for p in [self.rodzic_1, self.rodzic_2] if p.exists()]
 
-    def get_children(self):
+    def get_member_children(self):
         return list(self.dzieci_pierwszy_wybor.all())
 
-    def get_step_children(self):
+    def get_member_step_children(self):
         return list(self.dzieci_drugi_wybor.all())
+
+    def get_all_member_children(self):
+        return self.get_member_children() + self.get_member_step_children()
+
+    def get_bean_children(self):
+        return list(self.beani_pierwszy_wybor.all())
+
+    def get_bean_step_children(self):
+        return list(self.beani_drugi_wybor.all())
+
+    def get_all_bean_children(self):
+        return self.get_bean_children() + self.get_bean_step_children()
+
+    def get_all_children(self):
+        return (
+            self.get_member_children()
+            + self.get_member_step_children()
+            + self.get_bean_children()
+            + self.get_bean_step_children()
+        )
 
     def is_unknown(self):
         return self.imie == "Nie" and self.nazwisko == "wiem"
