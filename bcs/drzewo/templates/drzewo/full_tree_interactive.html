@@ -71,9 +71,9 @@
                     <input type="checkbox" class="view-mode" value="color-nodes">
                     Koloruj węzły
                 </label>
-                <div id="color-picker" class="sidebar__color-picker" style="display: none;">
+                <div id="color-picker" class="sidebar__color-picker" style="display: none">
                     <input type="color" id="node-color-input" value="#ff0000">
-                    <span id="node-color-label"> Wybierz kolor</span>
+                    <span id="node-color-label">Wybierz kolor</span>
                 </div>
             </div>
             <hr>
@@ -86,7 +86,8 @@
         </div>
         <script>
             window.TREE_CONFIG = {
-                onp: {{ onp|yesno:'true,false' }}
+                onp: {{ onp|yesno:'true,false' }},
+                beans: {{ beans|yesno:'true,false' }}
             };
         </script>
         <script type="module"

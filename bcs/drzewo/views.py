@@ -23,6 +23,10 @@ def parse_onp(request):
     return request.GET.get("only_known_parents") in accepting_strings
 
 
+def parse_beans(request):
+    return request.GET.get("beans_present") in accepting_strings
+
+
 @require_GET
 def serve_full_tree_form_view(request):
     form = FullTreeRenderForm(request.GET or None)
@@ -53,18 +57,20 @@ def serve_full_tree_form_view(request):
 def full_tree_interactive_view(request):
     form = FullTreeRenderForm(request.GET or None)
     onp = parse_onp(request)
+    beans = parse_beans(request)
     return render(
         request=request,
         template_name="drzewo/full_tree_interactive.html",
-        context={"form": form, "onp": onp},
+        context={"form": form, "onp": onp, "beans": beans},
     )
 
 
 @require_GET
 def full_tree_data_graphviz(request):
     onp = parse_onp(request)
+    beans = parse_beans(request)
     layers, edges, children_dict, year_reprs = build_layers_and_edges_from_db(
-        onp
+        onp, beans
     )
     G = render_layered_graph(layers=layers, edges=edges)
     return build_d3_nodes(

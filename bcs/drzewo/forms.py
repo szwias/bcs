@@ -11,6 +11,8 @@ class FullTreeRenderForm(forms.Form):
         required=False, label="Pokaż tylko członków o znanych rodzicach"
     )
 
+    beans_present = forms.BooleanField(required=False, label="Pokaż beanów")
+
 
 class ScopedTreeRenderForm(forms.Form):
     member = forms.ModelChoiceField(
