@@ -1,9 +1,20 @@
 import { palette } from "./colors.js";
-import {getDescendants, getPredecessors} from "./traversal_utils.js";
-import {applyGradient} from "./style_utils.js";
+import { getPredecessors } from "./traversal_utils.js";
+import {
+  applyGradient,
+  gradientMapUpdate,
+} from "./style_utils.js";
 
 export class Modes {
-  constructor(state, svg, defs, graph, nodeLayer, overlayLayer, activeViewModes) {
+  constructor(
+    state,
+    svg,
+    defs,
+    graph,
+    nodeLayer,
+    overlayLayer,
+    activeViewModes
+  ) {
     this.state = state;
     this.svg = svg;
     this.defs = defs;
@@ -69,28 +80,30 @@ export class Modes {
         this.options[mode]["active-predecessors"],
         5
       );
-      const pred_colors = new Map();
+      const colorCount = predecessors.length;
+      const modifier = 360 / Math.max(1, colorCount);
+      const gradientMap = new Map();
+
       predecessors.forEach((p, i) => {
-        pred_colors.set(p, [(360 * i) / Math.max(1, predecessors.length)]);
+        const gradient = Array(colorCount).fill(0);
+        gradient[i] = 1;
+        gradient.push(p.pk.toString());
+        gradientMap.set(p.pk, [...gradient]);
+        gradientMapUpdate(
+          p.pk,
+          this.state.childrenDict,
+          gradientMap,
+          this.state.nodesByPK
+        );
       });
-      const desc_colors = new Map();
-      for (const p of predecessors) {
-        const color = pred_colors.get(p)[0];
-        const descendants = getDescendants(p.pk, this.state.childrenDict);
-        for (const d of descendants) {
-          if (!desc_colors.has(d)) {
-            desc_colors.set(d, []);
-          }
-          desc_colors.get(d).push(color);
-        }
-      }
-      const transformedPredColors = Array.from(pred_colors, ([node, color]) => [
-        node.pk,
-        color,
-      ]);
-      const allColors = new Map([...transformedPredColors, ...desc_colors]);
+
+      gradientMap.forEach((gradient, pk) => {
+        gradient.splice(gradient.length - 1, 1);
+      });
+      
       applyGradient(
-        allColors,
+        gradientMap,
+        modifier,
         "pk",
         (node) => {
           node.color = "#000000";
@@ -113,13 +126,17 @@ export class Modes {
 
     if (this.activeViewModes.has("years")) this.drawYearLines();
     if (this.activeViewModes.has("descendants")) {
-      this.nodeLayer.selectAll("circle").style("opacity", this.state.lowerOpacity);
-      this.nodeLayer.selectAll("text").style("opacity", this.state.lowerOpacity);
+      this.nodeLayer
+        .selectAll("circle")
+        .style("opacity", this.state.lowerOpacity);
+      this.nodeLayer
+        .selectAll("text")
+        .style("opacity", this.state.lowerOpacity);
     }
     const colorPicker = d3.select("#color-picker");
     if (this.activeViewModes.has("color-nodes")) {
       colorPicker.style("display", "block");
-      d3.select("#node-color-input").on("input", event => {
+      d3.select("#node-color-input").on("input", (event) => {
         this.customColor = event.target.value;
       });
     } else {
@@ -127,9 +144,9 @@ export class Modes {
     }
   }
 
-// =================== //
-//   VIEW MODES UTILS  //
-// =================== //
+  // =================== //
+  //   VIEW MODES UTILS  //
+  // =================== //
 
   drawYearLines() {
     Object.entries(this.state.years).forEach(([year, reprNodeName]) => {
@@ -159,9 +176,9 @@ export class Modes {
     });
   }
 
-// ==================== //
-//   COLOR MODES UTILS  //
-// ==================== //
+  // ==================== //
+  //   COLOR MODES UTILS  //
+  // ==================== //
 
   renderColorModeOptions(mode, options) {
     const container = document.getElementById("color-mode-options");
