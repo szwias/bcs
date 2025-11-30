@@ -23,25 +23,30 @@ class TreeNode:
         self.layer = self.get_layer()
 
     def get_year(self):
-        year = (
-            self.member.rok_chrztu
-            if self.member.rok_chrztu != IntAlt.DONT_KNOW[0]
-            else self.member.staz
-        )
-        if year == IntAlt.DONT_KNOW[0]:
-            if self.member.rodzic_2 == Czlonek.get_not_applicable_czlonek():
-                year = TreeNode(
-                    member=self.member.rodzic_1,
-                    depth=self.depth - 1,
-                    parent_layer=self.parent_layer,
-                ).get_year()
-            else:
-                year = TreeNode(
-                    member=self.member.rodzic_2,
-                    depth=self.depth - 1,
-                    parent_layer=self.parent_layer,
-                ).get_year()
-        return year
+        if isinstance(self.member, Czlonek):
+            year = (
+                self.member.rok_chrztu
+                if self.member.rok_chrztu != IntAlt.DONT_KNOW[0]
+                else self.member.staz
+            )
+            if year == IntAlt.DONT_KNOW[0]:
+                if (
+                    self.member.rodzic_2
+                    == Czlonek.get_not_applicable_czlonek()
+                ):
+                    year = TreeNode(
+                        member=self.member.rodzic_1,
+                        depth=self.depth - 1,
+                        parent_layer=self.parent_layer,
+                    ).get_year()
+                else:
+                    year = TreeNode(
+                        member=self.member.rodzic_2,
+                        depth=self.depth - 1,
+                        parent_layer=self.parent_layer,
+                    ).get_year()
+            return str(year)
+        return "BEAN"
 
     def get_youngest_parent(self):
         if self.member.rodzic_2 != Czlonek.get_not_applicable_czlonek():
@@ -54,7 +59,7 @@ class TreeNode:
     def get_layer(self):
         if not self.depth:
             return 0
-        if (
+        if isinstance(self.member, Czlonek) and (
             self.depth == 1
             or self.year
             == TreeNode(

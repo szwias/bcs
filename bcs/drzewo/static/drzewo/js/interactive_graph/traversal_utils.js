@@ -1,5 +1,7 @@
 export function getPredecessors(state, ACTIVE_PREDECESSORS, YEARS_BACK) {
-  const years = Object.keys(state.years).map((y) => parseInt(y, 10));
+  const years = Object.keys(state.years)
+    .filter((year) => year !== "BEAN")
+    .map((y) => parseInt(y, 10));
   const currentYear = Math.max(...years);
 
   const toVisit = state.nodes.filter(
@@ -8,24 +10,25 @@ export function getPredecessors(state, ACTIVE_PREDECESSORS, YEARS_BACK) {
       parseInt(node.year, 10) > currentYear - YEARS_BACK &&
       ["A", "M"].includes(node.aktywnosc)
   );
-  const predecessors = [];
+  let predecessors = [];
   const visited = new Set();
 
   while (toVisit.length > 0) {
     const node = toVisit.pop();
+    if (node === undefined) continue; // onp=true case
     if (visited.has(node)) continue;
     visited.add(node);
-    if (node.aktywnosc === "N") {
+    if (["N", "O"].includes(node.aktywnosc)) {
       predecessors.push(node);
     } else {
       const parents = [];
-      if (node.parent1 !== "Nie dotyczy" && state.nodesByName.has(node.parent1))
-        parents.push(state.nodesByName.get(node.parent1));
-      if (node.parent2 !== "Nie dotyczy" && state.nodesByName.has(node.parent2))
-        parents.push(state.nodesByName.get(node.parent2));
-      toVisit.unshift(...parents.slice().reverse());
+      if (node.parent1 !== "0") parents.push(state.nodesByPK.get(node.parent1));
+      if (node.parent2 !== "0") parents.push(state.nodesByPK.get(node.parent2));
+      toVisit.unshift(...parents);
     }
   }
+
+  predecessors = [...new Set(predecessors)];
 
   let activePredecessors = [];
   if (ACTIVE_PREDECESSORS) {
@@ -38,15 +41,16 @@ export function getPredecessors(state, ACTIVE_PREDECESSORS, YEARS_BACK) {
       );
       activePredecessors.push(...activeDescendants);
     }
+    activePredecessors = [...new Set(activePredecessors)];
     activePredecessors.sort((a, b) => (a.year >= b.year ? 1 : -1));
     const finalActivePredecessors = [];
-    for (let i = activePredecessors.length - 1; i >= 0; i--) {
-      const p = activePredecessors[i];
+    for (let idx in activePredecessors.toReversed()) {
+      const p = activePredecessors[idx];
       let isNotChild = true;
-      for (let j = i - 1; j >= 0; j--) {
-        const potentialParent = activePredecessors[j];
+      for (let i = idx - 1; i >= 0; i--) {
+        const potentialParent = activePredecessors[i];
         if (
-          state.childrenDict[potentialParent.pk][1].includes(parseInt(p.pk, 10))
+            state.childrenDict[potentialParent.pk][1].includes(parseInt(p.pk, 10))
         ) {
           isNotChild = false;
           break;

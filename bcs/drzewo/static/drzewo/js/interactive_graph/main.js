@@ -6,10 +6,12 @@ const state = {
   nodes: [],
   nodesByName: {},
   nodesByPK: {},
+  nodesByYear: {},
   links: [],
   years: {},
   childrenDict: {},
   layerDistance: 0,
+  currentYear: 0,
   lowerOpacity: 0,
 };
 
@@ -35,16 +37,24 @@ const activeViewModes = new Set();
 // ====== Data Fetch ======
 async function fetchTreeData() {
   const onp = window.TREE_CONFIG.onp;
-  const dataUrl = `/drzewo/full-tree-data/?only_known_parents=${onp}`;
+  const beans = window.TREE_CONFIG.beans;
+  const dataUrl = `/drzewo/full-tree-data/?only_known_parents=${onp}&beans_present=${beans}`;
   const res = await fetch(dataUrl);
   const data = await res.json();
   state.nodes = data.nodes;
   state.nodesByName = new Map(state.nodes.map((n) => [n.name, n]));
   state.nodesByPK = new Map(state.nodes.map((n) => [n.pk, n]));
+  state.nodesByYear = state.nodes.reduce((map, node) => {
+    if (!map.has(node.year)) map.set(node.year, []);
+    map.get(node.year).push(node);
+    return map;
+  }, new Map());
+  state.nodesByYear = new Map(state.nodes.map((n) => [n.year, n]));
   state.links = data.links;
   state.years = data.years;
   state.childrenDict = data.childrenDict;
   state.layerDistance = data.layerDistance;
+  state.currentYear = data.currentYear;
   state.lowerOpacity = 0.2;
 }
 
