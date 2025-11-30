@@ -3,7 +3,7 @@ from collections import defaultdict
 
 from core.utils.Choices import TextChoose
 from core.utils.Czas import ROK_ZALOZENIA, BIEZACY_ROK
-from osoby.models import Czlonek
+from osoby.models import Czlonek, Bean
 from drzewo.utils.tree_rendering import render_layered_graph  # my helper
 from drzewo.utils.essentials import modify_layers_structure, TreeNode
 
@@ -64,7 +64,10 @@ def build_scoped_layers_and_edges(member, depth, gen, onp, children_dict):
                     stack.append((parent, c_depth, c_gen + 1))
 
         if onp and member_pk not in children_dict.keys():
-            children = c_member.get_children() + c_member.get_step_children()
+            children = (
+                c_member.get_member_children()
+                + c_member.get_member_step_children()
+            )
         else:
             children = {
                 Czlonek.objects.get(pk=_pk)
@@ -78,16 +81,25 @@ def build_scoped_layers_and_edges(member, depth, gen, onp, children_dict):
     return layers, edges
 
 
-def build_layers_and_edges_from_db(onp):
+def build_layers_and_edges_from_db(onp, beans):
     layers = {
-        rocznik: [set()] for rocznik in range(ROK_ZALOZENIA, BIEZACY_ROK + 1)
+        str(rocznik): [set()]
+        for rocznik in range(ROK_ZALOZENIA, BIEZACY_ROK + 1)
     }
+    if beans:
+        layers["BEAN"] = [set()]
     edges = {}
     children_dict = defaultdict(lambda: [None, []])
     abandons = {}
     go = 1
 
     members = list(Czlonek.objects.filter(ochrzczony=TextChoose.YES[0]))
+    if beans:
+        allBeans = Bean.objects.all()
+        beans_with_parents = set(allBeans) - set(
+            allBeans.filter(rodzic_1=Czlonek.get_not_applicable_czlonek())
+        )
+        members += list(beans_with_parents)
     if onp:
         members.remove(Czlonek.get_dont_know_czlonek())
     stack = []
@@ -132,38 +144,48 @@ def build_layers_and_edges_from_db(onp):
             while len(layers[year]) <= layer:
                 layers[year].append(set())
             layers[year][layer].add(member)
-            children_dict[member.pk][0] = f"{year}_{layer}"
 
-            children = member.get_children()
-            baptised_children = [
-                c for c in children if c.ochrzczony == TextChoose.YES[0]
-            ]
-            step_children = member.get_step_children()
-            baptised_step_children = [
-                sc
-                for sc in step_children
-                if sc.ochrzczony == TextChoose.YES[0]
-            ]
+            if isinstance(member, Czlonek):
+                children_dict[member.pk][0] = f"{year}_{layer}"
 
-            for child in reversed(
-                baptised_children
-            ):  # reversed to keep order similar to recursion
-                if paczek:
-                    if child == member:
-                        continue
-                stack.append(
-                    (
-                        TreeNode(
-                            member=child, depth=depth + 1, parent_layer=layer
+                children = member.get_member_children()
+                baptised_children = [
+                    c for c in children if c.ochrzczony == TextChoose.YES[0]
+                ]
+                if beans:
+                    baptised_children += member.get_bean_children()
+                step_children = member.get_member_step_children()
+                baptised_step_children = [
+                    sc
+                    for sc in step_children
+                    if sc.ochrzczony == TextChoose.YES[0]
+                ]
+                if beans:
+                    baptised_step_children += member.get_bean_step_children()
+
+                for child in reversed(
+                    baptised_children
+                ):  # reversed to keep order similar to recursion
+                    if paczek:
+                        if child == member:
+                            continue
+                    stack.append(
+                        (
+                            TreeNode(
+                                member=child,
+                                depth=depth + 1,
+                                parent_layer=layer,
+                            )
                         )
                     )
-                )
-                edges.setdefault((member.pk, child.pk), "final_parent")
-                children_dict[member.pk][1].append(child.pk)
+                    edges.setdefault((member.pk, child.pk), "final_parent")
+                    children_dict[member.pk][1].append(child.pk)
 
-            for step_child in baptised_step_children:
-                edges.setdefault((member.pk, step_child.pk), "final_parent")
-                children_dict[member.pk][1].append(step_child.pk)
+                for step_child in baptised_step_children:
+                    edges.setdefault(
+                        (member.pk, step_child.pk), "final_parent"
+                    )
+                    children_dict[member.pk][1].append(step_child.pk)
 
         members.sort(key=lambda x: x.staz)
         go += 1
