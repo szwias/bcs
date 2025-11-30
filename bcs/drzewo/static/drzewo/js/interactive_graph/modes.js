@@ -53,7 +53,8 @@ export class Modes {
           W: ["Weterani", "#668daa"],
           H: ["Członkowie honorowi", "#ff9e01"],
         },
-        "status"
+        "status",
+          ["Beani", "#ff00ff"]
       );
     } else if (mode === "aktywnosc") {
       this.createLegend(
