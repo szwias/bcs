@@ -2,6 +2,9 @@ import pygraphviz as pgv
 from django.forms import model_to_dict
 from django.http import JsonResponse
 
+from core.utils.Czas import BIEZACY_ROK
+from osoby.models import Czlonek
+
 DUMMY_PREFIX = "__layer_anchor__"
 DEFAULT_NODE_WIDTH = 0.5
 
@@ -32,8 +35,12 @@ def render_layered_graph(layers, edges, rankdir="TB", node_attrs=None):
             attrs["layer"] = layer_num
             attrs["year"] = layer_num[:4]
 
-            attrs["parent1"] = str(m.rodzic_1)
-            attrs["parent2"] = str(m.rodzic_2)
+            attrs["parent1"] = m.rodzic_1.pk
+            attrs["parent2"] = (
+                m.rodzic_2.pk
+                if m.rodzic_2 != Czlonek.get_not_applicable_czlonek()
+                else 0
+            )
 
             G.add_node(n=name, **attrs)
 
@@ -130,6 +137,7 @@ def build_d3_nodes(graph, year_reprs, children_dict, node_size=0.5):
             "years": year_reprs,
             "childrenDict": children_dict,
             "layerDistance": float(ranksep) * POINTS_IN_AN_INCH,
+            "currentYear": BIEZACY_ROK,
         }
     )
 
