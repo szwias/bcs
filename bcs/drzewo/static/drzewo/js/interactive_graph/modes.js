@@ -206,14 +206,19 @@ export class Modes {
     });
   }
 
-  createLegend(mapping, attribute) {
+  createLegend(mapping, attribute, default_mapping) {
     Object.entries(mapping).forEach(([_, [desc, color]]) =>
       this.appendLegend(desc, color)
     );
+    let default_color = palette.toggle;
+    if (default_mapping) {
+      this.appendLegend(...default_mapping);
+      default_color = default_mapping[1];
+    }
     this.state.nodes.forEach((n) => {
       const key = n[attribute];
       const colorInfo = mapping[key];
-      n.color = colorInfo ? colorInfo[1] : palette.toggle;
+      n.color = colorInfo ? colorInfo[1] : default_color;
     });
   }
 
