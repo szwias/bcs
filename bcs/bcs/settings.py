@@ -28,8 +28,8 @@ SECRET_KEY = config("SECRET_KEY")
 GOOGLE_MAPS_API_KEY = config("GOOGLE_MAPS_API_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = config("DEBUG", default=False, cast=bool)
-DEBUG = True
+DEBUG = config("DEBUG", default=False, cast=bool)
+# DEBUG = True
 ALLOWED_HOSTS = config("ALLOWED_HOSTS", cast=Csv(), default=[])
 
 # Add ngrok host if present in .ngrok_addr
@@ -38,7 +38,7 @@ if os.path.exists(ADDR_FILE):
     with open(ADDR_FILE) as f:
         ngrok_url = f.read().strip()
         if ngrok_url:
-            hostname = ngrok_url.replace(__old="https://", __new="").split(
+            hostname = ngrok_url.replace("https://", "").split(
                 "/"
             )[0]
             ALLOWED_HOSTS.append(hostname)
@@ -115,11 +115,11 @@ DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
         # "NAME": "test_mirror_db",
-        "NAME": config("DB_NAME"),
-        "USER": config("DB_USER"),
-        "PASSWORD": config("DB_PASSWORD"),
-        "HOST": config("DB_HOST"),
-        "PORT": config("DB_PORT"),
+        "NAME": config("POSTGRES_DB"),
+        "USER": config("POSTGRES_USER"),
+        "PASSWORD": config("POSTGRES_PASSWORD"),
+        "HOST": config("POSTGRES_HOST"),
+        "PORT": config("POSTGRES_PORT"),
     }
 }
 
@@ -165,6 +165,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # Security
 
+CSRF_TRUSTED_ORIGINS = config("CSRF_TRUSTED_ORIGINS", cast=Csv(), default=[])
 CSRF_COOKIE_SECURE = True
 SESSION_COOKIE_SECURE = True
 X_FRAME_OPTIONS = "DENY"
