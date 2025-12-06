@@ -1,0 +1,21 @@
+__pycache__/
+*.pyc
+*.pyo
+
+# virtualenvs
+.venv/
+venv/
+
+# django generated
+static/
+media/
+
+# git
+.git/
+.gitignore
+
+# OS junk
+.DS_Store
+
+# env files
+.env
