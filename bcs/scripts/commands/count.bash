@@ -228,9 +228,9 @@ done
 # Write to file if --tracked
 # -----------------------------
 if $tracked; then
-  output_file="../stats/tcount/tdata.txt"
+  output_file="stats/tcount/tdata.txt"
 else
-  output_file="../stats/count/data.txt"
+  output_file="stats/count/data.txt"
 fi
 : >"$output_file" # truncate file
 
