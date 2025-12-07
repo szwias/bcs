@@ -16,9 +16,7 @@ class FullTreeRenderForm(forms.Form):
 
 class ScopedTreeRenderForm(forms.Form):
     member = forms.ModelChoiceField(
-        queryset=Czlonek.objects.filter(ochrzczony=TextChoose.YES[0]).exclude(
-            id=Czlonek.get_dont_know_czlonek().id
-        ),
+        queryset=Czlonek.objects.none(),
         required=True,
         label="Członek, dla którego chcesz wygenerować drzewo",
     )
@@ -40,12 +38,15 @@ class ScopedTreeRenderForm(forms.Form):
 
     def __init__(self, *args, **kwargs):  # TODO: add autocompletion
         super().__init__(*args, **kwargs)
+
+        self.fields["member"].queryset = Czlonek.objects.filter(
+            ochrzczony=TextChoose.YES[0]
+        ).exclude(id=Czlonek.get_dont_know_czlonek().id)
+
         # self.fields['member'].widget = autocomplete.ModelSelect2(
         #     url='osoby_autocomplete:czlonek-records-autocomplete'
         # )
 
     def clean_gen(self):
         gen = self.cleaned_data.get("gen")
-        if gen is None:
-            return MAKSYMALNA_ILOSC_POKOLEN
-        return gen
+        return gen if gen is not None else MAKSYMALNA_ILOSC_POKOLEN
