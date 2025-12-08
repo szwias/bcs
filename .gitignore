@@ -62,6 +62,7 @@ bcs/drzewo/trees/
 # ------------------------
 bcs/baza/baza_*.sql
 bcs/baza/backups/
+docker/**/*.sql
 
 # ------------------------
 # Ngrok runtime files
