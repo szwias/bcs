@@ -7,7 +7,7 @@ WORKDIR /app
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 
-# Install system dependencies for building pygraphviz
+# Install system dependencies for building packages
 RUN apt-get update && \
     apt-get install -y build-essential graphviz libgraphviz-dev pkg-config && \
     rm -rf /var/lib/apt/lists/*
@@ -26,19 +26,15 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 # Create non-root user and project folder
-RUN useradd -m -r appuser && mkdir /app && chown -R appuser /app
-
+RUN useradd -m -r appuser && mkdir /app
 WORKDIR /app
 
 # Copy installed Python packages from builder
 COPY --from=builder /usr/local/lib/python3.13/site-packages/ /usr/local/lib/python3.13/site-packages/
 COPY --from=builder /usr/local/bin/ /usr/local/bin/
 
-# Copy project files (bcs/) into /app
+# Copy project files
 COPY bcs/ .
-
-# Copy entrypoint script into /app
-#COPY docker/entrypoint.prod.sh .
 
 # Make entrypoint executable
 RUN chmod +x entrypoint.prod.sh
@@ -46,7 +42,7 @@ RUN chmod +x entrypoint.prod.sh
 # Switch to non-root user
 USER appuser
 
-# Expose port for Gunicorn
+# Expose port
 EXPOSE 8000
 
 # Start application
