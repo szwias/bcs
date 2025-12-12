@@ -43,6 +43,7 @@ bcs/test_file
 *.txt
 !bcs/docs/
 !bcs/docs/**/*.txt
+!requirements.txt
 
 # ------------------------
 # Generated data & stats
