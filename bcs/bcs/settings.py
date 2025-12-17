@@ -38,9 +38,7 @@ if os.path.exists(ADDR_FILE):
     with open(ADDR_FILE) as f:
         ngrok_url = f.read().strip()
         if ngrok_url:
-            hostname = ngrok_url.replace("https://", "").split(
-                "/"
-            )[0]
+            hostname = ngrok_url.replace("https://", "").split("/")[0]
             ALLOWED_HOSTS.append(hostname)
 
 # Application definition
@@ -115,11 +113,11 @@ DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
         # "NAME": "test_mirror_db",
-        "NAME": config("DB_NAME"),
-        "USER": config("DB_USER"),
-        "PASSWORD": config("DB_PASSWORD"),
-        "HOST": config("DB_HOST"),
-        "PORT": config("DB_PORT"),
+        "NAME": config("POSTGRES_DB"),
+        "USER": config("POSTGRES_USER"),
+        "PASSWORD": config("POSTGRES_PASSWORD"),
+        "HOST": config("POSTGRES_HOST"),
+        "PORT": config("POSTGRES_PORT"),
     }
 }
 
