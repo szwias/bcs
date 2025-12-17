@@ -202,6 +202,8 @@ class Osoba(Byt):
         verbose_name="Przezwiska",
     )
 
+    archiwum = models.BooleanField(default=False)
+
     class Meta:
         verbose_name = "Osoba"
         verbose_name_plural = "Osoby"
@@ -544,19 +546,25 @@ class Czlonek(Osoba, OsobaBCS):
         return [p for p in [self.rodzic_1, self.rodzic_2] if p.exists()]
 
     def get_member_children(self):
-        return list(self.dzieci_pierwszy_wybor.all())
+        return [
+            c for c in self.dzieci_pierwszy_wybor.all() if c.archiwum == False
+        ]
 
     def get_member_step_children(self):
-        return list(self.dzieci_drugi_wybor.all())
+        return [
+            c for c in self.dzieci_drugi_wybor.all() if c.archiwum == False
+        ]
 
     def get_all_member_children(self):
         return self.get_member_children() + self.get_member_step_children()
 
     def get_bean_children(self):
-        return list(self.beani_pierwszy_wybor.all())
+        return [
+            b for b in self.beani_pierwszy_wybor.all() if b.archiwum == False
+        ]
 
     def get_bean_step_children(self):
-        return list(self.beani_drugi_wybor.all())
+        return [b for b in self.beani_drugi_wybor.all() if b.archiwum == False]
 
     def get_all_bean_children(self):
         return self.get_bean_children() + self.get_bean_step_children()
