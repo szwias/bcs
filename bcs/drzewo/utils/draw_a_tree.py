@@ -93,7 +93,11 @@ def build_layers_and_edges_from_db(onp, beans):
     abandons = {}
     go = 1
 
-    members = list(Czlonek.objects.filter(ochrzczony=TextChoose.YES[0]))
+    members = list(
+        Czlonek.objects.filter(archiwum=False).filter(
+            ochrzczony=TextChoose.YES[0]
+        )
+    )
     if beans:
         allBeans = Bean.objects.all()
         beans_with_parents = set(allBeans) - set(
@@ -123,7 +127,6 @@ def build_layers_and_edges_from_db(onp, beans):
             if onp and member.rodzic_1.is_unknown():
                 continue
             if set(member.get_parents()) & set(members):
-                members.append(member)
                 continue
             else:
                 stack.append(TreeNode(member=member, depth=2, parent_layer=2))
@@ -136,6 +139,8 @@ def build_layers_and_edges_from_db(onp, beans):
             layer = node.layer
             year = node.year
             member = node.member
+            if str(member) == "Natalia Stachura":
+                print("WTF")
             paczek = node.paczek  # support dla ludzi, którzy "wypączkowali"
 
             if member.rodzic_2 != Czlonek.get_not_applicable_czlonek():
