@@ -1,9 +1,8 @@
 #!/bin/sh
 set -e
 
-echo "Ensuring staticfiles directory exists and is writable..."
+echo "Ensuring staticfiles directory exists..."
 mkdir -p /app/staticfiles
-chown -R appuser:appuser /app/staticfiles
 
 echo "Applying database migrations..."
 python manage.py migrate --noinput --fake
