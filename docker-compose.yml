@@ -1,0 +1,29 @@
+services:
+  web:
+    build: .
+    container_name: bcs_web
+    env_file:
+      - .env
+    volumes:
+      - ./bcs:/app
+      - static_volume:/app/staticfiles
+      - media_volume:/app/media
+    ports:
+      - "8001:8000"
+    depends_on:
+      - db
+
+  db:
+    image: postgres:16
+    container_name: bcs_db
+    env_file:
+      - .env
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5433:5432"
+
+volumes:
+  postgres_data:
+  static_volume:
+  media_volume:
