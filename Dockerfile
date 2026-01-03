@@ -13,6 +13,7 @@ RUN apt-get update && apt-get install -y \
     graphviz \
     libgraphviz-dev \
     pkg-config \
+    netcat-openbsd \
     && rm -rf /var/lib/apt/lists/*
 
 COPY bcs/requirements.txt /app/
