@@ -92,7 +92,7 @@ def serve_scoped_tree_form_view(request):
         title = f"tree_{member.id}_depth_{depth}_gen_{gen}" + (
             "_onp" if onp else ""
         )
-        path = f"/home/szymon/Desktop/bcs/bcs/drzewo//trees/{title}.png"
+        path = f"/home/szymon/Desktop/bcs/bcs/drzewo/trees/{title}.png"
 
         if not os.path.exists(path):
             generate_scoped_tree(
