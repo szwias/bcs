@@ -28,32 +28,6 @@ def parse_beans(request):
 
 
 @require_GET
-def serve_full_tree_form_view(request):
-    form = FullTreeRenderForm(request.GET or None)
-
-    # Only process if user actually submitted
-    if "submitted" in request.GET and form.is_valid():
-        onp = form.cleaned_data["only_known_parents"]
-
-        title = "full_tree" + ("_onp" if onp else "")
-        path = f"/home/szymon/Desktop/bcs/bcs/drzewo/trees/{title}.png"
-
-        if not os.path.exists(path):
-            generate_full_tree(path=path, onp=onp)
-
-        if os.path.exists(path):
-            return FileResponse(open(path, "rb"), content_type="image/png")
-
-        raise Http404("Image not found after generation")
-
-    return render(
-        request=request,
-        template_name="drzewo/full_tree_generation.html",
-        context={"form": form},
-    )
-
-
-@require_GET
 def full_tree_interactive_view(request):
     form = FullTreeRenderForm(request.GET or None)
     onp = parse_onp(request)
@@ -78,6 +52,37 @@ def full_tree_data_graphviz(request):
     )
 
 
+# TODO: add option to include the beans
+@require_GET
+def serve_full_tree_form_view(request):
+    form = FullTreeRenderForm(request.GET or None)
+
+    # Only process if user actually submitted
+    if "submitted" in request.GET and form.is_valid():
+        onp = form.cleaned_data["only_known_parents"]
+        beans = form.cleaned_data["beans_present"]
+
+        title = (
+            "full_tree" + ("_onp" if onp else "") + ("_beans" if beans else "")
+        )
+        path = f"/home/szymon/Desktop/bcs/bcs/drzewo/trees/{title}.png"
+
+        if not os.path.exists(path):
+            generate_full_tree(path=path, onp=onp, beans=beans)
+
+        if os.path.exists(path):
+            return FileResponse(open(path, "rb"), content_type="image/png")
+
+        raise Http404("Image not found after generation")
+
+    return render(
+        request=request,
+        template_name="drzewo/full_tree_generation.html",
+        context={"form": form},
+    )
+
+
+# TODO: add option to include the beans
 @require_GET
 def serve_scoped_tree_form_view(request):
     # TODO: add option of not showing first parent if there's a second one
@@ -88,15 +93,21 @@ def serve_scoped_tree_form_view(request):
         depth = form.cleaned_data["depth"]
         gen = form.cleaned_data["gen"]
         onp = form.cleaned_data["only_known_parents"]
+        beans = form.cleaned_data["beans_present"]
 
         title = f"tree_{member.id}_depth_{depth}_gen_{gen}" + (
             "_onp" if onp else ""
-        )
+        ) + ("_beans" if beans else "")
         path = f"/home/szymon/Desktop/bcs/bcs/drzewo/trees/{title}.png"
 
         if not os.path.exists(path):
             generate_scoped_tree(
-                path=path, member=member, depth=depth, gen=gen, onp=onp
+                path=path,
+                member=member,
+                depth=depth,
+                gen=gen,
+                onp=onp,
+                beans=beans,
             )
 
         if os.path.exists(

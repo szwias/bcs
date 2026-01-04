@@ -1,4 +1,3 @@
-# drzewo/drzewo.py
 from django import forms
 
 from core.utils.Choices import TextChoose
@@ -10,7 +9,6 @@ class FullTreeRenderForm(forms.Form):
     only_known_parents = forms.BooleanField(
         required=False, label="Pokaż tylko członków o znanych rodzicach"
     )
-
     beans_present = forms.BooleanField(required=False, label="Pokaż beanów")
 
 
@@ -35,6 +33,7 @@ class ScopedTreeRenderForm(forms.Form):
     only_known_parents = forms.BooleanField(
         required=False, label="Pokaż tylko członków o znanych rodzicach"
     )
+    beans_present = forms.BooleanField(required=False, label="Pokaż beanów")
 
     def __init__(self, *args, **kwargs):  # TODO: add autocompletion
         super().__init__(*args, **kwargs)
