@@ -8,14 +8,16 @@ from drzewo.utils.tree_rendering import render_layered_graph  # my helper
 from drzewo.utils.essentials import modify_layers_structure, TreeNode
 
 
-def generate_full_tree(path, onp):
-    layers, edges, children_dict, _ = build_layers_and_edges_from_db(onp)
+def generate_full_tree(path, onp, beans):
+    layers, edges, children_dict, _ = build_layers_and_edges_from_db(
+        onp, beans
+    )
     G = render_layered_graph(layers=layers, edges=edges)
     G.draw(path=path)
 
 
-def generate_scoped_tree(path, member, depth, gen, onp):
-    _, _, children_dict, _ = build_layers_and_edges_from_db(onp)
+def generate_scoped_tree(path, member, depth, gen, onp, beans):
+    _, _, children_dict, _ = build_layers_and_edges_from_db(onp, beans)
     layers, edges = build_scoped_layers_and_edges(
         member=member,
         depth=depth,
