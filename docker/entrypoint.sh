@@ -7,7 +7,7 @@ done
 
 echo "PostgreSQL started"
 
-python manage.py migrate --fake
+#python manage.py migrate --fake
 python manage.py collectstatic --noinput
 
 exec gunicorn bcs.wsgi:application \
