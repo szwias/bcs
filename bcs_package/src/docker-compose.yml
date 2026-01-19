@@ -1,0 +1,19 @@
+services:
+  db:
+    image: postgres:14
+    container_name: bcs_db
+    env_file: .env
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+  web:
+    image: szwias/bcs-web:latest
+    container_name: bcs_web
+    env_file: .env
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+
+volumes:
+  db_data:
