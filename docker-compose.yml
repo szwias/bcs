@@ -16,7 +16,6 @@ services:
     env_file:
       - .env
     volumes:
-      - ./bcs:/app
       - static_volume:/app/staticfiles
       - media_volume:/app/media
     ports:
