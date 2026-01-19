@@ -56,11 +56,13 @@ bcs/media/
 bcs/staticfiles/
 bcs/drzewo/trees/
 *.map
+*.zip
 
 # ------------------------
 # Database dumps/backups
 # ------------------------
 bcs/baza/baza_*.sql
+*/bcs_dump.sql
 bcs/baza/backups/
 
 # ------------------------
