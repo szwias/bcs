@@ -43,6 +43,7 @@ bcs/test_file
 *.txt
 !bcs/docs/
 !bcs/docs/**/*.txt
+*/bcs_dump.sql
 
 # ------------------------
 # Generated data & stats
@@ -56,7 +57,7 @@ bcs/media/
 bcs/staticfiles/
 bcs/drzewo/trees/
 *.map
-
+*.zip
 # ------------------------
 # Database dumps/backups
 # ------------------------
