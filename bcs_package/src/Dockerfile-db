@@ -1,0 +1,6 @@
+FROM postgres:14
+
+RUN apt-get update && apt-get install -y postgresql-contrib \
+    && rm -rf /var/lib/apt/lists/*
+
+COPY docker/db_dictionaries/* /usr/share/postgresql/14/tsearch_data/
