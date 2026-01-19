@@ -22,7 +22,4 @@ RUN pip install --upgrade pip && pip install -r requirements.txt
 
 COPY bcs /app
 
-COPY docker/entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
-
-ENTRYPOINT ["/entrypoint.sh"]
+CMD ["sh", "-c", "python manage.py collectstatic --noinput && gunicorn bcs.wsgi:application --bind 0.0.0.0:8000 --workers 3"]
