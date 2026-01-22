@@ -1,62 +1,64 @@
-## Project setup manual
+## Setup manual
+Following manual is for Linux only, sorry Windows users ...
 ### Installing Multipass
-If you're on Linux, run this in terminal:
 ```shell
-sudo snap remove multipass
 sudo snap install multipass
 ```
-If on Windows install Multipass from website: https://canonical.com/multipass/install
 
-From this point the manual will work both for Windows and Linux.
-### Setting up VM
-Change directory to bcs_package/ and run those in terminal:
-```shell
-multipass delete bcs-test --purge 2> /dev/null
-multipass launch --name bcs-test --cpus 2 --memory 4G --disk 20G
-multipass shell bcs-test
-```
-```shell
-sudo apt update &> /dev/null
-sudo apt install -y docker.io docker-compose &> /dev/null
-sudo usermod -aG docker ubuntu
-```
-```shell
-exit
-```
-```shell
-multipass restart bcs-test
-multipass transfer -r src bcs-test:/home/ubuntu/
-multipass shell bcs-test
-```
-```shell
-cd src
-docker login
-```
-### Setting up project
-When "USING WEB-BASED LOGIN..." message appears:
-1. Copy the 'one-time device confirmation code'
-2. Follow the link
-3. Paste the code into bracket on the site
-4. Press 'Confirm'
+### Change to right directory
+First make sure you're in the right directory in the terminal: `bcs_package/`. 
 
-Then run those:
+If not, you can right-click on the `bcs_package` directory (the one the `README.md` is in), 
+go to "Properties" and copy the file path. Then in the terminal run this (without the <> brackets):
 ```shell
-docker pull --platform=linux/amd64 postgres:14
-docker pull --platform=linux/amd64 szwias/bcs-web:latest
+cd <here paste copied path>/bcs_package/
 ```
+If you're still not sure, you can run:
 ```shell
-docker-compose up -d
+ls
 ```
+You should see something like this:
 ```shell
-docker exec -i bcs_db psql -U projectuser -d bcs_db < bcs_dump.sql
-docker-compose restart web
-echo "http://$(hostname -I | awk '{print $1}'):8000/dashboard/"
+README.md  scripts  setup-host.sh  src  start-host.sh  stop.sh
 ```
-Follow the link and enjoy!
+### Building app for the first time
+In the terminal run:
+```shell
+bash setup-host.sh
+```
+When this message shows up:
+```text
+USING WEB-BASED LOGIN
 
-Bonus:
-```shell
-docker exec -it bcs_web python manage.py createsuperuser
-```
-Create your own username and password. Now whenever you get prompted to log in you can use those.
+i Info → To sign in with credentials on the command line, use 'docker login -u <username>'
+         
 
+Your one-time device confirmation code is: ZLPJ-WZHG
+Press ENTER to open your browser or submit your device code here: https://login.docker.com/activate
+
+Waiting for authentication in the browser…
+```
+do the following steps:
+1. Copy the *"confirmation code"* from your terminal
+2. Follow the link: https://login.docker.com/activate
+3. Paste the code in "Enter your one-time code*" field
+4. Hit "Continue" button
+5. Hit "Confirm" button
+
+When this message shows up:
+```text
+Create your account:
+Username (leave blank to use 'root'): 
+```
+You have enter a new username and password, but you can ignore email by pressing Enter.
+### Closing the app
+```shell
+bash stop.sh
+```
+### Reopening the app
+```shell
+bash start-host.sh
+```
+### Troubleshooting
+For now, you can contact me privately through email:
+[zwiasszymon@gmail.com](https://mail.google.com/mail/?view=cm&fs=1&to=zwiasszymon@gmail.com)
