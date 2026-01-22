@@ -35,7 +35,7 @@ def baptize(modeladmin, request, queryset):
 
 @admin.register(Bean)
 class BeanAdmin(BaseModelAdmin):
-    list_filter = ["staz", "pewnosc_stazu"]
+    list_filter = ["staz", "pewnosc_stazu", "archiwum"]
     actions = [baptize]
 
 
