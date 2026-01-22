@@ -62,7 +62,7 @@ bcs/drzewo/trees/
 # Database dumps/backups
 # ------------------------
 bcs/baza/baza_*.sql
-*/bcs_dump.sql
+bcs_package/src/bcs_dump.sql
 bcs/baza/backups/
 
 # ------------------------
